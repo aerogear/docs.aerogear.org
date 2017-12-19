@@ -1,0 +1,26 @@
+{
+  "name": "shiftgear",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/finp/shiftgear.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/finp/shiftgear/issues"
+  },
+  "homepage": "https://github.com/finp/shiftgear#readme",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "superfish": "^1.7.9",
+    "push-docs": "git@github.com:finp/push-docs.git#master",
+    "digger-docs": "git@github.com:finp/digger-docs.git#master"
+    
+  }
+}

@@ -1,0 +1,90 @@
+# This configuration file dictates the organization of the topic groups and
+# topics on the main page of the doc site for this branch. Each record
+# consists of the following:
+#
+# ---                                  <= Record delimiter
+# Name: Origin of the Species          <= Display name of topic group
+# Dir:  origin_of_the_species          <= Directory name of topic group
+# Topics:
+#   - Name: The Majestic Marmoset      <= Topic name
+#     File: the_majestic_marmoset      <= Topic file under group dir +/- .adoc
+#   - Name: The Curious Crocodile      <= Topic 2 name
+#     File: the_curious_crocodile      <= Topic 2 file
+#   - Name: The Numerous Nematodes     <= Sub-topic group name
+#     Dir: the_numerous_nematodes      <= Sub-topic group dir
+#     Topics:
+#       - Name: The Wily Worm          <= Sub-topic name
+#         File: the_wily_worm          <= Sub-topic file under <group dir>/<subtopic dir>
+#       - Name: The Acrobatic Ascarid  <= Sub-topic 2 name
+#         File: the_acrobatic_ascarid  <= Sub-topic 2 file under <group dir>/<subtopic dir>
+#
+# The ordering of the records in this document determines the ordering of the
+# topic groups and topics on the main page.
+---
+Name: Push User Guide
+Dir: user
+Topics:
+  - Name: Overview
+    File: overview
+  - Name: Install the UnifiedPush Server
+    File: server-installation
+  - Name: System Properties for the UnifiedPush Server
+    File: server-installation_properties
+  - Name: Cluster and Docker
+    File: server-installation_advanced
+  - Name: Openshift
+    File: openshift
+  - Name: Using the Admin UI
+    File: admin-ui
+  - Name: Debugging the UnifiedPush Server
+    File: ups-debugging
+  - Name: Integrating the UnifiedPush Server
+    File: integration
+  - Name: Database migration
+    File: migration
+  - Name: Next steps
+    File: next
+  - Name: Appendix
+    File: appendix
+---
+Name: Installing AeroGear Digger
+Dir: installation
+Topics:  
+  - Name: Overview
+    File: digger-install-intro
+  - Name: Minimum prerequisites
+    File: digger-prereqs
+  - Name: macOS prerequisites
+    File: macos-prereqs
+  - Name: Running the installer
+    File: run-digger-installer
+  - Name: Verify the installation
+    File: verify-installation
+  - Name: Installation variables
+    File: installer-variables
+  - Name: Known issues
+    File: known-issues
+---
+Name: Using Digger
+Dir: developer
+Topics:
+  - Name: Overview
+    File: jenkinsfile-overview
+  - Name: jenkinsfile reference
+    File: jenkinsfile-anatomy
+  - Name: Using a jenkinsfile
+    File: jenkinsfile-create
+  - Name: Using Fastlane
+    File: jenkinsfile-fastlane
+  - Name: Building applications
+    File: jenkins-build
+---
+Name: Admin Guide
+Dir: admin
+Topics:
+  - Name: Overview
+    File: about-admin-guide
+  - Name: Installing Jenkins plugins
+    File: installing-jenkins-plugins  
+  - Name: Monitory using Nagios
+    File: digger-nagios-monitoring 
