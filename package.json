@@ -19,8 +19,9 @@
   "dependencies": {
     "jquery": "^3.2.1",
     "superfish": "^1.7.9",
+    "digger-docs": "git@github.com:finp/digger-docs.git#master",
     "push-docs": "git@github.com:finp/push-docs.git#master",
-    "digger-docs": "git@github.com:finp/digger-docs.git#master"
+    "sync-docs": "git@github.com:finp/sync-docs.git#master"
     
   }
 }

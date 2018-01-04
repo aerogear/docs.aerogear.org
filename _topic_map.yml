@@ -21,6 +21,110 @@
 # The ordering of the records in this document determines the ordering of the
 # topic groups and topics on the main page.
 ---
+Name: Sync User Guide
+Dir: sync-dev
+Topics:
+  - Name: Overview
+    File: sync_overview
+  - Name: Terminology
+    File: sync_terminology
+  - Name: Server architecture
+    File: sync_server_architecture
+  - Name: Configuration guide
+    File: sync_configuration_guide
+  - Name: Upgrade guide
+    File: sync_upgrade_guide
+  - Name: Performance guide
+    File: sync_performance_scaling_guide
+  - Name: Collections
+    File: sync_collections
+  - Name: Debugging guide
+    File: sync_debugging_guide
+---
+Name: Sync API Guide
+Dir: sync-ref
+Topics:
+  - Name: sync
+    File: sync
+  - Name: connect
+    File: sync-connect
+  - Name: geteventemitter
+    File: sync-geteventemitter
+  - Name: globalhandlecollision
+    File: sync-globalhandlecollision
+  - Name: globalhandlecreate
+    File: sync-globalhandlecreate
+  - Name: globalhandledelete
+    File: sync-globalhandledelete
+  - Name: globalhandlelist
+    File: sync-globalhandlelist
+  - Name: globalhandleread
+    File: sync-globalhandleread
+  - Name: globalhandleupdate
+    File: sync-globalhandleupdate
+  - Name: globalinterceptrequest
+    File: sync-globalinterceptrequest
+  - Name: globallistcollisions
+    File: sync-globallistcollisions
+  - Name: globalremovecollision
+    File: sync-globalremovecollision
+  - Name: handlecollision
+    File: sync-handlecollision
+  - Name: handlecreate
+    File: sync-handlecreate
+  - Name: handledelete
+    File: sync-handledelete
+  - Name: handlelist
+    File: sync-handlelist
+  - Name: handleread
+    File: sync-handleread
+  - Name: handleupdate
+    File: sync-handleupdate
+  - Name: init
+    File: sync-init
+  - Name: interceptrequest
+    File: sync-interceptrequest
+  - Name: invoke
+    File: sync-invoke
+  - Name: listcollisions
+    File: sync-listcollisions
+  - Name: removecollision
+    File: sync-removecollision
+  - Name: setconfig
+    File: sync-setconfig
+  - Name: setglobalhashfn
+    File: sync-setglobalhashfn
+  - Name: setrecordhashfn
+    File: sync-setrecordhashfn
+  - Name: stop
+    File: sync-stop
+  - Name: stopall
+    File: sync-stopall
+  - Name: toc
+    File: sync-toc
+# This configuration file dictates the organization of the topic groups and
+# topics on the main page of the doc site for this branch. Each record
+# consists of the following:
+#
+# ---                                  <= Record delimiter
+# Name: Origin of the Species          <= Display name of topic group
+# Dir:  origin_of_the_species          <= Directory name of topic group
+# Topics:
+#   - Name: The Majestic Marmoset      <= Topic name
+#     File: the_majestic_marmoset      <= Topic file under group dir +/- .adoc
+#   - Name: The Curious Crocodile      <= Topic 2 name
+#     File: the_curious_crocodile      <= Topic 2 file
+#   - Name: The Numerous Nematodes     <= Sub-topic group name
+#     Dir: the_numerous_nematodes      <= Sub-topic group dir
+#     Topics:
+#       - Name: The Wily Worm          <= Sub-topic name
+#         File: the_wily_worm          <= Sub-topic file under <group dir>/<subtopic dir>
+#       - Name: The Acrobatic Ascarid  <= Sub-topic 2 name
+#         File: the_acrobatic_ascarid  <= Sub-topic 2 file under <group dir>/<subtopic dir>
+#
+# The ordering of the records in this document determines the ordering of the
+# topic groups and topics on the main page.
+---
 Name: Push User Guide
 Dir: user
 Topics:
@@ -46,6 +150,28 @@ Topics:
     File: next
   - Name: Appendix
     File: appendix
+# This configuration file dictates the organization of the topic groups and
+# topics on the main page of the doc site for this branch. Each record
+# consists of the following:
+#
+# ---                                  <= Record delimiter
+# Name: Origin of the Species          <= Display name of topic group
+# Dir:  origin_of_the_species          <= Directory name of topic group
+# Topics:
+#   - Name: The Majestic Marmoset      <= Topic name
+#     File: the_majestic_marmoset      <= Topic file under group dir +/- .adoc
+#   - Name: The Curious Crocodile      <= Topic 2 name
+#     File: the_curious_crocodile      <= Topic 2 file
+#   - Name: The Numerous Nematodes     <= Sub-topic group name
+#     Dir: the_numerous_nematodes      <= Sub-topic group dir
+#     Topics:
+#       - Name: The Wily Worm          <= Sub-topic name
+#         File: the_wily_worm          <= Sub-topic file under <group dir>/<subtopic dir>
+#       - Name: The Acrobatic Ascarid  <= Sub-topic 2 name
+#         File: the_acrobatic_ascarid  <= Sub-topic 2 file under <group dir>/<subtopic dir>
+#
+# The ordering of the records in this document determines the ordering of the
+# topic groups and topics on the main page.
 ---
 Name: Installing AeroGear Digger
 Dir: installation
