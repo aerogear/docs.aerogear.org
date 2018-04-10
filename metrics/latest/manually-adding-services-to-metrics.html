@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manually making a service visible to the Metrics Service :: AeroGear Docs</title>
+    <link rel="canonical" href="https://docs.aerogear.org/metrics/latest/manually-adding-services-to-metrics.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.aerogear.org">AeroGear Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Android</a>
+            <a class="navbar-item" href="#">iOS</a>
+            <a class="navbar-item" href="#">Cordova</a>
+            <a class="navbar-item" href="#">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="#">Push</a>
+            <a class="navbar-item" href="#">Auth</a>
+            <a class="navbar-item" href="#">Security Checking</a>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="metrics" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">AeroGear Metrics Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="using-mobile-services-dashboard.html">Using the Mobile Services Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="using-dashboards.html">Using Dashboards</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="giving-an-openshift-user-access-to-metrics.html">Sharing Access to Dashboards</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="app_metrics_guide.html">Analyzing App Usage</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="manually-adding-services-to-metrics.html">Manually Adding Services to Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="making-mobile-services-discoverable-by-metrics.html">Making Services Discoverable</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="keycloak-dashboard.html">Using the Keycloak Dashboard</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Metrics Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">AeroGear Metrics Mobile Service</a></li>
+    <li class="crumb"><a href="manually-adding-services-to-metrics.html">Manually Adding Services to Metrics</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/metrics-apb/docs/modules/ROOT/pages/manually-adding-services-to-metrics.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Manually making a service visible to the Metrics Service</h1>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>OpenShift Origin &gt;= 3.7</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.openshift.org/latest/install_config/index.html" class="bare">https://docs.openshift.org/latest/install_config/index.html</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>OpenShift Ansible Broker</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.openshift.org/latest/install_config/install/advanced_install.html#configuring-openshift-ansible-broker" class="bare">https://docs.openshift.org/latest/install_config/install/advanced_install.html#configuring-openshift-ansible-broker</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Metrics service deployment from the Service Catalog</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/aerogearcatalog/metrics-apb" class="bare">https://github.com/aerogearcatalog/metrics-apb</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-a-service-to-the-metrics-service"><a class="anchor" href="#adding-a-service-to-the-metrics-service"></a>Adding a service to the Metrics Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Metrics Service is composed of both <a href="https://grafana.com/">Grafana</a>
+for data visualization and <a href="https://prometheus.io/">Prometheus</a> for
+gathering of metrics data, so including a new service involves
+configuring the Prometheus instance to include scraping of metrics
+endpoints for the new service.</p>
+</div>
+<div class="sect2">
+<h3 id="service-requirements"><a class="anchor" href="#service-requirements"></a>Service requirements</h3>
+<div class="paragraph">
+<p>In order to provide data that is consumable (scrape-able) by Prometheus,
+the service must expose a <strong>metrics endpoint</strong>, see the
+<a href="https://prometheus.io/docs/instrumenting">Prometheus documentation on
+instrumenting</a> your own services to add metrics endpoints to an existing
+application.</p>
+</div>
+<div class="paragraph">
+<p>The endpoint must:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Not have any authentication requirements</p>
+</li>
+<li>
+<p>Be visible by the Prometheus instance</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the case of our Grafana instance, its metrics endpoint is accessible to Prometheus without authentication information through an additional <code>grafana-internal</code> service in OpenShift, whereas the main <code>grafana</code> service accessible via a public-facing route is protected by an instance of the <a href="https://github.com/openshift/oauth-proxy/">OpenShift OAuth Proxy</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-new-scraping-configuration-to-the-prometheus-instance"><a class="anchor" href="#adding-a-new-scraping-configuration-to-the-prometheus-instance"></a>Adding a new scraping configuration to the Prometheus instance</h3>
+<div class="paragraph">
+<p>In this example we will edit the existing Prometheus configuration to
+include a new <code>scrape_config</code> targeting our service.</p>
+</div>
+<div class="paragraph">
+<p>This example will target the Grafana instance deployed alongside
+Prometheus, which exposes a metrics endpoint in the default <code>/metrics</code>
+HTTP endpoint.</p>
+</div>
+<div class="paragraph">
+<p>See the
+<a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/\#scrape_config">Prometheus
+documentation on scrape_config</a> for more details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="via-the-openshift-console"><a class="anchor" href="#via-the-openshift-console"></a>Via the OpenShift Console</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select your project in the <code>My Projects</code> sidebar</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/manually-adding-services-to-metrics/myprojects.png" alt="My projects"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to Prometheus' Config Map via
+<code>Resources &gt; Config Maps &gt; prometheus-configmap</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/manually-adding-services-to-metrics/configmap.png" alt="Config Map"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enter editing mode through <code>Actions &gt; Edit YAML</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/manually-adding-services-to-metrics/edit.png" alt="Edit YAML"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Include a new <code>scrape_config</code> targeting the Grafana service:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+data:
+  prometheus.yml: |-
+    ---
+    global:
+      evaluation_interval: 5s
+      scrape_interval: 5s
+    scrape_configs:
+      - job_name: prometheus
+        static_configs:
+          - targets:
+            - "localhost:9090"
+      - job_name: grafana
+        metrics_path: "/metrics" # default value
+        static_configs:
+          - targets:
+            - "grafana-internal:80"
+        # other configuration</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>target</code> of the config should point to the internally-resolvable
+name of the service, visible by navigating to
+<code>Applications &gt; Services &gt; grafana-internal</code> and has the format
+<code>{Hostname}:{Target Port}</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>grafana</code> service requires authentication through the OpenShift OAuth proxy, thus preventing connection from the unauthenticated Prometheus client, so the <code>grafana-internal</code> should be our target instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Trigger a manual deployment of the <code>prometheus</code> service to inject
+the updated Config Map by going to
+<code>Applications &gt; Deployments &gt; prometheus</code> and clicking <code>Deploy</code>.</p>
+</li>
+<li>
+<p>Verify the new target by navigating to the list of targets in Prometheus at <a href="https://prometheus-{project_name}.192.168.37.1.nip.io/targets" class="bare">https://prometheus-{project_name}.192.168.37.1.nip.io/targets</a>, or by accessing the Prometheus web interface and navigating to <code>Status &gt; Targets</code>:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/manually-adding-services-to-metrics/grafana-target.png" alt="Grafana Target"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="via-the-code-oc-code-cli"><a class="anchor" href="#via-the-code-oc-code-cli"></a>Via the <code>oc</code> cli</h3>
+<div class="paragraph">
+<p>Run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login # login to the OpenShift Cluster
+oc get projects # list available Projects
+oc use myproject # switch to the project where the prometheus and the custom service are located
+oc get configmaps # list available Config Maps
+oc edit configmap prometheus-configmap # open the prometheus configmap in $OC_EDITOR or $EDITOR</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will allow you to edit the Config Map in a local editor similarly
+to the editing done via the OpenShift Console.</p>
+</div>
+<div class="paragraph">
+<p>After saving the updated Config Map and having it updated in OpenShift,
+execute a new rollout of Prometheus' deployment config:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get deploymentconfigs # list existing deployment configs
+oc rollout latest dc/prometheus # start a new deployment of the prometheus deploymentconfig
+oc rollout status dc/prometheus # follow the status of the new rollout</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

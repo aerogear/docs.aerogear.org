@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keycloak dashboard in Grafana :: AeroGear Docs</title>
+    <link rel="canonical" href="https://docs.aerogear.org/metrics/latest/keycloak-dashboard.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.aerogear.org">AeroGear Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Android</a>
+            <a class="navbar-item" href="#">iOS</a>
+            <a class="navbar-item" href="#">Cordova</a>
+            <a class="navbar-item" href="#">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="#">Push</a>
+            <a class="navbar-item" href="#">Auth</a>
+            <a class="navbar-item" href="#">Security Checking</a>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="metrics" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">AeroGear Metrics Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="using-mobile-services-dashboard.html">Using the Mobile Services Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="using-dashboards.html">Using Dashboards</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="giving-an-openshift-user-access-to-metrics.html">Sharing Access to Dashboards</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="app_metrics_guide.html">Analyzing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manually-adding-services-to-metrics.html">Manually Adding Services to Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="making-mobile-services-discoverable-by-metrics.html">Making Services Discoverable</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="keycloak-dashboard.html">Using the Keycloak Dashboard</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Metrics Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">AeroGear Metrics Mobile Service</a></li>
+    <li class="crumb"><a href="keycloak-dashboard.html">Using the Keycloak Dashboard</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/metrics-apb/docs/modules/ROOT/pages/keycloak-dashboard.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Keycloak dashboard in Grafana</h1>
+<div class="sect1">
+<h2 id="prerequesites"><a class="anchor" href="#prerequesites"></a>Prerequesites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>OpenShift Origin &gt;= 3.7</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.openshift.org/latest/install_config/index.html" class="bare">https://docs.openshift.org/latest/install_config/index.html</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>OpenShift Ansible Broker</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.openshift.org/latest/install_config/install/advanced_install.html#configuring-openshift-ansible-broker" class="bare">https://docs.openshift.org/latest/install_config/install/advanced_install.html#configuring-openshift-ansible-broker</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Metrics service deployment from the Service Catalog</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/aerogearcatalog/metrics-apb" class="bare">https://github.com/aerogearcatalog/metrics-apb</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Keycloak service deployment from the Service Catalog</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/aerogearcatalog/keycloak-apb" class="bare">https://github.com/aerogearcatalog/keycloak-apb</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Note</strong></p>
+</div>
+<div class="paragraph">
+<p>Metrics service and Keycloak service must be provisioned within the same namespace,
+otherwise the Keycloak&#8217;s metrics endpoint won&#8217;t be reachable for Prometheus and no data will be displayed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After the Metrics service (includes Grafana tool and Prometheus monitoring system) and Keycloak service are provisioned,
+you should be able to see the "Keycloak Metrics" in the list of available dashboards
+(navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>)</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/keycloak-dashboard/keycloak-dashboard-overview.png" alt="keycloak-dashboard"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dashboard-s-panels-description"><a class="anchor" href="#dashboard-s-panels-description"></a>Dashboard&#8217;s panels description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Keycloak dashboard consists of several panels which give you overview of the specific
+events, such as number of registered users, memory usage etc.</p>
+</div>
+<div class="paragraph">
+<p>See below for the detailed description of each panel and its values</p>
+</div>
+<div class="sect2">
+<h3 id="a-href-http-docs-grafana-org-features-panels-singlestat-singlestat-panel-singlestat-panels-a"><a class="anchor" href="#a-href-http-docs-grafana-org-features-panels-singlestat-singlestat-panel-singlestat-panels-a"></a><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panels</a></h3>
+<div class="sect3">
+<h4 id="total-registrations"><a class="anchor" href="#total-registrations"></a>Total Registrations</h4>
+<div class="paragraph">
+<p>Total number of registered (non-admin) users. This number comprises all successful registrations made via various providers, e.g. Keycloak, Github, Facebook etc.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="total-logins"><a class="anchor" href="#total-logins"></a>Total Logins</h4>
+<div class="paragraph">
+<p>Total number of successful logins (only non-admin users) over all providers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="total-login-errors"><a class="anchor" href="#total-login-errors"></a>Total Login Errors</h4>
+<div class="paragraph">
+<p>Total number of failed login attempts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-memory"><a class="anchor" href="#current-memory"></a>Current Memory</h4>
+<div class="paragraph">
+<p>The amount of memory currently used by the Keycloak service</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="a-href-http-docs-grafana-org-features-panels-graph-graph-panel-graph-panels-a"><a class="anchor" href="#a-href-http-docs-grafana-org-features-panels-graph-graph-panel-graph-panels-a"></a><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph panels</a></h3>
+<div class="sect3">
+<h4 id="logins"><a class="anchor" href="#logins"></a>Logins</h4>
+<div class="paragraph">
+<p>Overview of the successful logins over time</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="login-errors"><a class="anchor" href="#login-errors"></a>Login Errors</h4>
+<div class="paragraph">
+<p>Overview of the failed login attempts over time</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="memory-usage"><a class="anchor" href="#memory-usage"></a>Memory Usage</h4>
+<div class="paragraph">
+<p>The values in this graph represents the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Used</strong> - The amount of memory currently used by the Keycloak service</p>
+</li>
+<li>
+<p><strong>Commited</strong> - The amount of memory that is guaranteed to be available for use (by JVM)</p>
+</li>
+<li>
+<p><strong>Max</strong> - The maximum amount of memory that can be used for memory management</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="a-href-https-grafana-com-plugins-grafana-piechart-panel-pie-charts-a"><a class="anchor" href="#a-href-https-grafana-com-plugins-grafana-piechart-panel-pie-charts-a"></a><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Charts</a></h3>
+<div class="sect3">
+<h4 id="logins-per-provider"><a class="anchor" href="#logins-per-provider"></a>Logins Per Provider</h4>
+<div class="paragraph">
+<p>Overview of the successful (non-admin) user logins per provider</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="registrations-per-provider"><a class="anchor" href="#registrations-per-provider"></a>Registrations Per Provider</h4>
+<div class="paragraph">
+<p>Overview of the successful (non-admin) user registrations per provider</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

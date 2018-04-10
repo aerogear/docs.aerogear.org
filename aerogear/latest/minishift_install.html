@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting up AeroGear Mobile Services onMinishift :: AerGear Docs</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/minishift_install.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.aerogear.org">AerGear Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Android</a>
+            <a class="navbar-item" href="#">iOS</a>
+            <a class="navbar-item" href="#">Cordova</a>
+            <a class="navbar-item" href="#">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Build</a>
+            <a class="navbar-item" href="#">Push</a>
+            <a class="navbar-item" href="#">Auth</a>
+            <a class="navbar-item" href="#">Security Checking</a>
+          
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Infrastructure Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Minishift</a>
+            <a class="navbar-item" href="#">OpenShift Origin</a>
+            <a class="navbar-item" href="#">OpenShift Dedicated</a>
+            <a class="navbar-item" href="#">OpenShift Container Platform</a>
+            <a class="navbar-item" href="#">OpenShift Online</a>
+
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Downloads</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">AeroGear</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile_architecture.html">Architecture</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="minishift_install.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="debugging_guide.html">Debugging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">AeroGear</a></li>
+    <li class="crumb"><a href="minishift_install.html">Installing</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/mobile-docs/modules/ROOT/pages/minishift_install.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Setting up AeroGear Mobile Services onMinishift</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://docs.openshift.org/latest/minishift/getting-started/installing.html">Install Minishift</a></p>
+<div class="paragraph">
+<p>Check Minishift version is at least 1.11.0:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ minishift version
+minishift v1.11.0+4459917</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><a href="https://docs.openshift.org/latest/cli_reference/get_started_cli.html#installing-the-cli">Install OC</a></p>
+</li>
+<li>
+<p>Enable Minishift experimental addons:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export MINISHIFT_ENABLE_EXPERIMENTAL=y</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If this variable is not set, you might be see errors similar to <code>Error: unknown flag: --service-catalog</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Clone the <a href="https://github.com/aerogear/minishift-mobilecore-addon">minishift-mobilecore-addon</a> repo.</p>
+</li>
+<li>
+<p>Add minishift-mobilecore to the minishift add-ons catalog:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift addon install -f minishift-mobilecore-addon/
+minishift addons enable mobilecore</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On subsequent installs, make sure to update the <code>minishift-mobilecore-addon</code> repo (<code>git pull</code>) before running these commands to ensure the addon and <strong>mobile-core</strong> versions are compatibile.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Set the following environment variables, replacing <code>aerogearcatalog</code> with your own Dockerhub organization if required:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export DOCKERHUB_USERNAME=&lt;docker hub username&gt;
+export DOCKERHUB_PASSWORD=&lt;docker hub password&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you use a Docker Hub organization, set a variable for it using <code>export DOCKERHUB_ORG=&lt;your docker hub org&gt;</code>, otherwise next command below defaults the value to <code>aerogearcatalog</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Configure Minishift for AeroGear:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift config set addon-env DOCKERHUB_USERNAME=${DOCKERHUB_USERNAME},DOCKERHUB_PASSWORD="${DOCKERHUB_PASSWORD}",DOCKERHUB_ORG=${DOCKERHUB_ORG}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure Minishift resources</p>
+<div class="paragraph">
+<p>AeroGear recommends configuring Minishift to start with extra CPUs and RAM:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift config set cpus 4
+minishift config set memory 4096</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Clear Minishift to enable mobile core:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift stop
+minishift delete</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new Minishift cluster with service catalog and mobile core:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you did not enable the addon, you need to apply it manually:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift addons apply mobilecore</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the installation is complete you are prompted to login using either the <code>oc</code> CLI or the OpenShift web console:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>OpenShift server started.
+
+The server is accessible via web console at:
+    https://192.168.42.193:8443
+
+You are logged in as:
+    User:     developer
+    Password: &lt;any value&gt;
+
+To login as administrator:
+    oc login -u system:admin
+
+-- Applying addon 'mobilecore':.....................
+Installing and starting MCP extension, this can take a while
+....
+Installing Ansible Service Broker..
+mobile core successfully enabled</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you can see the the OpenShift service catalog, but not the mobile tab, note that the installation may not have completed. Wait some time before reviewing <a href="#mobile-tab-not-appearing">Mobile tab not appearing in the service catalog</a> section.</p>
+</li>
+<li>
+<p>Try deleting the Minishift VM and restarting:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift stop
+minishift delete
+minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm the addon-env config values are correct:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift config get addon-env</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If values are incorrect, follow the instructions in <a href="#setting-up-minishift">Setting up Minishift</a>.</p>
+</div>
+</li>
+<li>
+<p>Review the following scenarios:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#service-catalog-not-recognized">Service catalog flag is not recognized</a></p>
+</li>
+<li>
+<p><a href="#mobile-tab-not-appearing">Mobile tab not appearing in the service catalog</a></p>
+</li>
+<li>
+<p><a href="#apbs-not-showing">APBs not displayed in service catalog</a></p>
+</li>
+<li>
+<p><a href="#errors-when-stopping">Errors displayed when stopping or deleting Minishift</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="service-catalog-not-recognized"><a class="anchor" href="#service-catalog-not-recognized"></a>Service catalog flag is not recognized</h3>
+<div class="paragraph">
+<p>This is an error output by Minishift when it is running without the <code>MINISHIFT_ENABLE_EXPERIMENTAL</code> environment variable set to 'y'. To correct this run the following in your current shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>export MINISHIFT_ENABLE_EXPERIMENTAL=y</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mobile-tab-not-appearing"><a class="anchor" href="#mobile-tab-not-appearing"></a>Mobile tab not appearing in the service catalog</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure the Ansible Service Broker is running:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log into your Minishift cluster as admin:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u system:admin</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check that the asb pod is running correctly in the <code>ansible-service-broker</code> namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ansible-service-broker</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the asb pos is running correctly, you see something similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME               READY     STATUS    RESTARTS   AGE
+asb-1-8n4b6        1/1       Running   0          46m
+asb-etcd-1-ptzmp   1/1       Running   0          46m</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the asb pods are not running, start them using either of the following commands:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc rollout latest asb
+oc rollout latest asb-etcd</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Make sure the Ansible Service Broker can find the Mobile APBs by following the procedure in <a href="#apbs-not-showing">APBs not displayed in service catalog</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apbs-not-showing"><a class="anchor" href="#apbs-not-showing"></a>APBs not displayed in service catalog</h3>
+<div class="paragraph">
+<p>This issue is typically caused by incorrect values for the DOCKERHUB_USER, DOCKERHUB_PASSWORD or DOCKERHUB_ORG.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check the Docker hub values:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift config get addon-env</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After correcting any values, you need to delete and restart the Minishift VM:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift stop
+minishift delete
+minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="errors-when-stopping"><a class="anchor" href="#errors-when-stopping"></a>Errors displayed when stopping or deleting Minishift</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check any links to Minishift documentation displayed in the errors.</p>
+</li>
+<li>
+<p>Check the Minishift configuration, typically <code>~/.minishift</code> for any possible permission issues.</p>
+</li>
+<li>
+<p>Try running <code>minishift stop</code> and retrying <code>minishift delete</code>.</p>
+</li>
+<li>
+<p>If the issue is still occurring, delete the Minishift configuration directory and recreate it:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo rm -rf ~/.minishift
+minishift addons install -f /path/to/minishift-mobilecore-addon
+minishift addons enable mobilecore</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

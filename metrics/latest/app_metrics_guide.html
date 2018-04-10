@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzing App usage using the metrics service :: AeroGear Docs</title>
+    <link rel="canonical" href="https://docs.aerogear.org/metrics/latest/app_metrics_guide.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.aerogear.org">AeroGear Docs</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Android</a>
+            <a class="navbar-item" href="#">iOS</a>
+            <a class="navbar-item" href="#">Cordova</a>
+            <a class="navbar-item" href="#">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="#">Push</a>
+            <a class="navbar-item" href="#">Auth</a>
+            <a class="navbar-item" href="#">Security Checking</a>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="metrics" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">AeroGear Metrics Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="using-mobile-services-dashboard.html">Using the Mobile Services Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="using-dashboards.html">Using Dashboards</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="giving-an-openshift-user-access-to-metrics.html">Sharing Access to Dashboards</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="app_metrics_guide.html">Analyzing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="manually-adding-services-to-metrics.html">Manually Adding Services to Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="making-mobile-services-discoverable-by-metrics.html">Making Services Discoverable</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="keycloak-dashboard.html">Using the Keycloak Dashboard</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Metrics Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">AeroGear Metrics Mobile Service</a></li>
+    <li class="crumb"><a href="app_metrics_guide.html">Analyzing App Usage</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/metrics-apb/docs/modules/ROOT/pages/app_metrics_guide.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Analyzing App usage using the metrics service</h1>
+<div class="paragraph">
+<p>This guide shows how to use app metrics to provide rich visualizations regarding app usage that can then drive decisions, such as 'when will we stop supporting version x.y of app?'</p>
+</div>
+<h2 id="prerequisites" class="discrete">Prerequisites</h2>
+<div class="ulist">
+<ul>
+<li>
+<p>An App that is using the AeroGear SDK (link TODO)</p>
+</li>
+<li>
+<p>A running Metrics Service (link TODO)</p>
+</li>
+<li>
+<p>An OpenShift account that will provide access to Grafana in the Metrics Service (link TODO)</p>
+</li>
+</ul>
+</div>
+<h2 id="accessing-visualisations" class="discrete">Accessing visualisations</h2>
+<div class="paragraph">
+<p>There are many visualisations available in the default dashboards in Grafana.
+There are 2 dashboards where App Metrics data is shown:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mobile Service Dashboard (Summary data in the 'Mobile App Metrics' section)</p>
+</li>
+<li>
+<p>Mobile App Metrics Dashboard</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In general, the summary data that is visible on the 'Mobile Services' Dashboard is also available on the 'Mobile App Metrics' dashboard, but in more detail.</p>
+</div>
+<h2 id="analyzing-app-launches" class="discrete">Analyzing App launches</h2>
+<div class="paragraph">
+<p>An App launch is a metric event that occurs when an App is launched on a device.
+The total number of App launches for a given time shows how many times an App was launched in that time, regardless of if it was the same device or different devices.
+It can be useful as a gauge on how much activity the App has.
+However, as it doesn&#8217;t take into account multiple lauches from the same device, it isn&#8217;t useful as a gauge for 'stickiness' of the App.</p>
+</div>
+<h2 id="analyzing-unique-clients" class="discrete">Analyzing unique clients</h2>
+<div class="paragraph">
+<p>Every metric event has a unique client identifier associated with it.
+This unique client identifier is generated the first time an App is started.
+It is worth noting this identifier will be regenerated if a user uninstalls and re-installs an App.
+The total number of unique clients for a given time shows how many users launched an App at least once.
+This can be useful as a gauge on how many active App users there currently are.
+The time range is an important factor when viewing the number of unique clients.
+Viewing unique clients for the last year gives a very different insight than for the last week.
+In Grafana, the time range can be changed in the top right of the Dashboard view.</p>
+</div>
+<h2 id="analyzing-unique-clients-per-app" class="discrete">Analyzing unique clients per App</h2>
+<div class="paragraph">
+<p>Every metric event has an App identifier associated with it.
+An App identifier uniquely identifies an App.
+It is bundled with the App binary.
+There can be more than 1 App (each with a different App identifier) sending metrics events to the same Metrics Service.
+For example, there might be an Admin Portal App and a Field Worker App both using the same backend services and same Metrics Service.
+The number of unique clients per App gives a breakdown of all users by the App they are using.
+However, if you only have 1 App there is no difference between the number of unique clients and the number of unique clients per App.</p>
+</div>
+<h2 id="analyzing-unique-clients-per-platform" class="discrete">Analyzing unique clients per platform</h2>
+<div class="paragraph">
+<p>Every metric event has the platform associated with it.
+An example of platform is Android or iOS.
+This can be useful for making decisions about which platform to put effort into.
+However, if all your Apps on on a single platform, there is no difference between the number of unique clients and the number of unique clients per platform.</p>
+</div>
+<h2 id="analyzing-unique-clients-per-sdk-version" class="discrete">Analyzing unique clients per sdk version</h2>
+<div class="paragraph">
+<p>Every metric event has the AeroGear sdk version associated with it.
+This can be useful for making decisions about what features to deprecate or drop support for, or applying backwards incompatible server changes/updates.
+This metric will be more valueable as more versions of an App (with different sdk versions) are published.</p>
+</div>
+<h2 id="analyzing-unique-clients-per-app-version" class="discrete">Analyzing unique clients per app version</h2>
+<div class="paragraph">
+<p>Every metric event has the App version associated with it.
+The App version is set by the developer.
+Like the sdk version, this can be useful for making decisions about what features to deprecate or drop support for, or applying backwards incompatible server changes/updates.
+It can also be useful to see the uptake rate of newly published versions of an App.</p>
+</div>
+<h2 id="additional-resources" class="discrete">Additional Resources</h2>
+<div class="paragraph">
+<p>*</p>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
