@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear</title>
+    <link rel="canonical" href="https://www.aerogear.org/push/latest/ups_userguide/migration.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="../../processes/latest/index.html">Community Guides</a>        
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../android/latest/index.html">Android</a>
+            <a class="navbar-item" href="../../ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="../../cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="../../xamarin/latest/index.html">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="../../push/latest/index.html">Push</a>
+            <a class="navbar-item" href="../../idm/latest/index.html">Identity</a>       
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="push" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Push Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="overview.html">User&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation.html">Install the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation_properties.html">System Properties for the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation_advanced.html">Cluster and Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="admin-ui.html">Using the Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ups-debugging.html">Debugging the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="integration.html">Integrating the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="migration.html">Database migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="next.html">Next steps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Push Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../metrics/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Processes</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../processes/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Push Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Push Mobile Service</a></li>
+    <li class="crumb"><a href="overview.html">User&#8217;s Guide</a></li>
+    <li class="crumb"><a href="migration.html">Database migration</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/finp/unifiedpush-apb/edit/MOBDOC-10/docs/modules/ups_userguide/pages/migration.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="migration-guide"><a class="anchor" href="#migration-guide"></a>Migration Guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The UnifiedPush Server supports a migration from older release to newer versions.</p>
+</div>
+<div class="sect2">
+<h3 id="supported-versions"><a class="anchor" href="#supported-versions"></a>Supported versions</h3>
+<div class="paragraph">
+<p>For the migration to our 1.0.3 release we are only supporting the 1.0.x series of the UnifiedPush Server:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1.0.0</p>
+</li>
+<li>
+<p>1.0.1</p>
+</li>
+<li>
+<p>1.0.2</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="database-migration"><a class="anchor" href="#database-migration"></a>Database migration</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We are supporting MySQL 5.5 and PostgreSQL 9.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Extract the unifiedpush-migrator-dist.zip from the <a href="#getfiles">release bundle</a> to your desired location.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+It is recommended to shutdown the application server, while performing the migration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below you find information on how to perform the migration on each of the supported databases.</p>
+</div>
+<div class="sect3">
+<h4 id="postgresql"><a class="anchor" href="#postgresql"></a>PostgreSQL</h4>
+<div class="paragraph">
+<p>Inside of the extracted zip file, there is a liquibase-postgresql-example.properties, copy that to liquibase.properties.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">cp liquibase-postgresql-example.properties liquibase.properties</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once done, you need to edit the new file to match your database name and credentials.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mysql"><a class="anchor" href="#mysql"></a>MySQL</h4>
+<div class="paragraph">
+<p>Inside of the extracted zip file, there is a liquibase-mysql-example.properties, copy that to liquibase.properties.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">cp liquibase-mysql-example.properties liquibase.properties</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once done, you need to edit the new file to match your database name and credentials.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="run-the-script"><a class="anchor" href="#run-the-script"></a>Run the script</h4>
+<div class="paragraph">
+<p>After the liquibase.properties contains the proper credentials, you need to execute the migration tool:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">./bin/ups-migrator update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case of a successful run, the script prints</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">Liquibase Update Successful</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to get some more details on the actual migration steps, enable logging while performing the database migration:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">./bin/ups-migrator --logLevel=DEBUG update</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="war-file-migration"><a class="anchor" href="#war-file-migration"></a>WAR file migration</h3>
+<div class="paragraph">
+<p>After successfully executing the above database migration script you need to replace the deployed 1.0.x WAR files with the new ones and start the application server.</p>
+</div>
+<div class="paragraph">
+<p>In case of any error, please contact us on our [mailing list](<a href="https://github.com/aerogear/aerogear-unifiedpush-server#project-info)!" class="bare">https://github.com/aerogear/aerogear-unifiedpush-server#project-info)!</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear</title>
+    <link rel="canonical" href="https://www.aerogear.org/push/latest/ups_userguide/server-installation.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="../../processes/latest/index.html">Community Guides</a>        
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../android/latest/index.html">Android</a>
+            <a class="navbar-item" href="../../ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="../../cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="../../xamarin/latest/index.html">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="../../push/latest/index.html">Push</a>
+            <a class="navbar-item" href="../../idm/latest/index.html">Identity</a>       
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="push" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Push Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="overview.html">User&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="server-installation.html">Install the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation_properties.html">System Properties for the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation_advanced.html">Cluster and Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="admin-ui.html">Using the Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ups-debugging.html">Debugging the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="integration.html">Integrating the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="migration.html">Database migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="next.html">Next steps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Push Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../metrics/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Processes</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../processes/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Push Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Push Mobile Service</a></li>
+    <li class="crumb"><a href="overview.html">User&#8217;s Guide</a></li>
+    <li class="crumb"><a href="server-installation.html">Install the UnifiedPush Server</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/finp/unifiedpush-apb/edit/MOBDOC-10/docs/modules/ups_userguide/pages/server-installation.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="server-installation"><a class="anchor" href="#server-installation"></a>Install and Configure the UnifiedPush Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Getting the UnifiedPush Server up and running with an on-premise application server is a four-step setup process:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#getfiles">Get the UnifiedPush Server application files</a></p>
+</li>
+<li>
+<p><a href="#gendbds">Generate the UnifiedPush database and datasource</a></p>
+</li>
+<li>
+<p><a href="#schema">Create the database schema</a></p>
+</li>
+<li>
+<p><a href="#deploy">Deploy the UnifiedPush Server</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Each of these steps is detailed here, with instructions and useful scripts provided for the supported databases (MySQL, PostgreSQL) and application servers. <em>Make sure to run them in the <strong>full-profile</strong> mode as discussed below!</em></p>
+</div>
+<div class="paragraph">
+<p>Find below the required application server version:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UnifiedPush Server version 1.1.x - <a href="https://developers.redhat.com/products/eap/download/">EAP 6.4.0 GA</a>or <a href="http://wildfly.org/downloads/">WildFly 8.x</a></p>
+</li>
+<li>
+<p>UnifiedPush Server 1.2.x - <a href="https://developers.redhat.com/products/eap/download/">EAP 7.x</a> or <a href="http://wildfly.org/downloads/">WildFly 10.x</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can also <a href="#openshift">run the UnifiedPush Server in the cloud with OpenShift</a> but this requires a different setup process.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Extract the downloaded archive in a directory of your choice and save that path in an environment variable</p>
+</div>
+<div class="paragraph">
+<p><strong>UNIX</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export APPSRV_HOME=/path/to/SERVER_HOME</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>WINDOWS</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-batch hljs" data-lang="batch">set APPSRV_HOME=X:\path\to\SERVER_HOME</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getfiles"><a class="anchor" href="#getfiles"></a>Get the UnifiedPush Server Application Files</h3>
+<div class="paragraph">
+<p>The UnifiedPush Server application is provided in two files: unifiedpush-server.war and unifiedpush-auth-server.war. These files contain the core functionality and authentication components of the UnifiedPush Server. Both files are necessary to achieve a working UnifiedPush Server application.</p>
+</div>
+<div class="paragraph">
+<p>Download the latest copies of these files using the following link:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/aerogear/aerogear-unifiedpush-server/releases/tag/1.1.3.Final">Download UnifiedPush Server Release Bundle</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Different files are provided for each application servers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For WildFly, unifiedpush-server-wildfly.war</p>
+</li>
+<li>
+<p>For EAP, unifiedpush-server-as7.war</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Extract the downloaded archive in a working directory of your choice and save that path in an environment variable.</p>
+</div>
+<div class="paragraph">
+<p><strong>UNIX</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export WORK_DIR=/path/to/WORK_DIR</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>WINDOWS</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">set WORK_DIR=X:\path\to\WORK_DIR</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From now on we will refer only to unix syntax. It will be, however, pretty simple to convert the commands to the Windows syntax.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="confjms"><a class="anchor" href="#confjms"></a>Configure JMS destinations for the UnifiedPush</h3>
+<div class="paragraph">
+<p>The UnifiedPush Server 1.2.x requires JMS queues and topics that it uses for token loading, notification dispatching and metrics collection.</p>
+</div>
+<div class="paragraph">
+<p>Following CLI script creates all required JMS destinations and also configures address settings that influence JMS destinations behavior:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ $APPSRV_HOME/bin/jboss-cli.sh --file=$WORK_DIR/configuration/jms-setup-wildfly.cli</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gendbds"><a class="anchor" href="#gendbds"></a>Generate the UnifiedPush Database and Datasource</h3>
+<div class="paragraph">
+<p>The UnifiedPush Server requires an accompanying database in which to store push application, variant and installation details. You can use the database of your choice but the corresponding datasource added to the application server must have JNDI name java:jboss/datasources/UnifiedPushDS.</p>
+</div>
+<div class="paragraph">
+<p>Information is provided here for generating UnifiedPush datasources for several database types. Note that if the intended application server has not previously been used with the chosen database type, additional configuration must also be completed in order to enable the application server to connect to the database. As detailed here, sources and scripts are available to assist with all these processes.</p>
+</div>
+<div class="sect3">
+<h4 id="mysql-database"><a class="anchor" href="#mysql-database"></a>MySQL Database</h4>
+<div class="paragraph">
+<p>You can use a <a href="http://www.mysql.com/">MySQL</a> database with the UnifiedPush Server. As demonstrated here, the application server must first be configured for MySQL and the UnifiedPush MySQL database must exist before the application server can be configured with the associated UnifiedPush datasource.</p>
+</div>
+<div class="paragraph">
+<p>To complete these prerequisite processes and configure the application server for the UnifiedPush MySQL database, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the MySQL module, located in the databases/src/main/resources/modules/com directory of the release bundle, to the application server modules directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cp -r $WORK_DIR/databases/src/main/resources/modules/com $APPSRV_HOME/modules/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the MySQL JDBC driver to the application server mysql module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mvn dependency:copy -Dartifact=mysql:mysql-connector-java:5.1.44 -DoutputDirectory=$APPSRV_HOME/modules/com/mysql/jdbc/main/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the UnifiedPush MySQL database</p>
+<div class="paragraph">
+<p>For 1.0.x :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">$ mysql -u &lt;user-name&gt;
+mysql&gt; create database unifiedpush default character set = "UTF8" default collate = "utf8_general_ci";
+mysql&gt; create user 'unifiedpush'@'localhost' identified by 'unifiedpush';
+mysql&gt; GRANT SELECT,INSERT,UPDATE,ALTER,DELETE,CREATE,DROP ON unifiedpush.* TO 'unifiedpush'@'localhost';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For 1.1.x :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">$ mysql -u &lt;user-name&gt;
+mysql&gt; create database unifiedpush default character set = "UTF8" default collate = "utf8_general_ci";
+mysql&gt; create database keycloak default character set = "UTF8" default collate = "utf8_general_ci";
+mysql&gt; create user 'unifiedpush'@'localhost' identified by 'unifiedpush';
+mysql&gt; GRANT SELECT,INSERT,UPDATE,ALTER,DELETE,CREATE,DROP,INDEX ON unifiedpush.* TO 'unifiedpush'@'localhost';
+mysql&gt; GRANT SELECT,INSERT,UPDATE,ALTER,DELETE,CREATE,DROP ON keycloak.* TO 'unifiedpush'@'localhost';</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the application server, using the full-profile mode</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ $APPSRV_HOME/bin/standalone.sh --server-config=standalone-full.xml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the application server to use the MySQL driver and create and add the UnifiedPush datasource for the MySQL database using the application server CLI and downloaded configuration script, located in the databases directory of the release bundle</p>
+<div class="paragraph">
+<p>For WildFly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ $APPSRV_HOME/bin/jboss-cli.sh --file=$WORK_DIR/databases/mysql-database-config-wildfly.cli</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For EAP:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ $APPSRV_HOME/bin/jboss-cli.sh --file=$WORK_DIR/databases/mysql-database-config.cli</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="postgresql-database"><a class="anchor" href="#postgresql-database"></a>PostgreSQL Database</h4>
+<div class="paragraph">
+<p>You can use a <a href="http://www.postgresql.org/">PostgreSQL</a> database with the UnifiedPush Server. As demonstrated here, the application server must first be configured for PostgreSQL and the UnifiedPush PostgreSQL database must exist before the application server can be configured with the associated UnifiedPush datasource.</p>
+</div>
+<div class="paragraph">
+<p>To complete these prerequisite processes and configure the application server for the UnifiedPush PostgreSQL database, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the PostgreSQL module, located in the databases/src/main/resources/modules/org directory of the release bundle, to the application server modules directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cp -r $WORK_DIR/databases/src/main/resources/modules/org $APPSRV_HOME/modules/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the PostgreSQL JDBC driver to the application server postgresql module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ mvn dependency:copy -Dartifact=org.postgresql:postgresql:9.2-1004-jdbc41 -DoutputDirectory=$APPSRV_HOME/modules/org/postgresql/main/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the UnifiedPush PostgreSQL database</p>
+<div class="paragraph">
+<p>For 1.0.x :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">$ psql -U &lt;user-name&gt;
+psql&gt; create database unifiedpush;
+psql&gt; create user unifiedpush with password 'unifiedpush';
+psql&gt; GRANT ALL PRIVILEGES ON DATABASE unifiedpush to unifiedpush;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For 1.1.x :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">$ psql -U &lt;user-name&gt;
+psql&gt; create database unifiedpush;
+psql&gt; create database keycloak;
+psql&gt; create user unifiedpush with password 'unifiedpush';
+psql&gt; GRANT ALL PRIVILEGES ON DATABASE unifiedpush to unifiedpush;
+psql&gt; GRANT ALL PRIVILEGES ON DATABASE keycloak to unifiedpush;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If necessary, enable UnifiedPush Server access to the PostgreSQL database by adding the following lines to your $POSTGRES_HOME/data/pg_hba.conf file</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">host    all             unifiedpush     127.0.0.1/32            md5</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the application server, using the full-profile mode</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ $APPSRV_HOME/bin/standalone.sh --server-config=standalone-full.xml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the application server to use the PostgreSQL driver and create and add the UnifiedPush datasource for the PostgreSQL database using the application server CLI and downloaded configuration script, located in the databases directory of the release bundle</p>
+<div class="paragraph">
+<p>For WildFly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ $APPSRV_HOME/bin/jboss-cli.sh --file=$WORK_DIR/databases/postgresql-database-config-wildfly.cli</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For EAP:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ $APPSRV_HOME/bin/jboss-cli.sh --file=$WORK_DIR/databases/postgresql-database-config.cli</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="schema"><a class="anchor" href="#schema"></a>Create the database schema</h3>
+<div class="paragraph">
+<p>After the application server is configured for the UnifiedPush datasource, the schema must be created. Inside of the release bundle there is a migrator folder which contains a command line interface to create the required database schema. The tool is also used to migrate from an existing schema to a newer version of the schema, used for the UnifiedPush Server.</p>
+</div>
+<div class="paragraph">
+<p>Copy the <em>liquibase example</em> file to  liquibase.properties and edit it to match your database name and credentials.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cp liquibase-database-flavor-example.properties liquibase.properties</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the liquibase.properties contains the proper credentials, you need to execute the migration tool:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./bin/ups-migrator update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case of a successful run, the script prints</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">Liquibase Update Successful</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deploy"><a class="anchor" href="#deploy"></a>Deploy the UnifiedPush Server</h3>
+<div class="paragraph">
+<p>With the database schema in place, the two UnifiedPush Server application .war files must both be deployed to the application server to achieve a complete and operational UnifiedPush Server.</p>
+</div>
+<div class="paragraph">
+<p>To deploy the UnifiedPush Server, copy the two .war files to $APPSRV_HOME/standalone/deployments/. This can be done either before or after starting the application server.</p>
+</div>
+<div class="paragraph">
+<p>After deployment with the application server running, the UnifiedPush Server Console can be accessed at <a href="http://localhost:8080/ag-push/" class="bare">http://localhost:8080/ag-push/</a>. For information about using the Console, see <a href="#admin-ui">Using the Admin UI</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="database-migration"><a class="anchor" href="#database-migration"></a>Database Migration</h3>
+<div class="paragraph">
+<p>For migrating the database schema to a new version the migration tool from the above <a href="#schema">Create the database schema</a> section is used. For details around the database migration, consult the <a href="#migration-guide">Migration guide</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

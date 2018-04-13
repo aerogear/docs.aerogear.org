@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear</title>
+    <link rel="canonical" href="https://www.aerogear.org/push/latest/ups_userguide/server-installation_properties.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="../../processes/latest/index.html">Community Guides</a>        
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../android/latest/index.html">Android</a>
+            <a class="navbar-item" href="../../ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="../../cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="../../xamarin/latest/index.html">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="../../push/latest/index.html">Push</a>
+            <a class="navbar-item" href="../../idm/latest/index.html">Identity</a>       
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="push" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Push Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="overview.html">User&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation.html">Install the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="server-installation_properties.html">System Properties for the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server-installation_advanced.html">Cluster and Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="admin-ui.html">Using the Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ups-debugging.html">Debugging the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="integration.html">Integrating the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="migration.html">Database migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="next.html">Next steps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Push Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../metrics/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Processes</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../processes/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Push Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Push Mobile Service</a></li>
+    <li class="crumb"><a href="overview.html">User&#8217;s Guide</a></li>
+    <li class="crumb"><a href="server-installation_properties.html">System Properties for the UnifiedPush Server</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/finp/unifiedpush-apb/edit/MOBDOC-10/docs/modules/ups_userguide/pages/server-installation_properties.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="sysprops"><a class="anchor" href="#sysprops"></a>UPS Configuration Properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For an advanced configuration (or just plain testing purposes), it is possible to launch the UPS with a bunch of different properties - some of them can be configured via System Properties, others can be configured as a configuration of JMS subsystem and other are configured of EJB.</p>
+</div>
+<div class="sect2">
+<h3 id="envvarstable"><a class="anchor" href="#envvarstable"></a>Environment variables for the UnifiedPush Server</h3>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-center valign-top">Description</th>
+<th class="tableblock halign-center valign-top">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP_PROXY_HOST</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">IP address of HTTP Proxy if required</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP_PROXY_PORT</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Port number of HTTP Proxy if HTTP_PROXY_HOST is set</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS_PROXY_HOST</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">IP address of HTTPS Proxy if required</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS_PROXY_PORT</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Port number of HTTPS Proxy if HTTPS_PROXY_HOST is set</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP_PROXY_USER</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Username for HTTP Proxy basic authentication if required</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NON_PROXY_HOSTS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A list of addresses, seperated by "</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">" which should not go through a HTTP Proxy</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">HTTPS_PORXY_PASS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Password for HTTP Proxy basic authentication if required</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SOCKS_PROXY_HOST</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Set the value to the IP address or hostname of SOCKS server if required for APN or health endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">SOCKS_PROXY_PORT</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Set the value to the port number of SOCKS server referenced above if used</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="propertiestable"><a class="anchor" href="#propertiestable"></a>System Properties for the UnifiedPush Server</h3>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-center valign-top">Description</th>
+<th class="tableblock halign-center valign-top">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">custom.aerogear.apns.push.host</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Defines a custom URL for APNs push server</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">no value, defaulting to Apple&#8217;s service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">custom.aerogear.apns.push.port</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Defines a custom port for APNs push server</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">no value, defaulting to Apple&#8217;s service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">custom.aerogear.apns.feedback.host</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Defines a custom URL for APNs feedback server</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">no value, defaulting to Apple&#8217;s service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">custom.aerogear.apns.feedback.port</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Defines a custom port for APNs feedback server</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">no value, defaulting to Apple&#8217;s service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.android.batchSize</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Android devices tokens will be loaded and delivered in one batch</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.android.batchesToLoad</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Android batches should be loaded in one token-loading transaction.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.ios.batchSize</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many iOS devices tokens will be loaded and delivered in one batch</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.ios.batchesToLoad</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many iOS batches should be loaded in one token-loading transaction.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.simplePush.batchSize</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many SimplePush client tokens will be loaded and delivered in one batch</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.simplePush.batchesToLoad</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many SimplePush batches should be loaded in one token-loading transaction.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.windows_wns.batchSize</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Windows-8 tokens will be loaded and delivered in one batch</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.windows_wns.batchesToLoad</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Windows-8 batches should be loaded in one token-loading transaction.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.windows_mpns.batchSize</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Windows-10 devices tokens will be loaded and delivered in one batch</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.windows_mpns.batchesToLoad</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Windows-10 batches should be loaded in one token-loading transaction.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.adm.batchSize</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Amazon devices tokens will be loaded and delivered in one batch</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aerogear.adm.batchesToLoad</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Specifies how many Amazon batches should be loaded in one token-loading transaction.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="commandline"><a class="anchor" href="#commandline"></a>Configuring System Properties via CLI configuration arguments</h4>
+<div class="paragraph">
+<p>It is possible to specify one or more of the above system properties, when launching the Java EE container, like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ ./path/to/SERVER_HOME/bin/standalone.sh -Daerogear.ios.batchSize=2000</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="xmlconfig"><a class="anchor" href="#xmlconfig"></a>Configuring System Properties via XML configuration file</h4>
+<div class="paragraph">
+<p>It is also possible to include the desired system variables into the standalone-full.xml configuration file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">...
+&lt;/extensions&gt;
+
+&lt;system-properties&gt;
+   &lt;property name="aerogear.ios.batchSize" value="2000"/&gt;
+   ...
+&lt;/system-properties&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-jms-messaging-subsystem"><a class="anchor" href="#configuring-jms-messaging-subsystem"></a>Configuring JMS messaging subsystem</h3>
+<div class="paragraph">
+<p>By default, JMS queues and topics required for UnifiedPush Server to work are installed via CLI script <code>jms-setup-wildfly.cli</code>.</p>
+</div>
+<div class="paragraph">
+<p>The properties of these queues and topics can be configured to change characteristics of message delivery.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some queues are configured for each supported Push Network: Adm, APNs, GCM, MPNS, SimplePush, WNS. In the table it is represented as a placeholder {Network}.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">JMS Destination</th>
+<th class="tableblock halign-center valign-top">Properties</th>
+<th class="tableblock halign-center valign-top">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/queue/{Network}PushMessageQueue</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>redelivery-delay=1500</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">when <code>TokenLoader</code> fails to load tokens (for example when the queue it pushes tokens to is full) it will retry delivery in 1.5s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/queue/{Network}PushMessageQueue</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>redelivery-multiplier=1.5, max-redelivery-delay=5000</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>redelivery-delay</code> is increased after repeated failure until it reaches 5s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/queue/{Network}TokenBatchQueue</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>address-full-policy=FAIL</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">when the token queue is full, the <code>TokenLoader</code> will fail, and it will be redelivered according to properties of <code>{Network}PushMessageQueue</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/queue/{Network}TokenBatchQueue</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>max-size-bytes=40000</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">specifies how many tokens can be stored for given {Network} (in bytes)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/queue/TriggerMetricCollectionQueue</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>redelivery-delay=1000</code></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">trigger <code>MetricCollector</code> every 1 second until all metrics are collected</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The properties can be configured either during installation by modifying the installation CLI script or once installed, they can be changed in <code>&lt;address-settings&gt;</code> section of <code>standalone-full.xml</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-workers"><a class="anchor" href="#configuring-workers"></a>Configuring workers</h3>
+<div class="paragraph">
+<p>UnifiedPush Server uses Message-Driven Beans (MDBs) as workers for processing internal JMS events.</p>
+</div>
+<div class="paragraph">
+<p>The number of created workers can be configured by tweaking activation config property <code>maxSession</code> in <code>/WEB-INF/jboss-ejb3.xml</code> configuration file in the deployed WAR.</p>
+</div>
+<div class="paragraph">
+<p>By default, there are 15 workers for processing each of the queues.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The only exception is <code>/queue/APNsTokenBatchQueue</code> which has limit of 10 workers, which is given by the limit of maximum 10 connections to APNs per one certificate.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In order to fully understand how JMS Internals work in UnifiedPush Server, see Appendix section.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
