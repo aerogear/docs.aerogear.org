@@ -195,8 +195,8 @@ On subsequent installs, make sure to update the <code>minishift-mobilecore-addon
 <p>Set the following environment variables, replacing <code>aerogearcatalog</code> with your own Dockerhub organization if required:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export DOCKERHUB_USERNAME=&lt;docker hub username&gt;
-export DOCKERHUB_PASSWORD=&lt;docker hub password&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export CONTAINER_REPO_USERNAME=&lt;docker hub username&gt;
+export CONTAINER_REPO_PASSWORD=&lt;docker hub password&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -206,7 +206,7 @@ export DOCKERHUB_PASSWORD=&lt;docker hub password&gt;</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you use a Docker Hub organization, set a variable for it using <code>export DOCKERHUB_ORG=&lt;your docker hub org&gt;</code>. If you don&#8217;t specify DOCKERHUB_ORG in the next step, the <code>aerogearcatalog</code> organization is used.
+If you use a Docker Hub organization, set a variable for it using <code>export CONTAINER_REPO_ORG=&lt;your docker hub org&gt;</code>. If you don&#8217;t specify CONTAINER_REPO_ORG in the next step, the <code>aerogearcatalog</code> organization is used.
 </td>
 </tr>
 </table>
@@ -216,7 +216,7 @@ If you use a Docker Hub organization, set a variable for it using <code>export D
 <p>Configure Minishift for AeroGear:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift config set addon-env DOCKERHUB_USERNAME=${DOCKERHUB_USERNAME},DOCKERHUB_PASSWORD=${DOCKERHUB_PASSWORD}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift config set addon-env CONTAINER_REPO_USERNAME=${CONTAINER_REPO_USERNAME},CONTAINER_REPO_PASSWORD=${CONTAINER_REPO_PASSWORD}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -225,7 +225,7 @@ If you use a Docker Hub organization, set a variable for it using <code>export D
 <div class="ulist">
 <ul>
 <li>
-<p>DOCKERHUB_ORG: defaults to 'aerogearcatalog', specifies where to search for service catalog items.</p>
+<p>CONTAINER_REPO_ORG: defaults to 'aerogearcatalog', specifies where to search for service catalog items.</p>
 </li>
 <li>
 <p>CORE_REPO: defaults to 'aerogear', specifies the organziation or user in github to install the mobile-core component, that is, <a href="https://github.com/&lt;CORE_REPO&gt;/mobile-core.git" class="bare">https://github.com/&lt;CORE_REPO&gt;/mobile-core.git</a>.</p>
@@ -261,7 +261,7 @@ minishift delete</code></pre>
 <p>Create a new Minishift cluster with service catalog and mobile core:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift start --openshift-version 3.9.0 --service-catalog</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -315,7 +315,7 @@ mobile core successfully enabled</pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift stop
 minishift delete
-minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+minishift start --openshift-version 3.9.0 --service-catalog</code></pre>
 </div>
 </div>
 </li>
@@ -417,7 +417,7 @@ oc rollout latest asb-etcd</code></pre>
 <div class="sect2">
 <h3 id="apbs-not-showing"><a class="anchor" href="#apbs-not-showing"></a>APBs not displayed in service catalog</h3>
 <div class="paragraph">
-<p>This issue is typically caused by incorrect values for the DOCKERHUB_USER, DOCKERHUB_PASSWORD or DOCKERHUB_ORG.</p>
+<p>This issue is typically caused by incorrect values for the CONTAINER_REPO_USER, CONTAINER_REPO_PASSWORD or CONTAINER_REPO_ORG.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -435,7 +435,7 @@ oc rollout latest asb-etcd</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minishift stop
 minishift delete
-minishift start --openshift-version 3.7.0 --service-catalog</code></pre>
+minishift start --openshift-version 3.9.0 --service-catalog</code></pre>
 </div>
 </div>
 </li>
