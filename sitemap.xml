@@ -4,6 +4,9 @@
 <loc>https://www.aerogear.org/sitemap-aerogear.xml</loc>
 </sitemap>
 <sitemap>
+<loc>https://www.aerogear.org/sitemap-android-sdk.xml</loc>
+</sitemap>
+<sitemap>
 <loc>https://www.aerogear.org/sitemap-metrics.xml</loc>
 </sitemap>
 <sitemap>

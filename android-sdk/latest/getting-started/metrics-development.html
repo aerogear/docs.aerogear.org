@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear</title>
+    <link rel="canonical" href="https://www.aerogear.org/android-sdk/latest/getting-started/metrics-development.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="../../processes/latest/index.html">Community Guides</a>        
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Platform</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../android/latest/index.html">Android</a>
+            <a class="navbar-item" href="../../ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="../../cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="../../xamarin/latest/index.html">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="../../push/latest/index.html">Push</a>
+            <a class="navbar-item" href="../../idm/latest/index.html">Identity</a>       
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="android-sdk" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Android SDK</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started with AeroGear Android SDK</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="core.html">Using the AeroGear Android SDK</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="metrics.html">Using the Android SDK with the Metrics Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="auth.html">Using the Android SDK with the Auth Service</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Android SDK</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Android SDK</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../metrics/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Processes</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../processes/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../../processes/v0.0.1/index.html">v0.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Push Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../push/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/aerogear-android-sdk/docs/modules/getting-started/pages/metrics-development.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="extending-metrics"><a class="anchor" href="#extending-metrics"></a>Extending metrics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>User Apps and other SDK Modules can send their own metrics at any time.
+To do that you need an instance of the <code>MetricsService</code> and call it&#8217;s <code>publish</code> method.
+This method accepts any number of objects that implement that <code>Metrics</code> interface.</p>
+</div>
+<div class="sect2">
+<h3 id="implementing-the-metrics-interface"><a class="anchor" href="#implementing-the-metrics-interface"></a>Implementing the Metrics Interface</h3>
+<div class="paragraph">
+<p>There are only two methods to implement:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>identifier</strong>: Used to categorize your data. The basic structure is this:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>{
+    "&lt;identifier&gt;": {
+        "&lt;metric value&gt;": &lt;metric data&gt;
+    },
+    "&lt;another identifier&gt;": {
+        ...
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>data</strong>: Must return a Map from String to String. This will be transformed to JSON and added under your identifier in the Metrics payload.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sending-metrics-data-to-the-backend"><a class="anchor" href="#sending-metrics-data-to-the-backend"></a>Sending Metrics data to the Backend</h3>
+<div class="paragraph">
+<p>First retrieve an instance of the <code>MetricsService</code> from Mobile Core:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>MetricsService metrics = core.getInstance(MetricsService.class);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then use it&#8217;s publish method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>metrics.publish(new MyMetrics());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>MyMetrics</code> is a class implementing the <code>Metrics</code> interface. This will immediately send a request to the Metrics backend.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
