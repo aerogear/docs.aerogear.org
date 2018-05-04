@@ -1,0 +1,285 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/AgsCore.swift",
+      "line": 9,
+      "symbol": "AgsCore.instance",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/AgsCore.swift",
+      "line": 15,
+      "symbol": "AgsCore.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 8,
+      "symbol": "MobileConfig.version",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 10,
+      "symbol": "MobileConfig.clientId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 12,
+      "symbol": "MobileConfig.clusterName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 14,
+      "symbol": "MobileConfig.namespace",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 16,
+      "symbol": "MobileConfig.services",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 26,
+      "symbol": "MobileService.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 27,
+      "symbol": "MobileService.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 28,
+      "symbol": "MobileService.url",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 29,
+      "symbol": "MobileService.config",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 55,
+      "symbol": "JSONValue",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 56,
+      "symbol": "JSONValue.string",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 57,
+      "symbol": "JSONValue.int",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 58,
+      "symbol": "JSONValue.bool",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 59,
+      "symbol": "JSONValue.double",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 60,
+      "symbol": "JSONValue.object",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 61,
+      "symbol": "JSONValue.array",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 75,
+      "symbol": "JSONValue.getString()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 86,
+      "symbol": "JSONValue.getInt()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 97,
+      "symbol": "JSONValue.getBool()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 108,
+      "symbol": "JSONValue.getObject()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 119,
+      "symbol": "JSONValue.getArray()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/MobileConfig.swift",
+      "line": 130,
+      "symbol": "JSONValue.getDouble()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/config/ServiceConfig.swift",
+      "line": 20,
+      "symbol": "ServiceConfig.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/data/AgsMetadata.swift",
+      "line": 9,
+      "symbol": "AgsMetaData.sdkVersion",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/data/AppData.swift",
+      "line": 3,
+      "symbol": "AppData",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/data/AppData.swift",
+      "line": 6,
+      "symbol": "AppData.metadata",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttp.swift",
+      "line": 9,
+      "symbol": "AgsHttp.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 8,
+      "symbol": "AgsHttpRequestProtocol.get(_:params:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 10,
+      "symbol": "AgsHttpRequestProtocol.post(_:body:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 12,
+      "symbol": "AgsHttpRequestProtocol.put(_:body:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 14,
+      "symbol": "AgsHttpRequestProtocol.delete(_:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 22,
+      "symbol": "AgsHttpRequest.get(_:params:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 29,
+      "symbol": "AgsHttpRequest.post(_:body:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 35,
+      "symbol": "AgsHttpRequest.put(_:body:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 41,
+      "symbol": "AgsHttpRequest.delete(_:headers:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpRequest.swift",
+      "line": 91,
+      "symbol": "Request.debugLog()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/http/AgsHttpResponse.swift",
+      "line": 23,
+      "symbol": "AgsHttpResponse.init(response:error:statusCode:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/core/metrics/AgsMetrics.swift",
+      "line": 20,
+      "symbol": "AgsMetrics.init(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk"
+}

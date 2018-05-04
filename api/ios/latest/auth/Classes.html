@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Classes  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">AeroGearServices Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">AeroGearServices Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Classes  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/AgsAuth.html">AgsAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/AgsAuth/Errors.html">– Errors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CredentialsManager.html">CredentialsManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/OIDCAuthenticator.html">OIDCAuthenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/OIDCCredentials.html">OIDCCredentials</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:7AGSAuth6rsaJwkAA0C7ContentVSgAA4JwksV4jwks_SS3kidtF">rsaJwk(jwks:kid:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Authenticator.html">Authenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/CredentialManagerProtocol.html">CredentialManagerProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/AuthenticationConfig.html">AuthenticationConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JwkContent.html">JwkContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Jwks.html">Jwks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/JwtHeader.html">JwtHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC"></a>
+                    <a name="//apple_ref/swift/Class/AgsAuth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC">AgsAuth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>AeroGear Services Auth SDK</p>
+
+<p>Allows users to perform login/logout actions against an Keycloak service provisioned by the AeroGear mobile service on OpenShift.</p>
+
+<p>### Example ###
+  <em>initialise the authentication configuration service and configure the Auth SDK</em></p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">authConfig</span> <span class="o">=</span> <span class="kt">AuthenticationConfig</span><span class="p">(</span><span class="nv">redirectURL</span><span class="p">:</span> <span class="s">"com.youapp://callback"</span><span class="p">)</span>
+ <span class="kt">AgsAuth</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">authConfig</span><span class="p">:</span> <span class="n">authConfig</span><span class="p">)</span>
+</code></pre>
+
+<p><em>Login using the configured Auth SDK</em></p>
+<pre class="highlight swift"><code> <span class="kt">AgsAuth</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="nf">login</span><span class="p">()</span>
+</code></pre>
+
+                        <a href="Classes/AgsAuth.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">AgsAuth</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth18CredentialsManagerC"></a>
+                    <a name="//apple_ref/swift/Class/CredentialsManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth18CredentialsManagerC">CredentialsManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Persist/load/remove the OIDCCredentials</p>
+
+                        <a href="Classes/CredentialsManager.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CredentialsManager</span><span class="p">:</span> <span class="kt"><a href="Protocols/CredentialManagerProtocol.html">CredentialManagerProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth17OIDCAuthenticatorC"></a>
+                    <a name="//apple_ref/swift/Class/OIDCAuthenticator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth17OIDCAuthenticatorC">OIDCAuthenticator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents <code>openid</code> authentication actions like logout and login.</p>
+
+                        <a href="Classes/OIDCAuthenticator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OIDCAuthenticator</span><span class="p">:</span> <span class="kt"><a href="Protocols/Authenticator.html">Authenticator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@AGSAuth@objc(cs)OIDCCredentials"></a>
+                    <a name="//apple_ref/swift/Class/OIDCCredentials" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@AGSAuth@objc(cs)OIDCCredentials">OIDCCredentials</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A class to represent the OpenID Connect state for an entity.
+This is backed by a standard OIDC token.</p>
+
+                        <a href="Classes/OIDCCredentials.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OIDCCredentials</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">NSCoding</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-05-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
