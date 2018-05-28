@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/push/latest/push-message-format/index.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Documentation Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">AeroGear SDK</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/android-sdk/latest/index.html">Android</a>
+            <a class="navbar-item" href="/ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="/cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="/xamarin-sdk/latest/index.html">Xamarin</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Mobile Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/custom/latest/index.html">Custom Runtime Connector</a>
+            <a class="navbar-item" href="/push/latest/index.html">Unified Push</a>
+            <a class="navbar-item" href="/keycloak/latest/index.html">Auth</a>       
+            <a class="navbar-item" href="/metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="/build/latest/index.html">CI/CD</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="push" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Push Mobile Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Overview</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../client-registration/index.html">Client Registration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Push Message Format</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../ups_userguide/overview.html">User&#8217;s Guide</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/server-installation.html">Install the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/server-installation_properties.html">System Properties for the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/server-installation_advanced.html">Cluster and Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/admin-ui.html">Using the Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/ups-debugging.html">Debugging the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/integration.html">Integrating the UnifiedPush Server</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/migration.html">Database migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/next.html">Next steps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ups_userguide/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../aerogear-push-android/index.html">Android</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-android/android-app.html">android-app.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-android/google-setup.html">google-setup.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-android/guides.html">guides.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-android/push-notification.html">push-notification.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-android/register-device.html">register-device.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-android/troubleshooting.html">troubleshooting.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../aerogear-push-chrome/index.html">Chrome</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-chrome/chrome-app.html">chrome-app.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-chrome/google-setup.html">google-setup.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-chrome/push-notification.html">push-notification.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-chrome/register-device.html">register-device.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../aerogear-push-ios/index.html">iOS</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/app-id-ssl-certificate-apns.html">app-id-ssl-certificate-apns.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/iOS-app.html">iOS-app.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/provisioning-profiles.html">provisioning-profiles.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/send-push.html">send-push.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/troubleshooting.html">troubleshooting.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/unified-push-server.html">unified-push-server.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-ios/xcode-setup.html">xcode-setup.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../aerogear-push-js/index.html">JavaScript</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-js/send-push.html">send-push.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-js/simplepush-primer.html">simplepush-primer.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-js/simplepush-server.html">simplepush-server.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-js/unifiedpush-server.html">unifiedpush-server.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-js/web-app.html">web-app.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../aerogear-push-windows/index.html">Windows</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-windows/push-notification.html">push-notification.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-windows/register-device.html">register-device.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-windows/windows-app.html">windows-app.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../aerogear-push-windows/windows-setup.html">windows-setup.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Push Mobile Service</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Android SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../android-sdk/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear CI/CD Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../build/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Cordova SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../cordova/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Custom Runtime Connector Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../custom/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear iOS SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ios/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Keycloak Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../keycloak/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Metrics Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../metrics/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">AeroGear Push Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Xamarin SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../xamarin-sdk/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../aerogear/latest/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Push Mobile Service</a></li>
+    <li class="crumb"><a href="index.html">Push Message Format</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/unifiedpush-apb/docs/modules/push-message-format/pages/index.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="paragraph">
+<p>The UnifiedPush Server allows sending messages to the native and
+non-native Push APIs. Development version</p>
+</div>
+<div class="sect3">
+<h4 id="links"><a class="anchor" href="#links"></a>Links</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../push-message-format-1-0/">UnifiedPush Message Format - 1.0.x</a></p>
+</li>
+<li>
+<p><a href="./windows-document-format/">Windows message format</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sender"><a class="anchor" href="#sender"></a>Sender</h3>
+<div class="literalblock">
+<div class="content">
+<pre>curl -u "{PushApplicationID}:{MasterSecret}"
+   -v -H "Accept: application/json" -H "Content-type: application/json"
+   -X POST
+   -d '{
+       "criteria": {
+         "variants" : ["c3f0a94f-48de-4b77-a08e-68114460857e", "444939cd-ae63-4ce1-96a4-de74b77e3737" ....],
+         "alias" : ["user@account.com", "someone@aerogear.org", ....],
+         "categories" : ["someCategory", "otherCategory"],
+         "deviceType" : ["iPad", "AndroidTablet"]
+       },
+       "message": {
+         "alert":"HELLO!",
+         "sound":"default",
+         "badge":7,
+         "content-available" : true,
+         "action-category" : "some_category",
+         "simple-push": "version=123",
+         "user-data": {
+            "someKey":"some value",
+            "anotherCustomKey":"some other value"
+         },
+         "windows": {
+            "type": "tile",
+            "duration": "short",
+            "badge": "alert",
+            "tileType": "TileWideBlockAndText01",
+            "images": ["Assets/test.jpg", "Assets/background.png"],
+            "textFields": ["foreground text"]
+          },
+       },
+       "config": {
+         "ttl" : 3600,
+       }
+     }'
+
+https://SERVER:PORT/CONTEXT/rest/sender</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="message-format"><a class="anchor" href="#message-format"></a>Message Format</h4>
+<div class="paragraph">
+<p>The message format is very simple: A generic JSON map is used to sent
+messages to Android, iOS and Windows devices.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ttl</code> Specifies in seconds the <code>time-to-live</code> for the submitted
+notification. This value is supported by APNs and GCM. If a device is
+offline for a longer time than specified by the <code>ttl</code> value, the
+supported Push Networks may not deliver the notification.</p>
+</li>
+<li>
+<p><code>content-available</code> is an iOS specific argument to mark the payload as
+'content-available'. The feature is needed when sending notifications to
+Newsstand applications and submitting silent iOS notifications (iOS7)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="message-object"><a class="anchor" href="#message-object"></a>Message Object</h4>
+<div class="paragraph">
+<p>The applications on the devices will receive the JSON map and are
+responsible for performing a lookup to read values of the given keys.</p>
+</div>
+<div class="sect4">
+<h5 id="ios-special-keys"><a class="anchor" href="#ios-special-keys"></a>iOS special keys</h5>
+<div class="paragraph">
+<p>If the JSON map contains one of the following reserved keywords, Apple
+specific hooks will be invoked on the device:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alert</code> (triggers a dialog, displaying the value - no iOS API needs to
+be invoked by the app developer)</p>
+</li>
+<li>
+<p><code>sound</code> (plays a given sound - no iOS API needs to be invoked by the
+app developer)</p>
+</li>
+<li>
+<p><code>badge</code> (sets the value of the badge icon - no iOS API needs to be
+invoked by the app developer)</p>
+</li>
+<li>
+<p><code>content-available</code> (iOS7 feature for submitting silent iOS
+notifications)</p>
+</li>
+<li>
+<p><code>action-category</code> (iOS8 feature for interactive notifications)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="android-special-keys"><a class="anchor" href="#android-special-keys"></a>Android special keys</h5>
+<div class="paragraph">
+<p>None! The JSON map is submitted as it is, directly to the device. There
+are no Android specific keywords.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cordova-android-special-keys"><a class="anchor" href="#cordova-android-special-keys"></a>Cordova Android special keys</h5>
+<div class="paragraph">
+<p>To make the user experience the same on iOS and Android, for cordova
+users, we use the iOS alert 'key' on Android as well to generate a
+notification for you. And we&#8217;ve introduced a 'title' that can optionally
+be used for the title of this notification, if none is specified the
+application name will be used like on iOS.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="windows-special-keys"><a class="anchor" href="#windows-special-keys"></a>Windows special keys</h5>
+<div class="paragraph">
+<p>For Windows we also support sending toast, tile, badge and raw
+notifications. For MPNS and WNS to keep the message uniform the first
+text for the message template is the value from alert and for a numeric
+badge we use the main badge field. Of course you could add criteria to
+only select Windows devices. If you don&#8217;t specify the Windows section of
+the message a toast notification is send with the alert as the content.
+More information about the <a href="windows-document-format/">windows message
+format</a></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="simplepush-object"><a class="anchor" href="#simplepush-object"></a>SimplePush Object</h4>
+<div class="paragraph">
+<p>For SimplePush an extra <code>simple-push</code> object is provided. This key is
+only used for SimplePush variants. The version is submitted to all
+connected client, that are subscribed on their matching channels.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="query-component"><a class="anchor" href="#query-component"></a>Query component</h4>
+<div class="paragraph">
+<p>Currently the Server will support the following query criteria:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>variants</code>: A list of one or more <em>mobile variant ID&#8217;s</em> to identify a
+particular PushApplication variant (e.g. HR Android, HR iPad).</p>
+</li>
+<li>
+<p><code>alias</code>: A list of one or more <em>identifiers</em> (such as <code>email</code> or
+<code>username</code>) to send messages to <em>ALL</em> devices of the user(s). The
+<code>alias</code> needs to be stored, when the device is registering itself with
+the server.</p>
+</li>
+<li>
+<p><code>categories</code>: Helps to <em>tag</em> the current client with multiple
+categories. Gives a semantic meaning to a registered <code>Installation</code>.</p>
+</li>
+<li>
+<p><code>deviceType</code>: A list of raw device types that should receive the
+message (e.g. Coupon only for iPad and AndroidTablets). The <code>deviceType</code>
+needs to be stored when the device is registering itself with the
+server.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>*NOTE:*</em> All these query criterias are optionnal. If no criterias are
+passed it will act as a <em>broadcast</em> send, where <em>all</em> clients are
+notified.</p>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
