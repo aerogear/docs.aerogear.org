@@ -1,18 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroGear Services Auth SDK :: AeroGear</title>
+    <title>AeroGear Services Auth SDK :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/android-sdk/latest/getting-started/auth.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
 <header class="header" role="banner">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://www.aerogear.org">AeroGear</a>
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -21,23 +71,24 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="/">Home</a>
-        <a class="navbar-item" href="../../processes/latest/index.html">Community Guides</a>        
+        <a class="navbar-item" href="/">Documentation Home</a>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Mobile Platform</a>
+          <a class="navbar-link" href="#">AeroGear SDK</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="../../android-sdk/latest/index.html">Android</a>
-            <a class="navbar-item" href="../../ios-sdk/latest/index.html">iOS</a>
-            <a class="navbar-item" href="../../cordova-sdk/latest/index.html">Cordova</a>
-            <a class="navbar-item" href="../../xamarin-sdk/latest/index.html">Xamarin</a>
+            <a class="navbar-item" href="/android-sdk/latest/index.html">Android</a>
+            <a class="navbar-item" href="/ios/latest/index.html">iOS</a>
+            <a class="navbar-item" href="/cordova/latest/index.html">Cordova</a>
+            <a class="navbar-item" href="/xamarin-sdk/latest/index.html">Xamarin</a>
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Services</a>
+          <a class="navbar-link" href="#">Mobile Services</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="../../metrics/latest/index.html">Metrics</a>
-            <a class="navbar-item" href="../../push/latest/index.html">Push</a>
-            <a class="navbar-item" href="../../idm/latest/index.html">Identity</a>       
+            <a class="navbar-item" href="/custom/latest/index.html">Custom Runtime Connector</a>
+            <a class="navbar-item" href="/push/latest/index.html">Unified Push</a>
+            <a class="navbar-item" href="/keycloak/latest/index.html">Auth</a>       
+            <a class="navbar-item" href="/metrics/latest/index.html">Metrics</a>
+            <a class="navbar-item" href="/build/latest/index.html">CI/CD</a>
           </div>
         </div>
       </div>
@@ -63,16 +114,16 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="getting-started.html">Getting Started with AeroGear Android SDK</a>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="core.html">Using the AeroGear Android SDK</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="metrics.html">Using the Android SDK with the Metrics Service</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="auth.html">Using the Android SDK with the Auth Service</a>
+    <a class="nav-link" href="auth.html">Auth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="push.html">Push</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="metrics.html">Metrics</a>
   </li>
 </ul>
   </li>
@@ -104,6 +155,46 @@
       </ul>
     </li>
     <li class="component">
+      <span class="title">AeroGear CI/CD Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../build/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Cordova SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../cordova/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Custom Runtime Connector Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../custom/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear iOS SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ios/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Keycloak Mobile Service</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../keycloak/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
       <span class="title">AeroGear Metrics Mobile Service</span>
       <ul class="versions">
         <li class="version is-latest">
@@ -112,18 +203,18 @@
       </ul>
     </li>
     <li class="component">
-      <span class="title">AeroGear Processes</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../../processes/latest/index.html">latest</a>
-        </li>
-      </ul>
-    </li>
-    <li class="component">
       <span class="title">AeroGear Push Mobile Service</span>
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../../push/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">AeroGear Xamarin SDK</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../xamarin-sdk/latest/index.html">latest</a>
         </li>
       </ul>
     </li>
@@ -139,11 +230,11 @@
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../index.html">AeroGear Android SDK</a></li>
-    <li class="crumb"><a href="getting-started.html">Getting Started with AeroGear Android SDK</a></li>
-    <li class="crumb"><a href="auth.html">Using the Android SDK with the Auth Service</a></li>
+    <li class="crumb"><a href="getting-started.html">Getting Started</a></li>
+    <li class="crumb"><a href="auth.html">Auth</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/finp/aerogear-android-sdk/edit/AEROGEAR-2512/docs/modules/getting-started/pages/auth.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/aerogear-android-sdk/docs/modules/getting-started/pages/auth.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>AeroGear Services Auth SDK</h1>
@@ -157,9 +248,9 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="https://www.youtube.com/watch?v=MGecRG11k6E&feature=youtu.be"><img src="https://img.youtube.com/vi/MGecRG11k6E/0.jpg" alt="0"></a>
+<a class="image" href="https://www.youtube.com/watch?v=MGecRG11k6E"><img src="https://img.youtube.com/vi/MGecRG11k6E/0.jpg" alt="0"></a>
 </div>
-<div class="title">Demo Video (<a href="https://www.youtube.com/watch?v=MGecRG11k6E&amp;feature=youtu.be" class="bare">https://www.youtube.com/watch?v=MGecRG11k6E&amp;feature=youtu.be</a>)</div>
+<div class="title">Demo Video (<a href="https://www.youtube.com/watch?v=MGecRG11k6E" class="bare">https://www.youtube.com/watch?v=MGecRG11k6E</a>)</div>
 </div>
 </div>
 </div>
@@ -175,7 +266,7 @@
 <p>Have a Keycloak instance. See <a href="#setting-up-keycloak">Setting up Keycloak</a>.</p>
 </li>
 <li>
-<p>Import the Core module. See <a href="./core.adoc">the Core documentation</a>.</p>
+<p>Import the Core module.</p>
 </li>
 <li>
 <p>A configuration file added to the apps assets directory. See <a href="#configuration-file">Configuration file</a></p>
@@ -234,7 +325,7 @@ See <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#oidc-cl
 <div class="listingblock">
 <div class="content">
 <pre>dependencies {
-    implementation 'org.aerogear:auth:5.0.0-SNAPSHOT'
+    implementation "org.aerogear:aerogear-auth:[version]"
 }</pre>
 </div>
 </div>
@@ -259,23 +350,25 @@ for Keycloak. This configuration can be generated by the <a href="https://github
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = mobileCore.getInstance(AuthService.class);</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Any subsequent <code>MobileCore#getInstance</code> method will return the same instance of <code>AuthService</code>.</p>
+<p>Any subsequent <code>getService</code> call will return the same instance of <code>AuthService</code>.</p>
 </div>
 <div class="paragraph">
-<p>Before the <code>AuthService</code> can be used used <code>AuthService#init</code> must be invoked once in an app.</p>
+<p>Before the <code>AuthService</code> can be used <code>AuthService#init</code> must be invoked once in an app.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Specify redirect URI. It is recommended to use the package name of your app if possible.
-AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration.AuthConfigurationBuilder()
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Specify redirect URI. It is recommended to use the package name of your app.
+AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration
+    .AuthConfigurationBuilder()
     .withRedirectUri("org.aerogear.mobile.example:/callback")
     .build();
 
-// You only need to invoke this once, every subsequent retrieval of the AuthService will retrieve the same, already initialized, instance.
+// You only need to invoke this once every subsequent retrieval of the AuthService
+// will retrieve the same instance.
 authService.init(context, authServiceConfig);</code></pre>
 </div>
 </div>
@@ -354,12 +447,14 @@ String stringAttribute = currentUser.getCustomStringAttribute("stringAttribute")
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-AuthService authService = mobileCore.getInstance(AuthService.class);
+AuthService authService = MobileCore.getInstance().getService(AuthService.class);
 
 static int LOGIN_RESULT_CODE = 1;
 
-// Build the options object and start the authentication flow. Provide an activity to handle the auth response.
-DefaultAuthenticateOptions options = new DefaultAuthenticateOptions(myActivity, LOGIN_RESULT_CODE);
+// Build the options object and start the authentication flow.
+// Provide an activity to handle the auth response.
+DefaultAuthenticateOptions options =
+    new DefaultAuthenticateOptions(myActivity, LOGIN_RESULT_CODE);
 
 Callback authCallback = new Callback&lt;UserPrincipal&gt;() {
     @Override
@@ -418,13 +513,17 @@ user doesn&#8217;t have permissions to perform.</p>
 authenticated against, and Realm roles which belong to the realm the client is in.</p>
 </div>
 <div class="paragraph">
+<p>To list a users realm roles  the <code>UserPrincipal#getRealmRoles</code> method can be invoked and
+to list a users resource roles the <code>UserPrincipal#getResourceRoles</code> can be invoked.</p>
+</div>
+<div class="paragraph">
 <p>In order to check if a user has a specific role you can invoke the <code>UserPrincipal#hasResourceRole</code>
 and <code>UserPrincipal#hasRealmRole</code> methods and provide the role name to check for.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-AuthService authService = mobileCore.getInstance(AuthService.class);
+AuthService authService = MobileCore.getInstance().getService(AuthService.class);
 UserPrincipal currentUser = authService.currentUser();
 
 boolean hasAdminPermissions = currentUser.hasRealmRole("user_admin");
@@ -449,7 +548,7 @@ provided by <code>AuthService#handleAuthResponse</code> and has a callback to de
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-AuthService authService = mobileCore.getInstance(AuthService.class);
+AuthService authService = MobileCore.getInstance().getService(AuthService.class);
 UserPrincipal currentUser = authService.currentUser();
 
 authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
