@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/aerogear-push-android/android-app.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">About Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">About Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/sending-push-notifications.html">Sending Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/apple-setup.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/binding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/coding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/aerogear-push-android/pages/android-app.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="android-app"><a class="anchor" href="#android-app"></a>Your first Android/Push App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that the UnifiedPush server is up and running, time to create a sample application that will exercise AeroGear&#8217;s Android Push library support. For the purpose of the guide we will use the <a href="http://developer.android.com/tools/studio/index.html">Android Studio</a> with the ADT tools installed, but you are free to use any IDE that includes Android Gradle support.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s get started!</p>
+</div>
+<div class="sect2">
+<h3 id="creating-the-application"><a class="anchor" href="#creating-the-application"></a>Creating the application</h3>
+<div class="paragraph">
+<p>Fire up Android Studio IDE and choose 'Start a new Android Studio project'. Fill the 'Application Name' field with the name 'PushApplication' and the 'Package Name' with <code>com.push.pushapplication</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/android-studio-wizard-1.png" alt="Android Studio - New Project" width="Wizard (Step 1)"></span></p>
+</div>
+<div class="paragraph">
+<p>The <em>Minimum SDK</em> option for the <a href="http://http://github.com/aerogear/aerogear-android-push">AeroGear Android Push</a> &gt;= 2.0 is <em>API 16 (Android 4.1 - Jelly Bean)</em> so select this option if not selected.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/android-studio-wizard-2.png" alt="Android Studio - New Project" width="Wizard (Step 2)"></span></p>
+</div>
+<div class="paragraph">
+<p>Continue through the wizard by accepting the default options presented. Once finished, Android Studio would have generated a sample Android project with a default 'MainActivity' and the layout file for further editing.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/android-studio-project-overview.png" alt="Android Studio - Project Overview"></span></p>
+</div>
+<div class="paragraph">
+<p>We will use the <em>TextView</em> component that the wizard conveniently created for us to display the message payload. But in order to be able to be referenced in our code we need to give the component first an 'id'. Simple append in the 'TextView' declaration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;TextView
+	android:id="@+id/label"
+	...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before we start code, let&#8217;s add the AeroGear Android Push library as a dependency</p>
+</div>
+<div class="paragraph">
+<p>Open the <code>build.gradle</code> app file and add the AeroGear Android Push dependency:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>dependencies {
+    ...
+    compile 'org.jboss.aerogear:aerogear-android-push:4.+'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that we have the project set up, time to configure it to receive Push notifications. We will start first with the registration of the application with the UnifiedPush server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="registration-with-the-unifiedpush-server"><a class="anchor" href="#registration-with-the-unifiedpush-server"></a>Registration with the UnifiedPush server</h3>
+<div class="paragraph">
+<p>First of all, you need create a file <code>push-config.json</code> in <code>app/src/main/assets</code> folder with the Unified Push Informations</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ensure that you put valid values on those params, otherwise you would be unable to register and receive notifications from the UnifiedPush server. Invalid configuration params are a very common source of problems, so please revisit them if you are experiencing problems.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "pushServerURL": "pushServerURL (e.g http(s)//host:port/context)",
+  "android": {
+    "senderID": "senderID (e.g Google Project ID only for android)",
+    "variantID": "variantID (e.g. 1234456-234320)",
+    "variantSecret": "variantSecret (e.g. 1234456-234320)"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The entry point for registration is the <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/RegistrarManager.html">RegistrarManager</a>. This is a <em>factory</em> of different implementations of the <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/PushRegistrar.html">PushRegistrar</a> interface which contain the actual registration/unregistration methods.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+By default, the method will return an implementation that supports registration with the UnifiedPush server. Having the flexibility of a factory method, allows us in the future to expand it to support other different message brokers under a common messaging interface.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since the registration setup is an one-step process not bound to any Android 'Activity', let&#8217;s encapsulate it in a subclass of an Android <a href="http://developer.android.com/reference/android/app/Application.html">Application</a>.</p>
+</div>
+<div class="paragraph">
+<p>Create a new class, name it <code>PushApplication</code> and paste the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.push.pushapplication;
+
+import android.app.Application;
+
+import org.jboss.aerogear.android.unifiedpush.PushRegistrar;
+import org.jboss.aerogear.android.unifiedpush.RegistrarManager;
+import org.jboss.aerogear.android.unifiedpush.fcm.AeroGearFCMPushJsonConfiguration;
+
+public class PushApplication extends Application {
+
+    private static final String PUSH_REGISTAR_NAME = "myPushRegistar";
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        RegistrarManager.config(PUSH_REGISTAR_NAME, AeroGearFCMPushJsonConfiguration.class)
+                .loadConfigJson(getApplicationContext())
+                .asRegistrar();
+
+    }
+
+    // Accessor method for Activities to access the 'PushRegistrar' object
+    public PushRegistrar getPushRegistar() {
+        return RegistrarManager.getRegistrar(PUSH_REGISTAR_NAME);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The setup of the registration happens on the <code>onCreate</code> lifecycle method called when Android first initializes your application. It will create (and store) a <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/PushRegistrar.html">PushRegistrar</a> object based on <code>push-config.json</code> informations declared earlier. This object together with a name (it can be anything you choose) are passed as params on the <code>config</code> factory method to create the <code><a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/PushRegistrar.html">PushRegistrar</a></code> object.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Don&#8217;t forget to configure the <a href="http://developer.android.com/reference/android/app/Application.html">Application</a> class in <code>AndroidManifest.xml</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;application
+    android:name=".PushApplication"
+    ...
+/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We are now ready to call <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/PushRegistrar.html#register">PushRegistrar:register</a> method to register our device in the UnifiedPush server. Switch to the <code>MainActivity</code> class and replace the existing <code>onCreate</code> method with the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    PushApplication application = (PushApplication) getApplication();
+    PushRegistrar pushRegistar = application.getPushRegistar();
+    pushRegistar.register(getApplicationContext(), new Callback&lt;Void&gt;() {
+        @Override
+        public void onSuccess(Void data) {
+            Log.d(TAG, "Registration Succeeded");
+            Toast.makeText(getApplicationContext(),
+                    "Yay, Device registered", Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+            Toast.makeText(getApplicationContext(),
+                    "Ops, something is wrong :(", Toast.LENGTH_LONG).show();
+        }
+    });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That is all what is needed to register with the UnifiedPush server!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+That we didn&#8217;t have to write any code to register the device with FCM. The library takes care off all the plumbing to register the device with FCM, obtain the <code>registrationId</code> and submit it to the UnifiedPush server.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/img/app-main-screen.png" alt="Push Application - Main Screen">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you don&#8217;t see the <em>Registration Succeeded</em> popup, means that an error has occurred during the registration. Switch to the LogCat console in Android Studio to locate the exception and act accordingly.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="receiving-notifications"><a class="anchor" href="#receiving-notifications"></a>Receiving notifications</h3>
+<div class="paragraph">
+<p>The standard practice for an Android application to be able to receive notifications, is the developer to edit App&#8217;s manifest to enable the appropriate FCM permissions and also implement an <a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html">Android BroadcastReceiver</a> that is called when a new notification arrives. Typically the receiver includes code that consumes the message and displays the payload in the Notification Manager. AeroGear library already provides an implementation of a broadcast receiver that a developer can use, <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/fcm/AeroGearFCMMessageReceiver.html">AeroGearFCMMessageReceiver</a>, but instead of displaying in the notification manager it delegates the consumption of the message to those that have expressed interest.</p>
+</div>
+<div class="paragraph">
+<p>A developer implements the <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/MessageHandler.html">MessageHandler</a> interface and registers it with the library in order to be called when a new notification arrives. You can have multiple components listening for incoming notifications and the library will call each one in tandem upon arrival. To register a component, simple call the <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/RegistrarManager.html#registerMainThreadHandler-org.jboss.aerogear.android.unifiedpush.MessageHandler-">RegistrarManager:registerMainThreadHandler</a> method if you want your component to be called on the main thread or <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/RegistrarManager.html#registerBackgroundThreadHandler-org.jboss.aerogear.android.unifiedpush.MessageHandler-">Registrations:registerBackgroundThreadHandler</a> method if you want to be called on a background thread. In the absence of any registered listeners, the library will call a default <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/MessageHandler.html">MessageHandler</a> that you have defined in your app&#8217;s manifest.</p>
+</div>
+<div class="paragraph">
+<p>Typically you register a <em>default</em> <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/MessageHandler.html">MessageHandler</a> that displays the notification in the NotificationManager when your application is stopped or in the background and possible a <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/MessageHandler.html">MessageHandler</a> that consumes the payload when your application is active.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Nothing prevents you to send a notification in the Notification Manager when your application is active; the mechanism is there for your convenience.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s return to our example. We are going to register a default <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/MessageHandler.html">MessageHandler</a> that will display the received notification and show in the Notification Manager. First we need to edit the app&#8217;s manifest.</p>
+</div>
+<div class="sect3">
+<h4 id="configuring-app-s-manifest"><a class="anchor" href="#configuring-app-s-manifest"></a>Configuring App&#8217;s manifest</h4>
+<div class="paragraph">
+<p>Open the <code>AndroidManifest.xml</code> file and below the <code>&lt;manifest&gt;</code> entry add the necessary permissions to enable our app to receive messages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;manifest
+....
+   &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+   &lt;uses-permission android:name="android.permission.GET_ACCOUNTS" /&gt;
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s register now our own <code>MessageHandler</code> inside of the <code>&lt;application&gt;</code> entry:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;application
+...
+    &lt;meta-data android:name="DEFAULT_MESSAGE_HANDLER_KEY" android:value="com.push.pushapplication.NotifyingHandler"/&gt;
+&lt;/application&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Notice the <code>DEFAULT_MESSAGE_HANDLER_KEY</code> parameter is used to pass the name of the default MessageHandler class that will be called once the notification is received.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-notification"><a class="anchor" href="#handling-notification"></a>Handling notification</h4>
+<div class="paragraph">
+<p>Create a new class, name it <code>NotifyingHandler</code> and paste the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.push.pushapplication;
+
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+
+import org.jboss.aerogear.android.unifiedpush.MessageHandler;
+import org.jboss.aerogear.android.unifiedpush.fcm.UnifiedPushMessage;
+
+public class NotifyingHandler implements MessageHandler {
+
+    public static final int NOTIFICATION_ID = 1;
+    private Context context;
+
+    public static final NotifyingHandler instance = new NotifyingHandler();
+
+    public NotifyingHandler() {
+    }
+
+		@Override
+    public void onMessage(Context context, Bundle bundle) {
+        this.context = context;
+
+        String message = bundle.getString(UnifiedPushMessage.ALERT_KEY);
+
+        HelloWorldApplication application = (HelloWorldApplication) context.getApplicationContext();
+        application.addMessage(message);
+
+        notify(bundle);
+    }
+
+    private void notify(Bundle bundle) {
+
+        NotificationManager mNotificationManager = (NotificationManager)
+                context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        String message = bundle.getString(UnifiedPushMessage.ALERT_KEY);
+
+        Intent intent = new Intent(context, MainActivity.class)
+                .addFlags(PendingIntent.FLAG_UPDATE_CURRENT)
+                .putExtra(UnifiedPushMessage.ALERT_KEY, message);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                .setAutoCancel(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(context.getString(R.string.app_name))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setContentText(message);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>AeroGear calls the <code>onMessage</code> callback method when a new notification arrives. Here we simply extract the message payload and we use the platform&#8217;s notification manager to display it.</p>
+</div>
+<div class="paragraph">
+<p>Since we also want the <code>MainActivity</code> to be able to receive the notification and update the TextView with the payload, we need to register it with the library. To do so the Activity, as with the <code>NotifyingHandler</code> class we saw earlier, must implement the <a href="/docs/specs/aerogear-android-push/org/jboss/aerogear/android/unifiedpush/MessageHandler.html">MessageHandler</a> interface. In the declaration of the Activity simple append the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MainActivity extends Activity implements MessageHandler {</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and paste the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected void onResume() {
+    super.onResume();
+    RegistrarManager.registerMainThreadHandler(this); // 1
+    RegistrarManager.unregisterBackgroundThreadHandler(NotifyingHandler.instance);
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+    RegistrarManager.unregisterMainThreadHandler(this); // 2
+    RegistrarManager.registerBackgroundThreadHandler(NotifyingHandler.instance);
+}
+
+@Override
+public void onMessage(Context context, Bundle bundle) {
+    // display the message contained in the payload
+    TextView text = (TextView) findViewById(R.id.label);
+    text.setText(bundle.getString(UnifiedPushMessage.ALERT_KEY)); // 3
+}
+
+@Override
+public void onDeleteMessage(Context context, Bundle message) {
+    // handle GoogleCloudMessaging.MESSAGE_TYPE_DELETED
+}
+
+@Override
+public void onError() {
+    // handle GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that we use the standard Activity life-cycle methods <code>onResume</code> to register[1] and  <code>onPause</code> to unregister[2] itself for handling the notification. Finally, in the <code>onMessage</code> callback method[3] we simple extract the message payload and update the TextView.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/img/app-message-received.jpg" alt="Push Application - Message received">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="metrics"><a class="anchor" href="#metrics"></a>Metrics</h3>
+<div class="paragraph">
+<p>Optionally the Android SDK supports sending metrics to UPS. Metrics can be used to view how many users have received/readed/opened the message. This can be important information if you want to know how well your messages are received by your application users.</p>
+</div>
+<div class="paragraph">
+<p>UPS sends an unique ID for every push message by default all we have to do is send this ID back to UPS when the app was opened using the message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public void onMessage(Context context, Bundle bundle) {
+    // Do something with the message
+    String message = bundle.getString(UnifiedPushMessage.ALERT_KEY);
+    ...
+
+    // Send metrics about the message received
+    PushApplication application = (PushApplication) getApplication();
+    AeroGearFCMPushRegistrar pushRegistar = (AeroGearFCMPushRegistrar) application.getPushRegistar();
+
+    String pushMessageId = bundle.getString(UnifiedPushMessage.PUSH_MESSAGE_ID);
+    UnifiedPushMetricsMessage pushMetricsMessage = new UnifiedPushMetricsMessage(pushMessageId);
+
+    pushRegistar.sendMetrics(pushMetricsMessage, new Callback&lt;UnifiedPushMetricsMessage&gt;() {
+        @Override
+        public void onSuccess(UnifiedPushMetricsMessage unifiedPushMetricsMessage) {
+            Log.d(TAG, "Metrics for : " + unifiedPushMetricsMessage.getMessageId() + " successfully sent");
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+            Log.d(TAG, e.getMessage(), e);
+        }
+    });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that we have our application up an running time to <a href="#push-notification">send messages</a> using the AeroGear UnifiedPush Server!</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
