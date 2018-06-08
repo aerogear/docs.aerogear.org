@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/aerogear-push-ios/troubleshooting.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">About Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">About Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/sending-push-notifications.html">Sending Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/apple-setup.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/binding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/coding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/aerogear-push-ios/pages/troubleshooting.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>iOS Troubleshooting</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This troubleshooting guide takes as a pre-requesite that you have carefully followed the instructions in the <a href="../index.html">iOS tutotial</a>.</p>
+</div>
+<div class="paragraph">
+<p>Something goes wrong, you have the symptoms and you would like to know how to fix it.  Follow the guide of frequently asked questions below and if you still can&#8217;t find an answer to your problem, don&#8217;t hesitate to ask our <a href="http://aerogear-dev.1069024.n5.nabble.com/">mailing list</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="question-no-matching-provisioning-profiles-found"><a class="anchor" href="#question-no-matching-provisioning-profiles-found"></a>Question: No matching provisioning profiles found</h3>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>Running a client app, you run into "No matching provisioning profiles found":</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/no_matching_provisionning_profile.png" alt="No matching provisioning profile"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>have you changed your computer recently? If yes, if you provisioning profile was deliver in your previous machine, you need to migrate your provisioning profile, please follow <a href="https://developer.apple.com/library/ios/recipes/xcode_help-accounts_preferences/articles/export_signing_assets.html#//apple_ref/doc/uid/TP40013306-CH8-SW1">Exporting Your Signing Identities and Provisioning Profiles</a> Apple documentation.</p>
+</li>
+<li>
+<p>is it the first time you use this app? have you followed the pre-requisite section on <a href="#provisioning-profiles">provisioning profile</a>?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="question-remote-host-closed-connection-during-handshake"><a class="anchor" href="#question-remote-host-closed-connection-during-handshake"></a>Question: Remote host closed connection during handshake</h3>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>When sending a push notification you are receicing an 'Remote host closed connection during handshake'</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">javax.net.ssl.SSLHandshakeException: Remote host closed connection during handshake</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="paragraph">
+<p>Your .p12 is not good. You need to create a .p12 out of your certificate as described in <a href="#_apple_app_id_and_ssl_certificate_for_apns">Apple App ID and SSL certificate for APNs</a>?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="question-apns-error"><a class="anchor" href="#question-apns-error"></a>Question: APNs error</h3>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>You have implemented application:didFailToRegisterForRemoteNotificationsWithError:. When launching the app, you get the eror no valid 'aps-environment':</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">Domain=NSCocoaErrorDomain Code=3000 "no valid 'aps-environment' entitlement string found for application" UserInfo=0x1555edc0 {NSLocalizedDescription=no valid 'aps-environment' entitlement string found for application}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="paragraph">
+<p>Your Bundle ID name should match with the Bundle ID as created on Apple&#8217;s developer portal. Please refer to [Apple App ID and SSL certificate for APNs](app-id-sll-certificate-apns.asciidoc) documentation for more details on configuration.</p>
+</div>
+<div class="sect3">
+<h4 id="question-my-registration-to-ups-never-happens"><a class="anchor" href="#question-my-registration-to-ups-never-happens"></a>Question: My registration to UPS never happens</h4>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>The success callback application:didRegisterForRemoteNotificationsWithDeviceToken: is never called.</p>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>implement application:didFailToRegisterForRemoteNotificationsWithError: to track any issue with APN registration. In the body of the method, print an error message as shown below:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    // something went wrong, while talking to APNs
+    // for now we simply log the error
+    NSLog(@"APNs Error: %@", error);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you do enter the failure callback then your problem is similar to <a href="#_question_apns_error">APNs error</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you do not enter the error callback, check you actually <em>did</em> register for remote notifications. Note: with iOS8, your remote registration to APNs is splitted into 2 methods call. See code snippet in <a href="#_question_compilation_error_in_xcode6">Compilation error in Xcode6</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="question-my-registration-fails-because-of-nil-deviceid"><a class="anchor" href="#question-my-registration-fails-because-of-nil-deviceid"></a>Question: My registration fails because of nil deviceID</h3>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>UPS registration fails with the following error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">assertion failed: 'token' should be set: file /.../aerogear-push-ios-registration/push-sdk-swift/AGDeviceRegistration.swift, line 75</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="paragraph">
+<p>In application like <a href="https://github.com/aerogear/aerogear-push-quickstarts/tree/master/client/contacts-mobile-ios-client">Contacts app</a> where UPS registration does not happen in AppDelegate but later in the flow, at Login, we save deviceID in NSUserDefaults within application:didRegisterForRemoteNotificationsWithDeviceToken. However, if the method application:didRegisterForRemoteNotificationsWithDeviceToken: is not called, deviceID is nil causing UPS registration to fail.</p>
+</div>
+<div class="paragraph">
+<p>To solve the problem, refer to <a href="#_question_my_registration_to_ups_never_happens">My registration to UPS never happens</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="question-compilation-error-in-xcode6"><a class="anchor" href="#question-compilation-error-in-xcode6"></a>Question: Compilation error in Xcode6</h3>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>When trying to run my Xcode5 app in Xcode6, I run into compilation error.</p>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="paragraph">
+<p>Since iO8, registerForRemoteNotificationTypes has been deprecated in favour of registerUserNotificationSettings: with registerForRemoteNotifications. The API unifies notification settings whether it&#8217;s a remote or user notification. If you want to be able to run either using Xcode5 or Xcode6 on iOS7 or iOS8, use the macro as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#if __IPHONE_OS_VERSION_MAX_ALLOWED &gt;= 80000
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+
+#else
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+#endif</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="question-failure-to-connect-when-server-uses-a-self-signed-certificate"><a class="anchor" href="#question-failure-to-connect-when-server-uses-a-self-signed-certificate"></a>Question: Failure to connect when server uses a self-signed certificate</h3>
+<div class="paragraph">
+<p><strong>Problem description</strong></p>
+</div>
+<div class="paragraph">
+<p>When trying to connect  to a server that uses a self-signed certificate, the application fails to connect with the following message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “example.com” which could put your confidential information at risk." UserInfo=0x14a730 {NSErrorFailingURLStringKey=https://example.com/, NSLocalizedRecoverySuggestion=Would you like to connect to the server anyway?, ..}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Answer</strong></p>
+</div>
+<div class="paragraph">
+<p>By default, the underlying networking foundation rejects connections to server&#8217;s that use a self-signed certificate and you need to take extra measures in order to make it work. Although the following snippets of code can bypass the built-in security check, they are <strong>not recommended unless you are working in a development sandbox and you need a quick-and-dirty solution for internal testing</strong>. You can find more information on self-signed certificates on <a href="https://developer.apple.com/library/ios/technotes/tn2232/_index.html#//apple_ref/doc/uid/DTS40012884-CH1-SECSELFSIGNEDCERTS">Apple technote paper</a> as well in <a href="https://github.com/aerogear/aerogear-ios-push/pull/46#issuecomment-75815787">this page here</a> that summarizes possible solutions when you take your app in production.</p>
+</div>
+<div class="paragraph">
+<p><strong>Objective-C</strong></p>
+</div>
+<div class="paragraph">
+<p>If you are using Objective-C, modify the <a href="https://github.com/aerogear/aerogear-ios-push/blob/1.x_dev/push-sdk/AGDeviceRegistration.m">AGDeviceRegistration.m</a> source code and add the following function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
+    if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust] &amp;&amp; [challenge.protectionSpace.host isEqualToString:_baseURL.host]) {
+        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
+    } else {
+        completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Swift</strong></p>
+</div>
+<div class="paragraph">
+<p>If you are using Swift modify the <a href="https://github.com/aerogear/aerogear-ios-push/blob/master/push-sdk-swift/AGDeviceRegistration.swift">AGDeviceRegistration.swift</a> source code and add the following function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">public func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -&gt; Void) {
+    if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust &amp;&amp; challenge.protectionSpace.host == serverURL.host! {
+        let credentials = NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!)
+        completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credentials)
+    } else {
+        completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge, nil)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

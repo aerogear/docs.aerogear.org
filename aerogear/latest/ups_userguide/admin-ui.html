@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/ups_userguide/admin-ui.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">About Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">About Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/sending-push-notifications.html">Sending Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/apple-setup.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/binding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/coding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ups_userguide/pages/admin-ui.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="admin-ui"><a class="anchor" href="#admin-ui"></a>Using the Admin UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Unified Push Server can be accessed via its RESTful endpoints, as well over an administrative user interface.</p>
+</div>
+<div class="sect2">
+<h3 id="admin-and-developer-accounts"><a class="anchor" href="#admin-and-developer-accounts"></a>Admin and Developer accounts</h3>
+<div class="paragraph">
+<p>Once installed, the Unified Push Server comes with two different account types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a single admin user</p>
+</li>
+<li>
+<p>a developer role</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The difference between the admin and developer account types is that the former can access all PushApplications and Variants configured on the server, whereas the latter has access only to the PushApplications and Variants created by the actual user. Further, the administration of the Unified Push Server, as well as management of it&#8217;s users in the <strong>Keycloak Admin Console</strong>, can only be performed by the admin.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+By default there is <em>no</em> developer account and one needs to be explicitly created by the admin inside of the Keycloak Admin Console!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="login-and-landing-page"><a class="anchor" href="#login-and-landing-page"></a>Login and landing page</h3>
+<div class="paragraph">
+<p>Once you have the Unified Push Server running, whether on <a href="#openshift">Openshift</a> or <a href="#server-installation">standalone</a>, it is time to open the <em>AdminUI</em>, by accessing http(s)://SERVER:PORT/ag-push in your browser. You are prompted by a login dialog:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/login.png" alt="Login to the Unified Push Server"></span></p>
+</div>
+<div class="paragraph">
+<p>The default credentials for the <em>admin</em> are admin/123.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On the very first login you are asked to update the password. It is a wise idea to change it to something completely different.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After applying the password you are able to use the AdminUI of the Unified Push Server:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/landing_page.png" alt="List of PushApplications"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Right after a fresh installation you won&#8217;t have any PushApplication in our database. In this case you will see the Wizard (learn more in <a href="#_the_wizard">Wizard section</a>) as the landing page.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="account-management"><a class="anchor" href="#account-management"></a>Account Management</h3>
+<div class="paragraph">
+<p>To manage some details on your account, you need to click on the username (<em>admin</em> in this case) in the right hand corner of the screen. This opens a context menu where you click on Account Management:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account1.png" alt="Go to the Account Management page"></span></p>
+</div>
+<div class="paragraph">
+<p>This brings you to the page where you can configure details about your account. The first option allows you to provide additional information like your name and your email address:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account2.png" alt="Account Details"></span></p>
+</div>
+<div class="paragraph">
+<p>The next section allows you to update your current password.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please make sure to pick a <em><strong>strong password</strong></em>, see the admin user as the root on your machine&#8230;&#8203;
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account3.png" alt="Password Details"></span></p>
+</div>
+<div class="paragraph">
+<p>It is also possible to use the <a href="http://code.google.com/p/google-authenticator/">Google Authenticator app</a> as an additional security mechanism for your login:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account4.png" alt="Setup an authenticator"></span></p>
+</div>
+<div class="paragraph">
+<p>On the <em>Sessions</em> menu there is an overview of all client sessions that are currently active. If the session is connected via a browser the only information that is presented in the table below is the IP address of the client:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account5.png" alt="List of OAuth client sessions"></span></p>
+</div>
+<div class="paragraph">
+<p>On the <em>Applications</em> menu you see a read-only list of all application clients that have rights to access the Unified Push Server:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account6.png" alt="List of OAuth client sessions"></span></p>
+</div>
+<div class="paragraph">
+<p>To go back to the Unified Push AdminUI click the marked link on the right corner, this performs a redirect to the previous landing page:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/account7.png" alt="Going back to the Unified Push AdminUI"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-wizard"><a class="anchor" href="#the-wizard"></a>The Wizard</h3>
+<div class="paragraph">
+<p>To be able to use the Unified Push Server for your mobile development you need to create a PushApplication and at least one Variant. The PushApplication is a logical construct, that represents an overall mobile application container for its <em>different</em> mobile platforms, which are called Variants. The Wizard is used to create a PushApplication and one Variant. The Wizard is launched when clicking the <em>Create Application</em> button on the overview page:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard_create_app.png" alt="Create Application"></span></p>
+</div>
+<div class="sect3">
+<h4 id="wizard-start"><a class="anchor" href="#wizard-start"></a>Wizard: Start!</h4>
+<div class="paragraph">
+<p>Before diving into the details the Wizard shows an overview page, containing a bit more details on the steps inside the wizard:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard0.png" alt="Wizard - overview"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wizard-step-1"><a class="anchor" href="#wizard-step-1"></a>Wizard: Step 1</h4>
+<div class="paragraph">
+<p>To create a new PushApplication click the <em>START HERE</em> button, which brings you to the first step of the Wizard, asking for the name of your PushApplication:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard1.png" alt="Wizard - PushApplication"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At any time, you can skip the workflow of the Wizard, by clicking the <em>Skip the wizard</em> link on the top right!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wizard-step-2"><a class="anchor" href="#wizard-step-2"></a>Wizard: Step 2</h4>
+<div class="paragraph">
+<p>Since the PushApplication is a container for different platforms you need to create a <em>Variant</em> for a specific mobile platform, like Android, iOS or Windows.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard2.png" alt="Wizard - Add Variant"></span></p>
+</div>
+<div class="paragraph">
+<p>Next click on the <em>+Add A Variant</em> button in the screen above, which brings you to the details page for the Variant:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard3.png" alt="Wizard - Variant details"></span></p>
+</div>
+<div class="paragraph">
+<p>In this example we are creating an Android Variant and giving it a name. Besides the name, each supported variant type contains some platform specific properties, such as a Google Cloud Messaging key (Android) or passphrase and certificate (Apple). In this case we enter the require <em>GCM Key</em> and the <em>GCM Project Number</em>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are not familiar with the details of your desired mobile platform, click <a href="../../../unifiedpush/aerogear-push-android/">here</a> for Android, <a href="../../../guides/aerogear-cordova/AerogearCordovaPush/">here</a> for Apache Cordova, <a href="../../../unifiedpush/aerogear-push-ios/">here</a> for iOS and <a href="../../../unifiedpush/aerogear-push-windows/">here</a> for Windows.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After finishing the above dialog you are coming to the details page of the newly created Variant:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard4.png" alt="Wizard - code snippets"></span></p>
+</div>
+<div class="paragraph">
+<p>The page contains some code snippets that are specific to the underlying mobile platform (e.g. Android), which allows your mobile application, running on a device, to register itself against the Unified Push Server for push notification delivery.</p>
+</div>
+<div class="paragraph">
+<p>In our Android example you are getting two options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Native Android source code</p>
+</li>
+<li>
+<p>JavaScript for Apache Cordova</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wizard-step-3"><a class="anchor" href="#wizard-step-3"></a>Wizard: Step 3</h4>
+<div class="paragraph">
+<p>The next step in the Wizard gives the option to send a test push notification to the devices that are registered with the Variant. In this case we have registered devices and can use the textfield to send a test notification:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard5a.png" alt="Wizard - Test notification"></span></p>
+</div>
+<div class="paragraph">
+<p>However, the textfield will be disabled in case there are no devices registered:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard5b.png" alt="Wizard - Test notification"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The transition to from step 3 to the <em>Test notification</em> dialog happens automatically in case a devices performs the registration, while looking at the Wizard.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wizard-step-4"><a class="anchor" href="#wizard-step-4"></a>Wizard: Step 4</h4>
+<div class="paragraph">
+<p>For the supported SDKs the Unified Push Server has a feature to generate code snippets for the backend part as well:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard6.png" alt="Wizard - Backend integration hooks"></span></p>
+</div>
+<div class="paragraph">
+<p>The visible Java code above can be used in any JavaSE or JavaEE application that needs to send Push Notification requests to the Unified Push Server. Besides Java, the UI contains snippets for Node.js and cURL.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="wizard-finished"><a class="anchor" href="#wizard-finished"></a>Wizard: Finished!</h4>
+<div class="paragraph">
+<p>After all of that, you are done! Congratulations!</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/wizard7.png" alt="Wizard - Finished"></span></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="management-of-pushapplication"><a class="anchor" href="#management-of-pushapplication"></a>Management of PushApplication</h3>
+<div class="paragraph">
+<p>To work with a specific PushApplication, you have to select one from the overview list. However, to update the name or even deleting it, you have to click one of those links that are visible when hovering over the desired PushApplications:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/application0.png" alt="PushAPplication - Overview"></span></p>
+</div>
+<div class="paragraph">
+<p>The <em>Edit name</em> option gives you a simple dialog, which accepts the new name:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/application1.png" alt="PushAPplication - Rename"></span></p>
+</div>
+<div class="paragraph">
+<p>In order to remove the PushApplication, you have to confirm by entering the its name:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/application2.png" alt="PushAPplication - Delete"></span></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+When deleting a PushApplication, all Variants and their registered devices are removed!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="management-of-variants"><a class="anchor" href="#management-of-variants"></a>Management of Variants</h3>
+<div class="paragraph">
+<p>The <em>Variants</em> tab of the PushApplication gives a list of all existing variants. To edit or delete a Variant expand the details of the desired Variants (+).</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/variant1.png" alt="Variant - Details"></span></p>
+</div>
+<div class="paragraph">
+<p>The above view shows details about the variant, such as the number of sent messages and registered devices. The view also contains more details about the involved 3rd party Push Network, GCM in this example. At the bottom the view also contains a list of all registered devices, showing their metadata.</p>
+</div>
+<div class="paragraph">
+<p>To change the name of the variant, click on the <em>Edit name</em> link:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/variant_edit.png" alt="Variant - Rename"></span></p>
+</div>
+<div class="paragraph">
+<p>Similar to the PushApplication, in order to remove the variant, you have to confirm by entering the name of the variant:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/variant_delete.png" alt="Variant - Delete"></span></p>
+</div>
+<div class="paragraph">
+<p>To update the details of the used Push Network, such as the Apple certificate or the GCM key, click on <em>Edit Network Options</em> link:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/variant2.png" alt="Variant - Edit Push Network Options"></span></p>
+</div>
+<div class="paragraph">
+<p>It is also possible to renew the Variant Secret, used by the Mobile Applications running on the device:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/variant3.png" alt="Variant - Renew Variant Secret"></span></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+When changing the variant secret or deleting it, existing mobile apps are no longer able to register their metadata on the Unified Push Server!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You have to confirm this change, as this requires updates to the mobile applications, running on the devices!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="managing-registered-device"><a class="anchor" href="#managing-registered-device"></a>Managing registered device</h3>
+<div class="paragraph">
+<p>The details view of a specific variant as a list of the registered devices at the bottom:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/devices1.png" alt="Device list"></span></p>
+</div>
+<div class="paragraph">
+<p>The table shows the metadata of each device, including the device token, subscribed categories or - if present - the used alias. On this screen you could also exclude a specific device from receiving Push Notifications, by unchecking the <em>Receiving</em> check-box.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-device-metadata"><a class="anchor" href="#importing-device-metadata"></a>Importing Device Metadata</h3>
+<div class="paragraph">
+<p>For various reasons, e.g. migrating from a custom solution to the Unified Push Server, it is possible to import devices and their metadata, including their devicetoken, into a variant. This is possible via cURL and on the UI. For that, on a specific variant, click on the <em>More</em> menu you have the the choice to select the <em>Import</em> option:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/import1.png" alt="Import UI"></span></p>
+</div>
+<div class="paragraph">
+<p>The following dialog allows you to upload a JSON file, containing the device metadata.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The API for the JSON importer is described <a href="/docs/specs/aerogear-unifiedpush-rest/registry/device/importer/index.html#POST">here</a>!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/import2.png" alt="Import UI"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-device-metadata"><a class="anchor" href="#exporting-device-metadata"></a>Exporting Device Metadata</h3>
+<div class="paragraph">
+<p>Similar, the Unified Push Server has an option to export the device metadata of a variant. This is handy when you want to move from one Unified Push Server instance to a different one. On the <em>More</em> menu of a specific variant, you have the the choice to select the <em>Export</em> option:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/export1.png" alt="Export the tokens"></span></p>
+</div>
+<div class="paragraph">
+<p>Starting the export will generate a JSON file, which is being downloaded to your machine:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/export2.png" alt="Export the tokens"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sending-a-push-notification"><a class="anchor" href="#sending-a-push-notification"></a>Sending a Push Notification</h3>
+<div class="paragraph">
+<p>The Admin UI allows you to send a (test) Push Notification to your Variants and their devices at any time. For that, open a PushApplication and click on the "Send Notification" button:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/send1.png" alt="Send a Push"></span></p>
+</div>
+<div class="paragraph">
+<p>Now the <em>Send Push</em> dialog pops up:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/send2.png" alt="Enter the payload"></span></p>
+</div>
+<div class="paragraph">
+<p>In the Send Push dialog, the Message text field contains the payload to be sent out to the 3rd party Push Network. To deliver the message click the Send Push Notification button.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is possible to filter the list of receivers, using Alias, Device Types and Category. Read the <a href="#_server_integration_tutorials">Server Integration Tutorials</a> for more details.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If all goes well, your message will be delivered by the 3rd party Push Network to your device:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="/docs/unifiedpush/aerogear-push-ios/img/PushMessage.png" alt="You got a notification!"></span></p>
+</div>
+<div class="sect3">
+<h4 id="sending-a-push-notification-from-code"><a class="anchor" href="#sending-a-push-notification-from-code"></a>Sending a Push Notification from code</h4>
+<div class="paragraph">
+<p>While sending a Push Notification from the AdminUI is a nice feature, in a real world scenario, the Push Notification is triggered by a backend, as explained in <a href="#_server_integration_tutorials">Server Integration Tutorials</a>.</p>
+</div>
+<div class="paragraph">
+<p>The Unified Push Server comes with APIs for <a href="../../../unifiedpush/GetStartedwithJavaSender/">Java</a> and <a href="https://github.com/aerogear/aerogear-unifiedpush-nodejs-client#examples">Node.js</a>. Due to its RESTful architecture any backend, written in any language that supports HTTP(S), can <a href="../../../specs/aerogear-unifiedpush-rest/sender/index.html">send Push Notification requests</a> to it. On the details page of a PushApplication you find the required Server URL and credentials (Application ID and Master Secret).</p>
+</div>
+<div class="paragraph">
+<p>For the supported SDKs the Unified Push Server has a feature to generate code snippets for the backend part as well:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/send3.png" alt="Backend push integration"></span></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Due to security reasons the Application ID and the Master Secret should be never stored on a mobile device! Push Notification requests should <em>never</em> be triggered directly from a mobile device.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The visible Java code above can be used in any JavaSE or JavaEE application that needs to send Push Notification requests to the Unified Push Server, like shown in the diagram below:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/sending_sd.png" alt="Sending Push from Backend"></span></p>
+</div>
+<div class="paragraph">
+<p>Besides Java, the UI contains snippets for Node.js and cURL.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pushapplication-analytics"><a class="anchor" href="#pushapplication-analytics"></a>PushApplication Analytics</h3>
+<div class="paragraph">
+<p>The Unified Push Server provides some metrics and analytics which are presented on a dasboard :</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/analyticsClean.png" alt="Push Activity"></span></p>
+</div>
+<div class="paragraph">
+<p>The upper part shows some <strong>key</strong> numbers :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Push Messages</em> : The total number of push messages sent to UnifiedPush Server for dispatching to registered devices.</p>
+</li>
+<li>
+<p><em>Notification Dispatched</em> : The total number of notifications dispatched via Push Networks to registered devices.</p>
+</li>
+<li>
+<p><em>Notifications Opened</em> : Number of notifications that were delivered to registered device and opened by a user.</p>
+</li>
+<li>
+<p><em>Average Open Rate</em> : The result of <em>Notifications Opened</em> / <em>Notifications Dispatched</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <em>Performance</em> chart show for each Push Notification the number of targeted devices, the number of opened apps. The x-axis legend shows the <em>alert</em> value of the Push Notification payload.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the <em>Push Networks</em> chart shows the split between the different Push Networks.</p>
+</div>
+<div class="paragraph">
+<p>To get the <em>Notifications Opened</em> metric activated, it needs to be "turned on" on the different client SDKs :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For iOS, please refer to <a href="https://aerogear.org/docs/specs/aerogear-ios-push/Classes/AGPushAnalytics.html">this document</a>.</p>
+</li>
+<li>
+<p>For Android, please check the <em>org.jboss.aerogear.android.unifiedpush.metrics</em> package  in <a href="https://aerogear.org/docs/specs/aerogear-android-push/">the JavaDoc</a>.</p>
+</li>
+<li>
+<p>For Cordova, please refer to the <em>Metrics</em> section of <a href="https://aerogear.org/docs/guides/aerogear-cordova/AerogearCordovaPush/">this document</a>.</p>
+</li>
+<li>
+<p>For Windows, please refer to <a href="https://aerogear.org/docs/unifiedpush/aerogear-push-windows/guides/#_metrics">this document</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The collected metadata and payload is <em>automatically</em> deleted after 30 days, using a nightly job within the Unified Push Server.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pushapplication-activity"><a class="anchor" href="#pushapplication-activity"></a>PushApplication Activity</h3>
+<div class="paragraph">
+<p>On the <em>Activity log</em> tab of a PushApplication you see a list of Push notifications that have been sent to the server:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/activity1.png" alt="Push Activity - Details"></span></p>
+</div>
+<div class="paragraph">
+<p>Each Push Notification can be expanded to see parts of the payload. While being in this view and opening the <a href="#_sending_a_push_notification">Send Push Notification</a> Dialog to send a Push Notification, you will see the <em>Pending&#8230;&#8203;</em> status afterwards, until the message was delivered to all involved 3rd party Push Networks:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/activity2.png" alt="Push Activity - Pending"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The collected metadata and payload is <em>automatically</em> deleted after 30 days, using a nightly job within the Unified Push Server.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
+<div class="paragraph">
+<p>Now that you are familiar with the AdminUI of the Unified Push Server, you can learn about its Administrative UI <a href="#server-administration">here</a>.
+If you want to dive straight into some mobile development, you can find a list of different tutorials and guides <a href="#next-steps">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

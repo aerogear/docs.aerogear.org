@@ -1,6 +1,0 @@
-var namespace_aero_gear_1_1_mobile_1_1_core_1_1_exception =
-[
-    [ "ConfigurationNotFoundException", "class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_configuration_not_found_exception.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_configuration_not_found_exception" ],
-    [ "InitializationException", "class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_initialization_exception.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_initialization_exception" ],
-    [ "ServiceModuleInstanceNotFoundException", "class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_service_module_instance_not_found_exception.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_service_module_instance_not_found_exception" ]
-];
