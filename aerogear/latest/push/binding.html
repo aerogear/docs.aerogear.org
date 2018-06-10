@@ -104,7 +104,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../con_services.html">About Mobile Services</a>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
@@ -116,7 +116,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../apps.html">About Mobile Apps</a>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
@@ -135,7 +135,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html">Push Notifications</a>
+    <a class="nav-link" href="index.html">Push</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="provisioning.html">Provisioning</a>
@@ -177,7 +177,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#">metrics/binding.adoc</a>
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
@@ -190,6 +190,42 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Custom Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
   </li>
 </ul>
   </li>
@@ -212,7 +248,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Push for the Showcase App</a>
   </li>
 </ul>
   </li>
@@ -260,7 +296,7 @@ $(addBlockSwitches);
   <ul>
     <li class="crumb"><a href="../index.html">AeroGear</a></li>
     <li class="crumb">Using Mobile Services</li>
-    <li class="crumb"><a href="index.html">Push Notifications</a></li>
+    <li class="crumb"><a href="index.html">Push</a></li>
     <li class="crumb"><a href="binding.html">Binding</a></li>
   </ul>
 </nav>
@@ -269,10 +305,11 @@ $(addBlockSwitches);
 <article class="doc">
 <h1>Binding a mobile app record with the Push Notifications service</h1>
 <div class="paragraph">
-<p>After binding a mobile app record to the  service, your mobile app can use that service immediately.</p>
+<p>To use mobile services, you must represent your mobile app in OpenShift using a mobile app record and that mobile app record must be associated with the mobile service.
+After binding a mobile app record to the  service, your mobile app can use that service immediately.</p>
 </div>
 <div class="paragraph">
-<p>: The association between a mobile app record and  service uses the <a href="#https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">OpenShift bind</a> feature.</p>
+<p>Note: The association between a mobile app record and  service uses the <a href="#https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">OpenShift bind</a> feature.</p>
 </div>
 <div class="paragraph">
 <p>To associate a mobile app record with a mobile service:</p>
@@ -306,9 +343,6 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 <li>
 <p>Follow the <strong>Create Binding</strong> wizard to associate the mobile app record with the  service.
 When prompted for a <strong>mobile app record ID</strong>, enter the value you noted from the previous step.</p>
-</li>
-<li>
-<p>Specify</p>
 </li>
 </ol>
 </div>

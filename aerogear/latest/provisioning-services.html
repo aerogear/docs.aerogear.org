@@ -104,7 +104,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="con_services.html">About Mobile Services</a>
+    <a class="nav-link" href="con_services.html">Introducing Mobile Services</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="provisioning-services.html">Provisioning</a>
@@ -116,7 +116,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="apps.html">About Mobile Apps</a>
+    <a class="nav-link" href="apps.html">Integrating Mobile Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="registering-a-mobile-app.html">Registering an App</a>
@@ -135,7 +135,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="push/index.html">Push Notifications</a>
+    <a class="nav-link" href="push/index.html">Push</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push/provisioning.html">Provisioning</a>
@@ -177,7 +177,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="metrics/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#">metrics/binding.adoc</a>
+    <a class="nav-link" href="metrics/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="configuring-dev-env.html">Configuring development environment</a>
@@ -190,6 +190,42 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="digger/index.html">CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="custom/index.html">Custom Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="custom/binding.html">Binding</a>
   </li>
 </ul>
   </li>
@@ -212,7 +248,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="testcard.html">Custom Runtime Connector for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="testcard.html">Push for the Showcase App</a>
   </li>
 </ul>
   </li>
@@ -259,21 +295,13 @@ $(addBlockSwitches);
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">AeroGear</a></li>
-    <li class="crumb"><a href="con_services.html">About Mobile Services</a></li>
+    <li class="crumb"><a href="con_services.html">Introducing Mobile Services</a></li>
     <li class="crumb"><a href="provisioning-services.html">Provisioning</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/provisioning-services.adoc"></a></div>
 </div>
 <article class="doc">
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#provisioning-mobile-services">Provisioning Mobile Services</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#deprovisioning">Deprovisioning</a></li>
-</ul>
-</div>
 <div class="sect1">
 <h2 id="provisioning-mobile-services"><a class="anchor" href="#provisioning-mobile-services"></a>Provisioning Mobile Services</h2>
 <div class="sectionbody">
@@ -337,22 +365,7 @@ When prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind a
 </ol>
 </div>
 <div class="paragraph">
-<p>After the service has been provisioned, you should then be able to see the service&#8217;s secret and config map created during provision
-within the project&#8217;s resources.</p>
-</div>
-<div class="paragraph">
-<p>To edit the service configuration, go to <strong>Resources</strong> &#8594; <strong>Config Maps</strong> and select the service&#8217;s config map.
-Press the <strong>[Actions]</strong> button in the upper right corner and choose <strong>[Edit]</strong> or <strong>[Edit YAML]</strong>. This
-allows you to edit the service&#8217;s configuration directly which is then exposed to your mobile application.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deprovisioning"><a class="anchor" href="#deprovisioning"></a>Deprovisioning</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In order to delete a provisioned service, select the service menu and click <strong>Delete</strong>. A notification
-appears that the service has now been <strong>Marked for Deletion</strong>.</p>
+<p>See the <a href="#">services.adoc</a> and navigate to the documentation for the service you require.</p>
 </div>
 </div>
 </div>

@@ -104,7 +104,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="con_services.html">About Mobile Services</a>
+    <a class="nav-link" href="con_services.html">Introducing Mobile Services</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="provisioning-services.html">Provisioning</a>
@@ -116,7 +116,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="apps.html">About Mobile Apps</a>
+    <a class="nav-link" href="apps.html">Integrating Mobile Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="registering-a-mobile-app.html">Registering an App</a>
@@ -135,7 +135,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="push/index.html">Push Notifications</a>
+    <a class="nav-link" href="push/index.html">Push</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push/provisioning.html">Provisioning</a>
@@ -177,7 +177,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="metrics/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#">metrics/binding.adoc</a>
+    <a class="nav-link" href="metrics/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="configuring-dev-env.html">Configuring development environment</a>
@@ -190,6 +190,42 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="digger/index.html">CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="custom/index.html">Custom Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="custom/binding.html">Binding</a>
   </li>
 </ul>
   </li>
@@ -212,7 +248,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="testcard.html">Custom Runtime Connector for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="testcard.html">Push for the Showcase App</a>
   </li>
 </ul>
   </li>
@@ -259,7 +295,7 @@ $(addBlockSwitches);
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">AeroGear</a></li>
-    <li class="crumb"><a href="con_services.html">About Mobile Services</a></li>
+    <li class="crumb"><a href="con_services.html">Introducing Mobile Services</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/con_services.adoc"></a></div>
@@ -276,46 +312,27 @@ $(addBlockSwitches);
 </div>
 <div class="sidebarblock primary">
 <div class="title">Metrics</div><div class="content">
-<div class="paragraph">
-<p>The metrics service provides monitoring and metrics for provisioned mobile services.</p>
-</div>
-<div class="paragraph">
-<p>The service consists of <a href="https://prometheus.io/">Prometheus</a> and <a href="https://grafana.com/">Grafana</a> with an OAuth Proxy
-tied to <a href="https://github.com/aerogear/mobile-docs/blob/master/services/giving-an-openshift-user-access-to-metrics.adoc">openshift permissions</a>,
-for authentication and authorization. It automates the gathering and display of service metrics by using features in Openshift,
-<a href="https://github.com/aerogear/mobile-docs/blob/master/services/making-mobile-services-discoverable-by-metrics.adoc">annotations</a>
-and <a href="https://github.com/aerogear/mobile-docs/blob/master/services/working-with-grafana-dashboards.adoc">configMaps</a>,
-to allow the discovery of service metrics and visualization of data. The metrics service makes it easy to monitor provisioned mobile services and
-<a href="https://github.com/aerogear/mobile-docs/blob/master/services/manually-adding-services-to-metrics.adoc">custom services</a> in your project.</p>
-</div>
+
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Unified Push</div><div class="content">
-<div class="paragraph">
-<p>Send push notifications to any device, regardless of mobile platform or network.</p>
-</div>
+
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Auth</div><div class="content">
-<div class="paragraph">
-<p>The {Keycloak} service provides authentication and authorization for your mobile app.</p>
-</div>
+
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Custom Runtime Connector</div><div class="content">
-<div class="paragraph">
-<p>The Custom Runtime Connector Service allows you associate your backend application with AeroGear Mobile Services. For example, after provisioning this service, you can protect your backend application using the Auth Service.</p>
-</div>
+
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">CI/CD</div><div class="content">
-<div class="paragraph">
-<p>The CI/CD service allows you build your Android and iOS apps, whether you are a native, Cordova or Xamarin developer.</p>
-</div>
+
 </div>
 </div>
 </div>
