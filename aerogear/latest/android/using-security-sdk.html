@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Defence Checks :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/android/using-security-sdk.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/sending-push-notifications.html">Sending Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/apple-setup.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">metrics/coding.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Custom Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear</a></li>
+    <li class="crumb"><a href="using-security-sdk.html">Self Defence Checks</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/android/using-security-sdk.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Self Defence Checks</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As part of the Auth SDK module, there is a self defence check feature that will make sure that yor application is meeting the modern OWASP recommendations.  This feature offers multiple security checks that can be used to analyse the security of the device.  This can be useful for developers to detect vulnerablities and react accordingly.  For example, if the app detects security issue <strong>X</strong> then do <strong>Y</strong>, where <strong>X</strong> could be no lock screen is set and <strong>Y</strong> is show a system prompt to setup the lock screen.</p>
+</div>
+<div class="paragraph">
+<p>This module offers:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A suite of self-defence checks to detect an insecure or hostile environment.</p>
+</li>
+<li>
+<p>Ability to implement custom self-defence checks.</p>
+</li>
+<li>
+<p>Interfaces to access the results of self-defence checks and take appropriate action in application code.</p>
+</li>
+<li>
+<p>Integration with the AeroGear Services Metrics SDK to report self-defence checks data.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="perquisites"><a class="anchor" href="#perquisites"></a>Perquisites</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import and initialise the Auth SDK module - <a href="auth.adoc">AeroGear Services Auth SDK</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To begin using self defence checks in your app, you&#8217;ll need to retrieve an instance of <a href="javadoc"><code>SecurityService</code></a>. The <code>SecurityService</code> can be retrieved using the <a href="javadoc"><code>MobileCore#getInstance</code></a> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Any subsequent <code>MobileCore#getInstance</code> method will return the same instance of <code>SecurityService</code>.<br>
+There are two ways to implement self defence checks: <a href="#provided-self-defence-checks">Provided Self Defence Checks</a> and <a href="#custom-self-defence-checks">Custom Self Defence Checks</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="provided-self-defence-checks"><a class="anchor" href="#provided-self-defence-checks"></a>Provided Self Defence Checks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These are self defence checks provided by the SDK in <a href="javadoc"><code>SecurityCheckType</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>A successful Check means that the environment the application is running in is more secure and no action is required, as opposed to signalling if a certain feature is enabled.</p>
+</div>
+<div class="paragraph">
+<p>For example, the Root Access Detection Check <code>NOT_ROOTED</code> should return <code>true</code> when it is <strong>not</strong> rooted, since this would be the more secure condition.</p>
+</div>
+<div class="sect3">
+<h4 id="root-access-detection-not_rooted"><a class="anchor" href="#root-access-detection-not_rooted"></a>Root Access Detection (NOT_ROOTED)</h4>
+<div class="paragraph">
+<p>To help prevent your app running in a device that has been rooted/jailbroken the <code>SecurityCheckType#NOT_ROOTED</code> function can be used.  This function uses the <a href="https://github.com/scottyab/rootbeer">Rootbeer</a> library to check if root access is present on the device.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="developer-mode-detection-no_developer_mode"><a class="anchor" href="#developer-mode-detection-no_developer_mode"></a>Developer Mode Detection (NO_DEVELOPER_MODE)</h4>
+<div class="paragraph">
+<p>To detect if Developer Mode has been enabled on the device the <code>SecurityCheckType#NO_DEVELOPER_MODE</code> function can be used.  This function uses Android&#8217;s <a href="https://developer.android.com/reference/android/provider/Settings.html">Settings</a> class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="debugger-detection-no_debugger"><a class="anchor" href="#debugger-detection-no_debugger"></a>Debugger Detection (NO_DEBUGGER)</h4>
+<div class="paragraph">
+<p>To detect if an Android debugger is attached to the app the <code>SecurityCheckType#NO_DEBUGGER</code> function can be used.  This function uses Android&#8217;s <a href="https://developer.android.com/reference/android/os/Debug.html">Debug</a> class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="emulator-detection-not_in_emulator"><a class="anchor" href="#emulator-detection-not_in_emulator"></a>Emulator Detection (NOT_IN_EMULATOR)</h4>
+<div class="paragraph">
+<p>To detect if the app is being run on an emulator the <code>SecurityCheckType#NOT_IN_EMULATOR</code> function can be used.  This function uses Android&#8217;s <a href="https://developer.android.com/reference/android/os/Build.html">Build</a> class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="device-lock-detection-screen_lock_enabled"><a class="anchor" href="#device-lock-detection-screen_lock_enabled"></a>Device Lock Detection (SCREEN_LOCK_ENABLED)</h4>
+<div class="paragraph">
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>SecurityCheckType#SCREEN_LOCK_ENABLED</code> function can be used.  This function uses Android&#8217;s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html">KeyguardManager</a> class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="app-data-backup-detection-allow_backup_disabled"><a class="anchor" href="#app-data-backup-detection-allow_backup_disabled"></a>App Data Backup Detection (ALLOW_BACKUP_DISABLED)</h4>
+<div class="paragraph">
+<p>To detect whether the application&#8217;s data is configured to be synchronized across devices the <code>SecurityCheckType#ALLOW_BACKUP_DISABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html">allowBackup</a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app&#8217;s needs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="device-encryption-detection-has_encryption_enabled"><a class="anchor" href="#device-encryption-detection-has_encryption_enabled"></a>Device Encryption Detection (HAS_ENCRYPTION_ENABLED)</h4>
+<div class="paragraph">
+<p>To detect whether the devices filesystem is encrypted the <code>SecurityCheckType#HAS_ENCRYPTION_ENABLED</code> function can be used. This function uses Android&#8217;s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html">DevicePolicyManager</a> class.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-self-defence-checks"><a class="anchor" href="#custom-self-defence-checks"></a>Custom Self Defence Checks</h3>
+<div class="paragraph">
+<p>These are self defence checks that you can define to be used by the SDK. Custom self defence checks must extend the <a href="javadoc"><code>AbstractSecurityCheck</code></a> interface.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class CustomSecurityCheck extends AbstractSecurityCheck {
+    /**
+     * Custom security check.
+     *
+     * @param context Context to be used by the check.
+     * @return &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;
+     */
+    @Override
+    protected boolean execute(@NonNull final Context context) {
+        // implement security check in customSecurityCheck()
+        boolean result = customSecurityCheck();
+        return result;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="invoking-a-single-self-defence-check"><a class="anchor" href="#invoking-a-single-self-defence-check"></a>Invoking a Single Self Defence Check</h3>
+<div class="paragraph">
+<p>The <code>SecurityService#check</code> method can be used to run a single self defence check.  It expects either <code>SecurityCheckType</code> (see <a href="#Provided Self Defence Checks
+">[Provided Self Defence Checks
+]</a>)  or <code>SecurityCheck</code> (see <a href="#Custom Self Defence Checks
+">[Custom Self Defence Checks
+]</a>) as a parameter and returns <a href="javadoc"><code>SecurityCheckResult</code></a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// a provided self defence check
+SecurityCheckResult result = securityService.check(SecurityCheckType.&lt;check_type&gt;);
+
+// using the custom self defence check defined previously
+SecurityCheck customSecurityCheck = new CustomSecurityCheck();
+SecurityCheckResult result = securityService.check(customSecurityCheck);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="invoking-multiple-self-defence-checks"><a class="anchor" href="#invoking-multiple-self-defence-checks"></a>Invoking Multiple Self Defence Checks</h3>
+<div class="paragraph">
+<p>To invoke multiple self defence checks a security check executor must be used.  There are two types of security check executors: <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a>, where self defence checks are executd synchronously, and <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a>, where self defence checks are executd asynchronously.</p>
+</div>
+<div class="sect3">
+<h4 id="synchronously"><a class="anchor" href="#synchronously"></a>Synchronously</h4>
+<div class="paragraph">
+<p>To run multiple self defence checks <em>synchronously</em>, you&#8217;ll first need to invoke the <a href="javadoc"><code>SecurityService#getCheckExecutor</code></a> method.  This methods returns <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a> where checks can be added (chained) to the executor and executed synchronously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SyncSecurityCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="asynchronously"><a class="anchor" href="#asynchronously"></a>Asynchronously</h4>
+<div class="paragraph">
+<p>To run multiple self defence checks <em>asynchronously</em>, you’ll first need to invoke the <a href="javadoc"><code>SecurityService#getAsyncCheckExecutor</code></a> method. This methods returns <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a> where checks can be added (chained) to the executor and executed asynchronously.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AsyncSecurityCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecutor();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-checks-to-self-defence-check-executors"><a class="anchor" href="#adding-checks-to-self-defence-check-executors"></a>Adding Checks to Self Defence Check Executors</h4>
+<div class="paragraph">
+<p>Both the <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a> and <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a> have an <code>addCheck</code> method.  This method expects either <a href="javadoc"><code>SecurityCheckType</code></a>  or <a href="javadoc"><code>SecurityCheck</code></a> as a paramater.<br></p>
+</div>
+<div class="paragraph">
+<p>If you are invoking the <code>addCheck</code> method on a <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a> then it will return <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a>.<br></p>
+</div>
+<div class="paragraph">
+<p>If you are invoking the <code>addCheck</code> method on an <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a> then it will return <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// adding self defence checks to a SyncSecurityCheckExecutor
+
+// add two provided self defence checks to the syncCheckExecutor
+syncCheckExecutor.addCheck(SecurityCheckType.&lt;check_type&gt;).addCheck(SecurityCheckType.&lt;check_type&gt;);
+// add the CustomSecurityCheck to the syncCheckExecutor
+syncCheckExecutor.addCheck(new customSecurityCheck());
+
+
+// adding self defence checks to a AsyncSecurityCheckExecutor
+
+// add two provided self defence checks to the asyncCheckExecutor
+asyncCheckExecutor.addCheck(SecurityCheckType.&lt;check_type&gt;).addCheck(SecurityCheckType.&lt;check_type&gt;);
+// add the CustomSecurityCheck to the asyncCheckExecutor
+asyncCheckExecutor.addCheck(new customSecurityCheck());</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="executing-self-defence-checks-on-executors"><a class="anchor" href="#executing-self-defence-checks-on-executors"></a>Executing Self Defence Checks on Executors</h4>
+<div class="paragraph">
+<p>Both <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a> and <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a> have an <code>execute</code> method that executes all self defence checks that have been added.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>execute</code> method for <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a> returns a <code>Map</code> where the key is the name of the self defence check being tested (<code>String</code>) and the value is  <a href="javadoc"><code>SecurityCheckResult</code></a>.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>execute</code> method for <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a> returns a <code>Map</code> where the key is the result of the <code>getName</code> method on the <code>SecurityCheck</code> instance being tested and the value is a <code>Map</code> of type <code>Future</code> with <a href="javadoc"><code>SecurityCheckResult</code></a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// execute self defence checks on the syncCheckExecutor
+Map&lt;String, SecurityCheckResult&gt; results = syncCheckExecutor.execute();
+
+// execute self defence checks on the asyncCheckExecutor
+Map&lt;String, Future&lt;SecurityCheckResult&gt;&gt; results = asyncCheckExecutor.execute();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both <a href="javadoc"><code>SyncSecurityCheckExecutor</code></a> and <a href="javadoc"><code>AsyncSecurityCheckExecutor</code></a> allow for multiple checks to be chained so the above examples can be refactored to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// adding self defence checks and executing these checks synchronously
+Map&lt;String, SecurityCheckResult&gt; results = securityService.getCheckExecutor().addCheck(new customSecurityCheck()).addCheck(SecurityCheckType.&lt;check_type&gt;).addCheck(SecurityCheckType.&lt;check_type&gt;).execute();
+
+// adding self defence checks and executing these checks asynchronously
+Map&lt;String, Future&lt;SecurityCheckResult&gt; results = securityService.getAsyncCheckExecutor().addCheck(new customSecurityCheck()).addCheck(SecurityCheckType.&lt;check_type&gt;).addCheck(SecurityCheckType.&lt;check_type&gt;).execute();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reporting-self-defence-checks-results-via-the-metrics-service"><a class="anchor" href="#reporting-self-defence-checks-results-via-the-metrics-service"></a>Reporting Self Defence Checks Results Via the Metrics Service</h3>
+<div class="paragraph">
+<p>In order to report the results of Self Defence utilize the <a href="./metrics">Metrics</a> service in conjunction with the <a href="javadoc">SecurityService</a>.</p>
+</div>
+<div class="paragraph">
+<p>Individual checks can be reported via the <code>checkAndSendMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = mobileCore.getInstance(MetricsService.class);
+SecurityService securityService = activity.mobileCore.getInstance(SecurityService.class);
+SecurityCheckResult result = securityService.checkAndSendMetric(SecurityCheckType.&lt;check_type&gt;, metricsService);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Reporting the results for multiple checks can be done via an <code>Executor</code> that is passed a reference to the <code>MetricsService</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = mobileCore.getInstance(MetricsService.class);
+Map&lt;String, SecurityCheckResult&gt; results = SecurityCheckExecutor.Builder.newSyncExecutor(this.getContext())
+    .withSecurityCheck(SecurityCheckType.&lt;check_type&gt;)
+    // other checks...
+    .withMetricsService(metricsService)
+    .build().execute();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

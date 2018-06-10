@@ -104,7 +104,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../con_services.html">About Mobile Services</a>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
@@ -116,7 +116,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../apps.html">About Mobile Apps</a>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
@@ -135,7 +135,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+    <a class="nav-link" href="../push/index.html">Push</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
@@ -177,7 +177,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#">metrics/binding.adoc</a>
+    <a class="nav-link" href="binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
@@ -190,6 +190,42 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Custom Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
   </li>
 </ul>
   </li>
@@ -212,7 +248,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Push for the Showcase App</a>
   </li>
 </ul>
   </li>
@@ -268,13 +304,6 @@ $(addBlockSwitches);
 </div>
 <article class="doc">
 <h1>Provisioning Metrics Service</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#deprovisioning">Deprovisioning</a></li>
-</ul>
-</div>
 <div class="sect1">
 <h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
@@ -338,41 +367,13 @@ When prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind a
 </li>
 <li>
 <p>Postgres Password</p>
+<div class="literalblock">
+<div class="content">
+<pre>include::{partialsdir}/generic-provisioning-end.adoc[]</pre>
+</div>
+</div>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you have already registered a mobile app, you can also bind to that mobile app during the provisioning process.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>See the <a href="#">services.adoc</a> and navigate to the documentation for the service you require.</p>
-</div>
-<div class="paragraph">
-<p>After the service has been provisioned, you should then be able to see the service&#8217;s secret and config map created during provision
-within the project&#8217;s resources.</p>
-</div>
-<div class="paragraph">
-<p>To edit the service configuration, go to <strong>Resources</strong> &#8594; <strong>Config Maps</strong> and select the service&#8217;s config map.
-Press the <strong>[Actions]</strong> button in the upper right corner and choose <strong>[Edit]</strong> or <strong>[Edit YAML]</strong>. This
-allows you to edit the service&#8217;s configuration directly which is then exposed to your mobile application.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deprovisioning"><a class="anchor" href="#deprovisioning"></a>Deprovisioning</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In order to delete a provisioned service, select the service menu and click <strong>Delete</strong>. A notification
-appears that the service has now been <strong>Marked for Deletion</strong>.</p>
 </div>
 </div>
 </div>
