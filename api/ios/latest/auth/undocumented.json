@@ -1,0 +1,89 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/credentials/OIDCCredentials.swift",
+      "line": 53,
+      "symbol": "OIDCCredentials.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/credentials/OIDCCredentials.swift",
+      "line": 57,
+      "symbol": "OIDCCredentials.encode(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 7,
+      "symbol": "Jwks.keys",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 12,
+      "symbol": "JwkContent.alg",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 13,
+      "symbol": "JwkContent.kty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 14,
+      "symbol": "JwkContent.use",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 16,
+      "symbol": "JwkContent.n",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 18,
+      "symbol": "JwkContent.e",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwk/JwksManager.swift",
+      "line": 19,
+      "symbol": "JwkContent.kid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwt/Jwt.swift",
+      "line": 25,
+      "symbol": "JwtHeader.alg",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwt/Jwt.swift",
+      "line": 26,
+      "symbol": "JwtHeader.typ",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/auth/jwt/Jwt.swift",
+      "line": 27,
+      "symbol": "JwtHeader.kid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk"
+}
