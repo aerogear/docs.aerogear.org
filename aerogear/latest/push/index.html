@@ -154,13 +154,13 @@ $(addBlockSwitches);
     <span class="nav-text">More&#8230;&#8203;</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="sending-push-notifications.html">Sending Push Notifications</a>
+    <a class="nav-link" href="proc_sending-a-push-notification.html">Sending a Push Notification</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="handling-push-notifications.html">Handling Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="apple-setup.html">Apple Push Network</a>
+    <a class="nav-link" href="proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="google-setup.html">Firebase Cloud Messaging</a>
@@ -402,41 +402,43 @@ It is highly recommended to not sent any send sensitive personal or confidential
 <p><strong><em>Motivation:</em></strong> Easy use of Push Notifications for any (JBoss/AeroGear powered) mobile application, that is backed by JBoss technology (e.g. LiveOak, Drools, etc.).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="useful-terminology"><a class="anchor" href="#useful-terminology"></a>Useful Terminology</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Push_ref_terminology"><a class="anchor" href="#ref_terminology_Push_ref_terminology"></a>Reference material</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Before we get into details, it’s important that we have a good lexicon.</p>
+<p>This section describes terminology that is associated with Push.</p>
 </div>
-<div class="sect3">
-<h4 id="pushapplication"><a class="anchor" href="#pushapplication"></a>PushApplication</h4>
-<div class="paragraph">
-<p>A logical construct that represents an overall mobile application (e.g. Mobile HR).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="variant"><a class="anchor" href="#variant"></a>Variant</h4>
-<div class="paragraph">
-<p>A variant of the PushApplication, representing a specific mobile platform, like iOS or Android, or even more fine grain differentiation like iPad or iPhone. There can be multiple variants for a single PushApplication (e.g. HR Android, HR iPad, HR iPhone free or HR iPhone premium). Each supported variant type contains some platform specific properties, such as a Google API key (Android) or passphrase and certificate (Apple).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="installation"><a class="anchor" href="#installation"></a>Installation</h4>
-<div class="paragraph">
-<p>Represents an actual device, registered with the UnifiedPush Server. User1 running <em>HR Android</em> app, while User2 runs <em>HR iPhone premium</em> on his phone.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="push-notification-message"><a class="anchor" href="#push-notification-message"></a>Push Notification Message</h4>
-<div class="paragraph">
-<p>A simple message to be sent to a PushApplication.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="sender-endpoint-api"><a class="anchor" href="#sender-endpoint-api"></a>Sender Endpoint API</h4>
-<div class="paragraph">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Push Application</dt>
+<dd>
+<p>A logical construct that represents an Mobile App, for example, <em>Mobile HR</em>.</p>
+</dd>
+<dt class="hdlist1">Push Notification Message</dt>
+<dd>
+<p>A simple message to be sent to a Push Application.</p>
+</dd>
+<dt class="hdlist1">Sender Endpoint API</dt>
+<dd>
 <p>A RESTful API that receives Push Notification Message requests for a PushApplication or some of its different Variants. The Server translate this request into the platform specific details and delivers the payload to the 3rd party cloud provides, which eventually might deliver the message to the physical device.</p>
-</div>
-</div>
+</dd>
+<dt class="hdlist1">Variant</dt>
+<dd>
+<p>A variant of the Push Application, representing a specific mobile platform, like iOS or Android, or even more fine grain differentiation like iPad or iPhone.
+There can be multiple variants for a single Push Application (for example, <em>Mobile HR Android</em>, <em>Mobile HR iPad</em>, <em>Mobile HR iOS free</em> or _Mobile HR iOS premium).
+Each supported variant type contains some platform specific properties, such as a Google API key (Android) or passphrase and certificate (Apple).</p>
+</dd>
+<dt class="hdlist1">APNs</dt>
+<dd>
+<p><a href="https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1">Apple Push Notification service</a>.</p>
+</dd>
+<dt class="hdlist1">Installation </dt>
+<dd>
+<p>Represents an actual device, registered with the UnifiedPush Server. User1 running <em>HR Android</em> app, while User2 runs <em>HR iPhone premium</em> on his phone.</p>
+</dd>
+</dl>
 </div>
 <div class="sect2">
 <h3 id="how-the-unifiedpush-server-works"><a class="anchor" href="#how-the-unifiedpush-server-works"></a>How the UnifiedPush Server Works</h3>

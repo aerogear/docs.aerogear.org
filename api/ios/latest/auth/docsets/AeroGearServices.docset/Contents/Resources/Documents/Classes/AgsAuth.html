@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AgsAuth Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AgsAuth" class="dashAnchor"></a>
+    <a title="AgsAuth Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">AeroGearServices Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">AeroGearServices Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AgsAuth Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AgsAuth.html">AgsAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AgsAuth/Errors.html">– Errors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CredentialsManager.html">CredentialsManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OIDCAuthenticator.html">OIDCAuthenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OIDCCredentials.html">OIDCCredentials</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:7AGSAuth6rsaJwkAA0C7ContentVSgAA4JwksV4jwks_SS3kidtF">rsaJwk(jwks:kid:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Authenticator.html">Authenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CredentialManagerProtocol.html">CredentialManagerProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AuthenticationConfig.html">AuthenticationConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JwkContent.html">JwkContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Jwks.html">Jwks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/JwtHeader.html">JwtHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AgsAuth</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">AgsAuth</span></code></pre>
+
+                </div>
+              </div>
+            <p>AeroGear Services Auth SDK</p>
+
+<p>Allows users to perform login/logout actions against an Keycloak service provisioned by the AeroGear mobile service on OpenShift.</p>
+
+<p>### Example ###
+  <em>initialise the authentication configuration service and configure the Auth SDK</em></p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">authConfig</span> <span class="o">=</span> <span class="kt">AuthenticationConfig</span><span class="p">(</span><span class="nv">redirectURL</span><span class="p">:</span> <span class="s">"com.youapp://callback"</span><span class="p">)</span>
+ <span class="kt">AgsAuth</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">authConfig</span><span class="p">:</span> <span class="n">authConfig</span><span class="p">)</span>
+</code></pre>
+
+<p><em>Login using the configured Auth SDK</em></p>
+<pre class="highlight swift"><code> <span class="kt">AgsAuth</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="nf">login</span><span class="p">()</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC8instanceXevpZ"></a>
+                    <a name="//apple_ref/swift/Variable/instance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC8instanceXevpZ">instance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>instance of the Auth SDK</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">instance</span> <span class="o">=</span> <span class="kt">AgsAuth</span><span class="p">(</span><span class="kt">AgsCore</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="nf">getConfiguration</span><span class="p">(</span><span class="n">serviceId</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC6ErrorsO"></a>
+                    <a name="//apple_ref/swift/Enum/Errors" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC6ErrorsO">Errors</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Errors generated by the auth module</p>
+
+                        <a href="../Classes/AgsAuth/Errors.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Errors</span><span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC9configureyAA20AuthenticationConfigV04authF0_tKF"></a>
+                    <a name="//apple_ref/swift/Method/configure(authConfig:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC9configureyAA20AuthenticationConfigV04authF0_tKF">configure(authConfig:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Configure the Auth SDK.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>This function should be called before any other functions are invoked. Only need to call this once.</p>
+
+</div>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p>a <code>noServiceConfigurationFound</code> error if no authentication configuration
+was found in the <code>mobileConfig</code> used to initialise the Auth SDK</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">authConfig</span><span class="p">:</span> <span class="kt"><a href="../Structs/AuthenticationConfig.html">AuthenticationConfig</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authConfig</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Configuration options for the auth module</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC5loginySo16UIViewControllerC014presentingViewF0_yAA4UserVSg_s5Error_pSgtc11onCompletedtKF"></a>
+                    <a name="//apple_ref/swift/Method/login(presentingViewController:onCompleted:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC5loginySo16UIViewControllerC014presentingViewF0_yAA4UserVSg_s5Error_pSgtc11onCompletedtKF">login(presentingViewController:onCompleted:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform user login action.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    a <code>serviceNotConfigured</code> error if the Auth SDK has not been configured
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">login</span><span class="p">(</span><span class="nv">presentingViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="nv">onCompleted</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">user</span><span class="p">:</span> <span class="kt"><a href="../Structs/User.html">User</a></span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>presentingViewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the ViewController that initiates the login process</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onCompleted</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback function that will be invoked when the login is finished</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>user</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the user returned in the <code>onCompleted</code> callback function.  Will be nil if login failed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the error returned in the <code>onCompleted</code> callback function. Will be nil if login was successful</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC06resumeC0Sb10Foundation3URLV3url_tKF"></a>
+                    <a name="//apple_ref/swift/Method/resumeAuth(url:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC06resumeC0Sb10Foundation3URLV3url_tKF">resumeAuth(url:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resume the authentication process.</p>
+
+<p>This function should be invoked when the user has finished logging in via the browser and redirected back to the app that started the login.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p>a <code>serviceNotConfigured</code> error if the Auth SDK has not been configured</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resumeAuth</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The redirect url passed backed from the login process</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if the login process can be resumed, false otherwise</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC6logoutyys5Error_pSgc11onCompleted_tKF"></a>
+                    <a name="//apple_ref/swift/Method/logout(onCompleted:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC6logoutyys5Error_pSgc11onCompleted_tKF">logout(onCompleted:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform the logout action.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p>a <code>serviceNotConfigured</code> error if the Auth SDK has not been configured or
+a <code>noLoggedInUserError</code> if no user is logged in</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="nv">onCompleted</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onCompleted</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>callback function that will be invoked when the logout process has completed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code>serviceNotConfigured</code> error returned in the <code>onCompleted</code> callback function</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSAuth7AgsAuthC11currentUserAA0E0VSgyKF"></a>
+                    <a name="//apple_ref/swift/Method/currentUser()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSAuth7AgsAuthC11currentUserAA0E0VSgyKF">currentUser()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the current logged in user.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p>a <code>serviceNotConfigured</code> error if the Auth SDK has not been configured</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">currentUser</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/User.html">User</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the user that is currently logged in</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-05-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['abstractauthenticator',['AbstractAuthenticator',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_authenticator_1_1_abstract_authenticator.html#afafda0f2c66a2a253d91220739eed529',1,'AeroGear::Mobile::Auth::Authenticator::AbstractAuthenticator']]],
+  ['abstractauthservice',['AbstractAuthService',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html#ad781b42c32d3b54a2ba0b783dd2e06fa',1,'AeroGear::Mobile::Auth::AbstractAuthService']]],
+  ['addheader',['AddHeader',['../interface_aero_gear_1_1_mobile_1_1_core_1_1_http_1_1_i_http_request.html#aec2543c2b3c44f26cf8ca847674e57f7',1,'AeroGear::Mobile::Core::Http::IHttpRequest']]],
+  ['authenticate',['Authenticate',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html#a55f305f58b6d03c518527a319a46e641',1,'AeroGear.Mobile.Auth.AbstractAuthService.Authenticate()'],['../class_aero_gear_1_1_mobile_1_1_auth_1_1_authenticator_1_1_abstract_authenticator.html#a24d041c9fa9b1e9d0df4f9ff7fc524c4',1,'AeroGear.Mobile.Auth.Authenticator.AbstractAuthenticator.Authenticate()'],['../interface_aero_gear_1_1_mobile_1_1_auth_1_1_authenticator_1_1_i_authenticator.html#a9218e4ad4e51664276765d22f311cf5b',1,'AeroGear.Mobile.Auth.Authenticator.IAuthenticator.Authenticate()'],['../interface_aero_gear_1_1_mobile_1_1_auth_1_1_i_auth_service.html#a975eec950682a7d9856b0239ed22b467',1,'AeroGear.Mobile.Auth.IAuthService.Authenticate()']]]
+];
