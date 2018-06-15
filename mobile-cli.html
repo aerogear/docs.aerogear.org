@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/index.html">
+    <title>Getting Started with the Mobile CLI :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-cli.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -84,7 +84,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="index.html">Getting Started</a>
 <ul class="nav-list">
@@ -290,7 +290,7 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
   </li>
 </ul>
@@ -320,224 +320,146 @@ $(addBlockSwitches);
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">AeroGear Docs</a></li>
-    <li class="crumb"><a href="index.html">Getting Started</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="mobile-cli.html">Mobile CLI</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/index.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/mobile-cli.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="sect1">
-<h2 id="assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"><a class="anchor" href="#assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"></a>Introduction to Mobile Services</h2>
+<h1>Getting Started with the Mobile CLI</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides a brief overview of the foundational concepts that apply to Mobile Services.</p>
+<p>The Mobile CLI allows developers work with Mobile Services from the command line, for example using the following commands:</p>
 </div>
-<div class="paragraph">
-<p>Mobile Services are a suite of mobile services that run natively on OpenShift and are available from the OpenShift Service Catalog.
-The available mobile services are:</p>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="_images/mobile-services.png" alt="mobile services">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mobile get services
+mobile create serviceinstance &lt;serviceName&gt; --namespace=&lt;namespace&gt;
+mobile get clients --namespace=&lt;namespace&gt;
+mobile get clientconfig &lt;mobileClientID&gt; --namespace=&lt;namespace&gt;
+mobile create integration &lt;consumingServiceInstanceID&gt; &lt;providingServiceInstanceID&gt; --namespace=&lt;namespace&gt;</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-the-cli"><a class="anchor" href="#installing-the-cli"></a>Installing Mobile CLI</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the following repo:</p>
 <div class="paragraph">
-<p>Mobile Services allow a user to easily integrate the mobile services into the following mobile platforms:</p>
+<p><a href="https://github.com/aerogear/mobile-cli" class="bare">https://github.com/aerogear/mobile-cli</a></p>
 </div>
-<div class="imageblock">
+</li>
+<li>
+<p>Change to the <code>scripts</code> directory and run the following command:</p>
+<div class="listingblock">
 <div class="content">
-<img src="_images/mobile-platforms.png" alt="mobile platforms">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./install.sh</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_prerequisites"><a class="anchor" href="#assembly_introducing-mobile-services_prerequisites"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A technical background</p>
 </li>
-<li>
-<p>Reviewed <a href="mobile_terminology.html" class="page">Mobile Terminology</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_additional-resources"><a class="anchor" href="#assembly_introducing-mobile-services_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>To learn more about OpenShift, see <a href="https://www.openshift.com/learn/what-is-openshift/">What is OpenShift</a>.</p>
-</li>
-</ul>
-</div>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="con_introduction-to-push-notification_con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_con_introduction-to-push-notification"></a>Introduction to Push Notifications</h2>
+<h2 id="core-objects-or-resources"><a class="anchor" href="#core-objects-or-resources"></a>Resources</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
+<p>The following resources are available:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Code once and push notifications to iOS and Android.</p>
+<p><strong>MobileClient:</strong> The mobile client is a resource that represents your
+mobile client application as part of the OpenShift UI and is also called the Mobile Client. It gives us the
+context and information needed to show you relevant information around
+your particular mobile runtime as well as allowing us to setup the
+different kind of client builds required.</p>
 </li>
 <li>
-<p>Push notifications to defined groups.</p>
+<p><strong>ClientConfig</strong> The client config, is a resource created by aggregating
+together all of the available service configs. This resource is the
+configuration required in order to consume your mobile aware services
+from your mobile client. It is used by the client SDKs for the various
+mobile services.</p>
 </li>
 <li>
-<p>Push notifications to either iOS only or Android only.</p>
+<p><strong>ServiceConfig:</strong> The service config contains the services' information
+that is used to configure the Mobile SDK. For more information see
+<a href="./docs/service_config.md">here</a>.</p>
 </li>
 <li>
-<p>Push notifications to different variants of a mobile app.</p>
+<p><strong>ClientBuild</strong> The client build is backed by a regular BuildConfig,
+however the CLI will help you create this BuildConfig with as little
+effort as possible. This allows you to focus on just the mobile parts
+rather than needing to understand how to setup and manage a buildconfig
+and builds. For example, it will help you manage build credentials, and
+keys and ensure the build integrates seamlessly with the aereogear
+mobile build farm.</p>
 </li>
 <li>
-<p>Push notifications from different back-end apps to the same mobile app.</p>
+<p><strong>Binding</strong> The binding is backed by a binding resource in the service
+catalog. Once again we try to remove the need to understand how to
+create the native objects so that you can focus on being productive and
+building your mobile app. When doing a binding, you will be able to
+integrate different mobile services together. For example when using
+sync and keycloak you can bind them together and have your sync service
+protected by keycloak. This is as simple as
+<code>mobile create integration &lt;consuming_service_instance_id&gt; &lt;providing_service_instance_id&gt;</code></p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="con_introduction-to-security_con_introduction-to-security"><a class="anchor" href="#con_introduction-to-security_con_introduction-to-security"></a>Introduction to Device Security</h2>
+<h2 id="command-structure"><a class="anchor" href="#command-structure"></a>Command Structure</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application.</p>
+<div class="sect2">
+<h3 id="get"><a class="anchor" href="#get"></a>get</h3>
+<div class="literalblock">
+<div class="content">
+<pre>  client           gets a single mobile client in the namespace
+  clients          gets a list of mobile clients represented in the namespace
+  clientconfig     get clientconfig returns a client ready filtered configuration of the available services.
+  integration      get a single integration
+  integrations     get a list of the current integrations between services
+  serviceconfig    get a mobile aware service definition
+  serviceconfigs   get a list of deployed mobile enabled services
+  serviceinstances get a list of provisioned service instances based on the service name.
+  services         get mobile aware services that can be provisioned to your namespace</pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Perform a range of device trust checks on the mobile device, such as checking if the device is rooted, and allows you take proactive action based on the results.</p>
-</li>
-</ul>
+</div>
 </div>
 <div class="sect2">
-<h3 id="con_introduction-to-security_additional-resources"><a class="anchor" href="#con_introduction-to-security_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
+<h3 id="create"><a class="anchor" href="#create"></a>create</h3>
+<div class="literalblock">
+<div class="content">
+<pre>  client          create a mobile client representation in your namespace
+  integration     integrate certain mobile services together. mobile get services will show you what can be integrated.
+  serviceconfig   create a new service config
+  serviceinstance create a running instance of the given service</pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-metrics_con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_con_introduction-to-metrics"></a>Introduction to Mobile Metrics</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Mobile Metrics service allows you gather metrics on mobile apps, &amp; device versions, device security checks and back- end mobile service usage.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Monitor usage by version of mobile app, platform and SDK.</p>
-</li>
-<li>
-<p>Monitor interactions with the Identity Management service.</p>
-</li>
-</ul>
 </div>
 <div class="sect2">
-<h3 id="con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
+<h3 id="delete"><a class="anchor" href="#delete"></a>delete</h3>
+<div class="literalblock">
+<div class="content">
+<pre>  client          deletes a single mobile client in the namespace
+  integration     delete the integration between mobile services.
+  serviceconfig   delete a service config
+  serviceinstance deletes a service instance and other objects created when provisioning the services instance, such as pod presets</pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-identity-management_con_introduction-to-identity-management"><a class="anchor" href="#con_introduction-to-identity-management_con_introduction-to-identity-management"></a>Introduction to Identity Management</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Identity Management service allows you to add authentication and authorization to your mobile app.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Secure your mobile app using the industry standard OpenID Connect protocol.</p>
-</li>
-<li>
-<p>Add access control to your app based on user’s group membership.</p>
-</li>
-<li>
-<p>Easily implement SSO, multi factor authentication and Social Login support.</p>
-</li>
-<li>
-<p>Back end support for identity brokering and user federation.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-identity-management_additional-resources"><a class="anchor" href="#con_introduction-to-identity-management_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-cicd_con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_con_introduction-to-cicd"></a>Introduction to Mobile CI\CD</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Mobile CI\CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Based on Jenkins for build management and automation.</p>
-</li>
-<li>
-<p>Containerised builds on OpenShift for Android.</p>
-</li>
-<li>
-<p>Support for integrating OSX as build slaves for iOS builds.</p>
-</li>
-<li>
-<p>Catch build errors early using automated builds.</p>
-</li>
-<li>
-<p>Push your mobile apps to the Play and App Store.</p>
-</li>
-<li>
-<p>Review build status in same context as reviewing associated mobile services.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>

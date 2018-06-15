@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/index.html">
+    <title>Integrate an Android Application with Custom Services Running in OpenShift :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/integrate-android-app-with-custom-service.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -84,7 +84,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="index.html">Getting Started</a>
 <ul class="nav-list">
@@ -320,224 +320,146 @@ $(addBlockSwitches);
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">AeroGear Docs</a></li>
-    <li class="crumb"><a href="index.html">Getting Started</a></li>
+    <li class="crumb"><a href="integrate-android-app-with-custom-service.html">Integrate an Android Application with Custom Services Running in OpenShift</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/index.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/integrate-android-app-with-custom-service.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="sect1">
-<h2 id="assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"><a class="anchor" href="#assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"></a>Introduction to Mobile Services</h2>
+<h1>Integrate an Android Application with Custom Services Running in OpenShift</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides a brief overview of the foundational concepts that apply to Mobile Services.</p>
+<p>This document describes the steps needed to configure the Aerogear Android SDK to allow your Android app to interact with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your own backend services in OpenShift</p>
+</li>
+<li>
+<p>External backend services</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="./create-android-client-openshift.adoc">Create an Android Mobile Client in OpenShift</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For demonstration, this guide uses the example Python application which can be found in the OpenShift Service Catalog. The same steps can be followed any HTTP web service running in OpenShift that has a publicly accessible route.</p>
 </div>
 <div class="paragraph">
-<p>Mobile Services are a suite of mobile services that run natively on OpenShift and are available from the OpenShift Service Catalog.
-The available mobile services are:</p>
+<p>Pictured below is the example Python application, and the Android Mobile Client provisioned in OpenShift.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p><span class="image"><img src="_images/images/custom-service-py.png" alt="Custom Service and Android Client in OpenShift"></span></p>
+</div>
+<div class="sect2">
+<h3 id="provision-the-custom-runtime-connector"><a class="anchor" href="#provision-the-custom-runtime-connector"></a>Provision the Custom Runtime Connector</h3>
+<div class="paragraph">
+<p>We can connect our Mobile Client to our backend service by provisioning a <strong>Custom Runtime Connector</strong> from the OpenShift Service Catalog.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Select the Custom Runtime Connector from the Service Catalog.</p>
+</li>
+<li>
+<p>Put the service name in the service name field. This name will be used in the SDK to retrieve details about the service.</p>
+</li>
+<li>
+<p>Put the publicly accessible url of the service in the Service URL field.</p>
+</li>
+<li>
+<p>In the Service Config field, place any additional configuration that might be needed by the mobile app in order to communicate with the backend service. <strong>This must be a valid JSON format</strong>.</p>
+</li>
+<li>
+<p>Click 'Create'.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/images/create-crc.png" alt="Provisioning a Custom Runtime Connector"></span></p>
+</div>
+<div class="paragraph">
+<p>Note that provisioning the Custom Runtime Connector simply creates a Config Map that is used to populate the <code>mobile-services.json</code> file which is consumed by your mobile application. It does not deploy any new services.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-the-custom-runtime-connector-service-to-the-mobile-client"><a class="anchor" href="#add-the-custom-runtime-connector-service-to-the-mobile-client"></a>Add the Custom Runtime Connector Service to the Mobile Client</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Click the Mobile Client to reveal the JSON configuration. The 'services' list is empty.</p>
+</li>
+<li>
+<p>Click the 'Add Service' button and select 'custom-runtime-connector' from the dropdown menu.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/images/mobile-client-select-crc.png" alt="Mobile Client Config Blank"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The 'services' list in the Mobile Client Configuration now includes a configuration object that contains details related to your backend service such as the name, uri and custom configuration.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/images/mobile-client-custom-runtime.png" alt="Mobile Client Config with Custom Service"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="integrate-your-android-application-with-the-custom-service"><a class="anchor" href="#integrate-your-android-application-with-the-custom-service"></a>Integrate your Android Application with the Custom Service</h3>
+<div class="paragraph">
+<p>Take a copy of the JSON configuration from the Mobile Client and save it in <code>app/src/main/assets/mobile-services.json</code> in your Android application&#8217;s source code.</p>
+</div>
+<div class="paragraph">
+<p>Now the Aerogear SDK can be used to get the configuration for your custom service and it is possible to make requests. Please look at the example code below:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="_images/mobile-services.png" alt="mobile services">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// get the service URL
+final ServiceConfiguration serviceConfiguration = mobileCore.getServiceConfiguration("custom-runtime-connector");
+final String serviceUrl = serviceConfiguration.getUrl();
+
+// make the request
+HttpRequest httpRequest = mobileCore.getHttpLayer().newRequest();
+httpRequest.get(serviceUrl);
+HttpResponse httpResponse = httpRequest.execute();
+
+httpResponse.onError(() -&gt; {
+    // handle error
+});
+
+httpResponse.onSuccess(() -&gt; {
+    // handle success
+});
+
+httpResponse.onComplete(() -&gt; {
+    // called regardless success or error
+});</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Mobile Services allow a user to easily integrate the mobile services into the following mobile platforms:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/mobile-platforms.png" alt="mobile platforms">
-</div>
-</div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_prerequisites"><a class="anchor" href="#assembly_introducing-mobile-services_prerequisites"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A technical background</p>
-</li>
-<li>
-<p>Reviewed <a href="mobile_terminology.html" class="page">Mobile Terminology</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_additional-resources"><a class="anchor" href="#assembly_introducing-mobile-services_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>To learn more about OpenShift, see <a href="https://www.openshift.com/learn/what-is-openshift/">What is OpenShift</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-push-notification_con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_con_introduction-to-push-notification"></a>Introduction to Push Notifications</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Code once and push notifications to iOS and Android.</p>
-</li>
-<li>
-<p>Push notifications to defined groups.</p>
-</li>
-<li>
-<p>Push notifications to either iOS only or Android only.</p>
-</li>
-<li>
-<p>Push notifications to different variants of a mobile app.</p>
-</li>
-<li>
-<p>Push notifications from different back-end apps to the same mobile app.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-security_con_introduction-to-security"><a class="anchor" href="#con_introduction-to-security_con_introduction-to-security"></a>Introduction to Device Security</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Perform a range of device trust checks on the mobile device, such as checking if the device is rooted, and allows you take proactive action based on the results.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-security_additional-resources"><a class="anchor" href="#con_introduction-to-security_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-metrics_con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_con_introduction-to-metrics"></a>Introduction to Mobile Metrics</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Mobile Metrics service allows you gather metrics on mobile apps, &amp; device versions, device security checks and back- end mobile service usage.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Monitor usage by version of mobile app, platform and SDK.</p>
-</li>
-<li>
-<p>Monitor interactions with the Identity Management service.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-identity-management_con_introduction-to-identity-management"><a class="anchor" href="#con_introduction-to-identity-management_con_introduction-to-identity-management"></a>Introduction to Identity Management</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Identity Management service allows you to add authentication and authorization to your mobile app.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Secure your mobile app using the industry standard OpenID Connect protocol.</p>
-</li>
-<li>
-<p>Add access control to your app based on user’s group membership.</p>
-</li>
-<li>
-<p>Easily implement SSO, multi factor authentication and Social Login support.</p>
-</li>
-<li>
-<p>Back end support for identity brokering and user federation.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-identity-management_additional-resources"><a class="anchor" href="#con_introduction-to-identity-management_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-cicd_con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_con_introduction-to-cicd"></a>Introduction to Mobile CI\CD</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Mobile CI\CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Based on Jenkins for build management and automation.</p>
-</li>
-<li>
-<p>Containerised builds on OpenShift for Android.</p>
-</li>
-<li>
-<p>Support for integrating OSX as build slaves for iOS builds.</p>
-</li>
-<li>
-<p>Catch build errors early using automated builds.</p>
-</li>
-<li>
-<p>Push your mobile apps to the Play and App Store.</p>
-</li>
-<li>
-<p>Review build status in same context as reviewing associated mobile services.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>

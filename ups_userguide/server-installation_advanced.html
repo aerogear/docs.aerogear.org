@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/ups_userguide/server-installation_advanced.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/admin-ui.html">Unified Push admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Docs</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear Docs</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ups_userguide/pages/server-installation_advanced.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="cluster"><a class="anchor" href="#cluster"></a>Cluster configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The previous section describes the installation via a single standalone instance, while here some more advanced topics such as WildFly clustering or Docker are discussed.</p>
+</div>
+<div class="sect2">
+<h3 id="wf-standalone-ha"><a class="anchor" href="#wf-standalone-ha"></a>Cluster in WildFly Standalone HA</h3>
+<div class="paragraph">
+<p>For the standalone configuration option of WildFly it is also possible to enable clustering, using the different <em>ha</em> configuration options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>standalone-ha.xml</p>
+</li>
+<li>
+<p>standalone-full-ha.xml</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since the UnifiedPush Server requires a full profile, we need to start the server using the the <em>standalone-full-ha.xml</em> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ ./path/to/NODE_x/bin/standalone.sh --server-config=standalone-full-ha.xml -Djboss.node.name=NameOfTheNode -Djboss.messaging.cluster.password=SomePassword -Djava.net.preferIPv4Stack=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each node needs to get a unique name inside of the cluster, that is another slight difference to running a single standalone instance.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In case the different nodes are running on the same machine, it is required to also apply the <em>jboss.socket.binding.port-offset</em> configuration, e.g -Djboss.socket.binding.port-offset=100, for a different port on the other nodes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>All other steps are exactly the same, including setting up the <a href="#gendbds">Database</a> as well and the <a href="#deploy">Deployment</a> of the UPS WAR files.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For deployments on nodes, running on a different port, make sure to specify the port via <a href="https://docs.jboss.org/author/display/WFLY10/CLI+Recipes">jboss-cli</a> or the <a href="https://docs.jboss.org/wildfly/plugins/maven/latest/deploy-mojo.html#port">WildFly Maven Plugin</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>On OS X, you need to enable multicast first:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo route add -net 224.0.0.0/5 127.0.0.1</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wf-domain"><a class="anchor" href="#wf-domain"></a>Cluster in WildFly Domain Mode</h3>
+<div class="paragraph">
+<p>Another option to run a WildFly cluster running it as a <em>Managed Domain</em>, which allows you to run and manage a multi-server domain topologyis in a more centralized way, as discussed in the <a href="https://docs.jboss.org/author/display/WFLY8/Operating+modes">WildFly documentation</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Arun Gupta did a short screencast on how to configure a <a href="http://blog.arungupta.me/wildfly-8-clustering-and-session-failover/">Managed Domain</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the Managed WildFly server is configured and running, like in the <a href="#gendbds">standalone server</a> it is time to setup the Database and JNDI datasource. Since the process is pretty much the same, this section focuses on MySQL as the canonical database:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the MySQL module, located in the databases/src/main/resources/modules/com directory of the release bundle, to the application server modules directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ cp -r /path/to/com /path/to/SERVER_HOME/modules/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the MySQL JDBC driver to the application server mysql module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ mvn dependency:copy -Dartifact=mysql:mysql-connector-java:5.1.44 \
+-DoutputDirectory=/path/to/SERVER_HOME/modules/com/mysql/jdbc/main/</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Database setup</p>
+<div class="paragraph">
+<p>Like described in the <a href="#gendbds">previous</a> section, you can install the MySQL server on your machine and setup the required schema, or you can use a Docker-based MySQL server, as explained <a href="#Docker">here</a>.</p>
+</div>
+</li>
+<li>
+<p>Configure the application server to use the MySQL driver and create and add the required <em>UnifiedPushDS</em> and <em>KeycloakDS</em> datasource for the MySQL database using the application server CLI and downloaded configuration script, located in the databases directory of the release bundle:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ ./path/to/SERVER_HOME/bin/jboss-cli.sh --file=/path/to/mysql-database-config-wildfly-managed-domain.cli</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Deploy the UnifiedPush Server</p>
+<div class="paragraph">
+<p>To deploy the UnifiedPush Server, you need to invoke another command line script. The script ensures the deployment is propagated down to all nodes of the Managed Domain:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ ./path/to/SERVER_HOME/bin/jboss-cli.sh --file=/path/to/mysql-database-config-wildfly-managed-domain.cli</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After deployment with the application server running, the UnifiedPush Server Console can be accessed at <a href="http://localhost:8080/ag-push/" class="bare">http://localhost:8080/ag-push/</a>. For information about using the Console, see <a href="#admin-ui">Using the Admin UI</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Docker"><a class="anchor" href="#Docker"></a>Docker</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You need to have <a href="https://docs.docker.com/installation/rhel/">Docker</a> and <a href="https://github.com/docker/compose/">Docker Compose</a> installed to follow the instructions. For <a href="https://docs.docker.com/installation/windows/">Windows</a> or <a href="https://docs.docker.com/installation/mac/">Mac OS X</a> the installation of Docker is quite different, using <a href="https://github.com/boot2docker/boot2docker">boot2docker</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Docker-Server"><a class="anchor" href="#Docker-Server"></a>UnifiedPush Server as a Docker container</h3>
+<div class="paragraph">
+<p>The simplest version to run the Push Server is via Docker. The AeroGear team has a docker image on Docker Hub, that is easy to run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">docker run -it -p YOUR_PORT:8443 aerogear/unifiedpush-wildfly</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Afterwards the server is TLS enabled and you can access it via <em><a href="https://DOCKER_IP:YOUR_PORT/ag-push" class="bare">https://DOCKER_IP:YOUR_PORT/ag-push</a></em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Docker-databases"><a class="anchor" href="#Docker-databases"></a>Databases via Docker</h3>
+<div class="paragraph">
+<p>In case you just want to virtualize the databases, that&#8217;s possible too. For the UnifiedPush Server we need two datasources:
+* one for the Push server data
+* one for the Keycloak server</p>
+</div>
+<div class="paragraph">
+<p>The easiest way to run multiple Docker containers is using <em>Docker Compose</em>. In the docker folder of the download bundle, there is a ups-datasource.yml file, which is used by the following comannd:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">$ docker-compose up -d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the command is done, you have two MySQL servers, running on the specified ports.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+With <em>docker ps</em> you can see the running processes on the commandline!
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

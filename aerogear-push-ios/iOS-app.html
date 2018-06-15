@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/aerogear-push-ios/iOS-app.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/admin-ui.html">Unified Push admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Docs</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear Docs</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/aerogear-push-ios/pages/iOS-app.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="ios-app"><a class="anchor" href="#ios-app"></a>Creating an iOS application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To start, get this <a href="https://github.com/jboss-mobile/unified-push-helloworld/tree/master/ios-swift">HelloWorld Application</a>. It uses our SDK to register your application installation with the iOS Variant you registered earlier!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">git clone git@github.com:jboss-mobile/unified-push-helloworld.git
+cd ios-swift</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="helloworld-app"><a class="anchor" href="#helloworld-app"></a>HelloWorld App</h3>
+<div class="paragraph">
+<p>To open the project, invoke:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">open HelloWorldSwift.xcodeproj</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the project is opened in Xcode, you need to change the <strong>Bundle ID</strong>, since it <strong>has</strong> to match the one that you created earlier:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/bundleIDchange.png" alt="Change the Bundle Identifier"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-the-ios-variant-id"><a class="anchor" href="#setting-up-the-ios-variant-id"></a>Setting up the iOS Variant ID</h3>
+<div class="paragraph">
+<p>Now it is time to look at the code: Open the <a href="https://github.com/jboss-mobile/unified-push-helloworld/blob/master/ios-swift/HelloWorldSwift/AppDelegate.swift">AppDelegate file</a>.</p>
+</div>
+<div class="paragraph">
+<p>Here we have removed all the unneeded boilerplate code, in order to focus on getting the <em>Apple Push Notifications</em> to work. The <em>application:didFinishLaunchingWithOptions:</em> method contains a call to the <em>registerForRemoteNotificationTypes</em> to notify the operating system, that this app is interested in different types of <em>Remote Notifications</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
+  // bootstrap the registration process by asking the user to 'Accept' and then register with APNS thereafter
+  let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+  UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+  UIApplication.sharedApplication().registerForRemoteNotifications()
+...
+  return true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>Note iO7:</em> Instead of iOS8 specific <em>registerUserNotificationSettings</em> use <em>registerForRemoteNotificationTypes</em>. If you want to offer support for both iOS7 and iOS8 in ObjC syntax see this <a href="https://www.hackingwithswift.com/new-syntax-swift-2-availability-checking">code</a>, for a Swift2 check use <a href="https://www.hackingwithswift.com/new-syntax-swift-2-availability-checking">#available check</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once the application is started the <em>FIRST</em> time, it generates the following dialog, where the user has to agree that the application <em>may</em> receive "Push Notification Messages":</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/img/PushDialog.png" alt="iOS Push Dialoag"></span></p>
+</div>
+<div class="paragraph">
+<p>Once the user agrees, Push Messages can be received by the app!</p>
+</div>
+<div class="paragraph">
+<p>After making sure the user is asked to agree on receiving Push Messages, we need to implement the <em>application: didRegisterForRemoteNotificationsWithDeviceToken:</em> from the <em>UIApplicationDelegate</em> protocol. This is callback is <em>ALWAYS</em> invoked when the user is allowing <em>Push Notifications</em>. It basically delegates the <em>DeviceToken</em>, that your device and the <em>Apple Push Network Service</em> negotiated, to <em>AeroGear Push Server</em> so that it can store it in a "Database" and use it to send messages to it. The <em>deviceToken</em> basically identifies THIS phone with <em>APNs</em>.</p>
+</div>
+<div class="paragraph">
+<p><em>Note: Mostly the token stays the same, but there are cases when it may change&#8230;&#8203;</em></p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s look at the important code section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+  // time to register user with the "AeroGear UnifiedPush Server"
+
+  let device = AGDeviceRegistration(config: "pushconfig")  // [1]
+  // perform registration of this device
+  device.registerWithClientInfo({ (clientInfo: AGClientDeviceInformation!) in // [2]
+    // set the deviceToken
+    clientInfo.deviceToken = deviceToken
+
+    // --optional config--
+    // set some 'useful' hardware information params
+    let currentDevice = UIDevice()
+
+    clientInfo.operatingSystem = currentDevice.systemName // [3]
+    clientInfo.osVersion = currentDevice.systemVersion    // [4]
+    clientInfo.deviceType = currentDevice.model           // [5]
+  },
+  success: {
+    // successfully registered!
+    print("successfully registered with UPS!")
+
+    // send NSNotification for success_registered, will be handle by registered AGViewController
+    let notification = NSNotification(name:"success_registered", object: nil)
+    NSNotificationCenter.defaultCenter().postNotification(notification)
+    },
+
+  failure: {(error: NSError!) in
+    print("Error Registering with UPS: \(error.localizedDescription)")
+
+    let notification = NSNotification(name:"error_register", object: nil)
+     NSNotificationCenter.defaultCenter().postNotification(notification)
+  })
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In [1] we initialize our <em>AGDeviceRegistration</em> object reading fhconfig.plist file. See below the content of the config file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;serverURL&lt;/key&gt;
+    &lt;string&gt;http://192.168.0.10:8080/ag-push&lt;/string&gt;
+    &lt;key&gt;variantID&lt;/key&gt;
+    &lt;string&gt;a62785ec-2f08-408d-93f3-c4869e0edbfe&lt;/string&gt;
+    &lt;key&gt;variantSecret&lt;/key&gt;
+    &lt;string&gt;7ba81aed-f561-4476-8ecf-45d506800dca&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this file we define the <em>serverURL</em> if the Unified Push Server,the <em>VariantID</em>  and <em>VariantSecret</em> (which we received it in the previous chapter when we were registering the <em>iOS Variant</em> with the <em>Push Application</em>).</p>
+</div>
+<div class="paragraph">
+<p><strong>NOTE:</strong> You can not use <em>localhost</em> from the device, you have to use an (internal) IP address, where the <em>AeroGear UnifiedPush Server</em> is running!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not forget to use the <em>development</em> <em>VariantID</em> and <em>VariantSecret</em> if you are using your <em>development</em> provisioning profile as your signing identity in Xcode, or to use <em>production</em> <em>VariantID</em> and <em>VariantSecret</em> if you are using your <em>distribution</em> provisioning profile.)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next, in [2] we call <em>registerWithClientInfo</em> passing a configuration block that sets up the parameters needed to register this app with the <em>AeroGear Push Server</em>: the Device Token. It is valid to specify a bit more data on the <em>clientInfo</em> and we do here by setting metadata such the operating system [3], its version [4] and the device type [5].</p>
+</div>
+<div class="sect3">
+<h4 id="callbacks"><a class="anchor" href="#callbacks"></a>Callbacks</h4>
+<div class="paragraph">
+<p>The <em>success</em> callback is invoked, when the <em>AeroGear UnifiedPush Server</em> was able to register your device with the given <em>iOS Variant</em>. Otherwise the <em>failure</em> callback would be invoked. One case could be a wrong IP address&#8230;&#8203;.</p>
+</div>
+<div class="paragraph">
+<p>The <em>application: didFailToRegisterForRemoteNotificationsWithError:</em> would be invoked if there is a problem in receving a token from <em>APNs</em>&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="metrics"><a class="anchor" href="#metrics"></a>Metrics</h3>
+<div class="paragraph">
+<p>Optionally the iOS SDK supports sending metrics to UPS. Metrics can be used to view how many users have used the message to open the app. This can be important information if you want to know how well your messages are received by your application users.</p>
+</div>
+<div class="paragraph">
+<p>UPS sends an unique ID for every push message by default all we have to do is send this ID back to UPS when the app was opened using the message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
+
+  // bootstrap the registration process by asking the user to 'Accept' and then register with APNS thereafter
+  let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+  UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+  UIApplication.sharedApplication().registerForRemoteNotifications()
+
+  // Send metrics when app is launched due to push notification
+  AGPushAnalytics.sendMetricsWhenAppLaunched(launchOptions)
+  ...
+  return true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the application is launched using a push notification the <em>sendMetricsWhenAppLaunched</em> static function needs to be invoked within the <em>didFinishLaunchingWithOptions</em> method.</p>
+</div>
+<div class="paragraph">
+<p>When the app is brought from background to foreground due to a push notification, the following line needs to be added to the <em>didReceiveRemoteNotification</em> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject: AnyObject], fetchCompletionHandler: (UIBackgroundFetchResult) -&gt; Void) {
+  // When a message is received, send NSNotification, would be handled by registered ViewController
+  let notification:NSNotification = NSNotification(name:"message_received", object:nil, userInfo:userInfo)
+  NSNotificationCenter.defaultCenter().postNotification(notification)
+  print("UPS message received: \(userInfo)")
+
+  // Send metrics when app is brpught form backgrpund tp foreground due to push notification
+  AGPushAnalytics.sendMetricsWhenAppAwoken(application.applicationState, userInfo: userInfo)
+
+   // No additioanl data to fetch
+   fetchCompletionHandler(UIBackgroundFetchResult.NoData)
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-the-app-on-your-device"><a class="anchor" href="#test-the-app-on-your-device"></a>Test the app on your device</h3>
+<div class="paragraph">
+<p>Now run the phone on the device. After agreeing on receiving Push Messages, you will see another Dialog, that welcomes you! Now put the app into the background, by clicking the home button.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sending-messages-to-the-device"><a class="anchor" href="#sending-messages-to-the-device"></a>Sending messages to the device</h3>
+<div class="paragraph">
+<p>The last chapter shows how to <a href="#send-push">send messages</a> to the device, using the <em>AeroGear UnifiedPush Server</em>!</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGear Services Security SDK :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/xamarin/security.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/admin-ui.html">Unified Push admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Docs</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear Docs</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
+    <li class="crumb"><a href="security.html">AeroGear Services Security SDK</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/xamarin/security.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>AeroGear Services Security SDK</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#self-defence-checks">Self Defence Checks</a>
+<ul class="sectlevel2">
+<li><a href="#usage">Usage</a></li>
+<li><a href="#provided-self-defence-checks">Provided Self Defence Checks</a></li>
+<li><a href="#custom-self-defence-checks">Custom Self Defence Checks</a></li>
+<li><a href="#invoking-a-single-self-defence-check">Invoking a Single Self Defence Check</a></li>
+<li><a href="#invoking-multiple-self-defence-checks">Invoking Multiple Self Defence Checks</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The security SDK provides security features such as self defence checks to ensure that the device where the application is running is trusted.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the Security SDK you will first need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Import the <a href="https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/docs/modules/getting-started/pages/core.adoc">Core module</a></p>
+</li>
+<li>
+<p>Import your platform specific Security module (<code>Security.iOS</code> or <code>Security.Android</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="self-defence-checks"><a class="anchor" href="#self-defence-checks"></a>Self Defence Checks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As part of the Security SDK module, there is a self defence check feature that will make sure that yor application is meeting the modern OWASP recommendations.  This feature offers multiple security checks that can be used to analyse the security of the device.  This can be useful for developers to detect vulnerablities and react accordingly.  For example, if the app detects security issue <strong>X</strong> then do <strong>Y</strong>, where <strong>X</strong> could be no lock screen is set and <strong>Y</strong> is show a system prompt to setup the lock screen.</p>
+</div>
+<div class="sect2">
+<h3 id="usage"><a class="anchor" href="#usage"></a>Usage</h3>
+<div class="paragraph">
+<p>To begin using self defence checks in your app, you&#8217;ll need to retrieve an instance of <code>SecurityService</code>. The <code>SecurityService</code> can be retrieved using the <code>MobileCore#GetService</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var SecurityService = MobileCore.GetService&lt;SecurityService&gt;();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Any subsequent <code>MobileCore#GetService</code> method will return the same instance of <code>SecurityService</code>.<br>
+Self defense checks can either be <a href="#provided-self-defence-checks">provided</a> by the SDK or <a href="#custom-self-defence-checks">custom</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="provided-self-defence-checks"><a class="anchor" href="#provided-self-defence-checks"></a>Provided Self Defence Checks</h3>
+<div class="paragraph">
+<p>The Security SDK provides a set of common self defence checks enlisted into the <code>SecurityChecks</code> class.</p>
+</div>
+<div class="paragraph">
+<p>A successful check means that the environment the application is running in is secure and no action is required, as opposed to signalling if a certain feature is enabled.</p>
+</div>
+<div class="paragraph">
+<p>For example, the Emulator Detection Check <code>NOT_IN_EMULATOR</code> will return <code>true</code> when the app is <strong>not</strong> running in an emulator, since this would be the more secure condition.</p>
+</div>
+<div class="paragraph">
+<p>Many of the checks are cross platform, however some of them are platform specific (for example, NOT_ROOTED is for android, while NOT_JAILBROKEN is for iOS).</p>
+</div>
+<div class="sect3">
+<h4 id="root-access-detection-not_rooted"><a class="anchor" href="#root-access-detection-not_rooted"></a>Root Access Detection (NOT_ROOTED)</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This check is available for Android only
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To help prevent your app running in a device that has been rooted the <code>SecurityChecks#NOT_ROOTED</code> check can be used.
+A device is considered rooted if <strong>any</strong> of the following are true:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A custom key has been used to sign the kernel</p>
+</li>
+<li>
+<p>The <code>su</code> binaries are present</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="jailbreak-detection-not_jailbroken"><a class="anchor" href="#jailbreak-detection-not_jailbroken"></a>Jailbreak Detection (NOT_JAILBROKEN )</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This check is available for iOS only
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To help prevent your app running in a device that has been rooted the <code>SecurityChecks#NOT_JAILBROKEN</code> check can be used.
+A device is considered JAILBROKEN if <strong>any</strong> of the following are true:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>/Applications/Cydia.app exists</p>
+</li>
+<li>
+<p>/Library/MobileSubstrate/MobileSubstrate.dylib exists</p>
+</li>
+<li>
+<p>/bin/bash exists</p>
+</li>
+<li>
+<p>/usr/sbin/sshd exists</p>
+</li>
+<li>
+<p>/etc/apt exists</p>
+</li>
+<li>
+<p>/private/var/lib/apt/ exists</p>
+</li>
+<li>
+<p>Applications exists that can handle the "cydia://package/com.example.package" URL</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="developer-mode-detection-no_developer_mode"><a class="anchor" href="#developer-mode-detection-no_developer_mode"></a>Developer Mode Detection (NO_DEVELOPER_MODE)</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This check is available for Android only
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To detect if Developer Mode has been enabled on the device the <code>SecurityChecks#NO_DEVELOPER_MODE</code> check can be used.
+This check uses Android&#8217;s <a href="https://developer.xamarin.com/api/type/Android.Provider.Settings+Global/">Settings.Global</a> class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="debugger-detection-no_debugger"><a class="anchor" href="#debugger-detection-no_debugger"></a>Debugger Detection (NO_DEBUGGER)</h4>
+<div class="paragraph">
+<p>To detect if the application is running in Debug Mode, <code>SecurityChecks#NO_DEBUGGER</code> function can be used.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ANDROID
+</td>
+<td class="hdlist2">
+<p>Uses the Android&#8217;s <a href="https://developer.xamarin.com/api/type/Android.OS.Debug/">Debug</a> class.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+iOS
+</td>
+<td class="hdlist2">
+<p>Uses the iOS <a href="https://docs.microsoft.com/en-us/dotnet/api/System.Diagnostics.Debugger/">Debugger</a> class</p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="emulator-detection-not_in_emulator"><a class="anchor" href="#emulator-detection-not_in_emulator"></a>Emulator Detection (NOT_IN_EMULATOR)</h4>
+<div class="paragraph">
+<p>To detect if the app is being run in an emulator the <code>SecurityChecks#NOT_IN_EMULATOR</code> function can be used.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ANDROID
+</td>
+<td class="hdlist2">
+<p>Uses the Android&#8217;s <a href="https://developer.xamarin.com/api/type/Android.OS.Build/">Build</a> class.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+iOS
+</td>
+<td class="hdlist2">
+<p>Uses the iOS <a href="https://developer.xamarin.com/api/field/ObjCRuntime.Runtime.Arch/">Arch</a> class</p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="device-lock-detection-screen_lock_enabled"><a class="anchor" href="#device-lock-detection-screen_lock_enabled"></a>Device Lock Detection (SCREEN_LOCK_ENABLED)</h4>
+<div class="paragraph">
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>SecurityChecks#SCREEN_LOCK_ENABLED</code> function can be used.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+ANDROID
+</td>
+<td class="hdlist2">
+<p>Uses the Android&#8217;s <a href="https://developer.xamarin.com/api/type/Android.App.KeyguardManager">KeyguardManager</a> class.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+iOS
+</td>
+<td class="hdlist2">
+<p>Uses the iOS <a href="https://developer.xamarin.com/api/type/MonoTouch.LocalAuthentication.LAContext/">LAContext</a> class</p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="app-data-backup-detection-allow_backup_disabled"><a class="anchor" href="#app-data-backup-detection-allow_backup_disabled"></a>App Data Backup Detection (ALLOW_BACKUP_DISABLED)</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This check is available for Android only
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To detect whether the application’s data is configured to be synchronized across devices the <code>SecurityChecks#ALLOW_BACKUP_DISABLED</code> function can be used.
+The <a href="https://developer.android.com/guide/topics/manifest/application-element">allowBackup</a> flag determines whether to allow the application to
+participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="device-encryption-detection-has_encryption_enabled"><a class="anchor" href="#device-encryption-detection-has_encryption_enabled"></a>Device Encryption Detection (HAS_ENCRYPTION_ENABLED)</h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This check is available for Android only
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To detect whether the devices filesystem is encrypted the <code>SecurityChecks#HAS_ENCRYPTION_ENABLED</code> function can be used.
+This function uses Android’s <a href="https://developer.xamarin.com/api/type/Android.App.Admin.DevicePolicyManager/">DevicePolicyManager</a> class.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-self-defence-checks"><a class="anchor" href="#custom-self-defence-checks"></a>Custom Self Defence Checks</h3>
+<div class="paragraph">
+<p>These are self defence checks that you can define to be used by the SDK. Custom self defence checks must implement the <code>ISecurityCheck</code> interface.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">class CustomSecurityCheck : ISecurityCheck
+{
+	public string GetName()
+	{
+		return "Custom check";
+	}
+
+	public string GetId()
+	{
+		return typeof(CustomSecurityCheck).FullName;
+	}
+
+	public SecurityCheckResult Check()
+	{
+		// In this example, the check always passes...
+		return new SecurityCheckResult(this, true);
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="invoking-a-single-self-defence-check"><a class="anchor" href="#invoking-a-single-self-defence-check"></a>Invoking a Single Self Defence Check</h3>
+<div class="paragraph">
+<p>The <code>SecurityService#Check</code> method can be used to run a single self defence check.  It expects either <code>SecurityChecks</code> (see <a href="#provided-self-defence-checks">Provided Self Defence Checks</a>)
+or <code>ISecurityCheck</code> (see <a href="#custom-self-defence-checks">Custom Self Defence Checks</a>) as a parameter and returns <code>SecurityCheckResult</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">// a provided self defence check
+SecurityCheckResult result = securityService.Check(SecurityChecks.&lt;check_type&gt;);
+
+// using the custom self defence check defined previously
+ISecurityCheck customSecurityCheck = new CustomSecurityCheck();
+SecurityCheckResult result = securityService.Check(customSecurityCheck);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="invoking-multiple-self-defence-checks"><a class="anchor" href="#invoking-multiple-self-defence-checks"></a>Invoking Multiple Self Defence Checks</h3>
+<div class="paragraph">
+<p>To invoke multiple self defence checks a security check executor must be used. To run multiple self defence checks synchronously, you&#8217;ll need to invoke <code>SecurityService#GetSyncExecutor</code>.
+The returned object will be a builder that will allow to configure the list of checks to be executed. That list can be a mix of checks provided by the SDK and
+custom checks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">Dictionary&lt;string, SecurityCheckResult&gt; results = securityService.GetSyncExecutor()
+								.WithSecurityCheck(SecurityChecks.&lt;check_type&gt;)
+								.WithSecurityCheck(new CustomSecurityCheck())
+								.WithSecurityCheck(...)
+								...
+								...
+								.Build()
+								.Execute();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Builder.WithSecurityCheck</code> method can be invoked as much as needed to add checks to be executed.
+The value returned by the <code>Execute</code> method will be a <code>Dictionary</code> whose value is the result of the check, while the key is the ID of the check that produced that result.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
