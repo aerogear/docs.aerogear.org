@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/index.html">
+    <title>Configuring your Development Environment :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/configuring-dev-env.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -84,7 +84,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="index.html">Getting Started</a>
 <ul class="nav-list">
@@ -124,7 +124,7 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="configuring-dev-env.html">Configuring a Dev Environment</a>
   </li>
 </ul>
@@ -143,7 +143,7 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push/binding.html">Binding</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="configuring-dev-env.html">Configuring a Dev Environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -320,224 +320,379 @@ $(addBlockSwitches);
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">AeroGear Docs</a></li>
-    <li class="crumb"><a href="index.html">Getting Started</a></li>
+    <li class="crumb"><a href="apps.html">Integrating Mobile Apps</a></li>
+    <li class="crumb"><a href="configuring-dev-env.html">Configuring a Dev Environment</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/index.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/configuring-dev-env.adoc"></a></div>
 </div>
 <article class="doc">
+<h1>Configuring your Development Environment</h1>
 <div class="sect1">
-<h2 id="assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"><a class="anchor" href="#assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"></a>Introduction to Mobile Services</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This guide provides a brief overview of the foundational concepts that apply to Mobile Services.</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="provisioning-services.html" class="page">Provisioning Mobile Services</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="binding-mobile-app-record-to-mobile-services.html" class="page">Binding a Mobile App Record with Mobile Services</a>.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>Mobile Services are a suite of mobile services that run natively on OpenShift and are available from the OpenShift Service Catalog.
-The available mobile services are:</p>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Android SDK or Android Studio from <a href="https://developer.android.com/studio/index.html">Google</a></p>
+</li>
+<li>
+<p>(Recommended) The latest version of <a href="http://openjdk.java.net/install/index.html">OpenJDK</a></p>
+</li>
+</ul>
 </div>
-<div class="imageblock">
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>iOS 9 or later</p>
+</li>
+<li>
+<p>Xcode 9 or later</p>
+</li>
+<li>
+<p>A recent installation of <a href="https://www.ruby-lang.org/en/documentation/installation">Ruby</a></p>
+</li>
+<li>
+<p><a href="https://cocoapods.org/">CocoaPods</a> needs to be installed:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="_images/mobile-services.png" alt="mobile services">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gem install cocoapods
+pod setup</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://nodejs.org/">Node.js</a> runtime and npm (at least version 5).</p>
+</li>
+<li>
+<p><a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli">Cordova CLI</a> (we recommend to use at least version 8.0.0 and the latest versions of cordova-ios or cordova-android depending on the target).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When using <a href="https://ionicframework.com">Ionic</a> you don&#8217;t need to install Cordova as it&#8217;s included. Our own <a href="https://github.com/aerogear/cordova-showcase-template">Showcase template</a> is based on Ionic.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Visual Studio Tools for Xamarin from <a href="https://www.visualstudio.com/xamarin/">Microsoft</a></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Mobile Services allow a user to easily integrate the mobile services into the following mobile platforms:</p>
+<p>Depending on your desired platform, it is recommended to have the following installed:</p>
 </div>
-<div class="imageblock">
+<div class="ulist">
+<ul>
+<li>
+<p>The latest version of <a href="http://openjdk.java.net/install/index.html">OpenJDK</a></p>
+</li>
+<li>
+<p>The latest version of XCode and command line tools for XCode available from <a href="https://developer.apple.com/download/more/">Apple</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-the-mobile-sdk-configuration-file"><a class="anchor" href="#obtaining-the-mobile-sdk-configuration-file"></a>Obtaining the Mobile SDK Configuration File</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CONFIG INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+</li>
+<li>
+<p>Follow the next specific additional instructions depending on your platform:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Locate this file in your application project and import it using <code>require</code>.</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="_images/mobile-platforms.png" alt="mobile platforms">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_prerequisites"><a class="anchor" href="#assembly_introducing-mobile-services_prerequisites"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A technical background</p>
-</li>
-<li>
-<p>Reviewed <a href="mobile_terminology.html" class="page">Mobile Terminology</a>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Alternatively you can create a JavaScript object and use directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_additional-resources"><a class="anchor" href="#assembly_introducing-mobile-services_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>To learn more about OpenShift, see <a href="https://www.openshift.com/learn/what-is-openshift/">What is OpenShift</a>.</p>
-</li>
-</ul>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="con_introduction-to-push-notification_con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_con_introduction-to-push-notification"></a>Introduction to Push Notifications</h2>
+<h2 id="adding-aerogear-sdk-modules"><a class="anchor" href="#adding-aerogear-sdk-modules"></a>Adding AeroGear SDK modules</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
-</div>
-<div class="ulist">
-<ul>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Code once and push notifications to iOS and Android.</p>
+<p>To use the SDK add jcenter to the <code>build.grade</code> file in your project&#8217;s root directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">allprojects {
+    repositories {
+        jcenter() // &lt;-- Add This line
+        google()
+    }
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Push notifications to defined groups.</p>
+<p>In the build.gradle file of your app you can begin adding dependencies provided by the SDK.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    ...
+    implementation 'org.aerogear:android-push:1.0.0-alpha'
+    implementation 'org.aerogear:android-auth:1.0.0-alpha'
+    implementation 'org.aerogear:android-security:1.0.0-alpha'
+}</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Push notifications to either iOS only or Android only.</p>
+<p>For push you also need to add a dependency to the Firebase SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    ...
+    implementation "com.google.firebase:firebase-messaging:[version]"
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To implement certificate pinning in the individual SDKs, see <a href="certificate-pinning.html">the certificate pinning guide</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your project directory (the directory where your <code>.xcodeproj</code> file is), create a plain text file named <code>Podfile</code> (without any file extension) and add the lines below. Replace <code>YourTarget</code> with your actual target name.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '9.0'
+use_frameworks!
+
+target :'YourTarget' do
+    ## Require one of the AeroGear SDK's here
+    pod 'AGSPush'
+    pod 'AGSAuth'
+end</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Push notifications to different variants of a mobile app.</p>
+<p>Then run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pod install</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Push notifications from different back-end apps to the same mobile app.</p>
-</li>
-</ul>
+<p>Open up <code>.xcworkspace</code> with Xcode and start using the SDK.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use <code>.xcodeproj</code>. If you open a project file instead of a workspace, dependencies will not be correctly configured.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect2">
-<h3 id="con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-security_con_introduction-to-security"><a class="anchor" href="#con_introduction-to-security_con_introduction-to-security"></a>Introduction to Device Security</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Perform a range of device trust checks on the mobile device, such as checking if the device is rooted, and allows you take proactive action based on the results.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-security_additional-resources"><a class="anchor" href="#con_introduction-to-security_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-metrics_con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_con_introduction-to-metrics"></a>Introduction to Mobile Metrics</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Mobile Metrics service allows you gather metrics on mobile apps, &amp; device versions, device security checks and back- end mobile service usage.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Monitor usage by version of mobile app, platform and SDK.</p>
 </li>
 <li>
-<p>Monitor interactions with the Identity Management service.</p>
-</li>
-</ul>
+<p>Import the SDK you want to use in the application. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">   import AGSAuth</code></pre>
 </div>
-<div class="sect2">
-<h3 id="con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
+</div>
 </li>
-</ul>
+</ol>
 </div>
 </div>
 </div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a terminal and navigate to your appplication project root folder.</p>
+</li>
+<li>
+<p>Install the AeroGear SDK base project:</p>
+<div class="listingblock bash">
+<div class="content">
+<pre class="highlightjs highlight"><code>npm install @aerogear/app</code></pre>
 </div>
-<div class="sect1">
-<h2 id="con_introduction-to-identity-management_con_introduction-to-identity-management"><a class="anchor" href="#con_introduction-to-identity-management_con_introduction-to-identity-management"></a>Introduction to Identity Management</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Identity Management service allows you to add authentication and authorization to your mobile app.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Secure your mobile app using the industry standard OpenID Connect protocol.</p>
 </li>
 <li>
-<p>Add access control to your app based on user’s group membership.</p>
-</li>
-<li>
-<p>Easily implement SSO, multi factor authentication and Social Login support.</p>
-</li>
-<li>
-<p>Back end support for identity brokering and user federation.</p>
-</li>
-</ul>
+<p>In your application, import and call the "init" method:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { init } from "@aerogear/app";
+
+const appConfig = {
+    // Replace with your own configuration
+};
+
+init(appConfig);</code></pre>
 </div>
-<div class="sect2">
-<h3 id="con_introduction-to-identity-management_additional-resources"><a class="anchor" href="#con_introduction-to-identity-management_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
 </div>
+</li>
+</ol>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="con_introduction-to-cicd_con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_con_introduction-to-cicd"></a>Introduction to Mobile CI\CD</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Mobile CI\CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools">NuGet</a></p>
+</li>
+<li>
+<p>Install the Core package:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0-alpha</code></pre>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Based on Jenkins for build management and automation.</p>
-</li>
-<li>
-<p>Containerised builds on OpenShift for Android.</p>
-</li>
-<li>
-<p>Support for integrating OSX as build slaves for iOS builds.</p>
-</li>
-<li>
-<p>Catch build errors early using automated builds.</p>
-</li>
-<li>
-<p>Push your mobile apps to the Play and App Store.</p>
-</li>
-<li>
-<p>Review build status in same context as reviewing associated mobile services.</p>
-</li>
-</ul>
 </div>
-<div class="sect2">
-<h3 id="con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
 </li>
-</ul>
+<li>
+<p>For Android install:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0-alpha</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For iOS install:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0-alpha</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>

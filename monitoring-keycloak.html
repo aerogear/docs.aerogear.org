@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/index.html">
+    <title>Monitoring Identity Management :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/monitoring-keycloak.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -84,7 +84,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="index.html">Getting Started</a>
 <ul class="nav-list">
@@ -188,7 +188,7 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="metrics/analysing-app-usage.html">Analysing App Usage</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
   </li>
 </ul>
@@ -320,224 +320,129 @@ $(addBlockSwitches);
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">AeroGear Docs</a></li>
-    <li class="crumb"><a href="index.html">Getting Started</a></li>
+    <li class="crumb">Using Mobile Services</li>
+    <li class="crumb"><a href="metrics/index.html">Mobile Metrics</a></li>
+    <li class="crumb"><a href="monitoring-keycloak.html">Monitoring Identity Management</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/index.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/monitoring-keycloak.adoc"></a></div>
 </div>
 <article class="doc">
+<h1>Monitoring Identity Management</h1>
 <div class="sect1">
-<h2 id="assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"><a class="anchor" href="#assembly_introducing-mobile-services_assembly_introduction-to-mobile-services"></a>Introduction to Mobile Services</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides a brief overview of the foundational concepts that apply to Mobile Services.</p>
+<p><strong>Note</strong></p>
 </div>
 <div class="paragraph">
-<p>Mobile Services are a suite of mobile services that run natively on OpenShift and are available from the OpenShift Service Catalog.
-The available mobile services are:</p>
+<p>The Mobile Metrics service and Identity Management service must be provisioned in the same OpenShift project to access data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After the Metrics service (includes Grafana tool and Prometheus monitoring system) and Keycloak service are provisioned,
+you should be able to see the "Keycloak Metrics" in the list of available dashboards
+(navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>)</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/mobile-services.png" alt="mobile services">
-</div>
-</div>
-<div class="paragraph">
-<p>Mobile Services allow a user to easily integrate the mobile services into the following mobile platforms:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/mobile-platforms.png" alt="mobile platforms">
-</div>
-</div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_prerequisites"><a class="anchor" href="#assembly_introducing-mobile-services_prerequisites"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A technical background</p>
-</li>
-<li>
-<p>Reviewed <a href="mobile_terminology.html" class="page">Mobile Terminology</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="assembly_introducing-mobile-services_additional-resources"><a class="anchor" href="#assembly_introducing-mobile-services_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>To learn more about OpenShift, see <a href="https://www.openshift.com/learn/what-is-openshift/">What is OpenShift</a>.</p>
-</li>
-</ul>
+<img src="_images/keycloak-dashboard/keycloak-dashboard-overview.png" alt="keycloak-dashboard">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="con_introduction-to-push-notification_con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_con_introduction-to-push-notification"></a>Introduction to Push Notifications</h2>
+<h2 id="dashboard-s-panels-description"><a class="anchor" href="#dashboard-s-panels-description"></a>Dashboard&#8217;s panels description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
+<p>Keycloak dashboard consists of several panels which give you overview of the specific
+events, such as number of registered users, memory usage etc.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Code once and push notifications to iOS and Android.</p>
-</li>
-<li>
-<p>Push notifications to defined groups.</p>
-</li>
-<li>
-<p>Push notifications to either iOS only or Android only.</p>
-</li>
-<li>
-<p>Push notifications to different variants of a mobile app.</p>
-</li>
-<li>
-<p>Push notifications from different back-end apps to the same mobile app.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_additional-resources-con_introduction-to-push-notification"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-security_con_introduction-to-security"><a class="anchor" href="#con_introduction-to-security_con_introduction-to-security"></a>Introduction to Device Security</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Perform a range of device trust checks on the mobile device, such as checking if the device is rooted, and allows you take proactive action based on the results.</p>
-</li>
-</ul>
+<p>See below for the detailed description of each panel and its values</p>
 </div>
 <div class="sect2">
-<h3 id="con_introduction-to-security_additional-resources"><a class="anchor" href="#con_introduction-to-security_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-metrics_con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_con_introduction-to-metrics"></a>Introduction to Mobile Metrics</h2>
-<div class="sectionbody">
+<h3 id="a-href-http-docs-grafana-org-features-panels-singlestat-singlestat-panel-singlestat-panels-a"><a class="anchor" href="#a-href-http-docs-grafana-org-features-panels-singlestat-singlestat-panel-singlestat-panels-a"></a><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panels</a></h3>
+<div class="sect3">
+<h4 id="total-registrations"><a class="anchor" href="#total-registrations"></a>Total Registrations</h4>
 <div class="paragraph">
-<p>The Mobile Metrics service allows you gather metrics on mobile apps, &amp; device versions, device security checks and back- end mobile service usage.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Monitor usage by version of mobile app, platform and SDK.</p>
-</li>
-<li>
-<p>Monitor interactions with the Identity Management service.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
+<p>Total number of registered (non-admin) users. This number comprises all successful registrations made via various providers, e.g. Keycloak, Github, Facebook etc.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-identity-management_con_introduction-to-identity-management"><a class="anchor" href="#con_introduction-to-identity-management_con_introduction-to-identity-management"></a>Introduction to Identity Management</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="total-logins"><a class="anchor" href="#total-logins"></a>Total Logins</h4>
 <div class="paragraph">
-<p>The Identity Management service allows you to add authentication and authorization to your mobile app.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Secure your mobile app using the industry standard OpenID Connect protocol.</p>
-</li>
-<li>
-<p>Add access control to your app based on user’s group membership.</p>
-</li>
-<li>
-<p>Easily implement SSO, multi factor authentication and Social Login support.</p>
-</li>
-<li>
-<p>Back end support for identity brokering and user federation.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="con_introduction-to-identity-management_additional-resources"><a class="anchor" href="#con_introduction-to-identity-management_additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
+<p>Total number of successful logins (only non-admin users) over all providers.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-cicd_con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_con_introduction-to-cicd"></a>Introduction to Mobile CI\CD</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="total-login-errors"><a class="anchor" href="#total-login-errors"></a>Total Login Errors</h4>
 <div class="paragraph">
-<p>The Mobile CI\CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
+<p>Total number of failed login attempts.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Based on Jenkins for build management and automation.</p>
-</li>
-<li>
-<p>Containerised builds on OpenShift for Android.</p>
-</li>
-<li>
-<p>Support for integrating OSX as build slaves for iOS builds.</p>
-</li>
-<li>
-<p>Catch build errors early using automated builds.</p>
-</li>
-<li>
-<p>Push your mobile apps to the Play and App Store.</p>
-</li>
-<li>
-<p>Review build status in same context as reviewing associated mobile services.</p>
-</li>
-</ul>
+</div>
+<div class="sect3">
+<h4 id="current-memory"><a class="anchor" href="#current-memory"></a>Current Memory</h4>
+<div class="paragraph">
+<p>The amount of memory currently used by the Keycloak service</p>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
+<h3 id="a-href-http-docs-grafana-org-features-panels-graph-graph-panel-graph-panels-a"><a class="anchor" href="#a-href-http-docs-grafana-org-features-panels-graph-graph-panel-graph-panels-a"></a><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph panels</a></h3>
+<div class="sect3">
+<h4 id="logins"><a class="anchor" href="#logins"></a>Logins</h4>
+<div class="paragraph">
+<p>Overview of the successful logins over time</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="login-errors"><a class="anchor" href="#login-errors"></a>Login Errors</h4>
+<div class="paragraph">
+<p>Overview of the failed login attempts over time</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="memory-usage"><a class="anchor" href="#memory-usage"></a>Memory Usage</h4>
+<div class="paragraph">
+<p>The values in this graph represents the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
+<p><strong>Used</strong> - The amount of memory currently used by the Keycloak service</p>
 </li>
-</ul>
+<li>
+<p><strong>Commited</strong> - The amount of memory that is guaranteed to be available for use (by JVM)</p>
+</li>
+<li>
+<p><strong>Max</strong> - The maximum amount of memory that can be used for memory management</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="a-href-https-grafana-com-plugins-grafana-piechart-panel-pie-charts-a"><a class="anchor" href="#a-href-https-grafana-com-plugins-grafana-piechart-panel-pie-charts-a"></a><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Charts</a></h3>
+<div class="sect3">
+<h4 id="logins-per-provider"><a class="anchor" href="#logins-per-provider"></a>Logins Per Provider</h4>
+<div class="paragraph">
+<p>Overview of the successful (non-admin) user logins per provider</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="registrations-per-provider"><a class="anchor" href="#registrations-per-provider"></a>Registrations Per Provider</h4>
+<div class="paragraph">
+<p>Overview of the successful (non-admin) user registrations per provider</p>
+</div>
 </div>
 </div>
 </div>

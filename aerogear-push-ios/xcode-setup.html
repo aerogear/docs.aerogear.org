@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/aerogear-push-ios/xcode-setup.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/admin-ui.html">Unified Push admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Docs</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear Docs</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/aerogear-push-ios/pages/xcode-setup.adoc"></a></div>
+</div>
+<article class="doc">
+<div class="sect1">
+<h2 id="xcode-setup"><a class="anchor" href="#xcode-setup"></a>Code signing, app id, provisioning profile</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s explain the Apple code signing and provisioning profile approach. It all starts with a developer certificate.</p>
+</div>
+<div class="paragraph">
+<p>Developer or Distribution certificate</p>
+</div>
+<div class="paragraph">
+<p>As an iOS developer, chances are you have a certificate, a public key, and a private key on your development machine. A certificate is — very broadly speaking — a public key combined with a lot of additional information that was itself signed by Apple Worldwide Developer Relations CA. This is the certificate you need to renew every year.</p>
+</div>
+<div class="sect2">
+<h3 id="code-signing"><a class="anchor" href="#code-signing"></a>Code signing</h3>
+<div class="paragraph">
+<p>Code signing is a security technology that allows you to certify that an app was created by you.
+All apps running on iOS must be code signed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="entitlements"><a class="anchor" href="#entitlements"></a>Entitlements</h3>
+<div class="paragraph">
+<p>Entitlements specify which resources of the system an app is allowed to use. These entitlements should all be enabled in the developer center’s App ID, and embedded in the provisioning profile. Setting entitlements to enable Push notification is done in <a href="#app-id-ssl-certificate-apns">Apple App ID and SSL certificate for APNs</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="provisioning-profile"><a class="anchor" href="#provisioning-profile"></a>Provisioning profile</h3>
+<div class="paragraph">
+<p>A provisioning profile is a collection of all the components needed to determine if a particular app can run on a particular device. It&#8217;s a central point where app-id, list all UUID devices where app can run, certificate and entitlements are gathered together.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-signing-and-provisioning-profile-in-xcode-automatic-mode"><a class="anchor" href="#code-signing-and-provisioning-profile-in-xcode-automatic-mode"></a>Code signing and Provisioning Profile in Xcode: automatic mode</h3>
+<div class="paragraph">
+<p>Code signing and provisioning profile selection should be in automatic mode by default. Specifically if your project is used by multiple iOS developpers, let Xcode find the appropriate developer provisioning profile.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/img/code_signing.png" alt="Xcode project settings">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>NOTES:</strong> The Provisioning profile setting is set to 'None' in Xcode 5. And in Xcode 6, the Provisioning profile setting should be set to 'Automatic' by default. Check <a href="https://developer.apple.com/library/ios/qa/qa1814/_index.html">apple documentation for more details</a>.</p>
+</div>
+<div class="paragraph">
+<p>In Xcode 8, a .entitlements file is needed to make push notifications work.
+To create it, go to the Capabilities section of the project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/img/push-capabilities-disabled.png" alt="Push Capabilities disabled">
+</div>
+</div>
+<div class="paragraph">
+<p>You can see that the Push Notifications switch is in "OFF" state.
+Click the switch and Xcode 8 will connect with your developer account to add the needed provisioning profiles and will also create the YourProjectName.entitlements file.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/img/push-capabilities-enabled.png" alt="Push Capabilities enabled">
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that the status of the Push Notifications switch is now "ON" and there is a new HelloWorld.entitlements file in the left side.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="running-into-no-matching-provisioning-profiles-found-issue"><a class="anchor" href="#running-into-no-matching-provisioning-profiles-found-issue"></a>Running into "No matching provisioning profiles found" issue?</h3>
+<div class="paragraph">
+<p>Check out <a href="#_question_no_matching_provisioning_profiles_found">iOS troubleshooting guide</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="unifiedpush-server"><a class="anchor" href="#unifiedpush-server"></a>UnifiedPush Server</h4>
+<div class="paragraph">
+<p>Now, after managing all the Apple certificates, let&#8217;s setup the <a href="#unified-push-server">UnifiedPush Server</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
