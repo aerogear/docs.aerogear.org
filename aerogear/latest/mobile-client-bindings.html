@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binding mobile app records to Services in OpenShift :: AeroGear Mobile Services</title>
+    <title>Binding Mobile Clients to Services in OpenShift :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-client-bindings.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -80,7 +80,7 @@ $(addBlockSwitches);
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">AeroGear</a></h3>
+    <h3 class="title"><a href="index.html">AeroGear Docs</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -125,7 +125,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuring-dev-env.html">Configuring development environment</a>
+    <a class="nav-link" href="configuring-dev-env.html">Configuring a Dev Environment</a>
   </li>
 </ul>
   </li>
@@ -135,7 +135,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="push/index.html">Push</a>
+    <a class="nav-link" href="push/index.html">Push Notifications</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push/provisioning.html">Provisioning</a>
@@ -144,10 +144,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="push/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="configuring-dev-env.html">Configuring development environment</a>
+    <a class="nav-link" href="push/configuring-dev-env-push.html">Configuring a Dev Environment</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push/admin-ui.html">Unified Push admin UI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -171,7 +174,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="metrics/index.html">Metrics</a>
+    <a class="nav-link" href="metrics/index.html">Mobile Metrics</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="metrics/provisioning.html">Provisioning</a>
@@ -180,10 +183,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="metrics/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="configuring-dev-env.html">Configuring development environment</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#">metrics/coding.adoc</a>
+    <a class="nav-link" href="metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="metrics/analysing-app-usage.html">Analysing App Usage</a>
@@ -203,11 +203,14 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="keycloak/binding.html">Binding</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="keycloak/configuring-dev-env-keycloak.html">Configuring a Dev environment</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="digger/index.html">CI\CD</a>
+    <a class="nav-link" href="digger/index.html">Mobile CI\CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="digger/provisioning.html">Provisioning</a>
@@ -215,17 +218,50 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="digger/binding.html">Binding</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="custom/index.html">Custom Runtime Connector</a>
+    <a class="nav-link" href="custom/index.html">Runtime Connector</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="custom/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="custom/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="custom/configuring-dev-env-custom.html">Configuring a Dev environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="security/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="security/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="security/configuring-dev-env-security.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
   </li>
 </ul>
   </li>
@@ -236,28 +272,25 @@ $(addBlockSwitches);
     <a class="nav-link" href="using-the-showcase-apps.html">Using the Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Metrics for the Showcase App</a>
+    <a class="nav-link" href="testcard.html">Mobile Metrics for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="testcard.html">Identity Management for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">CI\CD for the Showcase App</a>
+    <a class="nav-link" href="testcard.html">Mobile CI\CD for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Custom Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="testcard.html">Runtime Connector for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Push for the Showcase App</a>
+    <a class="nav-link" href="testcard.html">Push Notifications for the Showcase App</a>
   </li>
 </ul>
   </li>
-</ul>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Reference</span>
-<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
@@ -271,12 +304,12 @@ $(addBlockSwitches);
 </div>
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
-    <span class="title">AeroGear</span>
+    <span class="title">AeroGear Docs</span>
     <span class="version">latest</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">AeroGear</span>
+      <span class="title">AeroGear Docs</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">latest</a>
@@ -294,48 +327,48 @@ $(addBlockSwitches);
   <a href="index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">AeroGear</a></li>
-    <li class="crumb"><a href="mobile-client-bindings.html">Binding mobile app records to Services in OpenShift</a></li>
+    <li class="crumb"><a href="index.html">AeroGear Docs</a></li>
+    <li class="crumb"><a href="mobile-client-bindings.html">Binding Mobile Clients to Services in OpenShift</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/mobile-client-bindings.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Binding mobile app records to Services in OpenShift</h1>
+<h1>Binding Mobile Clients to Services in OpenShift</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>mobile app records in OpenShift may be bound to particular services provisioned in the namespace to allow communication between them.
+<p>Mobile Clients in OpenShift may be bound to particular services provisioned in the namespace to allow communication between them.
 The result of an binding produces a JSON configuration file (<code>mobile-services.json</code>) for your application which may be consumed by the Aerogear SDKs, allowing it to access the service (or services) it needs.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-a-mobile-app-record"><a class="anchor" href="#create-a-mobile-app-record"></a>Create a mobile app record</h2>
+<h2 id="create-a-mobile-client"><a class="anchor" href="#create-a-mobile-client"></a>Create a Mobile Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A mobile app record is a representation of your mobile application (Android, iOS, Cordova) in OpenShift. See <a href="./mobile-clients-in-openshift.adoc">this document</a> to learn more about mobile app records in OpenShift and how to create them.</p>
+<p>A Mobile Client is a representation of your mobile application (Android, iOS, Cordova) in OpenShift. See <a href="./mobile-clients-in-openshift.adoc">this document</a> to learn more about Mobile Clients in OpenShift and how to create them.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="binding-your-mobile-app-record-to-services"><a class="anchor" href="#binding-your-mobile-app-record-to-services"></a>Binding your mobile app record to Services</h2>
+<h2 id="binding-your-mobile-client-to-services"><a class="anchor" href="#binding-your-mobile-client-to-services"></a>Binding your Mobile Client to Services</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once you have created your mobile app record, it is possible to
+<p>Once you have created your Mobile Client, it is possible to
 bind it to other services in OpenShift. This will allow your applications to interact with services provisioned in your namespace.</p>
 </div>
 <div class="sect2">
 <h3 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting started</h3>
 <div class="paragraph">
-<p>To get started, click on your mobile app record from the overview screen, under the 'mobile app records' heading.
-This will expand the mobile app record view, showing configuration details for your application and a section for managing bindings.</p>
+<p>To get started, click on your Mobile Client from the overview screen, under the 'Mobile Clients' heading.
+This will expand the Mobile Client view, showing configuration details for your application and a section for managing bindings.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/images/mobile-client-overview.png" alt="mobile app record Overview"></span></p>
+<p><span class="image"><img src="_images/images/mobile-client-overview.png" alt="Mobile Client Overview"></span></p>
 </div>
 <div class="paragraph">
-<p>The bindings section displays a list of all possible services your mobile app record can be bound to. Bindings can be both created and deleted from this area.</p>
+<p>The bindings section displays a list of all possible services your Mobile Client can be bound to. Bindings can be both created and deleted from this area.</p>
 </div>
 </div>
 <div class="sect2">
@@ -347,7 +380,7 @@ These three states will be explained in further detail by binding an Android App
 <div class="sect3">
 <h4 id="not-provisioned"><a class="anchor" href="#not-provisioned"></a>Not provisioned</h4>
 <div class="paragraph">
-<p>A binding is possible between the mobile app record and the service, but the service has not yet been provisioned in the namespace.</p>
+<p>A binding is possible between the Mobile Client and the service, but the service has not yet been provisioned in the namespace.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/images/keycloak-not-provisioned.png" alt="Keycloak Not Provisioned"></span></p>
@@ -359,13 +392,13 @@ These three states will be explained in further detail by binding an Android App
 <div class="sect3">
 <h4 id="available"><a class="anchor" href="#available"></a>Available</h4>
 <div class="paragraph">
-<p>Once the service has been provisioned, it is now available to bind to your mobile app record.</p>
+<p>Once the service has been provisioned, it is now available to bind to your Mobile Client.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/images/keycloak-available.png" alt="Keycloak Integration Available"></span></p>
 </div>
 <div class="paragraph">
-<p>To create a new binding, click  <code>bind Keycloak</code>. You will be prompted to bind your mobile app record to this service via a binding modal.</p>
+<p>To create a new binding, click  <code>bind Keycloak</code>. You will be prompted to bind your Mobile Client to this service via a binding modal.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/images/keycloak-binding-modal.png" alt="Keycloak Integration Enabled"></span></p>
@@ -381,7 +414,7 @@ For more information about these two client types, see <a href="https://github.c
 <div class="sect3">
 <h4 id="enabled"><a class="anchor" href="#enabled"></a>Enabled</h4>
 <div class="paragraph">
-<p>A binding now exists between the mobile app record and the Keycloak service, and the <code>services</code> array in the configuration is automatically updated to reflect this association.</p>
+<p>A binding now exists between the Mobile Client and the Keycloak service, and the <code>services</code> array in the configuration is automatically updated to reflect this association.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/images/keycloak-client-config.png" alt="Client Bindings Config"></span></p>

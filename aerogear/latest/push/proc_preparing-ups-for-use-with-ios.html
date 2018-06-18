@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preparing Push For Use With iOS :: AeroGear Mobile Services</title>
+    <title>Enable Push Notifications for iOS App :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/push/proc_preparing-ups-for-use-with-ios.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -80,7 +80,7 @@ $(addBlockSwitches);
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">AeroGear</a></h3>
+    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -125,7 +125,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
   </li>
 </ul>
   </li>
@@ -135,7 +135,7 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html">Push</a>
+    <a class="nav-link" href="index.html">Push Notifications</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="provisioning.html">Provisioning</a>
@@ -144,10 +144,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
+    <a class="nav-link" href="configuring-dev-env-push.html">Configuring a Dev Environment</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="admin-ui.html">Unified Push admin UI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
@@ -171,7 +174,7 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../metrics/index.html">Metrics</a>
+    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
@@ -180,10 +183,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../metrics/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../configuring-dev-env.html">Configuring development environment</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#">metrics/coding.adoc</a>
+    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
@@ -203,11 +203,14 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../keycloak/binding.html">Binding</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/configuring-dev-env-keycloak.html">Configuring a Dev environment</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../digger/index.html">CI\CD</a>
+    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
@@ -215,17 +218,50 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/binding.html">Binding</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../custom/index.html">Custom Runtime Connector</a>
+    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/configuring-dev-env-custom.html">Configuring a Dev environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/configuring-dev-env-security.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
   </li>
 </ul>
   </li>
@@ -236,28 +272,25 @@ $(addBlockSwitches);
     <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Metrics for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">CI\CD for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Custom Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
   </li>
 </ul>
   </li>
-</ul>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-toggle"></button>
-    <span class="nav-text">Reference</span>
-<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../ref_api.html">API Reference</a>
   </li>
@@ -271,12 +304,12 @@ $(addBlockSwitches);
 </div>
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
-    <span class="title">AeroGear</span>
+    <span class="title">AeroGear Docs</span>
     <span class="version">latest</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">AeroGear</span>
+      <span class="title">AeroGear Docs</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">latest</a>
@@ -294,9 +327,9 @@ $(addBlockSwitches);
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="../index.html">AeroGear</a></li>
+    <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
     <li class="crumb">Using Mobile Services</li>
-    <li class="crumb"><a href="index.html">Push</a></li>
+    <li class="crumb"><a href="index.html">Push Notifications</a></li>
     <li class="crumb">More&#8230;&#8203;</li>
     <li class="crumb"><a href="proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a></li>
   </ul>
@@ -304,9 +337,9 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/push/proc_preparing-ups-for-use-with-ios.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Preparing Push For Use With iOS</h1>
+<h1>Enable Push Notifications for iOS App</h1>
 <div class="paragraph">
-<p>Before using Push with iOS, first you need to submit a request for a new digital certificate, which is based on a public/private key. The Certificate itself is acting as the public key, and when you request it, a private key is added to your KeyChain tool. The Cerficate will be used later on, to request an SSL certificate for the Apple Push Network Service, which will allow the AeroGear Push Server to send notification messages to it.</p>
+<p>The following guide helps you to enable Push Notifications for your iOS application.</p>
 </div>
 <h2 id="prerequisites" class="discrete">Prerequisites</h2>
 <div class="ulist">
@@ -323,35 +356,10 @@ $(addBlockSwitches);
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the <strong>KeyChain Access</strong> tool found in <strong>Applications &gt; Utilities</strong> folder on your Mac.</p>
+<p>Follow the <a href="https://help.apple.com/xcode/mac/current/#/devdfd3d04a1">official guide</a> to enable push notifications for your Xcode project.</p>
 </li>
 <li>
-<p>Choose the <strong>KeyChain Access</strong> menu.</p>
-</li>
-<li>
-<p>Select <strong>Certificate Assistant &gt; Request a Certificate from a Certificate Authority</strong>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-submit-csr.png" alt="Submit Signing Request">
-</div>
-</div>
-</li>
-<li>
-<p>Store the CSR <em>on file</em> as it is required later in the provisioning portal when requesting the actual SSL cert.</p>
-<div class="paragraph">
-<p>Going back to <strong>KeyChain Access</strong>, there is now a new <strong>private</strong> key</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-keychain-prtkey.png" alt="private">
-</div>
-</div>
-</li>
-<li>
-<p>Open the <a href="https://developer.apple.com/account/overview.action">Provisioning Portal</a> and log in with your Apple developer account.</p>
-</li>
-<li>
-<p>Click the <strong>Identifiers</strong> link in order to create a new App ID (use the <strong>PLUS</strong> Icon on the right).</p>
+<p>Follow  the <a href="https://help.apple.com/developer-account/#/dev82a71386a">official guide</a> to generate an APNs client TLS certificate and export the client TLS identity from your Mac.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -359,112 +367,7 @@ $(addBlockSwitches);
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If your app is already registered please make sure that push capabilities are added. Now open the App ID and skip to step 13.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>In the formular, give the <strong>App ID</strong> a <em>descriptive</em> name, for example, <strong>My first AeroGear Push App</strong>.</p>
-</li>
-<li>
-<p>Ensure that the <strong>Push Notifications</strong> checkbox is <em>selected</em>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-appid-1.png" alt="Give the App ID a name">
-</div>
-</div>
-</li>
-<li>
-<p>Enter <strong>YOUR</strong> bundle ID in the <em>Bundle ID</em> field. In this example we choose <em>org.aerogear.PushTest</em>, however you <strong>must</strong> use your own ID.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <em>Bundle ID</em> has to match the one from the actual iOS application that you are building.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-appid-2.png" alt="Apply the Bundle ID from our App">
-</div>
-</div>
-</li>
-<li>
-<p>On the next screen, confirm your new App ID, and ensure that the <em>Push Notifications</em> option is <em>enabled</em>.</p>
-</li>
-<li>
-<p>Click the <em>Submit</em> button to complete this process.</p>
-</li>
-<li>
-<p>On the next screen, click on the <em>newly created</em> App ID.</p>
-</li>
-<li>
-<p>The following screen appears:</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-appid-3.png" alt="Overview">
-</div>
-</div>
-</li>
-<li>
-<p>Click the Edit button and scroll down to the Push Notifications section.</p>
-</li>
-<li>
-<p>Click the <em>Create Certificate&#8230;&#8203;</em> button on the <em>Development SSL Certificate</em> section to generate a <em>Development Certificate</em>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-sslcert.png" alt="SSL Certificate">
-</div>
-</div>
-</li>
-<li>
-<p>Perform an upload of the <strong>CSR</strong> and click the <em>Generate</em> button.</p>
-</li>
-<li>
-<p>Once complete, click the <em>Edit</em> button and scroll down to the Push Notifications section.</p>
-<div class="paragraph">
-<p>Notice that the <em>Development SSL Certificate</em> section is filled with the required details:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-sslcert-prod.png" alt="SSL Certificate Production">
-</div>
-</div>
-</li>
-<li>
-<p>Create the <em>Production</em> certificate by following the same steps however this time click the 'Create Certificate' button on the <em>Production SSL Certificate</em> section.</p>
-</li>
-<li>
-<p>On the overview of the <strong>App ID</strong>, click the <em>Edit</em> button and scroll down to the Push Notifications section.</p>
-</li>
-<li>
-<p>Now that both Certificates are generated, download both to your computer.</p>
-</li>
-<li>
-<p>Double click the <em>aps_development.cer</em> file (this is the <em>Development SSL Certificate</em>) and it displays in the <strong>KeyChain Access</strong> tool:</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-pushcert.png" alt="APNs certificate">
-</div>
-</div>
-</li>
-<li>
-<p>Export the certificate/private key pair to the <strong>.p12</strong> (<em>Personal Information Exchange</em>). Assign a passphrase for it.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Ensure to store the <em>passphrase</em> in a secure location.
+Make sure to protect the p12 file with a password.
 </td>
 </tr>
 </table>
@@ -476,48 +379,27 @@ Ensure to store the <em>passphrase</em> in a secure location.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This file will be uploaded later on to the AeroGear Push Server enabling it to authorize itself for your development application on Apple Push Network Service and send messages to it.
+The exported p12 file with the password will be used later when binding your Mobile Client to the Push Notifications.
 </td>
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/apns-pushcert-export.png" alt="Export to .p12 format">
-</div>
-</div>
-</li>
-<li>
-<p>Use the steps above to download the <em>Production SSL Certificate</em>.</p>
-</li>
-<li>
-<p>Double click the <em>aps_production.cer</em> file (this is the <em>Production SSL Certificate</em>) and it displays in the <strong>KeyChain Access</strong> tool.</p>
-</li>
-<li>
-<p>Export the <strong>.p12</strong> (<em>Personal Information Exchange</em>).</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Ensure to store the <em>passphrase</em> in a secure location.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Next, you need to create an <a href="#provisioning-profiles">Apple Provisioning Profile</a>.</p>
 </li>
 </ol>
+</div>
+<h2 id="next-steps" class="discrete">Next Steps</h2>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="binding.html" class="page">Bind your Mobile Client to the Push Notifications</a>.</p>
+</li>
+</ul>
 </div>
 <h2 id="additional-resources" class="discrete">Additional Resources</h2>
 <div class="ulist">
 <ul>
 <li>
-<p>For more information, see <a href="index.html" class="page">Push</a>.</p>
+<p>For more information, see <a href="index.html" class="page">Push Notifications</a>.</p>
 </li>
 </ul>
 </div>
