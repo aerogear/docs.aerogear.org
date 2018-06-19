@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Mobile CI\CD :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/introduction/con_introduction-to-cicd.html">
+    <title>Reference material :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/ref_terminology.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -195,16 +195,16 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
+    <a class="nav-link" href="index.html">Identity Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
+    <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
+    <a class="nav-link" href="binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../keycloak/android.html">Android</a>
+    <a class="nav-link" href="android.html">Android</a>
   </li>
 </ul>
   </li>
@@ -328,53 +328,39 @@ $(addBlockSwitches);
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
-    <li class="crumb"><a href="con_introduction-to-cicd.html">Introduction to Mobile CI\CD</a></li>
+    <li class="crumb"><a href="ref_terminology.html">Reference material</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/introduction/con_introduction-to-cicd.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/keycloak/ref_terminology.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Introduction to Mobile CI\CD</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1>Reference material</h1>
 <div class="paragraph">
-<p>The Mobile CI\CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
+<p>This section describes terminology that is associated with Identity Management.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Based on Jenkins for build management and automation.</p>
-</li>
-<li>
-<p>Containerised builds on OpenShift for Android.</p>
-</li>
-<li>
-<p>Support for integrating OSX as build slaves for iOS builds.</p>
-</li>
-<li>
-<p>Catch build errors early using automated builds.</p>
-</li>
-<li>
-<p>Push your mobile apps to the Play and App Store.</p>
-</li>
-<li>
-<p>Review build status in same context as reviewing associated mobile services.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"><a class="anchor" href="#con_introduction-to-cicd_additional-resources-con_introduction-to-cicd"></a>Additional resources</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>A bulleted list of links to other material closely related to the contents of the concept module.</p>
-</li>
-</ul>
-</div>
-</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SSO</dt>
+<dd>
+<p><em>Single Sign On</em>, the ability to share a login between multiple services</p>
+</dd>
+<dt class="hdlist1">OpenID Connect</dt>
+<dd>
+<p>a standard for providing identity on top of OAUth 2.0</p>
+</dd>
+<dt class="hdlist1">Keycloak</dt>
+<dd>
+<p>Red Hat&#8217;s implementation of <em>SSO</em> and <em>OpenID</em> used as the identity provider</p>
+</dd>
+<dt class="hdlist1">Client ID</dt>
+<dd>
+<p>is the client identifier for <em>OpenID Connect</em> requests, a simple alpha-numeric string</p>
+</dd>
+<dt class="hdlist1">User Attributes</dt>
+<dd>
+<p>additional properties for user accounts (besides name and email) managed by Keycloak</p>
+</dd>
+</dl>
 </div>
 </article>
   </main>
