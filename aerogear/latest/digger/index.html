@@ -53,9 +53,9 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Mobile CI\CD :: AeroGear Mobile Services</title>
+    <title>About Mobile CI/CD :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/index.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -204,13 +204,43 @@ $(addBlockSwitches);
     <a class="nav-link" href="../keycloak/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../keycloak/android.html">Android</a>
+    <a class="nav-link" href="../keycloak/configuring-dev-env-keycloak.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../keycloak/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/keycloak-setup.html">Keycloak Setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/android-additional-configuration.html">Additional Configuration for Android</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/retrieving-current-user.html">Retrieving Current User</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/retrieving-custom-user-attributes.html">Retrieving Custom User Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/authenticating.html">Authenticating</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/retrieving-users-roles.html">Retrieving Users Roles</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../keycloak/logging-out.html">Logging Out</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html">Mobile CI\CD</a>
+    <a class="nav-link" href="index.html">Mobile CI/CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="provisioning.html">Provisioning</a>
@@ -278,7 +308,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Mobile CI/CD for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
@@ -329,15 +359,73 @@ $(addBlockSwitches);
   <ul>
     <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
     <li class="crumb">Using Mobile Services</li>
-    <li class="crumb"><a href="index.html">Mobile CI\CD</a></li>
+    <li class="crumb"><a href="index.html">Mobile CI/CD</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/digger/index.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/index.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>About Mobile CI\CD</h1>
+<h1>About Mobile CI/CD</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Mobile CI/CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Leverage your Jenkins expertise to manage and automate mobile builds.</p>
+</li>
+<li>
+<p>Containerised builds on OpenShift for Android</p>
+</li>
+<li>
+<p>Support for integrating OSX as build slaves for iOS builds</p>
+</li>
+<li>
+<p>Catch build errors early using automated builds</p>
+</li>
+<li>
+<p>Build status is displayed on the Mobile Client details page in the OpenShift console, along with the mobile services associated with that Mobile Client</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="con_introduction-to-build_additional-resources-con_introduction-to-build"><a class="anchor" href="#con_introduction-to-build_additional-resources-con_introduction-to-build"></a>Additional resources</h2>
+<h2 id="ref_terminology_Mobile CI/CD_ref_terminology"><a class="anchor" href="#ref_terminology_Mobile CI/CD_ref_terminology"></a>Reference material</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes terminology that is associated with Mobile CI/CD.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CI/CD</dt>
+<dd>
+<p>Continuous Integration / Continuous Development</p>
+</dd>
+<dt class="hdlist1">Jenkins</dt>
+<dd>
+<p>A tool that helps to automate the software development process, with continuous integration and facilitating continuous delivery.</p>
+</dd>
+<dt class="hdlist1">Build</dt>
+<dd>
+<p>A single run of Jenkins against a source code repository.</p>
+</dd>
+<dt class="hdlist1">Artifact</dt>
+<dd>
+<p>The result of a succesful build in Jenkins, this is the binary that can be installed on to a mobile device.</p>
+</dd>
+<dt class="hdlist1">Jenkinsfile</dt>
+<dd>
+<p>This is a file contained in the source code repository which instructs Jenkins on how to build an artifact with this source code.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Mobile CI/CD_additional-resources-ref_terminology_Mobile CI/CD"><a class="anchor" href="#ref_terminology_Mobile CI/CD_additional-resources-ref_terminology_Mobile CI/CD"></a>Additional resources</h2>
 <div class="sectionbody">
 
 </div>
