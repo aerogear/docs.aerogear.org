@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binding a Mobile Client with the Identity Management Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/binding.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -204,13 +204,43 @@ $(addBlockSwitches);
     <a class="nav-link" href="binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="android.html">Android</a>
+    <a class="nav-link" href="configuring-dev-env-keycloak.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="keycloak-setup.html">Keycloak Setup</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="android-additional-configuration.html">Additional Configuration for Android</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="retrieving-current-user.html">Retrieving Current User</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="retrieving-custom-user-attributes.html">Retrieving Custom User Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="authenticating.html">Authenticating</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="retrieving-users-roles.html">Retrieving Users Roles</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="logging-out.html">Logging Out</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
+    <a class="nav-link" href="../digger/index.html">Mobile CI/CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
@@ -278,7 +308,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+    <a class="nav-link" href="../testcard.html">Mobile CI/CD for the Showcase App</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
@@ -333,7 +363,7 @@ $(addBlockSwitches);
     <li class="crumb"><a href="binding.html">Binding</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/keycloak/binding.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/binding.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Binding a Mobile Client with the Identity Management Service</h1>
@@ -362,7 +392,7 @@ The association between a Mobile Client and  service uses the <a href="https://b
 <p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
 </li>
 <li>
-<p>Expand the Mobile Client by clicking the <strong>&gt;</strong> icon.</p>
+<p>Click on the Mobile Client and navigate to Mobile Client view.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -370,24 +400,23 @@ The association between a Mobile Client and  service uses the <a href="https://b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to expand the item in the <strong>Mobile Clients</strong> list.
+Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to click on the item in the <strong>Mobile Clients</strong> list.
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Note the value for <code>clientId</code> in the <strong>Config Info</strong> field. This is required for the next step.</p>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
 </li>
 <li>
-<p>Choose the  service from the <strong>Integrations</strong> list. If an option is not available, you can provision that service by choosing that option and associate the Mobile Client later.</p>
+<p>Expand the  service by clicking the <strong>&gt;</strong> icon.</p>
 </li>
 <li>
-<p>Follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  service.
-When prompted for a <strong>Mobile Client ID</strong>, enter the value you noted from the previous step.</p>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  service.</p>
 </li>
 <li>
-<p>Fill out the binding parameters required by the service</p>
+<p>Fill out the binding parameters required by the  service, if any.</p>
 </li>
 </ol>
 </div>
