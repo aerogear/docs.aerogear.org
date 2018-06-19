@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additional configuration for Android :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/android-additional-configuration.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../index.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-mobile-services.html">Installing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile_terminology.html">Terminology</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started-with-openshift.html">Getting Started with OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../workflow.html">Mobile Apps &amp; Services Workflow</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../con_services.html">Introducing Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-services.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrating-services.html">Binding Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../apps.html">Integrating Mobile Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../registering-a-mobile-app.html">Registering an App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../binding-mobile-app-record-to-mobile-services.html">Binding an App to a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-dev-env.html">Configuring a Dev Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Using Mobile Services</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push/index.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/configuring-dev-env-push.html">Configuring a Dev Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/admin-ui.html">Unified Push admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing App Usage</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="configuring-dev-env-keycloak.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="coding.html">Adding Code</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">More&#8230;&#8203;</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="keycloak-setup.html">Keycloak Setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="android-additional-configuration.html">Additional Configuration for Android</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="retrieving-current-user.html">Retrieving Current User</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="retrieving-custom-user-attributes.html">Retrieving Custom User Attributes</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="authenticating.html">Authenticating</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="retrieving-users-roles.html">Retrieving Users Roles</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="logging-out.html">Logging Out</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../digger/index.html">Mobile CI\CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../custom/configuring-dev-env-custom.html">Configuring a Dev environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../security/index.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/provisioning.html">Provisioning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/binding.html">Binding</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/configuring-dev-env-security.html">Configuring a Dev environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">security/proc_performing-device-checks.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../security/proc_self-signed-certs.html">Self Signed Certificates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#">security/proc_adding_secure_storage.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Mobile CI\CD for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AeroGear Docs</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AeroGear Docs</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
+    <li class="crumb">Using Mobile Services</li>
+    <li class="crumb"><a href="index.html">Identity Management</a></li>
+    <li class="crumb">More&#8230;&#8203;</li>
+    <li class="crumb"><a href="android-additional-configuration.html">Additional Configuration for Android</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/keycloak/android-additional-configuration.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Additional configuration for Android</h1>
+<div class="sect1">
+<h2 id="authentication-browser"><a class="anchor" href="#authentication-browser"></a>Authentication Browser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>AuthService</code> can also be configured to whitelist or blacklist browsers that should or shouldn&#8217;t be used during authentication.  During authentication the <code>Auth SDK</code> redirects the user to an internet browser.  A Keycloak login web page is loaded in this internet browser to allow users to authenticate.
+<code>Authentication Browser</code> is referring to that internet browser used during authentication.  The <code>Auth SDK</code> provides some <a href="#pre-defined-browsers">Pre-defined Browsers</a> that can be used to be whitelisted or blacklisted and there is also the option to use <a href="#custom-browsers">Custom Browsers</a>.
+The <code>Auth SDK</code> can be configured to to use specific browsers and versions, this is know as <code>whitelist</code>, or the <code>Auth SDK</code> can be configured to permit specific browsers and versions, this is known as <code>blacklist</code>.  Once one or more internet browsers have been configured they can be configured to be blacklisted or whitelisted using <a href="#browser-configuration">Browser Configuration</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="pre-defined-browsers"><a class="anchor" href="#pre-defined-browsers"></a>Pre-defined Browsers</h3>
+<div class="paragraph">
+<p>There are some pre-defined browsers that can be be customised to be used as standalone or custom tab browsers and can target a specific version or version range.
+There are also default options available where no extra configuration is needed.</p>
+</div>
+<div class="paragraph">
+<p>A pre-defined browser can be retrieved from <code>AuthBrowsers</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// a default Google Chrome browser. No extra configuration is neccessary.
+AuthBrowser chromeBrowser = AuthBrowsers.CHROME_DEFAULT;
+
+// a customisable Samsung browser where the custom tab mode has been set to `false` i.e.
+// it should be used as a standalone browser and the version should be at least 6.
+AuthBrowser samsungBrowser = AuthBrowsers.samsung(false, AuthBrowserVersionRange.atMost("6"));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the full list of predefined browsers available see <a href="https://github.com/aerogear/aerogear-android-sdk/blob/master/auth/src/main/java/org/aerogear/mobile/auth/configuration/AuthBrowsers.java">AuthBrowsers.java</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="custom-browsers"><a class="anchor" href="#custom-browsers"></a>Custom Browsers</h3>
+<div class="paragraph">
+<p>To use a custom browser an <a href="https://github.com/aerogear/aerogear-android-sdk/blob/master/auth/src/main/java/org/aerogear/mobile/auth/configuration/AuthBrowser.java">AuthBrowser</a> object can be created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthBrowser customBrowser = new AuthBrowser("custom.package.name", signatureSet, true, AuthBrowserVersionRange.ANY);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="browser-configuration"><a class="anchor" href="#browser-configuration"></a>Browser Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once a browser or browsers have been configured, <code>BrowserConfiguration</code> can be used to either blacklist or whitelist these browsers.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It&#8217;s only possible to blacklist or whitelist a browser/browsers. It is not possible to both whitelist and blacklist a browser/browsers.  If both are invoked the most previous browser configuration built will be used.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// blacklist the default Mozilla Firefox browser i.e. any version of Mozilla firefox for use as a standalone browser will be permitted for authentication
+BrowserConfiguration browserConfiguration = new BrowserConfiguration.BrowserConfigurationBuilder().blackList().browser(AuthBrowsers.FIREFOX_DEFAULT).build();
+
+// whitelist a custom Google Chrome browser i.e. a Google Chrome browser for use as a standalone browser where the version range is between 45 and 55.
+AuthBrowser customChrome = AuthBrowsers.chrome(false, AuthBrowserVersionRange.between("45", "55"));
+BrowserConfiguration browserConfiguration = new BrowserConfiguration.BrowserConfigurationBuilder().whitelist().browser(customChrome).build();
+
+// blacklist the two browsers
+BrowserConfiguration browserConfiguration = new BrowserConfiguration.BrowserConfigurationBuilder().blacklist().browser(AuthBrowsers.FIREFOX_DEFAULT).browser(customChrome).build();
+
+// add the two browsers to a Set and whitelist the set of browsers
+AuthBrowser samsungCustomTab = AuthBrowsers.SAMSUNG_CUSTOM_TAB;
+Set&lt;Browser&gt; browsers = new HashSet&lt;&gt;(Arrays.asList(samsungCustomTab, customChrome));
+BrowserConfiguration browserConfiguration = new BrowserConfiguration.BrowserConfigurationBuilder().whiteList().browsers(browsers).build();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>AuthService</code> can be configured to use the browser configuration once its been instantiated:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// auth service configuration
+AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration
+    .AuthConfigurationBuilder()
+    .withRedirectUri("org.aerogear.mobile.example:/callback")
+    .build();
+
+// browser configuration
+BrowserConfiguration browserConfiguration = new BrowserConfiguration.BrowserConfigurationBuilder()
+    .blackList()
+    .browser(AuthBrowsers.CHROME_CUSTOM_TAB)
+    .build();
+
+authService.init(context, authServiceConfig, browserConfiguration);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="defining-custom-scopes"><a class="anchor" href="#defining-custom-scopes"></a>Defining Custom Scopes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Optionally, scopes can be defined for the auth request using a space as the delimiter as per <a href="https://tools.ietf.org/html/rfc6749#section-3.3">RFC-6749</a>.
+By default, the <code>"openid"</code> scope is sent if no scopes are defined.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// default is 'openid' when not defined
+.withScopes("openid offline_access")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If <code>AuthService#init</code> is not invoked then an <code>IllegalStateException</code> will be thrown when using the
+service.</p>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
