@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Making Services auto-discoverable by the Metrics Service :: AeroGear Mobile Services</title>
+    <title>Making Services auto-discoverable by the Mobile Metrics Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/metrics/making-mobile-services-discoverable-by-metrics.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -180,16 +180,28 @@ $(addBlockSwitches);
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Client metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="binding.html">Binding</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="analysing-app-usage.html">Analysing App Usage</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -246,9 +258,6 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../digger/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
   </li>
 </ul>
@@ -299,27 +308,27 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+    <a class="nav-link" href="../showcase-apps/index.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/service-setup.html">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/identity-management.html">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile CI/CD for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/device-security.html">Device Security</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connectors</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../ref_api.html">API Reference</a>
@@ -357,18 +366,18 @@ $(addBlockSwitches);
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/making-mobile-services-discoverable-by-metrics.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/metrics/making-mobile-services-discoverable-by-metrics.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Making Services auto-discoverable by the Metrics Service</h1>
+<h1>Making Services auto-discoverable by the Mobile Metrics Service</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobile Services that expose a metrics endpoint will already be auto-discovered by the Metrics Service.
+<p>Mobile Services that expose a metrics endpoint will already be auto-discovered by the Mobile Metrics Service.
 No additional steps are needed for Prometheus to poll for metrics from Mobile Services.</p>
 </div>
 <div class="paragraph">
-<p>However, if you would like the Metrics Services to also gather metrics from your own Service, you will need the following:</p>
+<p>However, to setup the Mobile Metrics Service to gather metrics from your service:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -387,7 +396,7 @@ No additional steps are needed for Prometheus to poll for metrics from Mobile Se
 <div class="paragraph">
 <p>Presence of one of the <code>org.aerogear.metrics/plain_endpoint</code> or <code>org.aerogear.metrics/ssl_endpoint</code>
 annotations makes the service auto-discoverable.
-Value of the annotation will inform metrics service about where to look for metrics data when scraping.</p>
+Value of the annotation will inform Mobile Metrics Service about where to look for metrics data when scraping.</p>
 </div>
 <div class="paragraph">
 <p>For example, if a service is exposing an HTTP metrics endpoint at
