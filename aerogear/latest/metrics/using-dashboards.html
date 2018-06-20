@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using dashboards to display metrics service data :: AeroGear Mobile Services</title>
+    <title>Using dashboards to display Mobile Metrics Service data :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/metrics/using-dashboards.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -180,16 +180,28 @@ $(addBlockSwitches);
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Client metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="binding.html">Binding</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="analysing-app-usage.html">Analysing App Usage</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -246,9 +258,6 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../digger/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
   </li>
 </ul>
@@ -299,27 +308,27 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+    <a class="nav-link" href="../showcase-apps/index.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/service-setup.html">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/identity-management.html">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile CI/CD for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/device-security.html">Device Security</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connectors</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../ref_api.html">API Reference</a>
@@ -357,28 +366,26 @@ $(addBlockSwitches);
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/using-dashboards.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/metrics/using-dashboards.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Using dashboards to display metrics service data</h1>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-
-</div>
-</div>
+<h1>Using dashboards to display Mobile Metrics Service data</h1>
 <div class="sect1">
 <h2 id="overview-of-dashboards"><a class="anchor" href="#overview-of-dashboards"></a>Overview of dashboards</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The metrics service uses <a href="https://prometheus.io/">Prometheus</a> to gather metrics data from other mobile services and <a href="https://grafana.com/">Grafana</a> to display that data.</p>
+<p>The Mobile Metrics Service gathers metrics data from mobile services and uses <a href="https://grafana.com/">Grafana</a> to display that data.</p>
 </div>
 <div class="paragraph">
 <p>A Grafana dashboard allows you to arrange panels and charts together to provide a visual overview of your metrics.
 See the Grafana <a href="http://docs.grafana.org/guides/getting_started/">Getting Started</a> guide for an introduction to dashboards.</p>
 </div>
 <div class="paragraph">
-<p>When you create an instance of an AeroGear service from the OpenShift service catalog, a dashboard that shows metrics about that service is added to Grafana. You can also create and modify custom dashboards to:</p>
+<p>When you create an instance of a Mobile Services service from the OpenShift service catalog, a dashboard that shows metrics about that service is added to Grafana.
+Also, when you configure your Mobile Client to use metrics, you can see the metrics in Grafana.</p>
+</div>
+<div class="paragraph">
+<p>In addition to those, you can create and modify custom dashboards to:</p>
 </div>
 <div class="ulist">
 <ul>
