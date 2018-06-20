@@ -180,16 +180,28 @@ $(addBlockSwitches);
     <a class="nav-link" href="metrics/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Client metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="metrics/binding.html">Binding</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="metrics/configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="metrics/analysing-app-usage.html">Analysing App Usage</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="metrics/monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -246,9 +258,6 @@ $(addBlockSwitches);
     <a class="nav-link" href="digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="digger/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
   </li>
 </ul>
@@ -299,27 +308,27 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="using-the-showcase-apps.html">Using the Showcase Apps</a>
+    <a class="nav-link" href="showcase-apps/index.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Mobile Metrics for the Showcase App</a>
+    <a class="nav-link" href="showcase-apps/service-setup.html">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Identity Management for the Showcase App</a>
+    <a class="nav-link" href="showcase-apps/identity-management.html">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Mobile CI/CD for the Showcase App</a>
+    <a class="nav-link" href="showcase-apps/device-security.html">Device Security</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="showcase-apps/metrics.html">Mobile Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="testcard.html">Runtime Connectors</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
@@ -362,7 +371,7 @@ $(addBlockSwitches);
     <li class="crumb"><a href="installing-mobile-services.html">Installing</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/installing-mobile-services.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/installing-mobile-services.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Setting up AeroGear Mobile Services on OpenShift</h1>
@@ -394,16 +403,156 @@ AeroGear recommends running OpenShift using the method described here. However t
 <p>MacOS or Linux</p>
 </li>
 <li>
-<p>Docker</p>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (tested with version 2.4, but should work with version 2.3 or later)</p>
+</li>
+<li>
+<p><a href="https://www.openshift.org/download.html">Openshift client tools</a> version 3.9 or later</p>
+</li>
+<li>
+<p>Docker must be version 17.09.1 in order to be compatible with the latest release of OpenShift and depending on your OS this is downloaded from different places:</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock primary">
+<div class="title">MacOS</div><div class="content">
+<div class="paragraph">
+<p>You can download Docker CE for MacOS version 17.09.1 <a href="https://download.docker.com/mac/stable/19543/Docker.dmg">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Linux</div><div class="content">
+<div class="paragraph">
+<p>You can download Docker CE version 17.09.1 for rpm based distros from <a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-17.09.1.ce-1.el7.centos.x86_64.rpm">here</a>. Otherwise have a look <a href="https://docs.docker.com/install">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="local-development"><a class="anchor" href="#local-development"></a>Local development</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install OpenShift using the instructions at <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md" class="bare">https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md</a></p>
+<p>Clone the Mobile-core installer:</p>
+<div class="paragraph">
+<p>We configure the local development installation of AeroGear Mobile Services using ansible scripts in our <a href="https://github.com/aerogear/mobile-core">mobile-core</a> repo. Clone this repo to your local machine and check out the 1.0.0-alpha tag using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone git@github.com:aerogear/mobile-core.git
+git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Perform the installation:</p>
+<div class="paragraph">
+<p>In the cloned repository, run the installer with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./installer/install.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This validates that Ansible, Docker and the OpenShift Client Tools
+are installed and are the right version.</p>
+</div>
+<div class="paragraph">
+<p>Once verified it prompts you for your Docker Hub login credentials, which
+must be valid for the installation to continue.</p>
+</div>
+<div class="paragraph">
+<p>The next set of values are optional and can be left with the default values:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DockerHub Tag (Defaults to 1.0.0-alpha):
+DockerHub Organisation (Defaults to aerogearcatalog):
+Cluster IP (Defaults to 192.168.37.1):
+Wildcard DNS Host (Defaults to nip.io):</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first two values here are used to configure the service-catalog in the
+resulting cluster to look at other docker registries or tags to fetch the
+APBs from, but unless you are already familiar with editing these values,
+the defaults are the safest option.</p>
+</div>
+<div class="paragraph">
+<p>The following 2 options alter what IP address and wildcard DNS host you wish
+to use.</p>
+</div>
+</li>
+<li>
+<p>Check the Cluster IP:</p>
+<div class="paragraph">
+<p>In order to allow communication between your mobile device and the cluster, the
+cluster IP must be in the same c-block as your local network.</p>
+</div>
+<div class="paragraph">
+<p>i.e. If your local router which both your workstation and mobile are connected to
+a router using the <code>10.0.0.x</code> c-block, then you should set the cluster IP to an IP
+in the <code>10.0.0.x</code> c-block too, such as <code>10.0.0.135</code>.</p>
+</div>
+</li>
+<li>
+<p>Check installation logs:</p>
+<div class="paragraph">
+<p>The following installation can take a while the first time it runs as it pulls a number of docker images. Once completed successfully, this will end with output similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>TASK [output-oc-cluster-status : debug] ******************************************************************************************************************************************************
+ok: [localhost] =&gt; {
+    "msg": [
+        "Web console URL: https://192.168.37.1:8443/console/",
+        "",
+        "Config is at host directory /var/lib/origin/openshift.local.config",
+        "Volumes are at host directory /var/lib/origin/openshift.local.volumes",
+        "Persistent volumes are at host directory /var/lib/origin/openshift.local.pv",
+        "Data is at host directory /path/to/mobile-core/ui/openshift-data"
+    ]
+}
+
+PLAY RECAP ***********************************************************************************************************************************************************************************
+localhost                  : ok=44   changed=17   unreachable=0    failed=0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which signifies that your installation has completed successfully.</p>
+</div>
+</li>
+<li>
+<p>Verify the installation:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Open a browser and (accepting the self-signed certificate) navigate to:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://192.168.37.1:8443/console/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The developer login credentials are:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>username: developer
+password: password</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once logged in look for the "mobile" category across the top of the catalog package which indicates that the mobile features of AeroGear Mobile Services have been succesfully installed.</p>
 </li>
 </ol>
 </div>
 </li>
-</ul>
+</ol>
 </div>
 </div>
 </div>
@@ -413,12 +562,33 @@ AeroGear recommends running OpenShift using the method described here. However t
 <div class="ulist">
 <ul>
 <li>
-<p>Provision a Mobile Service</p>
+<p><a href="con_services.html" class="page">Provision</a> a Mobile Service</p>
 </li>
 <li>
-<p>Register a Mobile App</p>
+<p><a href="apps.html" class="page">Register</a> a Mobile App</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="switching-from-a-different-docker-version-on-fedora-28"><a class="anchor" href="#switching-from-a-different-docker-version-on-fedora-28"></a>Switching from a different Docker version on Fedora 28</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/fedora/#uninstall-old-versions">Uninstall</a> the old Docker version</p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/fedora/#install-from-a-package">Install</a> Docker 17.09.1 from the rpm package</p>
+</li>
+<li>
+<p>Make sure that Docker can be managed by non-root users by following <a href="https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user">this guide</a></p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>

@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharing access to the Metrics service :: AeroGear Mobile Services</title>
+    <title>Sharing access to the Mobile Metrics Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/metrics/giving-an-openshift-user-access-to-metrics.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -180,16 +180,28 @@ $(addBlockSwitches);
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Client metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="binding.html">Binding</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="analysing-app-usage.html">Analysing App Usage</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -246,9 +258,6 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../digger/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
   </li>
 </ul>
@@ -299,27 +308,27 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+    <a class="nav-link" href="../showcase-apps/index.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/service-setup.html">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/identity-management.html">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile CI/CD for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/device-security.html">Device Security</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connectors</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../ref_api.html">API Reference</a>
@@ -357,20 +366,20 @@ $(addBlockSwitches);
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/giving-an-openshift-user-access-to-metrics.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/metrics/giving-an-openshift-user-access-to-metrics.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Sharing access to the Metrics service</h1>
+<h1>Sharing access to the Mobile Metrics Service</h1>
 <div class="sect1">
 <h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The metric service URL is only accessible by users who have <strong>edit</strong> permission for the project. By default, a project owner already has permission.</p>
+<p>The Mobile Metrics Service URL is only accessible by users who have <strong>edit</strong> permission for the project. By default, a project owner already has permission.</p>
 </div>
 <div class="paragraph">
-<p>The metrics service creates routes to access Grafana and Prometheus. To protect these routes there is an OAuth reverse proxy sidecar container in front
-of the Grafana and Prometheus containers to enforce authentication. The authentication is based on Openshift permissions and is configured as part of the
-provisioning of the metrics service. See the <a href="https://github.com/openshift/oauth-proxy">documentation for the proxy container</a> for
+<p>The Mobile Metrics Service creates routes to access Grafana and Prometheus. To protect these routes there is an OAuth reverse proxy sidecar container in front
+of the Grafana and Prometheus containers to enforce authentication. The authentication is based on OpenShift permissions and is configured as part of the
+provisioning of the Mobile Metrics Service. See the <a href="https://github.com/openshift/oauth-proxy">documentation for the proxy container</a> for
 more information about configuring the proxy.</p>
 </div>
 </div>
@@ -389,7 +398,7 @@ routes. This rule is defined by the <code>openshift-sar</code> option. For the P
 </div>
 <div class="paragraph">
 <p>To authenticate against the OAuth proxy, a user must have
-sufficient permissions to update the <strong>deploymentConfig</strong> resource named <code>prometheus</code> in the current Openshift namespace.
+sufficient permissions to update the <strong>deploymentConfig</strong> resource named <code>prometheus</code> in the current OpenShift namespace.
 The <strong>deploymentConfig</strong> resource for Grafana contains the same Subject Access Review rule for the <code>grafana</code> resource.</p>
 </div>
 <div class="admonitionblock note">
@@ -420,16 +429,11 @@ Access to the Prometheus and Grafana routes requires permissions to completely e
 </li>
 <li>
 <p>From the <strong>Add Another Role</strong> list, select <strong>edit</strong> and click <strong>add</strong> to assign the role to a user.</p>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/giving-access-to-metrics/new-user.png" alt="creating new-user">
-</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>The user can now access the Metrics routes.</p>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -462,13 +466,13 @@ Access to the Prometheus and Grafana routes requires permissions to completely e
 </div>
 </div>
 <div class="sect1">
-<h2 id="using-the-oauth-proxy-to-access-the-metrics-service"><a class="anchor" href="#using-the-oauth-proxy-to-access-the-metrics-service"></a>Using the OAuth proxy to access the Metrics service</h2>
+<h2 id="using-the-oauth-proxy-to-access-the-mobile-metrics-service"><a class="anchor" href="#using-the-oauth-proxy-to-access-the-mobile-metrics-service"></a>Using the OAuth proxy to access the Mobile Metrics Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When the metrics service is provisioned there is a route for Grafana and a route for Prometheus.
+<p>When the Mobile Metrics Service is provisioned there is a route for Grafana and a route for Prometheus.
 When you access one of the routes you will see the OAuth proxy landing screen.
 image::giving-access-to-metrics/proxy.png[OAuth Proxy landing page]
-Click <strong>Log in with Openshift</strong> and log in. If you have sufficient permission to access the route
+Click <strong>Log in with OpenShift</strong> and log in. If you have sufficient permission to access the route
 you are prompted to allow the service account access your account.
 image::giving-access-to-metrics/authorize.png[OAuth proxy service account authorize access]
 Click <strong>Allow selected permissions</strong>. The OAuth proxy redirects you to the requested route.</p>
@@ -481,10 +485,10 @@ Click <strong>Allow selected permissions</strong>. The OAuth proxy redirects you
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/authorization.html">Openshift Authorization</a></p>
+<p><a href="https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/authorization.html">OpenShift Authorization</a></p>
 </li>
 <li>
-<p><a href="https://github.com/openshift/oauth-proxy">Openshift OAuth Proxy container</a></p>
+<p><a href="https://github.com/openshift/oauth-proxy">OpenShift OAuth Proxy container</a></p>
 </li>
 </ul>
 </div>

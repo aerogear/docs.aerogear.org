@@ -180,16 +180,28 @@ $(addBlockSwitches);
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Client metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="binding.html">Binding</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="configuring-dev-env-metrics.html">Configuring a Dev environment</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="analysing-app-usage.html">Analysing App Usage</a>
   </li>
+</ul>
+  </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../monitoring-keycloak.html">Monitoring Identity Management</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Service metrics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="monitoring-keycloak.html">Monitoring Identity Management</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -246,9 +258,6 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../digger/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../digger/configuring-dev-env-digger.html">Configuring a Dev environment</a>
   </li>
 </ul>
@@ -299,27 +308,27 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../using-the-showcase-apps.html">Using the Showcase Apps</a>
+    <a class="nav-link" href="../showcase-apps/index.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile Metrics for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/service-setup.html">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Identity Management for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/identity-management.html">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Mobile CI/CD for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/device-security.html">Device Security</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Runtime Connector for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../testcard.html">Push Notifications for the Showcase App</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../testcard.html">Runtime Connectors</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../local_development.html">Setting up AeroGear Mobile Services locally</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../ref_api.html">API Reference</a>
@@ -360,10 +369,11 @@ $(addBlockSwitches);
     <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
     <li class="crumb">Using Mobile Services</li>
     <li class="crumb"><a href="index.html">Mobile Metrics</a></li>
+    <li class="crumb">Client metrics</li>
     <li class="crumb"><a href="configuring-dev-env-metrics.html">Configuring a Dev environment</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/configuring-dev-env-metrics.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/metrics/configuring-dev-env-metrics.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Configuring your Development Environment for the Metrics Service</h1>
@@ -373,10 +383,10 @@ $(addBlockSwitches);
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="provisioning.html" class="page">Provisioning Metrics Service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="binding.html" class="page">Binding a Mobile Client with the Metrics Service</a> if you want to monitor usage by version of mobile app, platform and SDK.</p>
+<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="binding.html" class="page">Binding a Mobile Client with the Metrics Service</a></p>
 </li>
 </ul>
 </div>
@@ -452,15 +462,21 @@ $(addBlockSwitches);
 </div>
 </div>
 <div class="paragraph">
-<p>Metrics will be sent automatically from the Mobile Application once any of the components from AeroGear SDK are installed.</p>
+<p>Metrics will be sent automatically from the mobile app once any of the components from AeroGear SDK are installed.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="adding-aerogear-sdk-modules-for-the-service"><a class="anchor" href="#adding-aerogear-sdk-modules-for-the-service"></a>Adding AeroGear SDK modules for the  Service</h2>
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
 <div class="sectionbody">
-
+<div class="ulist">
+<ul>
+<li>
+<p><a href="analysing-app-usage.html" class="page">Analyzing App Usage</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </article>
