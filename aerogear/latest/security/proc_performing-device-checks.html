@@ -54,7 +54,7 @@ $(addBlockSwitches);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/cordova/using-metrics-sdk.html">
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/security/proc_performing-device-checks.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -136,13 +136,13 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../security/index.html">Device Security</a>
+    <a class="nav-link" href="index.html">Device Security</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/proc_performing-device-checks.html">Device Trust Checks</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="proc_performing-device-checks.html">Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+    <a class="nav-link" href="proc_pinning-certificates.html">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -320,110 +320,17 @@ $(addBlockSwitches);
   <button class="navigation-toggle"></button>
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
+    <li class="crumb"><a href="index.html">Device Security</a></li>
+    <li class="crumb"><a href="proc_performing-device-checks.html">Device Trust Checks</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/cordova/using-metrics-sdk.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/proc_performing-device-checks.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="sect1">
-<h2 id="aerogear-javascript-metrics-sdk"><a class="anchor" href="#aerogear-javascript-metrics-sdk"></a>AeroGear JavaScript Metrics SDK</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Mobile metrics SDK to collect analytics and useful data from an AeroGear app.</p>
-</div>
-<div class="sect2">
-<h3 id="installation"><a class="anchor" href="#installation"></a>Installation</h3>
-<div class="paragraph">
-<p>In order to collect and display the metrics from you application, you&#8217;ll need to:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add the AeroGear Metrics plugin for Cordova:</p>
-<div class="listingblock">
-<div class="content">
-<pre>cordova plugin add @aerogear/cordova-plugin-aerogear-metrics</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Have an instance of Metrics. Follow the next steps to set it up using Openshift:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>If you do not have mobile services enabled in your Openshift cluster follow this <a href="https://github.com/aerogear/mobile-core/blob/master/docs/walkthroughs/local-setup.adoc">Local Setup</a> guide.</p>
-</li>
-<li>
-<p>Navigate to your Openshift cluster and in the Service Catalog search for the Metrics service.</p>
-</li>
-<li>
-<p>Click on the Metrics service and you will be prompted to fill in details about your app.  For now you can leave these as they are.  Navigate through the setup and click Create.
-This will provision the Metrics service in the project you specified.</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Generate again the app configuration file to use during <a href="#">getting-started.adoc</a>. For an example of Metrics configuration see the example app&#8217;s <a href="https://github.com/aerogear/cordova-showcase-template/blob/master/src/mobile-services.json">mobile-services.json</a>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="usage"><a class="anchor" href="#usage"></a>Usage</h3>
-<div class="paragraph">
-<p>As part of the SDK initialization, the relevant metrics will be sent to the server automatically. Metrics is designed to send the data only on app startup, hence it shouldn&#8217;t (and can&#8217;t) be used manually.</p>
-</div>
-<div class="paragraph">
-<p>Even if these requirements are not met, or the configuration does not include a metrics service, AeroGear will try to log all available metrics in the console.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="provided-metrics"><a class="anchor" href="#provided-metrics"></a>Provided Metrics</h3>
-<div class="paragraph">
-<p>The default metrics contain app and device metrics and possibly other types will be added in the future.</p>
-</div>
-<div class="paragraph">
-<p>A client id and a timestamp are added to the top level of the metrics object for categorization and visualization purposes.
-The client id will be generated and stored on the device when the app is started the first time.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">App Metrics</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>App ID</strong>: The package name of your App</p>
-</li>
-<li>
-<p><strong>App version</strong>: The version of your App as defined in the top level <code>build.gradle</code></p>
-</li>
-<li>
-<p><strong>SDK version</strong>: The version of the Aerogear SDK that is used</p>
-</li>
-<li>
-<p><strong>Framework</strong>: Framework used for development ("cordova" in this case)</p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Device Metrics</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Platform</strong>: Hardcoded to <code>cordova</code></p>
-</li>
-<li>
-<p><strong>Platform Version</strong>: The API level of the device</p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
-</div>
-</div>
-</div>
+<p><strong><strong>TODO</strong></strong></p>
 </div>
 </article>
   </main>
