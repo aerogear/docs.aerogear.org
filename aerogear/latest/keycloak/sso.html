@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
+    <title>Single Sign-On (SSO) :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/sso.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -329,8 +329,60 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/sso.adoc"></a></div>
 </div>
 <article class="doc">
+<h1>Single Sign-On (SSO)</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p><strong><strong>TODO</strong></strong></p>
+<p>The Auth SDK uses OpenID Connect <a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth">Authorization Code Flow</a> to achieve SSO via a mobile device browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A running AeroGear Auth service (Keycloak)</p>
+</li>
+<li>
+<p>Two apps on the same device that are both using the Auth SDK module</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="steps-to-achieve-sso-via-a-device-browser"><a class="anchor" href="#steps-to-achieve-sso-via-a-device-browser"></a>Steps to achieve SSO via a device browser</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this guide, let&#8217;s assume that your two apps are called <strong>Email App</strong> and <strong>Messaging App</strong>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure the "Remember Me" option in Keycloak is turned on. In the admin UI click on <strong>Realm Settings</strong> section on the left hand side, and then click on <strong>Login</strong>. Turn on <strong>Remember Me</strong>.</p>
+</li>
+<li>
+<p>Now that your two iOS apps and Keycloak clients are setup, sign into the <strong>Email App</strong> with the user you have previously created. You should be redirected to your device browser which should have loaded the Keycloak login page.</p>
+</li>
+<li>
+<p>Next, enter in your credentials, make sure check the <strong>Remember Me</strong> option and login. You have now been authenticated on the <strong>Email App</strong> via the browser.</p>
+</li>
+<li>
+<p>Finally, try sign into the <strong>Messaging App</strong> and you should be automatically logged in as you have been previously authenticated in the <strong>Email App</strong> via the <strong><em>same</em></strong> browser.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="known-issues"><a class="anchor" href="#known-issues"></a>Known Issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On iOS 11 and above, Apple has introduced <a href="https://developer.apple.com/documentation/safariservices/sfauthenticationsession">SFAuthenticationSession</a> for apps to perform SSO, instead of using the system Safari browser. However, there are a few known issues with this new feature and sometimes user may have to enter their credentials again in other apps, even if they have already logged in once previously in one of the apps.</p>
+</div>
+</div>
 </div>
 </article>
   </main>
