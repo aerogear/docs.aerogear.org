@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -361,102 +361,101 @@ The Mobile Metrics Service and Identity Management Service must be provisioned i
 <h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After the Mobile Metrics Service (includes Grafana tool and Prometheus monitoring system) and Identity Management Service are provisioned,
-you should be able to see the "Keycloak Metrics" in the list of available dashboards
-(navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>).</p>
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Identity Management Service are provisioned,
+you should be able to see the "Keycloak Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dashboard-s-panels-description"><a class="anchor" href="#dashboard-s-panels-description"></a>Dashboard&#8217;s panels description</h2>
+<h2 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Keycloak dashboard consists of several panels which give you overview of the specific
-events, such as number of registered users, memory usage etc.</p>
+<p>The Keycloak dashboard consists of several panels which give you an overview of the specific
+events, such as the number of registered users, memory usage etc.</p>
 </div>
 <div class="paragraph">
-<p>See below for the detailed description of each panel and its values</p>
-</div>
-<div class="sect2">
-<h3 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h3>
-<div class="sect3">
-<h4 id="total-registrations"><a class="anchor" href="#total-registrations"></a>Total Registrations</h4>
-<div class="paragraph">
-<p>Total number of registered (non-admin) users. This number comprises all successful registrations made via various providers, e.g. Keycloak, Github, Facebook etc.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="total-logins"><a class="anchor" href="#total-logins"></a>Total Logins</h4>
-<div class="paragraph">
-<p>Total number of successful logins (only non-admin users) over all providers.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="total-login-errors"><a class="anchor" href="#total-login-errors"></a>Total Login Errors</h4>
-<div class="paragraph">
-<p>Total number of failed login attempts.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="current-memory"><a class="anchor" href="#current-memory"></a>Current Memory</h4>
-<div class="paragraph">
-<p>The amount of memory currently used by the Identity Management Service</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h3>
-<div class="sect3">
-<h4 id="logins"><a class="anchor" href="#logins"></a>Logins</h4>
-<div class="paragraph">
-<p>Overview of the successful logins over time</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="login-errors"><a class="anchor" href="#login-errors"></a>Login Errors</h4>
-<div class="paragraph">
-<p>Overview of the failed login attempts over time</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="memory-usage"><a class="anchor" href="#memory-usage"></a>Memory Usage</h4>
-<div class="paragraph">
-<p>The values in this graph represents the following:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Used</strong> - The amount of memory currently used by the Identity Management Service</p>
-</li>
-<li>
-<p><strong>Commited</strong> - The amount of memory that is guaranteed to be available for use (by JVM)</p>
-</li>
-<li>
-<p><strong>Max</strong> - The maximum amount of memory that can be used for memory management</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="pie-charts"><a class="anchor" href="#pie-charts"></a>Pie Charts</h3>
-<div class="sect3">
-<h4 id="logins-per-provider"><a class="anchor" href="#logins-per-provider"></a>Logins Per Provider</h4>
-<div class="paragraph">
-<p>Overview of the successful (non-admin) user logins per provider</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="registrations-per-provider"><a class="anchor" href="#registrations-per-provider"></a>Registrations Per Provider</h4>
-<div class="paragraph">
-<p>Overview of the successful (non-admin) user registrations per provider.</p>
-</div>
-</div>
+<p>Below you will find a detailed description of each panel and its values.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="external-resources"><a class="anchor" href="#external-resources"></a>External resources</h2>
+<h2 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Singlestat panels show you the main summary of a single data series.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Total Registrations</strong>: Total number of registered (non-admin) users. This number comprises all successful registrations made via various providers, e.g. Keycloak, Github, Facebook etc.</p>
+</li>
+<li>
+<p><strong>Total Logins</strong>: Total number of successful logins (only non-admin users) over all providers.</p>
+</li>
+<li>
+<p><strong>Total Login Errors</strong>: Total number of failed login attempts.</p>
+</li>
+<li>
+<p><strong>Current Memory</strong>: The amount of memory currently used by the Identity Management Service</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Used to show how certain values change over time, e.g. the number of successful logins.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Logins</strong>: Overview of the successful logins over time</p>
+</li>
+<li>
+<p><strong>Login Errors</strong>: Overview of the failed login attempts over time</p>
+</li>
+<li>
+<p><strong>Memory Usage</strong>: The values in this graph represents the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Used</strong>: The amount of memory currently used by the Identity Management Service</p>
+</li>
+<li>
+<p><strong>Commited</strong>: The amount of memory that is guaranteed to be available for use (by JVM)</p>
+</li>
+<li>
+<p><strong>Max</strong>: The maximum amount of memory that can be used for memory management</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pie-charts"><a class="anchor" href="#pie-charts"></a>Pie Charts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Used to show the distribution of data, e.g. the number of logins per identity provider.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Logins Per Provider</strong>: Overview of the successful (non-admin) user logins per provider</p>
+</li>
+<li>
+<p><strong>Registrations Per Provider</strong>: Overview of the successful (non-admin) user registrations per provider.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>

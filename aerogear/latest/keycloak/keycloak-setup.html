@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keycloak Setup :: AeroGear Mobile Services</title>
+    <title>Untitled :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/keycloak-setup.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -324,17 +324,14 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/keycloak-setup.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Keycloak Setup</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="keycloak-setup"><a class="anchor" href="#keycloak-setup"></a>Keycloak Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following guide helps you to configure schema of the redirect url and web origin for a client in Keycloak. This is required to use the Auth SDK.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h3>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
@@ -356,11 +353,16 @@ $(addBlockSwitches);
 </div>
 </div>
 </div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Depending on the platform set the redirect as described in either the Android or the iOS tab.</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="configure-keycloak"><a class="anchor" href="#configure-keycloak"></a>Configure Keycloak</h2>
-<div class="sectionbody">
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-keycloak"><a class="anchor" href="#configure-keycloak"></a>Configure Keycloak</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -379,6 +381,7 @@ $(addBlockSwitches);
 <p>Add <code>*</code> to <code>Web Origins</code>.</p>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </div>

@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -380,6 +380,21 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 </li>
 <li>
 <p>Fill out the binding parameters required by the  Service, if any.</p>
+</li>
+<li>
+<p>Choose the <strong>Keycloak client type</strong>. The default is <code>public</code> which allows the client to request tokens while type <code>bearer</code> should be used to bind to services that only need to verify tokens.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>public</code> client type should be used to bind to Mobile Clients because they only need to request tokens, but not verify them. When binding to other services you should use client type <code>bearer</code> unless they also need to authenticate.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
