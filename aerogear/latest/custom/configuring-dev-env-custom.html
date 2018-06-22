@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuring your Development Environment for the Custom Runtime Connector Service :: AeroGear Mobile Services</title>
+    <title>Using Runtime Connector in an App :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/custom/configuring-dev-env-custom.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -235,13 +235,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/creating-a-build-configuration.adoc</a>
+    <a class="nav-link" href="../digger/creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/running-a-build.adoc</a>
+    <a class="nav-link" href="../digger/running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/deploy-the-app.adoc</a>
+    <a class="nav-link" href="../digger/deploy-the-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -326,101 +326,208 @@ $(addBlockSwitches);
     <li class="crumb"><a href="configuring-dev-env-custom.html">Using Runtime Connectors in an App</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/custom/configuring-dev-env-custom.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/custom/configuring-dev-env-custom.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Configuring your Development Environment for the Custom Runtime Connector Service</h1>
+<h1>Using Runtime Connector in an App</h1>
 <div class="sect1">
 <h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="provisioning.html" class="page">Provisioning Custom Runtime Connector Service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> The Runtime Connector is provisioned as described in <a href="provisioning.html" class="page">Provisioning Runtime Connector Service</a>.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> (Optional) You have associated the service with a Mobile Client as described in <a href="binding.html" class="page">Binding a Mobile Client with the Custom Runtime Connector Service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You have created a <a href="binding.html" class="page">binding</a> to a Mobile Client</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Imported the <code>Core</code> module of the Aerogear SDK in your App</p>
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="obtaining-the-mobile-sdk-configuration-file"><a class="anchor" href="#obtaining-the-mobile-sdk-configuration-file"></a>Obtaining the Mobile SDK Configuration File</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to your project in OpenShift.</p>
-</li>
-<li>
-<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CONFIG INFO</strong>.</p>
-</li>
-<li>
-<p>Copy the configuration to your clipboard.</p>
-</li>
-<li>
-<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
-</li>
-<li>
-<p>Follow the next specific additional instructions depending on your platform:</p>
-</li>
-</ol>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Have a look at <a href="../configuring-dev-env.html" class="page">Development Environment Setup</a> to learn how to import the Aerogear SDK modules in your App.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="retrieving-the-custom-configuration-in-a-mobile-client"><a class="anchor" href="#retrieving-the-custom-configuration-in-a-mobile-client"></a>Retrieving the custom configuration in a Mobile Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows how to retrieve the configuration of the custom service in a Mobile Client by using the Core module of the Aerogear SDK.</p>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Locate this file at the following location in your application project:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you don&#8217;t use any other module of the Aerogear SDK make sure that the <code>android-core</code> is in the dependencies of you app modules <code>build.gradle</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation 'org.aerogear:android-core:1.0.0-alpha'
+}</code></pre>
 </div>
-<div class="paragraph">
-<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</li>
+<li>
+<p>Use the <code>getServiceConfigurationsByType</code> method to get the service configuration associated with your custom service</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ServiceConfiguration customConfig = MobileCore.getInstance().getServiceConfigurationById("[SERVICE NAME]");</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String url = customConfig.getUrl();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String property = customConfig.getProperty("[PROPERTY NAME]");</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>Locate this file at the following location in your application project:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you don&#8217;t use any other module of the Aerogear SDK make sure that the <code>AGSCore</code> is in your <code>Podfile</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target :'YourTarget' do
+    pod 'AGSCore', '1.0.0-alpha'
+end</code></pre>
 </div>
-<div class="paragraph">
-<p><code>Resources/mobile-services.json</code></p>
+</div>
+</li>
+<li>
+<p>Use the <code>getConfigurationById</code> function to get the service configuration associated with your custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let customConfig = AgsCore.instance.getConfigurationById("[SERVICE NAME]")</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let url = customConfig.url</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let property: JSONValue = customConfig.config["[PROPERTY NAME]"]</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>Locate this file in your application project and import it using <code>require</code>.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>getConfigById</code> function to get the service configuration associated with your custom service:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const core = require("@aerogear/core").INSTANCE;
+const customConfig = core.getConfigById("[SERVICE NAME]");</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Alternatively you can create a JavaScript object and use directly:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>@aerogear/core</code> is a dependency of <code>@aerogear/app</code> which should always be installed because it contains the `init`function to initialize all other SDK modules.
+</td>
+</tr>
+</table>
 </div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const url = customConfig.url;</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// customConfig.config contains the parsed Service JSON Configuration
+const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
-<div class="paragraph">
-<p>Locate this file at the following location in your application project:</p>
-</div>
-<div class="paragraph">
-<p><code>Resources/mobile-services.json</code></p>
-</div>
-</div>
-</div>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>GetServiceConfigurationById</code> function to get the service configuration associated with your custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var customConfig = MobileCore.Instance.GetServiceConfigurationById("[SERVICE NAME]");</code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="adding-aerogear-sdk-modules-for-the-service"><a class="anchor" href="#adding-aerogear-sdk-modules-for-the-service"></a>Adding AeroGear SDK modules for the  Service</h2>
-<div class="sectionbody">
-
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var url = customConfig.Url;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var property = customConfig["[PROPERTY NAME]"];</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>

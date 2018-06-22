@@ -235,13 +235,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/creating-a-build-configuration.adoc</a>
+    <a class="nav-link" href="../digger/creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/running-a-build.adoc</a>
+    <a class="nav-link" href="../digger/running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/deploy-the-app.adoc</a>
+    <a class="nav-link" href="../digger/deploy-the-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -326,14 +326,109 @@ $(addBlockSwitches);
     <li class="crumb"><a href="coding.html">Coding</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/push/coding.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/push/coding.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Coding a Push Notifications App</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="configuring-your-development-environment-for-the-push-notifications-service"><a class="anchor" href="#configuring-your-development-environment-for-the-push-notifications-service"></a>Configuring your Development Environment for the Push Notifications Service</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="provisioning.html" class="page">Provisioning Push Notifications Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Optional) You have associated the service with a Mobile Client as described in <a href="binding.html" class="page">Binding a Mobile Client with the Push Notifications Service</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-the-mobile-sdk-configuration-file"><a class="anchor" href="#obtaining-the-mobile-sdk-configuration-file"></a>Obtaining the Mobile SDK Configuration File</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CONFIG INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+</li>
+<li>
+<p>Follow the next specific additional instructions depending on your platform:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>include::push/configuring-dev-env-push.adoc[]</p>
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Locate this file in your application project and import it using <code>require</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can create a JavaScript object and use directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="coding.html" class="page">Setting up Push Notifications service SDK</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -344,7 +439,7 @@ $(addBlockSwitches);
 <p>This guide will help you to set up the Push Notifications service SDK in your App.</p>
 </div>
 <div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
@@ -588,7 +683,7 @@ pushObject.on('registration').subscribe(data =&gt; {
 </div>
 </div>
 <div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
+<h2 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="proc_sending-a-push-notification.html" class="page">Sending a Push Notification</a></p>

@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/showcase-apps/metrics.html">
+    <title>Creating a Build Configuration :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/proc_creating-a-build-configuration.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -229,19 +229,19 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../digger/index.html">Mobile CI/CD</a>
+    <a class="nav-link" href="index.html">Mobile CI/CD</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+    <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/creating-a-build-configuration.html">Creating a Build Configuration</a>
+    <a class="nav-link" href="creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/running-a-build.html">Building Apps</a>
+    <a class="nav-link" href="running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/deploy-the-app.html">Deploying Apps</a>
+    <a class="nav-link" href="deploy-the-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -269,22 +269,22 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html">Showcase Apps</a>
+    <a class="nav-link" href="../showcase-apps/index.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="service-setup.html">Service Setup</a>
+    <a class="nav-link" href="../showcase-apps/service-setup.html">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="identity-management.html">Identity Management</a>
+    <a class="nav-link" href="../showcase-apps/identity-management.html">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="../showcase-apps/device-security.html">Device Security</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+    <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="metrics.html">Metrics</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
   </li>
 </ul>
   </li>
@@ -320,16 +320,59 @@ $(addBlockSwitches);
   <button class="navigation-toggle"></button>
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
-  <ul>
-    <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
-    <li class="crumb"><a href="index.html">Showcase Apps</a></li>
-    <li class="crumb"><a href="metrics.html">Metrics</a></li>
-  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/showcase-apps/metrics.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/proc_creating-a-build-configuration.adoc"></a></div>
 </div>
 <article class="doc">
-
+<h1>Creating a Build Configuration</h1>
+<div class="paragraph">
+<p>You can use the OpenShift UI to create a new client build for an existing mobile client.</p>
+</div>
+<h2 id="prerequisites" class="discrete">Prerequisites</h2>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
+</li>
+<li>
+<p>One of the following mobile clients: <a href="../android/index.html" class="page">Android</a>, <a href="../cordova/index.html" class="page">Cordova</a>, <a href="../xamarin/index.html" class="page">xamarin</a> or <a href="../ios/index.html" class="page">ios</a>.</p>
+</li>
+<li>
+<p>To build your mobile client, you need to provide source configuration.</p>
+</li>
+</ul>
+</div>
+<h2 id="procedure" class="discrete">Procedure</h2>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the OpenShift UI.</p>
+</li>
+<li>
+<p>Browse to the <strong>Project Overview</strong> screen and find the mobile client you want to build.</p>
+</li>
+<li>
+<p>Click on the name of the mobile client to open the details view.</p>
+</li>
+<li>
+<p>At the top right of the screen, click the <strong>drop down</strong> and select <strong>Create Build</strong>.</p>
+</li>
+<li>
+<p>When the <strong>Client Build Form</strong> screen opens, give the new build a unique name.</p>
+</li>
+</ol>
+</div>
+<h2 id="additional-resources" class="discrete">Additional Resources</h2>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information, see <a href="ref_source-configuration.html" class="page">Source Configuration Reference material</a>.</p>
+</li>
+<li>
+<p>For more information, see <a href="ref_terminology.html" class="page">Mobile CI/CD Reference material</a>.</p>
+</li>
+</ul>
+</div>
 </article>
   </main>
 </div>

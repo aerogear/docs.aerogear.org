@@ -235,13 +235,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/creating-a-build-configuration.adoc</a>
+    <a class="nav-link" href="../digger/creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/running-a-build.adoc</a>
+    <a class="nav-link" href="../digger/running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">digger/deploy-the-app.adoc</a>
+    <a class="nav-link" href="../digger/deploy-the-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -326,29 +326,285 @@ $(addBlockSwitches);
     <li class="crumb"><a href="coding.html">Coding</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/jstaffor/mext/mobile-docs/modules/ROOT/pages/keycloak/coding.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/coding.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Coding an App to Use Identity Management</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="configuring-your-development-environment-for-the-identity-management-service"><a class="anchor" href="#configuring-your-development-environment-for-the-identity-management-service"></a>Configuring your Development Environment for the Identity Management Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="provisioning.html" class="page">Provisioning Identity Management Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Optional) You have associated the service with a Mobile Client as described in <a href="binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="obtaining-the-mobile-sdk-configuration-file"><a class="anchor" href="#obtaining-the-mobile-sdk-configuration-file"></a>Obtaining the Mobile SDK Configuration File</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CONFIG INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+</li>
+<li>
+<p>Follow the next specific additional instructions depending on your platform:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Locate this file in your application project and import it using <code>require</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can create a JavaScript object and use directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="keycloak-setup"><a class="anchor" href="#keycloak-setup"></a>Keycloak Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>include::keycloak/configuring-dev-env-keycloak.adoc[]</p>
+<p>The following guide helps you to configure schema of the redirect url and web origin for a client in Keycloak. This is required to use the Auth SDK.</p>
+</div>
+<div class="sect2">
+<h3 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>It is recommended to use the package name of the Android app as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>It is recommended to use the Bundle Identifier of the iOS app followed by <code>:/callback</code> as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template:/callback</code>)</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>The schema of the redirect url should be <code>http://localhost/*</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-keycloak"><a class="anchor" href="#configure-keycloak"></a>Configure Keycloak</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Keycloak Administration Console by selecting route in OpenShift.</p>
+</li>
+<li>
+<p>Open <code>Clients</code> from the menu.</p>
+</li>
+<li>
+<p>Open your Android client.</p>
+</li>
+<li>
+<p>Add the schema to <code>Valid Redirect URIs</code>.</p>
+</li>
+<li>
+<p>Add <code>*</code> to <code>Web Origins</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="retrieving-the-current-user"><a class="anchor" href="#retrieving-the-current-user"></a>Retrieving the Current User</h2>
+<div class="sectionbody">
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>To retrieve the current authenticated user the <code>AuthService#currentUser</code> method can be invoked. This will be <code>null</code> if there is no user authenticated. So it can be used to check whether to start the authentication flow or not.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
+UserPrincipal currentUser = authService.currentUser();
+
+if (currentUser != null) {
+    // User is authenticated, get the users username
+    String userName = currentUser.getUsername();
+    // Get the users first name
+    String firstName = currentUser.getFirstName();
+    // Get the users last name
+    String lastName = currentUser.getLastName();
+    // Get the users email address
+    String userEmail = currentUser.getEmail();
+    // Get the access token of the authenticated user
+    String accessToken = currentUser.getAccessToken();
+    // Get the identity token of the authenticated user
+    String identityToken = currentUser.getIdentityToken();
+    // Get the refresh token of the authenticated user
+    String refreshToken = currentUser.getRefreshToken();
+} else {
+    // User is not authenticated, start authentication flow
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>include::keycloak/keycloak-setup.adoc[]</p>
+<p>Follow <a href="retrieving-custom-user-attributes.html" class="page">this guide</a> to retrieve custom user attributes.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="retrieving-custom-user-attributes"><a class="anchor" href="#retrieving-custom-user-attributes"></a>Retrieving Custom User Attributes</h2>
+<div class="sectionbody">
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>A walkthrough has been provided in the <a href="./auth-user-attributes.adoc">Keycloak Custom User Attributes</a> document to show how you can allow custom user attributes in Keycloak to be available in the Identity token.</p>
 </div>
 <div class="paragraph">
-<p>include::keycloak/android-additional-configuration.adoc[]</p>
+<p>You can then retrieve the custom attributes from the current user.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">boolean booleanAttribute = currentUser.getCustomBooleanAttribute("booleanAttribute");
+int intAttribute = currentUser.getCustomIntegerAttribute("intAttribute");
+long longAttribute = currentUser.getCustomLongAttribute("longAttribute");
+String stringAttribute = currentUser.getCustomStringAttribute("stringAttribute");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging-out"><a class="anchor" href="#logging-out"></a>Logging out</h2>
+<div class="sectionbody">
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>To logout, invoke the <code>AuthService#logout</code> method. This accepts the <code>UserPrincipal</code> that was
+provided by <code>AuthService#handleAuthResponse</code> and has a callback to determine if the logout to the Keycloak or OpenID Connect server was successful.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
+AuthService authService = MobileCore.getInstance().getService(AuthService.class);
+UserPrincipal currentUser = authService.currentUser();
+
+authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
+    @Override
+    public void onSuccess() {
+        // User Logged Out Successfully and Local Auth Tokens were Deleted
+    }
+
+    @Override
+    public void onError(Throwable error) {
+        // An error occurred during logout
+    }
+});</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>include::keycloak/retrieving-current-user.adoc[]</p>
+<p>By default, the local tokens obtained during authentication are only deleted when the logout succeeded against the authentication server.
+You can use the <code>AuthService#deleteTokens</code> function to delete the local authentication tokens as part of a failed logout, or for other use cases.</p>
 </div>
 <div class="paragraph">
-<p>include::keycloak/retrieving-custom-user-attributes.adoc[]</p>
+<p><strong>Note:</strong> To perform backchannel or federated logouts, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under  <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#openid-connect-v1-0-identity-providers">OIDC Identity Providers</a>.</p>
 </div>
-<div class="paragraph">
-<p>include::keycloak/logging-out.adoc[]</p>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+
+</div>
 </div>
 </div>
 </div>
@@ -359,7 +615,7 @@ $(addBlockSwitches);
 <p>This guide will help you to set up the Identity Management service SDK in your App.</p>
 </div>
 <div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
 <div class="ulist">
 <ul>
 <li>
