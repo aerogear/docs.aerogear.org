@@ -53,9 +53,9 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
+    <title>Using the Showcase Apps :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/showcase-apps/service-setup.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="metrics.html">Metrics</a>
+    <a class="nav-link" href="metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -329,7 +329,687 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/showcase-apps/service-setup.adoc"></a></div>
 </div>
 <article class="doc">
-
+<h1>Using the Showcase Apps</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Showcase apps demonstrate many features of Mobile Services. To see these features:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up the appropriate services.</p>
+</li>
+<li>
+<p>Set up the mobile app as described in <a href="#setting-up-the-showcase-app">Setting Up the Showcase App</a>.</p>
+</li>
+<li>
+<p>Register your showcase app as described in <a href="../registering-a-mobile-app.html" class="page">Registering a Mobile App</a>.</p>
+</li>
+<li>
+<p>Bind your Mobile Client to the appropriate services as described in <a href="#binding">Binding the Showcase Mobile Client to Mobile Services</a></p>
+</li>
+<li>
+<p>Copy the <code>mobile-services.json</code> file to your IDE as described in <a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></p>
+</li>
+<li>
+<p>Build and run your showcase app  as described in <a href="#building-and-deploying-the-showcase-apps">Building and Running the Showcase Apps</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-mobile-services-to-demonstrate-showcase-apps"><a class="anchor" href="#setting-up-mobile-services-to-demonstrate-showcase-apps"></a>Setting up Mobile Services to Demonstrate Showcase Apps</h2>
+<div class="sectionbody">
+<h3 id="prerequisites" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="../installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To demonstrate metrics, <a href="../metrics/provisioning.html" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="../metrics/index.html" class="page">Mobile Metrics Service</a></p>
+</li>
+<li>
+<p>To demonstrate authentication:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="../keycloak/provisioning.html" class="page">Provision the Identity Management service</a>.</p>
+</li>
+<li>
+<p><a href="../keycloak/keycloak-setup.html" class="page">Set up the Identity Management service</a>.</p>
+</li>
+<li>
+<p>Create a user account in the Keycloak admin UI to use when logging in within the showcase app:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Open OpenShift console.</p>
+</li>
+<li>
+<p>Click the URL for the Identity Management.</p>
+</li>
+<li>
+<p>Login with your OpenShift credentials.</p>
+</li>
+<li>
+<p>Click <strong>Users</strong> item in the navigation menu.</p>
+</li>
+<li>
+<p>Click <strong>Add User</strong>.</p>
+</li>
+<li>
+<p>Fill in the details of the user as you wish. Make sure <strong>User Enabled</strong> toggle is active.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong></p>
+</li>
+<li>
+<p>You will be taken to details view for the user you have just added.</p>
+</li>
+<li>
+<p>Click <strong>Credentials</strong>.</p>
+</li>
+<li>
+<p>Type in a password in <strong>New Password</strong> and <strong>Password Confirmation</strong> inputs.</p>
+</li>
+<li>
+<p>Uncheck the <strong>Temporary</strong> toggle so that you do not have to reset password on first login.</p>
+</li>
+<li>
+<p>Press <strong>Reset Password</strong></p>
+<div class="paragraph">
+<p>For more information about features, see <a href="../keycloak/index.html" class="page">Identity Management Service</a></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To demonstrate Push Notifications, <a href="../push/provisioning.html" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="../push/index.html" class="page">Push Notifications Service</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-showcase-app"><a class="anchor" href="#setting-up-the-showcase-app"></a>Setting Up the Showcase App</h2>
+<div class="sectionbody">
+<h3 id="prerequisites-2" class="discrete">Prerequisites</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Android SDK or Android Studio from <a href="https://developer.android.com/studio/index.html">Google</a></p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Recommended) The latest version of <a href="http://openjdk.java.net/install/index.html">OpenJDK</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> iOS 9 or later</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Xcode 9 or later</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://cocoapods.org">CocoaPods</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The AeroGear SDK for iOS is available using the CocoaPods package manager.
+If you have not installed CocoaPods, install it by running the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ gem install cocoapods</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/">Node.js</a> runtime and NPM</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli">Cordova CLI</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your system:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Visual Studio Tools for Xamarin from <a href="https://www.visualstudio.com/xamarin/">Microsoft</a></p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Optional) The latest version of <a href="http://openjdk.java.net/install/index.html">OpenJDK</a>, if you would like to install the showcase app on an Android device or emulator</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Optional) The latest version of XCode and command line tools for XCode available from <a href="https://developer.apple.com/download/more/">Apple</a>, if you would like to install the showcase app on an iOS device or emulator</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="procedure-2" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the showcase app and checkout the release tag 1.0.0-alpha</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
+$ cd android-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
+$ cd ios-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/cordova-showcase-template.git
+$ cd cordova-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
+$ cd xamarin-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Configure the Mobile SDK as described in <a href="../configuring-dev-env.html#obtaining-the-mobile-sdk-configuration-file" class="page">Obtaining the Mobile SDK Configuration File</a></p>
+</li>
+<li>
+<p>If using <a href="../push/google-setup.html" class="page">Firebase Cloud Messaging</a> for push notifications, copy the <code>google-services.json</code> to your IDE.</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
+<a href="../push/google-setup.html" class="page">Firebase Cloud Messaging</a> console.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Firebase Cloud Messaging is not supported on iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Overwrite the file <code>/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
+<a href="../push/google-setup.html" class="page">Firebase Cloud Messaging</a> console.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Push Notifications Service is not supported on Xamarin.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="binding"><a class="anchor" href="#binding"></a>Binding the Showcase Mobile Client to Mobile Services</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
+<div class="paragraph">
+<p>[x] Your showcase app is registered as described in <a href="../registering-a-mobile-app.html" class="page">Registering a Mobile App</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="../metrics/binding.html" class="page">Bind the Mobile Client to the Mobile Metrics service</a> if you want to demonstrate the Mobile Metrics service.</p>
+</li>
+<li>
+<p><a href="../keycloak/binding.html" class="page">Bind the Mobile Client to the Identity Management service</a> if you want to demonstrate authentication.</p>
+</li>
+<li>
+<p><a href="../push/binding.html" class="page">Bind the Mobile Client to the Push Notifications service</a> if you want to demonstrate Push Notifications.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step also creates a variant as described in <a href="../push/index.html" class="page"> Push Notifications Service</a> terminology.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+</li>
+<li>
+<p>Follow the next specific additional instructions depending on your platform:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Locate this file in your application project and import it using <code>require</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can create a JavaScript object and use directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building-and-deploying-the-showcase-apps"><a class="anchor" href="#building-and-deploying-the-showcase-apps"></a>Building and Running the Showcase Apps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build the Mobile App</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew buildDebug</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Run this command to install dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
+$ npm run ionic:build</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Run this command to install dependencies (optional):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Run the Mobile App</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
+no connected device, it installs and runs the application on the emulator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew installDebug</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use <code>.xcodeproj</code>. If you open up a project file instead of a workspace, dependencies will not be correctly configured.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>To run the showcase app, use these commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm run ionic:android # to run on an Android device or emulator
+$ npm run ionic:ios # to run on an iOS device or emulator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These commands would run the app on a device if connected or on the emulator if no device is connected.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use Cordova commands directly to specify the target:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ionic cordova run android --device      # run on a connected device
+$ ionic cordova run android --emulator    # run on the Android emulator</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open up <code>xamarin-showcase-template.sln</code> with VisualStudio.</p>
+</li>
+<li>
+<p>If you didn&#8217;t run <code>nuget restore</code> before, right click on the solution in the left pane then click on <code>Restore Nuget Packages</code>.</p>
+</li>
+<li>
+<p>In the top bar, select the project to run: <code>Example.Android</code> or <code>Example.iOS</code></p>
+</li>
+<li>
+<p>Again in the top bar, select the correct configuration:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Debug/Release: for compiling Example.Android</p>
+</li>
+<li>
+<p>[Debug|Release]|iPhoneSimulator: to compile and run Example.iOS on the iPhoneSimulator</p>
+</li>
+<li>
+<p>[Debug|Release]|iPhone: to compile and run Example.iOS on a real iPhone device</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>At the right of the configuration, select the target device (the android or iPhone version)</p>
+</li>
+<li>
+<p>Click on <strong>Build &#8594; Rebuild All</strong></p>
+</li>
+<li>
+<p>Click on the <strong>Run</strong> button in the top left</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If no android devices are selectable, it could mean that no virtual android devices has been configured. To add one, click on <strong>Tools&#8594;Device Manager&#8594;Add Device</strong>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-self-signed-certificates-in-mobile-clients"><a class="anchor" href="#using-self-signed-certificates-in-mobile-clients"></a>Using Self-Signed Certificates in Mobile Apps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Throughout the development lifecycle of a mobile apps, a common
+requirement is to integrate and connect with back-end
+services in a secure manner. However in order for the client
+device to connect over SSL/TLS, it needs to trust the root
+certificate authority. This cert must be installed on the client device
+to ensure that the client trusts server certificates that are signed by
+the certificate authority.</p>
+</div>
+<div class="paragraph">
+<p>When the certificate uses a trusted root certificate authority the cert is installed automatically.
+In a development environment, such as a local OpenShift cluster which uses
+self-signed certificates, you must extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
+</div>
+<div class="sect2">
+<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>Extracting the OpenShift Root Certificate Authority Cert</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into OpenShift as the admin user. If you followed the steps in the <a href="../index.html" class="page">Getting Started</a>, you can log in using <code>admin/admin</code>.</p>
+</li>
+<li>
+<p>Run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
+base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/localcluster.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting file is located in the <code>/tmp</code> directory.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure a pin to ensure the certificate can be installed.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>USB <strong>(Android only)</strong> - Attach the device to the machine hosting
+OpenShift via USB and drag the certificate to the devices file system</p>
+</li>
+<li>
+<p>Email attachment - Simply email the certificate to an address
+accessible from the device and download the attachment.</p>
+</li>
+<li>
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google
+Drive which is accessible from the device, browse to the certificate and
+proceed to download it.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Configure your device:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Go to Settings &gt; Security &gt; Install from storage. It should detect the
+certificate and let you add it to the device.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>When you download the certificate, the
+device should automatically detect a profile. Simply follow the on
+screen instructions to install it.</p>
+</div>
+<div class="paragraph">
+<p>Versions iOS 10.3 and later require an additional step to trust the now
+installed certificate. Instructions can be found on the
+<a href="https://support.apple.com/en-us/HT204477">Apple support site</a></p>
+</div>
+</div>
+</div>
+<h2 id="next-steps" class="discrete">Next Steps</h2>
+<div class="ulist">
+<ul>
+<li>
+<p>Create your own mobile app that uses the features of Mobile Services.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </article>
   </main>
 </div>

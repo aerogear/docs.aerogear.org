@@ -53,9 +53,9 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authenticating :: AeroGear Mobile Services</title>
+    <title>Adding User Authentication to your Mobile App :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/authenticating.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -329,72 +329,315 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/authenticating.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Authenticating</h1>
+<h1>Adding User Authentication to your Mobile App</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes how to perform user authentication for the supported platforms. On authentication a browser window will open and prompt the user for login credentials.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have imported the necessary libraries and <a href="coding.html" class="page">initialized the SDK</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementing-authentication"><a class="anchor" href="#implementing-authentication"></a>Implementing authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following examples show how to implement authentication using the Aerogear SDK on all the supported platforms.</p>
+</div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>To start the authentication invoke the <code>AuthService#login</code> method.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Provide an implementation of <code>Callback</code> which is defined in the Aerogear SDK and used to handle asynchronous results:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-AuthService authService = MobileCore.getInstance().getService(AuthService.class);
-
-static int LOGIN_RESULT_CODE = 1;
-
-// Build the options object and start the authentication flow.
-// Provide an activity to handle the auth response.
-DefaultAuthenticateOptions options =
-    new DefaultAuthenticateOptions(myActivity, LOGIN_RESULT_CODE);
-
-Callback authCallback = new Callback&lt;UserPrincipal&gt;() {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Callback authCallback = new Callback&lt;UserPrincipal&gt;() {
     @Override
     public void onSuccess(UserPrincipal principal) {
-        // User authenticated in, continue on..
+        ...
     }
 
     @Override
     public void onError(Throwable error) {
-        // An error occurred during login.
+        ...
     }
-};
+};</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Retrieve an instance of the <code>AuthService</code> and use the <code>login</code> method to hand over to the login browser:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);
+
+// Build the options object and start the authentication flow
+DefaultAuthenticateOptions options = new DefaultAuthenticateOptions(myActivity, LOGIN_RESULT_CODE);
 
 authService.login(options, authCallback);</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Once the browser returns to the app the result can be handled. In the activity provided to the
-<code>login</code> method override <code>onActivityResult</code>. This handler should always invoke
-<code>AuthService#handleAuthResponse</code>, providing the <code>Intent</code>. This will exchange the temporary tokens
-returned from <code>AuthService#login</code> for long-life tokens and will provide a <code>UserPrincipal</code> which can
-be used to access a users details. If this is not invoked you will not have access to the
-<code>UserPrincipal</code>.</p>
-</div>
+</li>
+<li>
+<p>Override <code>onActivityResult</code> to handle the result from the browser. It&#8217;s important to pass the intent back to the Auth service:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == LOGIN_RESULT_CODE) {
-        // The core will return the same instance of the auth service as before
-        AuthService authService = mobileCore.getInstance(AuthService.class);
+        AuthService authService = MobileCore.getInstance().getService(AuthService.class);
         authService.handleAuthResult(data);
     }
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The callback provided in <code>AuthService#login</code> will be invoked.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This handler should always invoke <code>handleAuthResult</code>, providing the <code>Intent</code>. This will exchange the temporary tokens returned from <code>login</code> for long-lived tokens and will provide a <code>UserPrincipal</code> which can be used to access a users details. If this is not invoked you will not have access to the <code>UserPrincipal</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>The callback provided to <code>login</code> will be invoked.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>login</code> method to hand over to the login browser:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">AgsAuth.instance.login(presentingViewController: self, onCompleted: onLoginComplete)
 
+func onLoginComplete(user: User?, err: Error?) {
+    if let error = err {
+        return
+    }
+
+    let currentUser = user
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Allow your application to handle the redirect in <code>AppDelegate</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -&gt; Bool {
+    do {
+        return try AgsAuth.instance.resumeAuth(url: url as URL)
+    } catch AgsAuth.Errors.serviceNotConfigured {
+        print("AeroGear auth service is not configured")
+    } catch {
+        fatalError("Unexpected error: \(error).")
+    }
+    return false
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Authentication will be performed on initialization as described <a href="coding.html#initializing-the-sdk" class="page">here</a>. To manually redirect to the login screen use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>authService.login().then(() =&gt; {
+    // Login success
+}).catch(() =&gt; {
+    // Login error
+});;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>Authenticate</code> method to hand over to the login browser:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">IAuthService authService = MobileCore.Instance.GetInstance&lt;IAuthService&gt;();
 
+var authOptions = DependencyService.Get&lt;IAuthenticateOptionsProvider&gt;().GetOptions();
+authService.Authenticate(authOptions).ContinueWith(user =&gt;
+{
+    // Change view to user details. No need to handle the user result here, it will be available through
+    // authService.CurrentUser()
+    Device.BeginInvokeOnMainThread(() =&gt; ((RootPage)(App.Current.MainPage)).ChangePage(new UserDetails()));
+});</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-log-out-option-to-your-mobile-app"><a class="anchor" href="#adding-log-out-option-to-your-mobile-app"></a>Adding Log Out Option to your Mobile App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following section describes how to perform a logout.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get an instance of the auth service and retrieve the current user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);
+UserPrincipal currentUser = authService.currentUser();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement <code>Callback</code> and call <code>logout</code>:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
+    @Override
+    public void onSuccess() {
+        // User Logged Out Successfully and local Auth tokens were Deleted
+    }
+
+    @Override
+    public void onError(Throwable error) {
+        // An error occurred during logout
+    }
+});</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the logout callback:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func onLogoutComplete(_: Error?) {
+    ...
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Call <code>logout</code> and pass the callback:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">do {
+    try AgsAuth.instance.logout(onCompleted: self.onLogoutComplete)
+} catch {
+    fatalError("Error logging out: \(error).")
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>To logout invoke the <code>logout</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">authService.logout().then(() =&gt; {
+    // When the logout succeeded the local tokens obtained during authentication are deleted
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>To logout invoke the <code>Logout</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authService = MobileCore.Instance.GetInstance&lt;IAuthService&gt;();
+authService.Logout(authService.CurrentUser()).ContinueWith(result =&gt;
+{
+    Device.BeginInvokeOnMainThread(() =&gt; ((RootPage)(App.Current.MainPage)).ChangePage(new GoodbyePage()));
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To perform <strong>backchannel or federated logouts</strong>, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html">OICD Identity Providers</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="android-additional-configuration.html" class="page">Additional configuration for Android</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html">Keycloak OICD Providers</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="retrieving-users-roles.html" class="page">Access Control</a></p>
+</div>
 </div>
 </div>
 </article>
