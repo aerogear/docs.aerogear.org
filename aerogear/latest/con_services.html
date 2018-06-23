@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/con_services.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -495,6 +495,9 @@ If you have registered a mobile app, you can navigate to that Mobile Client and 
 <p>Log into the OpenShift console.</p>
 </li>
 <li>
+<p>Choose your project.</p>
+</li>
+<li>
 <p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
 <div class="paragraph">
 <p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
@@ -522,6 +525,59 @@ When prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind a
 </div>
 <div class="paragraph">
 <p>See the <a href="#">services.adoc</a> and navigate to the documentation for the service you require.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering-a-mobile-app"><a class="anchor" href="#registering-a-mobile-app"></a>Registering a Mobile App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prerequisites:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have installed OpenShift with Mobile Services as described in <a href="index.html" class="page">Getting Started</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You register a mobile app by creating a Mobile Client in your OpenShift project:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Choose your project.</p>
+</li>
+<li>
+<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Apps</strong> tab and then choose the mobile platform (Android, iOS, Cordova or Xamarin) and follow the wizard.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After the Mobile Client is provisioned, you can navigate to it from Project Overview. This screen displays a list of mobile services that you can associate with the Mobile Client and offers to provision any mobile service that is in the service catalog but is not currently provisioned.</p>
+</div>
+<div class="sect2">
+<h3 id="related-information"><a class="anchor" href="#related-information"></a>Related Information</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="provisioning-services.html" class="page">Provisioning Mobile Services</a></p>
+</li>
+<li>
+<p><a href="binding-mobile-app-record-to-mobile-services.html" class="page">Binding a Mobile Client with Mobile Services</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

@@ -53,9 +53,9 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retrieving a users roles :: AeroGear Mobile Services</title>
+    <title>Access Control :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/retrieving-users-roles.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -329,57 +329,143 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/retrieving-users-roles.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Retrieving a users roles</h1>
+<h1>Access Control</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once a <code>UserPrincipal</code> has been retrieved the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
+</div>
+<div class="paragraph">
+<p>Roles are divided into two types. Resource roles which belong to the client the user has authenticated against, and Realm roles which belong to the realm the client is in.</p>
+</div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Once a <code>UserPrincipal</code> has been retrieved the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles">roles</a> of the user can be listed and checked. This can
-be used to perform client side access control, such as hiding UI components related to actions the
-user doesn&#8217;t have permissions to perform.</p>
-</div>
-<div class="paragraph">
-<p>To list a users roles the <code>UserPrincipal#getRoles</code> method can be invoked.</p>
-</div>
-<div class="paragraph">
-<p>Roles are divided into two types. Resource roles which belong to the client the user has
-authenticated against, and Realm roles which belong to the realm the client is in.</p>
-</div>
-<div class="paragraph">
-<p>To list a users realm roles  the <code>UserPrincipal#getRealmRoles</code> method can be invoked and
-to list a users resource roles the <code>UserPrincipal#getResourceRoles</code> can be invoked.</p>
-</div>
-<div class="paragraph">
-<p>In order to check if a user has a specific role you can invoke the <code>UserPrincipal#hasResourceRole</code>
-and <code>UserPrincipal#hasRealmRole</code> methods and provide the role name to check for.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the authenticated user:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
 AuthService authService = MobileCore.getInstance().getService(AuthService.class);
-UserPrincipal currentUser = authService.currentUser();
-
-boolean hasAdminPermissions = currentUser.hasRealmRole("user_admin");
-if (hasAdminPermissions) {
-    // Show some component.
-}
-
-// Check if a user has a role from a specific resource named my_resource.
-boolean isModerator = currentUser.hasResourceRole("my_resource", "user_moderator");
-if (isModerator) {
-    // Enable some button.
-}</code></pre>
+UserPrincipal currentUser = authService.currentUser();</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Use <code>hasRealmRole</code> and <code>hasResourceRole</code> to check for roles:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">boolean hasAdminPermissions = currentUser.hasRealmRole("user_admin");
+boolean isModerator = currentUser.hasResourceRole("my_resource", "user_moderator");</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
-
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the authenticated user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let currentUser = try AgsAuth.instance.currentUser()</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The user roles are available on the authenticated user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let clientRoles = currentUser.clientRoles
+let realmRoles = currentUser.realmRoles</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use <code>hasRealmRole</code> and <code>hasClientRole</code> to check for roles:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let hasAdminRole = currentUser.hasRealmRole("admin")
+let hasModeratorRole = currentUser.hasClientRole(client: "my_client", role: "moderator")</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-
+<div class="paragraph">
+<p>Get the realm roles from the auth service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const realmRoles = authService.getRealmRoles();</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+No function to retrieve the resource roles is currently exported but you can use <code>extract</code> to get a handle to the underlying keycloak-js instance to retrieve the roles from there. Have a look at their documentation <a href="https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the authenticated user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">// auth service is already initialised
+var user = MobileCore.Instance.GetInstance&lt;IAuthService&gt;().CurrentUser();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use <code>getRoles</code> to retrieve all roles from the user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">// auth service is already initialised
+var roles = user.getRoles();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use <code>HasRealmRole</code> and <code>HasResourceRole</code> to check for roles:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">bool isAdmin = user.HasRealmRole("user_admin");
+bool isModerator = user.HasResourceRole("my_resource", "user_moderator");</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="sso.html" class="page">Single Sign On</a></p>
+</div>
 </div>
 </div>
 </article>

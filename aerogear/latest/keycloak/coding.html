@@ -53,9 +53,9 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding an App to Use Identity Management :: AeroGear Mobile Services</title>
+    <title>Configuring your Development Environment for the Identity Management Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/coding.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -284,7 +284,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Metrics</a>
+    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
   </li>
 </ul>
   </li>
@@ -329,12 +329,10 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/coding.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Coding an App to Use Identity Management</h1>
+<h1>Configuring your Development Environment for the Identity Management Service</h1>
 <div class="sect1">
-<h2 id="configuring-your-development-environment-for-the-identity-management-service"><a class="anchor" href="#configuring-your-development-environment-for-the-identity-management-service"></a>Configuring your Development Environment for the Identity Management Service</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -347,9 +345,8 @@ $(addBlockSwitches);
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="obtaining-the-mobile-sdk-configuration-file"><a class="anchor" href="#obtaining-the-mobile-sdk-configuration-file"></a>Obtaining the Mobile SDK Configuration File</h2>
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -357,7 +354,7 @@ $(addBlockSwitches);
 <p>Navigate to your project in OpenShift.</p>
 </li>
 <li>
-<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CONFIG INFO</strong>.</p>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
 </li>
 <li>
 <p>Copy the configuration to your clipboard.</p>
@@ -451,6 +448,13 @@ $(addBlockSwitches);
 </div>
 </div>
 </div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Depending on the platform set the redirect as described in either the Android or the iOS tab.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configure-keycloak"><a class="anchor" href="#configure-keycloak"></a>Configure Keycloak</h3>
@@ -477,134 +481,14 @@ $(addBlockSwitches);
 </div>
 </div>
 <div class="sect1">
-<h2 id="retrieving-the-current-user"><a class="anchor" href="#retrieving-the-current-user"></a>Retrieving the Current User</h2>
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
 <div class="sectionbody">
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>To retrieve the current authenticated user the <code>AuthService#currentUser</code> method can be invoked. This will be <code>null</code> if there is no user authenticated. So it can be used to check whether to start the authentication flow or not.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-UserPrincipal currentUser = authService.currentUser();
-
-if (currentUser != null) {
-    // User is authenticated, get the users username
-    String userName = currentUser.getUsername();
-    // Get the users first name
-    String firstName = currentUser.getFirstName();
-    // Get the users last name
-    String lastName = currentUser.getLastName();
-    // Get the users email address
-    String userEmail = currentUser.getEmail();
-    // Get the access token of the authenticated user
-    String accessToken = currentUser.getAccessToken();
-    // Get the identity token of the authenticated user
-    String identityToken = currentUser.getIdentityToken();
-    // Get the refresh token of the authenticated user
-    String refreshToken = currentUser.getRefreshToken();
-} else {
-    // User is not authenticated, start authentication flow
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Follow <a href="retrieving-custom-user-attributes.html" class="page">this guide</a> to retrieve custom user attributes.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="retrieving-custom-user-attributes"><a class="anchor" href="#retrieving-custom-user-attributes"></a>Retrieving Custom User Attributes</h2>
-<div class="sectionbody">
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>A walkthrough has been provided in the <a href="./auth-user-attributes.adoc">Keycloak Custom User Attributes</a> document to show how you can allow custom user attributes in Keycloak to be available in the Identity token.</p>
-</div>
-<div class="paragraph">
-<p>You can then retrieve the custom attributes from the current user.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">boolean booleanAttribute = currentUser.getCustomBooleanAttribute("booleanAttribute");
-int intAttribute = currentUser.getCustomIntegerAttribute("intAttribute");
-long longAttribute = currentUser.getCustomLongAttribute("longAttribute");
-String stringAttribute = currentUser.getCustomStringAttribute("stringAttribute");</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="logging-out"><a class="anchor" href="#logging-out"></a>Logging out</h2>
-<div class="sectionbody">
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>To logout, invoke the <code>AuthService#logout</code> method. This accepts the <code>UserPrincipal</code> that was
-provided by <code>AuthService#handleAuthResponse</code> and has a callback to determine if the logout to the Keycloak or OpenID Connect server was successful.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-AuthService authService = MobileCore.getInstance().getService(AuthService.class);
-UserPrincipal currentUser = authService.currentUser();
-
-authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
-    @Override
-    public void onSuccess() {
-        // User Logged Out Successfully and Local Auth Tokens were Deleted
-    }
-
-    @Override
-    public void onError(Throwable error) {
-        // An error occurred during logout
-    }
-});</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>By default, the local tokens obtained during authentication are only deleted when the logout succeeded against the authentication server.
-You can use the <code>AuthService#deleteTokens</code> function to delete the local authentication tokens as part of a failed logout, or for other use cases.</p>
-</div>
-<div class="paragraph">
-<p><strong>Note:</strong> To perform backchannel or federated logouts, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under  <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#openid-connect-v1-0-identity-providers">OIDC Identity Providers</a>.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="coding.html" class="page">Setting up the Identity Management service SDK</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -616,19 +500,19 @@ You can use the <code>AuthService#deleteTokens</code> function to delete the loc
 </div>
 <div class="sect2">
 <h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p><a href="provisioning.html" class="page">Provisioned Identity Management service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> <a href="provisioning.html" class="page">Provisioned Identity Management service</a>.</p>
 </li>
 <li>
-<p><a href="binding.html" class="page">Binding</a> created.</p>
+<p><i class="fa fa-check-square-o"></i> <a href="binding.html" class="page">Binding</a> created.</p>
 </li>
 <li>
-<p><a href="configuring-dev-env-keycloak.html" class="page">Configured dev environment</a>.</p>
+<p><i class="fa fa-check-square-o"></i> <a href="configuring-dev-env-keycloak.html" class="page">Configured dev environment</a>.</p>
 </li>
 <li>
-<p><a href="keycloak-setup.html" class="page">Configured Keycloak</a>.</p>
+<p><i class="fa fa-check-square-o"></i> Read the <a href="../configuring-dev-env.html" class="page">general app setup guide</a>.</p>
 </li>
 </ul>
 </div>
@@ -640,25 +524,14 @@ You can use the <code>AuthService#deleteTokens</code> function to delete the loc
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Import Core module.</p>
-</li>
-<li>
-<p>Specify the schema of the redirect url for your Android project in <code>android.defaultConfig.manifestPlaceholders</code> of the apps <code>build.gradle</code> file.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It should match the schema specified in the <code>Valid Redirect URIs</code> section for the client in Keycloak.
-</td>
-</tr>
-</table>
+<p>Import the auth module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation "org.aerogear:aerogear-auth:1.0.0-alpha"
+}</code></pre>
 </div>
-</li>
-<li>
-<p>TODO: Import auth module.</p>
+</div>
 </li>
 </ol>
 </div>
@@ -666,23 +539,83 @@ It should match the schema specified in the <code>Valid Redirect URIs</code> sec
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Add dependency to your Podfile:</p>
+<p>Add the dependency to your Podfile</p>
 <div class="listingblock">
 <div class="content">
-<pre>pod 'AGSAuth'</pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
+    pod 'AGSAuth', '1.0.0-alpha'
+end</code></pre>
 </div>
 </div>
 </li>
-</ul>
+<li>
+<p>Update the dependencies</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pod install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Import the SDK</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import AGSAuth</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-
+<div class="paragraph">
+<p>Install the auth package:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install @aerogear/auth</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools">NuGet</a></p>
+</li>
+<li>
+<p>Install the Core package:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0-alpha</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For Android run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0-alpha</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For iOS run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0-alpha</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -693,42 +626,43 @@ It should match the schema specified in the <code>Valid Redirect URIs</code> sec
 <div class="sectionbody">
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p><code>AuthService</code> can be retrieved using the <code>MobileCore#getInstance</code> method.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the auth service</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Any subsequent <code>getService</code> call will return the same instance of <code>AuthService</code>.</p>
-</div>
-<div class="paragraph">
-<p>Before the <code>AuthService</code> can be used <code>AuthService#init</code> must be invoked once in an app.</p>
-</div>
+</li>
+<li>
+<p>Specify the redirect URL. It is recommended to use the package name of your app.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Specify redirect URI. It is recommended to use the package name of your app.
-AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration
+<pre>AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration
     .AuthConfigurationBuilder()
     .withRedirectUri("org.aerogear.mobile.example:/callback")
-    .build();
-
-// You only need to invoke this once every subsequent retrieval of the AuthService
-// will retrieve the same instance.
-authService.init(context, authServiceConfig);</code></pre>
+    .build();</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Follow <a href="android-additional-configuration.html" class="page">this guide</a> for additional configuration.</p>
+</li>
+<li>
+<p>Before the auth service can be used <code>init</code> must be invoked once in an app</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">authService.init(context, authServiceConfig);</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
 <div class="paragraph">
-<p>The Auth SDK can be initialised with configuration options. Use the redirect URL <a href="keycloak-setup.html" class="page">configured in Keycloak</a>.</p>
+<p>Set your custom configuration to the auth service instance, making sure the redirect URL matches the App&#8217;s Bundle Id.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -741,8 +675,115 @@ try! AgsAuth.instance.configure(authConfig: authenticationConfig)</code></pre>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-
+<div class="paragraph">
+<p>Import and initialize Auth:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const Auth = require('@aerogear/auth').Auth;
+
+const authService = new Auth();
+const initOptions = { onLoad: "login-required" };
+
+authService.init(initOptions)
+    .then(() =&gt; {
+        // successful init &amp; authentication
+    })
+    .catch((err) =&gt; {
+        // initialization error
+    });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can pass <code>login-required</code> or <code>check-sso</code> to the init function. <code>login-required</code> will authenticate the client if the user is logged in to Keycloak or display the login page if not. <code>check-sso</code> will only authenticate the client if the user is already logged in. If the user is not logged in the browser will be redirected back to the application and remain unauthenticated. By default, the <code>check-sso</code> option is used.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Initialization will also perform authentication
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an <a href="https://developer.android.com/guide/topics/manifest/manifest-intro#ifs">intent filter</a> for the <code>net.openid.appauth.RedirectUriReceiverActivity</code> activity. This step is required for Xamarin Android and allows the login browser to redirect back to your App. Add this to your <code>AndroidManifest.xml</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;activity android:name="net.openid.appauth.RedirectUriReceiverActivity" android:exported="true"  android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.VIEW" /&gt;
+        &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+        &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+        &lt;data android:scheme="org.aerogear.mobile.example" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize the Auth module</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For an Android app (MainActivity.cs):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var app = new App();
+MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
+var authService = AuthService.InitializeService();
+var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
+authService.Configure(authConfig);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For Android an <a href="https://developer.android.com/guide/topics/manifest/manifest-intro#ifs">Intent filter</a> should be configured with the callback URL specified in AuthenticateOptions in the App&#8217;s AndroidManifest.xml. See the <a href="https://github.com/aerogear/xamarin-showcase-template/blob/master/Example.Android/Properties/AndroidManifest.xml">example app</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>For an iOS app (AppDelegate.cs):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">var app = new App();
+MobileCore core = MobileCoreIOS.Init(app.GetType().Assembly);
+var authService = AuthService.InitializeService();
+var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
+authService.Configure(authConfig);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="authenticating.html" class="page">User authentication</a></p>
 </div>
 </div>
 </div>
