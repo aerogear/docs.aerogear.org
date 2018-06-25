@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture of {product-name} :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile_architecture.html">
+    <title>Using Mobile Services :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/nav-matrix.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -321,13 +321,94 @@ $(addBlockSwitches);
   <a href="index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobile_architecture.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/nav-matrix.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Architecture of {product-name}</h1>
-<div class="imageblock">
-<div class="content">
-<img src="_images/arch.png" alt="arch">
+<h1>Using Mobile Services</h1>
+<div id="preamble">
+<div class="sectionbody">
+<h2 id="prerequisites" class="discrete">Prerequisites</h2>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have <a href="index.html" class="page">set up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have <a href="registering-a-mobile-app.html" class="page">registered a mobile app</a> to create a Mobile Client.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After choosing a mobile service, use the following table to navigate to the step you want to perform (click the service name to view a description of that service) :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Mobile Services</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Service</th>
+<th class="tableblock halign-left valign-top">Provisioning</th>
+<th class="tableblock halign-left valign-top">Binding</th>
+<th class="tableblock halign-left valign-top">Coding</th>
+<th class="tableblock halign-left valign-top">Service Consoles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/index.html" class="page">Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/provisioning.html" class="page">Provisioning Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/binding.html" class="page">Binding to Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/coding.html" class="page">Coding for Authenication</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">keycloak/Keycloak Admin UI.adoc</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="security/index.html" class="page">Device Security</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device Trust Checks and Certificate Pinning</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/index.html" class="page">Push Notifications</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/provisioning.html" class="page">Provisioning Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/binding.html" class="page">Binding to Push Notifications</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/coding.html" class="page">Coding for Push Notifications</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/admin-ui.html" class="page">Unified Push Admin UI</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/index.html" class="page">Mobile Metrics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/binding.html" class="page">Binding to Mobile Metrics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/configuring-dev-env-metrics.html" class="page">Adding Metrics to your App</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">metrics/grafana-ui.adoc</a> and <a href="#">metrics/prometheus-ui.adoc</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/index.html" class="page">Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/provisioning.html" class="page">Provisioning Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/binding.html" class="page">Binding to Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/configuring-dev-env-custom.html" class="page">Using a Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/index.html" class="page">Mobile CI/CD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/provisioning.html" class="page">Provisioning Mobile CI/CD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/running-a-build.html" class="page">Building an App</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">digger/digger-ui.adoc</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>
