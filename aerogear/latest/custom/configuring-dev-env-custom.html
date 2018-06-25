@@ -171,7 +171,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../push/admin-ui.html">Unified Push admin UI</a>
+    <a class="nav-link" href="../push/admin-ui.html">Unified Push Admin UI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
@@ -371,7 +371,7 @@ Have a look at <a href="../configuring-dev-env.html" class="page">Development En
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you don&#8217;t use any other module of the Aerogear SDK make sure that the <code>android-core</code> is in the dependencies of you app modules <code>build.gradle</code>:</p>
+<p>If you do not use any other modules of the Aerogear SDK, make sure that the <code>android-core</code> is in the dependencies of your <code>app</code> module&#8217;s <code>build.gradle</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
@@ -381,7 +381,7 @@ Have a look at <a href="../configuring-dev-env.html" class="page">Development En
 </div>
 </li>
 <li>
-<p>Use the <code>getServiceConfigurationsByType</code> method to get the service configuration associated with your custom service</p>
+<p>Use the <code>getServiceConfigurationById</code> method to get the service configuration associated with your custom service:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ServiceConfiguration customConfig = MobileCore.getInstance().getServiceConfigurationById("[SERVICE NAME]");</code></pre>
@@ -413,7 +413,7 @@ Have a look at <a href="../configuring-dev-env.html" class="page">Development En
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you don&#8217;t use any other module of the Aerogear SDK make sure that the <code>AGSCore</code> is in your <code>Podfile</code>:</p>
+<p>If you do not use any other modules of the Aerogear SDK, make sure that the <code>AGSCore</code> is in your <code>Podfile</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target :'YourTarget' do

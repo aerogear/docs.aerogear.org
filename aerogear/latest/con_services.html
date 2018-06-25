@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Mobile Services :: AeroGear Mobile Services</title>
+    <title>Untitled :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/con_services.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -171,7 +171,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="push/admin-ui.html">Unified Push admin UI</a>
+    <a class="nav-link" href="push/admin-ui.html">Unified Push Admin UI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push/handling-push-notifications.html">Handling Push Notifications</a>
@@ -328,315 +328,88 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/con_services.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>About Mobile Services</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following services are available:</p>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Mobile Metrics</div><div class="content">
-<div class="paragraph">
-<p>The Mobile Metrics service allows you gather metrics on mobile apps, device versions, device security checks and back-end mobile service usage.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Monitor usage by version of mobile app, platform and SDK</p>
-</li>
-<li>
-<p>Monitor interactions with the Identity Management service</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Push Notifications</div><div class="content">
-<div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Code once and push notifications to iOS and Android</p>
-</li>
-<li>
-<p>Push notifications to defined groups</p>
-</li>
-<li>
-<p>Push notifications to either iOS only or Android only</p>
-</li>
-<li>
-<p>Push notifications to different variants of a mobile app</p>
-</li>
-<li>
-<p>Push notifications from different back-end apps to the same mobile app</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Identity Management</div><div class="content">
-<div class="paragraph">
-<p>The Identity Management service allows you to add authentication and authorization to your mobile app.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Secure your mobile app using the industry standard OpenID Connect protocol</p>
-</li>
-<li>
-<p>Add access control to your app based on user’s group membership</p>
-</li>
-<li>
-<p>Easily implement SSO, multi factor authentication and Social Login support</p>
-</li>
-<li>
-<p>Back end support for identity brokering and user federation</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Runtime Connector</div><div class="content">
-<div class="paragraph">
-<p>The Runtime Connector service allows you connect your mobile apps to your own backend API servers.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Bind your mobile client to custom backend API services and business logic</p>
-</li>
-<li>
-<p>Ability to add custom configuration for a backend service, which becomes accessible from your Mobile App</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Mobile CI/CD</div><div class="content">
-<div class="paragraph">
-<p>The Mobile CI/CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Leverage your Jenkins expertise to manage and automate mobile builds.</p>
-</li>
-<li>
-<p>Containerised builds on OpenShift for Android</p>
-</li>
-<li>
-<p>Support for integrating OSX as build slaves for iOS builds</p>
-</li>
-<li>
-<p>Catch build errors early using automated builds</p>
-</li>
-<li>
-<p>Build status is displayed on the Mobile Client details page in the OpenShift console, along with the mobile services associated with that Mobile Client</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Device Security</div><div class="content">
-<div class="paragraph">
-<p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Perform a range of device trust checks on the mobile device, such as checking if the device is rooted, and allows you take proactive action based on the results</p>
-</li>
-<li>
-<p>Distribute SSL certificates with a mobile app to create a direct chain of trust (certificate pinning)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="provisioning-mobile-services"><a class="anchor" href="#provisioning-mobile-services"></a>Provisioning Mobile Services</h2>
+<h2 id="using-mobile-services"><a class="anchor" href="#using-mobile-services"></a>Using Mobile Services</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<h3 id="prerequisites" class="discrete">Prerequisites</h3>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You have <a href="index.html" class="page">set up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have <a href="registering-a-mobile-app.html" class="page">registered a mobile app</a> to create a Mobile Client.</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you have registered a mobile app, you can navigate to that Mobile Client and see what mobile services are available to provision.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To provision the  mobile service:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console.</p>
-</li>
-<li>
-<p>Choose your project.</p>
-</li>
-<li>
-<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
-<div class="paragraph">
-<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
-</div>
-</li>
-<li>
-<p>Click <strong>Services</strong> and choose the  service.</p>
-</li>
-<li>
-<p>Follow the wizard for provisioning that service.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>See the <a href="#">services.adoc</a> and navigate to the documentation for the service you require.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="registering-a-mobile-app"><a class="anchor" href="#registering-a-mobile-app"></a>Registering a Mobile App</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Prerequisites:</p>
-</div>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You have installed OpenShift with Mobile Services as described in <a href="index.html" class="page">Getting Started</a>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You register a mobile app by creating a Mobile Client in your OpenShift project:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console.</p>
-</li>
-<li>
-<p>Choose your project.</p>
-</li>
-<li>
-<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
-<div class="paragraph">
-<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
-</div>
-</li>
-<li>
-<p>Click the <strong>Apps</strong> tab and then choose the mobile platform (Android, iOS, Cordova or Xamarin) and follow the wizard.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>After the Mobile Client is provisioned, you can navigate to it from Project Overview. This screen displays a list of mobile services that you can associate with the Mobile Client and offers to provision any mobile service that is in the service catalog but is not currently provisioned.</p>
 </div>
 <div class="sect2">
-<h3 id="related-information"><a class="anchor" href="#related-information"></a>Related Information</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="provisioning-services.html" class="page">Provisioning Mobile Services</a></p>
-</li>
-<li>
-<p><a href="binding-mobile-app-record-to-mobile-services.html" class="page">Binding a Mobile Client with Mobile Services</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="binding-a-mobile-client-with-mobile-services"><a class="anchor" href="#binding-a-mobile-client-with-mobile-services"></a>Binding a Mobile Client with Mobile Services</h2>
-<div class="sectionbody">
+<h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
-This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+<p>After choosing a mobile service, use the following table to navigate to the step you want to perform (click the service name to view a description of that service) :</p>
 </div>
-<div class="admonitionblock note">
-<table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Mobile Services</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The association between a Mobile Client and  Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
-</td>
+<th class="tableblock halign-left valign-top">Service</th>
+<th class="tableblock halign-left valign-top">Provisioning</th>
+<th class="tableblock halign-left valign-top">Binding</th>
+<th class="tableblock halign-left valign-top">Coding</th>
+<th class="tableblock halign-left valign-top">Service Consoles</th>
 </tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To associate a Mobile Client with a mobile service:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
-</li>
-<li>
-<p>Click on the Mobile Client and navigate to Mobile Client view.</p>
-<div class="admonitionblock note">
-<table>
+</thead>
+<tbody>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to click on the item in the <strong>Mobile Clients</strong> list.
-</td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/index.html" class="page">Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/provisioning.html" class="page">Provisioning Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/binding.html" class="page">Binding to Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/coding.html" class="page">Coding for Authenication</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">keycloak/Keycloak Admin UI.adoc</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="security/index.html" class="page">Device Security</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device Trust Checks and Certificate Pinning</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/index.html" class="page">Push Notifications</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/provisioning.html" class="page">Provisioning Identity Management</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/binding.html" class="page">Binding to Push Notifications</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/coding.html" class="page">Coding for Push Notifications</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/admin-ui.html" class="page">Unified Push Admin UI</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/index.html" class="page">Mobile Metrics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/binding.html" class="page">Binding to Mobile Metrics</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/configuring-dev-env-metrics.html" class="page">Adding Metrics to your App</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">metrics/grafana-ui.adoc</a> and <a href="#">metrics/prometheus-ui.adoc</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/index.html" class="page">Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/provisioning.html" class="page">Provisioning Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/binding.html" class="page">Binding to Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/configuring-dev-env-custom.html" class="page">Using a Runtime Connector</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/index.html" class="page">Mobile CI/CD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/provisioning.html" class="page">Provisioning Mobile CI/CD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/running-a-build.html" class="page">Building an App</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">digger/digger-ui.adoc</a></p></td>
+</tr>
+</tbody>
 </table>
-</div>
-</li>
-<li>
-<p>Navigate to <strong>Mobile Services</strong> tab.</p>
-</li>
-<li>
-<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
-</li>
-<li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the  Service, if any.</p>
-</li>
-</ol>
 </div>
 </div>
 </div>
