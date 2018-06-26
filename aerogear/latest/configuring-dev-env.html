@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuring your Development Environment :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/configuring-dev-env.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -235,13 +235,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="digger/creating-a-build-configuration.html">Creating a Build Configuration</a>
+    <a class="nav-link" href="digger/proc_creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="digger/running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="digger/deploy-the-app.html">Deploying Apps</a>
+    <a class="nav-link" href="digger/proc_deploying-a-mobile-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -383,7 +383,7 @@ $(addBlockSwitches);
 <p>Locate this file at the following location in your application project:</p>
 </div>
 <div class="paragraph">
-<p><code>Resources/mobile-services.json</code></p>
+<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
 </div>
 </div>
 </div>
@@ -576,35 +576,28 @@ init(aerogearConfig);</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools">NuGet</a></p>
+<p>In your VisualStudio project expand <code>Dependencies &gt; NuGet</code></p>
 </li>
 <li>
-<p>Install the Core package:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0-alpha</code></pre>
-</div>
-</div>
+<p>Click on <code>Add packages&#8230;&#8203;</code></p>
 </li>
 <li>
-<p>Android</p>
+<p>Select <code>AeroGear.Mobile.Core</code> and depending on your target platforms:</p>
+</li>
+<li>
+<p>for Android:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Install the platform module:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0-alpha</code></pre>
-</div>
-</div>
+<p>also pick <code>AeroGear.Mobile.Core.Platform.Android</code></p>
 </li>
 <li>
 <p>Initialize Core (for Xamarin.Forms):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">var app = new App();
+<pre>var app = new App();
 MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
-LoadApplication(app);</code></pre>
+LoadApplication(app);</pre>
 </div>
 </div>
 </li>
@@ -612,7 +605,7 @@ LoadApplication(app);</code></pre>
 <p>Initialize Core (for Legacy Xamarin):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">MobileCoreAndroid.Init(ApplicationContext);</code></pre>
+<pre>MobileCoreAndroid.Init(ApplicationContext);</pre>
 </div>
 </div>
 </li>
@@ -620,32 +613,27 @@ LoadApplication(app);</code></pre>
 </div>
 </li>
 <li>
-<p>iOS</p>
+<p>for iOS:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Install the platform module:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0-alpha</code></pre>
-</div>
-</div>
+<p>also pick <code>AeroGear.Mobile.Core.Platform.iOS</code></p>
 </li>
 <li>
-<p>Initialize Core (for Xamarin Forms):</p>
+<p>Initialize Core (for Xamarin.Forms):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">var app = new App();
+<pre>var app = new App();
 MobileCoreIOS.Init(app.GetType().Assembly);
-LoadApplication(app);</code></pre>
+LoadApplication(app);</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Core (for Legacy Xamarin):</p>
+<p>Initialize Core (for Legacy Xamarin):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">MobileCoreIOS.Init();</code></pre>
+<pre>MobileCoreIOS.Init();</pre>
 </div>
 </div>
 </li>
