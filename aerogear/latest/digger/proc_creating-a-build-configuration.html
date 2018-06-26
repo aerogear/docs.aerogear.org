@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating a Build Configuration :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/proc_creating-a-build-configuration.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -234,14 +234,14 @@ $(addBlockSwitches);
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="creating-a-build-configuration.html">Creating a Build Configuration</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="proc_creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="deploy-the-app.html">Deploying Apps</a>
+    <a class="nav-link" href="proc_deploying-a-mobile-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -320,6 +320,11 @@ $(addBlockSwitches);
   <button class="navigation-toggle"></button>
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="../index.html">AeroGear Docs</a></li>
+    <li class="crumb"><a href="index.html">Mobile CI/CD</a></li>
+    <li class="crumb"><a href="proc_creating-a-build-configuration.html">Creating a Build Configuration</a></li>
+  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/proc_creating-a-build-configuration.adoc"></a></div>
 </div>
@@ -329,16 +334,16 @@ $(addBlockSwitches);
 <p>You can use the OpenShift UI to create a new client build for an existing mobile client.</p>
 </div>
 <h2 id="prerequisites" class="discrete">Prerequisites</h2>
-<div class="ulist">
-<ul>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p><a href="provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> <a href="provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
 </li>
 <li>
-<p>One of the following mobile clients: <a href="../android/index.html" class="page">Android</a>, <a href="../cordova/index.html" class="page">Cordova</a>, <a href="../xamarin/index.html" class="page">xamarin</a> or <a href="../ios/index.html" class="page">ios</a>.</p>
+<p><i class="fa fa-check-square-o"></i> A <a href="../registering-a-mobile-app.html" class="page">Mobile Client</a></p>
 </li>
 <li>
-<p>To build your mobile client, you need to provide source configuration.</p>
+<p><i class="fa fa-check-square-o"></i> To build your mobile client, you need to provide <a href="ref_source-configuration.html" class="page">source configuration</a>.</p>
 </li>
 </ul>
 </div>
@@ -366,10 +371,7 @@ $(addBlockSwitches);
 <div class="ulist">
 <ul>
 <li>
-<p>For more information, see <a href="ref_source-configuration.html" class="page">Source Configuration Reference material</a>.</p>
-</li>
-<li>
-<p>For more information, see <a href="ref_terminology.html" class="page">Mobile CI/CD Reference material</a>.</p>
+<p><a href="ref_source-configuration.html" class="page">Source Configuration Reference material</a>.</p>
 </li>
 </ul>
 </div>

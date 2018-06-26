@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/index.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -235,13 +235,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="digger/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="digger/creating-a-build-configuration.html">Creating a Build Configuration</a>
+    <a class="nav-link" href="digger/proc_creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="digger/running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="digger/deploy-the-app.html">Deploying Apps</a>
+    <a class="nav-link" href="digger/proc_deploying-a-mobile-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -406,6 +406,39 @@ OpenShift oc executable must be located in a system location that is known to al
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="firewall-requirements"><a class="anchor" href="#firewall-requirements"></a>Firewall Requirements (Required)</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure the Docker registry <em>and</em> ports required as part
+of the cluster setup:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Linux: Follow steps 2 <em>and</em> 3
+<a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#linux">here</a></p>
+</li>
+<li>
+<p>Mac: Follow steps 2 <em>and</em> 3
+<a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#macos-with-docker-for-mac">here</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>For Linux (Fedora) we also need to add an extra port to the <code>dockerc</code>
+zone:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">firewall-cmd --permanent --zone dockerc --add-port 443/tcp
+firewall-cmd --reload</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="local-development"><a class="anchor" href="#local-development"></a>Local development</h3>
@@ -443,7 +476,7 @@ are installed and are the right version.</p>
 must be valid for the installation to continue.</p>
 </div>
 <div class="paragraph">
-<p>The next set of values are optional and can be left with the default values:</p>
+<p>The next set of values are optional and can be left with the default values. However, if you wish to have your local cluster accessible from a mobile device, you must set the <strong>Cluster IP</strong> value shown here to match that of your local machine that you are performing the installation on. <strong>Note:</strong> Your mobile device must be on the same network as your local machine.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -460,20 +493,8 @@ APBs from, but unless you are already familiar with editing these values,
 the defaults are the safest option.</p>
 </div>
 <div class="paragraph">
-<p>The following 2 options alter what IP address and wildcard DNS host you wish
+<p>The <strong>Wildcard DNS Host</strong> option alters the wildcard DNS host you wish
 to use.</p>
-</div>
-</li>
-<li>
-<p>Check the Cluster IP:</p>
-<div class="paragraph">
-<p>In order to allow communication between your mobile device and the cluster, the
-cluster IP must be in the same c-block as your local network.</p>
-</div>
-<div class="paragraph">
-<p>i.e. If your local router which both your workstation and mobile are connected to
-a router using the <code>10.0.0.x</code> c-block, then you should set the cluster IP to an IP
-in the <code>10.0.0.x</code> c-block too, such as <code>10.0.0.135</code>.</p>
 </div>
 </li>
 <li>

@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provisioning Mobile CI/CD Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/provisioning.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -235,13 +235,13 @@ $(addBlockSwitches);
     <a class="nav-link" href="provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="creating-a-build-configuration.html">Creating a Build Configuration</a>
+    <a class="nav-link" href="proc_creating-a-build-configuration.html">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="running-a-build.html">Building Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="deploy-the-app.html">Deploying Apps</a>
+    <a class="nav-link" href="proc_deploying-a-mobile-app.html">Deploying Apps</a>
   </li>
 </ul>
   </li>
@@ -349,7 +349,7 @@ $(addBlockSwitches);
 <p>Log into the OpenShift console.</p>
 </li>
 <li>
-<p>Choose your project.</p>
+<p>Create a new project or choose an existing project.</p>
 </li>
 <li>
 <p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
@@ -380,19 +380,16 @@ When prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind a
 <div class="paragraph">
 <p>When provisioning a Mobile CI/CD service, you are prompted to set the following:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p><strong>Android SDK License Agreement
 (required)</strong>: Enter <code>yes</code> to accept the <a href="https://developer.android.com/studio/terms.html">Android SDK License Agreement</a>.</p>
 </li>
 <li>
-<p>Android SDK Auto Package Install (required)*: Choose whether to automatically install packages</p>
+<p><strong>Android SDK package config</strong>: Add any configuration details you require for the SDK config file. Default values are provided but you should review and adapt them to your needs.</p>
 </li>
-<li>
-<p><strong>Android SDK package config</strong>: Add any configuration details you require for the SDK config file.</p>
-</li>
-</ul>
+</ol>
 </div>
 <div class="paragraph">
 <p>After the service has been provisioned, you should then be able to see it in the project overview.</p>
@@ -405,6 +402,14 @@ When prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind a
 <div class="paragraph">
 <p>In order to delete a provisioned service, select the service menu and click <strong>Delete</strong>. A notification
 appears that the service has now been <strong>Marked for Deletion</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="proc_creating-a-build-configuration.html" class="page">Creating a Build Configuration</a></p>
 </div>
 </div>
 </div>
