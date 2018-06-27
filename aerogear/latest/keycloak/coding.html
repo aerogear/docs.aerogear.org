@@ -139,6 +139,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="../security/index.html">Device Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/coding.html">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../security/proc_performing-device-checks.html">Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -484,18 +487,6 @@ $(addBlockSwitches);
 </div>
 </div>
 <div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="coding.html" class="page">Setting up the Identity Management service SDK</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="setting-up-identity-management-service-sdk"><a class="anchor" href="#setting-up-identity-management-service-sdk"></a>Setting up Identity Management service SDK</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -527,7 +518,7 @@ $(addBlockSwitches);
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Import the auth module</p>
+<p>Add the following dependency in your app&#8217;s <strong>build.gradle</strong>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
@@ -545,7 +536,7 @@ $(addBlockSwitches);
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add the dependency to your Podfile</p>
+<p>Add the dependency to your <strong>Podfile</strong>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
@@ -555,18 +546,20 @@ end</code></pre>
 </div>
 </li>
 <li>
-<p>Update the dependencies</p>
+<p>Update the dependencies:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pod install</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Import the SDK</p>
+<p>Import and instantiate <code>AGSAuth</code> to start using the SDK:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import AGSAuth</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import AGSAuth
+
+let auth = AGSAuth()</code></pre>
 </div>
 </div>
 </li>
@@ -577,7 +570,7 @@ end</code></pre>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
 <div class="paragraph">
-<p>Install the auth package:</p>
+<p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/">NPM</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -591,10 +584,10 @@ end</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools">NuGet</a></p>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools">NuGet</a>.</p>
 </li>
 <li>
-<p>Install the Core package:</p>
+<p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Core">AeroGear Core</a> package:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0-alpha</code></pre>
@@ -632,7 +625,7 @@ end</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Retrieve the auth service</p>
+<p>Retrieve the auth service:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);</code></pre>
@@ -783,7 +776,7 @@ authService.Configure(authConfig);</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h2>
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="authenticating.html" class="page">User authentication</a></p>

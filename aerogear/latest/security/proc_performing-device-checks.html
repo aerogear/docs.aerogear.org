@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
+    <title>Performing Device Trust Checks in your Device :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/security/proc_performing-device-checks.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -138,6 +138,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="index.html">Device Security</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="coding.html">Coding</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="proc_performing-device-checks.html">Device Trust Checks</a>
   </li>
@@ -329,8 +332,895 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/proc_performing-device-checks.adoc"></a></div>
 </div>
 <article class="doc">
+<h1>Performing Device Trust Checks in your Device</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p><strong><strong>TODO</strong></strong></p>
+<p>This section describes what Device Trust Checks are available and how to execute them for the supported platforms. Also, mind that Security Checks can be performed either individually or together.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <strong>successful</strong> check means that the environment the application is running in is more secure and no action is required, as opposed to signalling if a certain feature is enabled.
+For example, the <code>Root Access Detection Check NOT_ROOTED</code> should return <code>true</code> when it is <em>not rooted</em>, since this would be the more secure condition.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="root-access-detection"><a class="anchor" href="#root-access-detection"></a>Root Access Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to help prevent your app running in a device that has been rooted/jailbroken.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.NOT_ROOTED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(IsJailbrokenCheck())</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+    .check(SecurityCheckType.notRooted)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Use <code>NOT_ROOTED</code> for Android:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_ROOTED);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>NOT_JAILBROKEN</code> for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_JAILBROKEN);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="developer-mode-detection"><a class="anchor" href="#developer-mode-detection"></a>Developer Mode Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to detect if Developer Mode has been enabled on the device.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.NO_DEVELOPER_MODE);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for Cordova.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This check is available for Android only.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEVELOPER_MODE);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="debugger-detection"><a class="anchor" href="#debugger-detection"></a>Debugger Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to detect if a debugger is attached to the app.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.NO_DEBUGGER);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(IsDebuggerCheck())</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+    .check(SecurityCheckType.notDebugMode)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEBUGGER);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="emulator-detection"><a class="anchor" href="#emulator-detection"></a>Emulator Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to detect if the app is being run on an emulator.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.NOT_IN_EMULATOR);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(IsEmulatorCheck())</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+    .check(SecurityCheckType.notEmulated)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_IN_EMULATOR);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="device-lock-detection"><a class="anchor" href="#device-lock-detection"></a>Device Lock Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to detect if a device has a lock screen set (with pin, fingerprint, pattern&#8230;&#8203;).</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.SCREEN_LOCK_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(IsDeviceLockCheck())</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For iOS devices this check requires iOS 8 or above.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+    .check(SecurityCheckType.hasDeviceLock)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.SCREEN_LOCK_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-data-backup-detection"><a class="anchor" href="#app-data-backup-detection"></a>App Data Backup Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to detect whether the application’s data is configured to be synchronized across devices.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.ALLOW_BACKUP_DISABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>This is not available for Cordova.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This check is available for Android only.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.ALLOW_BACKUP_DISABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="device-encryption-detection"><a class="anchor" href="#device-encryption-detection"></a>Device Encryption Detection</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use this to detect whether the devices filesystem is encrypted.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.check(SecurityCheckType.HAS_ENCRYPTION_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>This is not available for Cordova.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This check is available for Android only.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(SecurityChecks.HAS_ENCRYPTION_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="invoking-multiple-self-defence-checks"><a class="anchor" href="#invoking-multiple-self-defence-checks"></a>Invoking Multiple Self Defence Checks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Security Checks can be run in group, both synchronously and asynchronously.</p>
+</div>
+<div class="sect2">
+<h3 id="synchronously"><a class="anchor" href="#synchronously"></a>Synchronously</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get a <code>SyncCheckExecutor</code> from <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+SyncSecurityCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add your checks and execute synchronously:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, SecurityCheckResult&gt; results = syncCheckExecutor
+    .addCheck(SecurityCheckType.&lt;check_type&gt;)
+    // Add more checks here
+    .execute();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Invoke multiple checks using the <code>checkMany</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [IsDeviceLockCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
+let results = security.checkMany(checks)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>SecurityCheckResult</code> objects in the returning array stay in the same order they were provided.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Executing multiple checks synchronously is not directly supported. Instead, it&#8217;s possible to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">await</a> operator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const results = await securityService.checkMany(
+    SecurityCheckType.notRooted,
+    SecurityCheckType.notEmulated,
+    // Add more checks here
+);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>SecurityCheckResult</code> objects in the returning array stay in the same order they were provided.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build a <code>SyncSecurityCheckExecutor</code> from <code>SecurityService</code> and execute:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+var checkExecutor = securityService.GetSyncExecutor()
+                        .WithSecurityCheck(SecurityChecks.NOT_ROOTED)
+                        .WithSecurityCheck(SecurityChecks.NO_DEVELOPER_MODE)
+                        // Add more checks here
+                        .Build()
+Dictionary&lt;string, SecurityCheckResult&gt; results = checkExecutor.Execute();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="asynchronously"><a class="anchor" href="#asynchronously"></a>Asynchronously</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get an <code>AsyncCheckExecutor</code> from <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+AsyncSecurityCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecutor();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add your checks and execute synchronously:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Future&lt;SecurityCheckResult&gt;&gt; results = asyncCheckExecutor
+    .addCheck(SecurityCheckType.&lt;check_type&gt;)
+    // Add more checks here
+    .execute();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Executing multiple checks asynchronously is not supported at the moment for this platform.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Invoke multiple checks using the <code>checkMany</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const checkResults = securityService.checkMany(
+    SecurityCheckType.notRooted,
+    SecurityCheckType.notEmulated,
+    // Add more checks here
+)
+.then(results =&gt; {
+    // Handle results
+});</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This method returns a Promise with an array containing all <code>SecurityCheckResult</code> objects in the same order they were provided.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Executing multiple checks asynchronously is not supported at the moment for this platform.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional Resources</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="adding-custom-self-defence-checks"><a class="anchor" href="#adding-custom-self-defence-checks"></a>Adding Custom Self Defence Checks</h3>
+<div class="paragraph">
+<p>Besides the <a href="index.html#ref_terminology_Device%20Security_ref_terminology" class="page">Provided Self Defence Checks</a> it&#8217;s also possible to make use of your own custom checks. Follow the next steps depending on your platform to implement them:</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Extend the <code>AbstractSecurityCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class CustomSecurityCheck extends AbstractSecurityCheck {
+
+    @Override
+    protected boolean execute(@NonNull final Context context) {
+        // Implement security check logic here
+        return false;
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheck customSecurityCheck = new CustomSecurityCheck();
+SecurityCheckResult result = securityService.check(customSecurityCheck);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>SecurityCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">public class MyCustomCheck: SecurityCheck {
+
+    public let name = "Custom Check"
+
+    public init() {}
+
+    public func check() -&gt; SecurityCheckResult {
+        // Implement security check logic here
+        return nil
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>check</code> function as usual:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(MyCustomCheck())</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>SecurityCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">class CustomSecurityCheck implements SecurityCheck {
+
+    get name(): string {
+        return "My Custom Check";
+    }
+
+    public check(): Promise&lt;SecurityCheckResult&gt; {
+        // Implement security check logic here
+        return null;
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const securityService = new SecurityService();
+
+securityService.check(new CustomSecurityCheck())
+    .then(result =&gt; {
+        // Handle result
+    });</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>ISecurityCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">class CustomSecurityCheck : ISecurityCheck
+{
+    public string GetName()
+    {
+        return "Custom check";
+    }
+
+    public string GetId()
+    {
+        return typeof(CustomSecurityCheck).FullName;
+    }
+
+    public SecurityCheckResult Check()
+    {
+        // Implement security check logic here
+        return null;
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+SecurityCheckResult result = securityService.Check(new CustomSecurityCheck());</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reporting-self-defence-checks-results-via-the-metrics-service"><a class="anchor" href="#reporting-self-defence-checks-results-via-the-metrics-service"></a>Reporting Self Defence Checks Results Via the Metrics Service</h3>
+<div class="paragraph">
+<p>In order to report the results of Self Defence utilize this service in conjunction with the <a href="../metrics/index.html" class="page">Metrics Service</a>.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Report individual checks via the <code>checkAndSendMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = MobileCore.getInstance(MetricsService.class);
+SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+
+SecurityCheckResult result = securityService.checkAndSendMetric(SecurityCheckType.&lt;check_type&gt;, metricsService);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using a <code>CheckExecutor</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = mobileCore.getInstance(MetricsService.class);
+Map&lt;String, SecurityCheckResult&gt; results = SecurityCheckExecutor.Builder.newSyncExecutor(this.getContext())
+    .withSecurityCheck(SecurityCheckType.&lt;check_type&gt;)
+    // Add other checks...
+    .withMetricsService(metricsService)
+    .build()
+    .execute();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Report individual checks via the <code>checkAndPublishMetric</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let result = security.checkAndPublishMetric(IsDeviceLockCheck())</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using the <code>checkManyAndPublishMetric</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [IsDeviceLockCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
+let results = security.checkManyAndPublishMetric(checks)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Report individual checks via the <code>checkAndPublishMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+    .checkAndPublishMetric(SecurityCheckType.notRooted)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using the <code>checkManyAndPublishMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+    .checkManyAndPublishMetric(
+        SecurityCheckType.notRooted,
+        SecurityCheckType.notEmulated,
+        // Add more checks here
+    )
+    .then(results =&gt; {
+        // Handle the security results array
+    });</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Self Defence reports are not yet available for Xamarin.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="proc_pinning-certificates.html" class="page">Certificate Pinning</a></p>
+</div>
+</div>
 </div>
 </article>
   </main>
