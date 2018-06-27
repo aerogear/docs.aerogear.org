@@ -53,8 +53,8 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reference material :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/ref_terminology.html">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/security/ref_terminology.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -105,25 +105,25 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html">Identity Management</a>
+    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="provisioning.html">Provisioning</a>
+    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="binding.html">Binding</a>
+    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="coding.html">Coding</a>
+    <a class="nav-link" href="../keycloak/coding.html">Coding</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="authenticating.html">User Authentication</a>
+    <a class="nav-link" href="../keycloak/authenticating.html">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="retrieving-users-roles.html">Access Control</a>
+    <a class="nav-link" href="../keycloak/retrieving-users-roles.html">Access Control</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="sso.html">Single Sign On</a>
+    <a class="nav-link" href="../keycloak/sso.html">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../metrics/monitoring-keycloak.html">Monitoring Identity Management</a>
@@ -136,16 +136,16 @@ $(addBlockSwitches);
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../security/index.html">Device Security</a>
+    <a class="nav-link" href="index.html">Device Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/coding.html">Coding</a>
+    <a class="nav-link" href="coding.html">Coding</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/proc_performing-device-checks.html">Device Trust Checks</a>
+    <a class="nav-link" href="proc_performing-device-checks.html">Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
+    <a class="nav-link" href="proc_pinning-certificates.html">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -324,34 +324,83 @@ $(addBlockSwitches);
   <a href="../index.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/ref_terminology.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/ref_terminology.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Reference material</h1>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Root Access Detection (NOT_ROOTED)</dt>
+<dd>
+<p>Use it to help prevent your app running in a device that has been rooted/jailbroken. A device is considered rooted if <strong>any</strong> of the following are true:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A custom key has been used to sign the kernel</p>
+</li>
+<li>
+<p>The <code>su</code> binaries are present</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>This section describes terminology that is associated with Identity Management.</p>
+<p><code>SecurityChecks.NOT_ROOTED</code>.</p>
+</div>
+<div class="paragraph">
+<p>This function uses the <a href="https://github.com/scottyab/rootbeer">Rootbeer</a> library to check if root access is present on the device.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">SSO</dt>
+<dt class="hdlist1">Developer Mode Detection (NO_DEVELOPER_MODE)</dt>
 <dd>
-<p><em>Single Sign On</em>, the ability to share a login between multiple services</p>
+<p>To detect if Developer Mode has been enabled on the device the <code>SecurityCheckType#NO_DEVELOPER_MODE</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/provider/Settings.html"><code>Settings</code></a> class.</p>
 </dd>
-<dt class="hdlist1">OpenID Connect</dt>
+<dt class="hdlist1">Debugger Detection (NO_DEBUGGER)</dt>
 <dd>
-<p>a standard for providing identity on top of OAuth 2.0</p>
+<p>To detect if an Android debugger is attached to the app the <code>SecurityCheckType#NO_DEBUGGER</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Debug.html"><code>Debug</code></a> class.</p>
 </dd>
-<dt class="hdlist1">Keycloak</dt>
+<dt class="hdlist1">Emulator Detection (NOT_IN_EMULATOR)</dt>
 <dd>
-<p>Red Hat&#8217;s implementation of <em>SSO</em> and <em>OpenID</em> used as the identity provider</p>
+<p>To detect if the app is being run on an emulator the <code>SecurityCheckType#NOT_IN_EMULATOR</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Build.html"><code>Build</code></a> class.</p>
 </dd>
-<dt class="hdlist1">Client ID</dt>
+<dt class="hdlist1">Device Lock Detection (SCREEN_LOCK_ENABLED)</dt>
 <dd>
-<p>is the client identifier for <em>OpenID Connect</em> requests, a simple alpha-numeric string</p>
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>SecurityCheckType#SCREEN_LOCK_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html"><code>KeyguardManager</code></a> class.</p>
 </dd>
-<dt class="hdlist1">User Attributes</dt>
+<dt class="hdlist1">App Data Backup Detection (ALLOW_BACKUP_DISABLED)</dt>
 <dd>
-<p>additional properties for user accounts (besides name and email) managed by Keycloak</p>
+<p>To detect whether the application’s data is configured to be synchronized across devices the <code>SecurityCheckType#ALLOW_BACKUP_DISABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html"><code>allowBackup</code></a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
+</dd>
+<dt class="hdlist1">Device Encryption Detection (HAS_ENCRYPTION_ENABLED)</dt>
+<dd>
+<p>To detect whether the devices filesystem is encrypted the <code>SecurityCheckType#HAS_ENCRYPTION_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html"><code>DevicePolicyManager</code></a> class.</p>
 </dd>
 </dl>
 </div>

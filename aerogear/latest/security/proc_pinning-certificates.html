@@ -53,7 +53,7 @@ $(addBlockSwitches);
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
+    <title>Certificate Pinning in Android Devices :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/security/proc_pinning-certificates.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -138,6 +138,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="index.html">Device Security</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="coding.html">Coding</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="proc_performing-device-checks.html">Device Trust Checks</a>
   </li>
@@ -329,20 +332,23 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/proc_pinning-certificates.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="sect1">
-<h2 id="certificate-pinning"><a class="anchor" href="#certificate-pinning"></a>Certificate Pinning</h2>
+<h1>Certificate Pinning in Android Devices</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Certificate pinning can be enabled in individual SDKs through the <code>mobile-services.json</code> file.
+<p><a href="https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning">Certificate pinning</a> can be enabled in individual SDKs through the <code>mobile-services.json</code> file.
 Certificate pinning will only be enabled for services which are used directly by the SDKs. For
-other services SPKI pinning is used. Mobile services must have pinning configured
+other services <strong>SPKI</strong> pinning is used. Mobile services must have pinning configured
 separately. For more information on setting up certificate pinning for mobile services see the
 <a href="https://developer.android.com/training/articles/security-config.html#CertificatePinning">Android network security guide</a>.</p>
 </div>
-<div class="sect2">
-<h3 id="generating-pinning-configuration"><a class="anchor" href="#generating-pinning-configuration"></a>Generating Pinning Configuration</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generating-pinning-configuration"><a class="anchor" href="#generating-pinning-configuration"></a>Generating Pinning Configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The Android SDK gets its configuration from the <code>https</code> section of the <code>mobile-services.json</code> file
+<p>The AeroGear SDK gets its configuration from the <code>https</code> section of the <code>mobile-services.json</code> file
 in a project.</p>
 </div>
 <div class="listingblock">
@@ -366,8 +372,7 @@ allow these to be included use the <code>--insecure-skip-tls-verify</code> flag.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./mobile get clientconfig &lt;client name&gt; --include-cert-pins --insecure-skip-tls-verify</code></pre>
-</div>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./mobile get clientconfig &lt;client name&gt; --include-cert-pins --insecure-skip-tls-verify</code></pre>
 </div>
 </div>
 <div class="sect2">
