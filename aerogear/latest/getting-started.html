@@ -60,7 +60,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -166,7 +166,7 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#procedure">Setting Up</a>
+    <a class="nav-link" href="#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#registering">Registering a Mobile Client</a>
@@ -299,9 +299,6 @@ $(addBlockSwitches);
     <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -407,7 +404,7 @@ $(addBlockSwitches);
     <li class="crumb"><a href="getting-started.html">Getting Started</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/getting-started.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/getting-started.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Getting Started with AeroGear Mobile Services</h1>
@@ -423,9 +420,15 @@ $(addBlockSwitches);
 </li>
 <li><a href="#registering">Registering a Mobile Client</a></li>
 <li><a href="#provisioning">Provisioning your First Service</a></li>
+<li><a href="#provisioning-identity-management-service">Provisioning Identity Management Service</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-3">Prerequisites</a></li>
+<li><a href="#next-steps-2">Next steps</a></li>
+</ul>
+</li>
 <li><a href="#binding">Binding a Mobile Client with the Identity Management Service</a>
 <ul class="sectlevel2">
-<li><a href="#next-steps-2">Next Steps</a></li>
+<li><a href="#next-steps-3">Next Steps</a></li>
 </ul>
 </li>
 <li><a href="#localdev">Setting Up your Local Development Environment</a>
@@ -443,13 +446,12 @@ $(addBlockSwitches);
 </li>
 <li><a href="#running">Running your First Mobile App</a>
 <ul class="sectlevel2">
-<li><a href="#clone-the-showcase-app">Clone the showcase app:</a></li>
+<li><a href="#clone-the-showcase-app">Clone the showcase app</a></li>
+<li><a href="#configure-the-showcase-app">Configure the showcase app</a></li>
 <li><a href="#using-self-signed-certificates-in-mobile-apps">Using Self-Signed Certificates in Mobile Apps</a></li>
-<li><a href="#downloading-the-mobile-services-configuration-file-2">Downloading the Mobile Services Configuration File</a></li>
-<li><a href="#running-the-mobile-app-in-an-emulator">Running the Mobile App in an Emulator</a></li>
+<li><a href="#build">Building and Running the Showcase App</a></li>
 </ul>
 </li>
-<li><a href="#doing-stuff">Doing Stuff</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -501,17 +503,23 @@ OpenShift oc executable must be located in a system location that is known to al
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Ensure <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started">oc cluster up</a> is working.
+Ensure that you can run <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started">oc cluster up</a> with no errors before moving on to the installation of AeroGear.
 </td>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (tested with version 2.4, but should work with version 2.3 or later)</p>
-</li>
-<li>
-<p>Docker must be version 17.09.1 in order to be compatible with the latest release of OpenShift and depending on your OS this is downloaded from different places:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Docker must be version 17.09.1 in order to be compatible with the latest release of OpenShift and AeroGear Mobile Services. This version may be different from the version listed on the oc cluster up documentation. You must ensure you are running with this version of docker and that oc cluster works without errors before moving on. Depending on your OS this is downloaded from different places:
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
@@ -533,6 +541,9 @@ Ensure <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_
 <ul>
 <li>
 <p>A <a href="https://hub.docker.com/">Docker Hub</a> account</p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (tested with version 2.4, but should work with version 2.3 or later)</p>
 </li>
 </ul>
 </div>
@@ -695,6 +706,9 @@ password: password</pre>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-platforms.png" alt="mobile platforms"></span></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
@@ -739,6 +753,9 @@ password: password</pre>
 <div class="paragraph">
 <p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
 </div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-platforms.png" alt="Available Mobile Clients"></span></p>
+</div>
 </li>
 <li>
 <p>Click the <strong>Apps</strong> tab and then choose the mobile platform (Android, iOS, Cordova or Xamarin) and follow the wizard.</p>
@@ -746,7 +763,7 @@ password: password</pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>After the Mobile Client is provisioned, you can navigate to it from Project Overview. This screen displays a list of mobile services that you can associate with the Mobile Client and offers to provision any mobile service that is in the service catalog but is not currently provisioned.</p>
+<p>After the Mobile Client is provisioned, you can navigate to it from Project Overview. The Mobile Client view displays a list of mobile services that you can associate with the Mobile Client and offers to provision any mobile service that is in the service catalog but is not currently provisioned.</p>
 </div>
 </div>
 </div>
@@ -757,7 +774,46 @@ password: password</pre>
 <p>Mobile Services provide commonly required features for mobile app development.</p>
 </div>
 <div class="paragraph">
-<p>This guide introduces the procedures for using mobile services by guiding you through the process using the Identity Management service. For a full list of available services see <a href="con_services.html" class="page">Mobile Services</a></p>
+<p>The following services are available with this release:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html" class="page">Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html" class="page">Push Notifications</a></p>
+</li>
+<li>
+<p><a href="runtime-connector.html" class="page">Runtime Connector</a></p>
+</li>
+<li>
+<p><a href="mobile-metrics.html" class="page">Mobile Metrics</a></p>
+</li>
+<li>
+<p><a href="mobile-cicd.html" class="page">Mobile CI/CD</a></p>
+</li>
+<li>
+<p><a href="device-security.html" class="page">Device Security</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This guide introduces the procedures for using mobile services by guiding you through the process for running an Android app using the Identity Management service.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="provisioning-identity-management-service"><a class="anchor" href="#provisioning-identity-management-service"></a>Provisioning Identity Management Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>To provision the Identity Management mobile service:</p>
@@ -838,6 +894,13 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
+<div class="paragraph">
+<p><a href="keycloak/binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a></p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="binding"><a class="anchor" href="#binding"></a>Binding a Mobile Client with the Identity Management Service</h2>
@@ -911,7 +974,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </ol>
 </div>
 <div class="sect2">
-<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h3>
+<h3 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h3>
 <div class="paragraph">
 <p><a href="keycloak/coding.html" class="page">Configuring your Development Environment for the Identity Management Service</a></p>
 </div>
@@ -924,7 +987,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="sect2">
 <h3 id="supported-environments"><a class="anchor" href="#supported-environments"></a>Supported Environments</h3>
 <div class="paragraph">
-<p>In order to perform local development, you will need to have set up a local development environment or IDE. Mobile Services supports mobile app development across iOS Native, Android Native, Cordova and Xamarin. For information on how to set up your local development environment for these technologies, please see the links below:</p>
+<p>In order to perform local development, you will need to have set up a local development environment or IDE. Mobile App development is supported across iOS Native, Android Native, Cordova and Xamarin. For information on how to set up your local development environment for these technologies, please see the links below:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -946,7 +1009,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="sect2">
 <h3 id="configuring-your-development-environment-for-the-identity-management-service"><a class="anchor" href="#configuring-your-development-environment-for-the-identity-management-service"></a>Configuring your Development Environment for the Identity Management Service</h3>
 <div class="sect3">
-<h4 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h4>
+<h4 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h4>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -1114,8 +1177,14 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="sect1">
 <h2 id="running"><a class="anchor" href="#running"></a>Running your First Mobile App</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>A few showcase apps have been created to allow you to try out some of the features. They are available in several different platforms. Please pick one platform that you are interested in and follow the steps below to set it up.</p>
+</div>
 <div class="sect2">
-<h3 id="clone-the-showcase-app"><a class="anchor" href="#clone-the-showcase-app"></a>Clone the showcase app:</h3>
+<h3 id="clone-the-showcase-app"><a class="anchor" href="#clone-the-showcase-app"></a>Clone the showcase app</h3>
+<div class="paragraph">
+<p>Please choose one platform and clone the corresponding showcase app.</p>
+</div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
@@ -1159,6 +1228,68 @@ $ git checkout 1.0.0-alpha</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-the-showcase-app"><a class="anchor" href="#configure-the-showcase-app"></a>Configure the showcase app</h3>
+<div class="paragraph">
+<p>You need to configure the showcase app by updating the <code>mobile-services.json</code> file.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard and paste it to the <code>mobile-services.json</code> file in the showcase app depending on the platform:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Update this file at the following location in your Android showcase project:</p>
+</div>
+<div class="paragraph">
+<p><code>android-showcase-template/app/src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Update this file at the following location in your iOS showcase project:</p>
+</div>
+<div class="paragraph">
+<p><code>ios-showcase-template/ios-showcase-template/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Update this file at the following location in your Cordova showcase project</p>
+</div>
+<div class="paragraph">
+<p><code>cordova-showcase-template/src/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Update this file at the following location in your Xamarin showcase project:</p>
+</div>
+<div class="paragraph">
+<p><code>xamarin-showcase-template/Example/Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Before building and running the showcase app, we also need to configure the device to make sure it will accept self-signed certificates.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1253,77 +1384,47 @@ installed certificate. Instructions can be found on the
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>We can now build and run the showcase app.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="downloading-the-mobile-services-configuration-file-2"><a class="anchor" href="#downloading-the-mobile-services-configuration-file-2"></a>Downloading the Mobile Services Configuration File</h3>
+<h3 id="build"><a class="anchor" href="#build"></a>Building and Running the Showcase App</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to your project in OpenShift.</p>
-</li>
-<li>
-<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
-</li>
-<li>
-<p>Copy the configuration to your clipboard.</p>
-</li>
-<li>
-<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back end services.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Follow the next specific additional instructions depending on your platform:</p>
+<p>Build the Mobile App</p>
 </li>
 </ol>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Locate this file at the following location in your application project:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
 </div>
-<div class="paragraph">
-<p><code>src/main/assets/mobile-services.json</code></p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
 <div class="paragraph">
-<p>Locate this file at the following location in your application project:</p>
+<p>Run this command to install dependencies:</p>
 </div>
-<div class="paragraph">
-<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>Locate this file in your application project and import it using <code>require</code>.</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternatively you can create a JavaScript object and use directly:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
+$ npm run ionic:build</code></pre>
 </div>
 </div>
 </div>
@@ -1331,42 +1432,133 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
 <div class="paragraph">
-<p>Locate this file at the following location in your application project:</p>
+<p>Run this command to install dependencies (optional):</p>
 </div>
-<div class="paragraph">
-<p><code>Resources/mobile-services.json</code></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="running-the-mobile-app-in-an-emulator"><a class="anchor" href="#running-the-mobile-app-in-an-emulator"></a>Running the Mobile App in an Emulator</h3>
-
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="doing-stuff"><a class="anchor" href="#doing-stuff"></a>Doing Stuff</h2>
-<div class="sectionbody">
-<h3 id="prerequisites-4" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
-</li>
-</ul>
 </div>
-<h3 id="procedure-3" class="discrete">Procedure</h3>
 <div class="olist arabic">
-<ol class="arabic">
+<ol class="arabic" start="2">
 <li>
-<p>numbered list</p>
+<p>Run the Mobile App</p>
 </li>
 </ol>
 </div>
-<h3 id="additional-information" class="discrete">Additional Information</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>Any links are better placed here.</p>
+<p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
+no connected device, it installs and runs the application on the emulator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew installDebug</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use <code>.xcodeproj</code>. If you open up a project file instead of a workspace, dependencies will not be correctly configured.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>To run the showcase app, use these commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm run ionic:android # to run on an Android device or emulator
+$ npm run ionic:ios # to run on an iOS device or emulator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These commands would run the app on a device if connected or on the emulator if no device is connected.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use Cordova commands directly to specify the target:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ionic cordova run android --device      # run on a connected device
+$ ionic cordova run android --emulator    # run on the Android emulator</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open up <code>xamarin-showcase-template.sln</code> with VisualStudio.</p>
+</li>
+<li>
+<p>If you didn&#8217;t run <code>nuget restore</code> before, right click on the solution in the left pane then click on <code>Restore Nuget Packages</code>.</p>
+</li>
+<li>
+<p>In the top bar, select the project to run: <code>Example.Android</code> or <code>Example.iOS</code></p>
+</li>
+<li>
+<p>Again in the top bar, select the correct configuration:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Debug/Release: for compiling Example.Android</p>
+</li>
+<li>
+<p>[Debug|Release]|iPhoneSimulator: to compile and run Example.iOS on the iPhoneSimulator</p>
+</li>
+<li>
+<p>[Debug|Release]|iPhone: to compile and run Example.iOS on a real iPhone device</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>At the right of the configuration, select the target device (the android or iPhone version)</p>
+</li>
+<li>
+<p>Click on <strong>Build &#8594; Rebuild All</strong></p>
+</li>
+<li>
+<p>Click on the <strong>Run</strong> button in the top left</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If no android devices are selectable, it could mean that no virtual android devices has been configured. To add one, click on <strong>Tools&#8594;Device Manager&#8594;Add Device</strong>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
