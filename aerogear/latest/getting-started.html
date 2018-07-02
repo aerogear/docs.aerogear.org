@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
 <script>
 function addBlockSwitches() {
@@ -59,22 +64,94 @@ $(addBlockSwitches);
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
-<header class="header" role="banner">
-  <nav class="navbar">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
-      <button class="navbar-burger" data-target="topbar-nav">
-        <span></span>
-        <span></span>
-        <span></span>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
     </div>
-    <div id="topbar-nav" class="navbar-menu">
 
-    </div>
-  </nav>
-</header>
-<div class="main-wrapper">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://staging.aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://staging.aerogear.org/getting-started/overview/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://staging.aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://staging.aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://staging.aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://staging.aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://staging.aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://staging.aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile SDKs<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="https://staging.aerogear.org/sdks/android/">Android</a></li>
+            <li><a href="https://staging.aerogear.org/sdks/cordova/">Cordova</li>
+            <li><a href="https://staging.aerogear.org/sdks/ios/">iOS</a></li>
+            <li><a href="https://staging.aerogear.org/sdks/xamarin/">Xamarin</a></li>
+          </ul>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://staging.aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://staging.aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
 <div class="navigation-container" data-component="aerogear" data-version="latest">
   <aside class="navigation" role="navigation">
     <div class="panels">
@@ -109,7 +186,25 @@ $(addBlockSwitches);
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#binding">Binding Mobile Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#configuring">Configuring and Running Builds</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#running">Downloading and Installing Apps</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
@@ -312,7 +407,7 @@ $(addBlockSwitches);
     <li class="crumb"><a href="getting-started.html">Getting Started</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/mobile-docs/modules/ROOT/pages/getting-started.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/docs/mobile-docs/modules/ROOT/pages/getting-started.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Getting Started with AeroGear Mobile Services</h1>
@@ -324,20 +419,13 @@ $(addBlockSwitches);
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#procedure">Procedure</a></li>
 <li><a href="#next-steps">Next Steps</a></li>
-<li><a href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 <li><a href="#registering">Registering a Mobile Client</a></li>
 <li><a href="#provisioning">Provisioning your First Service</a></li>
-<li><a href="#provisioning-identity-management-service">Provisioning Identity Management Service</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites-3">Prerequisites</a></li>
-<li><a href="#next-steps-2">Next steps</a></li>
-</ul>
-</li>
 <li><a href="#binding">Binding a Mobile Client with the Identity Management Service</a>
 <ul class="sectlevel2">
-<li><a href="#next-steps-3">Next Steps</a></li>
+<li><a href="#next-steps-2">Next Steps</a></li>
 </ul>
 </li>
 <li><a href="#localdev">Setting Up your Local Development Environment</a>
@@ -393,9 +481,6 @@ AeroGear recommends running OpenShift using the method described here. However t
 <p>A system capable of running OpenShift as described in <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#prerequisites">Local Cluster Management</a></p>
 </li>
 <li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (tested with version 2.4, but should work with version 2.3 or later)</p>
-</li>
-<li>
 <p><a href="https://www.openshift.org/download.html">OpenShift client tools</a> version 3.9 or later</p>
 <div class="admonitionblock warning">
 <table>
@@ -409,6 +494,21 @@ OpenShift oc executable must be located in a system location that is known to al
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ensure <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started">oc cluster up</a> is working.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (tested with version 2.4, but should work with version 2.3 or later)</p>
 </li>
 <li>
 <p>Docker must be version 17.09.1 in order to be compatible with the latest release of OpenShift and depending on your OS this is downloaded from different places:</p>
@@ -609,25 +709,6 @@ password: password</pre>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h3>
-<div class="sect3">
-<h4 id="switching-from-a-different-docker-version-on-fedora-28"><a class="anchor" href="#switching-from-a-different-docker-version-on-fedora-28"></a>Switching from a different Docker version on Fedora 28</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><a href="https://docs.docker.com/install/linux/docker-ce/fedora/#uninstall-old-versions">Uninstall</a> the old Docker version</p>
-</li>
-<li>
-<p><a href="https://docs.docker.com/install/linux/docker-ce/fedora/#install-from-a-package">Install</a> Docker 17.09.1 from the rpm package</p>
-</li>
-<li>
-<p>Make sure that Docker can be managed by non-root users by following <a href="https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user">this guide</a></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -676,46 +757,7 @@ password: password</pre>
 <p>Mobile Services provide commonly required features for mobile app development.</p>
 </div>
 <div class="paragraph">
-<p>The following services are available with this release:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="identity-management.html" class="page">Identity Management</a></p>
-</li>
-<li>
-<p><a href="push-notifications.html" class="page">Push Notifications</a></p>
-</li>
-<li>
-<p><a href="runtime-connector.html" class="page">Runtime Connector</a></p>
-</li>
-<li>
-<p><a href="mobile-metrics.html" class="page">Mobile Metrics</a></p>
-</li>
-<li>
-<p><a href="mobile-cicd.html" class="page">Mobile CI/CD</a></p>
-</li>
-<li>
-<p><a href="device-security.html" class="page">Device Security</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This guide introduces the procedures for using mobile services by guiding you through the process for running an Android app using the Identity Management service.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="provisioning-identity-management-service"><a class="anchor" href="#provisioning-identity-management-service"></a>Provisioning Identity Management Service</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
+<p>This guide introduces the procedures for using mobile services by guiding you through the process using the Identity Management service. For a full list of available services see <a href="con_services.html" class="page">Mobile Services</a></p>
 </div>
 <div class="paragraph">
 <p>To provision the Identity Management mobile service:</p>
@@ -796,13 +838,6 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
-<div class="paragraph">
-<p><a href="keycloak/binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a></p>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="binding"><a class="anchor" href="#binding"></a>Binding a Mobile Client with the Identity Management Service</h2>
@@ -876,7 +911,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </ol>
 </div>
 <div class="sect2">
-<h3 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h3>
+<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h3>
 <div class="paragraph">
 <p><a href="keycloak/coding.html" class="page">Configuring your Development Environment for the Identity Management Service</a></p>
 </div>
@@ -889,21 +924,21 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="sect2">
 <h3 id="supported-environments"><a class="anchor" href="#supported-environments"></a>Supported Environments</h3>
 <div class="paragraph">
-<p>Mobile Services supports mobile app development for the following:</p>
+<p>In order to perform local development, you will need to have set up a local development environment or IDE. Mobile Services supports mobile app development across iOS Native, Android Native, Cordova and Xamarin. For information on how to set up your local development environment for these technologies, please see the links below:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Android</p>
+<p><a href="https://developer.android.com/studio/install">Android</a></p>
 </li>
 <li>
-<p>iOS</p>
+<p><a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html">iOS</a></p>
 </li>
 <li>
-<p>Cordova</p>
+<p><a href="https://cordova.apache.org/#getstarted">Cordova</a></p>
 </li>
 <li>
-<p>Xamarin</p>
+<p><a href="https://developer.xamarin.com/getting-started/">Xamarin</a></p>
 </li>
 </ul>
 </div>
@@ -911,7 +946,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="sect2">
 <h3 id="configuring-your-development-environment-for-the-identity-management-service"><a class="anchor" href="#configuring-your-development-environment-for-the-identity-management-service"></a>Configuring your Development Environment for the Identity Management Service</h3>
 <div class="sect3">
-<h4 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h4>
+<h4 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h4>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -942,6 +977,18 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </li>
 <li>
 <p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back end services.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Follow the next specific additional instructions depending on your platform:</p>
@@ -1223,6 +1270,18 @@ installed certificate. Instructions can be found on the
 </li>
 <li>
 <p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back end services.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>Follow the next specific additional instructions depending on your platform:</p>
@@ -1289,7 +1348,7 @@ installed certificate. Instructions can be found on the
 <div class="sect1">
 <h2 id="doing-stuff"><a class="anchor" href="#doing-stuff"></a>Doing Stuff</h2>
 <div class="sectionbody">
-<h3 id="prerequisites-5" class="discrete">Prerequisites</h3>
+<h3 id="prerequisites-4" class="discrete">Prerequisites</h3>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -1315,8 +1374,78 @@ installed certificate. Instructions can be found on the
   </main>
 </div>
 <footer class="footer">
-  <p>This is a preview of the https://docs.aerogear.org website.</p>
-</footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <h5>Getting Started</h5>
+        <ul class="list-unstyled">
+          <li><a href="https://staging.aerogear.org/getting-started/overview/">Overview</a></li>
+          <li><a href="https://staging.aerogear.org/getting-started/installation-and-configuration/">Installation &amp; Configuration</a></li>
+          <li><a href="https://staging.aerogear.org/getting-started/creating-mobile-apps/">Creating Mobile Apps</a></li>
+          <li><a href="https://staging.aerogear.org/getting-started/enabling-mobile-services/">Enabling Mobile Services</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-3">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://staging.aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://staging.aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://staging.aerogear.org/services/metrics/">Metrics</a></li>
+         <li><a href="https://staging.aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://staging.aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://staging.aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-3">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://staging.aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://staging.aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://staging.aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://staging.aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-3">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://staging.aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
 <script src="../../_/js/site.js"></script>
 <script src="../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
