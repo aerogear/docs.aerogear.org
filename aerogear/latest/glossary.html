@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/glossary.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#procedure">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#binding">Binding Client Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#localdev">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#running">Running the mobile app</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#push-ui">Using the Push Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling">Handling a Notification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="runtime-connector.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#creating">Creating an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#connecting">Connecting to an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#calling">Calling APIs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#updating">Updating Runtime Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#securing">Securing an API Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Device Trust</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="device-security.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Showcase App Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#json">Downloading the service-config file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title"></span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title"></span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="glossary.html">Glossary</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/mobile-docs/modules/ROOT/pages/glossary.adoc"></a></div>
+</div>
+<article class="doc">
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#aerogear-mobile-services-terminology">AeroGear Mobile Services Terminology</a></li>
+<li><a href="#ref_terminology_Identity Management_ref_terminology">Identity Management Terminology</a></li>
+<li><a href="#ref_terminology_Push Notifications_ref_terminology">Push Notifications Terminology</a></li>
+<li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="aerogear-mobile-services-terminology"><a class="anchor" href="#aerogear-mobile-services-terminology"></a>AeroGear Mobile Services Terminology</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a id="mobile-service"></a>Mobile Service</dt>
+<dd>
+<p>A mobile service accelerates your mobile app development by providing solutions for common mobile development use cases such as Push notifications. Mobile services are hosted on OpenShift and you use the OpenShift console to provision and associate services with your mobile apps.
+For more information, see <a href="con_services.html" class="page">Mobile Services</a>.</p>
+</dd>
+<dt class="hdlist1"><a id="mobile-client"></a>Mobile Client</dt>
+<dd>
+<p>A Mobile Client is the representation of a mobile app in an OpenShift project. This allows you connect and disconnect an app with any mobile service in the same OpenShift project.
+For more information, see <a href="registering-a-mobile-app.html" class="page">Registering a mobile app</a>.</p>
+</dd>
+<dt class="hdlist1"><a id="mobile-app"></a>mobile app</dt>
+<dd>
+<p>A mobile app is your code for Android, iOS, Cordova or Xamarin that uses Mobile Services.</p>
+</dd>
+<dt class="hdlist1">Binding</dt>
+<dd>
+<p>You can associate a Mobile Service with a mobile app to allow your mobile app use the mobile service.</p>
+</dd>
+<dt class="hdlist1">Mobile Services configuration file</dt>
+<dd>
+<p>The <code>mobile-services.json</code> file provides the information your mobile app needs to use Mobile Services.</p>
+</dd>
+<dt class="hdlist1">Back-end</dt>
+<dd>
+<p>Your server-side code, typically Node.js or Java.
+You can register the URL for each back-end service while provisioning the Runtime Connector service. This URL is available to the mobile app from the <code>mobile-services.json</code> file.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Identity Management_ref_terminology"><a class="anchor" href="#ref_terminology_Identity Management_ref_terminology"></a>Identity Management Terminology</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes terminology that is associated with Identity Management.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">SSO</dt>
+<dd>
+<p><em>Single Sign On</em>, the ability to share a login between multiple services</p>
+</dd>
+<dt class="hdlist1">OpenID Connect</dt>
+<dd>
+<p>a standard for providing identity on top of OAuth 2.0</p>
+</dd>
+<dt class="hdlist1">Keycloak</dt>
+<dd>
+<p>Red Hat&#8217;s implementation of <em>SSO</em> and <em>OpenID</em> used as the identity provider</p>
+</dd>
+<dt class="hdlist1">Client ID</dt>
+<dd>
+<p>is the client identifier for <em>OpenID Connect</em> requests, a simple alpha-numeric string</p>
+</dd>
+<dt class="hdlist1">User Attributes</dt>
+<dd>
+<p>additional properties for user accounts (besides name and email) managed by Keycloak</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Push Notifications_ref_terminology"><a class="anchor" href="#ref_terminology_Push Notifications_ref_terminology"></a>Push Notifications Terminology</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes terminology that is associated with Push Notifications.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Push Application</dt>
+<dd>
+<p>A logical construct that represents an Mobile App, for example, <em>Mobile HR</em>.</p>
+</dd>
+<dt class="hdlist1">Push Notification Message</dt>
+<dd>
+<p>A simple message to be sent to a Push Application.</p>
+</dd>
+<dt class="hdlist1">Sender Endpoint API</dt>
+<dd>
+<p>A RESTful API that receives Push Notification Message requests for a PushApplication or some of its different Variants. The Server translate this request into the platform specific details and delivers the payload to the 3rd party cloud provides, which eventually might deliver the message to the physical device.</p>
+</dd>
+<dt class="hdlist1">Variant</dt>
+<dd>
+<p>A variant of the Push Application, representing a specific mobile platform, like iOS or Android, or even more fine grain differentiation like iPad or iPhone.
+There can be multiple variants for a single Push Application (for example, <em>Mobile HR Android</em>, <em>Mobile HR iPad</em>, <em>Mobile HR iOS free</em> or _Mobile HR iOS premium).
+Each supported variant type contains some platform specific properties, such as a Google API key (Android) or passphrase and certificate (Apple).</p>
+</dd>
+<dt class="hdlist1">APNs</dt>
+<dd>
+<p><a href="https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1">Apple Push Notification service</a>.</p>
+</dd>
+<dt class="hdlist1">Installation</dt>
+<dd>
+<p>Represents an actual device, registered with the UnifiedPush Server. User1 running <em>HR Android</em> app, while User2 runs <em>HR iPhone premium</em> on his phone.</p>
+</dd>
+<dt class="hdlist1">Administrative User Interface</dt>
+<dd>
+<p>(AUI) The Unified Push Admin UI Web UI that allows you manage Push Applications and Variants, view statistics and send Push Notifications to devices.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Mobile CI/CD_ref_terminology"><a class="anchor" href="#ref_terminology_Mobile CI/CD_ref_terminology"></a>Mobile CI/CD Terminology</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes terminology that is associated with Mobile CI/CD.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CI/CD</dt>
+<dd>
+<p>Continuous Integration / Continuous Development</p>
+</dd>
+<dt class="hdlist1">Jenkins</dt>
+<dd>
+<p>A tool that helps to automate the software development process, with continuous integration and facilitating continuous delivery.</p>
+</dd>
+<dt class="hdlist1">Build</dt>
+<dd>
+<p>A single run of Jenkins against a source code repository.</p>
+</dd>
+<dt class="hdlist1">Artifact</dt>
+<dd>
+<p>The result of a succesful build in Jenkins, this is the binary that can be installed on to a mobile device.</p>
+</dd>
+<dt class="hdlist1">Jenkinsfile</dt>
+<dd>
+<p>This is a file contained in the source code repository which instructs Jenkins on how to build an artifact with this source code.</p>
+</dd>
+</dl>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Root Access Detection (NOT_ROOTED)</dt>
+<dd>
+<p>Use it to help prevent your app running in a device that has been rooted/jailbroken. A device is considered rooted if <strong>any</strong> of the following are true:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A custom key has been used to sign the kernel</p>
+</li>
+<li>
+<p>The <code>su</code> binaries are present</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p><code>SecurityChecks.NOT_ROOTED</code>.</p>
+</div>
+<div class="paragraph">
+<p>This function uses the <a href="https://github.com/scottyab/rootbeer">Rootbeer</a> library to check if root access is present on the device.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Developer Mode Detection (NO_DEVELOPER_MODE)</dt>
+<dd>
+<p>To detect if Developer Mode has been enabled on the device the <code>SecurityCheckType#NO_DEVELOPER_MODE</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/provider/Settings.html"><code>Settings</code></a> class.</p>
+</dd>
+<dt class="hdlist1">Debugger Detection (NO_DEBUGGER)</dt>
+<dd>
+<p>To detect if an Android debugger is attached to the app the <code>SecurityCheckType#NO_DEBUGGER</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Debug.html"><code>Debug</code></a> class.</p>
+</dd>
+<dt class="hdlist1">Emulator Detection (NOT_IN_EMULATOR)</dt>
+<dd>
+<p>To detect if the app is being run on an emulator the <code>SecurityCheckType#NOT_IN_EMULATOR</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Build.html"><code>Build</code></a> class.</p>
+</dd>
+<dt class="hdlist1">Device Lock Detection (SCREEN_LOCK_ENABLED)</dt>
+<dd>
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>SecurityCheckType#SCREEN_LOCK_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html"><code>KeyguardManager</code></a> class.</p>
+</dd>
+<dt class="hdlist1">App Data Backup Detection (ALLOW_BACKUP_DISABLED)</dt>
+<dd>
+<p>To detect whether the application’s data is configured to be synchronized across devices the <code>SecurityCheckType#ALLOW_BACKUP_DISABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html"><code>allowBackup</code></a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
+</dd>
+<dt class="hdlist1">Device Encryption Detection (HAS_ENCRYPTION_ENABLED)</dt>
+<dd>
+<p>To detect whether the devices filesystem is encrypted the <code>SecurityCheckType#HAS_ENCRYPTION_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html"><code>DevicePolicyManager</code></a> class.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -55,7 +55,7 @@ $(addBlockSwitches);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Mobile Metrics :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/introduction/con_introduction-to-metrics.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -80,110 +80,164 @@ $(addBlockSwitches);
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">AeroGear Docs</a></h3>
+    <h3 class="title"><a href="../index.html"></a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../index.html">Getting Started</a>
+    <a class="nav-link" href="../getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../registering-a-mobile-app.html">Registering a Mobile App</a>
+    <a class="nav-link" href="../getting-started.html#procedure">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-dev-env.html">Dev Environment Setup</a>
+    <a class="nav-link" href="../getting-started.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#binding">Binding Client Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#localdev">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#running">Running the mobile app</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mobile-clients.html">Mobile Clients</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
     <a class="nav-link" href="../con_services.html">Mobile Services</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../keycloak/index.html">Identity Management</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../keycloak/provisioning.html">Provisioning</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../keycloak/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../keycloak/coding.html">Coding</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../keycloak/authenticating.html">User Authentication</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../keycloak/retrieving-users-roles.html">Access Control</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../keycloak/sso.html">Single Sign On</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../metrics/monitoring-keycloak.html">Monitoring Identity Management</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../security/index.html">Device Security</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/coding.html">Coding</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/proc_performing-device-checks.html">Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../security/proc_pinning-certificates.html">Certificate Pinning</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../push/index.html">Push Notifications</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../push/provisioning.html">Provisioning</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../push/binding.html">Binding</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../push/coding.html">Coding</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <span class="nav-text">More&#8230;&#8203;</span>
+    <a class="nav-link" href="../identity-management.html">Identity Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../push/proc_sending-a-push-notification.html">Sending a Push Notification</a>
+    <a class="nav-link" href="../identity-management.html#setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../push/admin-ui.html">Unified Push Admin UI</a>
+    <a class="nav-link" href="../identity-management.html#user-auth">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../push/handling-push-notifications.html">Handling Push Notifications</a>
+    <a class="nav-link" href="../identity-management.html#access">Access Control</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../push/proc_preparing-ups-for-use-with-ios.html">Apple Push Network</a>
+    <a class="nav-link" href="../identity-management.html#sso">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../push/google-setup.html">Firebase Cloud Messaging</a>
+    <a class="nav-link" href="../identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push-notifications.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push-notifications.html#push-ui">Using the Push Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push-notifications.html#sending">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push-notifications.html#handling">Handling a Notification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../runtime-connector.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#creating">Creating an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#connecting">Connecting to an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#calling">Calling APIs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#updating">Updating Runtime Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#securing">Securing an API Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#app">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#setup">Device Trust</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#setup">Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../device-security.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../device-security.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../device-security.html#device-trust">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../device-security.html#cert-pinning">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -191,108 +245,39 @@ $(addBlockSwitches);
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="../metrics/index.html">Mobile Metrics</a>
+    <a class="nav-link" href="../showcase-apps.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../metrics/provisioning.html">Provisioning</a>
+    <a class="nav-link" href="../showcase-apps.html#features">Showcase App Features</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../metrics/binding.html">Binding</a>
+    <a class="nav-link" href="../showcase-apps.html#setup">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../metrics/configuring-dev-env-metrics.html">Coding an App to use Mobile Metrics</a>
+    <a class="nav-link" href="../showcase-apps.html#app">Showcase App Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../metrics/analysing-app-usage.html">Analysing Apps and Devices</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../custom/index.html">Runtime Connector</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../custom/provisioning.html">Provisioning</a>
+    <a class="nav-link" href="../showcase-apps.html#binding">Service Binding</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../custom/binding.html">Binding</a>
+    <a class="nav-link" href="../showcase-apps.html#json">Downloading the service-config file</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../custom/configuring-dev-env-custom.html">Using Runtime Connectors in an App</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../digger/index.html">Mobile CI/CD</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/provisioning.html">Provisioning</a>
+    <a class="nav-link" href="../showcase-apps.html#build">Building and Running the Showcase Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/proc_creating-a-build-configuration.html">Creating a Build Configuration</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/running-a-build.html">Building Apps</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../digger/proc_deploying-a-mobile-app.html">Deploying Apps</a>
+    <a class="nav-link" href="../showcase-apps.html#certs">Using Self Signed Certs</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
     <a class="nav-link" href="../ref_api.html">API Reference</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../ref_api.html#android">Android</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../ref_api.html#ios">iOS</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../ref_api.html#cordova">Cordova</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../ref_api.html#xamarin">Xamarin</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="../showcase-apps/index.html">Showcase Apps</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/service-setup.html">Service Setup</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/identity-management.html">Identity Management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/device-security.html">Device Security</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/push-notifications.html">Push Notifications</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps/metrics.html">Mobile Metrics</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../glossary.html">Glossary</a>
   </li>
 </ul>
   </li>
@@ -301,12 +286,12 @@ $(addBlockSwitches);
 </div>
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
-    <span class="title">AeroGear Docs</span>
+    <span class="title"></span>
     <span class="version">latest</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <span class="title">AeroGear Docs</span>
+      <span class="title"></span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../index.html">latest</a>
@@ -321,10 +306,13 @@ $(addBlockSwitches);
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="../index.html" class="home-link"></a>
+  <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_introduction-to-metrics.html">Introduction to Mobile Metrics</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/introduction/con_introduction-to-metrics.adoc"></a></div>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/mobile-docs/modules/ROOT/pages/introduction/con_introduction-to-metrics.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Introduction to Mobile Metrics</h1>

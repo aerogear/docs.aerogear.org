@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-metrics.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#procedure">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#binding">Binding Client Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#localdev">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#running">Running the mobile app</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#push-ui">Using the Push Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling">Handling a Notification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="runtime-connector.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#creating">Creating an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#connecting">Connecting to an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#calling">Calling APIs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#updating">Updating Runtime Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="runtime-connector.html#securing">Securing an API Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#app">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#setup">Device Trust</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#setup">Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="device-security.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Showcase App Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#json">Downloading the service-config file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title"></span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title"></span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="mobile-metrics.html">Mobile Metrics</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/mobile-docs/modules/ROOT/pages/mobile-metrics.adoc"></a></div>
+</div>
+<article class="doc">
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#con_introduction-to-metrics_con_introduction-to-metrics">About Mobile Metrics Service</a>
+<ul class="sectlevel2">
+<li><a href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics">Additional resources</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li><a href="#setup">Setting Up the Mobile Metrics Service</a>
+<ul class="sectlevel2">
+<li><a href="#provisioning-metrics-service">Provisioning Metrics Service</a></li>
+<li><a href="#binding-a-mobile-client-with-the-metrics-service">Binding a Mobile Client with the Metrics Service</a></li>
+<li><a href="#configuring-your-development-environment-for-the-metrics-service">Configuring your Development Environment for the Metrics Service</a></li>
+</ul>
+</li>
+<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+<ul class="sectlevel3">
+<li><a href="#next-steps-4">Next Steps</a></li>
+</ul>
+</li>
+<li><a href="#app">Analyzing App Usage</a>
+<ul class="sectlevel2">
+<li><a href="#external-resources">External resources</a></li>
+</ul>
+</li>
+<li><a href="#identity">Monitoring Identity Management Service</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-5">Prerequisites</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#dashboard-panel-descriptions">Dashboard panel descriptions</a></li>
+<li><a href="#singlestat-panels">Singlestat Panels</a></li>
+<li><a href="#graph-panels">Graph panels</a></li>
+<li><a href="#pie-charts">Pie Charts</a></li>
+<li><a href="#additional-resources">Additional resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="con_introduction-to-metrics_con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_con_introduction-to-metrics"></a>About Mobile Metrics Service</h2>
+<div class="sectionbody">
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/xWFWUcuZPaQ?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="paragraph">
+<p>The Mobile Metrics Service allows you monitor mobile apps, devices and mobile services.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Monitor usage by version of mobile app</p>
+</li>
+<li>
+<p>Monitor identity management</p>
+</li>
+<li>
+<p>Extend monitoring to include your custom requirement</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Identity management is monitored by the Mobile Metrics Service when it is provisioned. No configuration is needed.</p>
+</div>
+<div class="paragraph">
+<p>To collect metrics from mobile apps, you need to create a binding which is described in the next sections.</p>
+</div>
+<div class="sect2">
+<h3 id="con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"></a>Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For more information, see the <a href="https://prometheus.io/docs/introduction/overview/">Prometheus Documentation</a>.</p>
+</li>
+<li>
+<p>For more information, see the <a href="http://docs.grafana.org/">Grafana Documentation</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="metrics/provisioning.html" class="page">Provisioning Metrics Service</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup"><a class="anchor" href="#setup"></a>Setting Up the Mobile Metrics Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="provisioning-metrics-service"><a class="anchor" href="#provisioning-metrics-service"></a>Provisioning Metrics Service</h3>
+<div class="sect3">
+<h4 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h4>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To provision the Metrics mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Create a new project or choose an existing project.</p>
+</li>
+<li>
+<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Services</strong> and choose the Metrics service.</p>
+</li>
+<li>
+<p>Follow the wizard for provisioning that service.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When provisioning a Metrics Service, you are prompted to set the following:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Configuration</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grafana Storage Size (Gb)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size of persistent volume for Grafana (default value is recommended)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prometheus Storage Size (Gb)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size of persistent volume for Prometheus (default value is recommended)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Storage Size (Gb)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size of persistent volume for Postgres (default value is recommended)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User name that will be used to connect to postgres ('user' will be used if blank)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to connect to Postgres (generated if blank)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the Postgres password was generated, retrieve the password using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc describe dc postgres-metrics -n &lt;myproject&gt; | grep POSTGRESQL_PASSWORD</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="metrics/binding.html" class="page">Binding a Mobile Client with the Metrics Service</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="binding-a-mobile-client-with-the-metrics-service"><a class="anchor" href="#binding-a-mobile-client-with-the-metrics-service"></a>Binding a Mobile Client with the Metrics Service</h3>
+<div class="sect3">
+<h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h4>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
+This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The association between a Mobile Client and  Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To associate a Mobile Client with a mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+</li>
+<li>
+<p>Click on the Mobile Client and navigate to Mobile Client view.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to click on the item in the <strong>Mobile Clients</strong> list.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
+</li>
+<li>
+<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
+</li>
+<li>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the  Service.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="metrics/configuring-dev-env-metrics.html" class="page">Configuring Development Environment</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-your-development-environment-for-the-metrics-service"><a class="anchor" href="#configuring-your-development-environment-for-the-metrics-service"></a>Configuring your Development Environment for the Metrics Service</h3>
+<div class="sect3">
+<h4 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h4>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="metrics/binding.html" class="page">Binding a Mobile Client with the Metrics Service</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+</li>
+<li>
+<p>Follow the next specific additional instructions depending on your platform:</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Locate this file in your application project and import it using <code>require</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can create a JavaScript object and use directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Metrics will be sent automatically from the mobile app once any of the components from AeroGear SDK are installed.</p>
+</div>
+<div class="sect3">
+<h4 id="next-steps-4"><a class="anchor" href="#next-steps-4"></a>Next Steps</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="metrics/analysing-app-usage.html" class="page">Analyzing App Usage</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app"><a class="anchor" href="#app"></a>Analyzing App Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide shows how to use app metrics to provide rich visualizations regarding app usage that can then drive development planning, for example, when should support for  version x.y of app end?'</p>
+</div>
+<h3 id="prerequisites-4" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="metrics/binding.html" class="page">Binding a Mobile Client with the  Service</a></p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have configured the app as described in <a href="metrics/configuring-dev-env-metrics.html" class="page">Configuring your Development Environment</a></p>
+</li>
+</ul>
+</div>
+<h3 id="viewing-dashboards" class="discrete">Viewing Dashboards</h3>
+<div class="paragraph">
+<p>There are many visualisations available in the default dashboards in Grafana.
+There are 2 dashboards where App Metrics data is shown:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mobile Service Dashboard (Summary data in the 'Mobile App Metrics' section)</p>
+</li>
+<li>
+<p>Mobile App Metrics Dashboard</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In general, the summary data that is visible on the 'Mobile Services' Dashboard is also available on the 'Mobile App Metrics' dashboard, but in more detail.</p>
+</div>
+<h3 id="analyzing-app-launches" class="discrete">Analyzing App launches</h3>
+<div class="paragraph">
+<p>An App launch is a metric event that occurs when an App is launched on a device.
+The total number of App launches for a given time shows how many times an App was launched in that time, regardless of if it was the same device or different devices.
+It can be useful as a gauge on how much activity the App has.
+However, as it doesn&#8217;t take into account multiple lauches from the same device, it isn&#8217;t useful as a gauge for 'stickiness' of the App.</p>
+</div>
+<h3 id="analyzing-unique-clients" class="discrete">Analyzing unique clients</h3>
+<div class="paragraph">
+<p>Every metric event has a unique client identifier associated with it.
+This unique client identifier is generated the first time an App is started.
+It is worth noting this identifier will be regenerated if a user uninstalls and re-installs an App.
+The total number of unique clients for a given time shows how many users launched an App at least once.
+This can be useful as a gauge on how many active App users there currently are.
+The time range is an important factor when viewing the number of unique clients.
+Viewing unique clients for the last year gives a very different insight than for the last week.
+In Grafana, the time range can be changed in the top right of the Dashboard view.</p>
+</div>
+<h3 id="analyzing-unique-clients-per-app" class="discrete">Analyzing unique clients per App</h3>
+<div class="paragraph">
+<p>Every metric event has an App identifier associated with it.
+An App identifier uniquely identifies an App.
+It is bundled with the App binary.
+There can be more than 1 App (each with a different App identifier) sending metrics events to the same Metrics Service.
+For example, there might be an Admin Portal App and a Field Worker App both using the same backend services and same Mobile Metrics Service.
+The number of unique clients per App gives a breakdown of all users by the App they are using.
+However, if you only have 1 App there is no difference between the number of unique clients and the number of unique clients per App.</p>
+</div>
+<h3 id="analyzing-unique-clients-per-platform" class="discrete">Analyzing unique clients per platform</h3>
+<div class="paragraph">
+<p>Every metric event has the platform associated with it.
+An example of platform is Android or iOS.
+This can be useful for making decisions about which platform to put effort into.
+However, if all your Apps on on a single platform, there is no difference between the number of unique clients and the number of unique clients per platform.</p>
+</div>
+<h3 id="analyzing-unique-clients-per-sdk-version" class="discrete">Analyzing unique clients per sdk version</h3>
+<div class="paragraph">
+<p>Every metric event has the AeroGear sdk version associated with it.
+This can be useful for making decisions about what features to deprecate or drop support for, or applying backwards incompatible server changes/updates.
+This metric will be more valueable as more versions of an App (with different sdk versions) are published.</p>
+</div>
+<h3 id="analyzing-unique-clients-per-app-version" class="discrete">Analyzing unique clients per app version</h3>
+<div class="paragraph">
+<p>Every metric event has the App version associated with it.
+The App version is set by the developer.
+Like the sdk version, this can be useful for making decisions about what features to deprecate or drop support for, or applying backwards incompatible server changes/updates.
+It can also be useful to see the uptake rate of newly published versions of an App.</p>
+</div>
+<div class="sect2">
+<h3 id="external-resources"><a class="anchor" href="#external-resources"></a>External resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+</li>
+</ul>
+</div>
+<div id="trust" class="paragraph">
+<p>include::metrics/analysing-trust-checks.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="identity"><a class="anchor" href="#identity"></a>Monitoring Identity Management Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-5"><a class="anchor" href="#prerequisites-5"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Identity Management Service as described in <a href="keycloak/provisioning.html" class="page">Provisioning Identity Management Service</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Mobile Metrics Service and Identity Management Service must be provisioned in the same OpenShift project to access data.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+<div class="paragraph">
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Identity Management Service are provisioned,
+you should be able to see the "Keycloak Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h3>
+<div class="paragraph">
+<p>The Keycloak dashboard consists of several panels which give you an overview of the specific
+events, such as the number of registered users, memory usage etc.</p>
+</div>
+<div class="paragraph">
+<p>Below you will find a detailed description of each panel and its values.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h3>
+<div class="paragraph">
+<p>Singlestat panels show you the main summary of a single data series.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Total Registrations</strong>: Total number of registered (non-admin) users. This number comprises all successful registrations made via various providers, e.g. Keycloak, Github, Facebook etc.</p>
+</li>
+<li>
+<p><strong>Total Logins</strong>: Total number of successful logins (only non-admin users) over all providers.</p>
+</li>
+<li>
+<p><strong>Total Login Errors</strong>: Total number of failed login attempts.</p>
+</li>
+<li>
+<p><strong>Current Memory</strong>: The amount of memory currently used by the Identity Management Service</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h3>
+<div class="paragraph">
+<p>Used to show how certain values change over time, e.g. the number of successful logins.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Logins</strong>: Overview of the successful logins over time</p>
+</li>
+<li>
+<p><strong>Login Errors</strong>: Overview of the failed login attempts over time</p>
+</li>
+<li>
+<p><strong>Memory Usage</strong>: The values in this graph represents the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Used</strong>: The amount of memory currently used by the Identity Management Service</p>
+</li>
+<li>
+<p><strong>Commited</strong>: The amount of memory that is guaranteed to be available for use (by JVM)</p>
+</li>
+<li>
+<p><strong>Max</strong>: The maximum amount of memory that can be used for memory management</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pie-charts"><a class="anchor" href="#pie-charts"></a>Pie Charts</h3>
+<div class="paragraph">
+<p>Used to show the distribution of data, e.g. the number of logins per identity provider.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Logins Per Provider</strong>: Overview of the successful (non-admin) user logins per provider</p>
+</li>
+<li>
+<p><strong>Registrations Per Provider</strong>: Overview of the successful (non-admin) user registrations per provider.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

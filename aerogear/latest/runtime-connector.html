@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);    
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Runtime Connector Service :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/runtime-connector.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.aerogear.org">AeroGear Mobile Services</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#procedure">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#binding">Binding Client Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#localdev">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#running">Running the mobile app</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#push-ui">Using the Push Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling">Handling a Notification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="runtime-connector.html">Runtime Connector</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#creating">Creating an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#connecting">Connecting to an API Server</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#calling">Calling APIs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#updating">Updating Runtime Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#securing">Securing an API Server</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Device Trust</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="device-security.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Showcase App Features</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#json">Downloading the service-config file</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title"></span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title"></span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="runtime-connector.html">Runtime Connector</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/pwright/repos/aerogear/mobile-docs/modules/ROOT/pages/runtime-connector.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>About the Runtime Connector Service</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#con_introduction-to-custom_additional-resources-con_introduction-to-custom">Next steps</a></li>
+<li><a href="#setup">Setting Up the Runtime Connector Mobile Service</a>
+<ul class="sectlevel1">
+<li><a href="#provisioning-the-custom-runtime-connector-service">Provisioning the Custom Runtime Connector Service</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+<li><a href="#binding-a-mobile-client-with-the-custom-runtime-connector-service">Binding a Mobile Client with the Custom Runtime Connector Service</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-2">Prerequisites</a></li>
+<li><a href="#next-steps-2">Next steps</a></li>
+</ul>
+</li>
+<li><a href="#using-runtime-connector-in-an-app">Using Runtime Connector in an App</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-3">Prerequisites</a></li>
+<li><a href="#retrieving-the-custom-configuration-in-a-mobile-client">Retrieving the custom configuration in a Mobile Client</a></li>
+</ul>
+</li>
+<li><a href="#creating">Doing Stuff</a></li>
+<li><a href="#connecting">Doing Stuff</a></li>
+<li><a href="#calling">Doing Stuff</a></li>
+<li><a href="#updating">Doing Stuff</a></li>
+<li><a href="#securing">Doing Stuff</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Runtime Connector service allows you connect your mobile apps to your own backend API servers.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bind your mobile client to custom backend API services and business logic</p>
+</li>
+<li>
+<p>Ability to add custom configuration for a backend service, which becomes accessible from your Mobile App</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con_introduction-to-custom_additional-resources-con_introduction-to-custom"><a class="anchor" href="#con_introduction-to-custom_additional-resources-con_introduction-to-custom"></a>Next steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="custom/provisioning.html" class="page">Provisioning</a> the Runtime Connector Service</p>
+</div>
+</div>
+</div>
+<h1 id="setup" class="sect0"><a class="anchor" href="#setup"></a>Setting Up the Runtime Connector Mobile Service</h1>
+<div class="sect1">
+<h2 id="provisioning-the-custom-runtime-connector-service"><a class="anchor" href="#provisioning-the-custom-runtime-connector-service"></a>Provisioning the Custom Runtime Connector Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running a back-end service that is exposed to the internet with a known URL.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To provision the Custom Runtime Connector mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Create a new project or choose an existing project.</p>
+</li>
+<li>
+<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Services</strong> and choose the Custom Runtime Connector service.</p>
+</li>
+<li>
+<p>Follow the wizard for provisioning that service.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When prompted, enter the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Service Name (required)</strong>: Service name to be exposed to the mobile application.</p>
+</li>
+<li>
+<p><strong>Service URL (required)</strong>: Service url where the service is running.</p>
+</li>
+<li>
+<p><strong>Service JSON Configuration</strong>: Service configuration in a valid JSON format.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h3>
+<div class="paragraph">
+<p><a href="custom/binding.html" class="page">Binding</a> to the Custom Runtime Connector Service</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="binding-a-mobile-client-with-the-custom-runtime-connector-service"><a class="anchor" href="#binding-a-mobile-client-with-the-custom-runtime-connector-service"></a>Binding a Mobile Client with the Custom Runtime Connector Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> The Runtime Connector is provisioned as described in <a href="custom/provisioning.html" class="page">Provisioning Runtime Connector Service</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
+This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The association between a Mobile Client and  Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To associate a Mobile Client with a mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+</li>
+<li>
+<p>Click on the Mobile Client and navigate to Mobile Client view.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to click on the item in the <strong>Mobile Clients</strong> list.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
+</li>
+<li>
+<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
+</li>
+<li>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the  Service.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After the binding is finished the Mobile Client has been updated with the custom configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="custom/configuring-dev-env-custom.html" class="page">Using</a> the custom runtime connector in an App</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-runtime-connector-in-an-app"><a class="anchor" href="#using-runtime-connector-in-an-app"></a>Using Runtime Connector in an App</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> The Runtime Connector is provisioned as described in <a href="custom/provisioning.html" class="page">Provisioning Runtime Connector Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have created a <a href="custom/binding.html" class="page">binding</a> to a Mobile Client</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Imported the <code>Core</code> module of the Aerogear SDK in your App</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Have a look at <a href="configuring-dev-env.html" class="page">Development Environment Setup</a> to learn how to import the Aerogear SDK modules in your App.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="retrieving-the-custom-configuration-in-a-mobile-client"><a class="anchor" href="#retrieving-the-custom-configuration-in-a-mobile-client"></a>Retrieving the custom configuration in a Mobile Client</h3>
+<div class="paragraph">
+<p>This section shows how to retrieve the configuration of the custom service in a Mobile Client by using the Core module of the Aerogear SDK.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you do not use any other modules of the Aerogear SDK, make sure that the <code>android-core</code> is in the dependencies of your <code>app</code> module&#8217;s <code>build.gradle</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation 'org.aerogear:android-core:1.0.0-alpha'
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>getServiceConfigurationById</code> method to get the service configuration associated with your custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ServiceConfiguration customConfig = MobileCore.getInstance().getServiceConfigurationById("[SERVICE NAME]");</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String url = customConfig.getUrl();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String property = customConfig.getProperty("[PROPERTY NAME]");</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you do not use any other modules of the Aerogear SDK, make sure that the <code>AGSCore</code> is in your <code>Podfile</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target :'YourTarget' do
+    pod 'AGSCore', '1.0.0-alpha'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>getConfigurationById</code> function to get the service configuration associated with your custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let customConfig = AgsCore.instance.getConfigurationById("[SERVICE NAME]")</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let url = customConfig.url</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let property: JSONValue = customConfig.config["[PROPERTY NAME]"]</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>getConfigById</code> function to get the service configuration associated with your custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const core = require("@aerogear/core").INSTANCE;
+const customConfig = core.getConfigById("[SERVICE NAME]");</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>@aerogear/core</code> is a dependency of <code>@aerogear/app</code> which should always be installed because it contains the `init`function to initialize all other SDK modules.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const url = customConfig.url;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// customConfig.config contains the parsed Service JSON Configuration
+const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the <code>GetServiceConfigurationById</code> function to get the service configuration associated with your custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var customConfig = MobileCore.Instance.GetServiceConfigurationById("[SERVICE NAME]");</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get the URL of the custom service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var url = customConfig.Url;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var property = customConfig["[PROPERTY NAME]"];</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating"><a class="anchor" href="#creating"></a>Doing Stuff</h2>
+<div class="sectionbody">
+<h3 id="prerequisites-4" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>numbered list</p>
+</li>
+</ol>
+</div>
+<h3 id="additional-information" class="discrete">Additional Information</h3>
+<div class="paragraph">
+<p>Any links are better placed here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="connecting"><a class="anchor" href="#connecting"></a>Doing Stuff</h2>
+<div class="sectionbody">
+<h3 id="prerequisites-5" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure-2" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>numbered list</p>
+</li>
+</ol>
+</div>
+<h3 id="additional-information-2" class="discrete">Additional Information</h3>
+<div class="paragraph">
+<p>Any links are better placed here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="calling"><a class="anchor" href="#calling"></a>Doing Stuff</h2>
+<div class="sectionbody">
+<h3 id="prerequisites-6" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure-3" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>numbered list</p>
+</li>
+</ol>
+</div>
+<h3 id="additional-information-3" class="discrete">Additional Information</h3>
+<div class="paragraph">
+<p>Any links are better placed here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="updating"><a class="anchor" href="#updating"></a>Doing Stuff</h2>
+<div class="sectionbody">
+<h3 id="prerequisites-7" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure-4" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>numbered list</p>
+</li>
+</ol>
+</div>
+<h3 id="additional-information-4" class="discrete">Additional Information</h3>
+<div class="paragraph">
+<p>Any links are better placed here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="securing"><a class="anchor" href="#securing"></a>Doing Stuff</h2>
+<div class="sectionbody">
+<h3 id="prerequisites-8" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure-5" class="discrete">Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>numbered list</p>
+</li>
+</ol>
+</div>
+<h3 id="additional-information-5" class="discrete">Additional Information</h3>
+<div class="paragraph">
+<p>Any links are better placed here.</p>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This is a preview of the https://docs.aerogear.org website.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
