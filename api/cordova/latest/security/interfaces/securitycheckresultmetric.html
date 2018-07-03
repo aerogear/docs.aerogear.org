@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ConfigurationHelper | @aerogear/core</title>
+	<title>SecurityCheckResultMetric | @aerogear/security</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@aerogear/core</a>
+					<a href="../index.html" class="title">@aerogear/security</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="configurationhelper.html">ConfigurationHelper</a>
+					<a href="securitycheckresultmetric.html">SecurityCheckResultMetric</a>
 				</li>
 			</ul>
-			<h1>Class ConfigurationHelper</h1>
+			<h1>Interface SecurityCheckResultMetric</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Helper class to read service configurations from a mobile-services.json file</p>
+						<p>Interface for the metric representation of a security check result.</p>
 					</div>
 				</div>
 			</section>
@@ -75,7 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ConfigurationHelper</span>
+						<span class="target">SecurityCheckResultMetric</span>
 					</li>
 				</ul>
 			</section>
@@ -84,107 +84,62 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="configurationhelper.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="configurationhelper.html#configurations" class="tsd-kind-icon">configurations</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="configurationhelper.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="securitycheckresultmetric.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="securitycheckresultmetric.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="securitycheckresultmetric.html#passed" class="tsd-kind-icon">passed</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Configuration<wbr>Helper<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/aerogearconfiguration.html" class="tsd-signature-type">AeroGearConfiguration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="configurationhelper.html" class="tsd-signature-type">ConfigurationHelper</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/configuration/ConfigurationHelper.ts#L9">configuration/ConfigurationHelper.ts:9</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>config: <a href="../interfaces/aerogearconfiguration.html" class="tsd-signature-type">AeroGearConfiguration</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>top level configuration that will be send from server.</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="configurationhelper.html" class="tsd-signature-type">ConfigurationHelper</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="configurations" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> configurations</h3>
-					<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a><span class="tsd-signature-symbol">[]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/configuration/ConfigurationHelper.ts#L9">configuration/ConfigurationHelper.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/security/src/metrics/SecurityCheckResultMetric.ts#L8">metrics/SecurityCheckResultMetric.ts:8</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ID of the check.</p>
+						</div>
+					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getconfig" class="tsd-anchor"></a>
-					<h3>get<wbr>Config</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/configuration/ConfigurationHelper.ts#L22">configuration/ConfigurationHelper.ts:22</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get a service configuration object, provided an existing id is given</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>string - The id of the service</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/security/src/metrics/SecurityCheckResultMetric.ts#L13">metrics/SecurityCheckResultMetric.ts:13</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Name of the check.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="passed" class="tsd-anchor"></a>
+					<h3>passed</h3>
+					<div class="tsd-signature tsd-kind-icon">passed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/security/src/metrics/SecurityCheckResultMetric.ts#L18">metrics/SecurityCheckResultMetric.ts:18</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the check was successful or not.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -198,56 +153,50 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/checkresultmetrics.html" class="tsd-kind-icon">Check<wbr>Result<wbr>Metrics</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/devicelockcheck.html" class="tsd-kind-icon">Device<wbr>Lock<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/nondebugcheck.html" class="tsd-kind-icon">Non<wbr>Debug<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/nonemulatedcheck.html" class="tsd-kind-icon">Non<wbr>Emulated<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/nonrootedcheck.html" class="tsd-kind-icon">Non<wbr>Rooted<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/securityservice.html" class="tsd-kind-icon">Security<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="securitycheck.html" class="tsd-kind-icon">Security<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="securitycheckresult.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="configurationhelper.html" class="tsd-kind-icon">Configuration<wbr>Helper</a>
+					<li class="current tsd-kind-interface">
+						<a href="securitycheckresultmetric.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result<wbr>Metric</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="configurationhelper.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="securitycheckresultmetric.html#id" class="tsd-kind-icon">id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="configurationhelper.html#configurations" class="tsd-kind-icon">configurations</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="securitycheckresultmetric.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="configurationhelper.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="securitycheckresultmetric.html#passed" class="tsd-kind-icon">passed</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="cordovaappmetrics.html" class="tsd-kind-icon">Cordova<wbr>App<wbr>Metrics</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="cordovadevicemetrics.html" class="tsd-kind-icon">Cordova<wbr>Device<wbr>Metrics</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="metricsservice.html" class="tsd-kind-icon">Metrics<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="networkmetricspublisher.html" class="tsd-kind-icon">Network<wbr>Metrics<wbr>Publisher</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/aerogearconfiguration.html" class="tsd-kind-icon">Aero<wbr>Gear<wbr>Configuration</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/appmetrics.html" class="tsd-kind-icon">App<wbr>Metrics</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/devicemetrics.html" class="tsd-kind-icon">Device<wbr>Metrics</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/metrics.html" class="tsd-kind-icon">Metrics</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/metricspayload.html" class="tsd-kind-icon">Metrics<wbr>Payload</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/metricspublisher.html" class="tsd-kind-icon">Metrics<wbr>Publisher</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/serviceconfiguration.html" class="tsd-kind-icon">Service<wbr>Configuration</a>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#iroot" class="tsd-kind-icon">IRoot</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#cordova" class="tsd-kind-icon">cordova</a>
@@ -256,16 +205,19 @@
 						<a href="../globals.html#device" class="tsd-kind-icon">device</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#navigator" class="tsd-kind-icon">navigator</a>
+						<a href="../globals.html#document" class="tsd-kind-icon">document</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#version" class="tsd-kind-icon">version</a>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#hasdevicelock" class="tsd-kind-icon">has<wbr>Device<wbr>Lock</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#window" class="tsd-kind-icon">window</a>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#notdebugmode" class="tsd-kind-icon">not<wbr>Debug<wbr>Mode</a>
 					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#ismobilecordova" class="tsd-kind-icon">is<wbr>Mobile<wbr>Cordova</a>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#notemulated" class="tsd-kind-icon">not<wbr>Emulated</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#notrooted" class="tsd-kind-icon">not<wbr>Rooted</a>
 					</li>
 				</ul>
 			</nav>

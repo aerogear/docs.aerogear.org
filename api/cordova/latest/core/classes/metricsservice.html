@@ -67,7 +67,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>AeroGear Services Metrics SDK</p>
+						<p>AeroGear Metrics SDK
+						Provides internal api for metrics that are sent to metrics server.</p>
 					</div>
 				</div>
 			</section>
@@ -96,7 +97,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#publisher" class="tsd-kind-icon">publisher</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="metricsservice.html#client_id_key" class="tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="metricsservice.html#default_metrics_type" class="tsd-kind-icon">DEFAULT_<wbr>METRICS_<wbr>TYPE</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="metricsservice.html#id" class="tsd-kind-icon">ID</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="metricsservice.html#type" class="tsd-kind-icon">TYPE</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -109,12 +110,11 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsservice.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#getsavedclientid" class="tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsservice.html#publish" class="tsd-kind-icon">publish</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsservice.html#sendappanddevicemetrics" class="tsd-kind-icon">send<wbr>App<wbr>And<wbr>Device<wbr>Metrics</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#sendinitialappanddevicemetrics" class="tsd-kind-icon">send<wbr>Initial<wbr>App<wbr>And<wbr>Device<wbr>Metrics</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="metricsservice.html#sendappanddevicemetrics" class="tsd-kind-icon">send<wbr>App<wbr>And<wbr>Device<wbr>Metrics</a></li>
 							</ul>
 						</section>
 					</div>
@@ -126,21 +126,15 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Metrics<wbr>Service<span class="tsd-signature-symbol">(</span>appConfig<span class="tsd-signature-symbol">: </span><a href="../interfaces/aerogearconfiguration.html" class="tsd-signature-type">AeroGearConfiguration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metricsservice.html" class="tsd-signature-type">MetricsService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Metrics<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metricsservice.html" class="tsd-signature-type">MetricsService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L22">metrics/MetricsService.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L25">metrics/MetricsService.ts:25</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>appConfig: <a href="../interfaces/aerogearconfiguration.html" class="tsd-signature-type">AeroGearConfiguration</a></h5>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="metricsservice.html" class="tsd-signature-type">MetricsService</a></h4>
 						</li>
 					</ul>
@@ -154,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">configuration<span class="tsd-signature-symbol">:</span> <a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L21">metrics/MetricsService.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L24">metrics/MetricsService.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,7 +158,7 @@
 					<div class="tsd-signature tsd-kind-icon">publisher<span class="tsd-signature-symbol">:</span> <a href="../interfaces/metricspublisher.html" class="tsd-signature-type">MetricsPublisher</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L20">metrics/MetricsService.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L23">metrics/MetricsService.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"aerogear_metrics_client_key"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;aerogear_metrics_client_key&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L16">metrics/MetricsService.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L19">metrics/MetricsService.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,17 +178,17 @@
 					<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>METRICS_<wbr>TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"init"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;init&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L17">metrics/MetricsService.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L20">metrics/MetricsService.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> ID</h3>
-					<div class="tsd-signature tsd-kind-icon">ID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"metrics"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;metrics&quot;</span></div>
+					<a name="type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> TYPE</h3>
+					<div class="tsd-signature tsd-kind-icon">TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"metrics"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;metrics&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L18">metrics/MetricsService.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L21">metrics/MetricsService.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L41">metrics/MetricsService.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L44">metrics/MetricsService.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/metricspublisher.html" class="tsd-signature-type">MetricsPublisher</a>
@@ -223,7 +217,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L37">metrics/MetricsService.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L40">metrics/MetricsService.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -249,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L113">metrics/MetricsService.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L126">metrics/MetricsService.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -262,17 +256,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="getclientid" class="tsd-anchor"></a>
-					<h3>get<wbr>Client<wbr>Id</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Client<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L90">metrics/MetricsService.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L103">metrics/MetricsService.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -294,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L101">metrics/MetricsService.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L114">metrics/MetricsService.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
@@ -314,7 +308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L59">metrics/MetricsService.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L54">metrics/MetricsService.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L105">metrics/MetricsService.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L118">metrics/MetricsService.ts:118</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -364,17 +358,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="sendappanddevicemetrics" class="tsd-anchor"></a>
-					<h3>send<wbr>App<wbr>And<wbr>Device<wbr>Metrics</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> send<wbr>App<wbr>And<wbr>Device<wbr>Metrics</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 						<li class="tsd-signature tsd-kind-icon">send<wbr>App<wbr>And<wbr>Device<wbr>Metrics<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L49">metrics/MetricsService.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/core/src/metrics/MetricsService.ts#L94">metrics/MetricsService.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,28 +378,6 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="sendinitialappanddevicemetrics" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> send<wbr>Initial<wbr>App<wbr>And<wbr>Device<wbr>Metrics</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Initial<wbr>App<wbr>And<wbr>Device<wbr>Metrics<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/core/src/metrics/MetricsService.ts#L124">metrics/MetricsService.ts:124</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sends default metrics for first time</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -422,7 +394,7 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="configurationhelper.html" class="tsd-kind-icon">Configuration<wbr>Helper</a>
+						<a href="agscore.html" class="tsd-kind-icon">Ags<wbr>Core</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="cordovaappmetrics.html" class="tsd-kind-icon">Cordova<wbr>App<wbr>Metrics</a>
@@ -451,7 +423,7 @@
 								<a href="metricsservice.html#default_metrics_type" class="tsd-kind-icon">DEFAULT_<wbr>METRICS_<wbr>TYPE</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="metricsservice.html#id" class="tsd-kind-icon">ID</a>
+								<a href="metricsservice.html#type" class="tsd-kind-icon">TYPE</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="metricsservice.html#metricspublisher" class="tsd-kind-icon">metrics<wbr>Publisher</a>
@@ -459,7 +431,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="metricsservice.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="metricsservice.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
@@ -471,11 +443,8 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="metricsservice.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="metricsservice.html#sendappanddevicemetrics" class="tsd-kind-icon">send<wbr>App<wbr>And<wbr>Device<wbr>Metrics</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="metricsservice.html#sendinitialappanddevicemetrics" class="tsd-kind-icon">send<wbr>Initial<wbr>App<wbr>And<wbr>Device<wbr>Metrics</a>
+								<a href="metricsservice.html#sendappanddevicemetrics" class="tsd-kind-icon">send<wbr>App<wbr>And<wbr>Device<wbr>Metrics</a>
 							</li>
 						</ul>
 					</li>
@@ -505,11 +474,11 @@
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/serviceconfiguration.html" class="tsd-kind-icon">Service<wbr>Configuration</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#cordova" class="tsd-kind-icon">cordova</a>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#instance" class="tsd-kind-icon">INSTANCE</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#device" class="tsd-kind-icon">device</a>
+						<a href="../globals.html#document" class="tsd-kind-icon">document</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#navigator" class="tsd-kind-icon">navigator</a>
@@ -521,7 +490,16 @@
 						<a href="../globals.html#window" class="tsd-kind-icon">window</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="../globals.html#iscordovaandroid" class="tsd-kind-icon">is<wbr>Cordova<wbr>Android</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#iscordovaios" class="tsd-kind-icon">is<wbr>CordovaIOS</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="../globals.html#ismobilecordova" class="tsd-kind-icon">is<wbr>Mobile<wbr>Cordova</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#isnative" class="tsd-kind-icon">is<wbr>Native</a>
 					</li>
 				</ul>
 			</nav>
