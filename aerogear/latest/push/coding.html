@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding a Push Notifications App :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/push/coding.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -213,10 +213,7 @@ Zepto(function($){
     <a class="nav-link" href="../mobile-clients.html#binding">Binding Mobile Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../mobile-clients.html#configuring">Configuring and Running Builds</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../mobile-clients.html#running">Downloading and Installing Apps</a>
+    <a class="nav-link" href="../mobile-clients.html#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -417,6 +414,9 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="coding.html">Coding a Push Notifications App</a></li>
+  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/push/coding.adoc"></a></div>
 </div>
@@ -569,7 +569,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p>Add the push dependency to your application module</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation "org.aerogear:aerogear-push:1.0.0-alpha"
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation "org.aerogear:aerogear-push:1.0.0"
 implementation "com.google.firebase:firebase-messaging:[version]"</code></pre>
 </div>
 </div>

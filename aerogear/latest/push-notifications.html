@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Using the Push Notifications Mobile Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/push-notifications.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -213,10 +213,7 @@ Zepto(function($){
     <a class="nav-link" href="mobile-clients.html#binding">Binding Mobile Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#configuring">Configuring and Running Builds</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#running">Downloading and Installing Apps</a>
+    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -444,7 +441,6 @@ Zepto(function($){
 <li><a href="#proc_preparing-ups-for-use-with-ios_preparing-ups-for-use-with-ios">Enable Push Notifications for iOS App</a></li>
 <li><a href="#provisioning-push-notifications-service">Provisioning Push Notifications Service</a></li>
 <li><a href="#binding-a-mobile-client-with-the-push-notifications-service">Binding a Mobile Client with the Push Notifications service</a></li>
-<li><a href="#procedure-2">Procedure</a></li>
 <li><a href="#coding-a-push-notifications-app">Coding a Push Notifications App</a></li>
 </ul>
 </li>
@@ -858,9 +854,8 @@ The association between a Mobile Client and Push Notifications Service uses the 
 <p>To associate a Mobile Client with a mobile service:</p>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h3>
+<div class="sect3">
+<h4 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -932,6 +927,7 @@ The certificate needs to be encoded in base64 before copying it into the field l
 </div>
 <div class="paragraph">
 <p>After clicking Bind your variant will be created in UPS and you should see a new binding for your mobile client.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
@@ -1089,7 +1085,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p>Add the push dependency to your application module</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation "org.aerogear:aerogear-push:1.0.0-alpha"
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">implementation "org.aerogear:aerogear-push:1.0.0"
 implementation "com.google.firebase:firebase-messaging:[version]"</code></pre>
 </div>
 </div>

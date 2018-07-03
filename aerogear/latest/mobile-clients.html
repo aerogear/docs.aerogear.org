@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Clients in OpenShift :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-clients.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -213,10 +213,7 @@ Zepto(function($){
     <a class="nav-link" href="#binding">Binding Mobile Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#configuring">Configuring and Running Builds</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#running">Downloading and Installing Apps</a>
+    <a class="nav-link" href="#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -511,8 +508,8 @@ The UI will also be updated to show the service is bound to the Mobile Client.</
 <img src="_images/mobile-clients-configuration.png" alt="mobile clients configuration">
 </div>
 </div>
-<div class="sect2">
-<h3 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h3>
+<div class="sect3">
+<h4 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -540,6 +537,84 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 <p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building"><a class="anchor" href="#building"></a>Building Mobile Apps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <strong>Builds</strong> tab in the Mobile Client view allows you to view the previous builds of the app, and triggers a new build of the app.</p>
+</div>
+<div class="sect2">
+<h3 id="provisoning-a-mobile-ci-cd-service"><a class="anchor" href="#provisoning-a-mobile-ci-cd-service"></a>Provisoning a Mobile CI/CD Service</h3>
+<div class="paragraph">
+<p>In order to build the Mobile Client app, you first need to provision a Mobile CI/CD service. If the service is not provisioned, use the link provided on the screen to browse all the available mobile services and provision a new Mobile CI/CD service.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-no-service.png" alt="mobile clients no service"></span></p>
+</div>
+<div class="paragraph">
+<p>For more details about how to provision the Mobile CI/CD service, please check <a href="mobile-cicd.html" class="page">Mobile CI/CD service guide</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-build"><a class="anchor" href="#creating-a-build"></a>Creating a Build</h3>
+<div class="paragraph">
+<p>After the Mobile CI/CD service is provisioned, you need to create a new build config for the Mobile Client. You need to provide more information about the mobile app here depending on the platform. For example, the repo of the source code, the type of the build, the keys used to sign the app etc.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-build-config.png" alt="mobile clients build config"></span></p>
+</div>
+<div class="paragraph">
+<p>For more information about how to configure the build config, please check <a href="mobile-cicd.html#build-config" class="page">the build config section of Mobile CI/CD</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="starting-a-build"><a class="anchor" href="#starting-a-build"></a>Starting a Build</h3>
+<div class="paragraph">
+<p>Once a build is configured, you can start a new build. You will be able to view the progress of the build from the OpenShift UI and access the full build log.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-build-in-progress.png" alt="mobile clients build in progress"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="downloading-and-installing-apps"><a class="anchor" href="#downloading-and-installing-apps"></a>Downloading and Installing Apps</h3>
+<div class="paragraph">
+<p>You can use the OpenShift UI to deploy a mobile app by downloading the binary directly to the mobile device. This binary can be downloaded for any successful build in the build history.</p>
+</div>
+<div class="paragraph">
+<p>Once the build has completed you can then press the <code>Download</code> button and you will be presented with a QR code. Applications to scan QR codes are available in Google Play for Android or the App Store for iPhone. Once the QR code has been scanned it will open the download URL in the device and the application will download.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-builds-complete.png" alt="Available Mobile Clients"></span></p>
+</div>
+<div class="paragraph">
+<p>If you do not have a QR code scanner you can also download the artifact from the URL in the openshift web console. Once downloaded connect a device to your local machine.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For iOS applications open XCode and navigate to Window &gt; Devices and Simulators. Here you can install your mobile application by pressing <code>+</code> button at the bottom, then choose your download IPA file for installation.</p>
+</li>
+<li>
+<p>For Android applications move the APK file into the device directory. On your device locate and select the APK file and select install.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may need to enable the installation of apps from unknown sources on Android devices before installing from an APK.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
