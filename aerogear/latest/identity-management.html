@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/identity-management.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -213,10 +213,7 @@ Zepto(function($){
     <a class="nav-link" href="mobile-clients.html#binding">Binding Mobile Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#configuring">Configuring and Running Builds</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#running">Downloading and Installing Apps</a>
+    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -440,7 +437,6 @@ Zepto(function($){
 <ul class="sectlevel2">
 <li><a href="#provisioning-the-service">Provisioning the Service</a></li>
 <li><a href="#binding-a-mobile-client">Binding a Mobile Client</a></li>
-<li><a href="#procedure">Procedure</a></li>
 <li><a href="#configuring-the-service">Configuring the Service</a></li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
 </ul>
@@ -650,9 +646,8 @@ The association between a Mobile Client and Identity Management Service uses the
 <div class="paragraph">
 <p>To associate a Mobile Client with a mobile service:</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
+<div class="sect3">
+<h4 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -701,6 +696,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </div>
 </li>
 </ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -882,7 +878,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation "org.aerogear:android-auth:1.0.0-alpha"
+    implementation "org.aerogear:android-auth:1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -900,7 +896,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
-    pod 'AGSAuth', '1.0.0-alpha'
+    pod 'AGSAuth', '1.0.0'
 end</code></pre>
 </div>
 </div>
@@ -950,7 +946,7 @@ let auth = AGSAuth()</code></pre>
 <p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Core">AeroGear Core</a> package:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0-alpha</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
@@ -958,7 +954,7 @@ let auth = AGSAuth()</code></pre>
 <p>For Android run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0-alpha</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
@@ -966,7 +962,7 @@ let auth = AGSAuth()</code></pre>
 <p>For iOS run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0-alpha</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
