@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -427,6 +445,7 @@ $(addBlockSwitches);
 <li><a href="#proc_preparing-ups-for-use-with-ios_preparing-ups-for-use-with-ios">Enable Push Notifications for iOS App</a></li>
 <li><a href="#provisioning-push-notifications-service">Provisioning Push Notifications Service</a></li>
 <li><a href="#binding-a-mobile-client-with-the-push-notifications-service">Binding a Mobile Client with the Push Notifications service</a></li>
+<li><a href="#procedure-2">Procedure</a></li>
 <li><a href="#coding-a-push-notifications-app">Coding a Push Notifications App</a></li>
 </ul>
 </li>
@@ -841,7 +860,7 @@ This association is called a binding and once it&#8217;s done, your mobile app c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The association between a Mobile Client and  Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+The association between a Mobile Client and Push Notifications Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
 </td>
 </tr>
 </table>
@@ -849,6 +868,10 @@ The association between a Mobile Client and  Service uses the <a href="https://b
 <div class="paragraph">
 <p>To associate a Mobile Client with a mobile service:</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -873,13 +896,13 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
 </li>
 <li>
-<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Push Notifications Service.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-services.png" alt="mobile clients services"></span></p>
+</div>
 </li>
 <li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the  Service.</p>
+<p>Fill out the binding parameters required by the Push Notifications Service.</p>
 </li>
 </ol>
 </div>
@@ -921,11 +944,10 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <div class="paragraph">
 <p>After clicking Bind your variant will be created in UPS and you should see a new binding for your mobile client.</p>
 </div>
-</div>
 <div class="sect3">
 <h4 id="next-steps-4"><a class="anchor" href="#next-steps-4"></a>Next Steps</h4>
 <div class="paragraph">
-<p><a href="push/configuring-dev-env-push.html" class="page">Configuring your Development Environment for the  Service</a></p>
+<p><a href="push/configuring-dev-env-push.html" class="page">Configuring your Development Environment for the Push Notifications Service</a></p>
 </div>
 </div>
 </div>
@@ -1378,7 +1400,7 @@ On first login you need to provide the OpenShift OAuth service permissions to re
 </li>
 </ul>
 </div>
-<h3 id="procedure-2" class="discrete">Procedure</h3>
+<h3 id="procedure-3" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

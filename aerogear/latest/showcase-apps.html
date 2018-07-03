@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -552,52 +570,15 @@ application where you can see the roles and basic information of the user you ha
 <p><a href="keycloak/keycloak-setup.html" class="page">Set up the Identity Management service</a>.</p>
 </li>
 <li>
-<p>Create a user account in the Keycloak Admin UI to use when logging in within the showcase app:</p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Open OpenShift console.</p>
+<p>You must create a new user account before you can log into the Showcase App. To create a new user follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a>.</p>
 </li>
 <li>
-<p>Click the URL for the Identity Management.</p>
+<p>To create the new user&#8217;s credentials follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.</p>
 </li>
-<li>
-<p>Login with your Keycloak credentials that you specified at Provisioning (defaults to admin:admin)</p>
-</li>
-<li>
-<p>Click <strong>Users</strong> item in the navigation menu.</p>
-</li>
-<li>
-<p>Click <strong>Add User</strong>.</p>
-</li>
-<li>
-<p>Fill in the details of the user as you wish. Make sure <strong>User Enabled</strong> toggle is active.</p>
-</li>
-<li>
-<p>Click <strong>Save</strong></p>
-</li>
-<li>
-<p>You will be taken to details view for the user you have just added.</p>
-</li>
-<li>
-<p>Click <strong>Credentials</strong>.</p>
-</li>
-<li>
-<p>Type in a password in <strong>New Password</strong> and <strong>Password Confirmation</strong> inputs.</p>
-</li>
-<li>
-<p>Uncheck the <strong>Temporary</strong> toggle so that you do not have to reset password on first login.</p>
-</li>
-<li>
-<p>Press <strong>Reset Password</strong></p>
+</ol>
+</div>
 <div class="paragraph">
 <p>For more information about features, see <a href="keycloak/index.html" class="page">Identity Management Service</a></p>
-</div>
-</li>
-</ol>
-</div>
-</li>
-</ol>
 </div>
 </li>
 <li>
@@ -1076,23 +1057,24 @@ If no android devices are selectable, it could mean that no virtual android devi
 <h2 id="using-self-signed-certificates-in-mobile-apps"><a class="anchor" href="#using-self-signed-certificates-in-mobile-apps"></a>Using Self-Signed Certificates in Mobile Apps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Throughout the development lifecycle of a mobile apps, a common
+<p>Throughout the development lifecycle of a mobile app, a common
 requirement is to integrate and connect with back-end
-services in a secure manner. However in order for the client
-device to connect over SSL/TLS, it needs to trust the root
-certificate authority. This cert must be installed on the client device
-to ensure that the client trusts server certificates that are signed by
-the certificate authority.</p>
+services in a secure manner. This is achieved using SSL/TLS.</p>
 </div>
 <div class="paragraph">
-<p>When the certificate uses a trusted root certificate authority the cert is installed automatically.
-In a development environment, such as a local OpenShift cluster which uses
-self-signed certificates, you must extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
+<p>However, in order for the client device to connect over SSL/TLS, it needs to trust the
+certificates used by the back-end services, which are signed by a certificate authority. Today most of the client devices will have a list of well-known and trusted certificate authorities pre-installed and it will allow the client devices to verify the certificates used by the back-end services.</p>
+</div>
+<div class="paragraph">
+<p>However, this normally doesn&#8217;t work in a development environment, such as a local OpenShift cluster as it uses self-signed certificates which are not signed by any of the trusted certificate authorties. This means by default the client devices won&#8217;t be able to establish secure connections with the back-end services that are running on a local OpenShift cluster.</p>
+</div>
+<div class="paragraph">
+<p>To work around the problem, you must manually extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
 </div>
 <div class="sect2">
-<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>Extracting the OpenShift Root Certificate Authority Cert</h3>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>1. Extracting the OpenShift Root Certificate Authority Cert</h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
 <p>Log into OpenShift as the admin user.</p>
 </li>
@@ -1112,22 +1094,61 @@ base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/loca
 </div>
 </div>
 <div class="sect2">
-<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
-<p>Configure a pin to ensure the certificate can be installed.</p>
+<p><a href="https://support.google.com/android/answer/2819522?hl=en">Set screen lock</a> on the mobile device to ensure the certificate can be installed.</p>
 </li>
 <li>
 <p>Copy the file to your device using one of the following methods:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>USB <strong>(Android only)</strong> - Attach the device to the machine hosting
-OpenShift via USB and drag the certificate to the devices file system</p>
+<p>Email attachment (Recommended) - Simply email the certificate to an address
+accessible from the device and download the attachment.</p>
 </li>
 <li>
-<p>Email attachment - Simply email the certificate to an address
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google
+Drive which is accessible from the device, browse to the certificate and
+proceed to download it.</p>
+</li>
+<li>
+<p>USB - Attach the device to the machine hosting
+OpenShift via USB and drag the certificate to the devices file system. Here is an <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>. It may be different for other devices.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the certificate to your device:</p>
+<div class="paragraph">
+<p>If you are using the email or cloud service approach, once the certificate file is downloaded, you will be prompted by the Android system automatically to install the file. You can simply follow the instructions to complete the process.</p>
+</div>
+<div class="paragraph">
+<p>However, if you are using the USB approach, you will need to install the certificate manually: go to Settings &gt; Security &gt; Install from storage, tap on the copied certificate file and and Android system should detect the
+certificate and let you add it to the device. Here is <a href="https://support.google.com/nexus/answer/2844832?hl=en">a sample guide for Google Nexus devices</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enable <a href="https://support.apple.com/en-us/ht204060">Passcode</a> or <a href="https://support.apple.com/en-us/ht201371">TouchID</a> protection on the mobile device to ensure the certificate can be installed.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Email attachment (Recommended) - Simply email the certificate to an address
 accessible from the device and download the attachment.</p>
 </li>
 <li>
@@ -1139,29 +1160,28 @@ proceed to download it.</p>
 </div>
 </li>
 <li>
-<p>Configure your device:</p>
-</li>
-</ol>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Go to Settings &gt; Security &gt; Install from storage. It should detect the
-certificate and let you add it to the device.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<p>Add the certificate to your device:</p>
 <div class="paragraph">
 <p>When you download the certificate, the
 device should automatically detect a profile. Simply follow the on
 screen instructions to install it.</p>
 </div>
-<div class="paragraph">
-<p>Versions iOS 10.3 and later require an additional step to trust the now
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Versions iOS 10.3 and later require an additional step to trust the now
 installed certificate. Instructions can be found on the
-<a href="https://support.apple.com/en-us/HT204477">Apple support site</a></p>
+<a href="https://support.apple.com/en-us/HT204477">Apple support site</a>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1172,23 +1192,24 @@ installed certificate. Instructions can be found on the
 <h2 id="certs"><a class="anchor" href="#certs"></a>Using Self-Signed Certificates in Mobile Apps</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Throughout the development lifecycle of a mobile apps, a common
+<p>Throughout the development lifecycle of a mobile app, a common
 requirement is to integrate and connect with back-end
-services in a secure manner. However in order for the client
-device to connect over SSL/TLS, it needs to trust the root
-certificate authority. This cert must be installed on the client device
-to ensure that the client trusts server certificates that are signed by
-the certificate authority.</p>
+services in a secure manner. This is achieved using SSL/TLS.</p>
 </div>
 <div class="paragraph">
-<p>When the certificate uses a trusted root certificate authority the cert is installed automatically.
-In a development environment, such as a local OpenShift cluster which uses
-self-signed certificates, you must extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
+<p>However, in order for the client device to connect over SSL/TLS, it needs to trust the
+certificates used by the back-end services, which are signed by a certificate authority. Today most of the client devices will have a list of well-known and trusted certificate authorities pre-installed and it will allow the client devices to verify the certificates used by the back-end services.</p>
+</div>
+<div class="paragraph">
+<p>However, this normally doesn&#8217;t work in a development environment, such as a local OpenShift cluster as it uses self-signed certificates which are not signed by any of the trusted certificate authorties. This means by default the client devices won&#8217;t be able to establish secure connections with the back-end services that are running on a local OpenShift cluster.</p>
+</div>
+<div class="paragraph">
+<p>To work around the problem, you must manually extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
 </div>
 <div class="sect2">
-<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>Extracting the OpenShift Root Certificate Authority Cert</h3>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>1. Extracting the OpenShift Root Certificate Authority Cert</h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
 <p>Log into OpenShift as the admin user.</p>
 </li>
@@ -1208,22 +1229,61 @@ base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/loca
 </div>
 </div>
 <div class="sect2">
-<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
-<p>Configure a pin to ensure the certificate can be installed.</p>
+<p><a href="https://support.google.com/android/answer/2819522?hl=en">Set screen lock</a> on the mobile device to ensure the certificate can be installed.</p>
 </li>
 <li>
 <p>Copy the file to your device using one of the following methods:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>USB <strong>(Android only)</strong> - Attach the device to the machine hosting
-OpenShift via USB and drag the certificate to the devices file system</p>
+<p>Email attachment (Recommended) - Simply email the certificate to an address
+accessible from the device and download the attachment.</p>
 </li>
 <li>
-<p>Email attachment - Simply email the certificate to an address
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google
+Drive which is accessible from the device, browse to the certificate and
+proceed to download it.</p>
+</li>
+<li>
+<p>USB - Attach the device to the machine hosting
+OpenShift via USB and drag the certificate to the devices file system. Here is an <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>. It may be different for other devices.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the certificate to your device:</p>
+<div class="paragraph">
+<p>If you are using the email or cloud service approach, once the certificate file is downloaded, you will be prompted by the Android system automatically to install the file. You can simply follow the instructions to complete the process.</p>
+</div>
+<div class="paragraph">
+<p>However, if you are using the USB approach, you will need to install the certificate manually: go to Settings &gt; Security &gt; Install from storage, tap on the copied certificate file and and Android system should detect the
+certificate and let you add it to the device. Here is <a href="https://support.google.com/nexus/answer/2844832?hl=en">a sample guide for Google Nexus devices</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enable <a href="https://support.apple.com/en-us/ht204060">Passcode</a> or <a href="https://support.apple.com/en-us/ht201371">TouchID</a> protection on the mobile device to ensure the certificate can be installed.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Email attachment (Recommended) - Simply email the certificate to an address
 accessible from the device and download the attachment.</p>
 </li>
 <li>
@@ -1235,29 +1295,28 @@ proceed to download it.</p>
 </div>
 </li>
 <li>
-<p>Configure your device:</p>
-</li>
-</ol>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Go to Settings &gt; Security &gt; Install from storage. It should detect the
-certificate and let you add it to the device.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<p>Add the certificate to your device:</p>
 <div class="paragraph">
 <p>When you download the certificate, the
 device should automatically detect a profile. Simply follow the on
 screen instructions to install it.</p>
 </div>
-<div class="paragraph">
-<p>Versions iOS 10.3 and later require an additional step to trust the now
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Versions iOS 10.3 and later require an additional step to trust the now
 installed certificate. Instructions can be found on the
-<a href="https://support.apple.com/en-us/HT204477">Apple support site</a></p>
+<a href="https://support.apple.com/en-us/HT204477">Apple support site</a>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
