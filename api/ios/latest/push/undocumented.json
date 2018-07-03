@@ -1,68 +1,89 @@
 {
   "warnings": [
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/AgsPush.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/AgsPush.swift",
       "line": 13,
       "symbol": "AgsPush.deviceTokenKey",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/AgsPush.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/AgsPush.swift",
       "line": 14,
       "symbol": "AgsPush.apiPath",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/AgsPush.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/AgsPush.swift",
       "line": 16,
       "symbol": "AgsPush.instance",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/AgsPush.swift",
+      "line": 22,
+      "symbol": "AgsPush.Errors",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/AgsPush.swift",
+      "line": 23,
+      "symbol": "AgsPush.Errors.serviceNotRegistered",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/AgsPush.swift",
+      "line": 24,
+      "symbol": "AgsPush.Errors.noServiceConfigurationFound",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
       "line": 3,
       "symbol": "UnifiedPushConfig",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
       "line": 4,
       "symbol": "UnifiedPushConfig.alias",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
       "line": 5,
       "symbol": "UnifiedPushConfig.categories",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/UnifiedPushConfig.swift",
       "line": 7,
       "symbol": "UnifiedPushConfig.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/UnifiedPushCredentials.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/UnifiedPushCredentials.swift",
       "line": 3,
       "symbol": "UnifiedPushCredentials",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk/modules/push/UnifiedPushCredentials.swift",
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/push/UnifiedPushCredentials.swift",
       "line": 7,
       "symbol": "UnifiedPushCredentials.init(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/wtrocki/Projects/ags/aerogear-ios-sdk"
+  "source_directory": "/Users/weili/work/mobile-next/aerogear-ios-sdk"
 }

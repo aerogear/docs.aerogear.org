@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AgsSecurity Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AgsSecurity" class="dashAnchor"></a>
+    <a title="AgsSecurity Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">AeroGearServices Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">AeroGearServices Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AgsSecurity Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AgsSecurity.html">AgsSecurity</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DeviceLockCheck.html">DeviceLockCheck</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NonDebugCheck.html">NonDebugCheck</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NonEmulatorCheck.html">NonEmulatorCheck</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NonJailbrokenCheck.html">NonJailbrokenCheck</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SecurityCheckResultMetric.html">SecurityCheckResultMetric</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SecurityCheck.html">SecurityCheck</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/SecurityCheckResult.html">SecurityCheckResult</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AgsSecurity</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AgsSecurity</span></code></pre>
+
+                </div>
+              </div>
+            <p>AeroGear Services Security SDK</p>
+
+<p>SDK provides a way for the developer to perform security
+checks on the device their code is running on</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11AGSSecurity11AgsSecurityCACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11AGSSecurity11AgsSecurityCACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The initialise method of AgsSecurity</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11AGSSecurity11AgsSecurityC5checkAA0C11CheckResultVAA0cE0_pF"></a>
+                    <a name="//apple_ref/swift/Method/check(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11AGSSecurity11AgsSecurityC5checkAA0C11CheckResultVAA0cE0_pF">check(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+<ul>
+<li><p>Perform a security check on a device.</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">check</span><span class="p">(</span><span class="n">_</span> <span class="nv">check</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SecurityCheck.html">SecurityCheck</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/SecurityCheckResult.html">SecurityCheckResult</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>check</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The security check to be performed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A SecurityCheckResult with a true or false property &lsquo;passed&rsquo;</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11AGSSecurity11AgsSecurityC21checkAndPublishMetricAA0C11CheckResultVAA0cH0_pF"></a>
+                    <a name="//apple_ref/swift/Method/checkAndPublishMetric(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11AGSSecurity11AgsSecurityC21checkAndPublishMetricAA0C11CheckResultVAA0cH0_pF">checkAndPublishMetric(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+<ul>
+<li><p>Perform a security check on a device and also publish the result to the metrics service</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkAndPublishMetric</span><span class="p">(</span><span class="n">_</span> <span class="nv">check</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SecurityCheck.html">SecurityCheck</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/SecurityCheckResult.html">SecurityCheckResult</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>check</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The security check to be performed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A SecurityCheckResult with a true or false property &lsquo;passed&rsquo;</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11AGSSecurity11AgsSecurityC9checkManySayAA0C11CheckResultVGSayAA0cF0_pGF"></a>
+                    <a name="//apple_ref/swift/Method/checkMany(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11AGSSecurity11AgsSecurityC9checkManySayAA0C11CheckResultVGSayAA0cF0_pGF">checkMany(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+<ul>
+<li><p>Perform multiple security checks on a device</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkMany</span><span class="p">(</span><span class="n">_</span> <span class="nv">checks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/SecurityCheck.html">SecurityCheck</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/SecurityCheckResult.html">SecurityCheckResult</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>checks</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The security checks to be performed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of type SecurityCheckResult with a true or false property &lsquo;passed&rsquo; for each result</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11AGSSecurity11AgsSecurityC25checkManyAndPublishMetricSayAA0C11CheckResultVGSayAA0cI0_pGF"></a>
+                    <a name="//apple_ref/swift/Method/checkManyAndPublishMetric(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11AGSSecurity11AgsSecurityC25checkManyAndPublishMetricSayAA0C11CheckResultVGSayAA0cI0_pGF">checkManyAndPublishMetric(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+<ul>
+<li><p>Perform multiple security checks on a device and also publish them to the metrics service</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">checkManyAndPublishMetric</span><span class="p">(</span><span class="n">_</span> <span class="nv">checks</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/SecurityCheck.html">SecurityCheck</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/SecurityCheckResult.html">SecurityCheckResult</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>checks</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The security checks to be performed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of type SecurityCheckResult with a true or false property &lsquo;passed&rsquo; for each result</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
