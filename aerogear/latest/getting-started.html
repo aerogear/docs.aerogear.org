@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -411,6 +429,7 @@ $(addBlockSwitches);
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#introduction">Introduction</a></li>
 <li><a href="#setting-up-aerogear-mobile-services-on-openshift">Setting up AeroGear Mobile Services on OpenShift</a>
 <ul class="sectlevel2">
 <li><a href="#prerequisites">Prerequisites</a></li>
@@ -420,39 +439,51 @@ $(addBlockSwitches);
 </li>
 <li><a href="#registering">Registering a Mobile Client</a></li>
 <li><a href="#provisioning">Provisioning your First Service</a></li>
-<li><a href="#provisioning-identity-management-service">Provisioning Identity Management Service</a>
+<li><a href="#binding">Binding a Mobile Client</a></li>
+<li><a href="#procedure-3">Procedure</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites-3">Prerequisites</a></li>
-<li><a href="#next-steps-2">Next steps</a></li>
+<li><a href="#localdev">Configuring the Service</a></li>
 </ul>
 </li>
-<li><a href="#binding">Binding a Mobile Client with the Identity Management Service</a>
-<ul class="sectlevel2">
-<li><a href="#next-steps-3">Next Steps</a></li>
-</ul>
-</li>
-<li><a href="#localdev">Setting Up your Local Development Environment</a>
+<li><a href="#setting-up-your-local-development-environment">Setting Up your Local Development Environment</a>
 <ul class="sectlevel2">
 <li><a href="#supported-environments">Supported Environments</a></li>
-<li><a href="#configuring-your-development-environment-for-the-identity-management-service">Configuring your Development Environment for the Identity Management Service</a></li>
-</ul>
-</li>
-<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
-<li><a href="#keycloak-setup">Keycloak Setup</a>
-<ul class="sectlevel2">
-<li><a href="#choose-the-schema-of-a-redirect-url">Choose the schema of a redirect url</a></li>
-<li><a href="#configuring-keycloak">Configuring Keycloak</a></li>
 </ul>
 </li>
 <li><a href="#running">Running your First Mobile App</a>
 <ul class="sectlevel2">
-<li><a href="#clone-the-showcase-app">Clone the showcase app</a></li>
-<li><a href="#configure-the-showcase-app">Configure the showcase app</a></li>
+<li><a href="#clone-the-showcase-app">Clone the showcase app:</a></li>
 <li><a href="#using-self-signed-certificates-in-mobile-apps">Using Self-Signed Certificates in Mobile Apps</a></li>
-<li><a href="#build">Building and Running the Showcase App</a></li>
+<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
+<li><a href="#running-the-mobile-app-in-an-emulator">Running the Mobile App in an Emulator</a></li>
 </ul>
 </li>
+<li><a href="#doing-stuff">Doing Stuff</a></li>
 </ul>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide will bring you through all the required steps to get up and running with Mobile Services. By the end of this guide you will have learned how to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up AeroGear Mobile Services on OpenShift</p>
+</li>
+<li>
+<p>Create a Mobile Client and a Mobile Service</p>
+</li>
+<li>
+<p>Set up a local development environment</p>
+</li>
+<li>
+<p>Configure and run the AeroGear Showcase App on your platform of choice</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="setting-up-aerogear-mobile-services-on-openshift"><a class="anchor" href="#setting-up-aerogear-mobile-services-on-openshift"></a>Setting up AeroGear Mobile Services on OpenShift</h2>
@@ -707,7 +738,7 @@ password: password</pre>
 </ol>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/mobile-platforms.png" alt="mobile platforms"></span></p>
+<p><span class="image"><img src="image:catalog-mobile-clients.png" alt="image:catalog mobile clients"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -728,13 +759,11 @@ password: password</pre>
 <div class="sect1">
 <h2 id="registering"><a class="anchor" href="#registering"></a>Registering a Mobile Client</h2>
 <div class="sectionbody">
-<h3 id="prerequisites-2" class="discrete">Prerequisites:</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You have installed OpenShift with Mobile Services as described in <a href="#">index.adoc</a>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>After the setup is completed, the next thing you need to do is to register a Mobile Client for the mobile app that you are going to develop.</p>
+</div>
+<div class="paragraph">
+<p>A Mobile Client in OpenShift is a representation of the mobile app that you are developing locally. Mobile Clients allow you bind your mobile app to mobile services such as Identity Management, Push Notification, Mobile Metrics and others. This makes many of the common tasks associated with mobile development much easier and quicker to implement. For more information, please check <a href="mobile-clients.html" class="page">Mobile Clients in OpenShift</a></p>
 </div>
 <h3 id="procedure-2" class="discrete">Procedure</h3>
 <div class="paragraph">
@@ -754,7 +783,7 @@ password: password</pre>
 <p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/mobile-platforms.png" alt="Available Mobile Clients"></span></p>
+<p><span class="image"><img src="_images/catalog-mobile-clients.png" alt="Available Mobile Clients"></span></p>
 </div>
 </li>
 <li>
@@ -774,46 +803,7 @@ password: password</pre>
 <p>Mobile Services provide commonly required features for mobile app development.</p>
 </div>
 <div class="paragraph">
-<p>The following services are available with this release:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="identity-management.html" class="page">Identity Management</a></p>
-</li>
-<li>
-<p><a href="push-notifications.html" class="page">Push Notifications</a></p>
-</li>
-<li>
-<p><a href="runtime-connector.html" class="page">Runtime Connector</a></p>
-</li>
-<li>
-<p><a href="mobile-metrics.html" class="page">Mobile Metrics</a></p>
-</li>
-<li>
-<p><a href="mobile-cicd.html" class="page">Mobile CI/CD</a></p>
-</li>
-<li>
-<p><a href="device-security.html" class="page">Device Security</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>This guide introduces the procedures for using mobile services by guiding you through the process for running an Android app using the Identity Management service.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="provisioning-identity-management-service"><a class="anchor" href="#provisioning-identity-management-service"></a>Provisioning Identity Management Service</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
+<p>This section introduces the procedures for using Mobile Services by guiding you through the process using the Identity Management service. For a full list of available services see <a href="con_services.html" class="page">Mobile Services</a></p>
 </div>
 <div class="paragraph">
 <p>To provision the Identity Management mobile service:</p>
@@ -894,16 +884,9 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
-<div class="paragraph">
-<p><a href="keycloak/binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a></p>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
-<h2 id="binding"><a class="anchor" href="#binding"></a>Binding a Mobile Client with the Identity Management Service</h2>
+<h2 id="binding"><a class="anchor" href="#binding"></a>Binding a Mobile Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
@@ -916,7 +899,7 @@ This association is called a binding and once it&#8217;s done, your mobile app c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The association between a Mobile Client and  Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+The association between a Mobile Client and Identity Management Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
 </td>
 </tr>
 </table>
@@ -924,6 +907,11 @@ The association between a Mobile Client and  Service uses the <a href="https://b
 <div class="paragraph">
 <p>To associate a Mobile Client with a mobile service:</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="procedure-3"><a class="anchor" href="#procedure-3"></a>Procedure</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -948,13 +936,13 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
 </li>
 <li>
-<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Identity Management Service.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-services.png" alt="mobile clients services"></span></p>
+</div>
 </li>
 <li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the  Service.</p>
+<p>Fill out the binding parameters required by the Identity Management Service.</p>
 </li>
 <li>
 <p>Choose the <strong>Keycloak client type</strong>. The default is <code>public</code> which allows the client to request tokens while type <code>bearer</code> should be used to bind to services that only need to verify tokens.</p>
@@ -974,20 +962,94 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </ol>
 </div>
 <div class="sect2">
-<h3 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h3>
+<h3 id="localdev"><a class="anchor" href="#localdev"></a>Configuring the Service</h3>
 <div class="paragraph">
-<p><a href="keycloak/coding.html" class="page">Configuring your Development Environment for the Identity Management Service</a></p>
+<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak. This is required to enable OpenID authentication.</p>
+</div>
+<div class="sect3">
+<h4 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h4>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>It is recommended to use the package name of the Android app followed by <code>:/callback</code> as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>It is recommended to use the Bundle Identifier of the iOS app followed by <code>:/callback</code> as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template:/callback</code>)</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>The schema of the redirect url should be <code>http://localhost/*</code>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Depending on the platform set the redirect as described in either the Android or the iOS tab.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Expand the Identity Management Service by clicking the <strong>&gt;</strong> icon.</p>
+</li>
+<li>
+<p>Click on the Realm URL link to open the Keycloak Administration Console.</p>
+</li>
+<li>
+<p>Log in to the Administration console using the credentials you specified at <a href="keycloak/provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
+</li>
+<li>
+<p>Open <code>Clients</code> from the menu.</p>
+</li>
+<li>
+<p>Open your Android client.</p>
+</li>
+<li>
+<p>Add <code>&lt;schema&gt;:/callback</code> to <code>Valid Redirect URIs</code>.</p>
+</li>
+<li>
+<p>Add <code>&lt;schema&gt;</code> to <code>Web Origins</code>.</p>
+</li>
+<li>
+<p>Save your changes.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You must create a new user account before you can log into the Showcase App. To create a new user follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a> and to setup a new users credentials follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="localdev"><a class="anchor" href="#localdev"></a>Setting Up your Local Development Environment</h2>
+<h2 id="setting-up-your-local-development-environment"><a class="anchor" href="#setting-up-your-local-development-environment"></a>Setting Up your Local Development Environment</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="supported-environments"><a class="anchor" href="#supported-environments"></a>Supported Environments</h3>
 <div class="paragraph">
-<p>In order to perform local development, you will need to have set up a local development environment or IDE. Mobile App development is supported across iOS Native, Android Native, Cordova and Xamarin. For information on how to set up your local development environment for these technologies, please see the links below:</p>
+<p>In order to perform local development, you will need to have set up a local development environment or IDE. Mobile Services supports mobile app development across iOS Native, Android Native, Cordova and Xamarin. For information on how to set up your local development environment for these technologies, please see the links below:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1006,27 +1068,193 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="configuring-your-development-environment-for-the-identity-management-service"><a class="anchor" href="#configuring-your-development-environment-for-the-identity-management-service"></a>Configuring your Development Environment for the Identity Management Service</h3>
-<div class="sect3">
-<h4 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h4>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="keycloak/provisioning.html" class="page">Provisioning Identity Management Service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="keycloak/binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
+<h2 id="running"><a class="anchor" href="#running"></a>Running your First Mobile App</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="clone-the-showcase-app"><a class="anchor" href="#clone-the-showcase-app"></a>Clone the showcase app:</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
+$ cd android-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
+$ cd ios-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/cordova-showcase-template.git
+$ cd cordova-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
+$ cd xamarin-showcase-template
+$ git checkout 1.0.0-alpha</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-self-signed-certificates-in-mobile-apps"><a class="anchor" href="#using-self-signed-certificates-in-mobile-apps"></a>Using Self-Signed Certificates in Mobile Apps</h3>
+<div class="paragraph">
+<p>Throughout the development lifecycle of a mobile app, a common
+requirement is to integrate and connect with back-end
+services in a secure manner. This is achieved using SSL/TLS.</p>
+</div>
+<div class="paragraph">
+<p>However, in order for the client device to connect over SSL/TLS, it needs to trust the
+certificates used by the back-end services, which are signed by a certificate authority. Today most of the client devices will have a list of well-known and trusted certificate authorities pre-installed and it will allow the client devices to verify the certificates used by the back-end services.</p>
+</div>
+<div class="paragraph">
+<p>However, this normally doesn&#8217;t work in a development environment, such as a local OpenShift cluster as it uses self-signed certificates which are not signed by any of the trusted certificate authorties. This means by default the client devices won&#8217;t be able to establish secure connections with the back-end services that are running on a local OpenShift cluster.</p>
+</div>
+<div class="paragraph">
+<p>To work around the problem, you must manually extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
+</div>
+<div class="sect3">
+<h4 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>1. Extracting the OpenShift Root Certificate Authority Cert</h4>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log into OpenShift as the admin user.</p>
+</li>
+<li>
+<p>Run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
+base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/localcluster.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting file is located in the <code>/tmp</code> directory.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h4>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://support.google.com/android/answer/2819522?hl=en">Set screen lock</a> on the mobile device to ensure the certificate can be installed.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Email attachment (Recommended) - Simply email the certificate to an address
+accessible from the device and download the attachment.</p>
+</li>
+<li>
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google
+Drive which is accessible from the device, browse to the certificate and
+proceed to download it.</p>
+</li>
+<li>
+<p>USB - Attach the device to the machine hosting
+OpenShift via USB and drag the certificate to the devices file system. Here is an <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>. It may be different for other devices.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the certificate to your device:</p>
+<div class="paragraph">
+<p>If you are using the email or cloud service approach, once the certificate file is downloaded, you will be prompted by the Android system automatically to install the file. You can simply follow the instructions to complete the process.</p>
+</div>
+<div class="paragraph">
+<p>However, if you are using the USB approach, you will need to install the certificate manually: go to Settings &gt; Security &gt; Install from storage, tap on the copied certificate file and and Android system should detect the
+certificate and let you add it to the device. Here is <a href="https://support.google.com/nexus/answer/2844832?hl=en">a sample guide for Google Nexus devices</a>.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enable <a href="https://support.apple.com/en-us/ht204060">Passcode</a> or <a href="https://support.apple.com/en-us/ht201371">TouchID</a> protection on the mobile device to ensure the certificate can be installed.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Email attachment (Recommended) - Simply email the certificate to an address
+accessible from the device and download the attachment.</p>
+</li>
+<li>
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google
+Drive which is accessible from the device, browse to the certificate and
+proceed to download it.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the certificate to your device:</p>
+<div class="paragraph">
+<p>When you download the certificate, the
+device should automatically detect a profile. Simply follow the on
+screen instructions to install it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Versions iOS 10.3 and later require an additional step to trust the now
+installed certificate. Instructions can be found on the
+<a href="https://support.apple.com/en-us/HT204477">Apple support site</a>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1109,456 +1337,34 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="keycloak-setup"><a class="anchor" href="#keycloak-setup"></a>Keycloak Setup</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following guide helps you to configure schema of the redirect url and web origin for a client in Keycloak. This is required to use the Auth SDK.</p>
-</div>
 <div class="sect2">
-<h3 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>It is recommended to use the package name of the Android app followed by <code>:/callback</code> as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>It is recommended to use the Bundle Identifier of the iOS app followed by <code>:/callback</code> as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template:/callback</code>)</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>The schema of the redirect url should be <code>http://localhost/*</code>.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="paragraph">
-<p>Depending on the platform set the redirect as described in either the Android or the iOS tab.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open Keycloak Administration Console by selecting route in OpenShift.</p>
-</li>
-<li>
-<p>Log in to the Administration console using the credentials you specified at <a href="keycloak/provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
-</li>
-<li>
-<p>Open <code>Clients</code> from the menu.</p>
-</li>
-<li>
-<p>Open your Android client.</p>
-</li>
-<li>
-<p>Add the schema to <code>Valid Redirect URIs</code>.</p>
-</li>
-<li>
-<p>Add <code>*</code> to <code>Web Origins</code>.</p>
-</li>
-</ol>
-</div>
+<h3 id="running-the-mobile-app-in-an-emulator"><a class="anchor" href="#running-the-mobile-app-in-an-emulator"></a>Running the Mobile App in an Emulator</h3>
+
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="running"><a class="anchor" href="#running"></a>Running your First Mobile App</h2>
+<h2 id="doing-stuff"><a class="anchor" href="#doing-stuff"></a>Doing Stuff</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>A few showcase apps have been created to allow you to try out some of the features. They are available in several different platforms. Please pick one platform that you are interested in and follow the steps below to set it up.</p>
-</div>
-<div class="sect2">
-<h3 id="clone-the-showcase-app"><a class="anchor" href="#clone-the-showcase-app"></a>Clone the showcase app</h3>
-<div class="paragraph">
-<p>Please choose one platform and clone the corresponding showcase app.</p>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
-$ cd android-showcase-template
-$ git checkout 1.0.0-alpha</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
-$ cd ios-showcase-template
-$ git checkout 1.0.0-alpha</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/cordova-showcase-template.git
-$ cd cordova-showcase-template
-$ git checkout 1.0.0-alpha</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
-$ cd xamarin-showcase-template
-$ git checkout 1.0.0-alpha</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configure-the-showcase-app"><a class="anchor" href="#configure-the-showcase-app"></a>Configure the showcase app</h3>
-<div class="paragraph">
-<p>You need to configure the showcase app by updating the <code>mobile-services.json</code> file.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="prerequisites-2" class="discrete">Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p>Navigate to your project in OpenShift.</p>
-</li>
-<li>
-<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
-</li>
-<li>
-<p>Copy the configuration to your clipboard and paste it to the <code>mobile-services.json</code> file in the showcase app depending on the platform:</p>
-</li>
-</ol>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Update this file at the following location in your Android showcase project:</p>
-</div>
-<div class="paragraph">
-<p><code>android-showcase-template/app/src/main/assets/mobile-services.json</code></p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>Update this file at the following location in your iOS showcase project:</p>
-</div>
-<div class="paragraph">
-<p><code>ios-showcase-template/ios-showcase-template/mobile-services.json</code></p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>Update this file at the following location in your Cordova showcase project</p>
-</div>
-<div class="paragraph">
-<p><code>cordova-showcase-template/src/mobile-services.json</code></p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="paragraph">
-<p>Update this file at the following location in your Xamarin showcase project:</p>
-</div>
-<div class="paragraph">
-<p><code>xamarin-showcase-template/Example/Resources/mobile-services.json</code></p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Before building and running the showcase app, we also need to configure the device to make sure it will accept self-signed certificates.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="using-self-signed-certificates-in-mobile-apps"><a class="anchor" href="#using-self-signed-certificates-in-mobile-apps"></a>Using Self-Signed Certificates in Mobile Apps</h3>
-<div class="paragraph">
-<p>Throughout the development lifecycle of a mobile apps, a common
-requirement is to integrate and connect with back-end
-services in a secure manner. However in order for the client
-device to connect over SSL/TLS, it needs to trust the root
-certificate authority. This cert must be installed on the client device
-to ensure that the client trusts server certificates that are signed by
-the certificate authority.</p>
-</div>
-<div class="paragraph">
-<p>When the certificate uses a trusted root certificate authority the cert is installed automatically.
-In a development environment, such as a local OpenShift cluster which uses
-self-signed certificates, you must extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
-</div>
-<div class="sect3">
-<h4 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>Extracting the OpenShift Root Certificate Authority Cert</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into OpenShift as the admin user.</p>
-</li>
-<li>
-<p>Run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
-base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/localcluster.crt</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The resulting file is located in the <code>/tmp</code> directory.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>Installing the OpenShift Root Certificate Authority Cert on a Device</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure a pin to ensure the certificate can be installed.</p>
-</li>
-<li>
-<p>Copy the file to your device using one of the following methods:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>USB <strong>(Android only)</strong> - Attach the device to the machine hosting
-OpenShift via USB and drag the certificate to the devices file system</p>
-</li>
-<li>
-<p>Email attachment - Simply email the certificate to an address
-accessible from the device and download the attachment.</p>
-</li>
-<li>
-<p>Cloud service - Use a cloud storage service such as Dropbox or Google
-Drive which is accessible from the device, browse to the certificate and
-proceed to download it.</p>
+<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Configure your device:</p>
-</li>
-</ol>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Go to Settings &gt; Security &gt; Install from storage. It should detect the
-certificate and let you add it to the device.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>When you download the certificate, the
-device should automatically detect a profile. Simply follow the on
-screen instructions to install it.</p>
-</div>
-<div class="paragraph">
-<p>Versions iOS 10.3 and later require an additional step to trust the now
-installed certificate. Instructions can be found on the
-<a href="https://support.apple.com/en-us/HT204477">Apple support site</a></p>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>We can now build and run the showcase app.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="build"><a class="anchor" href="#build"></a>Building and Running the Showcase App</h3>
+<h3 id="procedure-4" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Build the Mobile App</p>
+<p>numbered list</p>
 </li>
 </ol>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<h3 id="additional-information" class="discrete">Additional Information</h3>
 <div class="paragraph">
-<p>Run this command to install dependencies:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
-$ npm run ionic:build</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="paragraph">
-<p>Run this command to install dependencies (optional):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="2">
-<li>
-<p>Run the Mobile App</p>
-</li>
-</ol>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
-no connected device, it installs and runs the application on the emulator.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew installDebug</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Do not use <code>.xcodeproj</code>. If you open up a project file instead of a workspace, dependencies will not be correctly configured.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>To run the showcase app, use these commands:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm run ionic:android # to run on an Android device or emulator
-$ npm run ionic:ios # to run on an iOS device or emulator</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>These commands would run the app on a device if connected or on the emulator if no device is connected.</p>
-</div>
-<div class="paragraph">
-<p>Alternatively, you can use Cordova commands directly to specify the target:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ionic cordova run android --device      # run on a connected device
-$ ionic cordova run android --emulator    # run on the Android emulator</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open up <code>xamarin-showcase-template.sln</code> with VisualStudio.</p>
-</li>
-<li>
-<p>If you didn&#8217;t run <code>nuget restore</code> before, right click on the solution in the left pane then click on <code>Restore Nuget Packages</code>.</p>
-</li>
-<li>
-<p>In the top bar, select the project to run: <code>Example.Android</code> or <code>Example.iOS</code></p>
-</li>
-<li>
-<p>Again in the top bar, select the correct configuration:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Debug/Release: for compiling Example.Android</p>
-</li>
-<li>
-<p>[Debug|Release]|iPhoneSimulator: to compile and run Example.iOS on the iPhoneSimulator</p>
-</li>
-<li>
-<p>[Debug|Release]|iPhone: to compile and run Example.iOS on a real iPhone device</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>At the right of the configuration, select the target device (the android or iPhone version)</p>
-</li>
-<li>
-<p>Click on <strong>Build &#8594; Rebuild All</strong></p>
-</li>
-<li>
-<p>Click on the <strong>Run</strong> button in the top left</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If no android devices are selectable, it could mean that no virtual android devices has been configured. To add one, click on <strong>Tools&#8594;Device Manager&#8594;Add Device</strong>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
+<p>Any links are better placed here.</p>
 </div>
 </div>
 </div>

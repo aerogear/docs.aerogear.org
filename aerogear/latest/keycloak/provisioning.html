@@ -52,13 +52,22 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provisioning Identity Management Service :: AeroGear Mobile Services</title>
+    <title>Provisioning the Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/provisioning.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../identity-management.html#setup">Setting Up</a>
   </li>
@@ -404,17 +422,7 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/provisioning.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Provisioning Identity Management Service</h1>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="../installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
+<h1>Provisioning the Service</h1>
 <div class="paragraph">
 <p>To provision the Identity Management mobile service:</p>
 </div>
@@ -492,16 +500,6 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 </div>
 <div class="paragraph">
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a></p>
-</div>
-</div>
 </div>
 </article>
   </main>

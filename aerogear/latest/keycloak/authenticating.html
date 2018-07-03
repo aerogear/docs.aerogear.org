@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../identity-management.html#setup">Setting Up</a>
   </li>
@@ -409,18 +427,6 @@ $(addBlockSwitches);
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes how to perform user authentication for the supported platforms. On authentication a browser window will open and prompt the user for login credentials.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You have imported the necessary libraries and <a href="coding.html" class="page">initialized the SDK</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -704,14 +710,6 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 </div>
 <div class="paragraph">
 <p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html">Keycloak OICD Providers</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="retrieving-users-roles.html" class="page">Access Control</a></p>
 </div>
 </div>
 </div>

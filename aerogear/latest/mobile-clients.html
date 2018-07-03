@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -409,107 +427,120 @@ $(addBlockSwitches);
 <article class="doc">
 <h1>Mobile Clients in OpenShift</h1>
 <div class="sect1">
-<h2 id="what-is-a-mobile-client-in-your-openshift-project"><a class="anchor" href="#what-is-a-mobile-client-in-your-openshift-project"></a>What is a Mobile Client in your OpenShift Project</h2>
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Typically, when you develop a mobile app you connect directly to services such as authentication, and push networks. As these services change, you update your code,</p>
+<p>Mobile Clients in OpenShift allow you to perform Cloud Native Mobile App Development using OpenShift as the back end
+for your mobile apps. A Mobile Client is a representation of the mobile app that you are developing locally.
+Mobile Clients allow you bind your mobile app to mobile services such as Identity Management, Push Notifications,
+Mobile Metrics and others. This makes many of the common tasks associated with mobile development much easier and
+quicker to implement.</p>
 </div>
 <div class="paragraph">
-<p>With Mobile Services, you create a representation of your mobile app in OpenShift and this <strong>mobile client</strong> becomes the conduit by which you connect to services in OpenShift and external services.</p>
+<p>A configuration file named <code>mobile-services.json</code> acts as the link between your Mobile Client in OpenShift
+and your local app in development. This configuration file is used to initialize the AeroGear SDK in your mobile app
+and to connect to the back end Mobile Services you have provisioned on OpenShift.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="binding"><a class="anchor" href="#binding"></a>Binding</h2>
+<h2 id="registering"><a class="anchor" href="#registering"></a>Registering a Mobile Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobile Clients in OpenShift may be bound to particular services provisioned in the namespace to allow communication between them.
-The result of an binding produces a JSON configuration file (<code>mobile-services.json</code>) for your application which may be consumed by the Aerogear SDKs, allowing it to access the service (or services) it needs.</p>
+<p>To create bindings and use Services in a mobile app a Mobile Client must first be created to represent the app in OpenShift.</p>
+</div>
+<h3 id="prerequisites" class="discrete">Prerequisites:</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have installed OpenShift with Mobile Services as described in <a href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift" class="page">Getting Started</a>.</p>
+</li>
+</ul>
+</div>
+<h3 id="procedure" class="discrete">Procedure</h3>
+<div class="paragraph">
+<p>To create a Mobile Client in your OpenShift project:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Choose your project.</p>
+</li>
+<li>
+<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/catalog-mobile-clients.png" alt="Available Mobile Clients"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Apps</strong> tab and then choose the mobile platform (Android, iOS, Cordova or Xamarin) and follow the wizard.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After the Mobile Client is provisioned, you can navigate to it from Project Overview. The Mobile Client view displays a list of mobile services that you can associate with the Mobile Client and offers to provision any mobile service that is in the service catalog but is not currently provisioned.</p>
+</div>
+<div id="services" class="paragraph">
+<p>include::mc-viewing-available-services.adoc[]</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-a-mobile-client"><a class="anchor" href="#create-a-mobile-client"></a>Create a Mobile Client</h2>
+<h2 id="binding"><a class="anchor" href="#binding"></a>Binding Mobile Services</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A Mobile Client is a representation of your mobile application (Android, iOS, Cordova) in OpenShift. See <a href="./mobile-clients-in-openshift.adoc">this document</a> to learn more about Mobile Clients in OpenShift and how to create them.</p>
+<p>In order to use services with a mobile app the Mobile Client associated with the app must be bound to services.
+A service must be provisioned before it can be bound.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="binding-your-mobile-client-to-services"><a class="anchor" href="#binding-your-mobile-client-to-services"></a>Binding your Mobile Client to Services</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Once you have created your Mobile Client, it is possible to
-bind it to other services in OpenShift. This will allow your applications to interact with services provisioned in your namespace.</p>
+<p>To view the services available to be bound to a Mobile Client go to the <strong>Mobile Services</strong> tab in the Mobile Client
+view.</p>
+</div>
+<div class="paragraph">
+<p>Once a service has been bound to a Mobile Client the <code>mobile-services.json</code> for that client will be updated to
+include the configuration for the service. This allows a mobile app to interact with the service.
+The UI will also be updated to show the service is bound to the Mobile Client.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-configuration.png" alt="mobile clients configuration">
+</div>
 </div>
 <div class="sect2">
-<h3 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting started</h3>
-<div class="paragraph">
-<p>To get started, click on your Mobile Client from the overview screen, under the 'Mobile Clients' heading.
-This will expand the Mobile Client view, showing configuration details for your application and a section for managing bindings.</p>
+<h3 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+</li>
+<li>
+<p>Click on the Mobile Client and navigate to Mobile Client view.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to click on the item in the <strong>Mobile Clients</strong> list.
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/mobile-client-overview.png" alt="Mobile Client Overview"></span></p>
-</div>
-<div class="paragraph">
-<p>The bindings section displays a list of all possible services your Mobile Client can be bound to. Bindings can be both created and deleted from this area.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating-bindings"><a class="anchor" href="#creating-bindings"></a>Creating bindings</h3>
-<div class="paragraph">
-<p>A binding may be in one of 3 states at a single time: <em>not provisioned</em>, <em>available</em> and <em>enabled</em>.
-These three states will be explained in further detail by binding an Android Application to Keycloak as an example.</p>
-</div>
-<div class="sect3">
-<h4 id="not-provisioned"><a class="anchor" href="#not-provisioned"></a>Not provisioned</h4>
-<div class="paragraph">
-<p>A binding is possible between the Mobile Client and the service, but the service has not yet been provisioned in the namespace.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/keycloak-not-provisioned.png" alt="Keycloak Not Provisioned"></span></p>
-</div>
-<div class="paragraph">
-<p>To create a new binding, simply click <code>provision Keycloak to enable binding</code>. This will allow you to provision the service as usual. In this case, Keycloak.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="available"><a class="anchor" href="#available"></a>Available</h4>
-<div class="paragraph">
-<p>Once the service has been provisioned, it is now available to bind to your Mobile Client.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/keycloak-available.png" alt="Keycloak Integration Available"></span></p>
-</div>
-<div class="paragraph">
-<p>To create a new binding, click  <code>bind Keycloak</code>. You will be prompted to bind your Mobile Client to this service via a binding modal.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/keycloak-binding-modal.png" alt="Keycloak Integration Enabled"></span></p>
-</div>
-<div class="paragraph">
-<p>Enter the Client ID of your application, which can be found in the configuration details under <code>clientId</code>. In this case, <code>myapp-android</code> is the ID of the example Android application.</p>
-</div>
-<div class="paragraph">
-<p>The client type dropdown allows you to choose the type of Keycloak client (bearer-only or public) that will be created for your application during the binding process. The <code>public</code> client option should be chosen for client bindings.
-For more information about these two client types, see <a href="https://github.com/aerogear/mobile-core/blob/master/docs/walkthroughs/provision-keycloak-apb.adoc#client-types">here</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="enabled"><a class="anchor" href="#enabled"></a>Enabled</h4>
-<div class="paragraph">
-<p>A binding now exists between the Mobile Client and the Keycloak service, and the <code>services</code> array in the configuration is automatically updated to reflect this association.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/keycloak-client-config.png" alt="Client Bindings Config"></span></p>
-</div>
-<div class="paragraph">
-<p>To delete the binding, simply click on the trash can icon next to the service name.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/keycloak-enabled.png" alt="Keycloak Integration Enabled"></span></p>
-</div>
+</li>
+<li>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
+</li>
+<li>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>

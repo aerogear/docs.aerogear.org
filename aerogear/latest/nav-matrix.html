@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -411,10 +429,10 @@ $(addBlockSwitches);
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You have <a href="#">ROOT:index.adoc</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You have set up <a href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift" class="page">AeroGear Mobile Services</a> on OpenShift.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have <a href="registering-a-mobile-app.html" class="page">registered a mobile app</a> to create a Mobile Client.</p>
+<p><i class="fa fa-check-square-o"></i> You have <a href="getting-started.html#registering" class="page">registered a mobile app</a> to create a Mobile Client.</p>
 </li>
 </ul>
 </div>

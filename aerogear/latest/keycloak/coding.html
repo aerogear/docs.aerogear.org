@@ -52,13 +52,22 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuring your Development Environment for the Identity Management Service :: AeroGear Mobile Services</title>
+    <title>Untitled :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/coding.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../identity-management.html#setup">Setting Up</a>
   </li>
@@ -404,25 +422,88 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/coding.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Configuring your Development Environment for the Identity Management Service</h1>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
+<div class="sect2">
+<h3 id="configuring-the-service"><a class="anchor" href="#configuring-the-service"></a>Configuring the Service</h3>
+<div class="paragraph">
+<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak. This is required to enable OpenID authentication.</p>
+</div>
+<div class="sect3">
+<h4 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h4>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>It is recommended to use the package name of the Android app followed by <code>:/callback</code> as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>It is recommended to use the Bundle Identifier of the iOS app followed by <code>:/callback</code> as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template:/callback</code>)</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>The schema of the redirect url should be <code>http://localhost/*</code>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Depending on the platform set the redirect as described in either the Android or the iOS tab.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h4>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="provisioning.html" class="page">Provisioning Identity Management Service</a>.</p>
+<p>Expand the Identity Management Service by clicking the <strong>&gt;</strong> icon.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have associated the service with a Mobile Client as described in <a href="binding.html" class="page">Binding a Mobile Client with the Identity Management Service</a>.</p>
+<p>Click on the Realm URL link to open the Keycloak Administration Console.</p>
 </li>
-</ul>
+<li>
+<p>Log in to the Administration console using the credentials you specified at <a href="provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
+</li>
+<li>
+<p>Open <code>Clients</code> from the menu.</p>
+</li>
+<li>
+<p>Open your Android client.</p>
+</li>
+<li>
+<p>Add <code>&lt;schema&gt;:/callback</code> to <code>Valid Redirect URIs</code>.</p>
+</li>
+<li>
+<p>Add <code>&lt;schema&gt;</code> to <code>Web Origins</code>.</p>
+</li>
+<li>
+<p>Save your changes.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You must create a new user account before you can log into the Showcase App. To create a new user follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a> and to setup a new users credentials follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -505,95 +586,11 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="keycloak-setup"><a class="anchor" href="#keycloak-setup"></a>Keycloak Setup</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following guide helps you to configure schema of the redirect url and web origin for a client in Keycloak. This is required to use the Auth SDK.</p>
-</div>
-<div class="sect2">
-<h3 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="paragraph">
-<p>It is recommended to use the package name of the Android app followed by <code>:/callback</code> as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>It is recommended to use the Bundle Identifier of the iOS app followed by <code>:/callback</code> as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template:/callback</code>)</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>The schema of the redirect url should be <code>http://localhost/*</code>.</p>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="paragraph">
-<p>Depending on the platform set the redirect as described in either the Android or the iOS tab.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open Keycloak Administration Console by selecting route in OpenShift.</p>
-</li>
-<li>
-<p>Log in to the Administration console using the credentials you specified at <a href="provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
-</li>
-<li>
-<p>Open <code>Clients</code> from the menu.</p>
-</li>
-<li>
-<p>Open your Android client.</p>
-</li>
-<li>
-<p>Add the schema to <code>Valid Redirect URIs</code>.</p>
-</li>
-<li>
-<p>Add <code>*</code> to <code>Web Origins</code>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="setting-up-identity-management-service-sdk"><a class="anchor" href="#setting-up-identity-management-service-sdk"></a>Setting up Identity Management service SDK</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide will help you to set up the Identity Management service SDK in your App.</p>
-</div>
-<div class="sect2">
-<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="provisioning.html" class="page">Provisioned Identity Management service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="binding.html" class="page">Binding</a> created.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="configuring-dev-env-keycloak.html" class="page">Configured dev environment</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> Read the <a href="../configuring-dev-env.html" class="page">general app setup guide</a>.</p>
-</li>
-</ul>
-</div>
+<p>This section will help you to set up the Identity Management service SDK in your App.</p>
 </div>
 <div class="sect2">
 <h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
@@ -856,14 +853,6 @@ authService.Configure(authConfig);</code></pre>
 </ol>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="authenticating.html" class="page">User authentication</a></p>
 </div>
 </div>
 </div>

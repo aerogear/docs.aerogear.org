@@ -52,13 +52,22 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keycloak Setup :: AeroGear Mobile Services</title>
+    <title>Configuring the Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/keycloak/keycloak-setup.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../identity-management.html#setup">Setting Up</a>
   </li>
@@ -404,11 +422,11 @@ $(addBlockSwitches);
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/keycloak-setup.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Keycloak Setup</h1>
+<h1>Configuring the Service</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following guide helps you to configure schema of the redirect url and web origin for a client in Keycloak. This is required to use the Auth SDK.</p>
+<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in {idm-name}. This is required to enable OpenID authentication.</p>
 </div>
 </div>
 </div>
@@ -446,12 +464,15 @@ $(addBlockSwitches);
 </div>
 </div>
 <div class="sect1">
-<h2 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h2>
+<h2 id="configuring-idm-name"><a class="anchor" href="#configuring-idm-name"></a>Configuring {idm-name}</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open Keycloak Administration Console by selecting route in OpenShift.</p>
+<p>Expand the Identity Management Service by clicking the <strong>&gt;</strong> icon.</p>
+</li>
+<li>
+<p>Click on the Realm URL link to open the {idm-name} Administration Console.</p>
 </li>
 <li>
 <p>Log in to the Administration console using the credentials you specified at <a href="provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
@@ -463,12 +484,27 @@ $(addBlockSwitches);
 <p>Open your Android client.</p>
 </li>
 <li>
-<p>Add the schema to <code>Valid Redirect URIs</code>.</p>
+<p>Add <code>&lt;schema&gt;:/callback</code> to <code>Valid Redirect URIs</code>.</p>
 </li>
 <li>
-<p>Add <code>*</code> to <code>Web Origins</code>.</p>
+<p>Add <code>&lt;schema&gt;</code> to <code>Web Origins</code>.</p>
+</li>
+<li>
+<p>Save your changes.</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You must create a new user account before you can log into the Showcase App. To create a new user follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a> and to setup a new users credentials follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

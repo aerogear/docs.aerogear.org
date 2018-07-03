@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -424,6 +442,10 @@ $(addBlockSwitches);
 <li><a href="#binding-a-mobile-client-with-the-custom-runtime-connector-service">Binding a Mobile Client with the Custom Runtime Connector Service</a>
 <ul class="sectlevel2">
 <li><a href="#prerequisites-2">Prerequisites</a></li>
+</ul>
+</li>
+<li><a href="#procedure">Procedure</a>
+<ul class="sectlevel2">
 <li><a href="#next-steps-2">Next steps</a></li>
 </ul>
 </li>
@@ -571,7 +593,7 @@ This association is called a binding and once it&#8217;s done, your mobile app c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The association between a Mobile Client and  Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+The association between a Mobile Client and Custom Runtime Connector Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
 </td>
 </tr>
 </table>
@@ -579,6 +601,12 @@ The association between a Mobile Client and  Service uses the <a href="https://b
 <div class="paragraph">
 <p>To associate a Mobile Client with a mobile service:</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -603,19 +631,18 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
 </li>
 <li>
-<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Custom Runtime Connector Service.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-services.png" alt="mobile clients services"></span></p>
+</div>
 </li>
 <li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the  Service.</p>
+<p>Fill out the binding parameters required by the Custom Runtime Connector Service.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
 <p>After the binding is finished the Mobile Client has been updated with the custom configuration.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
@@ -841,7 +868,7 @@ const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
 </li>
 </ul>
 </div>
-<h3 id="procedure" class="discrete">Procedure</h3>
+<h3 id="procedure-2" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -866,7 +893,7 @@ const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
 </li>
 </ul>
 </div>
-<h3 id="procedure-2" class="discrete">Procedure</h3>
+<h3 id="procedure-3" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -891,7 +918,7 @@ const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
 </li>
 </ul>
 </div>
-<h3 id="procedure-3" class="discrete">Procedure</h3>
+<h3 id="procedure-4" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -916,7 +943,7 @@ const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
 </li>
 </ul>
 </div>
-<h3 id="procedure-4" class="discrete">Procedure</h3>
+<h3 id="procedure-5" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -941,7 +968,7 @@ const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
 </li>
 </ul>
 </div>
-<h3 id="procedure-5" class="discrete">Procedure</h3>
+<h3 id="procedure-6" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

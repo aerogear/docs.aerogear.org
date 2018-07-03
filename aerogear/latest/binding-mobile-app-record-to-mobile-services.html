@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
   </li>
@@ -405,6 +423,8 @@ $(addBlockSwitches);
 </div>
 <article class="doc">
 <h1>Binding a Mobile Client with Mobile Services</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
 This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
@@ -424,6 +444,9 @@ The association between a Mobile Client and  Service uses the <a href="https://b
 <div class="paragraph">
 <p>To associate a Mobile Client with a mobile service:</p>
 </div>
+</div>
+</div>
+<h1 id="procedure" class="sect0"><a class="anchor" href="#procedure"></a>Procedure</h1>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -448,10 +471,10 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
 </li>
 <li>
-<p>Expand the  Service by clicking the <strong>&gt;</strong> icon.</p>
-</li>
-<li>
 <p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the  Service.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-services.png" alt="mobile clients services"></span></p>
+</div>
 </li>
 <li>
 <p>Fill out the binding parameters required by the  Service.</p>

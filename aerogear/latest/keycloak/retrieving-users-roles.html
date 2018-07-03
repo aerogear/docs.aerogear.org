@@ -52,7 +52,16 @@ function createSwitchItem(block, blockSwitch) {
 	return {'item': item, 'content': content};
 }
 
-$(addBlockSwitches);    
+$(addBlockSwitches);
+
+
+Zepto(function($){
+	if (document.location.hash.indexOf("nochrome") > -1) {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+
 </script>
 
 
@@ -166,6 +175,9 @@ $(addBlockSwitches);
     <a class="nav-link" href="../getting-started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -189,6 +201,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../mobile-clients.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
@@ -214,6 +229,9 @@ $(addBlockSwitches);
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../identity-management.html">Identity Management</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../identity-management.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../identity-management.html#setup">Setting Up</a>
   </li>
@@ -405,8 +423,6 @@ $(addBlockSwitches);
 </div>
 <article class="doc">
 <h1>Adding Access Control to your Mobile App</h1>
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
 <p>Once a <code>UserPrincipal</code> has been retrieved the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
 </div>
@@ -530,16 +546,6 @@ bool isModerator = user.HasResourceRole("my_resource", "user_moderator");</code>
 </div>
 </li>
 </ol>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="sso.html" class="page">Single Sign On</a></p>
 </div>
 </div>
 </div>
