@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
 <script>
 function addBlockSwitches() {
 	$('.primary').each(function() {
@@ -54,14 +55,12 @@ function createSwitchItem(block, blockSwitch) {
 
 $(addBlockSwitches);
 
-
 Zepto(function($){
-	if (document.location.hash.indexOf("nochrome") > -1) {
+	if (url('?header') === 'false') {
 		// Hide the navbar for showcase apps (#nochrome)
 		$('body').addClass('nochrome');
 	}
 })
-
 </script>
 
 
@@ -434,7 +433,6 @@ Zepto(function($){
 <ul class="sectlevel2">
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#procedure">Procedure</a></li>
-<li><a href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 <li><a href="#registering">Registering a Mobile Client</a></li>
@@ -458,7 +456,6 @@ Zepto(function($){
 <li><a href="#running-the-mobile-app-in-an-emulator">Running the Mobile App in an Emulator</a></li>
 </ul>
 </li>
-<li><a href="#doing-stuff">Doing Stuff</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -739,19 +736,6 @@ password: password</pre>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="image:catalog-mobile-clients.png" alt="image:catalog mobile clients"></span></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering-a-mobile-app.html" class="page">Register a Mobile App</a></p>
-</li>
-<li>
-<p><a href="con_services.html" class="page">Provision a Mobile Service</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -1339,32 +1323,78 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 <div class="sect2">
 <h3 id="running-the-mobile-app-in-an-emulator"><a class="anchor" href="#running-the-mobile-app-in-an-emulator"></a>Running the Mobile App in an Emulator</h3>
-
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>To run an Android app in an emulator refer to the following <a href="https://developer.android.com/training/basics/firstapp/running-app">documentation</a>.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="doing-stuff"><a class="anchor" href="#doing-stuff"></a>Doing Stuff</h2>
-<div class="sectionbody">
-<h3 id="prerequisites-2" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>To run an iOS app in an emulator refer to the following <a href="https://help.apple.com/xcode/mac/current/#/dev2809b6cff">documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Cordova cross-platform applications can be run in the following emulators:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><i class="fa fa-check-square-o"></i> minimal prereqs</p>
+<p><a href="https://cordova.apache.org/docs/en/2.7.0/guide/command-line/#android">Android</a></p>
+</li>
+<li>
+<p><a href="https://cordova.apache.org/docs/en/2.7.0/guide/command-line/#ios">iOS</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Running an iOS application requires running an emulator on macOS
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
-<h3 id="procedure-4" class="discrete">Procedure</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>numbered list</p>
-</li>
-</ol>
 </div>
-<h3 id="additional-information" class="discrete">Additional Information</h3>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
 <div class="paragraph">
-<p>Any links are better placed here.</p>
+<p>Xamarin cross-platform applications can be run in the following emulators:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://blogs.msdn.microsoft.com/visualstudio/2018/05/08/hyper-v-android-emulator-support/">Android</a></p>
+</li>
+<li>
+<p><a href="https://developer.xamarin.com/getting-started-ios/">iOS</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Running an iOS application requires running an emulator on macOS
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

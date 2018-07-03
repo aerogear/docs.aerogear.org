@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
 <script>
 function addBlockSwitches() {
 	$('.primary').each(function() {
@@ -54,14 +55,12 @@ function createSwitchItem(block, blockSwitch) {
 
 $(addBlockSwitches);
 
-
 Zepto(function($){
-	if (document.location.hash.indexOf("nochrome") > -1) {
+	if (url('?header') === 'false') {
 		// Hide the navbar for showcase apps (#nochrome)
 		$('body').addClass('nochrome');
 	}
 })
-
 </script>
 
 
@@ -432,7 +431,7 @@ Zepto(function($){
 <li><a href="#con_introduction-to-metrics_con_introduction-to-metrics">About Mobile Metrics Service</a>
 <ul class="sectlevel2">
 <li><a href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics">Additional resources</a></li>
-<li><a href="#next-steps">Next Steps</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
 </ul>
 </li>
 <li><a href="#setup">Setting Up the Mobile Metrics Service</a>
@@ -445,7 +444,7 @@ Zepto(function($){
 </li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
 <ul class="sectlevel3">
-<li><a href="#next-steps-4">Next Steps</a></li>
+<li><a href="#next-steps-3">Next Steps</a></li>
 </ul>
 </li>
 <li><a href="#app">Analyzing App Usage</a>
@@ -510,11 +509,11 @@ Zepto(function($){
 </div>
 </div>
 <div class="sect2">
-<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
-<div class="ulist">
-<ul>
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p><a href="metrics/provisioning.html" class="page">Provisioning Metrics Service</a></p>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
 </li>
 </ul>
 </div>
@@ -526,15 +525,6 @@ Zepto(function($){
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="provisioning-metrics-service"><a class="anchor" href="#provisioning-metrics-service"></a>Provisioning Metrics Service</h3>
-<div class="sect3">
-<h4 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h4>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>To provision the Metrics mobile service:</p>
 </div>
@@ -632,9 +622,8 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
-</div>
 <div class="sect3">
-<h4 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h4>
+<h4 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -713,7 +702,7 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 </ol>
 </div>
 <div class="sect3">
-<h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
+<h4 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -829,7 +818,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p>Metrics will be sent automatically from the mobile app once any of the components from AeroGear SDK are installed.</p>
 </div>
 <div class="sect3">
-<h4 id="next-steps-4"><a class="anchor" href="#next-steps-4"></a>Next Steps</h4>
+<h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
 <div class="ulist">
 <ul>
 <li>

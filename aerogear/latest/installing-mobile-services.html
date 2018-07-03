@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
 <script>
 function addBlockSwitches() {
 	$('.primary').each(function() {
@@ -54,14 +55,12 @@ function createSwitchItem(block, blockSwitch) {
 
 $(addBlockSwitches);
 
-
 Zepto(function($){
-	if (document.location.hash.indexOf("nochrome") > -1) {
+	if (url('?header') === 'false') {
 		// Hide the navbar for showcase apps (#nochrome)
 		$('body').addClass('nochrome');
 	}
 })
-
 </script>
 
 
@@ -681,21 +680,6 @@ password: password</pre>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="image:catalog-mobile-clients.png" alt="image:catalog mobile clients"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering-a-mobile-app.html" class="page">Register a Mobile App</a></p>
-</li>
-<li>
-<p><a href="con_services.html" class="page">Provision a Mobile Service</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>

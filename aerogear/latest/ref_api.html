@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
 <script>
 function addBlockSwitches() {
 	$('.primary').each(function() {
@@ -54,14 +55,12 @@ function createSwitchItem(block, blockSwitch) {
 
 $(addBlockSwitches);
 
-
 Zepto(function($){
-	if (document.location.hash.indexOf("nochrome") > -1) {
+	if (url('?header') === 'false') {
 		// Hide the navbar for showcase apps (#nochrome)
 		$('body').addClass('nochrome');
 	}
 })
-
 </script>
 
 
@@ -426,65 +425,60 @@ Zepto(function($){
 </div>
 <article class="doc">
 <h1>AeroGear API Reference</h1>
-<div class="sect1">
-<h2 id="android"><a class="anchor" href="#android"></a>Android API Reference</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The Android API documentation is published as
-<a href="http://www.javadoc.io/doc/org.jboss.aerogear/aerogear-android-push/">Javadoc</a>.</p>
+<p>You can find the links to the API reference of each module for each platform in the table below.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ios"><a class="anchor" href="#ios"></a>iOS API Reference</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>iOS API documentation is available for:</p>
+<p>Please click on the <code>✔</code> to see the API reference.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="/api/ios/latest/core/">Core</a></p>
-</li>
-<li>
-<p><a href="/api/ios/latest/push/">Push</a></p>
-</li>
-<li>
-<p><a href="/api/ios/latest/auth/">Auth</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="cordova"><a class="anchor" href="#cordova"></a>Cordova API Reference</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Cordova API documentation is available for:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="/api/cordova/latest/core/">Core</a></p>
-</li>
-<li>
-<p><a href="/api/cordova/latest/cordova-plugin-aerogear-metrics/">Metrics</a></p>
-</li>
-<li>
-<p><a href="/api/cordova/latest/auth/">Auth</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="xamarin"><a class="anchor" href="#xamarin"></a>Xamarin  API Reference</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>See the <a href="/api/xamarin/latest/">Xamarin API documentation</a></p>
-</div>
-</div>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Platform</th>
+<th class="tableblock halign-left valign-top">Core</th>
+<th class="tableblock halign-left valign-top">Identity Management</th>
+<th class="tableblock halign-left valign-top">Push Notification</th>
+<th class="tableblock halign-left valign-top">Device Security</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iOS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/push/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/security/">✔</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-push/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-security/">✔</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cordova</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/push/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/security">✔</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Xamarin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/security">✔</a></p></td>
+</tr>
+</tbody>
+</table>
 </article>
   </main>
 </div>

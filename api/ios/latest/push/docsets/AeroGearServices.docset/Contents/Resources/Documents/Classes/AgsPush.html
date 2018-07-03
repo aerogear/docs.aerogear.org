@@ -33,6 +33,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/AgsPush.html">AgsPush</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AgsPush/Errors.html">– Errors</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -87,7 +90,7 @@ in order to corelate mobile clients for sending targeted messages.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">deviceTokenKey</span> <span class="o">=</span> <span class="s">"AgsPushSDK.deviceToken"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">deviceTokenKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -114,7 +117,7 @@ in order to corelate mobile clients for sending targeted messages.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">apiPath</span> <span class="o">=</span> <span class="s">"rest/registry/device"</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">apiPath</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -141,7 +144,7 @@ in order to corelate mobile clients for sending targeted messages.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">instance</span><span class="p">:</span> <span class="kt">AgsPush</span> <span class="o">=</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">instance</span><span class="p">:</span> <span class="kt">AgsPush</span></code></pre>
 
                         </div>
                       </div>
@@ -151,9 +154,37 @@ in order to corelate mobile clients for sending targeted messages.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7AGSPush7AgsPushC8registery10Foundation4DataV_AA07UnifiedC6ConfigVyyc7successys5Error_pc7failuretF"></a>
+                    <a name="/s:7AGSPush7AgsPushC6ErrorsO"></a>
+                    <a name="//apple_ref/swift/Enum/Errors" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSPush7AgsPushC6ErrorsO">Errors</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/AgsPush/Errors.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Errors</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSPush7AgsPushC8registery10Foundation4DataV_AA07UnifiedC6ConfigVyyc7successys5Error_pc7failuretKF"></a>
                     <a name="//apple_ref/swift/Method/register(_:_:success:failure:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7AGSPush7AgsPushC8registery10Foundation4DataV_AA07UnifiedC6ConfigVyyc7successys5Error_pc7failuretF">register(_:_:success:failure:)</a>
+                    <a class="token" href="#/s:7AGSPush7AgsPushC8registery10Foundation4DataV_AA07UnifiedC6ConfigVyyc7successys5Error_pc7failuretKF">register(_:_:success:failure:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -172,7 +203,7 @@ Registration information can be provided within clientInfo block</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">_</span> <span class="nv">deviceToken</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span>
                      <span class="n">_</span> <span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/UnifiedPushConfig.html">UnifiedPushConfig</a></span><span class="p">,</span>
                      <span class="nv">success</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">),</span>
-                     <span class="nv">failure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+                     <span class="nv">failure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -239,8 +270,8 @@ Registration information can be provided within clientInfo block</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-05-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

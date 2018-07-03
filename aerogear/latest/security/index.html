@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
 <script>
 function addBlockSwitches() {
 	$('.primary').each(function() {
@@ -54,14 +55,12 @@ function createSwitchItem(block, blockSwitch) {
 
 $(addBlockSwitches);
 
-
 Zepto(function($){
-	if (document.location.hash.indexOf("nochrome") > -1) {
+	if (url('?header') === 'false') {
 		// Hide the navbar for showcase apps (#nochrome)
 		$('body').addClass('nochrome');
 	}
 })
-
 </script>
 
 
@@ -423,8 +422,6 @@ Zepto(function($){
 </div>
 <article class="doc">
 <h1>About Device Security</h1>
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
 <p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application</p>
 </div>
@@ -449,16 +446,6 @@ Device Security is not currently associated with an OpenShift service, so there 
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-device-security_additional-resources-con_introduction-to-device-security"><a class="anchor" href="#con_introduction-to-device-security_additional-resources-con_introduction-to-device-security"></a>Next steps</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="coding.html" class="page">Configuring your Development Environment for the Security Service</a></p>
-</div>
-</div>
 </div>
 </article>
   </main>
