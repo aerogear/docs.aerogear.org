@@ -1,0 +1,9 @@
+= The docs.aerogear.org Repo
+
+This repo combines the following content:
+
+* html and supporting files generated from https://github.com/aerogear/mobile-docs
+* API html that is generated from 4 mobile platform code repos and placed in /api directory
+* redirect html files that provides a proxy from UI 
+
+Fork this repo and create a PR whenever you want changes to this repo. Name the PR according the change you want to make
