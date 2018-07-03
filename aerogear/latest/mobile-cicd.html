@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitled :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-cicd.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -432,20 +432,19 @@ Zepto(function($){
 <ul class="sectlevel2">
 <li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
 <li><a href="#ref_source-configuration_ref_source-configuration">Source Configuration Reference material</a></li>
-<li><a href="#next-steps">Next steps</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
 </ul>
 </li>
 <li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a>
 <ul class="sectlevel2">
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#next-steps-2">Next steps</a></li>
+<li><a href="#next-steps">Next steps</a></li>
 </ul>
 </li>
 <li><a href="#build-config">Creating a Build Configuration</a></li>
 <li><a href="#proc_building-a-mobile-app_proc_building-a-mobile-app">Building a Mobile App</a>
 <ul class="sectlevel2">
 <li><a href="#start-a-build">Start a Build</a></li>
-<li><a href="#next-steps-3">Next steps</a></li>
+<li><a href="#next-steps-2">Next steps</a></li>
 </ul>
 </li>
 <li><a href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app">Deploying a Mobile App</a></li>
@@ -656,9 +655,13 @@ Release:: An Android release build, requires an upload of a password protected P
 </div>
 </div>
 <div class="sect2">
-<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h3>
-<div class="paragraph">
-<p><a href="digger/provisioning.html" class="page">Provisioning Mobile CI/CD Service</a></p>
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -666,15 +669,6 @@ Release:: An Android release build, requires an upload of a password protected P
 <div class="sect1">
 <h2 id="provisioning-mobile-ci-cd-service"><a class="anchor" href="#provisioning-mobile-ci-cd-service"></a>Provisioning Mobile CI/CD Service</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>To provision the Mobile CI/CD mobile service:</p>
 </div>
@@ -729,9 +723,8 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
-</div>
 <div class="sect2">
-<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
+<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h3>
 <div class="paragraph">
 <p><a href="digger/proc_creating-a-build-configuration.html" class="page">Creating a Build Configuration</a></p>
 </div>
@@ -869,7 +862,7 @@ This box lists the last 5 builds for this client.
 </div>
 </div>
 <div class="sect2">
-<h3 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next steps</h3>
+<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
 <div class="paragraph">
 <p><a href="digger/proc_deploying-a-mobile-app.html" class="page">Deploying Apps</a></p>
 </div>

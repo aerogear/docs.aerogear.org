@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Using the Push Notifications Mobile Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/push-notifications.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -435,7 +435,7 @@ Zepto(function($){
 <li><a href="#ref_terminology_Push Notifications_ref_terminology">Push Notifications Terminology</a></li>
 <li><a href="#privacy-note">Privacy note</a></li>
 <li><a href="#how-the-unifiedpush-server-works">How the UnifiedPush Server Works</a></li>
-<li><a href="#next-steps">Next Steps</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
 </ul>
 </li>
 <li><a href="#setup">Setting Up the Identity Management Mobile Service</a>
@@ -455,7 +455,7 @@ Zepto(function($){
 </li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
 <ul class="sectlevel2">
-<li><a href="#next-steps-5">Next Steps</a></li>
+<li><a href="#next-steps-4">Next Steps</a></li>
 </ul>
 </li>
 <li><a href="#push-ui">Accessing Push Notifications using the Unified Push Admin UI</a></li>
@@ -585,11 +585,11 @@ When using the UnifiedPush Server, please keep in mind that Push notification is
 </div>
 </div>
 <div class="sect2">
-<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next Steps</h3>
-<div class="ulist">
-<ul>
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p><a href="push/provisioning.html" class="page">Provisioning the Push Notifications service</a></p>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
 </li>
 </ul>
 </div>
@@ -691,7 +691,7 @@ To re-download the <code>google-services.json</code> file, navigate to the <em>P
 <div class="paragraph">
 <p>The following guide helps you to enable Push Notifications for your iOS application.</p>
 </div>
-<h4 id="prerequisites" class="discrete">Prerequisites</h4>
+<h4 id="prerequisites-2" class="discrete">Prerequisites</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -737,7 +737,7 @@ The exported p12 file with the password will be used later when binding your Mob
 </li>
 </ol>
 </div>
-<h4 id="next-steps-2" class="discrete">Next Steps</h4>
+<h4 id="next-steps" class="discrete">Next Steps</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -756,15 +756,6 @@ The exported p12 file with the password will be used later when binding your Mob
 </div>
 <div class="sect2">
 <h3 id="provisioning-push-notifications-service"><a class="anchor" href="#provisioning-push-notifications-service"></a>Provisioning Push Notifications Service</h3>
-<div class="sect3">
-<h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h4>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="installing-mobile-services.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p>To provision the  mobile service:</p>
 </div>
@@ -805,9 +796,8 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>Once the wizard steps are completed navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
-</div>
 <div class="sect3">
-<h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
+<h4 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h4>
 <div class="paragraph">
 <p><a href="registering-a-mobile-app.html" class="page">Registering a Mobile App</a></p>
 </div>
@@ -944,7 +934,7 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <p>After clicking Bind your variant will be created in UPS and you should see a new binding for your mobile client.</p>
 </div>
 <div class="sect3">
-<h4 id="next-steps-4"><a class="anchor" href="#next-steps-4"></a>Next Steps</h4>
+<h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
 <div class="paragraph">
 <p><a href="push/configuring-dev-env-push.html" class="page">Configuring your Development Environment for the Push Notifications Service</a></p>
 </div>
@@ -1059,7 +1049,7 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 <div class="sect2">
-<h3 id="next-steps-5"><a class="anchor" href="#next-steps-5"></a>Next Steps</h3>
+<h3 id="next-steps-4"><a class="anchor" href="#next-steps-4"></a>Next Steps</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1330,7 +1320,7 @@ pushObject.on('registration').subscribe(data =&gt; {
 </div>
 </div>
 <div class="sect3">
-<h4 id="next-steps-6"><a class="anchor" href="#next-steps-6"></a>Next Steps</h4>
+<h4 id="next-steps-5"><a class="anchor" href="#next-steps-5"></a>Next Steps</h4>
 <div class="paragraph">
 <p><a href="push/proc_sending-a-push-notification.html" class="page">Sending a Push Notification</a></p>
 </div>
