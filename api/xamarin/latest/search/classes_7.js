@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['sanitycheck',['SanityCheck',['../class_aero_gear_1_1_mobile_1_1_core_1_1_utils_1_1_sanity_check.html',1,'AeroGear::Mobile::Core::Utils']]],
-  ['securekeyvaluestore',['SecureKeyValueStore',['../class_aero_gear_1_1_mobile_1_1_core_1_1_storage_1_1_secure_key_value_store.html',1,'AeroGear::Mobile::Core::Storage']]],
-  ['serviceconfiguration',['ServiceConfiguration',['../class_aero_gear_1_1_mobile_1_1_core_1_1_configuration_1_1_service_configuration.html',1,'AeroGear::Mobile::Core::Configuration']]],
-  ['serviceconfigurationbuilder',['ServiceConfigurationBuilder',['../class_aero_gear_1_1_mobile_1_1_core_1_1_configuration_1_1_service_configuration_1_1_service_configuration_builder.html',1,'AeroGear::Mobile::Core::Configuration::ServiceConfiguration']]],
-  ['servicemoduleinstancenotfoundexception',['ServiceModuleInstanceNotFoundException',['../class_aero_gear_1_1_mobile_1_1_core_1_1_exception_1_1_service_module_instance_not_found_exception.html',1,'AeroGear::Mobile::Core::Exception']]],
-  ['storagemanager',['StorageManager',['../class_aero_gear_1_1_mobile_1_1_core_1_1_storage_1_1_storage_manager.html',1,'AeroGear::Mobile::Core::Storage']]]
+  ['networkmetricspublisher',['NetworkMetricsPublisher',['../class_aero_gear_1_1_mobile_1_1_core_1_1_metrics_1_1_publishers_1_1_network_metrics_publisher.html',1,'AeroGear::Mobile::Core::Metrics::Publishers']]],
+  ['nulllogger',['NullLogger',['../class_aero_gear_1_1_mobile_1_1_core_1_1_logging_1_1_null_logger.html',1,'AeroGear::Mobile::Core::Logging']]]
 ];

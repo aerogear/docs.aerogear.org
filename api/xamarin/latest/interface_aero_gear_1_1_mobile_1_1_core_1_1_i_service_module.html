@@ -103,9 +103,12 @@ Inheritance diagram for AeroGear.Mobile.Core.IServiceModule:</div>
  <div class="center">
   <img src="interface_aero_gear_1_1_mobile_1_1_core_1_1_i_service_module.png" usemap="#AeroGear.Mobile.Core.IServiceModule_map" alt=""/>
   <map id="AeroGear.Mobile.Core.IServiceModule_map" name="AeroGear.Mobile.Core.IServiceModule_map">
-<area href="interface_aero_gear_1_1_mobile_1_1_auth_1_1_i_auth_service.html" title="Interface for an auth service module IServiceModule. " alt="AeroGear.Mobile.Auth.IAuthService" shape="rect" coords="0,56,283,80"/>
-<area href="interface_aero_gear_1_1_mobile_1_1_core_1_1_http_1_1_i_http_service_module.html" title="Interface for the http service module " alt="AeroGear.Mobile.Core.Http.IHttpServiceModule" shape="rect" coords="293,56,576,80"/>
-<area href="class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html" title="Abstract implementation of IAuthService. " alt="AeroGear.Mobile.Auth.AbstractAuthService" shape="rect" coords="0,112,283,136"/>
+<area href="interface_aero_gear_1_1_mobile_1_1_auth_1_1_i_auth_service.html" title="Interface for an auth service module IServiceModule. " alt="AeroGear.Mobile.Auth.IAuthService" shape="rect" coords="0,56,303,80"/>
+<area href="interface_aero_gear_1_1_mobile_1_1_core_1_1_http_1_1_i_http_service_module.html" title="Interface for the http service module " alt="AeroGear.Mobile.Core.Http.IHttpServiceModule" shape="rect" coords="313,56,616,80"/>
+<area href="class_aero_gear_1_1_mobile_1_1_core_1_1_metrics_1_1_metrics_service.html" alt="AeroGear.Mobile.Core.Metrics.MetricsService" shape="rect" coords="626,56,929,80"/>
+<area href="interface_aero_gear_1_1_mobile_1_1_security_1_1_i_security_service.html" alt="AeroGear.Mobile.Security.ISecurityService" shape="rect" coords="939,56,1242,80"/>
+<area href="class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html" title="Abstract implementation of IAuthService. " alt="AeroGear.Mobile.Auth.AbstractAuthService" shape="rect" coords="0,112,303,136"/>
+<area href="class_aero_gear_1_1_mobile_1_1_security_1_1_abstract_security_service.html" alt="AeroGear.Mobile.Security.AbstractSecurityService" shape="rect" coords="939,112,1242,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -114,9 +117,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a916024fa7371681d6d5f83c5609bf52e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_aero_gear_1_1_mobile_1_1_core_1_1_i_service_module.html#a916024fa7371681d6d5f83c5609bf52e">Destroy</a> ()</td></tr>
 <tr class="memdesc:a916024fa7371681d6d5f83c5609bf52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when singleThreadService destroyed.  <a href="#a916024fa7371681d6d5f83c5609bf52e">More...</a><br /></td></tr>
 <tr class="separator:a916024fa7371681d6d5f83c5609bf52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48f13380e496b9136c8f0f476abd2a0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_aero_gear_1_1_mobile_1_1_core_1_1_i_service_module.html#a48f13380e496b9136c8f0f476abd2a0b">Configure</a> (<a class="el" href="class_aero_gear_1_1_mobile_1_1_core_1_1_mobile_core.html">MobileCore</a> core, <a class="el" href="class_aero_gear_1_1_mobile_1_1_core_1_1_configuration_1_1_service_configuration.html">ServiceConfiguration</a> config)</td></tr>
+<tr class="separator:a48f13380e496b9136c8f0f476abd2a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a22465110a6eeb4d764fdb3bc4c4126e5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_aero_gear_1_1_mobile_1_1_core_1_1_i_service_module.html#a22465110a6eeb4d764fdb3bc4c4126e5">Id</a><code> [get]</code></td></tr>
+<tr class="separator:a22465110a6eeb4d764fdb3bc4c4126e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a934b9a9eb2c925d2a3498a5dc9aafe91"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_aero_gear_1_1_mobile_1_1_core_1_1_i_service_module.html#a934b9a9eb2c925d2a3498a5dc9aafe91">Type</a><code> [get]</code></td></tr>
 <tr class="memdesc:a934b9a9eb2c925d2a3498a5dc9aafe91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type/name used in the mobile-singleThreadService.json  <a href="#a934b9a9eb2c925d2a3498a5dc9aafe91">More...</a><br /></td></tr>
 <tr class="separator:a934b9a9eb2c925d2a3498a5dc9aafe91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,6 +134,36 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base interface of all service modules </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a48f13380e496b9136c8f0f476abd2a0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f13380e496b9136c8f0f476abd2a0b">&#9670;&nbsp;</a></span>Configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AeroGear.Mobile.Core.IServiceModule.Configure </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_aero_gear_1_1_mobile_1_1_core_1_1_mobile_core.html">MobileCore</a>&#160;</td>
+          <td class="paramname"><em>core</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_aero_gear_1_1_mobile_1_1_core_1_1_configuration_1_1_service_configuration.html">ServiceConfiguration</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html#aa12b5d7bdd50e9c088fa000a4f7565f9">AeroGear.Mobile.Auth.AbstractAuthService</a>, <a class="el" href="class_aero_gear_1_1_mobile_1_1_core_1_1_metrics_1_1_metrics_service.html#a386523ca8e41b558fa9f02b203803094">AeroGear.Mobile.Core.Metrics.MetricsService</a>, and <a class="el" href="class_aero_gear_1_1_mobile_1_1_security_1_1_abstract_security_service.html#ae74100611f4164162ad590356ef398c1">AeroGear.Mobile.Security.AbstractSecurityService</a>.</p>
+
+</div>
+</div>
 <a id="a916024fa7371681d6d5f83c5609bf52e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a916024fa7371681d6d5f83c5609bf52e">&#9670;&nbsp;</a></span>Destroy()</h2>
 
@@ -144,11 +181,33 @@ Properties</h2></td></tr>
 
 <p>Called when singleThreadService destroyed. </p>
 
-<p>Implemented in <a class="el" href="class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html#ab53b3a0ce3405108bc77a1cd76392fae">AeroGear.Mobile.Auth.AbstractAuthService</a>.</p>
+<p>Implemented in <a class="el" href="class_aero_gear_1_1_mobile_1_1_auth_1_1_abstract_auth_service.html#ab53b3a0ce3405108bc77a1cd76392fae">AeroGear.Mobile.Auth.AbstractAuthService</a>, <a class="el" href="class_aero_gear_1_1_mobile_1_1_core_1_1_metrics_1_1_metrics_service.html#a681ee9229577f6cb6c6f1e5b55113d2a">AeroGear.Mobile.Core.Metrics.MetricsService</a>, and <a class="el" href="class_aero_gear_1_1_mobile_1_1_security_1_1_abstract_security_service.html#ac39021e5fc00fea5ced6777fbf1de52d">AeroGear.Mobile.Security.AbstractSecurityService</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="a22465110a6eeb4d764fdb3bc4c4126e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22465110a6eeb4d764fdb3bc4c4126e5">&#9670;&nbsp;</a></span>Id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String AeroGear.Mobile.Core.IServiceModule.Id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7548cb5c5b4b7f1715bd9c1637504734"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7548cb5c5b4b7f1715bd9c1637504734">&#9670;&nbsp;</a></span>RequiresConfiguration</h2>
 

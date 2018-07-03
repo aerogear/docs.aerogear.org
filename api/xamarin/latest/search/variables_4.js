@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['httpservice',['httpService',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_authenticator_1_1_abstract_authenticator.html#acc7d572e6e8415fc229e4a80b9e93381',1,'AeroGear::Mobile::Auth::Authenticator::AbstractAuthenticator']]]
+  ['framework',['Framework',['../class_aero_gear_1_1_mobile_1_1_core_1_1_utils_1_1_application_runtime_info.html#a588aa0e86ca596e974f6ae3e59f71448',1,'AeroGear::Mobile::Core::Utils::ApplicationRuntimeInfo']]]
 ];
