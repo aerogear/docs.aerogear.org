@@ -1,0 +1,47 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/security/deviceTrust/SecurityCheckResult.swift",
+      "line": 10,
+      "symbol": "SecurityCheckResult.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/security/deviceTrust/SecurityCheckResult.swift",
+      "line": 11,
+      "symbol": "SecurityCheckResult.passed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/security/deviceTrust/checks/DeviceLockCheck.swift",
+      "line": 12,
+      "symbol": "DeviceLockCheck.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/security/deviceTrust/checks/NonDebugCheck.swift",
+      "line": 11,
+      "symbol": "NonDebugCheck.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/security/deviceTrust/checks/NonEmulatorCheck.swift",
+      "line": 11,
+      "symbol": "NonEmulatorCheck.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/weili/work/mobile-next/aerogear-ios-sdk/modules/security/deviceTrust/checks/NonJailbrokenCheck.swift",
+      "line": 12,
+      "symbol": "NonJailbrokenCheck.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/weili/work/mobile-next/aerogear-ios-sdk"
+}

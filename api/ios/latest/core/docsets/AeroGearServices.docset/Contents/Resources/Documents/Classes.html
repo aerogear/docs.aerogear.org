@@ -10,6 +10,7 @@
     
   </head>
   <body>
+    <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
@@ -123,6 +124,9 @@
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:7AGSCore11MetricsDataa">MetricsData</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:7AGSCore11MetricsRoota">MetricsRoot</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -160,6 +164,114 @@ Internal SDK to be used directly by SDK modules</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AgsCore</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSCore12ConfigParserC"></a>
+                    <a name="//apple_ref/swift/Class/ConfigParser" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSCore12ConfigParserC">ConfigParser</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Static helper class responsible for parsing mobile configuration</p>
+
+                        <a href="Classes/ConfigParser.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ConfigParser</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSCore13ServiceConfigC"></a>
+                    <a name="//apple_ref/swift/Class/ServiceConfig" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSCore13ServiceConfigC">ServiceConfig</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>AeroGear Mobile Services Configuration
+Entrypoint for parsing and processing configuration for individual services.</p>
+
+<p>This class is responsible for providing configurations for services of certain types.
+Configuration is stored in single json file
+that contains multiple individual service configurations and metadata.
+Service developers can query configuration for certain types.
+See top level core interface for more information</p>
+
+<ul>
+<li>Example usage:
+<code>config[&#39;myServiceType&#39;]</code></li>
+</ul>
+
+                        <a href="Classes/ServiceConfig.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ServiceConfig</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7AGSCore7AppDataC"></a>
+                    <a name="//apple_ref/swift/Class/AppData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSCore7AppDataC">AppData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="Classes/AppData.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AppData</span></code></pre>
 
                         </div>
                       </div>
@@ -224,7 +336,7 @@ Implementation is designed to work with Json payload</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AgsHttpRequest</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="Protocols/AgsHttpRequestProtocol.html">AgsHttpRequestProtocol</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AgsHttpRequest</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="Protocols/AgsHttpRequestProtocol.html">AgsHttpRequestProtocol</a></span></code></pre>
 
                         </div>
                       </div>
@@ -273,6 +385,40 @@ Class can be also used to disable SDK logging</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:7AGSCore16XCGLoggerAdapterC"></a>
+                    <a name="//apple_ref/swift/Class/XCGLoggerAdapter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSCore16XCGLoggerAdapterC">XCGLoggerAdapter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>SDK debug logger used for internal logging purposes.
+Developers and SDK users can manage loggers on service level by changing format, disabling enabling logging etc.
+Class implements AgsLoggable for <a href="https://github.com/DaveWoodCom/XCGLogger">https://github.com/DaveWoodCom/XCGLogger</a></p>
+
+                        <a href="Classes/XCGLoggerAdapter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">XCGLoggerAdapter</span> <span class="p">:</span> <span class="kt"><a href="Classes/AgsLoggable.html">AgsLoggable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:7AGSCore10AgsMetricsC"></a>
                     <a name="//apple_ref/swift/Class/AgsMetrics" class="dashAnchor"></a>
                     <a class="token" href="#/s:7AGSCore10AgsMetricsC">AgsMetrics</a>
@@ -305,9 +451,9 @@ Class can be also used to disable SDK logging</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7AGSCore7AppDataC"></a>
-                    <a name="//apple_ref/swift/Class/AppData" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7AGSCore7AppDataC">AppData</a>
+                    <a name="/s:7AGSCore23MetricsNetworkPublisherC"></a>
+                    <a name="//apple_ref/swift/Class/MetricsNetworkPublisher" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7AGSCore23MetricsNetworkPublisherC">MetricsNetworkPublisher</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -315,15 +461,16 @@ Class can be also used to disable SDK logging</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Metrics publisher that sends payload to remote server
+Publisher requires remote server URL</p>
 
-                        <a href="Classes/AppData.html" class="slightly-smaller">See more</a>
+                        <a href="Classes/MetricsNetworkPublisher.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AppData</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MetricsNetworkPublisher</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MetricsPublisher.html">MetricsPublisher</a></span></code></pre>
 
                         </div>
                       </div>
@@ -361,39 +508,7 @@ Class can be also used to disable SDK logging</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AppMetrics</span><span class="p">:</span> <span class="kt"><a href="Protocols/Metrics.html">Metrics</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7AGSCore12ConfigParserC"></a>
-                    <a name="//apple_ref/swift/Class/ConfigParser" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7AGSCore12ConfigParserC">ConfigParser</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Static helper class responsible for parsing mobile configuration</p>
-
-                        <a href="Classes/ConfigParser.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ConfigParser</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">AppMetrics</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metrics.html">Metrics</a></span></code></pre>
 
                         </div>
                       </div>
@@ -431,118 +546,7 @@ Class can be also used to disable SDK logging</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeviceMetrics</span><span class="p">:</span> <span class="kt"><a href="Protocols/Metrics.html">Metrics</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7AGSCore23MetricsNetworkPublisherC"></a>
-                    <a name="//apple_ref/swift/Class/MetricsNetworkPublisher" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7AGSCore23MetricsNetworkPublisherC">MetricsNetworkPublisher</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Metrics publisher that sends payload to remote server
-Publisher requires remote server URL</p>
-
-                        <a href="Classes/MetricsNetworkPublisher.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MetricsNetworkPublisher</span><span class="p">:</span> <span class="kt"><a href="Protocols/MetricsPublisher.html">MetricsPublisher</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7AGSCore13ServiceConfigC"></a>
-                    <a name="//apple_ref/swift/Class/ServiceConfig" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7AGSCore13ServiceConfigC">ServiceConfig</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>AeroGear Mobile Services Configuration
-Entrypoint for parsing and processing configuration for individual services.</p>
-
-<p>This class is responsible for providing configurations for services of certain types.
-Configuration is stored in single json file
-that contains multiple individual service configurations and metadata.
-Service developers can query configuration for certain types.
-See top level core interface for more information</p>
-
-<ul>
-<li>Example usage:
-<code>config[&#39;myServiceType&#39;]</code></li>
-</ul>
-
-                        <a href="Classes/ServiceConfig.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ServiceConfig</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7AGSCore16XCGLoggerAdapterC"></a>
-                    <a name="//apple_ref/swift/Class/XCGLoggerAdapter" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7AGSCore16XCGLoggerAdapterC">XCGLoggerAdapter</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>SDK debug logger used for internal logging purposes.
-Developers and SDK users can manage loggers on service level by changing format, disabling enabling logging etc.
-Class implements AgsLoggable for <a href="https://github.com/DaveWoodCom/XCGLogger">https://github.com/DaveWoodCom/XCGLogger</a></p>
-
-                        <a href="Classes/XCGLoggerAdapter.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">XCGLoggerAdapter</span><span class="p">:</span> <span class="kt"><a href="Classes/AgsLoggable.html">AgsLoggable</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">DeviceMetrics</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Metrics.html">Metrics</a></span></code></pre>
 
                         </div>
                       </div>
@@ -554,8 +558,8 @@ Class implements AgsLoggable for <a href="https://github.com/DaveWoodCom/XCGLogg
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-05-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="http://aerogear.org" target="_blank" rel="external">AeroGear</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
