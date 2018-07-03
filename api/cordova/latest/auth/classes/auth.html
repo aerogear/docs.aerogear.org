@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AuthService | @aerogear/auth</title>
+	<title>Auth | @aerogear/auth</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="authservice.html">AuthService</a>
+					<a href="auth.html">Auth</a>
 				</li>
 			</ul>
-			<h1>Class AuthService</h1>
+			<h1>Class Auth</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Wrapper class for {Keycloak.KeycloakInstance}</p>
+						<p>AeroGear Auth SDK.
+						Wrapper class for {Keycloak.KeycloakInstance}</p>
 					</div>
 				</div>
 			</section>
@@ -75,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AuthService</span>
+						<span class="target">Auth</span>
 					</li>
 				</ul>
 			</section>
@@ -86,26 +87,28 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="authservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="auth.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="authservice.html#id" class="tsd-kind-icon">ID</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="auth.html#type" class="tsd-kind-icon">TYPE</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#extract" class="tsd-kind-icon">extract</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#getrealmroles" class="tsd-kind-icon">get<wbr>Realm<wbr>Roles</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#hasrealmrole" class="tsd-kind-icon">has<wbr>Realm<wbr>Role</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#init" class="tsd-kind-icon">init</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#isauthenticated" class="tsd-kind-icon">is<wbr>Authenticated</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#loaduserprofile" class="tsd-kind-icon">load<wbr>User<wbr>Profile</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#login" class="tsd-kind-icon">login</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authservice.html#logout" class="tsd-kind-icon">logout</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#extract" class="tsd-kind-icon">extract</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#getrealmroles" class="tsd-kind-icon">get<wbr>Realm<wbr>Roles</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#hasconfig" class="tsd-kind-icon">has<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#hasrealmrole" class="tsd-kind-icon">has<wbr>Realm<wbr>Role</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#isauthenticated" class="tsd-kind-icon">is<wbr>Authenticated</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#loaduserprofile" class="tsd-kind-icon">load<wbr>User<wbr>Profile</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#login" class="tsd-kind-icon">login</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="auth.html#logout" class="tsd-kind-icon">logout</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,22 +120,16 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Auth<wbr>Service<span class="tsd-signature-symbol">(</span>appConfig<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AeroGearConfiguration</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Auth<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="auth.html" class="tsd-signature-type">Auth</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L13">AuthService.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L15">Auth.ts:15</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>appConfig: <span class="tsd-signature-type">AeroGearConfiguration</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="authservice.html" class="tsd-signature-type">AuthService</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="auth.html" class="tsd-signature-type">Auth</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -140,12 +137,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> ID</h3>
-					<div class="tsd-signature tsd-kind-icon">ID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;keycloak&quot;</span></div>
+					<a name="type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> TYPE</h3>
+					<div class="tsd-signature tsd-kind-icon">TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;keycloak&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L11">AuthService.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L12">Auth.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L81">AuthService.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L86">Auth.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -171,6 +168,28 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KeycloakInstance</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getconfig" class="tsd-anchor"></a>
+					<h3>get<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L109">Auth.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the config used for the auth service</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -184,7 +203,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L95">AuthService.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L100">Auth.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -193,6 +212,28 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="hasconfig" class="tsd-anchor"></a>
+					<h3>has<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L116">Auth.ts:116</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return true if config is present</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -206,7 +247,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L88">AuthService.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L93">Auth.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,7 +275,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L34">AuthService.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L39">Auth.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -266,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L74">AuthService.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L79">Auth.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -283,7 +324,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L47">AuthService.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L52">Auth.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L57">AuthService.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L62">Auth.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -328,7 +369,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/8aec52c/packages/auth/src/AuthService.ts#L68">AuthService.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/bba79d9/packages/auth/src/Auth.ts#L73">Auth.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,37 +396,43 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="authservice.html" class="tsd-kind-icon">Auth<wbr>Service</a>
+						<a href="auth.html" class="tsd-kind-icon">Auth</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="authservice.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="auth.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="authservice.html#id" class="tsd-kind-icon">ID</a>
+								<a href="auth.html#type" class="tsd-kind-icon">TYPE</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#extract" class="tsd-kind-icon">extract</a>
+								<a href="auth.html#extract" class="tsd-kind-icon">extract</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#getrealmroles" class="tsd-kind-icon">get<wbr>Realm<wbr>Roles</a>
+								<a href="auth.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#hasrealmrole" class="tsd-kind-icon">has<wbr>Realm<wbr>Role</a>
+								<a href="auth.html#getrealmroles" class="tsd-kind-icon">get<wbr>Realm<wbr>Roles</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#init" class="tsd-kind-icon">init</a>
+								<a href="auth.html#hasconfig" class="tsd-kind-icon">has<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#isauthenticated" class="tsd-kind-icon">is<wbr>Authenticated</a>
+								<a href="auth.html#hasrealmrole" class="tsd-kind-icon">has<wbr>Realm<wbr>Role</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#loaduserprofile" class="tsd-kind-icon">load<wbr>User<wbr>Profile</a>
+								<a href="auth.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#login" class="tsd-kind-icon">login</a>
+								<a href="auth.html#isauthenticated" class="tsd-kind-icon">is<wbr>Authenticated</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authservice.html#logout" class="tsd-kind-icon">logout</a>
+								<a href="auth.html#loaduserprofile" class="tsd-kind-icon">load<wbr>User<wbr>Profile</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="auth.html#login" class="tsd-kind-icon">login</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="auth.html#logout" class="tsd-kind-icon">logout</a>
 							</li>
 						</ul>
 					</li>

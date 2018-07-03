@@ -62,64 +62,9 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="aerogear-javascript-sdk">AeroGear JavaScript SDK</h1>
-				<p><a href="https://circleci.com/gh/aerogear/aerogear-js-sdk"><img src="https://img.shields.io/circleci/project/github/aerogear/aerogear-js-sdk/master.svg" alt="circle-ci"></a>
-					<a href="https://opensource.org/s/Apache-2.0"><img src="https://img.shields.io/badge/-Apache%202.0-blue.svg" alt="License"></a>
-				<a href="https://lernajs.io/"><img src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" alt="lerna"></a></p>
-				<table>
-					<thead>
-						<tr>
-							<th></th>
-							<th>Project Info</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>License:</td>
-							<td>Apache License, Version 2.0</td>
-						</tr>
-						<tr>
-							<td>Build:</td>
-							<td>NPM</td>
-						</tr>
-						<tr>
-							<td>Issue tracker:</td>
-							<td><a href="https://issues.jboss.org/browse/AGCORDOVA">https://issues.jboss.org/browse/AGCORDOVA</a></td>
-						</tr>
-						<tr>
-							<td>Mailing lists:</td>
-							<td><a href="http://aerogear-users.1116366.n5.nabble.com/">aerogear-users</a></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><a href="https://groups.google.com/forum/#!forum/aerogear">aerogear-dev</a></td>
-						</tr>
-					</tbody>
-				</table>
-				<p>AeroGear SDK for JavaScript, Apache Cordova and React Native.</p>
-				<h2 id="documentation">Documentation</h2>
-				<ol>
-					<li><a href="./docs/getting-started.adoc">End User Getting Started Guide</a></li>
-					<li><a href="./docs/contributing-guide.adoc">Service Contributor Guide</a></li>
-				</ol>
-				<h3 id="list-of-sdks">List of SDKs</h3>
-				<p>AeroGear Services SDK consist of set of separate SDKs</p>
-				<ul>
-					<li><a href="./docs/core/README.adoc">Core</a>: Common base for all SDKs</li>
-					<li><a href="./docs/auth/README.adoc">Auth</a>: Mobile Auth SDK</li>
-					<li><a href="./docs/metrics/README.adoc">Metrics</a>: Mobile application metrics SDK</li>
-				</ul>
-				<h2 id="contributing">Contributing</h2>
-				<p>See <a href="./CONTRIBUTING.md">General Contributing Guide</a></p>
-				<h2 id="license">License</h2>
-				<p> See <a href="./LICENSE">LICENSE file</a></p>
-				<h2 id="development">Development</h2>
-				<p>If you would like to help develop AeroGear you can join our <a href="https://groups.google.com/forum/#!forum/aerogear">developer&#39;s mailing list</a>, join #aerogear on Freenode, or shout at us on Twitter @aerogears.</p>
-				<p>Also takes some time and skim the <a href="CONTRIBUTING.md">contributor guide</a></p>
-				<h2 id="questions-">Questions?</h2>
-				<p>Join our <a href="https://groups.google.com/forum/#!forum/aerogear">user mailing list</a> for any questions or help! We really hope you enjoy app development with AeroGear!</p>
-				<h2 id="found-a-bug-">Found a bug?</h2>
-				<p>If you found a bug please create a ticket for us on <a href="https://issues.jboss.org/browse/AGJS">Jira</a> with some steps to reproduce it.</p>
+				<h2 id="aerogear-services-core-sdk">AeroGear Services Core SDK</h2>
+				<p>Package maintained as part of AeroGear Services SDK.</p>
+				<p>See: <a href="https://github.com/aerogear/aerogear-js-sdk">https://github.com/aerogear/aerogear-js-sdk</a> for documentation</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -133,7 +78,7 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/configurationhelper.html" class="tsd-kind-icon">Configuration<wbr>Helper</a>
+						<a href="classes/agscore.html" class="tsd-kind-icon">Ags<wbr>Core</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/cordovaappmetrics.html" class="tsd-kind-icon">Cordova<wbr>App<wbr>Metrics</a>
@@ -168,11 +113,11 @@
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/serviceconfiguration.html" class="tsd-kind-icon">Service<wbr>Configuration</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#cordova" class="tsd-kind-icon">cordova</a>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#instance" class="tsd-kind-icon">INSTANCE</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#device" class="tsd-kind-icon">device</a>
+						<a href="globals.html#document" class="tsd-kind-icon">document</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#navigator" class="tsd-kind-icon">navigator</a>
@@ -184,7 +129,16 @@
 						<a href="globals.html#window" class="tsd-kind-icon">window</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#iscordovaandroid" class="tsd-kind-icon">is<wbr>Cordova<wbr>Android</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#iscordovaios" class="tsd-kind-icon">is<wbr>CordovaIOS</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#ismobilecordova" class="tsd-kind-icon">is<wbr>Mobile<wbr>Cordova</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isnative" class="tsd-kind-icon">is<wbr>Native</a>
 					</li>
 				</ul>
 			</nav>
