@@ -4,6 +4,7 @@ var namespace_aero_gear_1_1_mobile_1_1_core =
     [ "Exception", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_exception.html", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_exception" ],
     [ "Http", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_http.html", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_http" ],
     [ "Logging", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_logging.html", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_logging" ],
+    [ "Metrics", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_metrics.html", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_metrics" ],
     [ "Platform", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_platform.html", null ],
     [ "Storage", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_storage.html", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_storage" ],
     [ "Utils", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_utils.html", "namespace_aero_gear_1_1_mobile_1_1_core_1_1_utils" ],
@@ -12,5 +13,6 @@ var namespace_aero_gear_1_1_mobile_1_1_core =
     [ "MobileCore", "class_aero_gear_1_1_mobile_1_1_core_1_1_mobile_core.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_mobile_core" ],
     [ "MobileCoreAndroid", "class_aero_gear_1_1_mobile_1_1_core_1_1_mobile_core_android.html", null ],
     [ "MobileCoreIOS", "class_aero_gear_1_1_mobile_1_1_core_1_1_mobile_core_i_o_s.html", null ],
-    [ "Options", "class_aero_gear_1_1_mobile_1_1_core_1_1_options.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_options" ]
+    [ "Options", "class_aero_gear_1_1_mobile_1_1_core_1_1_options.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_options" ],
+    [ "ServiceInstanceCache", "class_aero_gear_1_1_mobile_1_1_core_1_1_service_instance_cache.html", "class_aero_gear_1_1_mobile_1_1_core_1_1_service_instance_cache" ]
 ];

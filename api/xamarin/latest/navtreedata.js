@@ -24,7 +24,6 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "aerogear-xamarin-sdk", "index.html", [
-    [ "make-dist", "md__core__core__dist_make-dist.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -38,7 +37,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
         [ "Properties", "functions_prop.html", null ]
       ] ]
@@ -56,7 +55,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_auth_service_8cs.html",
-"dir_4d78b281403aec783363eaf86b423eb9.html"
+"class_aero_gear_1_1_mobile_1_1_core_1_1_metrics_1_1_metrics_service.html#aadde32250de40b9bc5e8b9798e13ac4a",
+"interface_aero_gear_1_1_mobile_1_1_core_1_1_http_1_1_i_http_request_to_be_executed.html#a5e358e111133a6d35878f9f5c506f989"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
