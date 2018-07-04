@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrate an Android Application with Custom Services Running in OpenShift :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/integrate-android-app-with-custom-service.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -408,9 +408,6 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
-  <ul>
-    <li class="crumb"><a href="integrate-android-app-with-custom-service.html">Integrate an Android Application with Custom Services Running in OpenShift</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/integrate-android-app-with-custom-service.adoc"></a></div>
 </div>
@@ -424,10 +421,10 @@ Zepto(function($){
 <div class="ulist">
 <ul>
 <li>
-<p>Your own backend services in OpenShift</p>
+<p>Your own back-end services in OpenShift</p>
 </li>
 <li>
-<p>External backend services</p>
+<p>External back-end services</p>
 </li>
 </ul>
 </div>
@@ -460,7 +457,7 @@ Zepto(function($){
 <div class="sect2">
 <h3 id="provision-the-custom-runtime-connector"><a class="anchor" href="#provision-the-custom-runtime-connector"></a>Provision the Custom Runtime Connector</h3>
 <div class="paragraph">
-<p>We can connect our Mobile Client to our backend service by provisioning a <strong>Custom Runtime Connector</strong> from the OpenShift Service Catalog.</p>
+<p>We can connect our Mobile Client to our back-end service by provisioning a <strong>Custom Runtime Connector</strong> from the OpenShift Service Catalog.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -474,7 +471,7 @@ Zepto(function($){
 <p>Put the publicly accessible url of the service in the Service URL field.</p>
 </li>
 <li>
-<p>In the Service Config field, place any additional configuration that might be needed by the mobile app in order to communicate with the backend service. <strong>This must be a valid JSON format</strong>.</p>
+<p>In the Service Config field, place any additional configuration that might be needed by the mobile app in order to communicate with the back-end service. <strong>This must be a valid JSON format</strong>.</p>
 </li>
 <li>
 <p>Click 'Create'.</p>
@@ -506,7 +503,7 @@ Zepto(function($){
 <div class="ulist">
 <ul>
 <li>
-<p>The 'services' list in the Mobile Client Configuration now includes a configuration object that contains details related to your backend service such as the name, uri and custom configuration.</p>
+<p>The 'services' list in the Mobile Client Configuration now includes a configuration object that contains details related to your back-end service such as the name, uri and custom configuration.</p>
 </li>
 </ul>
 </div>

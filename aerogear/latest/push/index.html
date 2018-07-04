@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to the Push Notifications Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/push/index.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -408,9 +408,6 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
-  <ul>
-    <li class="crumb"><a href="index.html">Introduction to the Push Notifications Service</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/push/index.adoc"></a></div>
 </div>
@@ -420,7 +417,7 @@ Zepto(function($){
 <h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
+<p>The Push Notifications service allows you to send native push notifications to different mobile operating systems.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -474,11 +471,11 @@ Zepto(function($){
 </dd>
 <dt class="hdlist1">Sender Endpoint API</dt>
 <dd>
-<p>A RESTful API that receives Push Notification Message requests for a PushApplication or some of its different Variants. The Server translate this request into the platform specific details and delivers the payload to the 3rd party cloud provides, which eventually might deliver the message to the physical device.</p>
+<p>A RESTful API that receives Push Notification Message requests for a PushApplication or some of its different Variants. The Server translates this request into the platform specific details and delivers the payload to the 3rd party cloud provides, which eventually might deliver the message to the physical device.</p>
 </dd>
 <dt class="hdlist1">Variant</dt>
 <dd>
-<p>A variant of the Push Application, representing a specific mobile platform, like iOS or Android, or even more fine grain differentiation like iPad or iPhone.
+<p>A variant of the Push Application, representing a specific mobile platform, like iOS or Android, or even more fine-grained differentiation like iPad or iPhone.
 There can be multiple variants for a single Push Application (for example, <em>Mobile HR Android</em>, <em>Mobile HR iPad</em>, <em>Mobile HR iOS free</em> or _Mobile HR iOS premium).
 Each supported variant type contains some platform specific properties, such as a Google API key (Android) or passphrase and certificate (Apple).</p>
 </dd>
@@ -511,7 +508,7 @@ Each supported variant type contains some platform specific properties, such as 
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-It is highly recommended to not sent any send sensitive personal or confidential information belonging to an individual (e.g. a social security number, financial account or transactional information, or any information where the individual may have a reasonable expectation of secure transmission) as part of any Push Notification!
+It is highly recommended to not send any sensitive personal or confidential information belonging to an individual (e.g. a social security number, financial account or transactional information, or any information where the individual may have a reasonable expectation of secure transmission) as part of any Push Notification!
 </td>
 </tr>
 </table>

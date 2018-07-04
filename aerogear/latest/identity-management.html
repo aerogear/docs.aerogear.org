@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/identity-management.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -475,7 +475,7 @@ Zepto(function($){
 <p>Add access control to your app based on user’s group membership</p>
 </li>
 <li>
-<p>Easily implement SSO, multi factor authentication and Social Login support</p>
+<p>Easily implement SSO, multi-factor authentication and Social Login support</p>
 </li>
 <li>
 <p>Back-end support for identity brokering and user federation</p>
@@ -621,8 +621,8 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 <div class="sect2">
 <h3 id="binding-a-mobile-client"><a class="anchor" href="#binding-a-mobile-client"></a>Binding a Mobile Client</h3>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
-This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
+This association is called <strong>binding</strong> and once it&#8217;s done, your mobile app can use that service immediately.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1257,7 +1257,7 @@ func onLoginComplete(user: User?, err: Error?) {
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
 <div class="paragraph">
-<p>Authentication will be performed on initialization as described <a href="keycloak/coding.html#initializing-the-sdk" class="page">here</a>. To manually redirect to the login screen use:</p>
+<p>Authentication will be performed on initialization as described <a href="keycloak/coding.html#initializing-the-sdk" class="page">here</a>. To manually redirect to the login screen, use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1425,7 +1425,7 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 <h2 id="access"><a class="anchor" href="#access"></a>Adding Access Control to your Mobile App</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once a <code>UserPrincipal</code> has been retrieved the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
+<p>Once a <code>UserPrincipal</code> has been retrieved, the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
 </div>
 <div class="paragraph">
 <p>Roles are divided into two types. Resource roles which belong to the client the user has authenticated against, and Realm roles which belong to the realm the client is in.</p>
