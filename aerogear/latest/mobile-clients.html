@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Clients in OpenShift :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-clients.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -90,43 +90,43 @@ Zepto(function($){
       <ul class="nav navbar-nav">
         
         <li>
-          <a href="https://staging.aerogear.org">Home</a>
+          <a href="https://aerogear.org">Home</a>
         </li>
 
         <li>
-          <a href="https://staging.aerogear.org/getting-started/overview/">Getting Started</a>
+          <a href="https://aerogear.org/getting-started/overview/">Getting Started</a>
         </li>
 
         <li>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="https://staging.aerogear.org/services/mobile-ci-cd/">
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
                   <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
                 </a>
               </li>
               <li>
-                <a href="https://staging.aerogear.org/services/push/">
+                <a href="https://aerogear.org/services/push/">
                   <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
                 </a>
               </li>
               <li>
-                <a href="https://staging.aerogear.org/services/metrics/">
+                <a href="https://aerogear.org/services/metrics/">
                   <i class="material-icons" aria-hidden="true">insert_chart</i> Metrics
                 </a>
               </li>
               <li>
-                <a href="https://staging.aerogear.org/services/runtime-connector/">
+                <a href="https://aerogear.org/services/runtime-connector/">
                   <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
                 </a>
               </li>
               <li>
-                <a href="https://staging.aerogear.org/services/identity-management/">
+                <a href="https://aerogear.org/services/identity-management/">
                   <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
                 </a>
               </li>
               <li>
-                <a href="https://staging.aerogear.org/services/device-security/">
+                <a href="https://aerogear.org/services/device-security/">
                   <i class="material-icons" aria-hidden="true">security</i> Device Security
                 </a>
               </li>
@@ -136,10 +136,10 @@ Zepto(function($){
         <li>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile SDKs<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="https://staging.aerogear.org/sdks/android/">Android</a></li>
-            <li><a href="https://staging.aerogear.org/sdks/cordova/">Cordova</li>
-            <li><a href="https://staging.aerogear.org/sdks/ios/">iOS</a></li>
-            <li><a href="https://staging.aerogear.org/sdks/xamarin/">Xamarin</a></li>
+            <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+            <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+            <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+            <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
           </ul>
         </li>
 
@@ -148,12 +148,12 @@ Zepto(function($){
         </li>
    
         <li>
-          <a href="https://staging.aerogear.org/community">Community</a>
+          <a href="https://aerogear.org/community">Community</a>
         </li>
         
 
         <li>
-          <a href="https://staging.aerogear.org/news">News</a>
+          <a href="https://aerogear.org/news">News</a>
         </li>
         
       </ul>
@@ -211,6 +211,9 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#building">Building Mobile Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#sdk">AeroGear SDK</a>
   </li>
 </ul>
   </li>
@@ -433,6 +436,15 @@ Zepto(function($){
 <li><a href="#downloading-and-installing-apps">Downloading and Installing Apps</a></li>
 </ul>
 </li>
+<li><a href="#sdk">Introduction to the AeroGear SDK</a>
+<ul class="sectlevel2">
+<li><a href="#android">Android</a></li>
+<li><a href="#ios">iOS</a></li>
+<li><a href="#cordova">Cordova</a></li>
+<li><a href="#xamarin">Xamarin</a></li>
+</ul>
+</li>
+<li><a href="#api-reference-documentation">API Reference Documentation</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -590,6 +602,364 @@ You may need to enable the installation of apps from unknown sources on Android 
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="sdk"><a class="anchor" href="#sdk"></a>Introduction to the AeroGear SDK</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you have <a href="getting-started.html#registering" class="page">registered</a> a Mobile Client, <a href="getting-started.html#binding" class="page">bound</a> the Mobile Client to a mobile service, and <a href="getting-started.html#downloading-the-mobile-services-configuration-file" class="page">downloaded</a> the mobile services configuration file, you can start developing your mobile app using mobile services.</p>
+</div>
+<div class="paragraph">
+<p>The AeroGear SDK supports the following platforms:</p>
+</div>
+<div class="sect2">
+<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
+<div class="paragraph">
+<p>For information about how to develop Android apps, see  <a href="https://developer.android.com/studio/install">Android Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To use the SDK add jcenter to the <code>build.grade</code> file in your project&#8217;s root directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">allprojects {
+    repositories {
+        jcenter() // &lt;-- Add This line
+        google()
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the build.gradle file of your app you can begin adding dependencies provided by the SDK.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    ...
+    implementation 'org.aerogear:android-core:1.0.0'
+    implementation 'org.aerogear:android-push:1.0.0'
+    implementation 'org.aerogear:android-auth:1.0.0'
+    implementation 'org.aerogear:android-security:1.0.0'
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For push you also need to add a dependency to the Firebase SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    ...
+    implementation "com.google.firebase:firebase-messaging:[version]"
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To implement certificate pinning in the individual SDKs, see <a href="certificate-pinning.html">the certificate pinning guide</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html#importing-the-libraries" class="page">Steps for Push Notifications</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
+<div class="paragraph">
+<p>For information about how to develop iOS apps, see <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.adoc">iOS Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your project directory (the directory where your <code>.xcodeproj</code> file is), create a plain text file named <code>Podfile</code> (without any file extension) and add the lines below. Replace <code>YourTarget</code> with your actual target name.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '9.0'
+use_frameworks!
+
+target :'YourTarget' do
+    ## Require one of the AeroGear SDK's here
+    pod 'AGSCore', '1.0.0'
+    pod 'AGSPush', '1.0.0'
+    pod 'AGSAuth', '1.0.0'
+    pod 'AGSSecurity', '1.0.0'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Then run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pod install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open up <code>.xcworkspace</code> with Xcode and start using the SDK.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use <code>.xcodeproj</code>. If you open a project file instead of a workspace, dependencies will not be correctly configured.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Import the SDK you want to use in the application. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">   import AGSAuth</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html#importing-the-libraries" class="page">Steps for Push Notifications</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
+<div class="paragraph">
+<p>For information about how to develop apps using Cordova see <a href="https://cordova.apache.org/#getstarted">Cordova Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a terminal and navigate to your appplication project root folder.</p>
+</li>
+<li>
+<p>Install the AeroGear SDK base project:</p>
+<div class="listingblock bash">
+<div class="content">
+<pre class="highlightjs highlight"><code>npm install @aerogear/app</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In your application, import and call the "init" method:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { init } from "@aerogear/app";
+
+const aerogearConfig = {
+    // Replace with your own configuration
+};
+
+init(aerogearConfig);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html#importing-the-libraries" class="page">Steps for Push Notifications</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="xamarin"><a class="anchor" href="#xamarin"></a>Xamarin</h3>
+<div class="paragraph">
+<p>For information about how to develop apps using Xamarin see <a href="https://developer.xamarin.com/getting-started/">Xamarin Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your VisualStudio project expand <code>Dependencies &gt; NuGet</code></p>
+</li>
+<li>
+<p>Click on <code>Add packages&#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Select <code>AeroGear.Mobile.Core</code> and depending on your target platforms:</p>
+</li>
+<li>
+<p>for Android:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>also pick <code>AeroGear.Mobile.Core.Platform.Android</code></p>
+</li>
+<li>
+<p>Initialize Core (for Xamarin.Forms):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var app = new App();
+MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
+LoadApplication(app);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize Core (for Legacy Xamarin):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">MobileCoreAndroid.Init(ApplicationContext);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>for iOS:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>also pick <code>AeroGear.Mobile.Core.Platform.iOS</code></p>
+</li>
+<li>
+<p>Initialize Core (for Xamarin.Forms):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var app = new App();
+MobileCoreIOS.Init(app.GetType().Assembly);
+LoadApplication(app);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize Core (for Legacy Xamarin):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">MobileCoreIOS.Init();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="api-reference-documentation"><a class="anchor" href="#api-reference-documentation"></a>API Reference Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Click on the <code>✔</code> to see the API reference documentation:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Platform</th>
+<th class="tableblock halign-left valign-top">Core</th>
+<th class="tableblock halign-left valign-top">Identity Management</th>
+<th class="tableblock halign-left valign-top">Push Notifications</th>
+<th class="tableblock halign-left valign-top">Device Security</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Android</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-push/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-security/">✔</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iOS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/push/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/security/">✔</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cordova</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/core/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/auth/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/push/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/security">✔</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Xamarin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/namespace_aero_gear_1_1_mobile_1_1_core.html">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/namespace_aero_gear_1_1_mobile_1_1_auth.html">✔</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/namespace_aero_gear_1_1_mobile_1_1_security.html">✔</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </article>
   </main>
 </div>
@@ -599,32 +969,32 @@ You may need to enable the installation of apps from unknown sources on Android 
       <div class="col-sm-3">
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
-          <li><a href="https://staging.aerogear.org/getting-started/overview/">Overview</a></li>
-          <li><a href="https://staging.aerogear.org/getting-started/installation-and-configuration/">Installation &amp; Configuration</a></li>
-          <li><a href="https://staging.aerogear.org/getting-started/creating-mobile-apps/">Creating Mobile Apps</a></li>
-          <li><a href="https://staging.aerogear.org/getting-started/enabling-mobile-services/">Enabling Mobile Services</a></li>
+          <li><a href="https://aerogear.org/getting-started/overview/">Overview</a></li>
+          <li><a href="https://aerogear.org/getting-started/installation-and-configuration/">Installation &amp; Configuration</a></li>
+          <li><a href="https://aerogear.org/getting-started/creating-mobile-apps/">Creating Mobile Apps</a></li>
+          <li><a href="https://aerogear.org/getting-started/enabling-mobile-services/">Enabling Mobile Services</a></li>
         </ul>
       </div><!-- col -->
 
       <div class="col-sm-3">
         <h5>Mobile Services</h5>
         <ul class="list-unstyled">
-         <li><a href="https://staging.aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
-         <li><a href="https://staging.aerogear.org/services/push/">Push Notifications</a></li>
-         <li><a href="https://staging.aerogear.org/services/metrics/">Metrics</a></li>
-         <li><a href="https://staging.aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
-         <li><a href="https://staging.aerogear.org/services/identity-management/">Identity Management</a></li>
-         <li><a href="https://staging.aerogear.org/services/device-security/">Device Security</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Metrics</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
         </ul>
       </div><!-- col -->
 
       <div class="col-sm-3">
         <h5>Mobile SDKs</h5>
         <ul class="list-unstyled">
-         <li><a href="https://staging.aerogear.org/sdks/android/">Android</a></li>
-         <li><a href="https://staging.aerogear.org/sdks/cordova/">Cordova</li>
-         <li><a href="https://staging.aerogear.org/sdks/ios/">iOS</a></li>
-         <li><a href="https://staging.aerogear.org/sdks/xamarin/">Xamarin</a></li>
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
         </ul>
       </div><!-- col -->
       
@@ -634,7 +1004,7 @@ You may need to enable the installation of apps from unknown sources on Android 
           <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
           <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
           <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
-          <li><a  href="https://staging.aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
           <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
           <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
         </ul>
