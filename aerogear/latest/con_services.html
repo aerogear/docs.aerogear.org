@@ -415,97 +415,40 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/con_services.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="sect1">
-<h2 id="using-mobile-services"><a class="anchor" href="#using-mobile-services"></a>Using Mobile Services</h2>
-<div class="sectionbody">
-<h3 id="prerequisites" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
+<div class="paragraph">
+<p>AeroGear Mobile Services provide easily implemented solutions to common development challenges faced by mobile developers.</p>
+</div>
+<div class="paragraph">
+<p>The following services are available:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have set up <a href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift" class="page">AeroGear Mobile Services</a> on OpenShift.</p>
+<p><a href="identity-management.html" class="page">Identity Management</a></p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have <a href="getting-started.html#registering" class="page">registered a mobile app</a> to create a Mobile Client.</p>
+<p><a href="push-notifications.html" class="page">Push Notifications</a></p>
+</li>
+<li>
+<p><a href="runtime-connector.html" class="page">Runtime Connector</a></p>
+</li>
+<li>
+<p><a href="mobile-metrics.html" class="page">Mobile Metrics</a></p>
+</li>
+<li>
+<p><a href="mobile-cicd.html" class="page">Mobile CI/CD</a></p>
+</li>
+<li>
+<p><a href="device-security.html" class="page">Device Security</a></p>
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
-<div class="paragraph">
-<p>After choosing a mobile service, use the following table to navigate to the step you want to perform (click the service name to view a description of that service) :</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Mobile Services</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Service</th>
-<th class="tableblock halign-left valign-top">Provisioning</th>
-<th class="tableblock halign-left valign-top">Binding</th>
-<th class="tableblock halign-left valign-top">Coding</th>
-<th class="tableblock halign-left valign-top">Service Consoles</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/index.html" class="page">Identity Management</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/provisioning.html" class="page">Provisioning Identity Management</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/binding.html" class="page">Binding to Identity Management</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="keycloak/coding.html" class="page">Coding for Authenication</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">keycloak/Keycloak Admin UI.adoc</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="security/index.html" class="page">Device Security</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device Trust Checks and Certificate Pinning</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/index.html" class="page">Push Notifications</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/provisioning.html" class="page">Provisioning Identity Management</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/binding.html" class="page">Binding to Push Notifications</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/coding.html" class="page">Coding for Push Notifications</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="push/admin-ui.html" class="page">Unified Push Admin UI</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/index.html" class="page">Mobile Metrics</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/binding.html" class="page">Binding to Mobile Metrics</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="metrics/configuring-dev-env-metrics.html" class="page">Adding Metrics to your App</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">metrics/grafana-ui.adoc</a> and <a href="#">metrics/prometheus-ui.adoc</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/index.html" class="page">Runtime Connector</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/provisioning.html" class="page">Provisioning Runtime Connector</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/binding.html" class="page">Binding to Runtime Connector</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="custom/configuring-dev-env-custom.html" class="page">Using a Runtime Connector</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/index.html" class="page">Mobile CI/CD</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/provisioning.html" class="page">Provisioning Mobile CI/CD</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="digger/running-a-build.html" class="page">Building an App</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#">digger/digger-ui.adoc</a></p></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
 <p>Below is a high-level architecture diagram, which outlines how your mobile apps and mobile services interact with one another:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/3steps.png" alt="3steps">
-</div>
-</div>
-</div>
 </div>
 </div>
 </article>
