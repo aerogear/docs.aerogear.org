@@ -420,30 +420,22 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#con_introduction-to-build_con_introduction-to-build">About Mobile CI/CD</a>
-<ul class="sectlevel2">
+<li><a href="#introduction">Introduction to the Mobile CI/CD Service</a></li>
 <li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
-<li><a href="#ref_source-configuration_ref_source-configuration">Source Configuration Reference material</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
-</ul>
-</li>
-<li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a>
+<li><a href="#ref_source-configuration_ref_source-configuration">Source Configuration Reference material</a>
 <ul class="sectlevel2">
-<li><a href="#next-steps">Next steps</a></li>
+<li><a href="#repository">Repository</a></li>
+<li><a href="#advanced-options">Advanced Options</a></li>
+<li><a href="#build-configuration">Build Configuration</a></li>
 </ul>
 </li>
+<li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a></li>
 <li><a href="#build-config">Creating a Build Configuration</a></li>
-<li><a href="#proc_building-a-mobile-app_proc_building-a-mobile-app">Building a Mobile App</a>
-<ul class="sectlevel2">
-<li><a href="#start-a-build">Start a Build</a></li>
-<li><a href="#next-steps-2">Next steps</a></li>
-</ul>
-</li>
-<li><a href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app">Deploying a Mobile App</a></li>
+<li><a href="#deploy">Deploying a Mobile App</a></li>
 </ul>
 </div>
 <div class="sect1">
-<h2 id="con_introduction-to-build_con_introduction-to-build"><a class="anchor" href="#con_introduction-to-build_con_introduction-to-build"></a>About Mobile CI/CD</h2>
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction to the Mobile CI/CD Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Mobile CI/CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
@@ -467,8 +459,11 @@ Zepto(function($){
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="ref_terminology_Mobile CI/CD_ref_terminology"><a class="anchor" href="#ref_terminology_Mobile CI/CD_ref_terminology"></a>Mobile CI/CD Terminology</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Mobile CI/CD_ref_terminology"><a class="anchor" href="#ref_terminology_Mobile CI/CD_ref_terminology"></a>Mobile CI/CD Terminology</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This section describes terminology that is associated with Mobile CI/CD.</p>
 </div>
@@ -497,14 +492,16 @@ Zepto(function($){
 </dl>
 </div>
 </div>
-<div class="sect2">
-<h3 id="ref_source-configuration_ref_source-configuration"><a class="anchor" href="#ref_source-configuration_ref_source-configuration"></a>Source Configuration Reference material</h3>
+</div>
+<div class="sect1">
+<h2 id="ref_source-configuration_ref_source-configuration"><a class="anchor" href="#ref_source-configuration_ref_source-configuration"></a>Source Configuration Reference material</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To build your mobile client, you need to provide source configuration.
 This section describes aspects of a mobile client&#8217;s source configuration.</p>
 </div>
-<div class="sect3">
-<h4 id="repository"><a class="anchor" href="#repository"></a>Repository</h4>
+<div class="sect2">
+<h3 id="repository"><a class="anchor" href="#repository"></a>Repository</h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Add Git Repository URL</dt>
@@ -538,41 +535,41 @@ When adding credentials for Authentication Type Basic, ensure the name is unique
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="advanced-options"><a class="anchor" href="#advanced-options"></a>Advanced Options</h4>
+<div class="sect2">
+<h3 id="advanced-options"><a class="anchor" href="#advanced-options"></a>Advanced Options</h3>
 <div class="paragraph">
 <p>Selecting <strong>Advanced Options</strong> in the source configuration section displays a number of additional options:
 Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds, for example, release vs develop.
 Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="build-configuration"><a class="anchor" href="#build-configuration"></a>Build Configuration</h4>
+<div class="sect2">
+<h3 id="build-configuration"><a class="anchor" href="#build-configuration"></a>Build Configuration</h3>
 <div class="paragraph">
 <p>Add configuration relating to the type of build being created e.g debug or release.
 The type of information required here will depend on the type of application being built.</p>
 </div>
-<div class="sect4">
-<h5 id="android"><a class="anchor" href="#android"></a>Android</h5>
+<div class="sect3">
+<h4 id="android"><a class="anchor" href="#android"></a>Android</h4>
 <div class="paragraph">
 <p>Add Build Type:
 Debug:: An Android debug build, no additional information required
 Release:: An Android release build, requires an upload of a password protected PKCS12 file containing a key protected by the same password.</p>
 </div>
-<div class="sect5">
-<h6 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h6>
+<div class="sect4">
+<h5 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h5>
 <div class="paragraph">
 <p>As a release build will need to be signed, you need to specify the keystore and private key passwords.</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h6>
+<div class="sect4">
+<h5 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h5>
 <div class="paragraph">
 <p>If your keystore is checked into your source code, you will need to take the password value in your build script as an environmental variable. This will allow you to set this environmental variable as part of your client build from within the OpenShift UI. This can be done directly when creating the mobile client build or afterwards by editing the build config.</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h6>
+<div class="sect4">
+<h5 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h5>
 <div class="paragraph">
 <p>If you have an external keystore, you should ensure to select the checkbox to use an external keystore once this is done, you will be asked for the following additional information:</p>
 </div>
@@ -606,8 +603,8 @@ Release:: An Android release build, requires an upload of a password protected P
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="ios"><a class="anchor" href="#ios"></a>iOS</h5>
+<div class="sect3">
+<h4 id="ios"><a class="anchor" href="#ios"></a>iOS</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Build Type</dt>
@@ -629,8 +626,8 @@ Release:: An Android release build, requires an upload of a password protected P
 </dl>
 </div>
 </div>
-<div class="sect4">
-<h5 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h5>
+<div class="sect3">
+<h4 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Platform</dt>
@@ -643,17 +640,6 @@ Release:: An Android release build, requires an upload of a password protected P
 </dd>
 </dl>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -720,12 +706,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
-<div class="sect2">
-<h3 id="next-steps"><a class="anchor" href="#next-steps"></a>Next steps</h3>
-<div class="paragraph">
-<p><a href="digger/proc_creating-a-build-configuration.html" class="page">Creating a Build Configuration</a></p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -734,21 +714,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>You can use the OpenShift UI to create a new client build for an existing mobile client.</p>
 </div>
-<h3 id="prerequisites-2" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="digger/provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="registering-a-mobile-app.html" class="page">A registered Mobile Client</a></p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> To build your mobile client, you need to provide <a href="digger/ref_source-configuration.html" class="page">source configuration</a>.</p>
-</li>
-</ul>
-</div>
-<h3 id="procedure" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -768,129 +733,18 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </li>
 </ol>
 </div>
-<h3 id="additional-resources" class="discrete">Additional Resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="digger/ref_source-configuration.html" class="page">Source Configuration Reference material</a>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>include::digger/running-a-build.adoc[]</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="proc_building-a-mobile-app_proc_building-a-mobile-app"><a class="anchor" href="#proc_building-a-mobile-app_proc_building-a-mobile-app"></a>Building a Mobile App</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can use the OpenShift UI to build a mobile app.</p>
-</div>
-<h3 id="prerequisites-3" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="digger/provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="registering-a-mobile-app.html" class="page">A registered Mobile Client</a></p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="digger/proc_creating-a-build-configuration.html" class="page">Created a Build Configuration</a>.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="start-a-build"><a class="anchor" href="#start-a-build"></a>Start a Build</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open the OpenShift UI.</p>
-</li>
-<li>
-<p>Browse to the <strong>Details Page</strong> screen.</p>
-</li>
-<li>
-<p>From the <strong>Builds Tab</strong>, select the mobile app you want to build click <strong>Start Build</strong>.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Expanding the build section will show the current status of this build.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Check the mobile app build status by expanding the mobile client box.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This box lists the last 5 builds for this client.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>To view the mobile app as a pipeline build, from the left menu, click <strong>Builds &gt; Pipeline</strong>.</p>
-<div class="paragraph">
-<p>Each build step is displayed (along with the current step status: completed, error or running) based on the stages in your Jenkinsfile code.</p>
-</div>
-</li>
-<li>
-<p>To view the full build log, click <strong>view log</strong> which redirects you to your Jenkins instance.</p>
-</li>
-</ol>
-</div>
-<h3 id="additional-resources-2" class="discrete">Additional Resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="digger/ref_source-configuration.html" class="page">Source Configuration Reference material</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next steps</h3>
-<div class="paragraph">
-<p><a href="digger/proc_deploying-a-mobile-app.html" class="page">Deploying Apps</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc_deploying-a-mobile-app_proc_deploying-a-mobile-app"><a class="anchor" href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app"></a>Deploying a Mobile App</h2>
+<h2 id="deploy"><a class="anchor" href="#deploy"></a>Deploying a Mobile App</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can use the OpenShift UI to deploy a mobile app by downloading the binary directly to the mobile device.
 This binary can be downloaded for any successful build in the build history.</p>
 </div>
-<h3 id="prerequisites-4" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="digger/provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="registering-a-mobile-app.html" class="page">A registered Mobile Client</a></p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="digger/proc_creating-a-build-configuration.html" class="page">Created a Build Configuration</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="digger/running-a-build.html" class="page">Built a Mobile App</a>.</p>
-</li>
-</ul>
-</div>
-<h3 id="procedure-2" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

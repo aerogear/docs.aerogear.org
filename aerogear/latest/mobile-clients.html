@@ -445,7 +445,7 @@ Zepto(function($){
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobile Clients in OpenShift allow you to perform Cloud Native Mobile App Development using OpenShift as the back end
+<p>Mobile Clients in OpenShift allow you to perform Cloud Native Mobile App Development using OpenShift as the back-end
 for your mobile apps. A Mobile Client is a representation of the mobile app that you are developing locally.
 Mobile Clients allow you to bind your mobile app to mobile services such as Identity Management, Push Notifications,
 Mobile Metrics and others. This makes many of the common tasks associated with mobile development much easier and
@@ -454,7 +454,7 @@ quicker to implement.</p>
 <div class="paragraph">
 <p>A configuration file named <code>mobile-services.json</code> acts as the link between your Mobile Client in OpenShift
 and your local app in development. This configuration file is used to initialize the AeroGear SDK in your mobile app
-and to connect to the back end Mobile Services you have provisioned on OpenShift.</p>
+and to connect to the back-end Mobile Services you have provisioned on OpenShift.</p>
 </div>
 </div>
 </div>
@@ -462,8 +462,8 @@ and to connect to the back end Mobile Services you have provisioned on OpenShift
 <h2 id="registering"><a class="anchor" href="#registering"></a>Registering a Mobile Client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To use services with a mobile app a Mobile Client must first be created to represent the mobile app in OpenShift.
-Once the Mobile Client has been registered it can then be bound to services to allow the mobile app to interact with
+<p>To use services with a mobile app, a Mobile Client must first be created to represent the mobile app in OpenShift.
+Once the Mobile Client has been registered, it can then be bound to services to allow the mobile app to interact with
 these services.</p>
 </div>
 <div class="paragraph">
@@ -486,7 +486,7 @@ to the Mobile Client and how many services have already been bound to the client
 </div>
 <div class="paragraph">
 <p>The <strong>Mobile Services</strong> tab in the Mobile Client view shows the provisioned services that are available to be bound
-to the Mobile Client. If a service has not yet been bound to a Mobile Client a binding can be created by selecting
+to the Mobile Client. If a service has not yet been bound to a Mobile Client, a binding can be created by selecting
 the <strong>Create Binding</strong> button.</p>
 </div>
 <div class="imageblock">
@@ -504,7 +504,7 @@ service can be seen when expanding the service. These details differ for each se
 </div>
 </div>
 <div class="paragraph">
-<p>Once a service has been bound to a Mobile Client the configuration for the Mobile Client will be updated in the
+<p>Once a service has been bound to a Mobile Client, the configuration for the Mobile Client will be updated in the
 <strong>Overview</strong> view and the Mobile Client <strong>Configuration</strong> view. This configuration is used by your app to interact
 with the bound services.</p>
 </div>
@@ -533,19 +533,19 @@ with the bound services.</p>
 <p><span class="image"><img src="_images/mobile-clients-no-service.png" alt="mobile clients no service"></span></p>
 </div>
 <div class="paragraph">
-<p>For more details about how to provision the Mobile CI/CD service, please check <a href="mobile-cicd.html" class="page">Mobile CI/CD service guide</a>.</p>
+<p>For more details about how to provision the Mobile CI/CD service, please see <a href="mobile-cicd.html" class="page">Mobile CI/CD service guide</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="creating-a-build"><a class="anchor" href="#creating-a-build"></a>Creating a Build</h3>
 <div class="paragraph">
-<p>After the Mobile CI/CD service is provisioned, you need to create a new build config for the Mobile Client. You need to provide more information about the mobile app here depending on the platform. For example, the repo of the source code, the type of the build, the keys used to sign the app etc.</p>
+<p>After the Mobile CI/CD service is provisioned, you need to create a new build config for the Mobile Client. You need to provide more information about the mobile app here depending on the platform. For example, the repo of the source code, the type of the build, the keys used to sign the app, etc.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/mobile-clients-build-config.png" alt="mobile clients build config"></span></p>
 </div>
 <div class="paragraph">
-<p>For more information about how to configure the build config, please check <a href="mobile-cicd.html#build-config" class="page">the build config section of Mobile CI/CD</a>.</p>
+<p>For more information about how to configure the build config, please see <a href="mobile-cicd.html#build-config" class="page">the build config section of Mobile CI/CD</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -563,13 +563,13 @@ with the bound services.</p>
 <p>You can use the OpenShift UI to deploy a mobile app by downloading the binary directly to the mobile device. This binary can be downloaded for any successful build in the build history.</p>
 </div>
 <div class="paragraph">
-<p>Once the build has completed you can then press the <code>Download</code> button and you will be presented with a QR code. Applications to scan QR codes are available in Google Play for Android or the App Store for iPhone. Once the QR code has been scanned it will open the download URL in the device and the application will download.</p>
+<p>Once the build has completed you can then press the <code>Download</code> button and you will be presented with a QR code. Applications to scan QR codes are available in Google Play for Android or the App Store for iPhone. Once the QR code has been scanned, it will open the download URL in the device and the application will download.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/mobile-clients-builds-complete.png" alt="Available Mobile Clients"></span></p>
 </div>
 <div class="paragraph">
-<p>If you do not have a QR code scanner you can also download the artifact from the URL in the openshift web console. Once downloaded connect a device to your local machine.</p>
+<p>If you do not have a QR code scanner you can also download the artifact from the URL in the OpenShift web console. Once downloaded connect a device to your local machine.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -760,7 +760,7 @@ Do not use <code>.xcodeproj</code>. If you open a project file instead of a work
 <div class="sect2">
 <h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
 <div class="paragraph">
-<p>For information about how to develop apps using Cordova see <a href="https://cordova.apache.org/#getstarted">Cordova Documentation</a>.</p>
+<p>For information about how to develop apps using Cordova, see <a href="https://cordova.apache.org/#getstarted">Cordova Documentation</a>.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -902,7 +902,10 @@ LoadApplication(app);</code></pre>
 <h2 id="api-reference-documentation"><a class="anchor" href="#api-reference-documentation"></a>API Reference Documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Click on the <code>✔</code> to see the API reference documentation:</p>
+<p>SDKs for our Mobile Services are available for a variety of platforms, including Android, iOS, Cordova &amp; Xamarin. These SDKs will help simplify your mobile and modern application development needs, leveraging OpenShift&#8217;s Container technology to provide a secure, scalable backend platform.</p>
+</div>
+<div class="paragraph">
+<p>Click on the <a href="#">✔</a> to see the API reference documentation:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>

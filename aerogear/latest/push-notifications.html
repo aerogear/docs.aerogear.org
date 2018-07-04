@@ -420,13 +420,12 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#con_introduction-to-push-notification_con_introduction-to-push-notification">About Push Notifications Service</a>
+<li><a href="#introduction">Introduction to the Push Notifications Service</a>
 <ul class="sectlevel2">
 <li><a href="#overview">Overview</a></li>
 <li><a href="#ref_terminology_Push Notifications_ref_terminology">Push Notifications Terminology</a></li>
 <li><a href="#privacy-note">Privacy note</a></li>
 <li><a href="#how-the-unifiedpush-server-works">How the UnifiedPush Server Works</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
 </ul>
 </li>
 <li><a href="#setup">Setting Up the Identity Management Mobile Service</a>
@@ -438,14 +437,10 @@ Zepto(function($){
 <li><a href="#coding-a-push-notifications-app">Coding a Push Notifications App</a></li>
 </ul>
 </li>
-<li><a href="#configuring-your-development-environment-for-the-push-notifications-service">Configuring your Development Environment for the Push Notifications Service</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites-4">Prerequisites</a></li>
-</ul>
-</li>
+<li><a href="#configuring-your-development-environment-for-the-push-notifications-service">Configuring your Development Environment for the Push Notifications Service</a></li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
-<ul class="sectlevel2">
-<li><a href="#next-steps-4">Next Steps</a></li>
+<ul class="sectlevel3">
+<li><a href="#setting-up-push-notifications-service-sdk">Setting up Push Notifications service SDK</a></li>
 </ul>
 </li>
 <li><a href="#push-ui">Accessing Push Notifications using the Unified Push Admin UI</a></li>
@@ -454,7 +449,7 @@ Zepto(function($){
 </ul>
 </div>
 <div class="sect1">
-<h2 id="con_introduction-to-push-notification_con_introduction-to-push-notification"><a class="anchor" href="#con_introduction-to-push-notification_con_introduction-to-push-notification"></a>About Push Notifications Service</h2>
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction to the Push Notifications Service</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
@@ -574,16 +569,6 @@ When using the UnifiedPush Server, please keep in mind that Push notification is
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -592,7 +577,7 @@ When using the UnifiedPush Server, please keep in mind that Push notification is
 <div class="sect2">
 <h3 id="obtaining-firebase-cloud-messaging-credentials"><a class="anchor" href="#obtaining-firebase-cloud-messaging-credentials"></a>Obtaining Firebase Cloud Messaging Credentials</h3>
 <div class="paragraph">
-<p>Before the Android application is able to receive the notifications, you must set up access to Firebase Cloud Messaging. As with iOS, you are only able to test out your push notifications in a real device. This section shows you how to obtain the credentials necessary to set up Firebase Cloud Messaging for your app, including:</p>
+<p>Before the Android application is able to receive the notifications, you must set up access to Firebase Cloud Messaging. As with iOS, you are only able to test out your push notifications in a real device. The following credentials are necessary to set up Firebase Cloud Messaging for your app:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -604,76 +589,18 @@ When using the UnifiedPush Server, please keep in mind that Push notification is
 </li>
 <li>
 <p>the <code>google-services.json</code> file containing the credentials required to connect your app to Firebase and Google services.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="project-setup-and-app-registration-using-the-firebase-console"><a class="anchor" href="#project-setup-and-app-registration-using-the-firebase-console"></a>Project Setup and App Registration using the Firebase Console</h4>
-<div class="paragraph">
-<p>First, register with the Firebase Cloud Messaging (FCM) platform, formerly known as Google Cloud Messaging (GCM). You need a Google Account to do this. Start by opening the <a href="https://console.firebase.google.com">Firebase Console</a>.</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you haven&#8217;t created a project, click <strong>Create New Project</strong>:</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/create_new_project.png" alt="Create New Project">
-</div>
-</div>
+<p>From the <em>Project Settings</em> screen, switch to the <em>Cloud Messaging</em> tab, where you can find the <strong>Server key</strong> and <strong>Sender ID</strong> (known in GCM as <strong>Project Number</strong>). There is also a <em>Legacy server key</em> but it should not be used for new projects.</p>
 </li>
 <li>
-<p>Now give your new project a name:</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/project_name.png" alt="New Project Name">
-</div>
-</div>
-</li>
-<li>
-<p>Once the project has been created you will be taken to the <em>Overview</em> screen. From there click the Settings icon located next to the project name in the sidebar, and in the pop-up menu click <strong>Project Settings</strong>.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/project_settings.png" alt="Project Settings">
-</div>
-</div>
-</li>
-<li>
-<p>On the <em>Project Settings</em> screen, switch to the <em>Cloud Messaging</em> tab, where you can find the <strong>Server key</strong> and <strong>Sender ID</strong> (known in GCM as <strong>Project Number</strong>). There is also a <em>Legacy server key</em> but it should not be used for new projects.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/retrieve_credentials.png" alt="Retrieve Credentials">
-</div>
-</div>
-</li>
-<li>
-<p>As the final step of the setup procedure, you need to download the <code>google-services.json</code> file. To do this, first navigate to the <em>Project Overview</em> screen. If this is the first app in your project, click on <code>Add Firebase to my Android app</code> at the top of the page, otherwise click on <strong>Add another App</strong>. In the popup select <em>Add Firebase to your Android app</em>.</p>
-</li>
-<li>
-<p>In the pop-up window enter the Package name of your app and then click the <strong>Register app</strong> button. In the next step you can download the <code>google-services.json</code> file. This file needs to be built into your app binary. Download the JSON file and save it. Click <strong>Next</strong> on the following screens. Skip the step to install the Firebase SDK. Google will send an initial push notification for verification but you can skip this step too if you don&#8217;t have a running app yet.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/download_json.png" alt="Download google-services.json">
-</div>
-</div>
+<p>Download the <code>google-services.json</code> file as described in the <a href="https://support.google.com/firebase/answer/7015592?hl=en">Google Documentation</a>.</p>
 </li>
 </ol>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To re-download the <code>google-services.json</code> file, navigate to the <em>Project Settings</em> screen, then switch to the <em>General</em> tab, choose the desired app under <code>Your Apps</code> and click the <code>google-services.json</code> download button.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>At this point Firebase is ready to deliver your messages and you can continue setting up the UnifiedPush server.</p>
-</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -681,18 +608,6 @@ To re-download the <code>google-services.json</code> file, navigate to the <em>P
 <div class="paragraph">
 <p>The following guide helps you to enable Push Notifications for your iOS application.</p>
 </div>
-<h4 id="prerequisites-2" class="discrete">Prerequisites</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>An Apple developer account</p>
-</li>
-<li>
-<p>A Mac</p>
-</li>
-</ul>
-</div>
-<h4 id="procedure" class="discrete">Procedure</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -726,22 +641,6 @@ The exported p12 file with the password will be used later when binding your Mob
 </div>
 </li>
 </ol>
-</div>
-<h4 id="next-steps" class="discrete">Next Steps</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="push/binding.html" class="page">Bind your Mobile Client to the Push Notifications</a>.</p>
-</li>
-</ul>
-</div>
-<h4 id="additional-resources" class="discrete">Additional Resources</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>For more information, see <a href="push/index.html" class="page">Push Notifications</a>.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
@@ -791,20 +690,11 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
-<div class="sect3">
-<h4 id="next-steps-2"><a class="anchor" href="#next-steps-2"></a>Next Steps</h4>
-<div class="paragraph">
-<p><a href="registering-a-mobile-app.html" class="page">Registering a Mobile App</a></p>
-</div>
-<div class="paragraph">
-<p><a href="push/binding.html" class="page">Binding a Mobile Client with the Push Notifications Service</a></p>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="binding-a-mobile-client-with-the-push-notifications-service"><a class="anchor" href="#binding-a-mobile-client-with-the-push-notifications-service"></a>Binding a Mobile Client with the Push Notifications service</h3>
 <div class="sect3">
-<h4 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h4>
+<h4 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h4>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="ulist checklist">
@@ -854,7 +744,7 @@ The association between a Mobile Client and Push Notifications Service uses the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h4>
+<h4 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -930,12 +820,6 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <p>After clicking Bind your variant will be created in UPS and you should see a new binding for your mobile client.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="next-steps-3"><a class="anchor" href="#next-steps-3"></a>Next Steps</h4>
-<div class="paragraph">
-<p><a href="push/configuring-dev-env-push.html" class="page">Configuring your Development Environment for the Push Notifications Service</a></p>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="coding-a-push-notifications-app"><a class="anchor" href="#coding-a-push-notifications-app"></a>Coding a Push Notifications App</h3>
@@ -946,19 +830,7 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <div class="sect1">
 <h2 id="configuring-your-development-environment-for-the-push-notifications-service"><a class="anchor" href="#configuring-your-development-environment-for-the-push-notifications-service"></a>Configuring your Development Environment for the Push Notifications Service</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned one of the Mobile Services as described in <a href="push/provisioning.html" class="page">Provisioning Push Notifications Service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> (Optional) You have associated the service with a Mobile Client as described in <a href="push/binding.html" class="page">Binding a Mobile Client with the Push Notifications Service</a>.</p>
-</li>
-</ul>
-</div>
-</div>
+
 </div>
 </div>
 <div class="sect1">
@@ -984,7 +856,7 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back end services.
+The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
 </td>
 </tr>
 </table>
@@ -1045,22 +917,13 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="next-steps-4"><a class="anchor" href="#next-steps-4"></a>Next Steps</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="push/coding.html" class="page">Setting up Push Notifications service SDK</a></p>
-</li>
-</ul>
-</div>
 <div class="sect3">
 <h4 id="setting-up-push-notifications-service-sdk"><a class="anchor" href="#setting-up-push-notifications-service-sdk"></a>Setting up Push Notifications service SDK</h4>
 <div class="paragraph">
 <p>This guide will help you to set up the Push Notifications service SDK in your App.</p>
 </div>
 <div class="sect4">
-<h5 id="prerequisites-5"><a class="anchor" href="#prerequisites-5"></a>Prerequisites</h5>
+<h5 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h5>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
@@ -1316,13 +1179,6 @@ pushObject.on('registration').subscribe(data =&gt; {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="next-steps-5"><a class="anchor" href="#next-steps-5"></a>Next Steps</h4>
-<div class="paragraph">
-<p><a href="push/proc_sending-a-push-notification.html" class="page">Sending a Push Notification</a></p>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -1359,7 +1215,7 @@ On first login you need to provide the OpenShift OAuth service permissions to re
 </tr>
 </table>
 </div>
-<h3 id="additional-resources-2" class="discrete">Additional resources</h3>
+<h3 id="additional-information" class="discrete">Additional Information</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1375,18 +1231,6 @@ On first login you need to provide the OpenShift OAuth service permissions to re
 <div class="paragraph">
 <p>The Unified Push Admin UI allows you to send push notifications to devices.</p>
 </div>
-<h3 id="prerequisites-6" class="discrete">Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Access to the Unified Push Admin UI.</p>
-</li>
-<li>
-<p><a href="push/binding.html" class="page">Binding</a> created.</p>
-</li>
-</ul>
-</div>
-<h3 id="procedure-3" class="discrete">Procedure</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

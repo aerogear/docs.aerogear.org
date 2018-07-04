@@ -66,7 +66,7 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Mobile CI/CD :: AeroGear Mobile Services</title>
+    <title>Introduction to the Mobile CI/CD Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -409,15 +409,13 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">About Mobile CI/CD</a></li>
+    <li class="crumb"><a href="index.html">Introduction to the Mobile CI/CD Service</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/index.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>About Mobile CI/CD</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1>Introduction to the Mobile CI/CD Service</h1>
 <div class="paragraph">
 <p>The Mobile CI/CD service allows you automate the building of your native and hybrid mobile app for both Android and iOS.</p>
 </div>
@@ -439,203 +437,6 @@ Zepto(function($){
 <p>Build status is displayed on the Mobile Client details page in the OpenShift console, along with the mobile services associated with that Mobile Client</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ref_terminology_Mobile CI/CD_ref_terminology"><a class="anchor" href="#ref_terminology_Mobile CI/CD_ref_terminology"></a>Mobile CI/CD Terminology</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This section describes terminology that is associated with Mobile CI/CD.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">CI/CD</dt>
-<dd>
-<p>Continuous Integration / Continuous Development</p>
-</dd>
-<dt class="hdlist1">Jenkins</dt>
-<dd>
-<p>A tool that helps to automate the software development process, with continuous integration and facilitating continuous delivery.</p>
-</dd>
-<dt class="hdlist1">Build</dt>
-<dd>
-<p>A single run of Jenkins against a source code repository.</p>
-</dd>
-<dt class="hdlist1">Artifact</dt>
-<dd>
-<p>The result of a succesful build in Jenkins, this is the binary that can be installed on to a mobile device.</p>
-</dd>
-<dt class="hdlist1">Jenkinsfile</dt>
-<dd>
-<p>This is a file contained in the source code repository which instructs Jenkins on how to build an artifact with this source code.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ref_source-configuration_ref_source-configuration"><a class="anchor" href="#ref_source-configuration_ref_source-configuration"></a>Source Configuration Reference material</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To build your mobile client, you need to provide source configuration.
-This section describes aspects of a mobile client&#8217;s source configuration.</p>
-</div>
-<div class="sect2">
-<h3 id="repository"><a class="anchor" href="#repository"></a>Repository</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Add Git Repository URL</dt>
-<dd>
-<p>To provide additional advanced information such as a different git ref (default is master), or Jenkinsfile path (default is the root of the repo), use the advanced options.</p>
-</dd>
-<dt class="hdlist1">Authentication Type Public</dt>
-<dd>
-<p>Use this for public repos that require no authentication.</p>
-</dd>
-<dt class="hdlist1">Authentication Type Basic</dt>
-<dd>
-<p>Username/password credentials, use this for https/http repo urls that require authentication.</p>
-</dd>
-<dt class="hdlist1">Authentication Type SSH</dt>
-<dd>
-<p>SSH Private Key Authentication, use this for ssh repo urls (git@).</p>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When adding credentials for Authentication Type Basic, ensure the name is unique.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="advanced-options"><a class="anchor" href="#advanced-options"></a>Advanced Options</h3>
-<div class="paragraph">
-<p>Selecting <strong>Advanced Options</strong> in the source configuration section displays a number of additional options:
-Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds, for example, release vs develop.
-Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="build-configuration"><a class="anchor" href="#build-configuration"></a>Build Configuration</h3>
-<div class="paragraph">
-<p>Add configuration relating to the type of build being created e.g debug or release.
-The type of information required here will depend on the type of application being built.</p>
-</div>
-<div class="sect3">
-<h4 id="android"><a class="anchor" href="#android"></a>Android</h4>
-<div class="paragraph">
-<p>Add Build Type:
-Debug:: An Android debug build, no additional information required
-Release:: An Android release build, requires an upload of a password protected PKCS12 file containing a key protected by the same password.</p>
-</div>
-<div class="sect4">
-<h5 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h5>
-<div class="paragraph">
-<p>As a release build will need to be signed, you need to specify the keystore and private key passwords.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h5>
-<div class="paragraph">
-<p>If your keystore is checked into your source code, you will need to take the password value in your build script as an environmental variable. This will allow you to set this environmental variable as part of your client build from within the OpenShift UI. This can be done directly when creating the mobile client build or afterwards by editing the build config.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h5>
-<div class="paragraph">
-<p>If you have an external keystore, you should ensure to select the checkbox to use an external keystore once this is done, you will be asked for the following additional information:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Name</dt>
-<dd>
-<p>A unique name for the android credentials you are adding e.g. my-android-release-cert</p>
-</dd>
-<dt class="hdlist1">KeyStore Password</dt>
-<dd>
-<p>The password for the android keystore and the PKCS12 archive (The password for the archive and the keystore must be the same)</p>
-</dd>
-<dt class="hdlist1">KeyStore Alias</dt>
-<dd>
-<p>The entry name of the private key/certificate chain you want to use to sign your APK(s). This entry must exist in the key store uploaded. If your key store contains only one key entry, which is the most common case, you can leave this field blank.</p>
-</dd>
-<dt class="hdlist1">Android KeyStore</dt>
-<dd>
-<p>Password protected PKCS12 file containing a key protected by the same password.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>The PKSC12 archive of your android keystore certificate can be generated using the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">keytool -importkeystore -srckeystore &lt;your-android-cert.keystore&gt; -destkeystore &lt;your-android-cert&gt;.p12 -deststoretype PKCS12 -srcalias &lt;your-android-cert-alias&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ios"><a class="anchor" href="#ios"></a>iOS</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Build Type</dt>
-<dd>
-<p>Build type value to be used by xcodebuild</p>
-</dd>
-<dt class="hdlist1">Name</dt>
-<dd>
-<p>The unique credential name to be used in jenkins</p>
-</dd>
-<dt class="hdlist1">Apple Developer Profile</dt>
-<dd>
-<p>An xcode zip generated file that contains all required files (certificate, private key and provisioning profile) to sign an iOS app. For more information, see this documentation on exporting developer accounts in XCode.</p>
-</dd>
-<dt class="hdlist1">Apple Developer Profile Password</dt>
-<dd>
-<p>The developer profile password to be used by jenkins when importing the developer profiles private key.</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect3">
-<h4 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Platform</dt>
-<dd>
-<p>The platform that the app will target.</p>
-</dd>
-<dt class="hdlist1">Build Type</dt>
-<dd>
-<p>The build type value (debug or release). Depending on the platform selected, this may result in additional parameters to be required.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="../getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </article>
   </main>
