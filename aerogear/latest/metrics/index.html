@@ -66,7 +66,7 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Mobile Metrics Service :: AeroGear Mobile Services</title>
+    <title>Introduction to the Mobile Metrics Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/metrics/index.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -94,15 +94,15 @@ Zepto(function($){
         </li>
 
         <li>
-          <a href="https://aerogear.org/getting-started/overview/">Getting Started</a>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
         </li>
 
         <li>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="https://aerogear.org/services/mobile-ci-cd/">
-                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
                 </a>
               </li>
               <li>
@@ -111,18 +111,18 @@ Zepto(function($){
                 </a>
               </li>
               <li>
-                <a href="https://aerogear.org/services/metrics/">
-                  <i class="material-icons" aria-hidden="true">insert_chart</i> Metrics
-                </a>
-              </li>
-              <li>
                 <a href="https://aerogear.org/services/runtime-connector/">
                   <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
                 </a>
               </li>
               <li>
-                <a href="https://aerogear.org/services/identity-management/">
-                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
                 </a>
               </li>
               <li>
@@ -134,13 +134,7 @@ Zepto(function($){
         </li>
 
         <li>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile SDKs<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
-            <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
-            <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
-            <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
-          </ul>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
         </li>
 
         <li class="hidden-sm active">
@@ -415,70 +409,28 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">About Mobile Metrics Service</a></li>
+    <li class="crumb"><a href="index.html">Introduction to the Mobile Metrics Service</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/index.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>About Mobile Metrics Service</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="videoblock">
-<div class="content">
-<iframe src="https://www.youtube.com/embed/xWFWUcuZPaQ?rel=0" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
+<h1>Introduction to the Mobile Metrics Service</h1>
 <div class="paragraph">
-<p>The Mobile Metrics Service allows you monitor mobile apps, devices and mobile services.</p>
+<p>The Mobile Metrics service allows you gather metrics on mobile apps, device versions, device security checks and back-end mobile service usage.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Monitor usage by version of mobile app</p>
+<p>Monitor usage by version of mobile app, platform and SDK</p>
 </li>
 <li>
-<p>Monitor identity management</p>
-</li>
-<li>
-<p>Extend monitoring to include your custom requirement</p>
+<p>Monitor interactions with the Identity Management service</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Identity management is monitored by the Mobile Metrics Service when it is provisioned. No configuration is needed.</p>
-</div>
-<div class="paragraph">
-<p>To collect metrics from mobile apps, you need to create a binding which is described in the next sections.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"><a class="anchor" href="#con_introduction-to-metrics_additional-resources-con_introduction-to-metrics"></a>Additional resources</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>For more information, see the <a href="https://prometheus.io/docs/introduction/overview/">Prometheus Documentation</a>.</p>
-</li>
-<li>
-<p>For more information, see the <a href="http://docs.grafana.org/">Grafana Documentation</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="../getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </article>
   </main>
@@ -489,10 +441,7 @@ Zepto(function($){
       <div class="col-sm-3">
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
-          <li><a href="https://aerogear.org/getting-started/overview/">Overview</a></li>
-          <li><a href="https://aerogear.org/getting-started/installation-and-configuration/">Installation &amp; Configuration</a></li>
-          <li><a href="https://aerogear.org/getting-started/creating-mobile-apps/">Creating Mobile Apps</a></li>
-          <li><a href="https://aerogear.org/getting-started/enabling-mobile-services/">Enabling Mobile Services</a></li>
+          <li><a href="https://aerogear.org/getting-started/">Overview</a></li>
         </ul>
       </div><!-- col -->
 
