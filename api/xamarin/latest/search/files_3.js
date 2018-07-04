@@ -18,9 +18,6 @@ var searchData=
   ['iosuserpreferences_2ecs',['IOSUserPreferences.cs',['../_i_o_s_user_preferences_8cs.html',1,'']]],
   ['iplatformbridge_2ecs',['IPlatformBridge.cs',['../_i_platform_bridge_8cs.html',1,'']]],
   ['iplatforminjector_2ecs',['IPlatformInjector.cs',['../_i_platform_injector_8cs.html',1,'']]],
-  ['isecuritycheck_2ecs',['ISecurityCheck.cs',['../_i_security_check_8cs.html',1,'']]],
-  ['isecuritycheckfactory_2ecs',['ISecurityCheckFactory.cs',['../_i_security_check_factory_8cs.html',1,'']]],
-  ['isecurityservice_2ecs',['ISecurityService.cs',['../_i_security_service_8cs.html',1,'']]],
   ['iservicemodule_2ecs',['IServiceModule.cs',['../_i_service_module_8cs.html',1,'']]],
   ['iuserpreferences_2ecs',['IUserPreferences.cs',['../_i_user_preferences_8cs.html',1,'']]]
 ];
