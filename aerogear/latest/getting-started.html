@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -208,9 +208,6 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#binding">Binding Mobile Services</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
@@ -699,7 +696,7 @@ password: password</pre>
 <p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="_images/catalog-mobile-clients.png" alt="Available Mobile Clients"></span></p>
+<p><span class="image"><img src="_images/catalog-all.png" alt="Available Mobile Clients"></span></p>
 </div>
 </li>
 <li>
@@ -740,6 +737,11 @@ password: password</pre>
 </li>
 <li>
 <p>Click <strong>Services</strong> and choose the Identity Management service.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
+</div>
+</div>
 </li>
 <li>
 <p>Follow the wizard for provisioning that service.</p>
@@ -847,12 +849,14 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-all-unprovisioned.png" alt="mobile clients services all unprovisioned">
+</div>
+</div>
 </li>
 <li>
 <p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Identity Management Service.</p>
-<div class="paragraph">
-<p><span class="image"><img src="_images/mobile-clients-services.png" alt="mobile clients services"></span></p>
-</div>
 </li>
 <li>
 <p>Fill out the binding parameters required by the Identity Management Service.</p>
@@ -873,6 +877,14 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>The Identity Management service will now be expandable, details about the service can be viewed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-all-idm-provisioned.png" alt="mobile clients services all idm provisioned">
+</div>
 </div>
 </div>
 <div class="sect2">
