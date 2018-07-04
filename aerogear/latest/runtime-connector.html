@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
+    <title>Runtime Connector :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/runtime-connector.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -416,50 +416,47 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/runtime-connector.adoc"></a></div>
 </div>
 <article class="doc">
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#introduction">Introduction to the Runtime Connector Service</a></li>
-<li><a href="#setup">Setting Up the Runtime Connector Mobile Service</a>
-<ul class="sectlevel1">
-<li><a href="#provisioning-the-custom-runtime-connector-service">Provisioning the Custom Runtime Connector Service</a></li>
-<li><a href="#binding-a-mobile-client-with-the-custom-runtime-connector-service">Binding a Mobile Client with the Custom Runtime Connector Service</a>
-<ul class="sectlevel2">
-<li><a href="#procedure">Procedure</a></li>
-</ul>
-</li>
-<li><a href="#using-runtime-connector-in-an-app">Using Runtime Connector in an App</a>
-<ul class="sectlevel2">
-<li><a href="#retrieving-the-custom-configuration-in-a-mobile-client">Retrieving the Custom Configuration in a Mobile Client</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
+<h1>Runtime Connector</h1>
 <div class="sect1">
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction to the Runtime Connector Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Runtime Connector service allows you connect your mobile apps to your own backend API servers.</p>
+<p>The Runtime Connector service allows you connect your mobile apps to your own back-end API servers.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Bind your mobile client to custom backend API services and business logic</p>
+<p>Bind your mobile client to custom back-end API services and business logic</p>
 </li>
 <li>
-<p>Ability to add custom configuration for a backend service, which becomes accessible from your Mobile App</p>
+<p>Ability to add custom configuration for a back-end service, which becomes accessible from your Mobile App</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<h1 id="setup" class="sect0"><a class="anchor" href="#setup"></a>Setting Up the Runtime Connector Mobile Service</h1>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-runtime-connector-mobile-service"><a class="anchor" href="#setting-up-the-runtime-connector-mobile-service"></a>Setting Up the Runtime Connector Mobile Service</h2>
+<div class="sectionbody">
+
+</div>
+</div>
 <div class="sect1">
 <h2 id="provisioning-the-custom-runtime-connector-service"><a class="anchor" href="#provisioning-the-custom-runtime-connector-service"></a>Provisioning the Custom Runtime Connector Service</h2>
 <div class="sectionbody">
-<h3 id="prerequisites" class="discrete">Prerequisites</h3>
+<h3 id="prerequisites-2" class="discrete">Prerequisites</h3>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -537,8 +534,8 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <h2 id="binding-a-mobile-client-with-the-custom-runtime-connector-service"><a class="anchor" href="#binding-a-mobile-client-with-the-custom-runtime-connector-service"></a>Binding a Mobile Client with the Custom Runtime Connector Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
-This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
+This association is called <strong>binding</strong> and once it&#8217;s done, your mobile app can use that service immediately.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -594,7 +591,7 @@ Your mobile app will be represented by two items in OpenShift, an item in the <s
 </ol>
 </div>
 <div class="paragraph">
-<p>After the binding is finished the Mobile Client has been updated with the custom configuration.</p>
+<p>After the binding is finished, the Mobile Client has been updated with the custom configuration.</p>
 </div>
 </div>
 </div>

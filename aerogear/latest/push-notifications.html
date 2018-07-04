@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Using the Push Notifications Mobile Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/push-notifications.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -428,13 +428,13 @@ Zepto(function($){
 <li><a href="#how-the-unifiedpush-server-works">How the UnifiedPush Server Works</a></li>
 </ul>
 </li>
-<li><a href="#setup">Setting Up the Identity Management Mobile Service</a>
+<li><a href="#setup">Prerequisites</a></li>
+<li><a href="#setting-up-the-identity-management-mobile-service">Setting Up the Identity Management Mobile Service</a>
 <ul class="sectlevel2">
 <li><a href="#obtaining-firebase-cloud-messaging-credentials">Obtaining Firebase Cloud Messaging Credentials</a></li>
 <li><a href="#proc_preparing-ups-for-use-with-ios_preparing-ups-for-use-with-ios">Enable Push Notifications for iOS App</a></li>
 <li><a href="#provisioning-push-notifications-service">Provisioning Push Notifications Service</a></li>
 <li><a href="#binding-a-mobile-client-with-the-push-notifications-service">Binding a Mobile Client with the Push Notifications service</a></li>
-<li><a href="#coding-a-push-notifications-app">Coding a Push Notifications App</a></li>
 </ul>
 </li>
 <li><a href="#configuring-your-development-environment-for-the-push-notifications-service">Configuring your Development Environment for the Push Notifications Service</a></li>
@@ -454,7 +454,7 @@ Zepto(function($){
 <div class="sect2">
 <h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
 <div class="paragraph">
-<p>The Push Notifications service allows you send native push notifications to different mobile operating systems.</p>
+<p>The Push Notifications service allows you to send native push notifications to different mobile operating systems.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -506,11 +506,11 @@ Zepto(function($){
 </dd>
 <dt class="hdlist1">Sender Endpoint API</dt>
 <dd>
-<p>A RESTful API that receives Push Notification Message requests for a PushApplication or some of its different Variants. The Server translate this request into the platform specific details and delivers the payload to the 3rd party cloud provides, which eventually might deliver the message to the physical device.</p>
+<p>A RESTful API that receives Push Notification Message requests for a PushApplication or some of its different Variants. The Server translates this request into the platform specific details and delivers the payload to the 3rd party cloud provides, which eventually might deliver the message to the physical device.</p>
 </dd>
 <dt class="hdlist1">Variant</dt>
 <dd>
-<p>A variant of the Push Application, representing a specific mobile platform, like iOS or Android, or even more fine grain differentiation like iPad or iPhone.
+<p>A variant of the Push Application, representing a specific mobile platform, like iOS or Android, or even more fine-grained differentiation like iPad or iPhone.
 There can be multiple variants for a single Push Application (for example, <em>Mobile HR Android</em>, <em>Mobile HR iPad</em>, <em>Mobile HR iOS free</em> or _Mobile HR iOS premium).
 Each supported variant type contains some platform specific properties, such as a Google API key (Android) or passphrase and certificate (Apple).</p>
 </dd>
@@ -541,7 +541,7 @@ Each supported variant type contains some platform specific properties, such as 
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-It is highly recommended to not sent any send sensitive personal or confidential information belonging to an individual (e.g. a social security number, financial account or transactional information, or any information where the individual may have a reasonable expectation of secure transmission) as part of any Push Notification!
+It is highly recommended to not send any sensitive personal or confidential information belonging to an individual (e.g. a social security number, financial account or transactional information, or any information where the individual may have a reasonable expectation of secure transmission) as part of any Push Notification!
 </td>
 </tr>
 </table>
@@ -572,7 +572,19 @@ When using the UnifiedPush Server, please keep in mind that Push notification is
 </div>
 </div>
 <div class="sect1">
-<h2 id="setup"><a class="anchor" href="#setup"></a>Setting Up the Identity Management Mobile Service</h2>
+<h2 id="setup"><a class="anchor" href="#setup"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-identity-management-mobile-service"><a class="anchor" href="#setting-up-the-identity-management-mobile-service"></a>Setting Up the Identity Management Mobile Service</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="obtaining-firebase-cloud-messaging-credentials"><a class="anchor" href="#obtaining-firebase-cloud-messaging-credentials"></a>Obtaining Firebase Cloud Messaging Credentials</h3>
@@ -724,8 +736,8 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </div>
 </div>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
-This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
+This association is called <strong>binding</strong> and once it&#8217;s done, your mobile app can use that service immediately.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -820,10 +832,6 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <p>After clicking Bind your variant will be created in UPS and you should see a new binding for your mobile client.</p>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="coding-a-push-notifications-app"><a class="anchor" href="#coding-a-push-notifications-app"></a>Coding a Push Notifications App</h3>
-
 </div>
 </div>
 </div>
@@ -1059,7 +1067,7 @@ end</code></pre>
 <div class="sect4">
 <h5 id="device-registration"><a class="anchor" href="#device-registration"></a>Device registration</h5>
 <div class="paragraph">
-<p>To make use of the Push Notifications service devices need to be registered by calling an endpoint of the server.
+<p>To make use of the Push Notifications service, devices need to be registered by calling an endpoint of the server.
 The SDKs will handle this for you and the following steps will give you everything you need to start working with push notifications.</p>
 </div>
 <div class="sidebarblock primary">

@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Metrics :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/mobile-metrics.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -421,7 +421,8 @@ Zepto(function($){
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#introduction">Introduction to the Mobile Metrics Service</a></li>
-<li><a href="#setup">Setting Up the Mobile Metrics Service</a>
+<li><a href="#setup">Prerequisites</a></li>
+<li><a href="#setting-up-the-mobile-metrics-service">Setting Up the Mobile Metrics Service</a>
 <ul class="sectlevel2">
 <li><a href="#provisioning-metrics-service">Provisioning Metrics Service</a></li>
 <li><a href="#binding-a-mobile-client-with-the-metrics-service">Binding a Mobile Client with the Metrics Service</a></li>
@@ -446,7 +447,7 @@ Zepto(function($){
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction to the Mobile Metrics Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Mobile Metrics service allows you gather metrics on mobile apps, device versions, device security checks and back-end mobile service usage.</p>
+<p>The Mobile Metrics service allows you to gather metrics on mobile apps, device versions, device security checks and back-end mobile service usage.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -464,7 +465,19 @@ Zepto(function($){
 </div>
 </div>
 <div class="sect1">
-<h2 id="setup"><a class="anchor" href="#setup"></a>Setting Up the Mobile Metrics Service</h2>
+<h2 id="setup"><a class="anchor" href="#setup"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-mobile-metrics-service"><a class="anchor" href="#setting-up-the-mobile-metrics-service"></a>Setting Up the Mobile Metrics Service</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="provisioning-metrics-service"><a class="anchor" href="#provisioning-metrics-service"></a>Provisioning Metrics Service</h3>
@@ -582,8 +595,8 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="sect2">
 <h3 id="binding-a-mobile-client-with-the-metrics-service"><a class="anchor" href="#binding-a-mobile-client-with-the-metrics-service"></a>Binding a Mobile Client with the Metrics Service</h3>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client and that Mobile Client must be associated with the mobile service.
-This association is called a binding and once it&#8217;s done, your mobile app can use that service immediately.</p>
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
+This association is called <strong>binding</strong> and once it&#8217;s done, your mobile app can use that service immediately.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -764,13 +777,13 @@ There are 2 dashboards where App Metrics data is shown:</p>
 <p>An App launch is a metric event that occurs when an App is launched on a device.
 The total number of App launches for a given time shows how many times an App was launched in that time, regardless of if it was the same device or different devices.
 It can be useful as a gauge on how much activity the App has.
-However, as it doesn&#8217;t take into account multiple lauches from the same device, it isn&#8217;t useful as a gauge for 'stickiness' of the App.</p>
+However, as it doesn&#8217;t take into account multiple launches from the same device, it isn&#8217;t useful as a gauge for 'stickiness' of the App.</p>
 </div>
 <h3 id="analyzing-unique-clients" class="discrete">Analyzing unique clients</h3>
 <div class="paragraph">
 <p>Every metric event has a unique client identifier associated with it.
 This unique client identifier is generated the first time an App is started.
-It is worth noting this identifier will be regenerated if a user uninstalls and re-installs an App.
+It is worth noting this identifier will be regenerated if a user re-installs an App.
 The total number of unique clients for a given time shows how many users launched an App at least once.
 This can be useful as a gauge on how many active App users there currently are.
 The time range is an important factor when viewing the number of unique clients.
@@ -783,22 +796,22 @@ In Grafana, the time range can be changed in the top right of the Dashboard view
 An App identifier uniquely identifies an App.
 It is bundled with the App binary.
 There can be more than 1 App (each with a different App identifier) sending metrics events to the same Metrics Service.
-For example, there might be an Admin Portal App and a Field Worker App both using the same backend services and same Mobile Metrics Service.
+For example, there might be an Admin Portal App and a Field Worker App both using the same back-end services and same Mobile Metrics Service.
 The number of unique clients per App gives a breakdown of all users by the App they are using.
 However, if you only have 1 App there is no difference between the number of unique clients and the number of unique clients per App.</p>
 </div>
 <h3 id="analyzing-unique-clients-per-platform" class="discrete">Analyzing unique clients per platform</h3>
 <div class="paragraph">
 <p>Every metric event has the platform associated with it.
-An example of platform is Android or iOS.
+An example of a platform is Android or iOS.
 This can be useful for making decisions about which platform to put effort into.
-However, if all your Apps on on a single platform, there is no difference between the number of unique clients and the number of unique clients per platform.</p>
+However, if all your Apps are on a single platform, there is no difference between the number of unique clients and the number of unique clients per platform.</p>
 </div>
 <h3 id="analyzing-unique-clients-per-sdk-version" class="discrete">Analyzing unique clients per sdk version</h3>
 <div class="paragraph">
 <p>Every metric event has the AeroGear sdk version associated with it.
 This can be useful for making decisions about what features to deprecate or drop support for, or applying backwards incompatible server changes/updates.
-This metric will be more valueable as more versions of an App (with different sdk versions) are published.</p>
+This metric will be more valuable as more versions of an App (with different sdk versions) are published.</p>
 </div>
 <h3 id="analyzing-unique-clients-per-app-version" class="discrete">Analyzing unique clients per app version</h3>
 <div class="paragraph">
