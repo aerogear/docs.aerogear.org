@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile CI/CD :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobile-cicd.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -180,7 +180,7 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Mobile Clients</a>
+    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
@@ -307,7 +307,19 @@ Zepto(function($){
     <a class="nav-link" href="#build-config">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#clean">Cleaning up Builds</a>
   </li>
 </ul>
   </li>
@@ -410,17 +422,37 @@ Zepto(function($){
 <ul class="sectlevel1">
 <li><a href="#introduction">Introduction to the Mobile CI/CD Service</a></li>
 <li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
-<li><a href="#ref_source-configuration_ref_source-configuration">Source Configuration Reference material</a>
-<ul class="sectlevel2">
-<li><a href="#repository">Repository</a></li>
-<li><a href="#advanced-options">Advanced Options</a></li>
-<li><a href="#build-configuration">Build Configuration</a></li>
-</ul>
-</li>
 <li><a href="#setup">Prerequisites</a></li>
 <li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a></li>
 <li><a href="#build-config">Creating a Build Configuration</a></li>
+<li><a href="#jenkins">Adding a Jenkinsfile</a>
+<ul class="sectlevel2">
+<li><a href="#sample-android-jenkinsfile-for-debug-build-type">Sample Android Jenkinsfile for Debug Build Type</a></li>
+<li><a href="#sample-android-jenkinsfile-for-release-build-type">Sample Android Jenkinsfile for Release Build Type</a></li>
+<li><a href="#sample-ios-jenkinsfile-for-release-build-type">Sample iOS Jenkinsfile for Release Build Type</a></li>
+</ul>
+</li>
+<li><a href="#building">Building a Mobile App</a></li>
+<li><a href="#logs">Viewing Build Logs</a>
+<ul class="sectlevel2">
+<li><a href="#viewing-build-history-in-the-openshift-console">Viewing Build History in the OpenShift Console</a></li>
+<li><a href="#viewing-build-logs-in-jenkins">Viewing Build Logs in Jenkins</a></li>
+</ul>
+</li>
 <li><a href="#deploy">Deploying a Mobile App</a></li>
+<li><a href="#clean">Cleaning up a Mobile Client Build</a>
+<ul class="sectlevel2">
+<li><a href="#deleting-a-build-instance">Deleting a Build Instance</a></li>
+<li><a href="#deleting-a-mobile-ci-cd-build-configuration">Deleting a Mobile CI/CD Build Configuration</a></li>
+</ul>
+</li>
+<li><a href="#ref_source-configuration_ref_source-configuration">Debug and Release Build Types</a>
+<ul class="sectlevel2">
+<li><a href="#android">Android</a></li>
+<li><a href="#ios">iOS</a></li>
+<li><a href="#cordova">Cordova</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="sect1">
@@ -479,157 +511,6 @@ Zepto(function($){
 <p>This is a file contained in the source code repository which instructs Jenkins on how to build an artifact with this source code.</p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ref_source-configuration_ref_source-configuration"><a class="anchor" href="#ref_source-configuration_ref_source-configuration"></a>Source Configuration Reference material</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To build your mobile client, you need to provide source configuration.
-This section describes aspects of a mobile client&#8217;s source configuration.</p>
-</div>
-<div class="sect2">
-<h3 id="repository"><a class="anchor" href="#repository"></a>Repository</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Add Git Repository URL</dt>
-<dd>
-<p>To provide additional advanced information such as a different git ref (default is master), or Jenkinsfile path (default is the root of the repo), use the advanced options.</p>
-</dd>
-<dt class="hdlist1">Authentication Type Public</dt>
-<dd>
-<p>Use this for public repos that require no authentication.</p>
-</dd>
-<dt class="hdlist1">Authentication Type Basic</dt>
-<dd>
-<p>Username/password credentials, use this for https/http repo urls that require authentication.</p>
-</dd>
-<dt class="hdlist1">Authentication Type SSH</dt>
-<dd>
-<p>SSH Private Key Authentication, use this for ssh repo urls (git@).</p>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When adding credentials for Authentication Type Basic, ensure the name is unique.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="advanced-options"><a class="anchor" href="#advanced-options"></a>Advanced Options</h3>
-<div class="paragraph">
-<p>Selecting <strong>Advanced Options</strong> in the source configuration section displays a number of additional options:
-Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds, for example, release vs develop.
-Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="build-configuration"><a class="anchor" href="#build-configuration"></a>Build Configuration</h3>
-<div class="paragraph">
-<p>Add configuration relating to the type of build being created e.g debug or release.
-The type of information required here will depend on the type of application being built.</p>
-</div>
-<div class="sect3">
-<h4 id="android"><a class="anchor" href="#android"></a>Android</h4>
-<div class="paragraph">
-<p>Add Build Type:
-Debug:: An Android debug build, no additional information required
-Release:: An Android release build, requires an upload of a password protected PKCS12 file containing a key protected by the same password.</p>
-</div>
-<div class="sect4">
-<h5 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h5>
-<div class="paragraph">
-<p>As a release build will need to be signed, you need to specify the keystore and private key passwords.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h5>
-<div class="paragraph">
-<p>If your keystore is checked into your source code, you will need to take the password value in your build script as an environmental variable. This will allow you to set this environmental variable as part of your client build from within the OpenShift UI. This can be done directly when creating the mobile client build or afterwards by editing the build config.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h5>
-<div class="paragraph">
-<p>If you have an external keystore, you should ensure to select the checkbox to use an external keystore once this is done, you will be asked for the following additional information:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Name</dt>
-<dd>
-<p>A unique name for the android credentials you are adding e.g. my-android-release-cert</p>
-</dd>
-<dt class="hdlist1">KeyStore Password</dt>
-<dd>
-<p>The password for the android keystore and the PKCS12 archive (The password for the archive and the keystore must be the same)</p>
-</dd>
-<dt class="hdlist1">KeyStore Alias</dt>
-<dd>
-<p>The entry name of the private key/certificate chain you want to use to sign your APK(s). This entry must exist in the key store uploaded. If your key store contains only one key entry, which is the most common case, you can leave this field blank.</p>
-</dd>
-<dt class="hdlist1">Android KeyStore</dt>
-<dd>
-<p>Password protected PKCS12 file containing a key protected by the same password.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>The PKSC12 archive of your android keystore certificate can be generated using the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">keytool -importkeystore -srckeystore &lt;your-android-cert.keystore&gt; -destkeystore &lt;your-android-cert&gt;.p12 -deststoretype PKCS12 -srcalias &lt;your-android-cert-alias&gt;</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ios"><a class="anchor" href="#ios"></a>iOS</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Build Type</dt>
-<dd>
-<p>Build type value to be used by xcodebuild</p>
-</dd>
-<dt class="hdlist1">Name</dt>
-<dd>
-<p>The unique credential name to be used in jenkins</p>
-</dd>
-<dt class="hdlist1">Apple Developer Profile</dt>
-<dd>
-<p>An xcode zip generated file that contains all required files (certificate, private key and provisioning profile) to sign an iOS app. For more information, see this documentation on exporting developer accounts in XCode.</p>
-</dd>
-<dt class="hdlist1">Apple Developer Profile Password</dt>
-<dd>
-<p>The developer profile password to be used by jenkins when importing the developer profiles private key.</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect3">
-<h4 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h4>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Platform</dt>
-<dd>
-<p>The platform that the app will target.</p>
-</dd>
-<dt class="hdlist1">Build Type</dt>
-<dd>
-<p>The build type value (debug or release). Depending on the platform selected, this may result in additional parameters to be required.</p>
-</dd>
-</dl>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -718,24 +599,323 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the OpenShift UI.</p>
+<p>Log in to the OpenShift Console.</p>
 </li>
 <li>
-<p>Browse to the <strong>Project Overview</strong> screen and find the mobile client you want to build.</p>
+<p>Browse to the <strong>Project Overview</strong> screen and find the Mobile Client you want to build.</p>
 </li>
 <li>
-<p>Click on the name of the mobile client to open the details view.</p>
+<p>Click on the name of the Mobile Client to open the details view.</p>
 </li>
 <li>
-<p>At the top right of the screen, click the <strong>drop down</strong> and select <strong>Create Build</strong>.</p>
+<p>From the <strong>Builds</strong> tab, select <strong>Create Build</strong> in the <strong>Actions</strong> menu. If no build configuration  exists, a <strong>Start Build</strong> button is displayed which allows you create a build configuration.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-builds-empty.png" alt="mobile clients builds empty"></span></p>
+</div>
+<div class="paragraph">
+<p>The <strong>Client Build Form</strong> is displayed.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter a unique name for the build configuration in the <strong>Name</strong> field.</p>
 </li>
 <li>
-<p>When the <strong>Client Build Form</strong> screen opens, give the new build a unique name.</p>
+<p>Enter the <strong>Git Repository URL</strong> for the Mobile Client you want to build.</p>
+</li>
+<li>
+<p>Select the <strong>Authentication Type</strong> for the Git repository. For example, the Mobile Services showcase apps are available to everyone, so you would choose <strong>Public</strong>. If your repo URL starts with <code>git@</code>, select <strong>SSH</strong>. If your repo URl starts with <code>http</code> and requires authentication, select <strong>Basic</strong>.</p>
+</li>
+<li>
+<p>If you select <strong>Advanced Options</strong> you can also specify:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds, for example, release vs develop.</p>
+</li>
+<li>
+<p>Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
+</li>
+</ul>
+</div>
 </li>
 </ol>
 </div>
+</li>
+<li>
+<p>Select the <strong>Build Type</strong> for the build configuration. Typically you create two build configurations, one for debugging and and another for release.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Typically, for a <strong>Release</strong> build configuration, you need to add more information as described in <a href="#ref_source-configuration_ref_source-configuration">Debug and Release Build Types</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create any environment variables that you want to pass to the build process and set values in the <strong>Environment Variable</strong> section of the form.</p>
+</li>
+<li>
+<p>Click <strong>Create</strong></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jenkins"><a class="anchor" href="#jenkins"></a>Adding a Jenkinsfile</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>include::digger/running-a-build.adoc[]</p>
+<p>To build a mobile app using the Mobile CI/CD service, you must add a <code>Jenkinsfile</code> to your git repository, typically in the root directory of that repository.</p>
+</div>
+<div class="paragraph">
+<p>The following sample files are suitable for the <a href="showcase-apps.html">Showcase Apps</a>. You may need a different configuration for your mobile app.</p>
+</div>
+<div class="sect2">
+<h3 id="sample-android-jenkinsfile-for-debug-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-debug-build-type"></a>Sample Android Jenkinsfile for Debug Build Type</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build") {
+    sh './gradlew clean assembleDebug' //comment for debug builds
+  }
+
+  uncomment the following stage if running a release build
+  stage("Sign") {
+
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-debug.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample-android-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-release-build-type"></a>Sample Android Jenkinsfile for Release Build Type</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build"){
+    sh './gradlew clean assembleRelease' // uncomment for release build
+  }
+
+  stage("Sign") {
+    signAndroidApks (
+      keyStoreId: "myproject-testandroidcert",
+      keyAlias: "aerogear",
+      apksToSign: "**/*-unsigned.apk",
+      // uncomment the following line to output the signed APK to a separate directory as described above
+      // signedApkMapping: [ $class: UnsignedApkBuilderDirMapping ],
+      // uncomment the following line to output the signed APK as a sibling of the unsigned APK, as described above, or just omit signedApkMapping
+      // you can override these within the script if necessary
+      // androidHome: '/usr/local/Cellar/android-sdk'
+    )
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-release.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample-ios-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-ios-jenkinsfile-for-release-build-type"></a>Sample iOS Jenkinsfile for Release Build Type</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">CODE_SIGN_PROFILE_ID = "myproject-iostestcert"
+BUILD_CONFIG = "Debug" // Use either "Debug" or "Release"
+
+PROJECT_NAME = "helloworld-ios-app"
+INFO_PLIST = "helloworld-ios-app/helloworld-ios-app-Info.plist"
+VERSION = "1.0.0"
+SHORT_VERSION = "1.0"
+BUNDLE_ID = "org.aerogear.helloworld-ios-app"
+OUTPUT_FILE_NAME="${PROJECT_NAME}-${BUILD_CONFIG}.ipa"
+SDK = "iphoneos"
+
+// use something like 8.3 to use a specific XCode version, default version is used if not set
+XC_VERSION = ""
+
+// do a clean build and sign
+CLEAN = true
+
+node('ios') {
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Prepare') {
+      sh '/usr/local/bin/pod install'
+    }
+
+    stage('Build') {
+        withEnv(["XC_VERSION=${XC_VERSION}"]) {
+            xcodeBuild(
+                    cleanBeforeBuild: CLEAN,
+                    src: './',
+                    schema: "${PROJECT_NAME}",
+                    workspace: "${PROJECT_NAME}",
+                    buildDir: "build",
+                    sdk: "${SDK}",
+                    version: "${VERSION}",
+                    shortVersion: "${SHORT_VERSION}",
+                    bundleId: "${BUNDLE_ID}",
+                    infoPlistPath: "${INFO_PLIST}",
+                    xcodeBuildArgs: 'ENABLE_BITCODE=NO OTHER_CFLAGS="-fstack-protector -fstack-protector-all"',
+                    autoSign: false,
+                    config: "${BUILD_CONFIG}"
+            )
+        }
+    }
+
+    stage('CodeSign') {
+        codeSign(
+                profileId: "${CODE_SIGN_PROFILE_ID}",
+                clean: CLEAN,
+                verify: true,
+                ipaName: "${OUTPUT_FILE_NAME}",
+                appPath: "build/${BUILD_CONFIG}-${SDK}/${PROJECT_NAME}.app"
+        )
+    }
+
+    stage('Archive') {
+        archiveArtifacts "build/${BUILD_CONFIG}-${SDK}/${OUTPUT_FILE_NAME}"
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building"><a class="anchor" href="#building"></a>Building a Mobile App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To build a mobile app.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to the OpenShift Console.</p>
+</li>
+<li>
+<p>Browse to the <strong>Project Overview</strong> screen and find the Mobile Client you want to build.</p>
+</li>
+<li>
+<p>Click on the name of the Mobile Client to open the details view.</p>
+</li>
+<li>
+<p>From the <strong>Builds</strong> tab, select the mobile app you want to build click <strong>Start Build</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Expanding the build section will show the current status of this build.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Check the mobile app build status by expanding the mobile client box.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This box lists the last 5 builds for this client.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To view the mobile app as a pipeline build, from the left menu, click <strong>Builds &gt; Pipeline</strong>.</p>
+<div class="paragraph">
+<p>Each build step is displayed (along with the current step status: completed, error or running) based on the stages in your Jenkinsfile code.</p>
+</div>
+</li>
+<li>
+<p>To view the full build log, click <strong>view log</strong> which redirects you to your Jenkins instance.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logs"><a class="anchor" href="#logs"></a>Viewing Build Logs</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="viewing-build-history-in-the-openshift-console"><a class="anchor" href="#viewing-build-history-in-the-openshift-console"></a>Viewing Build History in the OpenShift Console</h3>
+<div class="paragraph">
+<p>All of the builds related to your mobile client can be seen in the <strong>Builds</strong> tab of your Mobile Client. Each build can be expanded to show further information about the build configuration, latest build and build history.</p>
+</div>
+<div class="paragraph">
+<p>All builds have a <strong>View Log</strong> link associated with them to access the detailed logs of that build.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-builds-complete.png" alt="access-build-from-notification][align=&quot;center&quot;">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-build-logs-in-jenkins"><a class="anchor" href="#viewing-build-logs-in-jenkins"></a>Viewing Build Logs in Jenkins</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the Mobile Client and click the <strong>Builds</strong> tab.</p>
+</li>
+<li>
+<p>Click the <strong>View Log</strong> link for the build, you are redirected to the Jenkins instance that has been running your build.</p>
+</li>
+<li>
+<p>If prompted, log into OpenShift and accept the authorization request for:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>user:info permission</p>
+</li>
+<li>
+<p>user:check-access permission</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>View the log of the build. Based on your permissions to the OpenShift project, you might have access to other Jenkins capabilities, such as inspecting the build configuration or re-running the build with changes in the pipeline script.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -761,6 +941,133 @@ This binary can be downloaded for any successful build in the build history.</p>
 <p>To download the binary to your mobile device, scan the QR code using your mobile device.</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="clean"><a class="anchor" href="#clean"></a>Cleaning up a Mobile Client Build</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="deleting-a-build-instance"><a class="anchor" href="#deleting-a-build-instance"></a>Deleting a Build Instance</h3>
+<div class="paragraph">
+<p>After creating and running a build, you can click through to your mobile client screen from the project overview and into the <strong>Builds</strong> tab. In this tab you see the details of your various mobile client builds.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click the build number of the build you want to delete. The build details screen is displayed.</p>
+</li>
+<li>
+<p>Choose <strong>Delete</strong> from the <strong>Actions</strong> menu. The build resource is removed from OpenShift along with the corrosponding build in the CI/CD service and any artefacts.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-mobile-ci-cd-build-configuration"><a class="anchor" href="#deleting-a-mobile-ci-cd-build-configuration"></a>Deleting a Mobile CI/CD Build Configuration</h3>
+<div class="paragraph">
+<p>When you create a Mobile Client build configuration, you create a <a href="https://docs.openshift.org/latest/dev_guide/builds/index.html#defining-a-buildconfig">BuildConfig</a> resource in OpenShift. This build config is then translated into a Jenkins Build for your mobile client in the CI/CD service. If you want to remove the entire Job from the CI/CD service and clean up everything in OpenShift, then deleting the build config  will achieve this. To delete the build config, click into your mobile client and open the builds tab. From here you can select the delete option from the more actions (the three dots) at the far right of the build row. Once deleted associated resources and builds with that Job will be removed as will the underlying Jenkins Job in the CI/CD service.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_source-configuration_ref_source-configuration"><a class="anchor" href="#ref_source-configuration_ref_source-configuration"></a>Debug and Release Build Types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use the following information to configure debug and release type builds.</p>
+</div>
+<div class="sect2">
+<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
+<div class="paragraph">
+<p>Add Build Type:
+Debug:: An Android debug build, no additional information required
+Release:: An Android release build, requires an upload of a password protected PKCS12 file containing a key protected by the same password.</p>
+</div>
+<div class="sect3">
+<h4 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h4>
+<div class="paragraph">
+<p>As a release build will need to be signed, you need to specify the keystore and private key passwords.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h4>
+<div class="paragraph">
+<p>If your keystore is checked into your source code, you will need to take the password value in your build script as an environmental variable. This will allow you to set this environmental variable as part of your client build from within the OpenShift UI. This can be done directly when creating the mobile client build or afterwards by editing the build config.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h4>
+<div class="paragraph">
+<p>If you have an external keystore, you should ensure to select the checkbox to use an external keystore once this is done, you will be asked for the following additional information:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Name</dt>
+<dd>
+<p>A unique name for the android credentials you are adding e.g. my-android-release-cert</p>
+</dd>
+<dt class="hdlist1">KeyStore Password</dt>
+<dd>
+<p>The password for the android keystore and the PKCS12 archive (The password for the archive and the keystore must be the same)</p>
+</dd>
+<dt class="hdlist1">KeyStore Alias</dt>
+<dd>
+<p>The entry name of the private key/certificate chain you want to use to sign your APK(s). This entry must exist in the key store uploaded. If your key store contains only one key entry, which is the most common case, you can leave this field blank.</p>
+</dd>
+<dt class="hdlist1">Android KeyStore</dt>
+<dd>
+<p>Password protected PKCS12 file containing a key protected by the same password.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The PKSC12 archive of your android keystore certificate can be generated using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">keytool -importkeystore -srckeystore &lt;your-android-cert.keystore&gt; -destkeystore &lt;your-android-cert&gt;.p12 -deststoretype PKCS12 -srcalias &lt;your-android-cert-alias&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Build Type</dt>
+<dd>
+<p>Build type value to be used by xcodebuild</p>
+</dd>
+<dt class="hdlist1">Name</dt>
+<dd>
+<p>The unique credential name to be used in jenkins</p>
+</dd>
+<dt class="hdlist1">Apple Developer Profile</dt>
+<dd>
+<p>An xcode zip generated file that contains all required files (certificate, private key and provisioning profile) to sign an iOS app. For more information, see this documentation on exporting developer accounts in XCode.</p>
+</dd>
+<dt class="hdlist1">Apple Developer Profile Password</dt>
+<dd>
+<p>The developer profile password to be used by jenkins when importing the developer profiles private key.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Platform</dt>
+<dd>
+<p>The platform that the app will target.</p>
+</dd>
+<dt class="hdlist1">Build Type</dt>
+<dd>
+<p>The build type value (debug or release). Depending on the platform selected, this may result in additional parameters to be required.</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>

@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/creating-a-build-configuration.html">
+    <title>Adding a Jenkinsfile :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/digger/proc_adding-a-jenkinsfile.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -180,13 +180,13 @@ Zepto(function($){
     <a class="nav-link" href="../getting-started.html#provisioning">Provisioning a Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#binding">Binding Client Service</a>
+    <a class="nav-link" href="../getting-started.html#binding">Binding Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#localdev">Setting Up Development Environment</a>
+    <a class="nav-link" href="../getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#running">Running the mobile app</a>
+    <a class="nav-link" href="../getting-started.html#running">Running a Mobile App</a>
   </li>
 </ul>
   </li>
@@ -244,6 +244,9 @@ Zepto(function($){
     <a class="nav-link" href="../push-notifications.html">Push Notifications</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../push-notifications.html#setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -262,22 +265,10 @@ Zepto(function($){
     <a class="nav-link" href="../runtime-connector.html">Runtime Connector</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../runtime-connector.html#setup">Setting Up</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#creating">Creating an API Server</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#connecting">Connecting to an API Server</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#calling">Calling APIs</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#updating">Updating Runtime Parameters</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#securing">Securing an API Server</a>
   </li>
 </ul>
   </li>
@@ -285,6 +276,9 @@ Zepto(function($){
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-metrics.html">Mobile Metrics</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-metrics.html#setup">Setting Up</a>
   </li>
@@ -295,7 +289,7 @@ Zepto(function($){
     <a class="nav-link" href="../mobile-metrics.html#setup">Device Trust</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../mobile-metrics.html#setup">Identity Management</a>
+    <a class="nav-link" href="../mobile-metrics.html#identity">Identity Management</a>
   </li>
 </ul>
   </li>
@@ -303,6 +297,9 @@ Zepto(function($){
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-cicd.html">Mobile CI/CD</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-cicd.html#setup">Setting Up</a>
   </li>
@@ -330,6 +327,9 @@ Zepto(function($){
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../device-security.html">Device Security</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../device-security.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../device-security.html#setup">Setting Up</a>
   </li>
@@ -360,7 +360,7 @@ Zepto(function($){
     <a class="nav-link" href="../showcase-apps.html#binding">Service Binding</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps.html#json">Downloading the service-config file</a>
+    <a class="nav-link" href="../showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../showcase-apps.html#build">Building and Running the Showcase Apps</a>
@@ -408,165 +408,159 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="proc_adding-a-jenkinsfile.html">Adding a Jenkinsfile</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/creating-a-build-configuration.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/proc_adding-a-jenkinsfile.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="sect1">
-<h2 id="source-configuration"><a class="anchor" href="#source-configuration"></a>Source Configuration</h2>
+<h1>Adding a Jenkinsfile</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In order to build your application, source configuration needs to be supplied to provide information about where the application source is and how it can be accessed.</p>
-</div>
-<div class="sect2">
-<h3 id="repository"><a class="anchor" href="#repository"></a>Repository</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Add Git Repository URL. To provide additional advanced information such as a different git ref (default is master), or Jenkinsfile path (default is the root of the repo), use the advanced options.</p>
-</li>
-<li>
-<p>Add Authentication Type:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Public: Use this for public repos that require no authentication.</p>
-</li>
-<li>
-<p>Basic Authentication: Username/password credentials, use this for https/http repo urls that require authentication.</p>
-</li>
-<li>
-<p>SSH Key: SSH Private Key Authentication, use this for ssh repo urls (git@).</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>To build a mobile app using the {digger-service} service, you must add a <code>Jenkinsfile</code> to your git repository, typically in the root directory of that repository.</p>
 </div>
 <div class="paragraph">
-<p>When adding credentials to access private repositories (Basic Authentication and SSH Key), a unique name should be supplied.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="advanced-options"><a class="anchor" href="#advanced-options"></a>Advanced Options</h3>
-<div class="paragraph">
-<p>Selecting the "advanced options" in the source configuration section displays a number of additional options:
-Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds e.g. release vs develop
-Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo, default is the root of the repo.</p>
-</div>
+<p>The following sample files are suitable for the <a href="showcase-apps.html">Showcase Apps</a>. You may need a different configuration for your mobile app.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="build-configuration"><a class="anchor" href="#build-configuration"></a>Build Configuration</h2>
+<h2 id="sample-android-jenkinsfile-for-debug-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-debug-build-type"></a>Sample Android Jenkinsfile for Debug Build Type</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Add configuration relating to the type of build being created e.g debug or release. The type of information required here will depend on the type of application being built.</p>
-</div>
-<div class="sect2">
-<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
-<div class="paragraph">
-<p>Add Build Type:
-Debug:: An Android debug build, no additional information required
-Release:: An Android release build, requires an upload of a password protected PKCS12 file containing a key protected by the same password.</p>
-</div>
-<div class="sect3">
-<h4 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h4>
-<div class="paragraph">
-<p>As a release build will need to be signed, you need to specify the keystore and private key passwords.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h4>
-<div class="paragraph">
-<p>If your keystore is checked into your source code, you will need to take the password value in your build script as an environmental variable. This will allow you to set this environmental variable as part of your client build from within the OpenShift UI. This can be done directly when creating the mobile client build or afterwards by editing the build config.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h4>
-<div class="paragraph">
-<p>If you have an external keystore, you should ensure to select the checkbox to use an external keystore once this is done, you will be asked for the following additional information:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Name</dt>
-<dd>
-<p>A unique name for the android credentials you are adding e.g. my-android-release-cert</p>
-</dd>
-<dt class="hdlist1">Android KeyStore</dt>
-<dd>
-<p>Password protected PKCS12 file containing a key protected by the same password.</p>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>The PKSC12 archive of your android keystore certificate can be generated using the following command:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">keytool -importkeystore -srckeystore &lt;your-android-cert.keystore&gt; -destkeystore &lt;your-android-cert&gt;.p12 -deststoretype PKCS12 -srcalias &lt;your-android-cert-alias&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build") {
+    sh './gradlew clean assembleDebug' //comment for debug builds
+  }
+
+  uncomment the following stage if running a release build
+  stage("Sign") {
+
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-debug.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
 </div>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">KeyStore Password</dt>
-<dd>
-<p>The password for the android keystore and the PKCS12 archive (The password for the archive and the keystore must be the same)</p>
-</dd>
-<dt class="hdlist1">KeyStore Alias</dt>
-<dd>
-<p>The entry name of the private key/certificate chain you want to use to sign your APK(s). This entry must exist in the key store uploaded. If your key store contains only one key entry, which is the most common case, you can leave this field blank.</p>
-</dd>
-</dl>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sample-android-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-release-build-type"></a>Sample Android Jenkinsfile for Release Build Type</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build"){
+    sh './gradlew clean assembleRelease' // uncomment for release build
+  }
+
+  stage("Sign") {
+    signAndroidApks (
+      keyStoreId: "myproject-testandroidcert",
+      keyAlias: "aerogear",
+      apksToSign: "**/*-unsigned.apk",
+      // uncomment the following line to output the signed APK to a separate directory as described above
+      // signedApkMapping: [ $class: UnsignedApkBuilderDirMapping ],
+      // uncomment the following line to output the signed APK as a sibling of the unsigned APK, as described above, or just omit signedApkMapping
+      // you can override these within the script if necessary
+      // androidHome: '/usr/local/Cellar/android-sdk'
+    )
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-release.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Build Type</dt>
-<dd>
-<p>Build type value to be used by xcodebuild</p>
-</dd>
-<dt class="hdlist1">Name</dt>
-<dd>
-<p>The unique credential name to be used in jenkins</p>
-</dd>
-<dt class="hdlist1">Apple Developer Profile</dt>
-<dd>
-<p>An xcode zip generated file that contains all required files (certificate, private key and provisioning profile) to sign an iOS app. For more information, see this documentation on exporting developer accounts in XCode.</p>
-</dd>
-<dt class="hdlist1">Apple Developer Profile Password</dt>
-<dd>
-<p>The developer profile password to be used by jenkins when importing the developer profiles private key.</p>
-</dd>
-</dl>
 </div>
-</div>
-<div class="sect2">
-<h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Platform</dt>
-<dd>
-<p>The platform that the app will target.</p>
-</dd>
-<dt class="hdlist1">Build Type</dt>
-<dd>
-<p>The build type value (debug or release). Depending on the platform selected, this may result in additional parameters to be required.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>For Android, see the Android build configuration section.</p>
-</li>
-<li>
-<p>For iOS, see the iOS build configuration section.</p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
+<div class="sect1">
+<h2 id="sample-ios-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-ios-jenkinsfile-for-release-build-type"></a>Sample iOS Jenkinsfile for Release Build Type</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">CODE_SIGN_PROFILE_ID = "myproject-iostestcert"
+BUILD_CONFIG = "Debug" // Use either "Debug" or "Release"
+
+PROJECT_NAME = "helloworld-ios-app"
+INFO_PLIST = "helloworld-ios-app/helloworld-ios-app-Info.plist"
+VERSION = "1.0.0"
+SHORT_VERSION = "1.0"
+BUNDLE_ID = "org.aerogear.helloworld-ios-app"
+OUTPUT_FILE_NAME="${PROJECT_NAME}-${BUILD_CONFIG}.ipa"
+SDK = "iphoneos"
+
+// use something like 8.3 to use a specific XCode version, default version is used if not set
+XC_VERSION = ""
+
+// do a clean build and sign
+CLEAN = true
+
+node('ios') {
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Prepare') {
+      sh '/usr/local/bin/pod install'
+    }
+
+    stage('Build') {
+        withEnv(["XC_VERSION=${XC_VERSION}"]) {
+            xcodeBuild(
+                    cleanBeforeBuild: CLEAN,
+                    src: './',
+                    schema: "${PROJECT_NAME}",
+                    workspace: "${PROJECT_NAME}",
+                    buildDir: "build",
+                    sdk: "${SDK}",
+                    version: "${VERSION}",
+                    shortVersion: "${SHORT_VERSION}",
+                    bundleId: "${BUNDLE_ID}",
+                    infoPlistPath: "${INFO_PLIST}",
+                    xcodeBuildArgs: 'ENABLE_BITCODE=NO OTHER_CFLAGS="-fstack-protector -fstack-protector-all"',
+                    autoSign: false,
+                    config: "${BUILD_CONFIG}"
+            )
+        }
+    }
+
+    stage('CodeSign') {
+        codeSign(
+                profileId: "${CODE_SIGN_PROFILE_ID}",
+                clean: CLEAN,
+                verify: true,
+                ipaName: "${OUTPUT_FILE_NAME}",
+                appPath: "build/${BUILD_CONFIG}-${SDK}/${PROJECT_NAME}.app"
+        )
+    }
+
+    stage('Archive') {
+        archiveArtifacts "build/${BUILD_CONFIG}-${SDK}/${OUTPUT_FILE_NAME}"
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -577,26 +571,20 @@ Release:: An Android release build, requires an upload of a password protected P
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
-        <h5>Getting Started</h5>
-        <ul class="list-unstyled">
-          <li><a href="https://aerogear.org/getting-started/">Overview</a></li>
-        </ul>
-      </div><!-- col -->
 
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <h5>Mobile Services</h5>
         <ul class="list-unstyled">
-         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
-         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
-         <li><a href="https://aerogear.org/services/metrics/">Metrics</a></li>
-         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
          <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
          <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
         </ul>
       </div><!-- col -->
 
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <h5>Mobile SDKs</h5>
         <ul class="list-unstyled">
          <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
@@ -606,7 +594,7 @@ Release:: An Android release build, requires an upload of a password protected P
         </ul>
       </div><!-- col -->
       
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <h5>COMMUNITY</h5>
         <ul class="list-unstyled">
           <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>

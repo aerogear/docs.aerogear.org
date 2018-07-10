@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating a Build Configuration :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/digger/proc_creating-a-build-configuration.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
   <body class="article">
@@ -180,7 +180,7 @@ Zepto(function($){
     <a class="nav-link" href="../getting-started.html#provisioning">Provisioning a Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#binding">Binding Mobile Clients</a>
+    <a class="nav-link" href="../getting-started.html#binding">Binding Services</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
@@ -307,7 +307,19 @@ Zepto(function($){
     <a class="nav-link" href="../mobile-cicd.html#build-config">Creating a Build Configuration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#clean">Cleaning up Builds</a>
   </li>
 </ul>
   </li>
@@ -396,6 +408,9 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="proc_creating-a-build-configuration.html">Creating a Build Configuration</a></li>
+  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/proc_creating-a-build-configuration.adoc"></a></div>
 </div>
@@ -407,19 +422,69 @@ Zepto(function($){
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the OpenShift UI.</p>
+<p>Log in to the OpenShift Console.</p>
 </li>
 <li>
-<p>Browse to the <strong>Project Overview</strong> screen and find the mobile client you want to build.</p>
+<p>Browse to the <strong>Project Overview</strong> screen and find the Mobile Client you want to build.</p>
 </li>
 <li>
-<p>Click on the name of the mobile client to open the details view.</p>
+<p>Click on the name of the Mobile Client to open the details view.</p>
 </li>
 <li>
-<p>At the top right of the screen, click the <strong>drop down</strong> and select <strong>Create Build</strong>.</p>
+<p>From the <strong>Builds</strong> tab, select <strong>Create Build</strong> in the <strong>Actions</strong> menu. If no build configuration  exists, a <strong>Start Build</strong> button is displayed which allows you create a build configuration.</p>
+<div class="paragraph">
+<p><span class="image"><img src="../_images/mobile-clients-builds-empty.png" alt="mobile clients builds empty"></span></p>
+</div>
+<div class="paragraph">
+<p>The <strong>Client Build Form</strong> is displayed.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter a unique name for the build configuration in the <strong>Name</strong> field.</p>
 </li>
 <li>
-<p>When the <strong>Client Build Form</strong> screen opens, give the new build a unique name.</p>
+<p>Enter the <strong>Git Repository URL</strong> for the Mobile Client you want to build.</p>
+</li>
+<li>
+<p>Select the <strong>Authentication Type</strong> for the Git repository. For example, the Mobile Services showcase apps are available to everyone, so you would choose <strong>Public</strong>. If your repo URL starts with <code>git@</code>, select <strong>SSH</strong>. If your repo URl starts with <code>http</code> and requires authentication, select <strong>Basic</strong>.</p>
+</li>
+<li>
+<p>If you select <strong>Advanced Options</strong> you can also specify:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds, for example, release vs develop.</p>
+</li>
+<li>
+<p>Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Select the <strong>Build Type</strong> for the build configuration. Typically you create two build configurations, one for debugging and and another for release.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Typically, for a <strong>Release</strong> build configuration, you need to add more information as described in <a href="#ref_source-configuration_ref_source-configuration">[ref_source-configuration_ref_source-configuration]</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create any environment variables that you want to pass to the build process and set values in the <strong>Environment Variable</strong> section of the form.</p>
+</li>
+<li>
+<p>Click <strong>Create</strong></p>
 </li>
 </ol>
 </div>

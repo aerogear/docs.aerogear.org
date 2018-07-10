@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deploying a Mobile App :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://www.aerogear.org/aerogear/latest/digger/deploy-the-app.html">
+    <title>Cleaning up a Mobile Client Build :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/digger/cleaning-up-client-builds.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -180,13 +180,13 @@ Zepto(function($){
     <a class="nav-link" href="../getting-started.html#provisioning">Provisioning a Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#binding">Binding Client Service</a>
+    <a class="nav-link" href="../getting-started.html#binding">Binding Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#localdev">Setting Up Development Environment</a>
+    <a class="nav-link" href="../getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../getting-started.html#running">Running the mobile app</a>
+    <a class="nav-link" href="../getting-started.html#running">Running a Mobile App</a>
   </li>
 </ul>
   </li>
@@ -244,6 +244,9 @@ Zepto(function($){
     <a class="nav-link" href="../push-notifications.html">Push Notifications</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../push-notifications.html#setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -262,22 +265,10 @@ Zepto(function($){
     <a class="nav-link" href="../runtime-connector.html">Runtime Connector</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../runtime-connector.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../runtime-connector.html#setup">Setting Up</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#creating">Creating an API Server</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#connecting">Connecting to an API Server</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#calling">Calling APIs</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#updating">Updating Runtime Parameters</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../runtime-connector.html#securing">Securing an API Server</a>
   </li>
 </ul>
   </li>
@@ -285,6 +276,9 @@ Zepto(function($){
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-metrics.html">Mobile Metrics</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-metrics.html#setup">Setting Up</a>
   </li>
@@ -295,7 +289,7 @@ Zepto(function($){
     <a class="nav-link" href="../mobile-metrics.html#setup">Device Trust</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../mobile-metrics.html#setup">Identity Management</a>
+    <a class="nav-link" href="../mobile-metrics.html#identity">Identity Management</a>
   </li>
 </ul>
   </li>
@@ -303,6 +297,9 @@ Zepto(function($){
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../mobile-cicd.html">Mobile CI/CD</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-cicd.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-cicd.html#setup">Setting Up</a>
   </li>
@@ -330,6 +327,9 @@ Zepto(function($){
     <button class="nav-toggle"></button>
     <a class="nav-link" href="../device-security.html">Device Security</a>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../device-security.html#introduction">Introduction</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../device-security.html#setup">Setting Up</a>
   </li>
@@ -360,7 +360,7 @@ Zepto(function($){
     <a class="nav-link" href="../showcase-apps.html#binding">Service Binding</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../showcase-apps.html#json">Downloading the service-config file</a>
+    <a class="nav-link" href="../showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../showcase-apps.html#build">Building and Running the Showcase Apps</a>
@@ -409,44 +409,38 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="deploy-the-app.html">Deploying a Mobile App</a></li>
+    <li class="crumb"><a href="cleaning-up-client-builds.html">Cleaning up a Mobile Client Build</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/deploy-the-app.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/cleaning-up-client-builds.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Deploying a Mobile App</h1>
+<h1>Cleaning up a Mobile Client Build</h1>
+<div class="sect1">
+<h2 id="deleting-a-build-instance"><a class="anchor" href="#deleting-a-build-instance"></a>Deleting a Build Instance</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>You can use the OpenShift UI to deploy a mobile app.
-The build history for each build is also captured.</p>
+<p>After creating and running a build, you can click through to your mobile client screen from the project overview and into the <strong>Builds</strong> tab. In this tab you see the details of your various mobile client builds.</p>
 </div>
-<h2 id="prerequisites" class="discrete">Prerequisites</h2>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="provisioning.html" class="page">A provisioned Mobile CI/CD service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="../registering-a-mobile-app.html" class="page">A Registered Mobile Client</a></p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="proc_creating-a-build-configuration.html" class="page">Created a Build Configuration</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="running-a-build.html" class="page">Built a Mobile App</a>.</p>
-</li>
-</ul>
-</div>
-<h2 id="procedure" class="discrete">Procedure</h2>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open the OpenShift UI.</p>
+<p>Click the build number of the build you want to delete. The build details screen is displayed.</p>
 </li>
 <li>
-<p>Open the "Build tab".</p>
+<p>Choose <strong>Delete</strong> from the <strong>Actions</strong> menu. The build resource is removed from OpenShift along with the corrosponding build in the CI/CD service and any artefacts.</p>
 </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deleting-a-digger-service-build-configuration"><a class="anchor" href="#deleting-a-digger-service-build-configuration"></a>Deleting a {digger-service} Build Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you create a {mobile-client} build configuration, you create a <a href="https://docs.openshift.org/latest/dev_guide/builds/index.html#defining-a-buildconfig">BuildConfig</a> resource in OpenShift. This build config is then translated into a Jenkins Build for your mobile client in the CI/CD service. If you want to remove the entire Job from the CI/CD service and clean up everything in OpenShift, then deleting the build config  will achieve this. To delete the build config, click into your mobile client and open the builds tab. From here you can select the delete option from the more actions (the three dots) at the far right of the build row. Once deleted associated resources and builds with that Job will be removed as will the underlying Jenkins Job in the CI/CD service.</p>
+</div>
+</div>
 </div>
 </article>
   </main>
@@ -454,26 +448,20 @@ The build history for each build is also captured.</p>
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
-        <h5>Getting Started</h5>
-        <ul class="list-unstyled">
-          <li><a href="https://aerogear.org/getting-started/">Overview</a></li>
-        </ul>
-      </div><!-- col -->
 
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <h5>Mobile Services</h5>
         <ul class="list-unstyled">
-         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
-         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
-         <li><a href="https://aerogear.org/services/metrics/">Metrics</a></li>
-         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
          <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
          <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
         </ul>
       </div><!-- col -->
 
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <h5>Mobile SDKs</h5>
         <ul class="list-unstyled">
          <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
@@ -483,7 +471,7 @@ The build history for each build is also captured.</p>
         </ul>
       </div><!-- col -->
       
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <h5>COMMUNITY</h5>
         <ul class="list-unstyled">
           <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
