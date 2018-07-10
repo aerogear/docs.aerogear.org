@@ -1,3 +1,5 @@
+# Only index the urls that are listed in mobile-docs:/modules/ROOT/nav.adoc
+
 User-agent: *
 Disallow:/android
 Disallow:/apps.html
