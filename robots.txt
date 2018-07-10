@@ -1,0 +1,33 @@
+# Only index the urls that are listed in mobile-docs:/modules/ROOT/nav.adoc
+
+User-agent: *
+Disallow:/android
+Disallow:/apps.html
+Disallow:/binding-mobile-app-record-to-mobile-services.html
+Disallow:/configuring-dev-env.html
+Disallow:/con_services.html
+Disallow:/cordova
+Disallow:/create-android-client-openshift.html
+Disallow:/custom
+Disallow:/digger
+Disallow:/glossary.html
+Disallow:/installing-mobile-services.html
+Disallow:/integrate-android-app-with-custom-service.html
+Disallow:/integrating-services.html
+Disallow:/introduction
+Disallow:/ios
+Disallow:/keycloak
+Disallow:/metrics
+Disallow:/mobile_architecture.html
+Disallow:/mobile_terminology.html
+Disallow:/nav-matrix.html
+Disallow:/provisioning-services.html
+Disallow:/push
+Disallow:/registering-a-mobile-app.html
+Disallow:/security
+Disallow:/showcase-apps
+Disallow:/testcard.html
+Disallow:/ups_userguide
+Disallow:/using-mobile-services-json.html
+Disallow:/workflow.html
+Disallow:/xamarin
