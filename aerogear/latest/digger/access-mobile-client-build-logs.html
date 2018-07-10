@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/aerogear-push-android/guides.html">
+    <title>Viewing Build Logs :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/digger/access-mobile-client-build-logs.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -408,35 +408,60 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="access-mobile-client-build-logs.html">Viewing Build Logs</a></li>
+  </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/aerogear-push-android/pages/guides.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/digger/access-mobile-client-build-logs.adoc"></a></div>
 </div>
 <article class="doc">
-<hr>
+<h1>Viewing Build Logs</h1>
+<div class="sect1">
+<h2 id="viewing-build-history-in-the-openshift-console"><a class="anchor" href="#viewing-build-history-in-the-openshift-console"></a>Viewing Build History in the OpenShift Console</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>layout: post
-title: FCM Push Notifications with AeroGear&#8217;s UnifiedPush Server
-section: guides
-toc_generate: true
----</p>
+<p>All of the builds related to your mobile client can be seen in the <strong>Builds</strong> tab of your {mobile-client}. Each build can be expanded to show further information about the build configuration, latest build and build history.</p>
 </div>
 <div class="paragraph">
-<p>The following step-by-step guides, give you an introduction on how to use the AeroGear UnifiedPush Server for sending Push Notifications to your own Android Apps. You will need a Google account to use Firebase services, and can use either a real Android device or the emulator to test. So, let’s get started:</p>
+<p>All builds have a <strong>View Log</strong> link associated with them to access the detailed logs of that build.</p>
 </div>
-<div class="paragraph">
-<p>include::docs/unifiedpush/aerogear-push-android/google-setup.asciidoc[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/mobile-clients-builds-complete.png" alt="access-build-from-notification][align=&quot;center&quot;">
 </div>
-<div class="paragraph">
-<p>include::docs/unifiedpush/aerogear-push-android/register-device.asciidoc[]</p>
 </div>
-<div class="paragraph">
-<p>include::docs/unifiedpush/aerogear-push-android/android-app.asciidoc[]</p>
 </div>
-<div class="paragraph">
-<p>include::docs/unifiedpush/aerogear-push-android/push-notification.asciidoc[]</p>
 </div>
-<div class="paragraph">
-<p>include::docs/unifiedpush/aerogear-push-android/troubleshooting.asciidoc[]</p>
+<div class="sect1">
+<h2 id="viewing-build-logs-in-jenkins"><a class="anchor" href="#viewing-build-logs-in-jenkins"></a>Viewing Build Logs in Jenkins</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the {mobile-client} and click the <strong>Builds</strong> tab.</p>
+</li>
+<li>
+<p>Click the <strong>View Log</strong> link for the build, you are redirected to the Jenkins instance that has been running your build.</p>
+</li>
+<li>
+<p>If prompted, log into OpenShift and accept the authorization request for:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>user:info permission</p>
+</li>
+<li>
+<p>user:check-access permission</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>View the log of the build. Based on your permissions to the OpenShift project, you might have access to other Jenkins capabilities, such as inspecting the build configuration or re-running the build with changes in the pipeline script.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </article>
   </main>
