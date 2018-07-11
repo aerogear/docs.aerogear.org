@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile CI/CD :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobile-cicd.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
   <body class="article">
@@ -423,7 +423,8 @@ Zepto(function($){
 <li><a href="#introduction">Introduction to the Mobile CI/CD Service</a></li>
 <li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
 <li><a href="#setup">Prerequisites</a></li>
-<li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a></li>
+<li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a>
+<ul class="sectlevel1">
 <li><a href="#build-config">Creating a Build Configuration</a></li>
 <li><a href="#jenkins">Adding a Jenkinsfile</a>
 <ul class="sectlevel2">
@@ -451,6 +452,8 @@ Zepto(function($){
 <li><a href="#android">Android</a></li>
 <li><a href="#ios">iOS</a></li>
 <li><a href="#cordova">Cordova</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -520,15 +523,14 @@ Zepto(function($){
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.
+:leveloffset: 1</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="provisioning-mobile-ci-cd-service"><a class="anchor" href="#provisioning-mobile-ci-cd-service"></a>Provisioning Mobile CI/CD Service</h2>
-<div class="sectionbody">
+<h1 id="provisioning-mobile-ci-cd-service" class="sect0"><a class="anchor" href="#provisioning-mobile-ci-cd-service"></a>Provisioning Mobile CI/CD Service</h1>
 <div class="paragraph">
 <p>To provision the Mobile CI/CD mobile service:</p>
 </div>
@@ -587,8 +589,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </div>
 <div class="paragraph">
 <p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="build-config"><a class="anchor" href="#build-config"></a>Creating a Build Configuration</h2>
