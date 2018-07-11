@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identity Management :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/showcase-apps/identity-management.html">
+    <title>Configuring your Development Environment for the {device-security-service} Service :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/security/configuring-dev-env-security.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -409,26 +409,95 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/showcase-apps/identity-management.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/configuring-dev-env-security.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Identity Management</h1>
-<div class="paragraph">
-<p>From the showcase app:</p>
-</div>
+<h1>Configuring your Development Environment for the {device-security-service} Service</h1>
+<div class="sect1">
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Press the <strong>Authenticate</strong> menu item. A login screen is displayed.</p>
+<p>Navigate to your project in OpenShift.</p>
 </li>
 <li>
-<p>Log in using the credentials you set up with setting up the service.</p>
-<div class="paragraph">
-<p>Once the login is successful, you will be taken back to the showcase
-application where you can see the roles and basic information of the user you have just logged in with.</p>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
+</td>
+</tr>
+</table>
 </div>
 </li>
+<li>
+<p>Follow the next specific additional instructions depending on your platform:</p>
+</li>
 </ol>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>Locate this file in your application project and import it using <code>require</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can create a JavaScript object and use directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </article>
   </main>
