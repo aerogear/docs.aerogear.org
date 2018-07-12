@@ -68,8 +68,9 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Showcase Apps :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/showcase-apps.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
   <body class="article">
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -348,9 +349,6 @@ Zepto(function($){
     <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#features">Showcase App Features</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#setup">Service Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -367,6 +365,9 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#features">Demonstrating the Showcase App Features</a>
   </li>
 </ul>
   </li>
@@ -432,80 +433,6 @@ starting point for the developers.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="features"><a class="anchor" href="#features"></a>Showcase App Features</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="identity-management"><a class="anchor" href="#identity-management"></a>Identity Management</h3>
-<div class="paragraph">
-<p>From the showcase app:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Press the <strong>Authenticate</strong> menu item. A login screen is displayed.</p>
-</li>
-<li>
-<p>Log in using the credentials you set up with setting up the service.</p>
-<div class="paragraph">
-<p>Once the login is successful, you will be taken back to the showcase
-application where you can see the roles and basic information of the user you have just logged in with.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="device-security"><a class="anchor" href="#device-security"></a>Device Security</h3>
-<div class="paragraph">
-<p>From the showcase app:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Press the <strong>Device Security</strong> menu item.</p>
-</li>
-<li>
-<p>View the results of the Device security checks.</p>
-</li>
-<li>
-<p>Navigate to the Grafana, and view the metrics as described in <a href="metrics/analysing-app-usage.html" class="page">Analyzing App Usage</a></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="push-notifications"><a class="anchor" href="#push-notifications"></a>Push Notifications</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Send a push notification as described in
-<a href="push/proc_sending-a-push-notification.html" class="page">Sending a Push Notification</a></p>
-</li>
-<li>
-<p>Launch the showcase app and view the notification.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="mobile-metrics"><a class="anchor" href="#mobile-metrics"></a>Mobile Metrics</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Launch the showcase app. It automatically sends <a href="metrics/analysing-app-usage.html" class="page">app and device metrics</a>.</p>
-</li>
-<li>
-<p>Navigate to the Grafana, and view the metrics.</p>
-<div class="paragraph">
-<p>If you perform <a href="showcase-apps/device-security.html" class="page">device security</a> checks, related metrics are also displayed.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="using-the-showcase-apps"><a class="anchor" href="#using-the-showcase-apps"></a>Using the Showcase Apps</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -514,10 +441,10 @@ application where you can see the roles and basic information of the user you ha
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Set up the appropriate services.</p>
+<p>Set up the appropriate services as described in <a href="#setup">Setting up Mobile Services to Demonstrate Showcase Apps</a>.</p>
 </li>
 <li>
-<p>Set up the mobile app as described in <a href="#setting-up-the-showcase-app">[setting-up-the-showcase-app]</a>.</p>
+<p>Set up the showcase app as described in <a href="#app">Setting Up the Showcase App</a>.</p>
 </li>
 <li>
 <p>Register your showcase app as described in <a href="registering-a-mobile-app.html" class="page">Registering a Mobile App</a>.</p>
@@ -529,7 +456,7 @@ application where you can see the roles and basic information of the user you ha
 <p>Copy the <code>mobile-services.json</code> file to your IDE as described in <a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></p>
 </li>
 <li>
-<p>Build and run your showcase app  as described in <a href="#building-and-deploying-the-showcase-apps">[building-and-deploying-the-showcase-apps]</a>.</p>
+<p>Build and run your showcase app  as described in <a href="#build">Building and Running the Showcase App</a>.</p>
 </li>
 </ol>
 </div>
@@ -547,10 +474,10 @@ application where you can see the roles and basic information of the user you ha
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>To demonstrate metrics, <a href="metrics/provisioning.html" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="metrics/index.html" class="page">Mobile Metrics Service</a></p>
+<p>To demonstrate Mobile Metrics, <a href="metrics/provisioning.html" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="mobile-metrics.html" class="page">Mobile Metrics Service</a></p>
 </li>
 <li>
-<p>To demonstrate authentication:</p>
+<p>To demonstrate Identity Management:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -560,19 +487,19 @@ application where you can see the roles and basic information of the user you ha
 <p><a href="keycloak/keycloak-setup.html" class="page">Set up the Identity Management service</a>.</p>
 </li>
 <li>
-<p>You must create a new user account before you can log into the Showcase App. To create a new user, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a>.</p>
+<p>Create a new user to authenticate as. Follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a>.</p>
 </li>
 <li>
-<p>To create the new user&#8217;s credentials follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.</p>
+<p>Set credentials for the created user. Follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>For more information about features, see <a href="keycloak/index.html" class="page">Identity Management Service</a></p>
+<p>For more information about features, see <a href="identity-management.html" class="page">Identity Management Service</a></p>
 </div>
 </li>
 <li>
-<p>To demonstrate Push Notifications, <a href="push/provisioning.html" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="push/index.html" class="page">Push Notifications Service</a></p>
+<p>To demonstrate Push Notifications, <a href="push/provisioning.html" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
 </li>
 </ol>
 </div>
@@ -634,10 +561,10 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/">Node.js</a> runtime and NPM</p>
+<p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/">Node.js</a> version 8.9.4 runtime and NPM</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli">Cordova CLI</a></p>
+<p><i class="fa fa-check-square-o"></i> <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli">Cordova CLI</a> version 8.0.0</p>
 </li>
 </ul>
 </div>
@@ -718,33 +645,81 @@ $ git checkout 1.0.0</code></pre>
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Configure the Mobile SDK as described in <a href="configuring-dev-env.html#obtaining-the-mobile-sdk-configuration-file" class="page">Obtaining the Mobile SDK Configuration File</a></p>
-</li>
-<li>
-<p>If using <a href="push/google-setup.html" class="page">Firebase Cloud Messaging</a> for push notifications, copy the <code>google-services.json</code> to your IDE.</p>
+<p>The following steps will help you enable Push Notifications in a showcase application.</p>
 </li>
 </ol>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You will need to create a project on <a href="https://firebase.google.com/">Firebase</a>.</p>
+</li>
+<li>
+<p>Follow steps outlined <a href="https://support.google.com/firebase/answer/7015592?hl=en">here</a> to download <code>google-services.json</code> from your Firebase project.</p>
+</li>
+<li>
 <p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
-<a href="push/google-setup.html" class="page">Firebase Cloud Messaging</a> console.</p>
+Firebase Cloud Messaging console.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>Firebase Cloud Messaging is not supported on iOS.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Follow the <a href="https://help.apple.com/xcode/mac/current/#/devdfd3d04a1">official guide</a> to enable push notifications for your Xcode project.</p>
+</li>
+<li>
+<p>Follow  the <a href="https://help.apple.com/developer-account/#/dev82a71386a">official guide</a> to generate an APNs client TLS certificate and export the client TLS identity from your Mac.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure to protect the p12 file with a password.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The exported p12 file with the password will be used later when binding your Mobile Client to the Push Notifications.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>Overwrite the file <code>/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
-<a href="push/google-setup.html" class="page">Firebase Cloud Messaging</a> console.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You will need to create a project on <a href="https://firebase.google.com/">Firebase</a>.</p>
+</li>
+<li>
+<p>Follow steps outlined <a href="https://support.google.com/firebase/answer/7015592?hl=en">here</a> to download <code>google-services.json</code> from your Firebase project.</p>
+</li>
+<li>
+<p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
+Firebase Cloud Messaging console.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1044,7 +1019,7 @@ If no android devices are selectable, it could mean that no virtual android devi
 </div>
 </div>
 <div class="sect1">
-<h2 id="using-self-signed-certificates-in-mobile-apps"><a class="anchor" href="#using-self-signed-certificates-in-mobile-apps"></a>Using Self-Signed Certificates in Mobile Apps</h2>
+<h2 id="certs"><a class="anchor" href="#certs"></a>Using Self-Signed Certificates in Mobile Apps</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Throughout the development lifecycle of a mobile app, a common
@@ -1180,137 +1155,75 @@ installed certificate. Instructions can be found on the
 </div>
 </div>
 <div class="sect1">
-<h2 id="certs"><a class="anchor" href="#certs"></a>Using Self-Signed Certificates in Mobile Apps</h2>
+<h2 id="features"><a class="anchor" href="#features"></a>Demonstrating the ShowCase App Features</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Throughout the development lifecycle of a mobile app, a common
-requirement is to integrate and connect with back-end
-services in a secure manner. This is achieved using SSL/TLS.</p>
-</div>
-<div class="paragraph">
-<p>However, in order for the client device to connect over SSL/TLS, it needs to trust the
-certificates used by the back-end services, which are signed by a certificate authority.
-Most client devices have a list of well-known and trusted certificate authorities pre-installed and this allows the client devices to verify the certificates used by the back-end services.</p>
-</div>
-<div class="paragraph">
-<p>However, this normally doesn&#8217;t work in a development environment, such as a local OpenShift cluster as it uses self-signed certificates which are not signed by any of the trusted certificate authorties. This means by default the client devices won&#8217;t be able to establish secure connections with the back-end services that are running on a local OpenShift cluster.</p>
-</div>
-<div class="paragraph">
-<p>To work around the problem, you must manually extract the root certificate from the cluster, install it on the device and mark it as trusted.</p>
-</div>
 <div class="sect2">
-<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>1. Extracting the OpenShift Root Certificate Authority Cert</h3>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<h3 id="identity-management"><a class="anchor" href="#identity-management"></a>Identity Management</h3>
+<div class="paragraph">
+<p>From the showcase app:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Log into OpenShift as the admin user.</p>
+<p>Press the <strong>Authenticate</strong> menu item. A login screen is displayed.</p>
 </li>
 <li>
-<p>Run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
-base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/localcluster.crt</code></pre>
-</div>
-</div>
+<p>Log in using the credentials you set up with setting up the service.</p>
 <div class="paragraph">
-<p>The resulting file is located in the <code>/tmp</code> directory.</p>
+<p>Once the login is successful, you will be taken back to the showcase
+application where you can see the roles and basic information of the user you have just logged in with.</p>
 </div>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><a href="https://support.google.com/android/answer/2819522?hl=en">Set screen lock</a> on the mobile device to ensure the certificate can be installed.</p>
-</li>
-<li>
-<p>Copy the file to your device using one of the following methods:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Email attachment (Recommended) - Simply email the certificate to an address
-accessible from the device and download the attachment.</p>
-</li>
-<li>
-<p>Cloud service - Use a cloud storage service such as Dropbox or Google
-Drive which is accessible from the device, browse to the certificate and
-proceed to download it.</p>
-</li>
-<li>
-<p>USB - Attach the device to the machine hosting
-OpenShift via USB and drag the certificate to a devices file system. Here is an <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>. It may be different for other devices.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Add the certificate to your device:</p>
+<h3 id="device-security"><a class="anchor" href="#device-security"></a>Device Security</h3>
 <div class="paragraph">
-<p>If you are using the email or cloud service approach, once the certificate file is downloaded, you will be prompted by the Android system automatically to install the file. You can simply follow the instructions to complete the process.</p>
+<p>From the showcase app:</p>
 </div>
-<div class="paragraph">
-<p>However, if you are using the USB approach, you will need to install the certificate manually: go to Settings &gt; Security &gt; Install from storage, tap on the copied certificate file and Android system should detect the
-certificate and let you add it to the device. Here is <a href="https://support.google.com/nexus/answer/2844832?hl=en">a sample guide for Google Nexus devices</a>.</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press the <strong>Device Security</strong> menu item.</p>
+</li>
+<li>
+<p>View the results of the Device security checks.</p>
+</li>
+<li>
+<p>Navigate to the Grafana, and view the metrics as described in <a href="metrics/analysing-app-usage.html" class="page">Analyzing App Usage</a></p>
 </li>
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<div class="sect2">
+<h3 id="push-notifications"><a class="anchor" href="#push-notifications"></a>Push Notifications</h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Enable <a href="https://support.apple.com/en-us/ht204060">Passcode</a> or <a href="https://support.apple.com/en-us/ht201371">TouchID</a> protection on the mobile device to ensure the certificate can be installed.</p>
+<p>Send a push notification as described in
+<a href="push/proc_sending-a-push-notification.html" class="page">Sending a Push Notification</a></p>
 </li>
 <li>
-<p>Copy the file to your device using one of the following methods:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Email attachment (Recommended) - Simply email the certificate to an address
-accessible from the device and download the attachment.</p>
-</li>
-<li>
-<p>Cloud service - Use a cloud storage service such as Dropbox or Google
-Drive which is accessible from the device, browse to the certificate and
-proceed to download it.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Add the certificate to your device:</p>
-<div class="paragraph">
-<p>When you download the certificate, the
-device should automatically detect a profile. Simply follow the on
-screen instructions to install it.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Versions iOS 10.3 and later require an additional step to trust the now
-installed certificate. Instructions can be found on the
-<a href="https://support.apple.com/en-us/HT204477">Apple support site</a>
-</td>
-</tr>
-</table>
-</div>
+<p>Launch the showcase app and view the notification.</p>
 </li>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="mobile-metrics"><a class="anchor" href="#mobile-metrics"></a>Mobile Metrics</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Launch the showcase app. It automatically sends <a href="metrics/analysing-app-usage.html" class="page">app and device metrics</a>.</p>
+</li>
+<li>
+<p>Navigate to the Grafana, and view the metrics.</p>
+<div class="paragraph">
+<p>If you perform <a href="showcase-apps/device-security.html" class="page">device security</a> checks, related metrics are also displayed.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
