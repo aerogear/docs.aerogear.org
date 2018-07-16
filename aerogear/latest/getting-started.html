@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -506,7 +506,7 @@ AeroGear recommends running OpenShift using the method described in this documen
 <p>A <a href="https://hub.docker.com/">Docker Hub</a> account</p>
 </li>
 <li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (version 2.4 or above)</p>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (version 2.6 or above)</p>
 </li>
 <li>
 <p><a href="https://www.openshift.org/download.html">OpenShift client tools</a> version 3.9 or later</p>
@@ -542,8 +542,8 @@ Ensure that you can run <a href="https://github.com/openshift/origin/blob/master
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>firewall-cmd --permanent --zone dockerc --add-port 443/tcp
-firewall-cmd --reload</pre>
+<pre>$ firewall-cmd --permanent --zone dockerc --add-port 443/tcp
+$ firewall-cmd --reload</pre>
 </div>
 </div>
 </div>
@@ -571,7 +571,7 @@ git checkout 1.0.0</code></pre>
 <p>In the same directory, run the installer:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./installer/install.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./installer/install.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -651,7 +651,7 @@ password: password</pre>
 </div>
 </li>
 <li>
-<p>At the top of the catalog package, find the <strong>Mobile</strong> category that indicates that the mobile features of AeroGear Mobile Services are succesfully installed.</p>
+<p>At the top of the catalog package, find the <strong>Mobile</strong> category that indicates that the mobile features of AeroGear Mobile Services are successfully installed.</p>
 </li>
 </ol>
 </div>
@@ -1065,12 +1065,17 @@ Most client devices have a list of well-known and trusted certificate authoritie
 <ol class="loweralpha" type="a">
 <li>
 <p>Log into OpenShift as the admin user.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc login -u system:admin</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>Run the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
 base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/localcluster.crt</code></pre>
 </div>
 </div>

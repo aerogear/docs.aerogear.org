@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Making a Service Visible to the Mobile Metrics Service Manually :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/metrics/manually-adding-services-to-metrics.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -409,9 +409,6 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
-  <ul>
-    <li class="crumb"><a href="manually-adding-services-to-metrics.html">Making a Service Visible to the Mobile Metrics Service Manually</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/manually-adding-services-to-metrics.adoc"></a></div>
 </div>
@@ -568,11 +565,11 @@ the updated Config Map by going to
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login # login to the OpenShift Cluster
-oc get projects # list available Projects
-oc use myproject # switch to the project where the prometheus and the custom service are located
-oc get configmaps # list available Config Maps
-oc edit configmap prometheus-configmap # open the prometheus configmap in $OC_EDITOR or $EDITOR</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc login # login to the OpenShift Cluster
+$ oc get projects # list available Projects
+$ oc use myproject # switch to the project where the prometheus and the custom service are located
+$ oc get configmaps # list available Config Maps
+$ oc edit configmap prometheus-configmap # open the prometheus configmap in $OC_EDITOR or $EDITOR</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -585,9 +582,9 @@ execute a new rollout of Prometheus' deployment config:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get deploymentconfigs # list existing deployment configs
-oc rollout latest dc/prometheus # start a new deployment of the prometheus deploymentconfig
-oc rollout status dc/prometheus # follow the status of the new rollout</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc get deploymentconfigs # list existing deployment configs
+$ oc rollout latest dc/prometheus # start a new deployment of the prometheus deploymentconfig
+$ oc rollout status dc/prometheus # follow the status of the new rollout</code></pre>
 </div>
 </div>
 </div>
