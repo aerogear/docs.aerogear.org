@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provisioning Metrics Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/metrics/provisioning.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -409,9 +409,6 @@ Zepto(function($){
   <button class="navigation-toggle"></button>
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
-  <ul>
-    <li class="crumb"><a href="provisioning.html">Provisioning Metrics Service</a></li>
-  </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/provisioning.adoc"></a></div>
 </div>
@@ -517,7 +514,7 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc describe dc postgres-metrics -n &lt;myproject&gt; | grep POSTGRESQL_PASSWORD</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc describe dc postgres-metrics -n &lt;myproject&gt; | grep POSTGRESQL_PASSWORD</code></pre>
 </div>
 </div>
 </td>
