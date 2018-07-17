@@ -532,7 +532,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p>Locate this file at the following location in your application project:</p>
 </div>
 <div class="paragraph">
-<p><code>src/main/assets/mobile-services.json</code></p>
+<p><code>app/src/main/assets/mobile-services.json</code></p>
 </div>
 </div>
 </div>
@@ -736,7 +736,7 @@ let auth = AGSAuth()</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">// create the authentication config
 let authenticationConfig = AuthenticationConfig(redirectURL: "org.aerogear.mobile.example:/callback")
-try! AgsAuth.instance.configure(authConfig: authenticationConfig)</code></pre>
+try! AgsAuth.instance.configure(authConfig: authenticationConfig, useExternalUserAgent: false)</code></pre>
 </div>
 </div>
 </div>

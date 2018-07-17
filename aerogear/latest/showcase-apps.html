@@ -801,7 +801,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p>Locate this file at the following location in your application project:</p>
 </div>
 <div class="paragraph">
-<p><code>src/main/assets/mobile-services.json</code></p>
+<p><code>app/src/main/assets/mobile-services.json</code></p>
 </div>
 </div>
 </div>
@@ -1089,6 +1089,14 @@ proceed to download it.</p>
 <li>
 <p>USB - Attach the device to the machine hosting
 OpenShift via USB and drag the certificate to a devices file system. Here is an <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>. It may be different for other devices.</p>
+</li>
+<li>
+<p><a href="https://developer.android.com/studio/command-line/adb">Android Debug Bridge</a> (adb) - Use the adb push command to push the certificate to device or emulator:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ adb push /tmp/localcluster.crt /sdcard/Download/localcluster.crt</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
