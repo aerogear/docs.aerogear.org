@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGear Mobile Security :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/index.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb"><a href="#aerogear-mobile-security">Overview</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/index.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>AeroGear Mobile Security</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#mobile-security-recommendations-overview">Mobile Security Recommendations Overview</a></li>
+<li><a href="#authentication-session-management">Authentication &amp; Session Management</a>
+<ul class="sectlevel2">
+<li><a href="#references">References</a></li>
+<li><a href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li><a href="#data-storage-summary">Data Storage Summary</a>
+<ul class="sectlevel2">
+<li><a href="#implementation-2">Implementation</a></li>
+</ul>
+</li>
+<li><a href="#network-security">Network Security</a>
+<ul class="sectlevel2">
+<li><a href="#implementation-3">Implementation</a></li>
+</ul>
+</li>
+<li><a href="#mobile-app-self-defence">Mobile App Self-Defence</a>
+<ul class="sectlevel2">
+<li><a href="#implementation-4">Implementation</a></li>
+</ul>
+</li>
+<li><a href="#handling-sensitive-data-overview">Handling Sensitive Data Overview</a></li>
+<li><a href="#cryptography-summary">Cryptography Summary</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="mobile-security-recommendations-overview"><a class="anchor" href="#mobile-security-recommendations-overview"></a>Mobile Security Recommendations Overview</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="authentication-session-management"><a class="anchor" href="#authentication-session-management"></a>Authentication &amp; Session Management</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Do&#8217;s</th>
+<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform Authentication on the Server Side.</strong> <em>(The client side should never be trusted)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use the Fingerprint Scanner solely for Authentication.</strong> <em>(Possible False Positives [1])</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Randomly Generated access tokens instead of sending user credentials in requests.</strong> <em>(At worst, a temporary session token can therefore only be stolen)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Pattern Locks for Authentication.</strong> <em>(Lack of Entropy, Vulnerable to Smudge Attacks [2])</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A password policy is enforced at the remote endpoint.</strong> <em>(Prevent easily guessable passwords from being used)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a short Pin code solely authentication.</strong> <em>(Easily brute forced and the end user may reuse the device security pin)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sessions are terminated at the remote endpoint after a predefined time.</strong> <em>(Sessions token lifetimes should be kept short to limit the attack window if an valid session token is stolen)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Do not use any values for authenticating a user like device identifiers or geo-location.</strong> <em>(These can be spoofed easily)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Temporarily lock out a user after a number of failed login attempts.</strong> <em>(Prevent an endless brute force attack)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Avoid relying on any roles or permission information that comes from the mobile device itself.</strong> <em>(The client side and user input should not be trusted)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use contextual anomaly based detection to take into account the users IP, geographic location, time of day as part of the authentication phase.</strong> <em>(Helps detect unusual login activity)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Log user related information.</strong> <em>(Personal information data leak)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A second factor of authentication exists and is enforced.</strong> <em>(Extra layer of protection in case another authentication factor has been compromised)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use OAuth1.0</strong>. <em>(OAuth1.0 has been found to be vulnerable to session fixation. Use OAuth 1.0a or OAuth 2.0 instead)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Step-up authentication is used for carrying out sensitive actions in an application.</strong> <em>(Useful when a user&#8217;s device is stolen and they have already authenticated through the app)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Allow the user to see their current login sessions and allow them to logout of other sessions via the app.</strong> <em>(The end user will be able to detect rogue sessions with the most accuracy instead of using anomaly detection)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform local integrity checks within the code to detect any unauthorized code changes before doing offline authentication.</strong> <em>(Tampering may allow authentication bypasses)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Where offline access to data is needed, perform an account/application lockout and/or application data wipe after X number of invalid password attempts.</strong> <em>(Wipe application data when a threat is imminent)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform a check at the start of each activity/screen to see if the user is in a logged in state and if not, switch to the login state.</strong> <em>(A session could expire during use or over time. Also check that the user has a role that allows them to access to certain app view).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>When an application’s session is timed out, the application should discard and clear all memory associated with the user data, and any master keys used to decrypt the data.</strong> <em>(Prevent data leakage after the user is no longer in an active session with the server).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store a masked user identifier instead of the actual username, and replace the user identifier value in authentication with a hash value.</strong> <em>(If a username/id is being used in the mobile app for identification purposes only (not for display in the UI), then consider sending a related mapped token to the mobile device instead.)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Implement Secure Password Recovery Mechanism</strong>. <em>(To allow a user to recover their account using security questions only they should know the answers too and sending a recovery code using a side channel such as SMS)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Fail authentication with a Generic Error.</strong> <em>(The login screen should not show hints on the existence of a username/email address etc)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="references"><a class="anchor" href="#references"></a>References</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The probability of a random person unlocking a given iPhone with Touch ID is 1 in 50,000. <a href="https://support.apple.com/en-ie/HT204587">Apple Support</a></p>
+</li>
+<li>
+<p>Penn State researchers managed to identify the pass code patterns on two smartphones, 68% of the time, using photographs taken under different lighting conditions, and camera positions. <a href="https://www.usenix.org/legacy/events/woot10/tech/full_papers/Aviv.pdf">Smudge Attacks on Smartphone Touch Screens</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h3>
+<div class="sect3">
+<h4 id="overview"><a class="anchor" href="#overview"></a>Overview</h4>
+
+</div>
+<div class="sect3">
+<h4 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-1.png" alt="android auth 1" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-2.png" alt="android auth 2" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-3.png" alt="android auth 3" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-4.png" alt="android auth 4" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-5.png" alt="android auth 5" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/android-showcase-template">Mobile Security Android Template</a> App.</p>
+</div>
+<div class="paragraph">
+<p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
+The <a href="https://github.com/aerogear/aerogear-android-sdk/blob/master/docs/getting-started/auth.adoc">Aerogear Auth SDK</a> is being used for communicating with the Keycloak server.</p>
+</div>
+<div class="paragraph">
+<p>The Keycloak server is enforcing a number of Security Controls on the mobile app.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L6-L11">Brute force detection</a> on the login screen.</p>
+</li>
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L12">Account lockouts</a> for failed login attempts.</p>
+</li>
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L101">2FA</a> for mobile users.</p>
+</li>
+<li>
+<p><a href="http://www.keycloak.org/docs/latest/server_admin/topics/sessions/administering.html">Session management</a> for mobile users.</p>
+</li>
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L13-L17">Audit tracing</a> of auth events.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-examples"><a class="anchor" href="#code-examples"></a>Code Examples</h4>
+<div class="paragraph">
+<p>The main code logic is found under <a href="https://github.com/aerogear/android-showcase-template/tree/master/app/src/main/java/com/aerogear/androidshowcase/features/authentication">mobile-security-android-template/&#8230;&#8203;/authentication</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following code snippets describe the main authentication code logic in the mobile app.</p>
+</div>
+<div class="sect4">
+<h5 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h5>
+<div class="paragraph">
+<p>The Keycloak configuration is saved in the <a href="https://github.com/aerogear/android-showcase-template/tree/master/app/src/main/assets/mobile-services.json">mobile-services.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "version": 1,
+  "clusterName": "https://192.168.42.208:8443",
+  "namespace": "showcase",
+  "clientId": "myapp-android",
+  "services": [
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The redirect url of the application is defined in <code>android.defaultConfig.manifestPlaceholders</code> of the apps <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/build.gradle">build.gradle</a> file.</p>
+</div>
+<div class="paragraph">
+<p>You will also need to define the URL in the <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/src/main/java/com/aerogear/androidshowcase/di/SecureApplicationModule.java">SecureApplicationModule</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Provides @Singleton
+AuthService provideAuthService(Context context, MobileCore mobileCore) {
+    AuthService authService = mobileCore.getInstance(AuthService.class);
+    AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration.AuthConfigurationBuilder()
+            .withRedirectUri("com.feedhenry.securenativeandroidtemplate:/callback")
+            .build();
+
+    authService.init(context, authServiceConfig);
+    return authService;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="authentication"><a class="anchor" href="#authentication"></a>Authentication</h5>
+<div class="paragraph">
+<p>We can then perform the auth request and create a new intent which will handle the auth response from the system browser. The authentication phase will occur in a system browser in a safe context outside of the application.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Create the config for the initial Keycloak auth request to get a temporary token and create an intent to handle the response
+ *
+ * @param fromActivity the activity used to perform the login
+ * @param authCallback the authentication callback
+ */
+@Override
+public void login(final Activity fromActivity, final Callback authCallback) {
+
+    // Build the options object and start the authentication flow. Provide an activity to handle the auth response.
+    DefaultAuthenticateOptions options = new DefaultAuthenticateOptions(fromActivity, LOGIN_RESULT_CODE);
+    authService.login(options, authCallback);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="handling-the-authentication-response"><a class="anchor" href="#handling-the-authentication-response"></a>Handling the Authentication Response</h5>
+<div class="paragraph">
+<p>Once the Authentication phase has ended, the user will be redirected back to the mobile app from the system browser.
+A check is performed in the MainActivity for incoming intents so the result can be handled by the authentication service.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="logout"><a class="anchor" href="#logout"></a>Logout</h5>
+<div class="paragraph">
+<p>To logout of the application, we must make a call to the logout endpoint on the OpenID Connect provider along with providing the identity token and a redirect URI.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Perform a logout request against the openid connect server
+ *
+ * @param logoutCallback the logout callback
+ */
+public void logout(final CallbackHandler logoutCallback) {
+    this.logoutCallback = logoutCallback;
+    UserPrincipal currentUser = authService.currentUser();
+    authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
+        @Override
+        public void onSuccess() {
+            logoutSuccess();
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            logoutFailed(error);
+        }
+    });
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-auth-1.png" alt="ios auth 1" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-auth-2.png" alt="ios auth 2" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/ios-showcase-template">Mobile Security iOS Template</a> App.</p>
+</div>
+<div class="paragraph">
+<p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
+The <a href="https://github.com/aerogear/aerogear-ios-sdk/tree/master/docs/auth">Aerogear Auth SDK</a> is being used to communicate with the Keycloak server.</p>
+</div>
+<div class="paragraph">
+<p>The Keycloak server config is defined in the <a href="https://raw.githubusercontent.com/aerogear/ios-showcase-template/master/secure-ios-app/mobile-services.json">mobile-services.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">404: Not Found</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>startAuth()</code> function handles the user authentication browser flow and the back-channel token exchange.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func startAuth(presentingViewController: UIViewController) {
+    do {
+        try self.authService.login(presentingViewController: presentingViewController, onCompleted: onLoginCompleted)
+    } catch {
+        fatalError("Unexpected error: \(error)")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>resolveCurrentUser()</code> returns the user profile, which can be used to retrieve user information and the auth tokens.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func resolveCurrentUser() -&gt; User? {
+    let authService = self.appComponents.resolveAuthService()
+    return try! authService.currentUser()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following information can be retrieved from an authenticated user:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">// Get the users username
+let username = currentUser.userName
+// Get the users first name
+let firstName = currentUser.firstName
+// Get the users last name
+let lastName = currentUser.lastName
+// Get the users full name
+let fullName = currentUser.fullName
+// Get the users email address
+let emailAddress = currentUser.email
+// Get the users access token
+let accessToken = currentUser.accessToken
+// Get the users identity token
+let identityToken = currentUser.identityToken</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Access Control is carried out by checking the access roles of the authenticated user.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func highlightUserRealmRoles(user: User) {
+    for realmRole in self.allRealmRoles {
+        if user.hasRealmRole(realmRole.roleName) {
+            setRoleAccessoryType(role: realmRole, type: UITableViewCellAccessoryType.checkmark)
+        } else {
+            setRoleAccessoryType(role: realmRole, type: UITableViewCellAccessoryType.none)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>logout()</code> function is used to logout the user from the Keycloak server. The local auth tokens are also deleted.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func logout() {
+    do {
+        try self.authService.logout(onCompleted: { error in
+            self.router?.leaveUserDetailsView(withError: error)
+        })
+    } catch {
+        fatalError("Unexpected error: \(error)")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="apache-cordova"><a class="anchor" href="#apache-cordova"></a>Apache Cordova</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-auth-1.png" alt="cordova auth 1" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-auth-2.png" alt="cordova auth 2" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-auth-3.png" alt="cordova auth 3" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://www.npmjs.com/package/keycloak-js">Keycloak JS</a> library is being used to perform the OpenID Connect based authentication.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Ensure that Keycloak is Initialised before Angular to prevent Redirect looping issues
+KeycloakService.init()
+.then(() =&gt; {
+  const platform = platformBrowserDynamic();
+  // Mamually intiliase angular
+  platform.bootstrapModule(AppModule);
+})
+.catch((err) =&gt; console.error("Error Initalizing Keycloak", err));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The OpenID Connect Configuration can be found in the <a href="https://github.com/feedhenry/mobile-security-cordova-template/blob/c24297cda240efa40aca292e7d0657d7432d1eba/src/config/keycloak.json">/config/keycloak.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "realm": "secure-app",
+  "url": "https://keycloak.security.feedhenry.org/auth/",
+  "ssl-required": "external",
+  "clientId": "client-app",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "pinningFingerprint": "44 C8 9A 60 4E 29 82 85 8E 4F 75 1F 78 46 CD B3 0A 08 66 3F",
+  "apiServerUrl": "https://api.security.feedhenry.org",
+  "apiEndpoint": "/"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Keycloak JS adapter is initialised with the <code>check-sso</code> config to automatically detect and authenticate the user if there is a valid session on app resume.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Initialise the Keycloak Client Adapter
+*/
+static init(): Promise&lt;any&gt; {
+  // Create a new Keycloak Client Instance
+  let keycloakAuth: any = new Keycloak(keycloakConfig);
+
+    return new Promise((resolve, reject) =&gt; {
+      keycloakAuth.init({onLoad: 'check-sso'}).success(() =&gt; {
+          KeycloakService.auth.authz = keycloakAuth;
+          resolve();
+        }).error((err) =&gt; {
+          reject(err);
+        });
+    });
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The access token can be retrieved using the <code>getToken()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Get Access Token
+*/
+getToken(): string {
+return KeycloakService.auth.authz.token;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can logout using the <code>logout()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Redirect to logout
+*/
+logout(): void {
+  KeycloakService.auth.authz.logout();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can be redirected to the login screen using the <code>login()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Redirect to Login
+ */
+login(): void {
+  KeycloakService.auth.authz.login();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The authentication state can ve cleared using the <code>clearToken()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Clears Authentication State
+ */
+clearToken(): void {
+  KeycloakService.auth.authz.clearToken();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The end users realm level roles can be retrieved using the <code>getRealmRoles()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can perform a check to see if the user has a given role using the <code>hasRealmRole()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Check if the user has a specified realm role
+ */
+hasRealmRole(role: String): boolean {
+  return KeycloakService.auth.authz.hasRealmRole(role);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Information about the authentication server can be carried out using the <code>getConfiguration()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Get Server/Open ID Connect specific server info
+ */
+getConfiguration(): object {
+  var notAvailable = "N/A";
+  return {
+    "authServerUrl": KeycloakService.auth.authz.authServerUrl ? KeycloakService.auth.authz.authServerUrl : notAvailable,
+    "openIdFlow": KeycloakService.auth.authz.flow ? KeycloakService.auth.authz.flow : notAvailable,
+    "openIdResponseMode": KeycloakService.auth.authz.responseMode ? KeycloakService.auth.authz.responseMode : notAvailable,
+    "openIdResponseType": KeycloakService.auth.authz.responseType ? KeycloakService.auth.authz.responseType : notAvailable,
+    "realm": KeycloakService.auth.authz.realm ? KeycloakService.auth.authz.realm : notAvailable,
+    "clientId": KeycloakService.auth.authz.clientId ? KeycloakService.auth.authz.clientId : notAvailable,
+    "timeSkew": KeycloakService.auth.authz.timeSkew ? KeycloakService.auth.authz.timeSkew : notAvailable
+  };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can be redirected to the Keycloak account management screen using the <code>accountManagement()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Redirects to the Account Management Console
+ */
+accountManagement(): void {
+  KeycloakService.auth.authz.accountManagement();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The users profile data can be retrieved using the <code>loadUserProfile()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Get the users profile
+ */
+loadUserProfile(): any {
+  // Retrieve User Profile
+  return new Promise((resolve, reject) =&gt; {
+    KeycloakService.auth.authz.loadUserProfile().success((profile) =&gt; {
+      resolve(&lt;object&gt;profile);
+    }).error(() =&gt; {
+      reject('Failed to retrieve user profile');
+    });
+  });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can check if the user is authenticated using the <code>isAuthenticated()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Check if the user is authenticated
+ */
+isAuthenticated(): boolean {
+    return KeycloakService.auth.authz.authenticated;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-storage-summary"><a class="anchor" href="#data-storage-summary"></a>Data Storage Summary</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dont&#8217;s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Classify data storage according to sensitivity and apply controls accordingly</strong> <em>(To understand what information should be protected)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store any sensitive data on a mobile device where possible</strong> <em>(Prevent data leak)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>When storing sensitive data on the device, use a file encryption API provided by the OS or other trusted source</strong> <em>(Secure Cryptography)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Write data to persistent memory accessible to other applications without encryption</strong> <em>(Shared storage is untrusted)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use file encryption APIs which use a secret key protected by the device unlock code and deletable on remote wipe if available</strong> <em>(Protect secret key)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Including the keys in the same attacker-readable directory as the encrypted content</strong> <em>(Can be used to decrypt data)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Make use of remote wipe and kill switch APIs to remove sensitive information from the device in the event of theft or loss</strong> <em>(Prevent data leak if the device is lost)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Take screenshots contain sensitive data</strong> <em>(Avoid sensitive data is exposed through screenshots)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a time based (expiry) type of control which will wipe sensitive data from the mobile device once the application has not communicated with its servers for a given period of time</strong> <em>(Less chance to decrypt data by using brute force)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Leak permission-protected data to other applications</strong> <em>(Prevent other apps access sensitive data)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Automatic application shutdown and/or lockout after X minutes of inactivity</strong> <em>(Less chance of data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Allow third party keyboards to be used for inputs that may contain sensitive data</strong> <em>(Prevent data leak)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that OS level storage encryption is enabled and the device is protected by a PIN or passphrase</strong> <em>(Ensure data encryption by default)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Backup or synchronize sensitive data</strong> <em>(Prevent data leak)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Restrict the data that is shared with other applications</strong> <em>(Prevent other apps access sensitive data)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Log sensitive information</strong> <em>(Prevent data leak through logs)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Nullify any variables that hold keys after use</strong> <em>(Secure keys in memory)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>using immutable objects for sensitive keys or passwords such as in Android java.lang.String and use char array instead</strong> <em>(Secure keys in memory)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Restrict broadcast messages (e.g., Android Broadcast Intents) to authorized applications</strong> <em>(Prevent other apps access sensitive data)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Disable Auto Correction and Autosuggestion for inputs that contain sensitive data</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Disable cut, copy and paste functionalities for inputs that may contain sensitive data or restrict the pasteboard to be accessible only from this application</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete application caches on app termination</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Clear cookies and data in Webview on app termination</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove sensitive data from views when in background</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="implementation-2"><a class="anchor" href="#implementation-2"></a>Implementation</h3>
+<div class="sect3">
+<h4 id="overview-2"><a class="anchor" href="#overview-2"></a>Overview</h4>
+<div class="paragraph">
+<p>We have implemented a secure storage feature in the sample mobile templates to allow users to manage secret notes. This feature is used to showcase the best practices around secure data storage.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="native-android-2"><a class="anchor" href="#native-android-2"></a>Native Android</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_menu.png" alt="storage menu" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_main.png" alt="storage main" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The secret notes can be saved to either file system or database (SQLite). In both cases, the notes will be encrypted automatically when persisted, and decrypted automatically when loaded into the app.</p>
+</div>
+<div class="sect4">
+<h5 id="secret-key-management"><a class="anchor" href="#secret-key-management"></a>Secret Key Management</h5>
+<div class="paragraph">
+<p>Secret keys are being used to encrypt/decrypt the notes. To make sure the secret keys are securely persisted, in most cases, the OS&#8217;s keystore should be used to persist the secret key.</p>
+</div>
+<div class="paragraph">
+<p>However, for Android, there is a difference between Android M and pre-Android M.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="android-m-and-later"><a class="anchor" href="#android-m-and-later"></a>Android M and later</h5>
+<div class="paragraph">
+<p>In Android M and later versions, the KeyStore API supports generating and persist secret key, so the implementation is quite straight forward:</p>
+</div>
+<div class="listingblock">
+<div class="title">Generate Secret Key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Generate the AES key for encryption/decryption. The key will be 128bit and it can only be used with AES/GCM/NoPadding mode.
+ * @param keyAlias the key alias
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+@Override
+public void generateAESKey(String keyAlias) throws GeneralSecurityException, IOException {
+    KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
+    //TODO: further control if user authentication is required for accessing the keys
+    KeyGenParameterSpec keyGenerationParameters = new KeyGenParameterSpec.Builder(keyAlias, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+            .setKeySize(AES_KEYSIZE_128)
+            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+            .setRandomizedEncryptionRequired(true)
+            .build();
+    keyGenerator.init(keyGenerationParameters);
+    keyGenerator.generateKey();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="pre-android-m"><a class="anchor" href="#pre-android-m"></a>Pre-Android M</h5>
+<div class="paragraph">
+<p>However, in pre-Android M, the KeyStore API only supports generating public/private key pairs, so we can&#8217;t persist the secret key using the keystore.</p>
+</div>
+<div class="paragraph">
+<p>Instead, we will have to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate the secret key without using the KeyStore</p>
+<div class="listingblock">
+<div class="title">Generate Secret</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private byte[] generateSecretKey(int size) throws NoSuchAlgorithmException {
+    KeyGenerator keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES);
+    keyGen.init(size);
+    SecretKey secretKey = keyGen.generateKey();
+    return secretKey.getEncoded();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generate a public/private key pair using the KeyStore</p>
+<div class="listingblock">
+<div class="title">Generate Keypair</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public void generatePrivateKeyPair(String keyAlias) throws GeneralSecurityException, IOException {
+    //pre android-M, the keystore only support RSA key generation. So here we will generate a RSA keypair first, then generate the AES key.
+    //we then encrypt the AES key using the generated RSA public key, and save it using the SharedPreferences
+    Calendar start = Calendar.getInstance();
+    Calendar end = Calendar.getInstance();
+    end.add(Calendar.YEAR, 99);
+    KeyPairGeneratorSpec generatorSpec = new KeyPairGeneratorSpec
+            .Builder(context)
+            .setAlias(keyAlias)
+            .setSubject(new X500Principal("CN=" + keyAlias))
+            .setSerialNumber(BigInteger.TEN)
+            .setStartDate(start.getTime())
+            .setEndDate(end.getTime())
+            .build();
+    KeyPairGenerator generator = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, ANDROID_KEY_STORE);
+    generator.initialize(generatorSpec);
+    generator.generateKeyPair();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Encrypt the generated secret key with the generated public key and persist the encrypted secret key using private SharedPreferences.</p>
+<div class="listingblock">
+<div class="title">Encrypt Secret</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public void generateAESKey(String keyAlias) throws GeneralSecurityException, IOException {
+    byte[] secretKey = generateSecretKey(AES_KEYSIZE_128);
+    byte[] encryptedKey = rsaEncrypt(secretKey);
+    String encodedSecretKey = Base64.encodeToString(encryptedKey, BASE64_FLAG);
+    SharedPreferences.Editor editor = this.sharedPreferences.edit();
+    editor.putString(keyAlias, encodedSecretKey);
+    editor.commit();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To load the secret key, the generated key pair needs to be loaded first, and then use the private key to decrypt the encrypted secret key.</p>
+<div class="listingblock">
+<div class="title">Decrypt Secret</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public Key getSecretKey(String keyAlias) throws GeneralSecurityException, IOException {
+    String encodedKey = this.sharedPreferences.getString(keyAlias, null);
+    if (encodedKey != null) {
+        byte[] encryptedKeyBytes = Base64.decode(encodedKey, BASE64_FLAG);
+        byte[] keyBytes = rsaDecrypt(encryptedKeyBytes);
+        return new SecretKeySpec(keyBytes, KeyProperties.KEY_ALGORITHM_AES);
+    }
+    return null;
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The alternative option is to ask the user to provide a password. The password will be used to encrypt/decrypt the secret key. This does mean that the user will have to remember the password and enter it every time when using the app.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="encrypt-decrypt-the-secret-key"><a class="anchor" href="#encrypt-decrypt-the-secret-key"></a>Encrypt/decrypt the secret key</h5>
+<div class="paragraph">
+<p>RSA encryption/decryption is used to encrypt/decrypt the secret key. It can be used to encrypt/decrypt relatively small amount of data.</p>
+</div>
+<div class="paragraph">
+<p>You can perform RSA encryption/decryption in Android like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">RSA Encryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Perform encryption using RSA
+ * @param mode the RSA encryption alg
+ * @param keyEntry the private/public key entry
+ * @param text the data to encrypt
+ * @return the encrypted ddata
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public static byte[] encrypt(String mode, KeyStore.PrivateKeyEntry keyEntry, byte[] text) throws GeneralSecurityException, IOException {
+    // Encrypt the text
+    Cipher inputCipher = Cipher.getInstance(mode);
+    inputCipher.init(Cipher.ENCRYPT_MODE, keyEntry.getCertificate().getPublicKey());
+    //The key to encrypt should be either 16 (128 bit) or 32 (256 bit) in size, well below the block size for RSA (should be around 214 bytes)
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    CipherOutputStream cipherOutputStream = new CipherOutputStream(outputStream, inputCipher);
+    cipherOutputStream.write(text);
+    cipherOutputStream.close();
+
+    byte[] vals = outputStream.toByteArray();
+    return vals;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">RSA Decryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Encrypt the given text.
+ * @param keyAlias The alias of the key in the keystore that will be used for the encryption.
+ * @param plainText the text to encrypt
+ * @return the encrypted data. The first 12 bytes will be the IV (initial vector) used for the encryption.
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public byte[] encrypt(String keyAlias, byte[] plainText) throws GeneralSecurityException, IOException {
+    SecretKey secretKey = loadOrGenerateSecretKey(keyAlias, true);
+    Cipher cipher = Cipher.getInstance(secureKeyStore.getSupportedAESMode());
+    cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+    //get the iv that is being used
+    byte[] iv = cipher.getIV();
+    byte[] encrypted = cipher.doFinal(plainText);
+    GCMEncrypted encryptedData = new GCMEncrypted(iv, encrypted);
+    return encryptedData.toByteArray();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="encrypt-decrypt-the-content-of-notes"><a class="anchor" href="#encrypt-decrypt-the-content-of-notes"></a>Encrypt/decrypt the content of notes</h5>
+<div class="paragraph">
+<p>Once we have the secret key, we can use it to encrypt/decrypt the content of the notes using AES.</p>
+</div>
+<div class="paragraph">
+<p>You can perform data encryption/decryption in Android like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Encryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Encrypt the given text.
+ * @param keyAlias The alias of the key in the keystore that will be used for the encryption.
+ * @param plainText the text to encrypt
+ * @return the encrypted data. The first 12 bytes will be the IV (initial vector) used for the encryption.
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public byte[] encrypt(String keyAlias, byte[] plainText) throws GeneralSecurityException, IOException {
+    SecretKey secretKey = loadOrGenerateSecretKey(keyAlias, true);
+    Cipher cipher = Cipher.getInstance(secureKeyStore.getSupportedAESMode());
+    cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+    //get the iv that is being used
+    byte[] iv = cipher.getIV();
+    byte[] encrypted = cipher.doFinal(plainText);
+    GCMEncrypted encryptedData = new GCMEncrypted(iv, encrypted);
+    return encryptedData.toByteArray();
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Decryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Decrypt the given encrypted data
+ * @param keyAlias The alias of the key in the keystore that will be used for the decryption.
+ * @param encryptedText the text to decrypt. The first 12 bytes should be the IV used for encryption.
+ * @return the plain text data
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public byte[] decrypt(String keyAlias, byte[] encryptedText) throws GeneralSecurityException, IOException {
+    GCMEncrypted encryptedData = GCMEncrypted.parse(encryptedText);
+    SecretKey secretKey = loadOrGenerateSecretKey(keyAlias, false);
+    Cipher cipher = Cipher.getInstance(secureKeyStore.getSupportedAESMode());
+    cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(GCMEncrypted.GCM_TAG_LENGTH, encryptedData.iv));
+    byte[] plainText = cipher.doFinal(encryptedData.encryptedData);
+    return plainText;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="persist-data-using-file-system"><a class="anchor" href="#persist-data-using-file-system"></a>Persist data using file system</h5>
+<div class="paragraph">
+<p>When a secret note is created, it can be persisted to the file system. We should encrypt the file when it is being persisted, and decrypt it when it is being loaded:</p>
+</div>
+<div class="listingblock">
+<div class="title">File Encryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Encrypt the file when saving to the file system
+ * @param fileName the name of the file
+ * @param fileContent the content of the file
+ * @throws IOException
+ * @throws GeneralSecurityException
+ */
+private void writeFileWithEncryption(String fileName, String fileContent) throws IOException, GeneralSecurityException {
+    File outputFile = new File(context.getFilesDir(), fileName);
+    if (!outputFile.exists()) {
+        outputFile.createNewFile();
+    }
+    OutputStream outStream = aesCrypto.encryptStream(fileName, new FileOutputStream(outputFile));
+    outStream.write(fileContent.getBytes("utf-8"));
+    outStream.flush();
+    outStream.close();
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">File Decryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Read the content of the file, and decrypt it automatically
+ * @param fileName the name of the file
+ * @return the decrypted file content
+ * @throws IOException
+ * @throws GeneralSecurityException
+ */
+private String readFileWithDecryption(String fileName) throws IOException, GeneralSecurityException {
+    InputStream inputStream = context.openFileInput(fileName);
+    InputStream decryptedStream = aesCrypto.decryptStream(fileName, inputStream);
+
+    return StreamUtils.readStream(decryptedStream);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="persist-data-using-database-sqlite"><a class="anchor" href="#persist-data-using-database-sqlite"></a>Persist data using database (SQLite)</h5>
+<div class="paragraph">
+<p>To securely persist data to the database, a library called <a href="https://www.zetetic.net/sqlcipher/">SqlCipher</a> is used. The library will automatically manage the encryption/decryption of the sqlite database file. It is easy to use, and requires minimum changes to the code.</p>
+</div>
+<div class="paragraph">
+<p>To encrypt/decrypt the database, a password is required. You can ask the user to provide the password. In our sample application, we generated a random password and then protected using a public/private key pair. The password is saved to the private SharedPreferences.</p>
+</div>
+<div class="listingblock">
+<div class="title">SqlCipher Password</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Get the password to protect the database
+ * @return the password
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+private String getDbPassword() throws GeneralSecurityException, IOException {
+    String encryptedDbPass = this.sharedPreferences.getString(DB_KEY_PREF_NAME, null);
+    if (encryptedDbPass == null) {
+        String passwordToEncrypt = randomPassword();
+        encryptedDbPass = Base64.encodeToString(rsaCrypto.encrypt(ENCRYPT_KEY_ALIAS, passwordToEncrypt.getBytes("utf-8")), Base64.NO_WRAP);
+        SharedPreferences.Editor editor = this.sharedPreferences.edit();
+        editor.putString(DB_KEY_PREF_NAME, encryptedDbPass).commit();
+    }
+    String password = new String(rsaCrypto.decrypt(ENCRYPT_KEY_ALIAS, Base64.decode(encryptedDbPass, Base64.NO_WRAP)), "utf-8");
+    return password;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="native-ios-2"><a class="anchor" href="#native-ios-2"></a>Native iOS</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-storage-1.png" alt="ios storage 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The secret notes are being persisted using an encrypted <a href="https://realm.io/docs/swift/latest/">Realm Mobile DB</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="initialising-realm-db"><a class="anchor" href="#initialising-realm-db"></a>Initialising Realm DB</h5>
+<div class="paragraph">
+<p>The Realm DB storing the notes must be initialised using the encryption key.</p>
+</div>
+<div class="listingblock">
+<div class="title">Initialise Realm</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Initilise the Realm Storage Service
+
+ - Parameter kcWrapper: the swift keychain wrapper
+ */
+init(kcWrapper: KeychainWrapper, encryptionKey: Data) {
+    self.keychainWrapper = kcWrapper
+    self.encryptionKey = encryptionKey
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The encryption key is stored in the iOS Keychain.</p>
+</div>
+<div class="listingblock">
+<div class="title">Get Encryption Key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Get the encryption key for the realm db
+
+ - Parameter kcWrapper: the keychain wrapper instance
+ - Parameter keychainAlias: the refernence alias for the encryption key stored in the keychain
+
+ - Returns: the encryption key
+ */
+class func getEncryptionKey(kcWrapper: KeychainWrapper, keychainAlias: String) -&gt; Data? {
+    guard let encryptionKey = kcWrapper.data(forKey: keychainAlias) else {
+        let newEncryptionKey = generateEncryptionKey()
+        kcWrapper.set(newEncryptionKey, forKey: keychainAlias)
+        return newEncryptionKey
+    }
+    return encryptionKey
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the application is initialised for the first time, a new encryption key is randomly generated.</p>
+</div>
+<div class="listingblock">
+<div class="title">Generate Encryption Key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">+include::{partialsdir}/generateEncryptionKey[]+</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="interacting-with-realm-db"><a class="anchor" href="#interacting-with-realm-db"></a>Interacting with Realm DB</h5>
+<div class="paragraph">
+<p>Interactions with the Realm DB are performed on background threads. Completion handlers are used to pass information to the view controllers on the Main thread.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="listing-notes"><a class="anchor" href="#listing-notes"></a>Listing Notes</h5>
+<div class="paragraph">
+<p>List all the notes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing Notes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - List the stored entities from the realm db
+
+ - Parameter onComplete - a closure called after retrieval
+ */
+func list(onComplete: @escaping (Error?, [Note]?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // synchronization of Realm instance to the latest version on the background thread
+            realm.refresh()
+
+            // retieve the notes from realm
+            let notesResult = realm.objects(Note.self)
+
+            // create a new thread safe reference for these notes
+            let threadSafeNotes = ThreadSafeReference(to: notesResult)
+
+            // return note to the view controller on the main thread
+            DispatchQueue.main.async() {
+                let realm = try! self.getRealmInstance()
+
+                // get the notes using the thread safe reference
+                guard let notes = realm.resolve(threadSafeNotes) else {
+                    return
+                }
+
+                // convert the notes to array format
+                let notesArray = notes.toArray()
+
+                onComplete(nil, notesArray)
+            }
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="creating-a-note"><a class="anchor" href="#creating-a-note"></a>Creating a Note</h5>
+<div class="paragraph">
+<p>Create an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Create the stored entity
+
+ - Paramater title: the title of the note
+ - Paramater content: the content of the note
+ - Parameter onComplete - a closure called after creation
+ */
+func create(title: String, content: String, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    var id = generateId()
+    let createdAt = getDate()
+
+    // ensure the ID is unique
+    while !isIdentifierUnique(identifier: id) {
+        id = generateId()
+    }
+
+    // create the note object
+    let note = Note()
+    note.id = id
+    note.title = title
+    note.content = content
+    note.createdAt = createdAt
+    note.storageProvider = "Realm"
+
+    DispatchQueue.global(qos: .background).async {
+        // create the note in the db
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+            try realm.safeWrite {
+                realm.add(note)
+                try! realm.commitWrite()
+                onComplete(nil, note.clone())
+            }
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="read-a-note"><a class="anchor" href="#read-a-note"></a>Read a Note</h5>
+<div class="paragraph">
+<p>Read an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Read a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Read the stored entity
+
+ - Parameter identifier: The identifier of the note
+ - Parameter onComplete - a closure called after retrieval
+ */
+func read(identifier: Int, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // retrieve the notes from realm
+            let noteResult = realm.objects(Note.self).filter("id = \(identifier)")
+
+            // create a new thread safe reference for these notes
+            let threadSafeNotes = ThreadSafeReference(to: noteResult)
+
+            // return note to the view controller on the main thread
+            DispatchQueue.main.async() {
+                let realm = try! self.getRealmInstance()
+
+                // get the notes using the thread safe reference
+                guard let notes = realm.resolve(threadSafeNotes) else {
+                    return
+                }
+
+                // extract the note from the list
+                let note = notes.first
+
+                onComplete(nil, note?.clone())
+            }
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="edit-a-note"><a class="anchor" href="#edit-a-note"></a>Edit a Note</h5>
+<div class="paragraph">
+<p>Edit an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Edit a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Edit the stored entity
+
+ - Parameter identifier: The identifier of the note
+ - Parameter title: The title of the note
+ - Parameter content: The content of the note
+ - Parameter onComplete - a closure called after editing
+ */
+func edit(identifier: Int, title: String, content: String, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // get the existing note to update
+            let notes = realm.objects(Note.self).filter("id = \(identifier)")
+            let note = notes.first
+
+            // update the note with the given id
+            try realm.write {
+                note?.title = title
+                note?.content = content
+            }
+            onComplete(nil, note?.clone())
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="delete-a-note"><a class="anchor" href="#delete-a-note"></a>Delete a Note</h5>
+<div class="paragraph">
+<p>Delete an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Delete a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Delete the stored entity
+
+ - Parameter identifier: The identifier of the note
+ - Parameter onComplete - a closure called after deletion
+ */
+func delete(identifier: Int, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // get the note to delete
+            let noteToDeleteResult = realm.objects(Note.self).filter("id = \(identifier)")
+            let note = noteToDeleteResult.first
+            let returnNote = note?.clone()
+
+            // delete the note
+            try realm.write {
+                realm.delete((note)!)
+            }
+            onComplete(nil, returnNote)
+        } catch {
+            onComplete(error, nil)
+        }
+
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="delete-all-notes"><a class="anchor" href="#delete-all-notes"></a>Delete all Notes</h5>
+<div class="paragraph">
+<p>Delete all notes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Delete all Notes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Delete all stored entities
+
+ - Parameter onComplete - a closure called after deletion
+ */
+func deleteAll(onComplete: @escaping (Error?, Bool?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            let notes = realm.objects(Note.self)
+
+            // delete all the notes
+            try realm.write {
+                realm.delete(notes)
+            }
+            onComplete(nil, true)
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="network-security"><a class="anchor" href="#network-security"></a>Network Security</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Do&#8217;s</th>
+<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Include a Backup Cert Pin.</strong> <em>(Retain app connectivity if new keys on server are used or the CA is changed)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pin the full certificate</strong>. <em>(The full cert, and potentially backup certs are available for inspection, the certificate is bundled with the app meaning that when a cert expires the app must be rebuilt with a new cert)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform Certificate Pinning using the hash of the public key - SubjectPublicKeyInfo of the X.509 certificate.</strong> <em>(Allows you to anonymize a certificate or public key and ensures an attacker does not see the reserved certificate or public key in advance of its use).</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Send sensitive data without certificate pinning.</strong> <em>(Creates higher risk as an attacker with network privileges, or who has compromised TLS, is better positioned to intercept data)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform proper certificate validation if the platform doesn&#8217;t allow true certificate pinning.</strong> <em>(Adds an extra precautionary check when sending sensitive data)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Establish connections with endpoints that offer a different certificate or key, even if signed by a trusted CA.</strong> <em>(The channel is not trusted.)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use TLS for network encryption.</strong> <em>(SSL 2.0 and 3.0 have been deprecated by the IETF)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Mixed SSL sessions</strong>. <em>(The users session ID can be exposed over non HTTPS requests)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a secure channel consistently throughout the app</strong>. <em>(Ensure that some network calls are not sent in plaintext)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use localhost network ports for handling sensitive IPC.</strong> <em>(The interface is accessible by other applications on the device)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app doesn’t rely on a single insecure communication channel such as email or SMS for critical operations, such as enrollments and account recovery.</strong> <em>(Use a hardware token or secure channel as GCM or Apple Push notifications)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Don’t rely on unauthenticated SMS data to perform sensitive commands.</strong> <em>(The input may be malicious, be spoofed or sniffed using another app with SMS read permissions)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app uses some form of whitelisting to control access to external domains.</strong> <em>(Limit the outbound requests to predefined trusted domains).</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Avoid sending crash logs over the network in plaintext</strong>. <em>(Logs can contain sensitive or important information about the user and/or the application)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pay particular attention to validating all data received from and sent to non-trusted third party apps/plugins before incorporating their use into an application.</strong> <em>(Some plugins can interact with ad networks etc)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consider using HTTP Strict Transport Security (HSTS).</strong> <em>(Protect against protocol downgrade attacks and cookie hijacking)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Make sure that you don’t trust data downloaded from HTTP or other insecure protocols.</strong> <em>(Validate the data before using it in an application)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Require User Approval before Executing a Function that Transmits PII over a Network</strong>. <em>(Inform the user that their data is being transferred over a network or being sent to another location)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>For highly sensitive values, implement additional encryption in transit.</strong> <em>(Improved protection in case the secure channel somehow compromised)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="implementation-3"><a class="anchor" href="#implementation-3"></a>Implementation</h3>
+<div class="sect3">
+<h4 id="overview-3"><a class="anchor" href="#overview-3"></a>Overview</h4>
+<div class="paragraph">
+<p>A number of features were added to enhance the security of the channel between the Mobile App and the Authentication or API Server.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="android"><a class="anchor" href="#android"></a>Android</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-pinning-1.png" alt="android pinning 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="certificate-pinning"><a class="anchor" href="#certificate-pinning"></a>Certificate Pinning</h5>
+<div class="paragraph">
+<p>The main code logic for certificate pinning is found under <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/src/main/java/com/aerogear/androidshowcase/mvp/components/CertPinningHelper.java">here</a> in the CertPinningHelper class.</p>
+</div>
+<div class="paragraph">
+<p>Certificate Pinning has been implemented in the Application using the SPKI technique. This ensures easier maintenance and improved security by anonymizing the certificate information in the application.
+The <a href="https://github.com/datatheorem/TrustKit-Android">TrustKit Android</a> library is being utilised to allow certificate pinning to work with older API levels.</p>
+</div>
+<div class="paragraph">
+<p>The Android <a href="https://developer.android.com/training/articles/security-config.html">Network Security Configuration</a> XML file defined the pins of the server you want to pin against.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;network-security-config&gt;
+    &lt;domain-config cleartextTrafficPermitted="false"&gt;
+        &lt;domain includeSubdomains="true"&gt;security.feedhenry.org&lt;/domain&gt;
+        &lt;pin-set&gt;
+            // primary
+            &lt;pin digest="SHA-256"&gt;trENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0=&lt;/pin&gt;
+            // backup
+            &lt;pin digest="SHA-256"&gt;arENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0=&lt;/pin&gt;
+        &lt;/pin-set&gt;
+        // Set this to true for production, at least 2 unique pins must be provided above!
+        &lt;trustkit-config enforcePinning="true"&gt;&lt;/trustkit-config&gt;
+    &lt;/domain-config&gt;
+    &lt;debug-overrides&gt;
+        &lt;trust-anchors&gt;
+            &lt;!-- Additionally trust user added CAs --&gt;
+            &lt;certificates src="user" /&gt;
+        &lt;/trust-anchors&gt;
+    &lt;/debug-overrides&gt;
+&lt;/network-security-config&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can get the pin for a website using OpenSSL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>openssl s_client -servername www.example.com -connect www.example.com:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A HTTP request function has been created to perform requests to the Authentication servers. The <code>createRequest()</code> functions performs pinning verification on the requests.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Make a request to a resource that requires the access token to be sent with the request
+ *
+ * @param requestUrl the request URL
+ * @param sendAccessToken boolean on whether to send the access token as part of the request
+ * @param callback the OkHTTP callback for the request
+ */
+public Call createRequest(final String requestUrl, final boolean sendAccessToken, final okhttp3.Callback callback) {
+
+    URL url = null;
+    try {
+        url = new URL(requestUrl);
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    }
+    String serverHostname = url.getHost();
+
+    HttpsURLConnection connection = null;
+    try {
+        connection = (HttpsURLConnection) url.openConnection();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    SSLSocketFactory sslSocketFactory = TrustKit.getInstance().getSSLSocketFactory(serverHostname);
+    X509TrustManager trustManager = TrustKit.getInstance().getTrustManager(serverHostname);
+    connection.setSSLSocketFactory(sslSocketFactory);
+
+    OkHttpClient httpClient = HttpHelper.getHttpClient()
+            .sslSocketFactory(sslSocketFactory, trustManager)
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .build();
+
+    Request request;
+
+    if (sendAccessToken) {
+
+        String accessToken = authService.currentUser().getAccessToken();
+
+        request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization", String.format("Bearer %s", accessToken))
+                .build();
+    } else {
+        request = new Request.Builder()
+                .url(url)
+                .build();
+    }
+
+
+    Call call = httpClient.newCall(request);
+    call.enqueue(callback);
+    return call;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A function has also been provided to check if the OkHTTP callback failure exception was due to a certificate validation issue.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Check if an exception is caused by a certificate verification error
+ *
+ * @param error the error exception from a failed request
+ *
+ * @return boolean based on whether or not certificate pinning has failed
+ */
+public boolean checkCertificateVerificationError(final Exception error) {
+    boolean certificateVerificationError = false;
+    if (error.getCause() != null &amp;&amp;
+            (error.getCause().toString().contains("Certificate validation failed") ||
+                    error.getCause().toString().contains("Pin verification failed"))) {
+        certificateVerificationError = true;
+    }
+    return certificateVerificationError;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="invoking-remote-apis"><a class="anchor" href="#invoking-remote-apis"></a>Invoking remote APIs</h5>
+<div class="paragraph">
+<p>When remote APIs are being invoked, before sending the data, you should make sure the client does have the required permission. If the client doesn&#8217;t have the required permission, the client should not perform the request at all:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected ClientStatus doInBackground(Void... voids) {
+    ClientStatus status = null;
+    try {
+        UserPrincipal user = authService.currentUser();
+        if (user != null ) {
+            boolean hasPermission = user.hasRealmRole(requiredRole);
+            long numberOfNotes = noteRepository.count();
+            status = new ClientStatus(hasPermission, numberOfNotes);
+            return status;
+        }
+    } catch (Exception e) {
+        Log.e(TAG, "Error - Exception", e);
+        this.error = e;
+    }
+    return status;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, just checking the permission on the client is not enough. You should always check the user permission on the backend API server as well:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const keycloak = new Keycloak({ store: memoryStore }, config.keycloak);
+
+app.use(keycloak.middleware());
+app.use('/', keycloak.protect('realm:api-access'), routes);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should also perform certificate pinning checks when calling remote APIs:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected Long doInBackground(Void... voids) {
+    String apiUrl = apiServerConfiguration.getNoteAPIUrl();
+
+    UserPrincipal user = authService.currentUser();
+    if (user != null ) {
+        String accessToken = user.getAccessToken();
+        try {
+            List&lt;Note&gt; notes = noteRepository.listNotes();
+            long totalNumber = notes.size();
+            final AtomicLong currentCount = new AtomicLong(0);
+            for (Note note : notes) {
+                if (isCancelled() || this.error != null) {
+                    break;
+                }
+                Note readNote = noteRepository.readNote(note.getId());
+                HttpRequest httpRequest = mobileCore.getHttpLayer().newRequest();
+                httpRequest.addHeader("Authorization", String.format("Bearer %s", accessToken));
+                httpRequest.post(apiUrl, readNote.toJson(true).toString().getBytes("UTF-8"));
+                HttpResponse httpResponse = httpRequest.execute();
+
+                httpResponse.onError(() -&gt; {
+                    UploadNotesTask.this.error = new Exception(httpResponse.stringBody());
+                });
+                httpResponse.onSuccess(() -&gt; {
+                    uploaded.incrementAndGet();
+                });
+                httpResponse.onComplete(() -&gt; {
+                    long progress = currentCount.incrementAndGet();
+                    publishProgress(progress, totalNumber);
+                });
+
+                httpResponse.waitForCompletionAndClose();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error - Exception", e);
+            this.error = e;
+        }
+    }
+    return uploaded.longValue();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ios"><a class="anchor" href="#ios"></a>iOS</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-pinning-1.png" alt="ios pinning 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="certificate-pinning-2"><a class="anchor" href="#certificate-pinning-2"></a>Certificate Pinning</h5>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/ios-showcase-template/blob/master/ios-showcase-template/services/CertPinningService.swift">Certificate Pinning Service</a> and the <a href="https://github.com/aerogear/ios-showcase-template/blob/master/ios-showcase-template/AppDelegate.swift">AppDelegate</a> contain the main code for configuring and performing certificate pinning.
+The <a href="https://github.com/datatheorem/TrustKit">TrustKit</a> library is being used to perform SPKI Certificate Pinning. The pin is a Base64 encoded Subject Public Key Information fingerprint from an X.509 Certificate.</p>
+</div>
+<div class="paragraph">
+<p>You can get the pin for a website using OpenSSL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>openssl s_client -servername www.example.com -connect www.example.com:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TrustKit can be configured and initialised from the <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a> file.
+TrustKit is configured below to perform swizzling of the App&#8217;s <a href="https://developer.apple.com/documentation/foundation/nsurlconnection">NSURLConnection</a> and <a href="https://developer.apple.com/documentation/foundation/nsurlsession">NSURLSession</a> delegates in order to automatically add pinning validation to the App&#8217;s HTTPS connections.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">// Define TrustKit configuration
+let trustKitConfig = [
+    kTSKSwizzleNetworkDelegates: true,
+    kTSKPinnedDomains: [
+        "security.feedhenry.org": [
+            kTSKIncludeSubdomains : true,
+            kTSKEnforcePinning : true,
+            kTSKPublicKeyAlgorithms: [kTSKAlgorithmRsa2048],
+            kTSKPublicKeyHashes: [
+                "trENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0=",
+                "arENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0="
+            ],]]] as [String : Any]
+
+// Init TrustKit with the above config
+TrustKit.initSharedInstance(withConfiguration: trustKitConfig)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>performValidCertCheck()</code> function in the <a href="https://github.com/aerogear/ios-showcase-template/blob/master/secure-ios-app/services/CertPinningService.swift">Certificate Pinning Service</a> can be used to manually check if a request to a host fails due to certificate pinning validation issues.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/*
+ - Checks if the servers presented cert matches a pin from the pinset
+
+ - Parameter url - the url of the host to check. If no URL is provided, the auth server will be tested by default.
+
+ - Parameter onCompleted - a completion handler that returns the result of the cert check. A true value means that the cert pinning validated successfully. A false value means there was a validation issue which resulted in a pin verification failure.
+ */
+func performValidCertCheck(url:String? = nil, onCompleted: @escaping (Bool) -&gt; Void) {
+    let serviceURL = AgsCore.instance.getConfiguration("keycloak")?.url
+    let requestURL = url ?? "\(serviceURL)/auth/"
+
+    Alamofire.request(requestURL).validate(statusCode: 200..&lt;300).responseData(completionHandler: {response in
+        switch response.result {
+        case .success:
+            onCompleted(true)
+        case .failure(let error):
+            if(!self.checkPinningFailed(error: error)) {
+                // error is not cert pinning related
+                onCompleted(true)
+            } else {
+                onCompleted(false)
+            }
+        }
+    })
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The outcome of the certificate checks can then be used to warn the user if a secure channel is not available. In the example below, pinning is performed when the authentication button is pressed. If there are certificate validation issues, the end user will not be allowed to authenticate and the UI is updated to warn them that their connection to the remote server is not secure.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">@IBAction func onAuthButtonTapped(_ sender: UIButton) {
+    // perform cert pinning on the auth server when the auth button is pressed
+    if let listener = self.authListener {
+        listener.performPreCertCheck() {
+            validCert in
+            if(validCert) {
+                // cert is valid, continue with login
+                listener.startAuth(presentingViewController: self)
+            } else {
+                // pin validation issues, update the UI to notify the user and prevent authentication.
+                self.authenticationButton.isHidden = true
+                self.certPinningError.isHidden = false
+                self.logoImage.isHidden = true
+                self.dangerLogo.isHidden = false
+                self.backgroundImage.image = UIImage(named: "ic_error_background")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="apache-cordova-2"><a class="anchor" href="#apache-cordova-2"></a>Apache Cordova</h4>
+<div class="sect4">
+<h5 id="certificate-pinning-3"><a class="anchor" href="#certificate-pinning-3"></a>Certificate Pinning</h5>
+<div class="paragraph">
+<p>Certificate Pinning is being performed on preflight requests to ensure that the channel is secure before sending sensitive data.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">window.plugins.sslCertificateChecker.check(
+        function() {
+            // success
+        }.bind(this),
+        function(message) {
+          if (message == "CONNECTION_NOT_SECURE") {
+            let toast = this.toastCtrl.create({
+               message: 'Connection Not Secure. Preventing Authentication.',
+               duration: 10000,
+               position: 'bottom'
+             });
+
+            this.navCtrl.setRoot(HomePage);
+            toast.present();
+          }
+        }.bind(this),
+        server,
+        fingerprint);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The pinning fingerprint is defined in the <a href="https://github.com/feedhenry/mobile-security-cordova-template/blob/c24297cda240efa40aca292e7d0657d7432d1eba/src/config/keycloak.json">/config/keycloak.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "realm": "secure-app",
+  "url": "https://keycloak.security.feedhenry.org/auth/",
+  "ssl-required": "external",
+  "clientId": "client-app",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "pinningFingerprint": "44 C8 9A 60 4E 29 82 85 8E 4F 75 1F 78 46 CD B3 0A 08 66 3F",
+  "apiServerUrl": "https://api.security.feedhenry.org",
+  "apiEndpoint": "/"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mobile-app-self-defence"><a class="anchor" href="#mobile-app-self-defence"></a>Mobile App Self-Defence</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Do&#8217;s</th>
+<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Detect compromised environments (rooted/jaibreak) at runtime and react accordingly</strong> <em>(Ensure the environment is not tampered with)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Obfuscation is not protection, assume everything in the code is public.</strong> <em>(Application code <strong>can</strong> be deobfuscated)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Integrity check of the binary</strong> <em>(Ensure the app itself is not tampered with)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify and check the integrity of dynamic resources</strong> <em>(Ensure those resources are not tampered with)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Disable debugging in the application settings</strong> <em>(Make sure the app is not debuggable)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Check if the device is in developer mode if supported by platform</strong> <em>(Prevent app debugging)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Check if debugger is attached and/or if the process is being traced</strong> <em>(Prevent app debugging)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Check lockscreen/passcode is enabled on the device</strong> <em>(Make sure device is secure)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consider blocking access if devices are out of date</strong> <em>(Ensure device has no known vulnerabilities)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app implements two or more functionally independent methods of root detection.</strong> <em>(Use a dual verification approach)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app implements multiple functionally independent debugging defences.</strong> <em>(Prevent a debugger from being attached that can view app data).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app detects, and response to, being run in an emulator using any method.</strong> <em>(An emulator can be tampered with more easily than a hardware device)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app detects, and responds to, modifications of process memory, including relocation table patches and injected code.</strong> <em>(Ensure that the operating environment of the App is safe before running it.)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify all executable files and libraries belonging to the app are either encrypted on the file level and/or important code and data segments inside the executables are encrypted or packed.</strong> <em>(Sensitive or secret code/resources should be protected.)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app implements a 'device binding' functionality when a mobile device is treated as being trusted. Verify that the device fingerprint is derived from multiple device properties.</strong> <em>(Improve device identity/integrity).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that if the architecture requires sensitive computations be performed on the client-side, these computations are isolated from the operating system by using a hardware-based SE or TEE.</strong> <em>(Sensitive operations should be carried out away from the main processor in a Trusted Execution Environment).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform user interaction anomaly detection.</strong> <em>(Allows the identification of abnormal app usage by a user that may be malicious).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consider only starting the app if it is running on the latest version or block requests from old versions of the app.</strong> <em>(Older versions maybe have logic or security issues).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Out-of-appstore security updates should be shipped using an encrypted connection.</strong> <em>(Ensure that the security patch has not been tampered with in transit).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Ensure that the installation package and its updates shall be digitally signed such that its platform can cryptographically verify them prior to installation.</strong> <em>(Verify integrity before applying the update).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="implementation-4"><a class="anchor" href="#implementation-4"></a>Implementation</h3>
+<div class="sect3">
+<h4 id="overview-4"><a class="anchor" href="#overview-4"></a>Overview</h4>
+<div class="paragraph">
+<p>A number of checks were implemented to assess the security of the underlying device running both the Android and iOS template applications.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="android-2"><a class="anchor" href="#android-2"></a>Android</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-trust-1.png" alt="android trust 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The Android Template App is using the <a href="https://github.com/aerogear/aerogear-android-sdk/blob/master/docs/getting-started/auth-self-defence-checks.adoc">App Self-Defense Checks</a> that are included in the <a href="https://github.com/aerogear/aerogear-android-sdk">AeroGear Android SDK</a>.</p>
+</div>
+<div class="paragraph">
+<p>The main code logic is found under <a href="https://github.com/aerogear/android-showcase-template/tree/master/app/src/main/java/com/aerogear/androidshowcase/features/device">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>The Security Service is being initialised in the <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/src/main/java/com/aerogear/androidshowcase/di/SecureApplicationModule.java">SecureApplicationModule</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Provides @Singleton
+SecurityService provideSecurityService() {
+    return MobileCore.getInstance().getService(SecurityService.class);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following code snippets describe the main device trust detection logic in the mobile app.</p>
+</div>
+<div class="sect4">
+<h5 id="detecting-root-access"><a class="anchor" href="#detecting-root-access"></a>Detecting Root Access</h5>
+<div class="paragraph">
+<p>A number of different checks are being used to check if root access is present on the device.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Detect if the device is rooted.
+ */
+public void detectRoot() {
+    totalTests++;
+    SecurityCheckResult result = securityService.check(SecurityCheckType.IS_ROOTED);
+    if (result.passed()) {
+        setDetected(rootAccess, R.string.root_detected_positive);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-if-lock-screen-set"><a class="anchor" href="#detecting-if-lock-screen-set"></a>Detecting if Lock Screen Set</h5>
+<div class="paragraph">
+<p>Detecting if the Android device has a lock screen set (with pin, fingerprint, pattern etc).</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Detect if the device has a lock screen setup (pin, password etc).
+ */
+public void detectDeviceLock() {
+    totalTests++;
+    SecurityCheckResult result = securityService.check(SecurityCheckType.SCREEN_LOCK_ENABLED);
+    if (!result.passed()) {
+        setDetected(lockScreenSetup, R.string.device_lock_detected_negative);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-if-debugger-is-attached"><a class="anchor" href="#detecting-if-debugger-is-attached"></a>Detecting if Debugger is Attached</h5>
+<div class="paragraph">
+<p>Detecting if an Android debugger is attached to the application.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Detect if a debugger is attached to the application.
+ */
+public void debuggerDetected() {
+    totalTests++;
+    SecurityCheckResult result = securityService.check(SecurityCheckType.IS_DEBUGGER);
+    if (result.passed()) {
+        setDetected(debuggerAccess, R.string.debugger_detected_positive);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-emulator-access"><a class="anchor" href="#detecting-emulator-access"></a>Detecting Emulator Access</h5>
+<div class="paragraph">
+<p>Detecting if the Application is being run on an emulator.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Detect if the application is being run in an emulator.
+ */
+public void detectEmulator() {
+    totalTests++;
+    SecurityCheckResult result = securityService.check(SecurityCheckType.IS_EMULATOR);
+    if (result.passed()) {
+        setDetected(emulatorAccess, R.string.emulator_detected_positive);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-hooking-framework-apps"><a class="anchor" href="#detecting-hooking-framework-apps"></a>Detecting Hooking Framework Apps</h5>
+<div class="paragraph">
+<p>There are some simple checks added to the application to check if the <a href="http://repo.xposed.info/module/de.robv.android.xposed.installer">Xposed Framework</a> or <a href="http://www.cydiasubstrate.com">Cydia Substrate</a> are installed on the device, which can be used to attack and tamper with logic in an Android applications.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Detect if a hooking framework application is installed on the device
+ */
+public void detectHookingFramework() {
+    totalTests++;
+    String xposedPackageName = "de.robv.android.xposed.installer";
+    String substratePackageName = "com.saurik.substrate";
+
+    if (checkAppInstalled(xposedPackageName) || checkAppInstalled(substratePackageName)) {
+        setDetected(hookingDetected, R.string.hooking_detected_positive);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-app-data-backup-enabled"><a class="anchor" href="#detecting-app-data-backup-enabled"></a>Detecting App Data Backup Enabled</h5>
+<div class="paragraph">
+<p>The application can check if the <code>allowBackup</code> flag in the applications <code>AndroidManifest.xml</code> file is set to true. If this flag is set to true, it is possible for an attacker to recover application data from the device without requiring root access.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Function to check if the backup flag is enabled in the application manifest file
+ */
+public void detectBackupEnabled() {
+    totalTests++;
+    SecurityCheckResult result = securityService.check(SecurityCheckType.ALLOW_BACKUP_ENABLED);
+    if (result.passed()) {
+        setDetected(allowBackup, R.string.allow_backup_detected_positive);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-out-of-date-os-version"><a class="anchor" href="#detecting-out-of-date-os-version"></a>Detecting Out of Date OS Version</h5>
+<div class="paragraph">
+<p>The devices OS version can be checked using the <a href="https://developer.android.com/reference/android/os/Build.html">Build</a> class to see if the device is not running the latest of Android.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Function to check if the device is running the latest Android OS
+ */
+public void detectLatestOS() {
+    // todo: find if there is a better way to define what the latest android version is
+    int latestOsApiLevel = Build.VERSION_CODES.M;
+    totalTests++;
+
+    if (Build.VERSION.SDK_INT &lt; latestOsApiLevel) {
+        setDetected(deviceOS, R.string.device_os_latest_negative);
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-developer-mode-enabled"><a class="anchor" href="#detecting-developer-mode-enabled"></a>Detecting Developer Mode Enabled</h5>
+<div class="paragraph">
+<p>The Developer Mode status can be checked to see if this is enabled.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">+include::detectDeveloperOptions.inc.adoc[]+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="native-ios-3"><a class="anchor" href="#native-ios-3"></a>Native iOS</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-trust-1.png" alt="ios trust 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following code snippets describe the main device trust detection logic in the iOS template app.</p>
+</div>
+<div class="sect4">
+<h5 id="detecting-device-lock"><a class="anchor" href="#detecting-device-lock"></a>Detecting Device Lock</h5>
+<div class="paragraph">
+<p>Detecting if the Device has a lock screen set.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Check if a lock screen is set on the device. (iOS 9 or higher).
+
+ - Returns: A detector object.
+ */
+fileprivate func detectDeviceLock() -&gt; Detector {
+    let deviceLockSet = LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+    if deviceLockSet == false {
+        return Detector(label: DETECTION_DEVICE_LOCK_POSITIVE, detected: true, description: DETECTION_DEVICE_LOCK_DESC)
+    } else {
+        return Detector(label: DETECTION_DEVICE_LOCK_NEGATIVE, detected: false, description: DETECTION_DEVICE_LOCK_DESC)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-jailbreak"><a class="anchor" href="#detecting-jailbreak"></a>Detecting Jailbreak</h5>
+<div class="paragraph">
+<p>Detecting if the Device is Jailbroken using the <a href="https://github.com/thii/DTTJailbreakDetection">DTTJailbreakDetection</a> library.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Check if the device running the application is jailbroken.
+
+ - Returns: A detector object.
+ */
+fileprivate func detectJailbreak() -&gt; Detector {
+    if (DTTJailbreakDetection.isJailbroken()) {
+        return Detector(label: JAILBREAK_DETECTED_POSITIVE, detected: true, description: JAILBREAK_DETECTED_DESC)
+    } else {
+        return Detector(label: JAILBREAK_DETECTED_NEGATIVE, detected: false, description: JAILBREAK_DETECTED_DESC)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-debug-mode"><a class="anchor" href="#detecting-debug-mode"></a>Detecting Debug Mode</h5>
+<div class="paragraph">
+<p>Detecting if the device is running in Debug mode.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Check if the device running the application is jailbroken.
+
+ - Returns: A detector object.
+ */
+fileprivate func detectDebugabble() -&gt; Detector {
+    #if DEBUG
+        return Detector(label: DEBUG_MODE_DETECTED_POSITIVE, detected: true, description: DEBUG_MODE_DETECTED_DESC)
+    #else
+        return Detector(label: DEBUG_MODE_DETECTED_NEGATIVE, detected: false, description: DEBUG_MODE_DETECTED_DESC)
+    #endif
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-emulator-access-2"><a class="anchor" href="#detecting-emulator-access-2"></a>Detecting Emulator Access</h5>
+<div class="paragraph">
+<p>Detecting if the underlying device running the mobile application is an Emulator.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Check if the application is running in an emulator.
+
+ - Returns: A detector object.
+ */
+fileprivate func detectEmulator() -&gt; Detector {
+    #if (arch(i386) || arch(x86_64)) &amp;&amp; os(iOS)
+        return Detector(label: EMULATOR_DETECTED_POSITIVE, detected: true, description: EMULATOR_DETECTED_DESC)
+    #else
+        return Detector(label: EMULATOR_DETECTED_NEGATIVE, detected: false, description: EMULATOR_DETECTED_DESC)
+    #endif
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-outdated-os-versions"><a class="anchor" href="#detecting-outdated-os-versions"></a>Detecting Outdated OS Versions</h5>
+<div class="paragraph">
+<p>Detecting if the underlying device running the mobile application is running an old version of iOS.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Check if the device is running the on the latest version of iOS.
+
+ - Returns: A detector object.
+ */
+fileprivate func detectLatestOS() -&gt; Detector {
+    if #available(iOS 11.0, *) {
+        return Detector(label: LATEST_OS_DETECTED_NEGATIVE, detected: false, description: LATEST_OS_DETECTED_DESC)
+    } else {
+        return Detector(label: LATEST_OS_DETECTED_POSITIVE, detected: true, description: LATEST_OS_DETECTED_DESC)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="apache-cordova-3"><a class="anchor" href="#apache-cordova-3"></a>Apache Cordova</h4>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-trust-1.png" alt="cordova trust 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following code snippets describe the main device trust detection logic in the Cordova template app.</p>
+</div>
+<div class="sect4">
+<h5 id="detecting-emulator-access-3"><a class="anchor" href="#detecting-emulator-access-3"></a>Detecting Emulator Access</h5>
+<div class="paragraph">
+<p>Detecting if the underlying device running the mobile application is an Emulator.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-root-jailbreak"><a class="anchor" href="#detecting-root-jailbreak"></a>Detecting Root/Jailbreak</h5>
+<div class="paragraph">
+<p>Detecting if the underlying device is Jailbroken or has Root Access.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-debug-access"><a class="anchor" href="#detecting-debug-access"></a>Detecting Debug Access</h5>
+<div class="paragraph">
+<p>Detecting if the application is built in debug mode.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="detecting-device-lock-set"><a class="anchor" href="#detecting-device-lock-set"></a>Detecting Device Lock Set</h5>
+<div class="paragraph">
+<p>Detecting if the underlying device has the device lock set.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="handling-sensitive-data-overview"><a class="anchor" href="#handling-sensitive-data-overview"></a>Handling Sensitive Data Overview</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dont&#8217;s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sensitive data should stay in RAM for as little time as possible</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Send sensitive data over alternate channels (e.g, SMS, MMS, or notifications)</strong> <em>(They are not encrypted)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Address Space Layout Randomization (ASLR) should be taken advantage of</strong> <em>(Limit the impact of attacks such as buffer overflow)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Encryption keys remain in RAM during the instance lifecycle of the app.</strong> <em>(Prevent the key from being read from memory)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minimize the use of APIs that access sensitive or personal user data</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Write data to log files</strong> <em>(Other applications can access the log data)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consider using a hash or non-reversible form of the data</strong> <em>(To protect the original data)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store/cache sensitive data on the device</strong> <em>(It can be leaked)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>minimize the frequency of asking for user credentials. Instead use an authorization token and refresh it</strong> <em>(Less chance of exposing user credentials)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>storing/logging GPS data</strong> <em>(Protect user privacy)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use secure POST to send user data, with XSRF token protection</strong> <em>(Query params in URL are logged)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sending crash logs over the network in plaintext</strong> <em>(Can contain sensitive info)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Add an additional layer of verified, third-party encryption (e.g., SQLCipher) to the data as device encryption is not sufficient</strong> <em>(Extra layer of protection)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cryptography-summary"><a class="anchor" href="#cryptography-summary"></a>Cryptography Summary</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Do&#8217;s</th>
+<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apply cryptographic standards that will withstand the test of time for at least 10 years into the future</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Including the keys in the same attacker-readable directory as the encrypted content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use <a href="http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm">NIST FIPS-validated</a> crypto modules</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use of hardcoded keys within the binary</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use NIST approved or NSA approved key management technology and processes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creation and Use of Custom Encryption Protocols</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recommended minimal key lengths and algorithms</p>
+<p class="tableblock">Key exchange : Diffie–Hellman with a minimum of 2048 bits</p>
+<p class="tableblock">Message Integrity: HMAC-SHA2 (or HMAC-SHA-256)</p>
+<p class="tableblock">Message Hash: SHA2 256 bits</p>
+<p class="tableblock">Asymetric encryption: RSA 2048 bits</p>
+<p class="tableblock">Symmetric-key algorithm: AES 128 bits (CBC or GCM)</p>
+<p class="tableblock">Password Hashing: PBKDF2, Scrypt, Bcrypt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use of Insecure and/or Deprecated Algorithms, like RC2, MD5, MD4, SHA1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the same cryptographic key for multiple purposes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Random values are generated using a sufficiently secure random number generator</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

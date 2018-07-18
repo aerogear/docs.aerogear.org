@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetting the Security of Mobile Applications :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/nispMobileSecurityVetting.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/nispMobileSecurityVetting.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Vetting the Security of Mobile Applications</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of notes taken from the <a href="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-163.pdf">NIST Vetting the Security of Mobile Applications</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-vetting-process"><a class="anchor" href="#app-vetting-process"></a>App Vetting Process</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="general-process"><a class="anchor" href="#general-process"></a>General Process</h3>
+<div class="paragraph">
+<p>In an enterprise environment, before the mobile apps are deployed to the devices, they needs to be vetted. The process works like this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The apps are submitted to the administrator.</p>
+</li>
+<li>
+<p>The administrator submit the app for testing.
+The app testing process will use both static analysis and dynamic analysis services or tools to identity poteintial vulnerabilities of the apps.
+It should also generate reports about those vulnerabilities and produce risk assessments.</p>
+</li>
+<li>
+<p>The generated reports will be submitted to an auditor.
+Based on the reports the auditor will then submit the recommendation to the approver.</p>
+</li>
+<li>
+<p>Approver will either approve or reject the app.</p>
+</li>
+<li>
+<p>If the app is approved, the administrator will deploy the app. Otherwise the administrator will reject the app.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following diagram can be used to describe the process:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-app-vetting.png" alt="600" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Further note that although app vetting processes may vary among organizations, organizations should strive to implement a process that is repeatable, efficient, consistent, and that limits errors.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="planning-the-vetting-process"><a class="anchor" href="#planning-the-vetting-process"></a>Planning the Vetting Process</h3>
+<div class="paragraph">
+<p>Before an organization can implement an app vetting process, it is necessary for the organization to first</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>develop app security requirements</p>
+</li>
+<li>
+<p>understand the limitations of app vetting, and</p>
+</li>
+<li>
+<p>procure a budget and staff for supporting the app vetting process.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recommendation"><a class="anchor" href="#recommendation"></a>Recommendation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Perform a risk analysis to understand and document the potential security impact of mobile apps on the organization’s computing, networking, and data resources.</p>
+</li>
+<li>
+<p>Review and document the mobile device hardware and operating system security controls, for example an encrypted file system, and identify which security and privacy requirements can be addressed by the mobile device itself.</p>
+</li>
+<li>
+<p>Review and document mobile enterprise security technologies, such as Mobile Device Management (MDM) solutions, and identify which security and privacy requirements can be addressed by these technologies.</p>
+</li>
+<li>
+<p>Review the organization’s mobile security architecture and understand what threats are mitigated through the technical and operational controls. Identify potential security and privacy risks that are not mitigated through these technical and operational controls.</p>
+</li>
+<li>
+<p>Develop organizational app security requirements by identifying general and context-sensitive requirements.</p>
+</li>
+<li>
+<p>Educate organizational staff on the limitations of app vetting and the value of human involvement in an app vetting process.</p>
+</li>
+<li>
+<p>Procure an adequate budget for performing an app vetting process.</p>
+</li>
+<li>
+<p>Hire personnel, particularly auditors, with appropriate expertise.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-testing"><a class="anchor" href="#app-testing"></a>App Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>General app security requirements include:</p>
+</div>
+<div class="sect2">
+<h3 id="testing-requirements"><a class="anchor" href="#testing-requirements"></a>Testing Requirements</h3>
+<div class="sect3">
+<h4 id="enabling-authorized-functionality"><a class="anchor" href="#enabling-authorized-functionality"></a>Enabling authorized functionality</h4>
+<div class="sect4">
+<h5 id="requirement"><a class="anchor" href="#requirement"></a>Requirement</h5>
+<div class="paragraph">
+<p>The app must work as described; all buttons, menu items, and other interfaces must work. Error conditions must be handled gracefully, such as when a service or function is unavailable (e.g., disabled, unreachable, etc.)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples"><a class="anchor" href="#examples"></a>Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Testing the UI</p>
+</li>
+<li>
+<p>Usage of the physical sensors on the device</p>
+</li>
+<li>
+<p>Usage of Telephony and SMS messages of the device</p>
+</li>
+<li>
+<p>Usage of the device identifier or PII (personally identifiable information)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preventing-unauthorized-functionality"><a class="anchor" href="#preventing-unauthorized-functionality"></a>Preventing unauthorized functionality</h4>
+<div class="sect4">
+<h5 id="requirement-2"><a class="anchor" href="#requirement-2"></a>Requirement</h5>
+<div class="paragraph">
+<p>Unauthorized functionality, such as data exfiltration performed by malware, must not be supported.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples-2"><a class="anchor" href="#examples-2"></a>Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Malicious malwares that can</p>
+<div class="ulist">
+<ul>
+<li>
+<p>exfiltrating confidential information or PII to a third party</p>
+</li>
+<li>
+<p>defrauding the user by sending premium SMS messages</p>
+</li>
+<li>
+<p>injection of fake websites into the victim’s browser</p>
+</li>
+<li>
+<p>the use of banner ads that may be presented in a manner which causes the user to unintentionally select ads that may attempt to deceive the user</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use open source or commercially available malware detection and analysis tools to identify known or new form of malwares</p>
+</li>
+<li>
+<p>Are there communications with disreputable websites, domains, servers, etc</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="limiting-permissions"><a class="anchor" href="#limiting-permissions"></a>Limiting permissions</h4>
+<div class="sect4">
+<h5 id="requirement-3"><a class="anchor" href="#requirement-3"></a>Requirement</h5>
+<div class="paragraph">
+<p>Apps should have only the minimum permissions necessary and should only grant other applications the necessary permissions.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples-3"><a class="anchor" href="#examples-3"></a>Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>File input/output (I/O) and removable storage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>file scanning or access to files that are not part of an app’s own directory could be an indicator of malicious activity or bad coding practice</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Privileged commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Apps may possess the ability to invoke lower-level command line programs, which may allow access to low-level structures, such as the root directory, or may allow access to sensitive commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>APIs</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The app only uses designated APIs from the vendor-provided software development kit (SDK) and uses them properly; no other API calls are permitted</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="protecting-sensitive-data"><a class="anchor" href="#protecting-sensitive-data"></a>Protecting sensitive data</h4>
+<div class="sect4">
+<h5 id="requirement-4"><a class="anchor" href="#requirement-4"></a>Requirement</h5>
+<div class="paragraph">
+<p>Apps that collect, store, and transmit sensitive data should protect the confidentiality and integrity of this data.
+This category includes preserving privacy, such as asking permission to use personal information and using it only for authorized purposes</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples-4"><a class="anchor" href="#examples-4"></a>Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Usage of invalid cryptography modules. See <a href="http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140val-all.htm">list of FIPS (Federal Information Processing Standards) validated modules</a></p>
+</li>
+<li>
+<p>Cryptography implementations must also be maintained in accordance with approved practices.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cryptographic key management is often performed improperly, leading to exploitable weaknesses. See <a href="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt3r1.pdf">NIST Recommendation for Key Management</a></p>
+</li>
+<li>
+<p>The failure to properly validate digital certificates, leaving communications protected by these certificates subject to man-in-themiddle attacks.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Privacy considerations need to be taken into account for apps that handle PII, including mobile-specific personal information like location data and pictures taken by onboard cameras, as well as the broadcast ID of the device.</p>
+</li>
+<li>
+<p>Data leakage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Through unauthorized network connections.</p>
+</li>
+<li>
+<p>Shared system-level logs, where multiple apps log their security events to a single log file</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="securing-app-code-dependencies"><a class="anchor" href="#securing-app-code-dependencies"></a>Securing app code dependencies</h4>
+<div class="sect4">
+<h5 id="requirement-5"><a class="anchor" href="#requirement-5"></a>Requirement</h5>
+<div class="paragraph">
+<p>The app must use any dependencies, such as on libraries, in a reasonable manner and not for malicious reasons.
+Specifically, an app should properly use other bodies of code, such as libraries, only when needed, and not to attempt to obfuscate malicious activity</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples-5"><a class="anchor" href="#examples-5"></a>Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Native Methods</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Native method calls are typically calls to a library function that has already been loaded into memory.</p>
+</li>
+<li>
+<p>However, can provide a level of obfuscation that impacts the ability to perform analysis of the app.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>External Libraries and Classes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Third-party libraries and classes can be closed source, can have selfmodifying code, or can execute unknown server-side code.</p>
+</li>
+<li>
+<p>Legitimate uses for loaded libraries and classes might be for the use of a cryptographic library or a graphics API.</p>
+</li>
+<li>
+<p>Tools are available that can list libraries, and these libraries can then be searched for in vulnerability databases to determine if they have known weaknesses.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Dynamic Behavior</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The key point here is the need to know where data used by an app originates from and knowing whether and how it gets sanitized.</p>
+</li>
+<li>
+<p>It is critical to recognize that data downloaded from an external source is particularly dangerous as a potential exploit vector unless it is clear how the app prevents insecure behaviors resulting from data from a source not trusted by the organization using the app.</p>
+</li>
+<li>
+<p>Requiring some level of risk-tolerance mitigation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Inter-Application Communications</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Be aware of situations where an app is using nonhuman entities to make API calls to other devices, to communicate with third-party services, or to otherwise interact with other systems.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="testing-app-updates"><a class="anchor" href="#testing-app-updates"></a>Testing app updates</h4>
+<div class="sect4">
+<h5 id="requirement-6"><a class="anchor" href="#requirement-6"></a>Requirement</h5>
+<div class="paragraph">
+<p>New versions of the app must be tested to identify any new weaknesses.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="examples-6"><a class="anchor" href="#examples-6"></a>Examples</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>All apps, as well as their updates, should go through a software assurance vetting process, because each new version of an app can introduce new unintentional weaknesses or unreliable code.</p>
+</li>
+<li>
+<p>But devices can install updates automatically, or users can install updates from somewhere else</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Disabling all automatic updates</p>
+</li>
+<li>
+<p>Only permitting use of an organization-provided app store</p>
+</li>
+<li>
+<p>Enabling MDM mobile application management features</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="testing-approaches"><a class="anchor" href="#testing-approaches"></a>Testing Approaches</h3>
+<div class="sect3">
+<h4 id="correctness-testing"><a class="anchor" href="#correctness-testing"></a>Correctness Testing</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Software correctness testing is the process of executing a program with the intent of finding errors.</p>
+</li>
+<li>
+<p>Although software correctness testing is aimed primarily at improving quality assurance, verifying and validating described functionality, or estimating reliability, it can also help to reveal potential security vulnerabilities since such vulnerabilities often have a negative effect on the quality, functionality, and reliability of the software.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="source-code-versus-binary-code"><a class="anchor" href="#source-code-versus-binary-code"></a>Source Code Versus Binary Code</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>When source code is available, such as in the case of an open source app, a variety of tools can be used to analyze it.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reviewers should generally use automated static analysis tools whether they are conducting an automated or a manual review, and they should express their findings in terms of Common Weakness Enumeration (CWE) identifiers or some other widely accepted nomenclature.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="static-versus-dynamic-analysis"><a class="anchor" href="#static-versus-dynamic-analysis"></a>Static Versus Dynamic Analysis</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Organizations should consider the technical trade-off differences between what static and dynamic tools offer and balance their usage given the organization’s software assurance goals.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="automated-tools"><a class="anchor" href="#automated-tools"></a>Automated Tools</h4>
+<div class="paragraph">
+<p>Classes of automated tools include</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Simulators</p>
+</li>
+<li>
+<p>Remote Device Access</p>
+</li>
+<li>
+<p>Automated Testing</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User Interface-Driven Testing</p>
+</li>
+<li>
+<p>Data-Driven Testing</p>
+</li>
+<li>
+<p>Fuzzing</p>
+</li>
+<li>
+<p>Network-Level Testing</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Test Automation</p>
+</li>
+<li>
+<p>Static Tools</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Static Analysis Tools</p>
+</li>
+<li>
+<p>Metrics Tools</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Organizations will need to use multiple automated tools to meet their testing requirements.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sharing-results"><a class="anchor" href="#sharing-results"></a>Sharing Results</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://nvd.nist.gov/">National Vulnerability Database (NVD)</a> is the U.S. government repository of standards-based
+vulnerability management data represented using the <a href="https://scap.nist.gov/">Security Content Automation Protocol (SCAP)</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The NVD includes databases of security checklists, security-related software flaws, misconfigurations,
+product names, and impact metrics.</p>
+</li>
+<li>
+<p>SCAP is a suite of specifications that standardize the format and nomenclature by which security software products communicate software flaw and security configuration information</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The <a href="http://cwe.mitre.org/">CWE</a> and <a href="https://capec.mitre.org/">Common Attack Pattern Enumeration and Classification (CAPEC)</a> collections can provide a useful list of weaknesses and attack approaches to drive a binary or live system penetration test.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recommendation-2"><a class="anchor" href="#recommendation-2"></a>Recommendation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Review licensing agreements associated with analyzers and understand the security implications surrounding the integrity, intellectual property, and licensing issues when submitting an app to an analyzer.</p>
+</li>
+<li>
+<p>Ensure that apps transmitted over the network use an encrypted channel (e.g., SSL) and that apps are stored on a secure machine at the analyzer&#8217;s location. In addition, ensure that only authorized users have access to that machine.</p>
+</li>
+<li>
+<p>Identify general app security requirements needed by the organization.</p>
+</li>
+<li>
+<p>Select appropriate testing tools and methodologies for determining the satisfaction or violation of general app security requirements.</p>
+</li>
+<li>
+<p>Ensure that app updates are tested.</p>
+</li>
+<li>
+<p>Leverage existing testing results where possible.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-approval-rejection"><a class="anchor" href="#app-approval-rejection"></a>App Approval/Rejection</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="report-and-risk-auditing"><a class="anchor" href="#report-and-risk-auditing"></a>Report and Risk Auditing</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>One of the main issues related to report and risk auditing stems from the difficulty in collating and interpreting different reports and risk assessments from multiple analyzers due to the wide variety of security-related definitions, semantics, nomenclature, and metrics</p>
+<div class="ulist">
+<ul>
+<li>
+<p>It is recommended that an organization identify analyzers that leverage vulnerability reporting and risk assessment standards.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="organization-specific-vetting-criteria"><a class="anchor" href="#organization-specific-vetting-criteria"></a>Organization-Specific Vetting Criteria</h3>
+<div class="paragraph">
+<p>Sample criterias:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Requirements</p>
+</li>
+<li>
+<p>Provenance</p>
+</li>
+<li>
+<p>Data Sensitivity</p>
+</li>
+<li>
+<p>App Criticality</p>
+</li>
+<li>
+<p>Target Users</p>
+</li>
+<li>
+<p>Target Hardware</p>
+</li>
+<li>
+<p>Target Environment</p>
+</li>
+<li>
+<p>Digital Signature</p>
+</li>
+<li>
+<p>App Documentation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User Guide</p>
+</li>
+<li>
+<p>Test Plans</p>
+</li>
+<li>
+<p>Testing Results</p>
+</li>
+<li>
+<p>Service-Level Agreement</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recommendation-3"><a class="anchor" href="#recommendation-3"></a>Recommendation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use analyzers that leverage a standardized reporting format or risk assessment methodology, or that provides intuitive and easy-to-interpret reports and risk assessments.</p>
+</li>
+<li>
+<p>Ensure sufficient training of auditors on both the organization&#8217;s security requirements and interpretation of analyzer reports and risk assessments. Use multiple auditors to increase likelihood of appropriate recommendations.</p>
+</li>
+<li>
+<p>Identify organization-specific vetting criteria necessary for vetting context-sensitive app security requirements.</p>
+</li>
+<li>
+<p>Monitor public databases, mailing lists, and other publicly available security vulnerability reporting repositories to keep abreast of new developments that may impact the security of mobile devices and mobile apps.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

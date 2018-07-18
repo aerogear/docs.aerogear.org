@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guidelines for Managing the Security of Mobile Devices in the Enterprise :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/nispMobileDeviceSecurityGuides.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/nispMobileDeviceSecurityGuides.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Guidelines for Managing the Security of Mobile Devices in the Enterprise</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of notes taken from the <a href="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-124r1.pdf">NIST Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="high-level-threats-and-vulnerabilities-for-mobile-devices"><a class="anchor" href="#high-level-threats-and-vulnerabilities-for-mobile-devices"></a>High-Level Threats and Vulnerabilities for Mobile Devices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="lack-of-physical-security-controls"><a class="anchor" href="#lack-of-physical-security-controls"></a>Lack of Physical Security Controls</h3>
+<div class="sect3">
+<h4 id="mitigations"><a class="anchor" href="#mitigations"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Requiring authentication before gaining access to the mobile device or the organization’s resources accessible through the device.</p>
+</li>
+<li>
+<p>Protecting sensitive data—either encrypting the mobile device’s storage so that sensitive data cannot be recovered from it by unauthorized parties, or not storing sensitive data on mobile devices.</p>
+</li>
+<li>
+<p>User training and awareness, to reduce the frequency of insecure physical security practices.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-untrusted-mobile-devices"><a class="anchor" href="#use-of-untrusted-mobile-devices"></a>Use of Untrusted Mobile Devices</h3>
+<div class="sect3">
+<h4 id="mitigations-2"><a class="anchor" href="#mitigations-2"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Restrict or prohibit use of BYOD devices, thus favoring organization-issued devices</p>
+</li>
+<li>
+<p>Fully secure each organization-issued mobile device; this gets the mobile device in as trusted a state as possible, and deviations from this secure state can be monitored and addressed.</p>
+</li>
+<li>
+<p>Use other technical solutions for achieving degrees of trust in BYOD devices</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-untrusted-networks"><a class="anchor" href="#use-of-untrusted-networks"></a>Use of Untrusted Networks</h3>
+<div class="sect3">
+<h4 id="mitigations-3"><a class="anchor" href="#mitigations-3"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Using strong encryption technologies (such as virtual private networks, VPNs) to protect the confidentiality and integrity of communications</p>
+</li>
+<li>
+<p>Using mutual authentication mechanisms to verify the identities of both endpoints before transmitting data</p>
+</li>
+<li>
+<p>Prohibit use of insecure Wi-Fi networks</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-untrusted-applications"><a class="anchor" href="#use-of-untrusted-applications"></a>Use of Untrusted Applications</h3>
+<div class="sect3">
+<h4 id="mitigations-4"><a class="anchor" href="#mitigations-4"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Prohibiting all installation of thirdparty applications, or implementing whitelisting to allow installation of approved applications only.</p>
+</li>
+<li>
+<p>Perform a risk assessment on each third-party application before permitting its use on the organization’s mobile devices</p>
+</li>
+<li>
+<p>Prohibiting or restricting browser access</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="interaction-with-other-systems"><a class="anchor" href="#interaction-with-other-systems"></a>Interaction with Other Systems</h3>
+<div class="sect3">
+<h4 id="mitigations-5"><a class="anchor" href="#mitigations-5"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Preventing an organization-issued mobile device from syncing with a personally-owned computer necessitates security controls on the mobile device that restrict what devices it can synchronize with</p>
+</li>
+<li>
+<p>Preventing a personally-owned mobile device from syncing with an organization-issued computer necessitates security controls on the organization-issued computer, restricting the connection of mobile devices</p>
+</li>
+<li>
+<p>Preventing the use of remote backup services can possibly be achieved by blocking use of those services or by configuring the mobile devices not to use such services</p>
+</li>
+<li>
+<p>Users should be instructed not to connect their mobile devices to unknown charging devices; they should carry and use their own charging devices</p>
+</li>
+<li>
+<p>Mobile devices can be prevented from exchanging data with each other through logical or physical means</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-untrusted-content"><a class="anchor" href="#use-of-untrusted-content"></a>Use of Untrusted Content</h3>
+<div class="sect3">
+<h4 id="mitigations-6"><a class="anchor" href="#mitigations-6"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Educate users on the risks inherent in untrusted content and to discourage users from accessing untrusted content with any mobile devices they use for work</p>
+</li>
+<li>
+<p>Have applications, such as QR readers, display the unobfuscated content (e.g., the URL) and allow users to accept or reject it before proceeding</p>
+</li>
+<li>
+<p>Use secure web gateways, HTTP proxy servers, or other intermediate devices to validate URLs before allowing them to be contacted.</p>
+</li>
+<li>
+<p>It is also possible to restrict peripheral use on mobile devices, such as disabling camera use in order to prevent QR codes from being processed</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-location-services"><a class="anchor" href="#use-of-location-services"></a>Use of Location Services</h3>
+<div class="sect3">
+<h4 id="mitigations-7"><a class="anchor" href="#mitigations-7"></a>Mitigations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Disabling location services or by prohibiting use of location services for particular applications such as social networking or photo applications.</p>
+</li>
+<li>
+<p>Users may also be trained to turn off location services when in sensitive areas</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="technologies-for-mobile-device-management"><a class="anchor" href="#technologies-for-mobile-device-management"></a>Technologies for Mobile Device Management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The MDM system should have the following capabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>General policy</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Restrict user and application access to hardware</p>
+</li>
+<li>
+<p>Restrict user and application access to native OS services</p>
+</li>
+<li>
+<p>Manage wireless network interfaces</p>
+</li>
+<li>
+<p>Automatically monitor, detect, and report when policy violations occur</p>
+</li>
+<li>
+<p>Limit or prevent access to enterprise services based on the mobile device’s operating system version</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Data Communication and Storage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Strongly encrypt data communications between the mobile device and the organization.</p>
+</li>
+<li>
+<p>Strongly encrypt stored data on both built-in storage and removable media storage.</p>
+</li>
+<li>
+<p>Wipe the device (to scrub its stored data) before reissuing it to another user, retiring the device, etc.</p>
+</li>
+<li>
+<p>Remotely wipe the device (to scrub its stored data) if it is suspected that the device has been lost, stolen, or otherwise fallen into untrusted hands and is at risk of having its data recovered by an untrusted party.</p>
+</li>
+<li>
+<p>A device often can also be configured to wipe itself after a certain number of incorrect authentication attempts.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>User and Device Authentication</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Require a device password/passcode and/or other authentication (e.g., token-based authentication, network-based device authentication, domain authentication) before accessing the organization’s resources.</p>
+</li>
+<li>
+<p>If device account lockout is enabled or the device password/passcode is forgotten, an administrator can reset this remotely to restore access to the device.</p>
+</li>
+<li>
+<p>Have the device automatically lock itself after it is idle for a period</p>
+</li>
+<li>
+<p>Under the direction of an administrator, remotely lock the device if it is suspected that the device has been left in an unlocked state in an unsecured location</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Applications</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Restrict which app stores may be used.</p>
+</li>
+<li>
+<p>Restrict which applications may be installed through whitelisting (preferable) or blacklisting.</p>
+</li>
+<li>
+<p>Restrict the permissions (e.g., camera access, location access) assigned to each application.</p>
+</li>
+<li>
+<p>Install, update, and remove applications.</p>
+</li>
+<li>
+<p>Restrict the use of operating system and application synchronization services (e.g., local device synchronization, remote synchronization services and websites).</p>
+</li>
+<li>
+<p>Verify digital signatures on applications to ensure that only applications from trusted entities are installed on the device and that code has not been modified.</p>
+</li>
+<li>
+<p>Distribute the organization’s applications from a dedicated mobile application store</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

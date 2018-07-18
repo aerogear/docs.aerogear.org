@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Security Whitepaper :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/iosSecurityGuide.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="iosSecurityGuide.html">iOS Security Whitepaper</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/iosSecurityGuide.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>iOS Security Whitepaper</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of the <a href="https://www.apple.com/business/docs/iOS_Security_Guide.pdf">iOS security whitepaper</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="system-security"><a class="anchor" href="#system-security"></a>System Security</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="secure-boot-chain"><a class="anchor" href="#secure-boot-chain"></a>Secure boot chain</h3>
+<div class="paragraph">
+<p>Each step of the startup process contains components that are cryptographically signed by Apple to ensure integrity and that proceed only after verifying the chain of trust.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="system-software-authorization"><a class="anchor" href="#system-software-authorization"></a>System Software Authorization</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>To prevent devices from being downgraded to older versions that lack the latest security updates, iOS uses a process called System Software Authorization.</p>
+</li>
+<li>
+<p>During an iOS upgrade, iTunes (or the device itself, in the case of OTA software updates) connects to the Apple installation authorization server and sends it a list of cryptographic measurements for each part of the installation bundle to be installed (for example, iBoot, the kernel, and OS image), a random anti-replay value (nonce), and the device’s unique ID (ECID).</p>
+</li>
+<li>
+<p>The authorization server checks the presented list of measurements against versions for which installation is permitted and, if it finds a match, adds the ECID to the measurement and signs the result.
+The server passes a complete set of signed data to the device as part of the upgrade process.
+Adding the ECID “personalizes” the authorization for the requesting device.
+By authorizing and signing only for known measurements, the server ensures that the update takes place exactly as provided by Apple</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="secure-enclave"><a class="anchor" href="#secure-enclave"></a>Secure Enclave</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The Secure Enclave is a coprocessor fabricated in the Apple S2, Apple A7, and later A-series processors</p>
+</li>
+<li>
+<p>Provides all cryptographic operations for Data Protection key management and maintains the integrity of Data Protection even if the kernel has been compromised</p>
+</li>
+<li>
+<p>Additionally, data that is saved to the file system by the Secure Enclave is encrypted with a key entangled with the UID and an anti-replay counter</p>
+</li>
+<li>
+<p>The Secure Enclave is responsible for processing fingerprint data from the Touch ID sensor, determining if there is a match against registered fingerprints, and then enabling access or purchases on behalf of the user</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="touchid"><a class="anchor" href="#touchid"></a>TouchId</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The fingerprint sensor is active only when the capacitive steel ring that surrounds the Home button detects the touch of a finger, which triggers the advanced imaging array to scan the finger and send the scan to the Secure Enclave.</p>
+</li>
+<li>
+<p>The resulting map of nodes is stored without any identity information in an encrypted format that can only be read by the Secure Enclave, and is never sent to Apple or backed up to iCloud or iTunes</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="file-data-protection"><a class="anchor" href="#file-data-protection"></a>File Data Protection</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Every time a file on the data partition is created, Data Protection creates a new 256-bit key (the “per-file” key) and gives it to the hardware AES engine, which uses the key to encrypt the file as it is written to flash memory using AES CBC mode.</p>
+</li>
+<li>
+<p>The content of a file is encrypted with a per-file key, which is wrapped with a class key and stored in a file’s metadata, which is in turn encrypted with the file system key.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="passcode"><a class="anchor" href="#passcode"></a>Passcode</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>By setting up a device passcode, the user automatically enables Data Protection.</p>
+</li>
+<li>
+<p>The passcode is entangled with the device’s UID, so brute-force attempts must be performed on the device under attack.</p>
+</li>
+<li>
+<p>A large iteration count is used to make each attempt slower.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-protection-classes"><a class="anchor" href="#data-protection-classes"></a>Data Protection classes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Complete Protection - NSFileProtectionComplete</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Shortly after the user locks a device (10 seconds, if the Require Password setting is Immediately), the decrypted class key is discarded, rendering all data in this class inaccessible until the user enters the passcode again or unlocks the device using Touch ID</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Protected Unless Open - NSFileProtectionCompleteUnlessOpen</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To protect files that need to be written while the device is locked</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Protected Until First User Authentication - NSFileProtectionCompleteUntilFirstUserAuthentication</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This class behaves in the same way as Complete Protection, except that the decrypted class key isn’t removed from memory when the device is locked</p>
+</li>
+<li>
+<p>This is the default class for all third-party app data not otherwise assigned to a Data Protection class</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>No Protection - NSFileProtectionNone</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="keychain-data-protection"><a class="anchor" href="#keychain-data-protection"></a>Keychain Data Protection</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The Keychain is implemented as a SQLite database stored on the file system.</p>
+</li>
+<li>
+<p>Keychain items can only be shared between apps from the same developer.</p>
+</li>
+<li>
+<p>Keychain data is protected using a class structure similar to the one used in file Data Protection.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When unlocked - kSecAttrAccessibleWhenUnlocked</p>
+</li>
+<li>
+<p>While locked - N/A</p>
+</li>
+<li>
+<p>After first unlock - kSecAttrAccessibleAfterFirstUnlock</p>
+</li>
+<li>
+<p>Always - kSecAttrAccessibleAlways</p>
+</li>
+<li>
+<p>Passcode Enabled - kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Keychain classes have a “This device only” counterpart, which is always protected with the UID when being copied from the device during a backup, rendering it useless if restored to a different device</p>
+</li>
+<li>
+<p>Keychains can use access control lists (ACLs) to set policies for accessibility and authentication requirements</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="access-to-safari-saved-passwords"><a class="anchor" href="#access-to-safari-saved-passwords"></a>Access to Safari saved passwords</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>iOS apps can interact with Keychain items saved by Safari for password autofill using the following two APIs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SecRequestSharedWebCredential</p>
+</li>
+<li>
+<p>SecAddSharedWebCredential</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Access will be granted only if both the app developer and website administrator have given their approval, and the user has given consent.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="keybags"><a class="anchor" href="#keybags"></a>Keybags</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The keys for both file and Keychain Data Protection classes are collected and managed in keybags.</p>
+</li>
+<li>
+<p>iOS uses the following keybags:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>user</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Is where the wrapped class keys used in normal operation of the device are stored.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>device</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Is used to store the wrapped class keys used for operations involving device-specific data</p>
+</li>
+<li>
+<p>On iOS devices configured for use by a single user (the default configuration), the device keybag and the user keybag are one and the same, and are protected by the user’s passcode</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>backup</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Is created when an encrypted backup is made by iTunes and stored on the computer to which the device is backed up</p>
+</li>
+<li>
+<p>If a user chooses not to encrypt an iTunes backup, the backup files aren’t encrypted regardless of their Data Protection class, but the Keychain remains protected with a UID-derived key.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>escrow</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Is used for iTunes syncing and MDM, allows iTunes to back up and sync without requiring the user to enter a passcode, and it allows an MDM server to remotely clear a user’s passcode.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>iCloud Backup</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Is similar to the backup keybag</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-security"><a class="anchor" href="#app-security"></a>App Security</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="app-code-signing"><a class="anchor" href="#app-code-signing"></a>App code signing</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>To ensure that all apps come from a known and approved source and haven’t been tampered with, iOS requires that all executable code be signed using an Apple-issued certificate</p>
+</li>
+<li>
+<p>To protect the system and other apps from loading third-party code inside of their address space, the system will perform a code signature validation of all the dynamic libraries that a process links against at launch time.</p>
+</li>
+<li>
+<p>At runtime, code signature checks of all executable memory pages are made as they are loaded to ensure that an app has not been modified since it was installed or last updated</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="runtime-process-security"><a class="anchor" href="#runtime-process-security"></a>Runtime process security</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>All third-party apps are “sandboxed,” so they are restricted from accessing files stored by other apps or from making changes to the device.</p>
+</li>
+<li>
+<p>System files and resources are also shielded from the user’s apps. The majority of iOS runs as the non-privileged user “mobile,” as do all third-party apps.</p>
+</li>
+<li>
+<p>Access by third-party apps to user information and features such as iCloud and extensibility is controlled using declared entitlements.</p>
+</li>
+<li>
+<p>Address space layout randomization (ASLR) protects against the exploitation of memory corruption bugs.</p>
+</li>
+<li>
+<p>Further protection is provided by iOS using ARM’s Execute Never (XN) feature, which marks memory pages as non-executable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="extensions"><a class="anchor" href="#extensions"></a>Extensions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Extensions are special-purpose signed executable binaries, packaged within an app.</p>
+</li>
+<li>
+<p>The system automatically launches extension processes as needed and manages their lifetime.</p>
+</li>
+<li>
+<p>Extensions run in their own address space. Communication between the extension and the app from which it was activated uses interprocess communications mediated by the system framework. They don’t have access to each other’s files or memory spaces.</p>
+</li>
+<li>
+<p>Extensions are designed to be isolated from each other, from their containing apps, and from the apps that use them.</p>
+</li>
+<li>
+<p>Custom keyboards are a special type of extension</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A keyboard extension will be used for any text field except the passcode input and any secure text view</p>
+</li>
+<li>
+<p>To restrict the transfer of user data, custom keyboards run by default in a very restrictive sandbox that blocks access to the network, to services that perform network operations on behalf of a process, and to APIs that would allow the extension to exfiltrate typing data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="app-groups"><a class="anchor" href="#app-groups"></a>App Groups</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Apps and extensions owned by a given developer account can share content when configured to be part of an App Group.</p>
+</li>
+<li>
+<p>Once configured to be part of an App Group, apps have access to the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A shared on-disk container for storage, which will stay on the device as long as at least one app from the group is installed</p>
+</li>
+<li>
+<p>Shared preferences</p>
+</li>
+<li>
+<p>Shared Keychain items</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-protection-in-apps"><a class="anchor" href="#data-protection-in-apps"></a>Data Protection in apps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Data Protection is available for file and database APIs, including NSFileManager, CoreData, NSData, and SQLite</p>
+</li>
+<li>
+<p>User-installed apps that don’t opt-in to a specific Data Protection class receive Protected Until First User Authentication by default.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="accessories"><a class="anchor" href="#accessories"></a>Accessories</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>When an MFi accessory communicates with an iOS device using a Lightning connector or via Bluetooth, the device asks the accessory to prove it has been authorized by Apple by responding with an Apple-provided certificate, which is verified by the device.</p>
+</li>
+<li>
+<p>The device then sends a challenge, which the accessory must answer with a signed response.</p>
+</li>
+<li>
+<p>This process is entirely handled by a custom integrated circuit that Apple provides to approved accessory manufacturers and is transparent to the accessory itself</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="homekit"><a class="anchor" href="#homekit"></a>Homekit</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>This stored data is encrypted using keys derived from the user’s HomeKit identity keys, plus a random nonce.</p>
+</li>
+<li>
+<p>Additionally, HomeKit data is stored using Data Protection class Protected Until First User Authentication.</p>
+</li>
+<li>
+<p>Is only backed up in encrypted backups, so, for example, unencrypted iTunes backups don’t contain HomeKit data</p>
+</li>
+<li>
+<p>Data synchronization</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The HomeKit data is encrypted during the synchronization using keys derived from the user’s HomeKit identity and random nonce.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="healthkit"><a class="anchor" href="#healthkit"></a>HealthKit</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>User’s health data is stored in Data Protection class Complete Protection, which means it is accessible only after a user enters their passcode or uses Touch ID to unlock the device</p>
+</li>
+<li>
+<p>Management data is stored in Data Protection class Protected Until First User Authentication</p>
+</li>
+<li>
+<p>Temporary journal files store health records are stored in Data Protection class Protected Unless Open.</p>
+</li>
+<li>
+<p>Isn’t synced between devices,  is included in device backups to iCloud and encrypted iTunes backups</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="network-security"><a class="anchor" href="#network-security"></a>Network Security</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="tls"><a class="anchor" href="#tls"></a>TLS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>iOS supports Transport Layer Security (TLS v1.0, TLS v1.1, and TLS v1.2, which supports both AES 128 and SHA-2) and DTLS</p>
+</li>
+<li>
+<p>CFNetwork disallows SSLv3, and apps that use WebKit (such as Safari) are prohibited from making an SSLv3 connection</p>
+</li>
+<li>
+<p>The RC4 symmetric cipher suite is deprecated in iOS 10 and macOS Sierra</p>
+</li>
+<li>
+<p>App Transport Security</p>
+<div class="ulist">
+<ul>
+<li>
+<p>provides default connection requirements so that apps adhere to best practices for secure connections when using NSURLConnection, CFURL, or NSURLSession APIs</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vpn"><a class="anchor" href="#vpn"></a>VPN</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>iOS supports VPN On Demand for networks that use certificate-based authentication.</p>
+</li>
+<li>
+<p>iOS also supports Per App VPN support, facilitating VPN connections on a much more granular basis.</p>
+</li>
+<li>
+<p>iOS supports Always-on VPN, which can be configured for devices managed via MDM and supervised using Apple Configurator or the Device Enrollment Program.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="single-sign-on"><a class="anchor" href="#single-sign-on"></a>Single Sign-on</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>iOS supports authentication to enterprise networks through Single Sign-on (SSO).</p>
+</li>
+<li>
+<p>SSO works with Kerberos-based networks to authenticate users to services they are authorized to access.</p>
+</li>
+<li>
+<p>To configure SSO, iOS supports a configuration profile payload that allows MDM servers to push down the necessary settings.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Security Guide :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/androidSecurityGuide.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="androidSecurityGuide.html">Android Security Guide</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/androidSecurityGuide.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Android Security Guide</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of the <a href="https://source.android.com/security/">Android Security Guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="kernel-security"><a class="anchor" href="#kernel-security"></a>Kernel Security</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="application-sandbox"><a class="anchor" href="#application-sandbox"></a>Application Sandbox</h3>
+<div class="paragraph">
+<p>Android uses the UNIX user-based protection to identify and isolate running applications.
+The Android system assigns a unique UID (User ID) to each Android application and runs the application as a certain user in a separate process.
+By default, applications cannot interact with each other. This is due to the user privileges being different for each application.
+Memory corruption errors in one application will not lead to corruption in other applications, due to this isolation.</p>
+</div>
+<div class="paragraph">
+<p>However, if the <code>android:sharedUserId</code> attribute is set (in the App Manifest) to the same value for two or more applications, they will all share the same User ID — provided that their certificate sets are identical.
+Applications with the same user ID can access each other&#8217;s data and also run in the same process.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filesystem-permissions"><a class="anchor" href="#filesystem-permissions"></a>Filesystem Permissions</h3>
+<div class="paragraph">
+<p>The filesystem permissions ensure that one user cannot alter or read another user&#8217;s files. In the context of Android, this means that one application, cannot access or alter the data for another application, unless they explicitly allow it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="device-rooting"><a class="anchor" href="#device-rooting"></a>Device Rooting</h3>
+<div class="paragraph">
+<p>By default, only the kernel and small number of core applications run using root permissions. Root permissions will allow you full access to all applications on the device, as well as their applications data.</p>
+</div>
+<div class="paragraph">
+<p>Encrypting data with a key stored on the device will not protect the application from a root user.
+Applications could use a key stored off-device, but this approach will only provide temporary protection while the key is not present on the device.
+At some point the key must be provided to the application and it then becomes accessible to root users.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filesystem-encryption"><a class="anchor" href="#filesystem-encryption"></a>Filesystem Encryption</h3>
+<div class="paragraph">
+<p>A number of different filesytem encryption approaches have been used by different versions of Android.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Android 3.0</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Full filesystem encryption in the kernel.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Android 5.0</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Full-disk encryption which uses a single key—protected with the user’s device password—to protect the whole of a device’s userdata partition.</p>
+</li>
+<li>
+<p>Upon boot, users must provide their credentials before any part of the disk is accessible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><em>Android 7.0</em></p>
+<div class="ulist">
+<ul>
+<li>
+<p>File-based encryption allows different files to be encrypted with different keys that can be unlocked independently.</p>
+</li>
+<li>
+<p>The Direct Boot feature allows encrypted devices to boot straight to the lock screen.</p>
+</li>
+<li>
+<p>This makes profiles more secure because it allows more than one user to be protected at a time as the encryption is no longer based solely on a boot time password.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="application-security"><a class="anchor" href="#application-security"></a>Application Security</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="certificate-authorities"><a class="anchor" href="#certificate-authorities"></a>Certificate Authorities</h3>
+<div class="paragraph">
+<p>Android includes a set of installed system Certificate Authorities, which are trusted system-wide.
+Devices running Android 7.0 and above will have an Android stock set of system CAs as device manufacturers supplied CA&#8217;s are no longer permitted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="application-signing"><a class="anchor" href="#application-signing"></a>Application Signing</h3>
+<div class="paragraph">
+<p>APK Signing will allow a developer to identify the author of the application.
+The signed application certificate defines which user id is associated with which application.
+The application signing ensures that applications cannot access each other except through a well-defined IPC (Inter-process communication).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="authentication"><a class="anchor" href="#authentication"></a>Authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Two key pieces make up Authentication &amp; Key Storage from Android 6.0.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Android Keystore</em> - Cryptographic key storage which also provides standard crypto actions.</p>
+</li>
+<li>
+<p><em>Authentication Components</em> - Assert the user&#8217;s presence and/or provide user authentication.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are two authentication components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Gatekeeper</em> - Pin, Pattern &amp; Password Authentication</p>
+</li>
+<li>
+<p><em>Fingerprint</em>  - Fingerprint Authentication</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The two authentication components work with the Keystore and (other components) to support the use of hardware-backed authentication tokens or AuthTokens.</p>
+</div>
+<div class="sect2">
+<h3 id="enrollment"><a class="anchor" href="#enrollment"></a>Enrollment</h3>
+<div class="paragraph">
+<p>On first boot of the device, the user must initially enroll a PIN/pattern/password with Gatekeeper.
+This is known as enrollment.
+This is necessary to to create the User&#8217;s SID (User Secure Identifier) which is a 64-bit randomly generated ID.</p>
+</div>
+<div class="paragraph">
+<p>This SID is cryptographically bound to the user&#8217;s password, so when a successful authentication takes place, the AuthTokens will contain the User SID for that password.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="authentication-process"><a class="anchor" href="#authentication-process"></a>Authentication Process</h3>
+<div class="paragraph">
+<p>Once a user has set up a credential (eg. a Pattern lock) and they have received their User SID (Secure User Id), they are now ready to authenticate.</p>
+</div>
+<div class="paragraph">
+<p>As part of Android authentication, an operating system (known as Trusty OS) runs on a processor intended to provide a TEE (Trusted Execution Environment).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/android-authentication-flow.png" alt="600" width="600">
+</div>
+<div class="title">Figure 1: Android Authentication Process</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Authentication begins when a user enters a Gatekeeper credential (eg. a Pin, Pattern, Password) or a Fingerprint.</p>
+</li>
+<li>
+<p>The next step involves either the Gatekeeper daemon (gatekeeperd) or the Fingerprint daemon (fingerprintd) depending on what authentication credential is used.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The <code>gatekeeperd</code> daemon will send a hash of the password/pin/pattern it received in step 1, to its counterpart <code>gatekeeper</code> in the TEE (TEE OS).</p>
+</li>
+<li>
+<p>Alternatively, the <code>fingerprintd</code> daemon sends the data to its <code>fingerprint</code> counterpart in the TEE.</p>
+</li>
+<li>
+<p>If authentication in the TEE (TEE OS) is successful, <code>gatekeeper</code> or <code>fingerprint</code> in the TEE sends an AuthToken containing the corresponding User SID, signed with the AuthToken HMAC key, to its counterpart in the Android OS.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Remember that the SID is cryptographically bound to the user&#8217;s password.</p>
+</li>
+<li>
+<p>The HMAC is used for message integrity.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The <code>gatekeeperd</code> or <code>fingerprintd</code> daemon receives a signed AuthToken from the TEE and passes the AuthToken to the <code>keystore service</code>.</p>
+</li>
+<li>
+<p>Lastly, the <code>keystore service</code> passes the AuthTokens received from <code>gatekeeperd</code> and <code>fingerprintd</code> to the <code>keymaster</code>.
+The AuthToken is verified with the <code>AuthToken HMAC key</code> which was previously shared with the <code>gatekeeper</code> and <code>fingerprint</code> "trustlets" in step 2.
+The <code>keymaster</code> trusts the timestamp in the token as the last authentication time and bases a key release decision (to allow an app to use the key) on the timestamp.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="keystore"><a class="anchor" href="#keystore"></a>Keystore</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Android Keystore system allows storage of cryptographic keys inside a container to make it more difficult to extract them from a device.
+Once keys are in the keystore, they can be used for cryptographic operations with the key material remaining non-exportable.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="trusted-execution-environment"><a class="anchor" href="#trusted-execution-environment"></a>Trusted Execution Environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A TEE processor is generally a separate microprocessor or a virtualized instance of the main processor.
+The TEE processor is isolated from the rest of the system using memory and I/O protection mechanisms supported by the hardware.</p>
+</div>
+<div class="paragraph">
+<p>TEE is necessary as the main processor on mobile devices is considered "untrusted".
+It is not allowed access to certain areas of RAM or where other device-specific cryptographic keys are stored.
+Applications running on the main processor will therefore delegate any operations that require use of secret/sensitive data to the TEE processor.</p>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Security :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/mobileNetworkOverview.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb"><a href="mobileNetworkOverview.html">Network Security</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/mobileNetworkOverview.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Network Security</h1>
+<div id="preamble">
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Do&#8217;s</th>
+<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Include a Backup Cert Pin.</strong> <em>(Retain app connectivity if new keys on server are used or the CA is changed)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pin the full certificate</strong>. <em>(The full cert, and potentially backup certs are available for inspection, the certificate is bundled with the app meaning that when a cert expires the app must be rebuilt with a new cert)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform Certificate Pinning using the hash of the public key - SubjectPublicKeyInfo of the X.509 certificate.</strong> <em>(Allows you to anonymize a certificate or public key and ensures an attacker does not see the reserved certificate or public key in advance of its use).</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Send sensitive data without certificate pinning.</strong> <em>(Creates higher risk as an attacker with network privileges, or who has compromised TLS, is better positioned to intercept data)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform proper certificate validation if the platform doesn&#8217;t allow true certificate pinning.</strong> <em>(Adds an extra precautionary check when sending sensitive data)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Establish connections with endpoints that offer a different certificate or key, even if signed by a trusted CA.</strong> <em>(The channel is not trusted.)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use TLS for network encryption.</strong> <em>(SSL 2.0 and 3.0 have been deprecated by the IETF)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Mixed SSL sessions</strong>. <em>(The users session ID can be exposed over non HTTPS requests)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a secure channel consistently throughout the app</strong>. <em>(Ensure that some network calls are not sent in plaintext)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use localhost network ports for handling sensitive IPC.</strong> <em>(The interface is accessible by other applications on the device)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app doesn’t rely on a single insecure communication channel such as email or SMS for critical operations, such as enrollments and account recovery.</strong> <em>(Use a hardware token or secure channel as GCM or Apple Push notifications)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Don’t rely on unauthenticated SMS data to perform sensitive commands.</strong> <em>(The input may be malicious, be spoofed or sniffed using another app with SMS read permissions)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that the app uses some form of whitelisting to control access to external domains.</strong> <em>(Limit the outbound requests to predefined trusted domains).</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Avoid sending crash logs over the network in plaintext</strong>. <em>(Logs can contain sensitive or important information about the user and/or the application)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Pay particular attention to validating all data received from and sent to non-trusted third party apps/plugins before incorporating their use into an application.</strong> <em>(Some plugins can interact with ad networks etc)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consider using HTTP Strict Transport Security (HSTS).</strong> <em>(Protect against protocol downgrade attacks and cookie hijacking)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Make sure that you don’t trust data downloaded from HTTP or other insecure protocols.</strong> <em>(Validate the data before using it in an application)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Require User Approval before Executing a Function that Transmits PII over a Network</strong>. <em>(Inform the user that their data is being transferred over a network or being sent to another location)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>For highly sensitive values, implement additional encryption in transit.</strong> <em>(Improved protection in case the secure channel somehow compromised)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+<div class="paragraph">
+<p>A number of features were added to enhance the security of the channel between the Mobile App and the Authentication or API Server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-pinning-1.png" alt="android pinning 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="certificate-pinning"><a class="anchor" href="#certificate-pinning"></a>Certificate Pinning</h4>
+<div class="paragraph">
+<p>The main code logic for certificate pinning is found under <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/src/main/java/com/aerogear/androidshowcase/mvp/components/CertPinningHelper.java">here</a> in the CertPinningHelper class.</p>
+</div>
+<div class="paragraph">
+<p>Certificate Pinning has been implemented in the Application using the SPKI technique. This ensures easier maintenance and improved security by anonymizing the certificate information in the application.
+The <a href="https://github.com/datatheorem/TrustKit-Android">TrustKit Android</a> library is being utilised to allow certificate pinning to work with older API levels.</p>
+</div>
+<div class="paragraph">
+<p>The Android <a href="https://developer.android.com/training/articles/security-config.html">Network Security Configuration</a> XML file defined the pins of the server you want to pin against.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;network-security-config&gt;
+    &lt;domain-config cleartextTrafficPermitted="false"&gt;
+        &lt;domain includeSubdomains="true"&gt;security.feedhenry.org&lt;/domain&gt;
+        &lt;pin-set&gt;
+            // primary
+            &lt;pin digest="SHA-256"&gt;trENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0=&lt;/pin&gt;
+            // backup
+            &lt;pin digest="SHA-256"&gt;arENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0=&lt;/pin&gt;
+        &lt;/pin-set&gt;
+        // Set this to true for production, at least 2 unique pins must be provided above!
+        &lt;trustkit-config enforcePinning="true"&gt;&lt;/trustkit-config&gt;
+    &lt;/domain-config&gt;
+    &lt;debug-overrides&gt;
+        &lt;trust-anchors&gt;
+            &lt;!-- Additionally trust user added CAs --&gt;
+            &lt;certificates src="user" /&gt;
+        &lt;/trust-anchors&gt;
+    &lt;/debug-overrides&gt;
+&lt;/network-security-config&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can get the pin for a website using OpenSSL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>openssl s_client -servername www.example.com -connect www.example.com:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A HTTP request function has been created to perform requests to the Authentication servers. The <code>createRequest()</code> functions performs pinning verification on the requests.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Make a request to a resource that requires the access token to be sent with the request
+ *
+ * @param requestUrl the request URL
+ * @param sendAccessToken boolean on whether to send the access token as part of the request
+ * @param callback the OkHTTP callback for the request
+ */
+public Call createRequest(final String requestUrl, final boolean sendAccessToken, final okhttp3.Callback callback) {
+
+    URL url = null;
+    try {
+        url = new URL(requestUrl);
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    }
+    String serverHostname = url.getHost();
+
+    HttpsURLConnection connection = null;
+    try {
+        connection = (HttpsURLConnection) url.openConnection();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    SSLSocketFactory sslSocketFactory = TrustKit.getInstance().getSSLSocketFactory(serverHostname);
+    X509TrustManager trustManager = TrustKit.getInstance().getTrustManager(serverHostname);
+    connection.setSSLSocketFactory(sslSocketFactory);
+
+    OkHttpClient httpClient = HttpHelper.getHttpClient()
+            .sslSocketFactory(sslSocketFactory, trustManager)
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .build();
+
+    Request request;
+
+    if (sendAccessToken) {
+
+        String accessToken = authService.currentUser().getAccessToken();
+
+        request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization", String.format("Bearer %s", accessToken))
+                .build();
+    } else {
+        request = new Request.Builder()
+                .url(url)
+                .build();
+    }
+
+
+    Call call = httpClient.newCall(request);
+    call.enqueue(callback);
+    return call;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A function has also been provided to check if the OkHTTP callback failure exception was due to a certificate validation issue.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Check if an exception is caused by a certificate verification error
+ *
+ * @param error the error exception from a failed request
+ *
+ * @return boolean based on whether or not certificate pinning has failed
+ */
+public boolean checkCertificateVerificationError(final Exception error) {
+    boolean certificateVerificationError = false;
+    if (error.getCause() != null &amp;&amp;
+            (error.getCause().toString().contains("Certificate validation failed") ||
+                    error.getCause().toString().contains("Pin verification failed"))) {
+        certificateVerificationError = true;
+    }
+    return certificateVerificationError;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="invoking-remote-apis"><a class="anchor" href="#invoking-remote-apis"></a>Invoking remote APIs</h4>
+<div class="paragraph">
+<p>When remote APIs are being invoked, before sending the data, you should make sure the client does have the required permission. If the client doesn&#8217;t have the required permission, the client should not perform the request at all:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected ClientStatus doInBackground(Void... voids) {
+    ClientStatus status = null;
+    try {
+        UserPrincipal user = authService.currentUser();
+        if (user != null ) {
+            boolean hasPermission = user.hasRealmRole(requiredRole);
+            long numberOfNotes = noteRepository.count();
+            status = new ClientStatus(hasPermission, numberOfNotes);
+            return status;
+        }
+    } catch (Exception e) {
+        Log.e(TAG, "Error - Exception", e);
+        this.error = e;
+    }
+    return status;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, just checking the permission on the client is not enough. You should always check the user permission on the backend API server as well:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const keycloak = new Keycloak({ store: memoryStore }, config.keycloak);
+
+app.use(keycloak.middleware());
+app.use('/', keycloak.protect('realm:api-access'), routes);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should also perform certificate pinning checks when calling remote APIs:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected Long doInBackground(Void... voids) {
+    String apiUrl = apiServerConfiguration.getNoteAPIUrl();
+
+    UserPrincipal user = authService.currentUser();
+    if (user != null ) {
+        String accessToken = user.getAccessToken();
+        try {
+            List&lt;Note&gt; notes = noteRepository.listNotes();
+            long totalNumber = notes.size();
+            final AtomicLong currentCount = new AtomicLong(0);
+            for (Note note : notes) {
+                if (isCancelled() || this.error != null) {
+                    break;
+                }
+                Note readNote = noteRepository.readNote(note.getId());
+                HttpRequest httpRequest = mobileCore.getHttpLayer().newRequest();
+                httpRequest.addHeader("Authorization", String.format("Bearer %s", accessToken));
+                httpRequest.post(apiUrl, readNote.toJson(true).toString().getBytes("UTF-8"));
+                HttpResponse httpResponse = httpRequest.execute();
+
+                httpResponse.onError(() -&gt; {
+                    UploadNotesTask.this.error = new Exception(httpResponse.stringBody());
+                });
+                httpResponse.onSuccess(() -&gt; {
+                    uploaded.incrementAndGet();
+                });
+                httpResponse.onComplete(() -&gt; {
+                    long progress = currentCount.incrementAndGet();
+                    publishProgress(progress, totalNumber);
+                });
+
+                httpResponse.waitForCompletionAndClose();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error - Exception", e);
+            this.error = e;
+        }
+    }
+    return uploaded.longValue();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-pinning-1.png" alt="ios pinning 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="certificate-pinning-2"><a class="anchor" href="#certificate-pinning-2"></a>Certificate Pinning</h4>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/ios-showcase-template/blob/master/ios-showcase-template/services/CertPinningService.swift">Certificate Pinning Service</a> and the <a href="https://github.com/aerogear/ios-showcase-template/blob/master/ios-showcase-template/AppDelegate.swift">AppDelegate</a> contain the main code for configuring and performing certificate pinning.
+The <a href="https://github.com/datatheorem/TrustKit">TrustKit</a> library is being used to perform SPKI Certificate Pinning. The pin is a Base64 encoded Subject Public Key Information fingerprint from an X.509 Certificate.</p>
+</div>
+<div class="paragraph">
+<p>You can get the pin for a website using OpenSSL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>openssl s_client -servername www.example.com -connect www.example.com:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TrustKit can be configured and initialised from the <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a> file.
+TrustKit is configured below to perform swizzling of the App&#8217;s <a href="https://developer.apple.com/documentation/foundation/nsurlconnection">NSURLConnection</a> and <a href="https://developer.apple.com/documentation/foundation/nsurlsession">NSURLSession</a> delegates in order to automatically add pinning validation to the App&#8217;s HTTPS connections.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">// Define TrustKit configuration
+let trustKitConfig = [
+    kTSKSwizzleNetworkDelegates: true,
+    kTSKPinnedDomains: [
+        "security.feedhenry.org": [
+            kTSKIncludeSubdomains : true,
+            kTSKEnforcePinning : true,
+            kTSKPublicKeyAlgorithms: [kTSKAlgorithmRsa2048],
+            kTSKPublicKeyHashes: [
+                "trENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0=",
+                "arENjoQnbWupnAtu1/WagBE0RgJ+p7ke2ppWML8vAl0="
+            ],]]] as [String : Any]
+
+// Init TrustKit with the above config
+TrustKit.initSharedInstance(withConfiguration: trustKitConfig)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>performValidCertCheck()</code> function in the <a href="https://github.com/aerogear/ios-showcase-template/blob/master/secure-ios-app/services/CertPinningService.swift">Certificate Pinning Service</a> can be used to manually check if a request to a host fails due to certificate pinning validation issues.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/*
+ - Checks if the servers presented cert matches a pin from the pinset
+
+ - Parameter url - the url of the host to check. If no URL is provided, the auth server will be tested by default.
+
+ - Parameter onCompleted - a completion handler that returns the result of the cert check. A true value means that the cert pinning validated successfully. A false value means there was a validation issue which resulted in a pin verification failure.
+ */
+func performValidCertCheck(url:String? = nil, onCompleted: @escaping (Bool) -&gt; Void) {
+    let serviceURL = AgsCore.instance.getConfiguration("keycloak")?.url
+    let requestURL = url ?? "\(serviceURL)/auth/"
+
+    Alamofire.request(requestURL).validate(statusCode: 200..&lt;300).responseData(completionHandler: {response in
+        switch response.result {
+        case .success:
+            onCompleted(true)
+        case .failure(let error):
+            if(!self.checkPinningFailed(error: error)) {
+                // error is not cert pinning related
+                onCompleted(true)
+            } else {
+                onCompleted(false)
+            }
+        }
+    })
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The outcome of the certificate checks can then be used to warn the user if a secure channel is not available. In the example below, pinning is performed when the authentication button is pressed. If there are certificate validation issues, the end user will not be allowed to authenticate and the UI is updated to warn them that their connection to the remote server is not secure.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">@IBAction func onAuthButtonTapped(_ sender: UIButton) {
+    // perform cert pinning on the auth server when the auth button is pressed
+    if let listener = self.authListener {
+        listener.performPreCertCheck() {
+            validCert in
+            if(validCert) {
+                // cert is valid, continue with login
+                listener.startAuth(presentingViewController: self)
+            } else {
+                // pin validation issues, update the UI to notify the user and prevent authentication.
+                self.authenticationButton.isHidden = true
+                self.certPinningError.isHidden = false
+                self.logoImage.isHidden = true
+                self.dangerLogo.isHidden = false
+                self.backgroundImage.image = UIImage(named: "ic_error_background")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apache-cordova"><a class="anchor" href="#apache-cordova"></a>Apache Cordova</h3>
+<div class="sect3">
+<h4 id="certificate-pinning-3"><a class="anchor" href="#certificate-pinning-3"></a>Certificate Pinning</h4>
+<div class="paragraph">
+<p>Certificate Pinning is being performed on preflight requests to ensure that the channel is secure before sending sensitive data.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">window.plugins.sslCertificateChecker.check(
+        function() {
+            // success
+        }.bind(this),
+        function(message) {
+          if (message == "CONNECTION_NOT_SECURE") {
+            let toast = this.toastCtrl.create({
+               message: 'Connection Not Secure. Preventing Authentication.',
+               duration: 10000,
+               position: 'bottom'
+             });
+
+            this.navCtrl.setRoot(HomePage);
+            toast.present();
+          }
+        }.bind(this),
+        server,
+        fingerprint);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The pinning fingerprint is defined in the <a href="https://github.com/feedhenry/mobile-security-cordova-template/blob/c24297cda240efa40aca292e7d0657d7432d1eba/src/config/keycloak.json">/config/keycloak.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "realm": "secure-app",
+  "url": "https://keycloak.security.feedhenry.org/auth/",
+  "ssl-required": "external",
+  "clientId": "client-app",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "pinningFingerprint": "44 C8 9A 60 4E 29 82 85 8E 4F 75 1F 78 46 CD B3 0A 08 66 3F",
+  "apiServerUrl": "https://api.security.feedhenry.org",
+  "apiEndpoint": "/"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

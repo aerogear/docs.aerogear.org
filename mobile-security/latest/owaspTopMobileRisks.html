@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Top 10 Mobile Risks :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/owaspTopMobileRisks.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/owaspTopMobileRisks.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>OWASP Top 10 Mobile Risks</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of the <a href="https://www.owasp.org/index.php/OWASP_Mobile_Security_Project#tab=Top_10_Mobile_Risks">OWASP Top 10 Mobile Risks Project for 2017</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m1-improper-platform-usage"><a class="anchor" href="#m1-improper-platform-usage"></a>M1 - Improper Platform Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents"><a class="anchor" href="#threat-agents"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Misuse of a platform feature or failure to use platform security controls (Include Android intents, platform permissions, misuse of TouchID, the Keychain etc).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness"><a class="anchor" href="#weakness"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The organization must expose a web service or API call that is consumed by the mobile app.</p>
+</li>
+<li>
+<p>The exposed service or API call is implemented using insecure coding techniques that produce an <a href="https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project">OWASP Web Top Ten or Cloud Top Ten</a> within the server.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities"><a class="anchor" href="#vulnerabilities"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Violation of published guidelines</p>
+</li>
+<li>
+<p>Violation of convention or common practice</p>
+</li>
+<li>
+<p>Unintentional Misuse</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques"><a class="anchor" href="#prevention-techniques"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Secure coding and configuration practices must be used on server-side of the mobile application. See the  <a href="https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project">OWASP Web Top Ten or Cloud Top Ten</a> projects.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m2-insecure-data-storage"><a class="anchor" href="#m2-insecure-data-storage"></a>M2 - Insecure Data Storage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-2"><a class="anchor" href="#threat-agents-2"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>An adversary that has attained a lost/stolen mobile device</p>
+</li>
+<li>
+<p>Malware or another repackaged app acting on the adversary&#8217;s behalf that executes on the mobile device.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-2"><a class="anchor" href="#weakness-2"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Development teams assume that users or malware will not have access to a mobile device&#8217;s filesystem and subsequent sensitive information in data-stores on the device</p>
+</li>
+<li>
+<p>Usage of poor encryption libraries</p>
+</li>
+<li>
+<p>Rooting or jailbreaking a mobile device circumvents any encryption protections</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-2"><a class="anchor" href="#vulnerabilities-2"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Data stored insecurely includes, but is not limited to, the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SQL databases</p>
+</li>
+<li>
+<p>Log files</p>
+</li>
+<li>
+<p>XML data stores ou manifest files</p>
+</li>
+<li>
+<p>Binary data stores</p>
+</li>
+<li>
+<p>Cookie stores</p>
+</li>
+<li>
+<p>SD card</p>
+</li>
+<li>
+<p>Cloud synced</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Unintended data leakage includes, but is not limited to, vulnerabilities from:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The OS</p>
+</li>
+<li>
+<p>Frameworks</p>
+</li>
+<li>
+<p>Compiler environment</p>
+</li>
+<li>
+<p>New hardware</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-2"><a class="anchor" href="#prevention-techniques-2"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Understand the information assets the app processes and how the APIs handle those assets. E.g.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>URL caching (both request and response)</p>
+</li>
+<li>
+<p>Keyboard press caching</p>
+</li>
+<li>
+<p>Copy/Paste buffer caching</p>
+</li>
+<li>
+<p>Application backgrounding</p>
+</li>
+<li>
+<p>Intermediate data</p>
+</li>
+<li>
+<p>Logging</p>
+</li>
+<li>
+<p>HTML5 data storage</p>
+</li>
+<li>
+<p>Browser cookie objects</p>
+</li>
+<li>
+<p>Analytics data sent to 3rd parties</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m3-insecure-communication"><a class="anchor" href="#m3-insecure-communication"></a>M3 - Insecure Communication</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-3"><a class="anchor" href="#threat-agents-3"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>An adversary that shares your local network (compromised or monitored Wi-Fi)</p>
+</li>
+<li>
+<p>Carrier or network devices (routers, cell towers, proxy&#8217;s, etc)</p>
+</li>
+<li>
+<p>Malware on your mobile device</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-3"><a class="anchor" href="#weakness-3"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Do not protect network traffic</p>
+</li>
+<li>
+<p>Use SSL/TLS during authentication but not elsewhere</p>
+</li>
+<li>
+<p>The use of transport security does not mean the app has implemented it correctly</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-3"><a class="anchor" href="#vulnerabilities-3"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Lack of certificate inspection</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the mobile app fails to inspect the certificate offered by the server and the mobile app unconditionally accepts any certificate offered to it by the server</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Weak handshake negotiation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The client successfully negotiates with the server to use a weak cipher suite that results in weak encryption that can be easily decrypted by the adversary.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Privacy information leakage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The mobile app transmits personally identifiable information to an endpoint via non-secure channels instead of over SSL.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-3"><a class="anchor" href="#prevention-techniques-3"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>General Best Practices</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Assume that the network layer is not secure and is susceptible to eavesdropping.</p>
+</li>
+<li>
+<p>Apply SSL/TLS to transport channels that the mobile app will use to transmit sensitive data to a backend API or web service.</p>
+</li>
+<li>
+<p>Account for outside entities like third-party analytics companies, social networks, etc. by using their SSL versions when an application runs a routine via the browser/webkit. Avoid mixed SSL sessions as they may expose the user’s session ID.</p>
+</li>
+<li>
+<p>Use strong, industry standard cipher suites with appropriate key lengths.</p>
+</li>
+<li>
+<p>Use certificates signed by a trusted CA provider.</p>
+</li>
+<li>
+<p>Never allow self-signed certificates, and consider certificate pinning for security conscious applications.</p>
+</li>
+<li>
+<p>Always require SSL chain verification.</p>
+</li>
+<li>
+<p>Only establish a secure connection after verifying the identity of the endpoint server using trusted certificates in the key chain.</p>
+</li>
+<li>
+<p>Alert users through the UI if the mobile app detects an invalid certificate.</p>
+</li>
+<li>
+<p>Do not send sensitive data over alternate channels (e.g, SMS, MMS, or notifications).</p>
+</li>
+<li>
+<p>If possible, apply a separate layer of encryption to any sensitive data before it is given to the SSL channel. In the event that future vulnerabilities are discovered in the SSL implementation, the encrypted data will provide a secondary defense against confidentiality violation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>iOS Specific Best Practices</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure that certificates are valid and fail closed.</p>
+</li>
+<li>
+<p>When using CFNetwork, consider using the Secure Transport API to designate trusted client certificates. In almost all situations, NSStreamSocketSecurityLevelTLSv1 should be used for higher standard cipher strength.</p>
+</li>
+<li>
+<p>After development, ensure all NSURL calls (or wrappers of NSURL) do not allow self signed or invalid certificates such as the NSURL class method setAllowsAnyHTTPSCertificate.</p>
+</li>
+<li>
+<p>Consider using certificate pinning by doing the following: export your certificate, include it in your app bundle, and anchor it to your trust object. Using the NSURL method connection:willSendRequestForAuthenticationChallenge: will now accept your cert.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Android Specific Best Practices</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Remove all code after the development cycle that may allow the application to accept all certificates such as org.apache.http.conn.ssl.AllowAllHostnameVerifier or SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER. These are equivalent to trusting all certificates.</p>
+</li>
+<li>
+<p>If using a class which extends SSLSocketFactory, make sure checkServerTrusted method is properly implemented so that server certificate is correctly checked.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m4-insecure-authentication"><a class="anchor" href="#m4-insecure-authentication"></a>M4 - Insecure Authentication</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-4"><a class="anchor" href="#threat-agents-4"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Through automated attacks that use available or custom-built tools</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-4"><a class="anchor" href="#weakness-4"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Poor or missing authentication schemes</p>
+</li>
+<li>
+<p>Authentication requirements for mobile apps can be quite different from traditional web authentication schemes due to availability requirements.</p>
+</li>
+<li>
+<p>Mobile apps may have uptime requirements that require offline authentication</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-4"><a class="anchor" href="#vulnerabilities-4"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The mobile app is able to anonymously execute a backend API service request without providing an access token</p>
+</li>
+<li>
+<p>The mobile app stores passwords or shared secrets locally on the device</p>
+</li>
+<li>
+<p>The mobile app uses a weak password policy to simplify entering a password</p>
+</li>
+<li>
+<p>The mobile app uses a feature like TouchID</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-4"><a class="anchor" href="#prevention-techniques-4"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Authentication requirements of mobile applications should match that of the web application component</p>
+</li>
+<li>
+<p>Authenticating a user locally can lead to client-side bypass vulnerabilities.</p>
+</li>
+<li>
+<p>Where possible, ensure that all authentication requests are performed server-side.</p>
+</li>
+<li>
+<p>If client-side storage of data is required, the data will need to be encrypted using an encryption key that is securely derived from the user’s login credentials.</p>
+</li>
+<li>
+<p>Persistent authentication (Remember Me) functionality implemented within mobile applications should never store a user’s password on the device</p>
+</li>
+<li>
+<p>Ideally, mobile applications should utilize a device-specific authentication token that can be revoked within the mobile application by the user</p>
+</li>
+<li>
+<p>Do not use any spoof-able values for authenticating a user (like device identifiers or geo-location)</p>
+</li>
+<li>
+<p>Persistent authentication within mobile applications should be implemented as opt-in and not be enabled by default</p>
+</li>
+<li>
+<p>If possible, do not allow users to provide 4-digit PIN numbers for authentication passwords</p>
+</li>
+<li>
+<p>Developers should assume all client-side authorization and authentication controls can be bypassed by malicious users. Authorization and authentication controls must be re-enforced on the server-side whenever possible</p>
+</li>
+<li>
+<p>Due to offline usage requirements, mobile apps may be required to perform local authentication or authorization checks within the mobile app&#8217;s code. If this is the case, developers should instrument local integrity checks within their code to detect any unauthorized code changes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m5-insufficient-cryptography"><a class="anchor" href="#m5-insufficient-cryptography"></a>M5 - Insufficient Cryptography</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-5"><a class="anchor" href="#threat-agents-5"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Anyone with physical access to data that has been encrypted improperly</p>
+</li>
+<li>
+<p>Mobile malware acting on an adversary&#8217;s behalf</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-5"><a class="anchor" href="#weakness-5"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Weak encryption algorithms or flaws within the encryption process</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-5"><a class="anchor" href="#vulnerabilities-5"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The mobile app may use a process behind the encryption / decryption that is fundamentally flawed and can be exploited by the adversary to decrypt sensitive data</p>
+</li>
+<li>
+<p>The mobile app may implement or leverage an encryption / decryption algorithm that is weak in nature and can be directly decrypted by the adversary</p>
+</li>
+<li>
+<p>Poor Key Management Processes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Including the keys in the same attacker-readable directory as the encrypted content</p>
+</li>
+<li>
+<p>Making the keys otherwise available to the attacker</p>
+</li>
+<li>
+<p>Avoid the use of hardcoded keys within your binary</p>
+</li>
+<li>
+<p>Keys may be intercepted via binary attacks</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Creation and Use of Custom Encryption Protocols</p>
+</li>
+<li>
+<p>Use of Insecure and/or Deprecated Algorithms</p>
+<div class="ulist">
+<ul>
+<li>
+<p>RC2</p>
+</li>
+<li>
+<p>MD4</p>
+</li>
+<li>
+<p>MD5</p>
+</li>
+<li>
+<p>SHA1</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-5"><a class="anchor" href="#prevention-techniques-5"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Avoid the storage of any sensitive data on a mobile device where possible</p>
+</li>
+<li>
+<p>Apply cryptographic standards that will withstand the test of time for at least 10 years into the future</p>
+</li>
+<li>
+<p>Follow the NIST guidelines on recommended algorithms</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m6-insecure-authorization"><a class="anchor" href="#m6-insecure-authorization"></a>M6 - Insecure Authorization</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-6"><a class="anchor" href="#threat-agents-6"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Through automated attacks that use available or custom-built tools</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-6"><a class="anchor" href="#weakness-6"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Poor or missing authorization schemes</p>
+</li>
+<li>
+<p>Authorization requirements are more vulnerable when making authorization decisions within the mobile device instead of through a remote server</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-6"><a class="anchor" href="#vulnerabilities-6"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Presence of Insecure Direct Object Reference (IDOR) vulnerabilities</p>
+</li>
+<li>
+<p>Hidden Endpoints</p>
+</li>
+<li>
+<p>User Role or Permission Transmissions</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-6"><a class="anchor" href="#prevention-techniques-6"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify the roles and permissions of the authenticated user using only information contained in backend systems. Avoid relying on any roles or permission information that comes from the mobile device itself</p>
+</li>
+<li>
+<p>Backend code should independently verify that any incoming identifiers associated with a request (operands of a requested operation) that come along with the identify match up and belong to the incoming identity</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m7-poor-code-quality"><a class="anchor" href="#m7-poor-code-quality"></a>M7 - Poor Code Quality</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-7"><a class="anchor" href="#threat-agents-7"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Pass untrusted inputs to method calls made within mobile code</p>
+</li>
+<li>
+<p>Poor code-quality issues are typically exploited via malware or phishing scams</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-7"><a class="anchor" href="#weakness-7"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Memory leaks, buffer overflows, and other less severe issues that result in bad programming practice</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-7"><a class="anchor" href="#vulnerabilities-7"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Using the wrong API, using an API insecurely, using insecure language constructs, or some other code-level issue</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-7"><a class="anchor" href="#prevention-techniques-7"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintain consistent coding patterns that everyone in the organization agrees upon</p>
+</li>
+<li>
+<p>Write code that is easy to read and well-documented</p>
+</li>
+<li>
+<p>When using buffers, always validate that the the lengths of any incoming buffer data will not exceed the length of the target buffer</p>
+</li>
+<li>
+<p>Via automation, identify buffer overflows and memory leaks through the use of third-party static analysis tools</p>
+</li>
+<li>
+<p>Prioritize solving buffer overflows and memory leaks over other 'code quality' issues</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m8-code-tampering"><a class="anchor" href="#m8-code-tampering"></a>M8 - Code Tampering</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-8"><a class="anchor" href="#threat-agents-8"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Via malicious forms of the apps hosted in third-party app stores</p>
+</li>
+<li>
+<p>Trick the user into installing the app via phishing attacks</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-8"><a class="anchor" href="#weakness-8"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>An attacker can either directly modify the code, change the contents of memory dynamically, change or replace the system APIs that the application uses, or modify the application&#8217;s data and resources.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-8"><a class="anchor" href="#vulnerabilities-8"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Technically, all mobile code is vulnerable to code tampering</p>
+</li>
+<li>
+<p>It is important to ask yourself if it is worth detecting and trying to prevent unauthorized code modification.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-8"><a class="anchor" href="#prevention-techniques-8"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Try and detect compromised environments (rooted/jaibreak) at runtime and react accordingly (report to the server or shutdown)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m9-reverse-engineering"><a class="anchor" href="#m9-reverse-engineering"></a>M9 - Reverse Engineering</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-9"><a class="anchor" href="#threat-agents-9"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Download the targeted app from an app store and analyze it within their own local environment using a suite of different tools.</p>
+</li>
+<li>
+<p>Relatively affordable and well-understood tools</p>
+<div class="ulist">
+<ul>
+<li>
+<p>IDA Pro</p>
+</li>
+<li>
+<p>Hopper</p>
+</li>
+<li>
+<p>otool</p>
+</li>
+<li>
+<p>strings</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-9"><a class="anchor" href="#weakness-9"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Code written in languages / frameworks that allow for dynamic introspection at runtime (Java, .NET, Objective C, Swift) are particularly at risk for reverse engineering.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-9"><a class="anchor" href="#vulnerabilities-9"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Generally, most applications are susceptible to reverse engineering due to the inherent nature of code.</p>
+</li>
+<li>
+<p>An app is said to be susceptible to reverse engineering if an attacker can do any of the following things</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Clearly understand the contents of a binary&#8217;s string table</p>
+</li>
+<li>
+<p>Accurately perform cross-functional analysis</p>
+</li>
+<li>
+<p>Derive a reasonably accurate recreation of the source code from the binary</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-9"><a class="anchor" href="#prevention-techniques-9"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use an obfuscation tool</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="m10-extraneous-functionality"><a class="anchor" href="#m10-extraneous-functionality"></a>M10 - Extraneous Functionality</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="threat-agents-10"><a class="anchor" href="#threat-agents-10"></a>Threat Agents</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>An attacker seeks to understand extraneous functionality within a mobile app in order to discover hidden functionality in in backend systems</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="weakness-10"><a class="anchor" href="#weakness-10"></a>Weakness</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Functionality that exposes information related to back-end test, demo, staging, or UAT environments should not be included in a production build</p>
+</li>
+<li>
+<p>Administrative API endpoints, or unofficial endpoints should not be included in final production builds</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vulnerabilities-10"><a class="anchor" href="#vulnerabilities-10"></a>Vulnerabilities</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Developers include hidden backdoor functionality or other internal development security controls that are not intended to be released into a production environment</p>
+</li>
+<li>
+<p>Leaving functionality enabled in the app that was not intended to be released</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="prevention-techniques-10"><a class="anchor" href="#prevention-techniques-10"></a>Prevention Techniques</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Examine the app&#8217;s configuration settings to discover any hidden switches</p>
+</li>
+<li>
+<p>Verify that all test code is not included in the final production build of the app</p>
+</li>
+<li>
+<p>Examine all API endpoints accessed by the mobile app to verify that these endpoints are well documented and publicly available</p>
+</li>
+<li>
+<p>Examine all log statements to ensure nothing overly descriptive about the backend is being written to the logs</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
