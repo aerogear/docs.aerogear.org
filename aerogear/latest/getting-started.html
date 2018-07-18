@@ -446,7 +446,7 @@ Zepto(function($){
 <li><a href="#clone-the-showcase-app">Clone the Showcase App</a></li>
 <li><a href="#using-self-signed-certificates-in-mobile-apps">Using Self-Signed Certificates in Mobile Apps</a></li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
-<li><a href="#running-the-mobile-app-in-an-emulator">Running the Mobile App in an Emulator</a></li>
+<li><a href="#building-and-running-the-mobile-app-in-an-emulator">Building and Running the Mobile App in an Emulator</a></li>
 </ul>
 </li>
 </ul>
@@ -501,7 +501,38 @@ AeroGear recommends running OpenShift using the method described in this documen
 <p>MacOS or Linux</p>
 </li>
 <li>
-<p>A system capable of running OpenShift as described in <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#prerequisites">Local Cluster Management</a></p>
+<p>A system running OpenShift <code>oc cluster up</code> as described in <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#prerequisites">Local Cluster Management</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <a href="https://www.openshift.org/download.html">OpenShift client tools</a> version 3.9 or later</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+OpenShift oc executable must be located in a system location that is known to all shells (e.g. /usr/local/bin)
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Ensure that you can run <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started">oc cluster up</a> with no errors before moving on to the installation of AeroGear.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>A <a href="https://hub.docker.com/">Docker Hub</a> account</p>
@@ -510,41 +541,14 @@ AeroGear recommends running OpenShift using the method described in this documen
 <p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (version 2.6 or above)</p>
 </li>
 <li>
-<p><a href="https://www.openshift.org/download.html">OpenShift client tools</a> version 3.9 or later</p>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-OpenShift oc executable must be located in a system location that is known to all shells (e.g. /usr/local/bin)
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Ensure that you can run <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started">oc cluster up</a> with no errors before moving on to the installation of AeroGear.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
 <p>For Linux (Fedora), add an extra port to the <code>dockerc</code> zone:</p>
-</div>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ firewall-cmd --permanent --zone dockerc --add-port 443/tcp
-$ firewall-cmd --reload</pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">$ firewall-cmd --permanent --zone dockerc --add-port 443/tcp
+$ firewall-cmd --reload</code></pre>
 </div>
 </div>
 </div>
@@ -1299,7 +1303,56 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 <div class="sect2">
-<h3 id="running-the-mobile-app-in-an-emulator"><a class="anchor" href="#running-the-mobile-app-in-an-emulator"></a>Running the Mobile App in an Emulator</h3>
+<h3 id="building-and-running-the-mobile-app-in-an-emulator"><a class="anchor" href="#building-and-running-the-mobile-app-in-an-emulator"></a>Building and Running the Mobile App in an Emulator</h3>
+<div class="paragraph">
+<p>Build the app:</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Run this command to install dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
+$ npm run ionic:build</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Run this command to install dependencies (optional):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the app in an emulator:</p>
+</div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
@@ -1371,6 +1424,23 @@ A running emulator on macOS is required to run an iOS application.
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>From the showcase app:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press the <strong>Authenticate</strong> menu item. A login screen is displayed.</p>
+</li>
+<li>
+<p>Log in using the credentials you set up with setting up the service.</p>
+<div class="paragraph">
+<p>Once the login is successful, you will be taken back to the showcase
+application where you can see the roles and basic information of the user you have just logged in with.</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
