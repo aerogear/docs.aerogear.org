@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIAP Mobile App Vetting :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/niapMobileAppVetting.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/niapMobileAppVetting.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>NIAP Mobile App Vetting</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of the <a href="https://www.niap-ccevs.org/pp/pp_app_v1.2_table-reqs.htm">NIAP Mobile App Vetting</a> Guidelines.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="security-functional-requirements"><a class="anchor" href="#security-functional-requirements"></a>Security Functional Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="random-bit-generation-services"><a class="anchor" href="#random-bit-generation-services"></a>Random Bit Generation Services</h3>
+<div class="paragraph">
+<p>The Application should select from the following approaches for its cryptographic operations:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> use no DRBG functionality</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> invoke platform-provided DRBG functionality</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> implement DRBG functionality</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>DRBG</em>: Deterministic Random Bit Generator (aka RNG, PRNG) based HMACs, Hashes, and Ciphers. In this requirement, cryptographic operations include all cryptographic key generation/derivation/agreement, IVs (for certain modes), as well as protocol-specific random values.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="storage-of-credentials"><a class="anchor" href="#storage-of-credentials"></a>Storage of Credentials</h3>
+<div class="paragraph">
+<p>The Application should select from the following approaches for storage of credentials in non-volatile memory:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> not store any credentials</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> invoke the functionality provided by the platform to securely store credentials</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> implement functionality to securely store credentials</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This requirement ensures that persistent credentials like secret keys, PKI private keys, or passwords are stored in a secure manner.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="access-to-platform-resources"><a class="anchor" href="#access-to-platform-resources"></a>Access to Platform Resources</h3>
+<div class="paragraph">
+<p>The application shall restrict its access to the following and additional hardware resources:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> No Hardware Resources</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Network Connectivity</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Camera</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Microphone</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Location Services</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> NFC</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> USB</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Bluetooth</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The intent is to ensure that the selection captures all hardware resources which the application accesses, and that these are restricted to those which are required or used by the application.</p>
+</div>
+<div class="paragraph">
+<p>The application shall also restrict its access to the following and additional sensitive information repositories:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> No Sensitive Information Repositories</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Address Book</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Calendar</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Call Lists</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> System Logs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sensitive information repositories are defined as those collections of sensitive data that could be expected to be shared among some applications, users, or user roles, but to which not all of these would ordinarily require access.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="network-communications"><a class="anchor" href="#network-communications"></a>Network Communications</h3>
+<div class="paragraph">
+<p>The application shall restrict network communication to the following and additional application-initiated communications:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> No Network Communication</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> User-initiated Communication for the list of Functions for which the User can Initiate Network Communication</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Respond to Remotely Initiated Communications</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This requirement is intended to restrict both inbound/outbound network communications to only those required, or to those initiated by the user.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="encryption-of-sensitive-application-data"><a class="anchor" href="#encryption-of-sensitive-application-data"></a>Encryption Of Sensitive Application Data</h3>
+<div class="paragraph">
+<p>The Application should select from the following approaches for storage of sensitive data in non-volatile memory:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Leverage Platform-provided Functionality to Encrypt Sensitive Data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Implement Functionality to Encrypt Sensitive Data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Not Store any Sensitive Data</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any file that may potentially contain sensitive data shall be protected.
+The only exception is if the user intentionally exports the sensitive data to non-protected files.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="supported-configuration-mechanism"><a class="anchor" href="#supported-configuration-mechanism"></a>Supported Configuration Mechanism</h3>
+<div class="paragraph">
+<p>The application shall invoke the mechanisms recommended by the platform or framework vendor for storing and setting configuration options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="secure-by-default-configuration"><a class="anchor" href="#secure-by-default-configuration"></a>Secure by Default Configuration</h3>
+<div class="paragraph">
+<p>The application shall be configured by default with file permissions which protect it and its data from unauthorized access.
+There should be some form of trust boundary which protects the application and its data.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="specification-of-management-functions"><a class="anchor" href="#specification-of-management-functions"></a>Specification of Management Functions</h3>
+<div class="paragraph">
+<p>The TSF (Target of Evaluation Security Functionality) shall be capable of performing the following management functions:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> No Management functions.</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Enable/Disable the Transmission of any information describing the system&#8217;s hardware, software, or configuration</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Enable/Disable the Transmission of any PII (Personally Identifiable Information)</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Enable/Disable the Transmission of any application state (e.g. crashdump) information</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Enable/Disable network backup functionality to enterprise or commercial cloud backup systems</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TOE (Target of Evaluation) security functionality is the “combined functionality of all hardware, software, and firmware of a TOE that must be relied upon for the correct enforcement of the security functional requirements.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-consent-for-transmission-of-personally-identifiable-information"><a class="anchor" href="#user-consent-for-transmission-of-personally-identifiable-information"></a>User Consent for Transmission of Personally Identifiable Information</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Not Transmit PII over a Network</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Require User Approval before Executing a Function that Transmits PII over a Network</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This requirement applies only to PII that is specifically requested by the application;
+it does not apply if the user volunteers PII without prompting from the application into a general (or inappropriate) data field.
+A dialog box that declares intent to send PII presented to the user when the application is started is sufficient to meet this requirement.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-supported-services-and-apis"><a class="anchor" href="#use-of-supported-services-and-apis"></a>Use of Supported Services and APIs</h3>
+<div class="paragraph">
+<p>The application shall use only documented platform APIs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="anti-exploitation-capabilities"><a class="anchor" href="#anti-exploitation-capabilities"></a>Anti-Exploitation Capabilities</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Not allocate any memory region with both write and execute permissions</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Allocate memory regions with write and execute permissions for only a specified list of functions performing just-in-time compilation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Requesting a memory mapping with both write and execute permissions subverts the platform protection provided by DEP.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The application shall be compatible with security features provided by the platform vendor.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>This requirement is designed to ensure that platform security features do not need to be disabled in order for the application to run.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The application shall not write user-modifiable files to directories that contain executable files unless explicitly directed by the user to do so.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Executables and user-modifiable files may not share the same parent directory, but may share directories above the parent.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The application shall be compiled with stack-based buffer overflow protection enabled.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="integrity-for-installation-and-update"><a class="anchor" href="#integrity-for-installation-and-update"></a>Integrity for Installation and Update</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Provide the ability or leverage the platform to check for updates and patches to the application software.</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Be distributed using the format of the platform-supported package manager.</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Be packaged such that its removal results in the deletion of all traces of the application, with the exception of configuration settings, output files, and audit/log events.</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Not download, modify, replace or update its own binary code.</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Provide the ability or leverage the platform to query the current version of the application software.</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Ensure that the installation package and its updates shall be digitally signed such that its platform can cryptographically verify them prior to installation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-third-party-libraries"><a class="anchor" href="#use-of-third-party-libraries"></a>Use of Third Party Libraries</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Be packaged with only third-party libraries that are required and vulnerability free.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="protection-of-data-in-transit"><a class="anchor" href="#protection-of-data-in-transit"></a>Protection of Data in Transit</h3>
+<div class="paragraph">
+<p>The application shall use one or more of the approaches for transmitting between itself and another trusted IT product:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Not Transmit any Data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Not Transmit any Sensitive Data</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Encrypt all transmitted sensitive data with at least one of the following: HTTPS, TLS, DTLS, SSH</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Encrypt all transmitted data with at least one of the following: HTTPS, TLS, DTLS, SSH</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="security-assurance-requirements"><a class="anchor" href="#security-assurance-requirements"></a>Security Assurance Requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The application shall be labeled with a unique references:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Application Name</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Application Version</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Application Description</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Platform on which Application Runs</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Software Identification (SWID) tags, if available</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="selection-based-security-functional-requirements"><a class="anchor" href="#selection-based-security-functional-requirements"></a>Selection-Based Security Functional Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="random-bit-generation-from-application"><a class="anchor" href="#random-bit-generation-from-application"></a>Random Bit Generation from Application</h3>
+<div class="paragraph">
+<p>The application shall perform all deterministic random bit generation (DRBG) services in accordance with <a href="http://csrc.nist.gov/publications/nistpubs/800-90A/SP800-90A.pdf">NIST Special Publication 800-90A</a> using any of the following:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Hash_DRBG (any)</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> HMAC_DRBG (any)</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> CTR_DRBG (AES)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The deterministic RBG shall be seeded by an entropy source that accumulates entropy from a platform-based DRBG and a:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> A software-based noise source</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> No other noise source</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>with a minimum of:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> 128 bits</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> 256 bits</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>of entropy at least equal to the greatest security strength (according to <a href="http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57-Part1-revised2_Mar08-2007.pdf">NIST SP 800-57</a>) of the keys and hashes that it will generate.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cryptographic-key-generation-services"><a class="anchor" href="#cryptographic-key-generation-services"></a>Cryptographic Key Generation Services</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Generate no asymmetric cryptographic keys</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Invoke platform-provided functionality for asymmetric key generation</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Implement asymmetric key generation</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cryptographic-asymmetric-key-generation"><a class="anchor" href="#cryptographic-asymmetric-key-generation"></a>Cryptographic Asymmetric Key Generation</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Generate asymmetric cryptographic keys in accordance with a specified cryptographic key generation algorithm</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An RSA scheme using cryptographic key sizes of 2048-bit or greater that meet the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>FIPS PUB 186-4, “Digital Signature Standard (DSS)”</p>
+</li>
+<li>
+<p>ANSI X9.31-1998</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cryptographic-operation-encryption-decryption"><a class="anchor" href="#cryptographic-operation-encryption-decryption"></a>Cryptographic Operation - Encryption/Decryption</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Perform encryption/decryption in accordance with a specified cryptographic algorithm:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>AES-CBC</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AES-GCM</p>
+</li>
+<li>
+<p>No other modes</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>with cryptographic key sizes of 256-bit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cryptographic-operation-hashing"><a class="anchor" href="#cryptographic-operation-hashing"></a>Cryptographic Operation - Hashing</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Perform cryptographic hashing services in accordance with a specified cryptographic algorithm:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SHA-1</p>
+</li>
+<li>
+<p>SHA-256</p>
+</li>
+<li>
+<p>SHA-384</p>
+</li>
+<li>
+<p>SHA-512</p>
+</li>
+<li>
+<p>No other algorithms</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>and message digest sizes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>160</p>
+</li>
+<li>
+<p>256</p>
+</li>
+<li>
+<p>384</p>
+</li>
+<li>
+<p>512</p>
+</li>
+<li>
+<p>No other message digest sizes</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cryptographic-operation-signing"><a class="anchor" href="#cryptographic-operation-signing"></a>Cryptographic Operation - Signing</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Perform cryptographic signature services (generation and verification) in accordance with a specified cryptographic algorithm:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>RSA schemes using cryptographic key sizes of 2048-bit or greater that meet the following: <a href="http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf">FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 4</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cryptographic-operation-keyed-hash-message-authentication"><a class="anchor" href="#cryptographic-operation-keyed-hash-message-authentication"></a>Cryptographic Operation - Keyed-Hash Message Authentication</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Perform keyed-hash message authentication in accordance with a specified cryptographic algorithm:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>HMAC-SHA-256</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>and</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SHA-1</p>
+</li>
+<li>
+<p>SHA-384</p>
+</li>
+<li>
+<p>SHA-512</p>
+</li>
+<li>
+<p>No other algorithms</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>with key sizes the same length as those used in HMAC (in bits) and message digest sizes 256 and</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>160</p>
+</li>
+<li>
+<p>384</p>
+</li>
+<li>
+<p>512</p>
+</li>
+<li>
+<p>No other sizes</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>bits that meet the following: <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">FIPS Pub 198-1</a> The Keyed-Hash Message Authentication Code and <a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf">FIPS Pub 180-4</a> Secure Hash Standard.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tls-client-protocol"><a class="anchor" href="#tls-client-protocol"></a>TLS Client Protocol</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Invoke platform-provided TLS 1.2</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Implement TLS 1.2 (RFC 5246)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>supporting the following cipher suites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mandatory Cipher Suites: TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional Cipher Suites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>No other cipher suite</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Verify that the presented identifier matches the reference identifier according to <a href="https://tools.ietf.org/html/rfc6125">RFC 6125</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Establish a trusted channel only if the peer certificate is valid.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tls-server-protocol"><a class="anchor" href="#tls-server-protocol"></a>TLS Server Protocol</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Invoke platform-provided TLS 1.2</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Implement TLS 1.2 (RFC 5246)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>supporting the following cipher suites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mandatory Cipher Suites: TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional Cipher Suites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in <a href="https://tools.ietf.org/html/rfc5289">RFC 5289</a></p>
+</li>
+<li>
+<p>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in <a href="https://tools.ietf.org/html/rfc5246">RFC 5246</a></p>
+</li>
+<li>
+<p>No other cipher suite</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Deny connections from clients requesting:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SSL 2.0</p>
+</li>
+<li>
+<p>SSL 3.0</p>
+</li>
+<li>
+<p>TLS 1.0</p>
+</li>
+<li>
+<p>TLS 1.1</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Support mutual authentication of TLS clients using X.509 v3 certificates.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Not establish a trusted channel if the peer certificate is invalid.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Not establish a trusted channel if the distinguished name (DN) or Subject Alternative Name (SAN) contained in a certificate does not match the expected identifier for the peer.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dtls-implementation"><a class="anchor" href="#dtls-implementation"></a>DTLS Implementation</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Implement the DTLS protocol in accordance with DTLS 1.2 (<a href="https://tools.ietf.org/html/rfc6347">RFC 6347</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Implement the requirements in TLS (FCS_TLSC_EXT.1) for the DTLS implementation, except where variations are allowed according to DTLS 1.2 (<a href="https://tools.ietf.org/html/rfc6347">RFC 6347</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Not establish a trusted communication channel if the peer certificate is deemed invalid.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="https-protocol"><a class="anchor" href="#https-protocol"></a>HTTPS Protocol</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Implement the HTTPS protocol that complies with <a href="https://tools.ietf.org/html/rfc2818">RFC 2818</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Implement HTTPS using TLS (<a href="https://www.niap-ccevs.org/pp/pp_app_v1.2_table-reqs.htm#FCS_TLSC_EXT.1">FCS_TLSC_EXT.1</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Notify the user and</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Not establish the connection</p>
+</li>
+<li>
+<p>Request application authorization to establish the connection</p>
+</li>
+<li>
+<p>No other action</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>if the peer certificate is deemed invalid.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="x-509-certificate-validation"><a class="anchor" href="#x-509-certificate-validation"></a>X.509 Certificate Validation</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Invoked platform-provided functionality</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Implement functionality</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>to validate certificates in accordance with the following rules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://tools.ietf.org/html/rfc5280">RFC 5280</a> certificate validation and certificate path validation.</p>
+</li>
+<li>
+<p>The certificate path must terminate with a trusted CA certificate.</p>
+</li>
+<li>
+<p>The application shall validate a certificate path by ensuring the presence of the basicConstraints extension and that the CA flag is set to TRUE for all CA certificates.</p>
+</li>
+<li>
+<p>The application shall:</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Validate the revocation status of the certificate using:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Online Certificate Status Protocol (OCSP) as specified in <a href="https://tools.ietf.org/html/rfc2560">RFC 2560</a></p>
+</li>
+<li>
+<p>A Certificate Revocation List (CRL) as specified in <a href="https://tools.ietf.org/html/rfc5759">RFC 5759</a> , an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in <a href="https://tools.ietf.org/html/rfc6066">RFC 6066</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The application shall validate the extendedKeyUsage field according to the following rules:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Certificates used for trusted updates and executable code integrity verification shall have the Code Signing purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</p>
+</li>
+<li>
+<p>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</p>
+</li>
+<li>
+<p>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the extendedKeyUsage field.</p>
+</li>
+<li>
+<p>S/MIME certificates presented for email encryption and signature shall have the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the extendedKeyUsage field.</p>
+</li>
+<li>
+<p>OCSP certificates presented for OCSP responses shall have the OCSP Signing purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the extendedKeyUsage field.</p>
+</li>
+<li>
+<p>Server certificates presented for EST shall have the CMC Registration Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the extendedKeyUsage field.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Treat a certificate as a CA certificate only if the basicConstraints extension is present and the CA flag is set to TRUE.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="x-509-certificate-authentication"><a class="anchor" href="#x-509-certificate-authentication"></a>X.509 Certificate Authentication</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Use X.509v3 certificates as defined by RFC 5280 to support authentication for:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>HTTPS</p>
+</li>
+<li>
+<p>TLS</p>
+</li>
+<li>
+<p>DTLS</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When the application cannot establish a connection to determine the validity of a certificate, the application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Allow the administrator to choose whether to accept the certificate in these cases</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Accept the certificate</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Not accept the certificate</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="objective-security-functional-requirements"><a class="anchor" href="#objective-security-functional-requirements"></a>Objective Security Functional Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="tls-client-protocol-2"><a class="anchor" href="#tls-client-protocol-2"></a>TLS Client Protocol</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Present the signature_algorithms extension in the Client Hello with the supported_signature_algorithms value containing the following hash algorithms:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>SHA256</p>
+</li>
+<li>
+<p>SHA384</p>
+</li>
+<li>
+<p>SHA512</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>and no other hash algorithms.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-of-supported-services-and-apis-2"><a class="anchor" href="#use-of-supported-services-and-apis-2"></a>Use of Supported Services and APIs</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Use platform-provided libraries, does not implement functionality for parsing the list of formats parsed that are included in the <a href="http://www.iana.org/assignments/media-types">IANA MIME media types</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="software-identification-and-versions"><a class="anchor" href="#software-identification-and-versions"></a>Software Identification and Versions</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Include SWID tags that comply with the minimum requirements for SWID tag from <a href="https://www.iso.org/standard/53670.html">ISO/IEC 19770-2:2009 standard</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Valid SWID tags must contain a SoftwareIdentity element and an Entity element as defined in the <a href="https://www.iso.org/standard/53670.html">ISO/IEC 19770-2:2009 standard</a>. SWID tags must be stored with a .swidtag file extensions as defined in the ISO/IEC 19770-2:2009.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="optional-security-functional-requirements"><a class="anchor" href="#optional-security-functional-requirements"></a>Optional Security Functional Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="cryptographic-symmetric-key-generation"><a class="anchor" href="#cryptographic-symmetric-key-generation"></a>Cryptographic Symmetric Key Generation</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Generate symmetric cryptographic keys using a Random Bit Generator as specified in FCS_RBG_EXT.1 and specified cryptographic key sizes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>128 bit</p>
+</li>
+<li>
+<p>256 bit</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tls-client-protocol-3"><a class="anchor" href="#tls-client-protocol-3"></a>TLS Client Protocol</h3>
+<div class="paragraph">
+<p>The application shall:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Support mutual authentication using X.509v3 certificates.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

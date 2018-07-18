@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication &amp;amp; Session Management :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/mobileAuthOverview.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb"><a href="mobileAuthOverview.html">Authentication &amp; Session Management</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/mobileAuthOverview.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Authentication &amp; Session Management</h1>
+<div id="preamble">
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Do&#8217;s</th>
+<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform Authentication on the Server Side.</strong> <em>(The client side should never be trusted)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use the Fingerprint Scanner solely for Authentication.</strong> <em>(Possible False Positives [1])</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Randomly Generated access tokens instead of sending user credentials in requests.</strong> <em>(At worst, a temporary session token can therefore only be stolen)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use Pattern Locks for Authentication.</strong> <em>(Lack of Entropy, Vulnerable to Smudge Attacks [2])</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A password policy is enforced at the remote endpoint.</strong> <em>(Prevent easily guessable passwords from being used)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a short Pin code solely authentication.</strong> <em>(Easily brute forced and the end user may reuse the device security pin)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sessions are terminated at the remote endpoint after a predefined time.</strong> <em>(Sessions token lifetimes should be kept short to limit the attack window if an valid session token is stolen)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Do not use any values for authenticating a user like device identifiers or geo-location.</strong> <em>(These can be spoofed easily)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Temporarily lock out a user after a number of failed login attempts.</strong> <em>(Prevent an endless brute force attack)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Avoid relying on any roles or permission information that comes from the mobile device itself.</strong> <em>(The client side and user input should not be trusted)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use contextual anomaly based detection to take into account the users IP, geographic location, time of day as part of the authentication phase.</strong> <em>(Helps detect unusual login activity)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Log user related information.</strong> <em>(Personal information data leak)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A second factor of authentication exists and is enforced.</strong> <em>(Extra layer of protection in case another authentication factor has been compromised)</em>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use OAuth1.0</strong>. <em>(OAuth1.0 has been found to be vulnerable to session fixation. Use OAuth 1.0a or OAuth 2.0 instead)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Step-up authentication is used for carrying out sensitive actions in an application.</strong> <em>(Useful when a user&#8217;s device is stolen and they have already authenticated through the app)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Allow the user to see their current login sessions and allow them to logout of other sessions via the app.</strong> <em>(The end user will be able to detect rogue sessions with the most accuracy instead of using anomaly detection)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform local integrity checks within the code to detect any unauthorized code changes before doing offline authentication.</strong> <em>(Tampering may allow authentication bypasses)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Where offline access to data is needed, perform an account/application lockout and/or application data wipe after X number of invalid password attempts.</strong> <em>(Wipe application data when a threat is imminent)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perform a check at the start of each activity/screen to see if the user is in a logged in state and if not, switch to the login state.</strong> <em>(A session could expire during use or over time. Also check that the user has a role that allows them to access to certain app view).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>When an application’s session is timed out, the application should discard and clear all memory associated with the user data, and any master keys used to decrypt the data.</strong> <em>(Prevent data leakage after the user is no longer in an active session with the server).</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store a masked user identifier instead of the actual username, and replace the user identifier value in authentication with a hash value.</strong> <em>(If a username/id is being used in the mobile app for identification purposes only (not for display in the UI), then consider sending a related mapped token to the mobile device instead.)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Implement Secure Password Recovery Mechanism</strong>. <em>(To allow a user to recover their account using security questions only they should know the answers too and sending a recovery code using a side channel such as SMS)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Fail authentication with a Generic Error.</strong> <em>(The login screen should not show hints on the existence of a username/email address etc)</em>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="references"><a class="anchor" href="#references"></a>References</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The probability of a random person unlocking a given iPhone with Touch ID is 1 in 50,000. <a href="https://support.apple.com/en-ie/HT204587">Apple Support</a></p>
+</li>
+<li>
+<p>Penn State researchers managed to identify the pass code patterns on two smartphones, 68% of the time, using photographs taken under different lighting conditions, and camera positions. <a href="https://www.usenix.org/legacy/events/woot10/tech/full_papers/Aviv.pdf">Smudge Attacks on Smartphone Touch Screens</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+
+</div>
+<div class="sect2">
+<h3 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-1.png" alt="android auth 1" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-2.png" alt="android auth 2" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-3.png" alt="android auth 3" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-4.png" alt="android auth 4" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/android-auth-5.png" alt="android auth 5" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/android-showcase-template">Mobile Security Android Template</a> App.</p>
+</div>
+<div class="paragraph">
+<p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
+The <a href="https://github.com/aerogear/aerogear-android-sdk/blob/master/docs/getting-started/auth.adoc">Aerogear Auth SDK</a> is being used for communicating with the Keycloak server.</p>
+</div>
+<div class="paragraph">
+<p>The Keycloak server is enforcing a number of Security Controls on the mobile app.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L6-L11">Brute force detection</a> on the login screen.</p>
+</li>
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L12">Account lockouts</a> for failed login attempts.</p>
+</li>
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L101">2FA</a> for mobile users.</p>
+</li>
+<li>
+<p><a href="http://www.keycloak.org/docs/latest/server_admin/topics/sessions/administering.html">Session management</a> for mobile users.</p>
+</li>
+<li>
+<p><a href="https://github.com/feedhenry/mobile-security/blob/master/projects/keycloak/secure-app-realm.json#L13-L17">Audit tracing</a> of auth events.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-examples"><a class="anchor" href="#code-examples"></a>Code Examples</h3>
+<div class="paragraph">
+<p>The main code logic is found under <a href="https://github.com/aerogear/android-showcase-template/tree/master/app/src/main/java/com/aerogear/androidshowcase/features/authentication">mobile-security-android-template/&#8230;&#8203;/authentication</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following code snippets describe the main authentication code logic in the mobile app.</p>
+</div>
+<div class="sect3">
+<h4 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h4>
+<div class="paragraph">
+<p>The Keycloak configuration is saved in the <a href="https://github.com/aerogear/android-showcase-template/tree/master/app/src/main/assets/mobile-services.json">mobile-services.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "version": 1,
+  "clusterName": "https://192.168.42.208:8443",
+  "namespace": "showcase",
+  "clientId": "myapp-android",
+  "services": [
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The redirect url of the application is defined in <code>android.defaultConfig.manifestPlaceholders</code> of the apps <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/build.gradle">build.gradle</a> file.</p>
+</div>
+<div class="paragraph">
+<p>You will also need to define the URL in the <a href="https://github.com/aerogear/android-showcase-template/blob/master/app/src/main/java/com/aerogear/androidshowcase/di/SecureApplicationModule.java">SecureApplicationModule</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Provides @Singleton
+AuthService provideAuthService(Context context, MobileCore mobileCore) {
+    AuthService authService = mobileCore.getInstance(AuthService.class);
+    AuthServiceConfiguration authServiceConfig = new AuthServiceConfiguration.AuthConfigurationBuilder()
+            .withRedirectUri("com.feedhenry.securenativeandroidtemplate:/callback")
+            .build();
+
+    authService.init(context, authServiceConfig);
+    return authService;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="authentication"><a class="anchor" href="#authentication"></a>Authentication</h4>
+<div class="paragraph">
+<p>We can then perform the auth request and create a new intent which will handle the auth response from the system browser. The authentication phase will occur in a system browser in a safe context outside of the application.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Create the config for the initial Keycloak auth request to get a temporary token and create an intent to handle the response
+ *
+ * @param fromActivity the activity used to perform the login
+ * @param authCallback the authentication callback
+ */
+@Override
+public void login(final Activity fromActivity, final Callback authCallback) {
+
+    // Build the options object and start the authentication flow. Provide an activity to handle the auth response.
+    DefaultAuthenticateOptions options = new DefaultAuthenticateOptions(fromActivity, LOGIN_RESULT_CODE);
+    authService.login(options, authCallback);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-the-authentication-response"><a class="anchor" href="#handling-the-authentication-response"></a>Handling the Authentication Response</h4>
+<div class="paragraph">
+<p>Once the Authentication phase has ended, the user will be redirected back to the mobile app from the system browser.
+A check is performed in the MainActivity for incoming intents so the result can be handled by the authentication service.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logout"><a class="anchor" href="#logout"></a>Logout</h4>
+<div class="paragraph">
+<p>To logout of the application, we must make a call to the logout endpoint on the OpenID Connect provider along with providing the identity token and a redirect URI.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Perform a logout request against the openid connect server
+ *
+ * @param logoutCallback the logout callback
+ */
+public void logout(final CallbackHandler logoutCallback) {
+    this.logoutCallback = logoutCallback;
+    UserPrincipal currentUser = authService.currentUser();
+    authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
+        @Override
+        public void onSuccess() {
+            logoutSuccess();
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            logoutFailed(error);
+        }
+    });
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-auth-1.png" alt="ios auth 1" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-auth-2.png" alt="ios auth 2" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/ios-showcase-template">Mobile Security iOS Template</a> App.</p>
+</div>
+<div class="paragraph">
+<p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
+The <a href="https://github.com/aerogear/aerogear-ios-sdk/tree/master/docs/auth">Aerogear Auth SDK</a> is being used to communicate with the Keycloak server.</p>
+</div>
+<div class="paragraph">
+<p>The Keycloak server config is defined in the <a href="https://raw.githubusercontent.com/aerogear/ios-showcase-template/master/secure-ios-app/mobile-services.json">mobile-services.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">404: Not Found</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>startAuth()</code> function handles the user authentication browser flow and the back-channel token exchange.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func startAuth(presentingViewController: UIViewController) {
+    do {
+        try self.authService.login(presentingViewController: presentingViewController, onCompleted: onLoginCompleted)
+    } catch {
+        fatalError("Unexpected error: \(error)")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>resolveCurrentUser()</code> returns the user profile, which can be used to retrieve user information and the auth tokens.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func resolveCurrentUser() -&gt; User? {
+    let authService = self.appComponents.resolveAuthService()
+    return try! authService.currentUser()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following information can be retrieved from an authenticated user:</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">// Get the users username
+let username = currentUser.userName
+// Get the users first name
+let firstName = currentUser.firstName
+// Get the users last name
+let lastName = currentUser.lastName
+// Get the users full name
+let fullName = currentUser.fullName
+// Get the users email address
+let emailAddress = currentUser.email
+// Get the users access token
+let accessToken = currentUser.accessToken
+// Get the users identity token
+let identityToken = currentUser.identityToken</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Access Control is carried out by checking the access roles of the authenticated user.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func highlightUserRealmRoles(user: User) {
+    for realmRole in self.allRealmRoles {
+        if user.hasRealmRole(realmRole.roleName) {
+            setRoleAccessoryType(role: realmRole, type: UITableViewCellAccessoryType.checkmark)
+        } else {
+            setRoleAccessoryType(role: realmRole, type: UITableViewCellAccessoryType.none)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>logout()</code> function is used to logout the user from the Keycloak server. The local auth tokens are also deleted.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func logout() {
+    do {
+        try self.authService.logout(onCompleted: { error in
+            self.router?.leaveUserDetailsView(withError: error)
+        })
+    } catch {
+        fatalError("Unexpected error: \(error)")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apache-cordova"><a class="anchor" href="#apache-cordova"></a>Apache Cordova</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-auth-1.png" alt="cordova auth 1" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-auth-2.png" alt="cordova auth 2" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="_images/cordova-auth-3.png" alt="cordova auth 3" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://www.npmjs.com/package/keycloak-js">Keycloak JS</a> library is being used to perform the OpenID Connect based authentication.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Ensure that Keycloak is Initialised before Angular to prevent Redirect looping issues
+KeycloakService.init()
+.then(() =&gt; {
+  const platform = platformBrowserDynamic();
+  // Mamually intiliase angular
+  platform.bootstrapModule(AppModule);
+})
+.catch((err) =&gt; console.error("Error Initalizing Keycloak", err));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The OpenID Connect Configuration can be found in the <a href="https://github.com/feedhenry/mobile-security-cordova-template/blob/c24297cda240efa40aca292e7d0657d7432d1eba/src/config/keycloak.json">/config/keycloak.json</a> file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "realm": "secure-app",
+  "url": "https://keycloak.security.feedhenry.org/auth/",
+  "ssl-required": "external",
+  "clientId": "client-app",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "pinningFingerprint": "44 C8 9A 60 4E 29 82 85 8E 4F 75 1F 78 46 CD B3 0A 08 66 3F",
+  "apiServerUrl": "https://api.security.feedhenry.org",
+  "apiEndpoint": "/"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Keycloak JS adapter is initialised with the <code>check-sso</code> config to automatically detect and authenticate the user if there is a valid session on app resume.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Initialise the Keycloak Client Adapter
+*/
+static init(): Promise&lt;any&gt; {
+  // Create a new Keycloak Client Instance
+  let keycloakAuth: any = new Keycloak(keycloakConfig);
+
+    return new Promise((resolve, reject) =&gt; {
+      keycloakAuth.init({onLoad: 'check-sso'}).success(() =&gt; {
+          KeycloakService.auth.authz = keycloakAuth;
+          resolve();
+        }).error((err) =&gt; {
+          reject(err);
+        });
+    });
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The access token can be retrieved using the <code>getToken()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Get Access Token
+*/
+getToken(): string {
+return KeycloakService.auth.authz.token;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can logout using the <code>logout()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Redirect to logout
+*/
+logout(): void {
+  KeycloakService.auth.authz.logout();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can be redirected to the login screen using the <code>login()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Redirect to Login
+ */
+login(): void {
+  KeycloakService.auth.authz.login();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The authentication state can ve cleared using the <code>clearToken()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Clears Authentication State
+ */
+clearToken(): void {
+  KeycloakService.auth.authz.clearToken();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The end users realm level roles can be retrieved using the <code>getRealmRoles()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can perform a check to see if the user has a given role using the <code>hasRealmRole()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Check if the user has a specified realm role
+ */
+hasRealmRole(role: String): boolean {
+  return KeycloakService.auth.authz.hasRealmRole(role);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Information about the authentication server can be carried out using the <code>getConfiguration()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Get Server/Open ID Connect specific server info
+ */
+getConfiguration(): object {
+  var notAvailable = "N/A";
+  return {
+    "authServerUrl": KeycloakService.auth.authz.authServerUrl ? KeycloakService.auth.authz.authServerUrl : notAvailable,
+    "openIdFlow": KeycloakService.auth.authz.flow ? KeycloakService.auth.authz.flow : notAvailable,
+    "openIdResponseMode": KeycloakService.auth.authz.responseMode ? KeycloakService.auth.authz.responseMode : notAvailable,
+    "openIdResponseType": KeycloakService.auth.authz.responseType ? KeycloakService.auth.authz.responseType : notAvailable,
+    "realm": KeycloakService.auth.authz.realm ? KeycloakService.auth.authz.realm : notAvailable,
+    "clientId": KeycloakService.auth.authz.clientId ? KeycloakService.auth.authz.clientId : notAvailable,
+    "timeSkew": KeycloakService.auth.authz.timeSkew ? KeycloakService.auth.authz.timeSkew : notAvailable
+  };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The user can be redirected to the Keycloak account management screen using the <code>accountManagement()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Redirects to the Account Management Console
+ */
+accountManagement(): void {
+  KeycloakService.auth.authz.accountManagement();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The users profile data can be retrieved using the <code>loadUserProfile()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Get the users profile
+ */
+loadUserProfile(): any {
+  // Retrieve User Profile
+  return new Promise((resolve, reject) =&gt; {
+    KeycloakService.auth.authz.loadUserProfile().success((profile) =&gt; {
+      resolve(&lt;object&gt;profile);
+    }).error(() =&gt; {
+      reject('Failed to retrieve user profile');
+    });
+  });
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can check if the user is authenticated using the <code>isAuthenticated()</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+ * Check if the user is authenticated
+ */
+isAuthenticated(): boolean {
+    return KeycloakService.auth.authz.authenticated;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

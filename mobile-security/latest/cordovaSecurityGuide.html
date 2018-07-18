@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cordova Security Guide :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/cordovaSecurityGuide.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb">Reference</li>
+    <li class="crumb"><a href="cordovaSecurityGuide.html">Cordova Security Guide</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/cordovaSecurityGuide.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Cordova Security Guide</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a summary of the <a href="https://cordova.apache.org/docs/en/latest/guide/appdev/security/">Cordova Security Guide</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="whitelist"><a class="anchor" href="#whitelist"></a>Whitelist</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Domain whitelisting is a security model that controls access to external domains over which your application has no control. Cordova provides a configurable security policy to define which external sites may be accessed. By default, new apps are configured to allow access to any site. Before moving your application to production, you should formulate a whitelist and allow access to specific network domains and subdomains.</p>
+</div>
+<div class="paragraph">
+<p>Be aware that some websites may automatically redirect from their home page to a different url, such as using https protocol or to a country-specific domain. For example <code><a href="http://www.google.com" class="bare">http://www.google.com</a></code> will redirect to use SSL/TLS at <code><a href="https://www.google.com" class="bare">https://www.google.com</a></code>, and then may further redirect to a geography such as <code><a href="https://www.google.co.uk" class="bare">https://www.google.co.uk</a></code>. Such scenarios may require modified or additional whitelist entries beyond your initial requirement</p>
+</div>
+<div class="paragraph">
+<p>Note that the whitelist applies only to the main Cordova webview, and does not apply to an <a href="https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-inappbrowser/">InAppBrowser</a> webview or opening links in the system web browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="iframes-calback-id-mechanism"><a class="anchor" href="#iframes-calback-id-mechanism"></a>Iframes &amp; Calback ID Mechanism</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If content is served in an iframe from a whitelisted domain, that domain will have access to the native Cordova bridge. This means that if you whitelist a third-party advertising network and serve those ads through an iframe, it is possible that a malicious ad will be able to break out of the iframe and perform malicious actions. Because of this, you should generally not use iframes unless you control the server that hosts the iframe content.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="certificate-pinning"><a class="anchor" href="#certificate-pinning"></a>Certificate Pinning</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cordova does not support true certificate pinning. The main barrier to this is a lack of native APIs in Android for intercepting SSL connections to perform the check of the server&#8217;s certificate.
+Since Apache Cordova is meant to offer consistent APIs across multiple platforms, not having a capability in a major platform breaks that consistency.</p>
+</div>
+<div class="paragraph">
+<p>There are ways to approximate certificate pinning, such as checking the server&#8217;s public key (fingerprint) is the expected value when your application starts or at other various times during your application&#8217;s lifetime. There are third-party plugins available for Cordova that can do that. However, this is not the same as true certificate pinning which automatically verifies the expected value on every connection to the server.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="self-signed-certificates"><a class="anchor" href="#self-signed-certificates"></a>Self-signed Certificates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using self-signed certificates on your server is not recommended.
+If you desire SSL, then it is highly recommended that your server have a certificate that has been properly signed by a well-known CA (certificate authority).
+The inability to do true certificate pinning makes this important.
+The reason is that accepting self-signed certificates bypasses the certificate chain validation, which allows any server certificate to be considered valid by the device.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="encrypted-storage"><a class="anchor" href="#encrypted-storage"></a>Encrypted storage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For encrypted storage, you could consider using one of a number of secure storage plugins for Cordova.
+The <a href="https://www.npmjs.com/package/cordova-plugin-secure-key-store">cordova-plugin-secure-key-store</a> plugin uses the Android Keystore and the iOS Keychain for stores sensitive data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="general-tips"><a class="anchor" href="#general-tips"></a>General Tips</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="use-inappbrowser-for-outside-links"><a class="anchor" href="#use-inappbrowser-for-outside-links"></a>Use InAppBrowser for outside links</h3>
+<div class="paragraph">
+<p>Use the InAppBrowser when opening links to any outside website. This is much safer than whitelisting a domain name and including the content directly in your application because the InAppBrowser will use the native browser&#8217;s security features and will not give the website access to your Cordova environment. Even if you trust the third party website and include it directly in your application, that third party website could link to malicious web content.</p>
+</div>
+<div class="paragraph">
+<p>If you want all page loads in your app to go through the InAppBrowser, you can simply hook <code>window.open</code> during initialization. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    window.open = cordova.InAppBrowser.open;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="validate-all-user-input"><a class="anchor" href="#validate-all-user-input"></a>Validate all User Input</h3>
+<div class="paragraph">
+<p>Always validate any and all input that your application accepts.
+This includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>usernames</p>
+</li>
+<li>
+<p>passwords</p>
+</li>
+<li>
+<p>dates</p>
+</li>
+<li>
+<p>uploaded media etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Because an attacker could manipulate your HTML and JS assets (either by decompiling your application or using debugging tools like chrome://inspect), this validation should also be performed on your server, especially before handing the data off to any backend service.</p>
+</div>
+<div class="paragraph">
+<p>Other sources where data should be validated include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>User Documents</p>
+</li>
+<li>
+<p>Contacts</p>
+</li>
+<li>
+<p>Push Notifications</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="do-not-cache-sensitive-data"><a class="anchor" href="#do-not-cache-sensitive-data"></a>Do not cache sensitive data</h3>
+<div class="paragraph">
+<p>If usernames, password, geolocation information, and other sensitive data is cached, then it could potentially be retrieved later by an unauthorized user or application.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="do-not-assume-that-your-source-code-is-secure"><a class="anchor" href="#do-not-assume-that-your-source-code-is-secure"></a>Do not assume that your source code is secure</h3>
+<div class="paragraph">
+<p>Since a Cordova application is built from HTML and JavaScript assets that get packaged in a native container, you should not consider your code to be secure.
+It is possible to reverse engineer a Cordova application to recover sensitive app data or hardcoded keys etc.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

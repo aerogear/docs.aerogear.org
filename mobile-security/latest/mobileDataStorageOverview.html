@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Storage Summary :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/mobileDataStorageOverview.html">
+    <meta name="generator" content="Antora 1.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="mobile-security" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Security</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#data-storage-summary">Data Storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#network-security">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#mobile-app-self-defence">Mobile App Defense</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#handling-sensitive-data-overview">Sensitive Data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#cryptography-summary">Cryptography</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecurityRequirements.html">Mobile Application Security Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileDevelopmentGuidelines.html">Secure Mobile Development Guidelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspCheatSheetSeries.html">OWASP Cheat Sheet Series</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileVerificationStandard.html">OWASP Mobile Verification Standard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileThreatModelProject.html">OWASP Threat Model Project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="owaspMobileMTools.html">OWASP M-Tools</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="iosSecurityGuide.html">iOS Security Whitepaper</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidSecurityGuide.html">Android Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="androidDeveloperSecurityGuide.html">Android Developer Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cordovaSecurityGuide.html">Cordova Security Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileSecurityVetting.html">Vetting the Security of Mobile Applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="niapMobileAppVetting.html">NIAP Mobile App Vetting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dhsMobileDeviceSecurity.html">DHS Study on Mobile Device Security</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nispMobileDeviceSecurityGuides.html">Guidelines for Managing the Security of Mobile Devices in the Enterprise</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileBankingSecurity.html">Mobile Banking Applications Security Challenges</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobileSecureDevelopmentGuide.html">Secure Mobile Development Guide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Security</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../aerogear/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../aerogear/latest/getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Security</a></li>
+    <li class="crumb"><a href="mobileDataStorageOverview.html">Data Storage Summary</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/mobileDataStorageOverview.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Data Storage Summary</h1>
+<div id="preamble">
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dont&#8217;s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Classify data storage according to sensitivity and apply controls accordingly</strong> <em>(To understand what information should be protected)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store any sensitive data on a mobile device where possible</strong> <em>(Prevent data leak)</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>When storing sensitive data on the device, use a file encryption API provided by the OS or other trusted source</strong> <em>(Secure Cryptography)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Write data to persistent memory accessible to other applications without encryption</strong> <em>(Shared storage is untrusted)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use file encryption APIs which use a secret key protected by the device unlock code and deletable on remote wipe if available</strong> <em>(Protect secret key)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Including the keys in the same attacker-readable directory as the encrypted content</strong> <em>(Can be used to decrypt data)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Make use of remote wipe and kill switch APIs to remove sensitive information from the device in the event of theft or loss</strong> <em>(Prevent data leak if the device is lost)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Take screenshots contain sensitive data</strong> <em>(Avoid sensitive data is exposed through screenshots)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a time based (expiry) type of control which will wipe sensitive data from the mobile device once the application has not communicated with its servers for a given period of time</strong> <em>(Less chance to decrypt data by using brute force)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Leak permission-protected data to other applications</strong> <em>(Prevent other apps access sensitive data)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Automatic application shutdown and/or lockout after X minutes of inactivity</strong> <em>(Less chance of data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Allow third party keyboards to be used for inputs that may contain sensitive data</strong> <em>(Prevent data leak)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Verify that OS level storage encryption is enabled and the device is protected by a PIN or passphrase</strong> <em>(Ensure data encryption by default)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Backup or synchronize sensitive data</strong> <em>(Prevent data leak)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Restrict the data that is shared with other applications</strong> <em>(Prevent other apps access sensitive data)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Log sensitive information</strong> <em>(Prevent data leak through logs)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Nullify any variables that hold keys after use</strong> <em>(Secure keys in memory)</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>using immutable objects for sensitive keys or passwords such as in Android java.lang.String and use char array instead</strong> <em>(Secure keys in memory)</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Restrict broadcast messages (e.g., Android Broadcast Intents) to authorized applications</strong> <em>(Prevent other apps access sensitive data)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Disable Auto Correction and Autosuggestion for inputs that contain sensitive data</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Disable cut, copy and paste functionalities for inputs that may contain sensitive data or restrict the pasteboard to be accessible only from this application</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Delete application caches on app termination</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Clear cookies and data in Webview on app termination</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Remove sensitive data from views when in background</strong> <em>(Prevent data leak)</em></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="anchor" href="#implementation"></a>Implementation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+<div class="paragraph">
+<p>We have implemented a secure storage feature in the sample mobile templates to allow users to manage secret notes. This feature is used to showcase the best practices around secure data storage.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_menu.png" alt="storage menu" width="270" height="480">
+</div>
+</div>
+<div class="imageblock left">
+<div class="content">
+<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_main.png" alt="storage main" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The secret notes can be saved to either file system or database (SQLite). In both cases, the notes will be encrypted automatically when persisted, and decrypted automatically when loaded into the app.</p>
+</div>
+<div class="sect3">
+<h4 id="secret-key-management"><a class="anchor" href="#secret-key-management"></a>Secret Key Management</h4>
+<div class="paragraph">
+<p>Secret keys are being used to encrypt/decrypt the notes. To make sure the secret keys are securely persisted, in most cases, the OS&#8217;s keystore should be used to persist the secret key.</p>
+</div>
+<div class="paragraph">
+<p>However, for Android, there is a difference between Android M and pre-Android M.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="android-m-and-later"><a class="anchor" href="#android-m-and-later"></a>Android M and later</h4>
+<div class="paragraph">
+<p>In Android M and later versions, the KeyStore API supports generating and persist secret key, so the implementation is quite straight forward:</p>
+</div>
+<div class="listingblock">
+<div class="title">Generate Secret Key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Generate the AES key for encryption/decryption. The key will be 128bit and it can only be used with AES/GCM/NoPadding mode.
+ * @param keyAlias the key alias
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+@Override
+public void generateAESKey(String keyAlias) throws GeneralSecurityException, IOException {
+    KeyGenerator keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE);
+    //TODO: further control if user authentication is required for accessing the keys
+    KeyGenParameterSpec keyGenerationParameters = new KeyGenParameterSpec.Builder(keyAlias, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+            .setKeySize(AES_KEYSIZE_128)
+            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+            .setRandomizedEncryptionRequired(true)
+            .build();
+    keyGenerator.init(keyGenerationParameters);
+    keyGenerator.generateKey();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pre-android-m"><a class="anchor" href="#pre-android-m"></a>Pre-Android M</h4>
+<div class="paragraph">
+<p>However, in pre-Android M, the KeyStore API only supports generating public/private key pairs, so we can&#8217;t persist the secret key using the keystore.</p>
+</div>
+<div class="paragraph">
+<p>Instead, we will have to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate the secret key without using the KeyStore</p>
+<div class="listingblock">
+<div class="title">Generate Secret</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private byte[] generateSecretKey(int size) throws NoSuchAlgorithmException {
+    KeyGenerator keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES);
+    keyGen.init(size);
+    SecretKey secretKey = keyGen.generateKey();
+    return secretKey.getEncoded();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generate a public/private key pair using the KeyStore</p>
+<div class="listingblock">
+<div class="title">Generate Keypair</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public void generatePrivateKeyPair(String keyAlias) throws GeneralSecurityException, IOException {
+    //pre android-M, the keystore only support RSA key generation. So here we will generate a RSA keypair first, then generate the AES key.
+    //we then encrypt the AES key using the generated RSA public key, and save it using the SharedPreferences
+    Calendar start = Calendar.getInstance();
+    Calendar end = Calendar.getInstance();
+    end.add(Calendar.YEAR, 99);
+    KeyPairGeneratorSpec generatorSpec = new KeyPairGeneratorSpec
+            .Builder(context)
+            .setAlias(keyAlias)
+            .setSubject(new X500Principal("CN=" + keyAlias))
+            .setSerialNumber(BigInteger.TEN)
+            .setStartDate(start.getTime())
+            .setEndDate(end.getTime())
+            .build();
+    KeyPairGenerator generator = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, ANDROID_KEY_STORE);
+    generator.initialize(generatorSpec);
+    generator.generateKeyPair();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Encrypt the generated secret key with the generated public key and persist the encrypted secret key using private SharedPreferences.</p>
+<div class="listingblock">
+<div class="title">Encrypt Secret</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public void generateAESKey(String keyAlias) throws GeneralSecurityException, IOException {
+    byte[] secretKey = generateSecretKey(AES_KEYSIZE_128);
+    byte[] encryptedKey = rsaEncrypt(secretKey);
+    String encodedSecretKey = Base64.encodeToString(encryptedKey, BASE64_FLAG);
+    SharedPreferences.Editor editor = this.sharedPreferences.edit();
+    editor.putString(keyAlias, encodedSecretKey);
+    editor.commit();
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To load the secret key, the generated key pair needs to be loaded first, and then use the private key to decrypt the encrypted secret key.</p>
+<div class="listingblock">
+<div class="title">Decrypt Secret</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+public Key getSecretKey(String keyAlias) throws GeneralSecurityException, IOException {
+    String encodedKey = this.sharedPreferences.getString(keyAlias, null);
+    if (encodedKey != null) {
+        byte[] encryptedKeyBytes = Base64.decode(encodedKey, BASE64_FLAG);
+        byte[] keyBytes = rsaDecrypt(encryptedKeyBytes);
+        return new SecretKeySpec(keyBytes, KeyProperties.KEY_ALGORITHM_AES);
+    }
+    return null;
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The alternative option is to ask the user to provide a password. The password will be used to encrypt/decrypt the secret key. This does mean that the user will have to remember the password and enter it every time when using the app.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="encrypt-decrypt-the-secret-key"><a class="anchor" href="#encrypt-decrypt-the-secret-key"></a>Encrypt/decrypt the secret key</h4>
+<div class="paragraph">
+<p>RSA encryption/decryption is used to encrypt/decrypt the secret key. It can be used to encrypt/decrypt relatively small amount of data.</p>
+</div>
+<div class="paragraph">
+<p>You can perform RSA encryption/decryption in Android like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">RSA Encryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Perform encryption using RSA
+ * @param mode the RSA encryption alg
+ * @param keyEntry the private/public key entry
+ * @param text the data to encrypt
+ * @return the encrypted ddata
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public static byte[] encrypt(String mode, KeyStore.PrivateKeyEntry keyEntry, byte[] text) throws GeneralSecurityException, IOException {
+    // Encrypt the text
+    Cipher inputCipher = Cipher.getInstance(mode);
+    inputCipher.init(Cipher.ENCRYPT_MODE, keyEntry.getCertificate().getPublicKey());
+    //The key to encrypt should be either 16 (128 bit) or 32 (256 bit) in size, well below the block size for RSA (should be around 214 bytes)
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    CipherOutputStream cipherOutputStream = new CipherOutputStream(outputStream, inputCipher);
+    cipherOutputStream.write(text);
+    cipherOutputStream.close();
+
+    byte[] vals = outputStream.toByteArray();
+    return vals;
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">RSA Decryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Encrypt the given text.
+ * @param keyAlias The alias of the key in the keystore that will be used for the encryption.
+ * @param plainText the text to encrypt
+ * @return the encrypted data. The first 12 bytes will be the IV (initial vector) used for the encryption.
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public byte[] encrypt(String keyAlias, byte[] plainText) throws GeneralSecurityException, IOException {
+    SecretKey secretKey = loadOrGenerateSecretKey(keyAlias, true);
+    Cipher cipher = Cipher.getInstance(secureKeyStore.getSupportedAESMode());
+    cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+    //get the iv that is being used
+    byte[] iv = cipher.getIV();
+    byte[] encrypted = cipher.doFinal(plainText);
+    GCMEncrypted encryptedData = new GCMEncrypted(iv, encrypted);
+    return encryptedData.toByteArray();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="encrypt-decrypt-the-content-of-notes"><a class="anchor" href="#encrypt-decrypt-the-content-of-notes"></a>Encrypt/decrypt the content of notes</h4>
+<div class="paragraph">
+<p>Once we have the secret key, we can use it to encrypt/decrypt the content of the notes using AES.</p>
+</div>
+<div class="paragraph">
+<p>You can perform data encryption/decryption in Android like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Encryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Encrypt the given text.
+ * @param keyAlias The alias of the key in the keystore that will be used for the encryption.
+ * @param plainText the text to encrypt
+ * @return the encrypted data. The first 12 bytes will be the IV (initial vector) used for the encryption.
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public byte[] encrypt(String keyAlias, byte[] plainText) throws GeneralSecurityException, IOException {
+    SecretKey secretKey = loadOrGenerateSecretKey(keyAlias, true);
+    Cipher cipher = Cipher.getInstance(secureKeyStore.getSupportedAESMode());
+    cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+    //get the iv that is being used
+    byte[] iv = cipher.getIV();
+    byte[] encrypted = cipher.doFinal(plainText);
+    GCMEncrypted encryptedData = new GCMEncrypted(iv, encrypted);
+    return encryptedData.toByteArray();
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Decryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Decrypt the given encrypted data
+ * @param keyAlias The alias of the key in the keystore that will be used for the decryption.
+ * @param encryptedText the text to decrypt. The first 12 bytes should be the IV used for encryption.
+ * @return the plain text data
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+public byte[] decrypt(String keyAlias, byte[] encryptedText) throws GeneralSecurityException, IOException {
+    GCMEncrypted encryptedData = GCMEncrypted.parse(encryptedText);
+    SecretKey secretKey = loadOrGenerateSecretKey(keyAlias, false);
+    Cipher cipher = Cipher.getInstance(secureKeyStore.getSupportedAESMode());
+    cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(GCMEncrypted.GCM_TAG_LENGTH, encryptedData.iv));
+    byte[] plainText = cipher.doFinal(encryptedData.encryptedData);
+    return plainText;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persist-data-using-file-system"><a class="anchor" href="#persist-data-using-file-system"></a>Persist data using file system</h4>
+<div class="paragraph">
+<p>When a secret note is created, it can be persisted to the file system. We should encrypt the file when it is being persisted, and decrypt it when it is being loaded:</p>
+</div>
+<div class="listingblock">
+<div class="title">File Encryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Encrypt the file when saving to the file system
+ * @param fileName the name of the file
+ * @param fileContent the content of the file
+ * @throws IOException
+ * @throws GeneralSecurityException
+ */
+private void writeFileWithEncryption(String fileName, String fileContent) throws IOException, GeneralSecurityException {
+    File outputFile = new File(context.getFilesDir(), fileName);
+    if (!outputFile.exists()) {
+        outputFile.createNewFile();
+    }
+    OutputStream outStream = aesCrypto.encryptStream(fileName, new FileOutputStream(outputFile));
+    outStream.write(fileContent.getBytes("utf-8"));
+    outStream.flush();
+    outStream.close();
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">File Decryption</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Read the content of the file, and decrypt it automatically
+ * @param fileName the name of the file
+ * @return the decrypted file content
+ * @throws IOException
+ * @throws GeneralSecurityException
+ */
+private String readFileWithDecryption(String fileName) throws IOException, GeneralSecurityException {
+    InputStream inputStream = context.openFileInput(fileName);
+    InputStream decryptedStream = aesCrypto.decryptStream(fileName, inputStream);
+
+    return StreamUtils.readStream(decryptedStream);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persist-data-using-database-sqlite"><a class="anchor" href="#persist-data-using-database-sqlite"></a>Persist data using database (SQLite)</h4>
+<div class="paragraph">
+<p>To securely persist data to the database, a library called <a href="https://www.zetetic.net/sqlcipher/">SqlCipher</a> is used. The library will automatically manage the encryption/decryption of the sqlite database file. It is easy to use, and requires minimum changes to the code.</p>
+</div>
+<div class="paragraph">
+<p>To encrypt/decrypt the database, a password is required. You can ask the user to provide the password. In our sample application, we generated a random password and then protected using a public/private key pair. The password is saved to the private SharedPreferences.</p>
+</div>
+<div class="listingblock">
+<div class="title">SqlCipher Password</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Get the password to protect the database
+ * @return the password
+ * @throws GeneralSecurityException
+ * @throws IOException
+ */
+private String getDbPassword() throws GeneralSecurityException, IOException {
+    String encryptedDbPass = this.sharedPreferences.getString(DB_KEY_PREF_NAME, null);
+    if (encryptedDbPass == null) {
+        String passwordToEncrypt = randomPassword();
+        encryptedDbPass = Base64.encodeToString(rsaCrypto.encrypt(ENCRYPT_KEY_ALIAS, passwordToEncrypt.getBytes("utf-8")), Base64.NO_WRAP);
+        SharedPreferences.Editor editor = this.sharedPreferences.edit();
+        editor.putString(DB_KEY_PREF_NAME, encryptedDbPass).commit();
+    }
+    String password = new String(rsaCrypto.decrypt(ENCRYPT_KEY_ALIAS, Base64.decode(encryptedDbPass, Base64.NO_WRAP)), "utf-8");
+    return password;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h3>
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="_images/ios-storage-1.png" alt="ios storage 1" width="270" height="480">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The secret notes are being persisted using an encrypted <a href="https://realm.io/docs/swift/latest/">Realm Mobile DB</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="initialising-realm-db"><a class="anchor" href="#initialising-realm-db"></a>Initialising Realm DB</h4>
+<div class="paragraph">
+<p>The Realm DB storing the notes must be initialised using the encryption key.</p>
+</div>
+<div class="listingblock">
+<div class="title">Initialise Realm</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Initilise the Realm Storage Service
+
+ - Parameter kcWrapper: the swift keychain wrapper
+ */
+init(kcWrapper: KeychainWrapper, encryptionKey: Data) {
+    self.keychainWrapper = kcWrapper
+    self.encryptionKey = encryptionKey
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The encryption key is stored in the iOS Keychain.</p>
+</div>
+<div class="listingblock">
+<div class="title">Get Encryption Key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Get the encryption key for the realm db
+
+ - Parameter kcWrapper: the keychain wrapper instance
+ - Parameter keychainAlias: the refernence alias for the encryption key stored in the keychain
+
+ - Returns: the encryption key
+ */
+class func getEncryptionKey(kcWrapper: KeychainWrapper, keychainAlias: String) -&gt; Data? {
+    guard let encryptionKey = kcWrapper.data(forKey: keychainAlias) else {
+        let newEncryptionKey = generateEncryptionKey()
+        kcWrapper.set(newEncryptionKey, forKey: keychainAlias)
+        return newEncryptionKey
+    }
+    return encryptionKey
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the application is initialised for the first time, a new encryption key is randomly generated.</p>
+</div>
+<div class="listingblock">
+<div class="title">Generate Encryption Key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">+include::{partialsdir}/generateEncryptionKey[]+</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="interacting-with-realm-db"><a class="anchor" href="#interacting-with-realm-db"></a>Interacting with Realm DB</h4>
+<div class="paragraph">
+<p>Interactions with the Realm DB are performed on background threads. Completion handlers are used to pass information to the view controllers on the Main thread.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-notes"><a class="anchor" href="#listing-notes"></a>Listing Notes</h4>
+<div class="paragraph">
+<p>List all the notes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Listing Notes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - List the stored entities from the realm db
+
+ - Parameter onComplete - a closure called after retrieval
+ */
+func list(onComplete: @escaping (Error?, [Note]?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // synchronization of Realm instance to the latest version on the background thread
+            realm.refresh()
+
+            // retieve the notes from realm
+            let notesResult = realm.objects(Note.self)
+
+            // create a new thread safe reference for these notes
+            let threadSafeNotes = ThreadSafeReference(to: notesResult)
+
+            // return note to the view controller on the main thread
+            DispatchQueue.main.async() {
+                let realm = try! self.getRealmInstance()
+
+                // get the notes using the thread safe reference
+                guard let notes = realm.resolve(threadSafeNotes) else {
+                    return
+                }
+
+                // convert the notes to array format
+                let notesArray = notes.toArray()
+
+                onComplete(nil, notesArray)
+            }
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-a-note"><a class="anchor" href="#creating-a-note"></a>Creating a Note</h4>
+<div class="paragraph">
+<p>Create an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Create the stored entity
+
+ - Paramater title: the title of the note
+ - Paramater content: the content of the note
+ - Parameter onComplete - a closure called after creation
+ */
+func create(title: String, content: String, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    var id = generateId()
+    let createdAt = getDate()
+
+    // ensure the ID is unique
+    while !isIdentifierUnique(identifier: id) {
+        id = generateId()
+    }
+
+    // create the note object
+    let note = Note()
+    note.id = id
+    note.title = title
+    note.content = content
+    note.createdAt = createdAt
+    note.storageProvider = "Realm"
+
+    DispatchQueue.global(qos: .background).async {
+        // create the note in the db
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+            try realm.safeWrite {
+                realm.add(note)
+                try! realm.commitWrite()
+                onComplete(nil, note.clone())
+            }
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="read-a-note"><a class="anchor" href="#read-a-note"></a>Read a Note</h4>
+<div class="paragraph">
+<p>Read an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Read a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Read the stored entity
+
+ - Parameter identifier: The identifier of the note
+ - Parameter onComplete - a closure called after retrieval
+ */
+func read(identifier: Int, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // retrieve the notes from realm
+            let noteResult = realm.objects(Note.self).filter("id = \(identifier)")
+
+            // create a new thread safe reference for these notes
+            let threadSafeNotes = ThreadSafeReference(to: noteResult)
+
+            // return note to the view controller on the main thread
+            DispatchQueue.main.async() {
+                let realm = try! self.getRealmInstance()
+
+                // get the notes using the thread safe reference
+                guard let notes = realm.resolve(threadSafeNotes) else {
+                    return
+                }
+
+                // extract the note from the list
+                let note = notes.first
+
+                onComplete(nil, note?.clone())
+            }
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-a-note"><a class="anchor" href="#edit-a-note"></a>Edit a Note</h4>
+<div class="paragraph">
+<p>Edit an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Edit a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Edit the stored entity
+
+ - Parameter identifier: The identifier of the note
+ - Parameter title: The title of the note
+ - Parameter content: The content of the note
+ - Parameter onComplete - a closure called after editing
+ */
+func edit(identifier: Int, title: String, content: String, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // get the existing note to update
+            let notes = realm.objects(Note.self).filter("id = \(identifier)")
+            let note = notes.first
+
+            // update the note with the given id
+            try realm.write {
+                note?.title = title
+                note?.content = content
+            }
+            onComplete(nil, note?.clone())
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-a-note"><a class="anchor" href="#delete-a-note"></a>Delete a Note</h4>
+<div class="paragraph">
+<p>Delete an individual note.</p>
+</div>
+<div class="listingblock">
+<div class="title">Delete a Note</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Delete the stored entity
+
+ - Parameter identifier: The identifier of the note
+ - Parameter onComplete - a closure called after deletion
+ */
+func delete(identifier: Int, onComplete: @escaping (Error?, Note?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            // get the note to delete
+            let noteToDeleteResult = realm.objects(Note.self).filter("id = \(identifier)")
+            let note = noteToDeleteResult.first
+            let returnNote = note?.clone()
+
+            // delete the note
+            try realm.write {
+                realm.delete((note)!)
+            }
+            onComplete(nil, returnNote)
+        } catch {
+            onComplete(error, nil)
+        }
+
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-all-notes"><a class="anchor" href="#delete-all-notes"></a>Delete all Notes</h4>
+<div class="paragraph">
+<p>Delete all notes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Delete all Notes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Delete all stored entities
+
+ - Parameter onComplete - a closure called after deletion
+ */
+func deleteAll(onComplete: @escaping (Error?, Bool?) -&gt; Void) {
+    DispatchQueue.global(qos: .background).async {
+        do {
+            // create a new thread confined realm
+            let realm = try self.getRealmInstance()
+
+            let notes = realm.objects(Note.self)
+
+            // delete all the notes
+            try realm.write {
+                realm.delete(notes)
+            }
+            onComplete(nil, true)
+        } catch {
+            onComplete(error, nil)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
