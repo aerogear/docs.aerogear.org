@@ -488,7 +488,7 @@ Zepto(function($){
 <h2 id="setting-up-aerogear-mobile-services-on-openshift"><a class="anchor" href="#setting-up-aerogear-mobile-services-on-openshift"></a>Setting up AeroGear Mobile Services on OpenShift</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To use Mobile Services, you must run OpenShift and install an add-on which enables Mobile Services. For more information about OpenShift, see <a href="https://www.openshift.org/" class="bare">https://www.openshift.org/</a>.</p>
+<p>To use Mobile Services, you must run OpenShift and install an add-on which enables Mobile Services. For more information about OpenShift, see <a href="https://www.openshift.org/"> window="_blank"</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -497,7 +497,7 @@ Zepto(function($){
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-AeroGear recommends running OpenShift using the method described in this document. However, there are many ways to run OpenShift, and Mobile Services is compatible with most of these methods. There is a known issue with Minishift that makes it unsuitable for mobile development. This issue is described in <a href="https://github.com/minishift/minishift/issues/1287" class="bare">https://github.com/minishift/minishift/issues/1287</a>.
+AeroGear recommends running OpenShift using the method described in this document. However, there are many ways to run OpenShift, and Mobile Services is compatible with most of these methods. There is a known issue with Minishift that makes it unsuitable for mobile development. This issue is described in <a href="https://github.com/minishift/minishift/issues/1287" target="_blank" rel="noopener">Issue 1287</a>.
 </td>
 </tr>
 </table>
@@ -510,11 +510,11 @@ AeroGear recommends running OpenShift using the method described in this documen
 <p>MacOS or Linux</p>
 </li>
 <li>
-<p>A system running OpenShift <code>oc cluster up</code> as described in <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#prerequisites">Local Cluster Management</a></p>
+<p>A system running OpenShift <code>oc cluster up</code> as described in <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#prerequisites" target="_blank" rel="noopener">Local Cluster Management</a></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Use <a href="https://www.openshift.org/download.html">OpenShift client tools</a> version 3.9 or later</p>
+<p>Use <a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.9 or later</p>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -534,7 +534,7 @@ OpenShift oc executable must be located in a system location that is known to al
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Ensure that you can run <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started">oc cluster up</a> with no errors before moving on to the installation of AeroGear.
+Ensure that you can run <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#getting-started" target="_blank" rel="noopener">oc cluster up</a> with no errors before moving on to the installation of AeroGear.
 </td>
 </tr>
 </table>
@@ -544,10 +544,10 @@ Ensure that you can run <a href="https://github.com/openshift/origin/blob/master
 </div>
 </li>
 <li>
-<p>A <a href="https://hub.docker.com/">Docker Hub</a> account</p>
+<p>A <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> account</p>
 </li>
 <li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> (version 2.6 or above)</p>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible</a> (version 2.6 or above)</p>
 </li>
 <li>
 <p>For Linux (Fedora), add an extra port to the <code>dockerc</code> zone:</p>
@@ -568,7 +568,7 @@ $ firewall-cmd --reload</code></pre>
 <li>
 <p>Clone the Mobile-core installer:</p>
 <div class="paragraph">
-<p>The installer configures the local development installation of AeroGear Mobile Services using ansible scripts in our <a href="https://github.com/aerogear/mobile-core">mobile-core</a> repo.</p>
+<p>The installer configures the local development installation of AeroGear Mobile Services using ansible scripts in our <a href="https://github.com/aerogear/mobile-core" target="_blank" rel="noopener">mobile-core</a> repo.</p>
 </div>
 <div class="paragraph">
 <p>Clone this repo to your local machine and check out the 1.0.0 tag using:</p>
@@ -851,7 +851,7 @@ This association is called <strong>binding</strong> and once it&#8217;s done, yo
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The association between a Mobile Client and Identity Management Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+The association between a Mobile Client and Identity Management Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/" target="_blank" rel="noopener">Service Broker bind</a> feature.
 </td>
 </tr>
 </table>
@@ -994,7 +994,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You must create a new user account before you can log into the Showcase App. To create a new user, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a> and to setup a new users credentials, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.
+You must create a new user account before you can log into the Showcase App. To create a new user, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html" target="_blank" rel="noopener">here</a> and to setup a new users credentials, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html" target="_blank" rel="noopener">here</a>.
 </td>
 </tr>
 </table>
@@ -1014,16 +1014,16 @@ You must create a new user account before you can log into the Showcase App. To 
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://developer.android.com/studio/install">Android</a></p>
+<p><a href="https://developer.android.com/studio/install" target="_blank" rel="noopener">Android</a></p>
 </li>
 <li>
-<p><a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html">iOS</a></p>
+<p><a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html" target="_blank" rel="noopener">iOS</a></p>
 </li>
 <li>
-<p><a href="https://cordova.apache.org/#getstarted">Cordova</a></p>
+<p><a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova</a></p>
 </li>
 <li>
-<p><a href="https://developer.xamarin.com/getting-started/">Xamarin</a></p>
+<p><a href="https://developer.xamarin.com/getting-started/" target="_blank" rel="noopener">Xamarin</a></p>
 </li>
 </ul>
 </div>
@@ -1152,7 +1152,7 @@ proceed to download it.</p>
 OpenShift via USB and drag the certificate to a devices file system. Here is an <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>. It may be different for other devices.</p>
 </li>
 <li>
-<p><a href="https://developer.android.com/studio/command-line/adb">Android Debug Bridge</a> (adb) - Use the adb push command to push the certificate to device or emulator:</p>
+<p><a href="https://developer.android.com/studio/command-line/adb" target="_blank" rel="noopener">Android Debug Bridge</a> (adb) - Use the adb push command to push the certificate to device or emulator:</p>
 <div class="listingblock">
 <div class="content">
 <pre>$ adb push /tmp/localcluster.crt /sdcard/Download/localcluster.crt</pre>
@@ -1365,14 +1365,14 @@ $ npm run ionic:build</code></pre>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>To run an Android app in an emulator, see the following <a href="https://developer.android.com/training/basics/firstapp/running-app">documentation</a>.</p>
+<p>To run an Android app in an emulator, see the following <a href="https://developer.android.com/training/basics/firstapp/running-app" target="_blank" rel="noopener">documentation</a>.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">iOS</div><div class="content">
 <div class="paragraph">
-<p>To run an iOS app in an emulator, see the following <a href="https://help.apple.com/xcode/mac/current/#/dev2809b6cff">documentation</a>.</p>
+<p>To run an iOS app in an emulator, see the following <a href="https://help.apple.com/xcode/mac/current/#/dev2809b6cff" target="_blank" rel="noopener">documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1384,10 +1384,10 @@ $ npm run ionic:build</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://cordova.apache.org/docs/en/2.7.0/guide/command-line/#android">Android</a></p>
+<p><a href="https://cordova.apache.org/docs/en/2.7.0/guide/command-line/#android" target="_blank" rel="noopener">Android</a></p>
 </li>
 <li>
-<p><a href="https://cordova.apache.org/docs/en/2.7.0/guide/command-line/#ios">iOS</a></p>
+<p><a href="https://cordova.apache.org/docs/en/2.7.0/guide/command-line/#ios" target="_blank" rel="noopener">iOS</a></p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1413,10 +1413,10 @@ A running emulator on macOS is required to run an iOS application.
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://blogs.msdn.microsoft.com/visualstudio/2018/05/08/hyper-v-android-emulator-support/">Android</a></p>
+<p><a href="https://blogs.msdn.microsoft.com/visualstudio/2018/05/08/hyper-v-android-emulator-support/" target="_blank" rel="noopener">Android</a></p>
 </li>
 <li>
-<p><a href="https://developer.xamarin.com/getting-started-ios/">iOS</a></p>
+<p><a href="https://developer.xamarin.com/getting-started-ios/" target="_blank" rel="noopener">iOS</a></p>
 <div class="admonitionblock note">
 <table>
 <tr>
