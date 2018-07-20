@@ -492,7 +492,7 @@ Zepto(function($){
 </ul>
 </div>
 <div class="paragraph">
-<p>See the <a href="https://www.keycloak.org/documentation.html">Keycloak documentation</a> for more info.</p>
+<p>See the <a href="https://www.keycloak.org/documentation.html" target="_blank" rel="noopener">Keycloak documentation</a> for more info.</p>
 </div>
 <div class="sect2">
 <h3 id="ref_terminology_Identity Management_ref_terminology"><a class="anchor" href="#ref_terminology_Identity Management_ref_terminology"></a>Identity Management Terminology</h3>
@@ -640,7 +640,7 @@ This association is called <strong>binding</strong> and once it&#8217;s done, yo
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The association between a Mobile Client and Identity Management Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/">Service Broker bind</a> feature.
+The association between a Mobile Client and Identity Management Service uses the <a href="https://blog.openshift.com/asynchronous-bind-with-the-automation-broker/" target="_blank" rel="noopener">Service Broker bind</a> feature.
 </td>
 </tr>
 </table>
@@ -784,7 +784,7 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You must create a new user account before you can log into the Showcase App. To create a new user, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a> and to setup a new users credentials, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.
+You must create a new user account before you can log into the Showcase App. To create a new user, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html" target="_blank" rel="noopener">here</a> and to setup a new users credentials, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html" target="_blank" rel="noopener">here</a>.
 </td>
 </tr>
 </table>
@@ -938,7 +938,7 @@ let auth = AGSAuth()</code></pre>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
 <div class="paragraph">
-<p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/">NPM</a>:</p>
+<p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -952,10 +952,10 @@ let auth = AGSAuth()</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools">NuGet</a>.</p>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools" target="_blank" rel="noopener">NuGet</a>.</p>
 </li>
 <li>
-<p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Core">AeroGear Core</a> package:</p>
+<p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Core" target="_blank" rel="noopener">AeroGear Core</a> package:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core --version 1.0.0</code></pre>
@@ -1078,7 +1078,7 @@ Initialization will also perform authentication
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create an <a href="https://developer.android.com/guide/topics/manifest/manifest-intro#ifs">intent filter</a> for the <code>net.openid.appauth.RedirectUriReceiverActivity</code> activity. This step is required for Xamarin Android and allows the login browser to redirect back to your App. Add this to your <code>AndroidManifest.xml</code>:</p>
+<p>Create an <a href="https://developer.android.com/guide/topics/manifest/manifest-intro#ifs" target="_blank" rel="noopener">intent filter</a> for the <code>net.openid.appauth.RedirectUriReceiverActivity</code> activity. This step is required for Xamarin Android and allows the login browser to redirect back to your App. Add this to your <code>AndroidManifest.xml</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;activity android:name="net.openid.appauth.RedirectUriReceiverActivity" android:exported="true"  android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round"&gt;
@@ -1114,7 +1114,7 @@ authService.Configure(authConfig);</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For Android an <a href="https://developer.android.com/guide/topics/manifest/manifest-intro#ifs">Intent filter</a> should be configured with the callback URL specified in AuthenticateOptions in the App&#8217;s AndroidManifest.xml. See the <a href="https://github.com/aerogear/xamarin-showcase-template/blob/master/Example.Android/Properties/AndroidManifest.xml">example app</a>.
+For Android an <a href="https://developer.android.com/guide/topics/manifest/manifest-intro#ifs" target="_blank" rel="noopener">Intent filter</a> should be configured with the callback URL specified in AuthenticateOptions in the App&#8217;s AndroidManifest.xml. See the <a href="https://github.com/aerogear/xamarin-showcase-template/blob/master/Example.Android/Properties/AndroidManifest.xml" target="_blank" rel="noopener">example app</a>.
 </td>
 </tr>
 </table>
@@ -1411,7 +1411,7 @@ authService.Logout(authService.CurrentUser()).ContinueWith(result =&gt;
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To perform <strong>backchannel or federated logouts</strong>, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html">OICD Identity Providers</a>.
+To perform <strong>backchannel or federated logouts</strong>, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">OICD Identity Providers</a>.
 </td>
 </tr>
 </table>
@@ -1423,7 +1423,7 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 <p><a href="keycloak/android-additional-configuration.html" class="page">Additional configuration for Android</a></p>
 </li>
 <li>
-<p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html">Keycloak OICD Providers</a></p>
+<p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">Keycloak OICD Providers</a></p>
 </li>
 </ul>
 </div>
@@ -1434,7 +1434,7 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 <h2 id="access"><a class="anchor" href="#access"></a>Adding Access Control to your Mobile App</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once a <code>UserPrincipal</code> has been retrieved, the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
+<p>Once a <code>UserPrincipal</code> has been retrieved, the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles" target="_blank" rel="noopener">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
 </div>
 <div class="paragraph">
 <p>Roles are divided into two types. Resource roles which belong to the client the user has authenticated against, and Realm roles which belong to the realm the client is in.</p>
@@ -1517,7 +1517,7 @@ let hasModeratorRole = currentUser.hasClientRole(client: "my_client", role: "mod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-No function to retrieve the resource roles is currently exported but you can use <code>extract</code> to get a handle to the underlying keycloak-js instance to retrieve the roles from there. Have a look at their documentation <a href="https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter">here</a>.
+No function to retrieve the resource roles is currently exported but you can use <code>extract</code> to get a handle to the underlying keycloak-js instance to retrieve the roles from there. Have a look at their documentation <a href="https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter" target="_blank" rel="noopener">here</a>.
 </td>
 </tr>
 </table>
@@ -1713,13 +1713,13 @@ events, such as the number of registered users, memory usage etc.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel" target="_blank" rel="noopener">Singlestat Panel</a></p>
 </li>
 <li>
-<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel" target="_blank" rel="noopener">Graph Panel</a></p>
 </li>
 <li>
-<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel" target="_blank" rel="noopener">Pie Chart</a></p>
 </li>
 </ul>
 </div>

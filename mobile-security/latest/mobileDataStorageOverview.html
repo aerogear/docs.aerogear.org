@@ -166,7 +166,7 @@ Zepto(function($){
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Recommendations Overview</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
@@ -190,7 +190,7 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Reference</span>
+    <a class="nav-link" href="references.html">References</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
@@ -300,8 +300,8 @@ Zepto(function($){
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Do&#8217;s</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Dont&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not:</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Classify data storage according to sensitivity and apply controls accordingly</strong> <em>(To understand what information should be protected)</em></p></td>
@@ -378,20 +378,6 @@ Zepto(function($){
 </div>
 <div class="sect2">
 <h3 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h3>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_menu.png" alt="storage menu" width="270" height="480">
-</div>
-</div>
-<div class="imageblock left">
-<div class="content">
-<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_main.png" alt="storage main" width="270" height="480">
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>The secret notes can be saved to either file system or database (SQLite). In both cases, the notes will be encrypted automatically when persisted, and decrypted automatically when loaded into the app.</p>
 </div>
@@ -718,15 +704,6 @@ private String getDbPassword() throws GeneralSecurityException, IOException {
 </div>
 <div class="sect2">
 <h3 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h3>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="_images/ios-storage-1.png" alt="ios storage 1" width="270" height="480">
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>The secret notes are being persisted using an encrypted <a href="https://realm.io/docs/swift/latest/">Realm Mobile DB</a>.</p>
 </div>
@@ -779,7 +756,18 @@ class func getEncryptionKey(kcWrapper: KeychainWrapper, keychainAlias: String) -
 <div class="listingblock">
 <div class="title">Generate Encryption Key</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">+include::{partialsdir}/generateEncryptionKey[]+</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Generate an encryption key for the realm db
+
+ - Returns: An encryption key
+ */
+    class func generateEncryptionKey() -&gt; Data {
+    let byteLength = 64
+    let randomNumberSize = 1000000
+    let bytes = [UInt32](repeating: 0, count: byteLength).map { _ in arc4random_uniform(UInt32(randomNumberSize)) }
+    let data = Data(bytes: bytes, count: byteLength)
+    return data
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1025,7 +1013,7 @@ func delete(identifier: Int, onComplete: @escaping (Error?, Note?) -&gt; Void) {
 <div class="title">Delete all Notes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
- - Delete all stored entities
+ - Delete all stored entitities
 
  - Parameter onComplete - a closure called after deletion
  */

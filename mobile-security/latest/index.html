@@ -166,7 +166,7 @@ Zepto(function($){
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="#aerogear-mobile-security">Overview</a>
+    <a class="nav-link" href="#aerogear-mobile-security">Recommendations Overview</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#authentication-session-management">Authentication and Session Management</a>
@@ -190,7 +190,7 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Reference</span>
+    <a class="nav-link" href="references.html">References</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
@@ -284,7 +284,7 @@ Zepto(function($){
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Security</a></li>
-    <li class="crumb"><a href="#aerogear-mobile-security">Overview</a></li>
+    <li class="crumb"><a href="#aerogear-mobile-security">Recommendations Overview</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/index.adoc"></a></div>
@@ -294,8 +294,8 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#mobile-security-recommendations-overview">Mobile Security Recommendations Overview</a></li>
-<li><a href="#authentication-session-management">Authentication &amp; Session Management</a>
+<li><a href="#aerogear-mobile-security">Mobile Security Recommendations Overview</a></li>
+<li><a href="#authentication-and-session-management">Authentication and Session Management</a>
 <ul class="sectlevel2">
 <li><a href="#references">References</a></li>
 <li><a href="#implementation">Implementation</a></li>
@@ -321,13 +321,13 @@ Zepto(function($){
 </ul>
 </div>
 <div class="sect1">
-<h2 id="mobile-security-recommendations-overview"><a class="anchor" href="#mobile-security-recommendations-overview"></a>Mobile Security Recommendations Overview</h2>
+<h2 id="aerogear-mobile-security"><a class="anchor" href="#aerogear-mobile-security"></a>Mobile Security Recommendations Overview</h2>
 <div class="sectionbody">
 
 </div>
 </div>
 <div class="sect1">
-<h2 id="authentication-session-management"><a class="anchor" href="#authentication-session-management"></a>Authentication &amp; Session Management</h2>
+<h2 id="authentication-and-session-management"><a class="anchor" href="#authentication-and-session-management"></a>Authentication and Session Management</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -336,8 +336,8 @@ Zepto(function($){
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Do&#8217;s</th>
-<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+<th class="tableblock halign-left valign-top">Do:</th>
+<th class="tableblock halign-left valign-top">Do not:</th>
 </tr>
 </thead>
 <tbody>
@@ -428,37 +428,48 @@ Zepto(function($){
 </div>
 <div class="sect3">
 <h4 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h4>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-1.png" alt="android auth 1" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-2.png" alt="android auth 2" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
-<div class="content">
-<img src="_images/android-auth-3.png" alt="android auth 3" width="270" height="480">
-</div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-4.png" alt="android auth 4" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-5.png" alt="android auth 5" width="270" height="480">
 </div>
-</div>
-</div>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/android-showcase-template">Mobile Security Android Template</a> App.</p>
+<p>An Authentication and Session Management implementation has been provided in our <a href="https://github.com/aerogear/android-showcase-template">Mobile Security Android Template</a> App.</p>
 </div>
 <div class="paragraph">
 <p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
@@ -568,7 +579,14 @@ A check is performed in the MainActivity for incoming intents so the result can 
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == KeycloakAuthenticateProviderImpl.LOGIN_RESULT_CODE) {
+        // The core will return the same instance of the auth service as before
+        AuthService authService = MobileCore.getInstance().getService(AuthService.class);
+        authService.handleAuthResult(data);
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -606,22 +624,28 @@ public void logout(final CallbackHandler logoutCallback) {
 </div>
 <div class="sect3">
 <h4 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h4>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/ios-auth-1.png" alt="ios auth 1" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/ios-auth-2.png" alt="ios auth 2" width="270" height="480">
 </div>
-</div>
-</div>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/ios-showcase-template">Mobile Security iOS Template</a> App.</p>
+<p>An Authentication and Session Management implementation has been provided in our <a href="https://github.com/aerogear/ios-showcase-template">Mobile Security iOS Template</a> App.</p>
 </div>
 <div class="paragraph">
 <p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
@@ -633,7 +657,14 @@ The <a href="https://github.com/aerogear/aerogear-ios-sdk/tree/master/docs/auth"
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">404: Not Found</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">{
+    "version": 1.0,
+    "clusterName": "192.168.64.74:8443",
+    "namespace": "myproject",
+    "clientId": "example_client_id",
+    "services": [
+    ]
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -965,8 +996,8 @@ isAuthenticated(): boolean {
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Do&#8217;s</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Dont&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not:</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Classify data storage according to sensitivity and apply controls accordingly</strong> <em>(To understand what information should be protected)</em></p></td>
@@ -1040,20 +1071,6 @@ isAuthenticated(): boolean {
 </div>
 <div class="sect3">
 <h4 id="native-android-2"><a class="anchor" href="#native-android-2"></a>Native Android</h4>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_menu.png" alt="storage menu" width="270" height="480">
-</div>
-</div>
-<div class="imageblock left">
-<div class="content">
-<img src="https://raw.githubusercontent.com/aerogear/android-showcase-template/master/screenshots/storage_main.png" alt="storage main" width="270" height="480">
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>The secret notes can be saved to either file system or database (SQLite). In both cases, the notes will be encrypted automatically when persisted, and decrypted automatically when loaded into the app.</p>
 </div>
@@ -1380,15 +1397,6 @@ private String getDbPassword() throws GeneralSecurityException, IOException {
 </div>
 <div class="sect3">
 <h4 id="native-ios-2"><a class="anchor" href="#native-ios-2"></a>Native iOS</h4>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="_images/ios-storage-1.png" alt="ios storage 1" width="270" height="480">
-</div>
-</div>
-</div>
-</div>
 <div class="paragraph">
 <p>The secret notes are being persisted using an encrypted <a href="https://realm.io/docs/swift/latest/">Realm Mobile DB</a>.</p>
 </div>
@@ -1441,7 +1449,18 @@ class func getEncryptionKey(kcWrapper: KeychainWrapper, keychainAlias: String) -
 <div class="listingblock">
 <div class="title">Generate Encryption Key</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">+include::{partialsdir}/generateEncryptionKey[]+</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
+ - Generate an encryption key for the realm db
+
+ - Returns: An encryption key
+ */
+    class func generateEncryptionKey() -&gt; Data {
+    let byteLength = 64
+    let randomNumberSize = 1000000
+    let bytes = [UInt32](repeating: 0, count: byteLength).map { _ in arc4random_uniform(UInt32(randomNumberSize)) }
+    let data = Data(bytes: bytes, count: byteLength)
+    return data
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1687,7 +1706,7 @@ func delete(identifier: Int, onComplete: @escaping (Error?, Note?) -&gt; Void) {
 <div class="title">Delete all Notes</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">/**
- - Delete all stored entities
+ - Delete all stored entitities
 
  - Parameter onComplete - a closure called after deletion
  */
@@ -1726,8 +1745,8 @@ func deleteAll(onComplete: @escaping (Error?, Bool?) -&gt; Void) {
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Do&#8217;s</th>
-<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+<th class="tableblock halign-left valign-top">Do:</th>
+<th class="tableblock halign-left valign-top">Do not:</th>
 </tr>
 </thead>
 <tbody>
@@ -1791,15 +1810,6 @@ func deleteAll(onComplete: @escaping (Error?, Bool?) -&gt; Void) {
 </div>
 <div class="sect3">
 <h4 id="android"><a class="anchor" href="#android"></a>Android</h4>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="_images/android-pinning-1.png" alt="android pinning 1" width="270" height="480">
-</div>
-</div>
-</div>
-</div>
 <div class="sect4">
 <h5 id="certificate-pinning"><a class="anchor" href="#certificate-pinning"></a>Certificate Pinning</h5>
 <div class="paragraph">
@@ -2024,15 +2034,6 @@ protected Long doInBackground(Void... voids) {
 </div>
 <div class="sect3">
 <h4 id="ios"><a class="anchor" href="#ios"></a>iOS</h4>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
-<div class="content">
-<img src="_images/ios-pinning-1.png" alt="ios pinning 1" width="270" height="480">
-</div>
-</div>
-</div>
-</div>
 <div class="sect4">
 <h5 id="certificate-pinning-2"><a class="anchor" href="#certificate-pinning-2"></a>Certificate Pinning</h5>
 <div class="paragraph">
@@ -2197,8 +2198,8 @@ func performValidCertCheck(url:String? = nil, onCompleted: @escaping (Bool) -&gt
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Do&#8217;s</th>
-<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+<th class="tableblock halign-left valign-top">Do:</th>
+<th class="tableblock halign-left valign-top">Do not:</th>
 </tr>
 </thead>
 <tbody>
@@ -2479,7 +2480,16 @@ public void detectLatestOS() {
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">+include::detectDeveloperOptions.inc.adoc[]+</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">/**
+ * Detect if the developer options mode is enabled on the device
+ */
+public void detectDeveloperOptions() {
+    totalTests++;
+    SecurityCheckResult result = securityService.check(SecurityCheckType.IS_DEVELOPER_MODE);
+    if (result.passed()) {
+        setDetected(developerOptions, R.string.developer_options_positive);
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -2637,7 +2647,16 @@ fileprivate func detectLatestOS() -&gt; Detector {
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Detect if the device is running on an emulator.
+*/
+detectEmulator(): void {
+  if(device.isVirtual) {
+    this.addDetection("Emulator Access Detected", true);
+  } else {
+    this.addDetection("Emulator Access Not Detected", false);
+  }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -2649,7 +2668,21 @@ fileprivate func detectLatestOS() -&gt; Detector {
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Detect if the device is running Root.
+*/
+detectRoot(): void {
+  var self = this;
+    IRoot.isRooted(function(rooted) {
+      if(rooted) {
+        self.addDetection("Root Access Detected", true);
+      } else {
+        self.addDetection("Root Access Not Detected", false);
+      }
+    }, function(error) {
+      console.log(error);
+    });
+}</code></pre>
 </div>
 </div>
 </div>
@@ -2661,7 +2694,21 @@ fileprivate func detectLatestOS() -&gt; Detector {
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Detect if the app is running in debug mode.
+*/
+detectDebug(): void {
+  var self = this;
+  cordova.plugins.IsDebug.getIsDebug(function(isDebug) {
+    if(isDebug) {
+      self.addDetection("Debug Access Detected", true);
+    } else {
+      self.addDetection("Debug Access Not Detected", false);
+    }
+  }, function(err) {
+      console.error(err);
+  });
+}</code></pre>
 </div>
 </div>
 </div>
@@ -2673,7 +2720,16 @@ fileprivate func detectLatestOS() -&gt; Detector {
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"></code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/**
+* Detect if a system device lock is set.
+*/
+detectDeviceLock() {
+  this.pinCheck.isPinSetup()
+  .then(
+    (success) =&gt;  { this.addDetection("Device Lock Enabled", false)},
+    (error) =&gt;  {this.addDetection("Device Lock Not Enabled", true)}
+  );
+}</code></pre>
 </div>
 </div>
 </div>
@@ -2691,8 +2747,8 @@ fileprivate func detectLatestOS() -&gt; Detector {
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Do&#8217;s</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Dont&#8217;s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Do not:</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Sensitive data should stay in RAM for as little time as possible</strong> <em>(Prevent data leak)</em></p></td>
@@ -2736,8 +2792,8 @@ fileprivate func detectLatestOS() -&gt; Detector {
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Do&#8217;s</th>
-<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+<th class="tableblock halign-left valign-top">Do:</th>
+<th class="tableblock halign-left valign-top">Do not:</th>
 </tr>
 </thead>
 <tbody>

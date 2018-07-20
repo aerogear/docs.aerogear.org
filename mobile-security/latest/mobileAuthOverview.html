@@ -66,7 +66,7 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication &amp;amp; Session Management :: AeroGear Mobile Services</title>
+    <title>Authentication and Session Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/mobileAuthOverview.html">
     <meta name="generator" content="Antora 1.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -166,7 +166,7 @@ Zepto(function($){
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="index.html#aerogear-mobile-security">Overview</a>
+    <a class="nav-link" href="index.html#aerogear-mobile-security">Recommendations Overview</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#authentication-session-management">Authentication and Session Management</a>
@@ -190,7 +190,7 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <span class="nav-text">Reference</span>
+    <a class="nav-link" href="references.html">References</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="owaspTopMobileRisks.html">OWASP Top 10 Mobile Risks</a>
@@ -284,13 +284,13 @@ Zepto(function($){
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Security</a></li>
-    <li class="crumb"><a href="mobileAuthOverview.html">Authentication &amp; Session Management</a></li>
+    <li class="crumb"><a href="mobileAuthOverview.html">Authentication and Session Management</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-security/edit/master/modules/ROOT/pages/mobileAuthOverview.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Authentication &amp; Session Management</h1>
+<h1>Authentication and Session Management</h1>
 <div id="preamble">
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -300,8 +300,8 @@ Zepto(function($){
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Do&#8217;s</th>
-<th class="tableblock halign-left valign-top">Dont&#8217;s</th>
+<th class="tableblock halign-left valign-top">Do:</th>
+<th class="tableblock halign-left valign-top">Do not:</th>
 </tr>
 </thead>
 <tbody>
@@ -397,37 +397,48 @@ Zepto(function($){
 </div>
 <div class="sect2">
 <h3 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h3>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-1.png" alt="android auth 1" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-2.png" alt="android auth 2" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
-<div class="content">
-<img src="_images/android-auth-3.png" alt="android auth 3" width="270" height="480">
-</div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-4.png" alt="android auth 4" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-5.png" alt="android auth 5" width="270" height="480">
 </div>
-</div>
-</div>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/android-showcase-template">Mobile Security Android Template</a> App.</p>
+<p>An Authentication and Session Management implementation has been provided in our <a href="https://github.com/aerogear/android-showcase-template">Mobile Security Android Template</a> App.</p>
 </div>
 <div class="paragraph">
 <p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
@@ -537,7 +548,14 @@ A check is performed in the MainActivity for incoming intents so the result can 
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"></code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == KeycloakAuthenticateProviderImpl.LOGIN_RESULT_CODE) {
+        // The core will return the same instance of the auth service as before
+        AuthService authService = MobileCore.getInstance().getService(AuthService.class);
+        authService.handleAuthResult(data);
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -575,22 +593,28 @@ public void logout(final CallbackHandler logoutCallback) {
 </div>
 <div class="sect2">
 <h3 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h3>
-<div class="openblock float-group">
-<div class="content">
-<div class="imageblock left">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/ios-auth-1.png" alt="ios auth 1" width="270" height="480">
 </div>
-</div>
-<div class="imageblock left">
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
 <div class="content">
 <img src="_images/ios-auth-2.png" alt="ios auth 2" width="270" height="480">
 </div>
-</div>
-</div>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>An Authentication &amp; Session Management implementation has been provided in our <a href="https://github.com/aerogear/ios-showcase-template">Mobile Security iOS Template</a> App.</p>
+<p>An Authentication and Session Management implementation has been provided in our <a href="https://github.com/aerogear/ios-showcase-template">Mobile Security iOS Template</a> App.</p>
 </div>
 <div class="paragraph">
 <p>The Application uses <a href="http://openid.net/connect/">OpenID Connect</a> for authentication and access control. The Open Source Identity and Access Management server, <a href="http://www.keycloak.org">Keycloak</a>, is being used as an Identity Provider.
@@ -602,7 +626,14 @@ The <a href="https://github.com/aerogear/aerogear-ios-sdk/tree/master/docs/auth"
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">404: Not Found</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">{
+    "version": 1.0,
+    "clusterName": "192.168.64.74:8443",
+    "namespace": "myproject",
+    "clientId": "example_client_id",
+    "services": [
+    ]
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
