@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 1.0.1">
+    <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -438,7 +438,11 @@ Zepto(function($){
 </ul>
 </li>
 <li><a href="#registering">Registering a Mobile Client</a></li>
-<li><a href="#provisioning">Provisioning your First Service</a></li>
+<li><a href="#provisioning">Provisioning your First Service</a>
+<ul class="sectlevel3">
+<li><a href="#identity-management-configuration">Identity Management Configuration</a></li>
+</ul>
+</li>
 <li><a href="#binding">Binding a Mobile Client</a>
 <ul class="sectlevel2">
 <li><a href="#procedure-3">Procedure</a></li>
@@ -648,12 +652,7 @@ localhost                  : ok=44   changed=17   unreachable=0    failed=0</pre
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Open a browser and login (accepting the self-signed certificate):</p>
-<div class="listingblock">
-<div class="content">
-<pre>https://192.168.37.1:8443/console/</pre>
-</div>
-</div>
+<p>Browse to the Web console URL displayed at the end of the installation, and log in, accepting the self-signed certificate if displayed.</p>
 <div class="paragraph">
 <p>The developer login credentials are:</p>
 </div>
@@ -735,6 +734,18 @@ $ firewall-cmd --add-port 80/tcp</pre>
 </li>
 <li>
 <p>Click the <strong>Apps</strong> tab and then choose the mobile platform (Android, iOS, Cordova or Xamarin) and follow the wizard.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On the wizard&#8217;s <strong>configuration</strong> screen, it is recommended that you input the name of the showcase application into the <strong>Package Name</strong> text box.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
@@ -794,9 +805,25 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>When provisioning an Identity Management service, you are prompted to set the following configuration:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When completing the Identity Management provisioning wizard, you are prompted to enter configuration data. For the purposes of this guide, keep the default values.
+For more information about the Identity Management provisioning wizard fields, see <a href="#Identity Management-configuration-additional-resources">Identity Management Configuration</a>.
+</td>
+</tr>
+</table>
 </div>
+<div class="paragraph">
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
+</div>
+<h3 id="Identity Management-configuration-additional-resources" class="discrete">Additional resources</h3>
+<div class="sect3">
+<h4 id="identity-management-configuration"><a class="anchor" href="#identity-management-configuration"></a>Identity Management Configuration</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -832,8 +859,6 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
 </div>
 </div>
 </div>
@@ -1330,10 +1355,20 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="paragraph">
 <p>Run this command to install dependencies:</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install CocoaPods as described in <a href="https://cocoapods.org/" class="bare">https://cocoapods.org/</a> if it is not already installed.</p>
+</li>
+<li>
+<p>Run this command to install dependencies:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
