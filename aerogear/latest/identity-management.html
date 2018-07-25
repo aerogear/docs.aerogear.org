@@ -775,19 +775,13 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <li>
 <p>Save your changes.</p>
 </li>
+<li>
+<p>Create a new user account as described in <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">Creating a New User</a>.</p>
+</li>
+<li>
+<p>Set up credentials for the new user as described in <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">User Credentials</a>.</p>
+</li>
 </ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You must create a new user account before you can log into the Showcase App. To create a new user, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html" target="_blank" rel="noopener">here</a> and to setup a new users credentials, follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html" target="_blank" rel="noopener">here</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -842,25 +836,27 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="paragraph">
 <p><code>&lt;app directory&gt;/mobile-services.json</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure this file is visible in Xcode, add the file if necessary.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
 <div class="paragraph">
-<p>Locate this file in your application project and import it using <code>require</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = require("./mobile-services.json");</code></pre>
-</div>
+<p>Locate this file at the following location in your application project:</p>
 </div>
 <div class="paragraph">
-<p>Alternatively you can create a JavaScript object and use directly:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const aerogearConfig = /* Paste here the contents of the clipboard */;</code></pre>
-</div>
+<p><code>src/mobile-services.json</code></p>
 </div>
 </div>
 </div>
