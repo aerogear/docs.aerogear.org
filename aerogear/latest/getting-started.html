@@ -435,6 +435,7 @@ Zepto(function($){
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#procedure">Procedure</a></li>
 <li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#dockerhub-cluster-ip-and-wildcard-dns-host-values">DockerHub, Cluster IP and Wildcard DNS Host values</a></li>
 </ul>
 </li>
 <li><a href="#registering">Registering a Mobile Client</a></li>
@@ -601,7 +602,8 @@ are installed.</p>
 <p>Enter your Docker Hub login credentials when prompted. The installer checks these credentials are valid before continuing.</p>
 </li>
 <li>
-<p>Accept the default values for the next set of prompts, unless you have specific requirements and understand the implications of changing the values.</p>
+<p>Accept the default values for the next set of prompts, unless you have specific requirements and understand the implications of changing the values.
+For more information about these values, see the <em>DockerHub, Cluster IP and Wildcard DNS Host values</em> section in <a href="#additional-resources">Additional Resources</a>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DockerHub Tag (Defaults to latest):
@@ -609,18 +611,6 @@ DockerHub Organisation (Defaults to aerogearcatalog):
 Cluster IP (Defaults to < Network IP Address >)
 Wildcard DNS Host (Defaults to nip.io):</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The first two values configure the location of the APBs used for the service-catalog in the cluster you are creating.</p>
-</div>
-<div class="paragraph">
-<p>The <strong>Cluster IP</strong> value defaults to the IP address of your primary network interface. If you want to connect to your OpenShift instance from a mobile device, ensure that your device is on the same network.</p>
-</div>
-<div class="paragraph">
-<p>Typically, you should ensure you are using the IP Address of your Wireless Adapter (if one exists).</p>
-</div>
-<div class="paragraph">
-<p>The <strong>Wildcard DNS Host</strong> option alters the wildcard DNS host you want to use.</p>
 </div>
 <div class="paragraph">
 <p>The following installation can take a while the first time it runs, as it pulls a number of Docker images. Once completed successfully, this results in an output similar to the following:</p>
@@ -674,6 +664,7 @@ password: password</pre>
 <div class="paragraph">
 <p><span class="image"><img src="_images/catalog-mobile-clients.png" alt="catalog mobile clients"></span></p>
 </div>
+<h2 id="additional-resources" class="discrete">Additional Resources</h2>
 </div>
 <div class="sect2">
 <h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h3>
@@ -697,6 +688,36 @@ The following command will only add the specified port for the current session. 
 <div class="content">
 <pre>$ firewall-cmd --add-port 443/tcp
 $ firewall-cmd --add-port 80/tcp</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dockerhub-cluster-ip-and-wildcard-dns-host-values"><a class="anchor" href="#dockerhub-cluster-ip-and-wildcard-dns-host-values"></a>DockerHub, Cluster IP and Wildcard DNS Host values</h3>
+<div class="paragraph">
+<p>Use <strong>DockerHub Tag</strong> and <strong>DockerHub Organisation</strong> to configure the location of the APBs used by the service-catalog in the cluster you are creating:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DockerHub Tag (Defaults to latest):
+DockerHub Organisation (Defaults to aerogearcatalog):</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Cluster IP</strong> value defaults to the IP address of your primary network interface.
+If you want to connect to your OpenShift instance from a mobile device, ensure that your device is on the same network.
+Typically, you should ensure you are using the IP Address of your Wireless Adapter (if one exists):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Cluster IP (Defaults to < Network IP Address >)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Wildcard DNS Host</strong> option alters the wildcard DNS host you want to use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Wildcard DNS Host (Defaults to nip.io):</code></pre>
 </div>
 </div>
 </div>
@@ -987,10 +1008,16 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Expand the Identity Management Service by clicking the <strong>&gt;</strong> icon.</p>
+<p>Navigate to the Mobile Client screen.</p>
 </li>
 <li>
-<p>Click on the Realm URL link to open the Keycloak Administration Console.</p>
+<p>Select the Mobile Services tab.</p>
+</li>
+<li>
+<p>After the binding is complete, you can expand the Identity Management Service by clicking the &gt; icon.</p>
+</li>
+<li>
+<p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
 </li>
 <li>
 <p>Log in to the Administration console using the credentials you specified at <a href="keycloak/provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
@@ -1028,23 +1055,103 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="sect2">
 <h3 id="supported-environments"><a class="anchor" href="#supported-environments"></a>Supported Environments</h3>
 <div class="paragraph">
-<p>In order to perform local development, you will need to have set up a local development environment or IDE. Mobile Services supports mobile app development across iOS Native, Android Native, Cordova and Xamarin. For information on how to set up your local development environment for these technologies, please see the links below:</p>
+<p>In order to perform local development, you will need to have set up a local development environment or IDE.
+Mobile Services supports mobile app development across iOS Native, Android Native, Cordova and Xamarin.</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p><a href="https://developer.android.com/studio/install" target="_blank" rel="noopener">Android</a></p>
+<p><i class="fa fa-check-square-o"></i> Android SDK or Android Studio from <a href="https://developer.android.com/studio/index.html" target="_blank" rel="noopener">Google</a></p>
 </li>
 <li>
-<p><a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html" target="_blank" rel="noopener">iOS</a></p>
-</li>
-<li>
-<p><a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova</a></p>
-</li>
-<li>
-<p><a href="https://developer.xamarin.com/getting-started/" target="_blank" rel="noopener">Xamarin</a></p>
+<p><i class="fa fa-check-square-o"></i> (Recommended) The latest version of <a href="http://openjdk.java.net/install/index.html" target="_blank" rel="noopener">OpenJDK</a></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>For information on how to set up a local Android development environment, see the <a href="https://developer.android.com/studio/install" target="_blank" rel="noopener">Android Studio documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> iOS 9 or later</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Xcode 9 or later</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://cocoapods.org" target="_blank" rel="noopener">CocoaPods</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The AeroGear SDK for iOS is available using the CocoaPods package manager.
+If you have not installed CocoaPods, install it by running the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ gem install cocoapods</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For information on how to set up a local iOS development environment, see the <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html" target="_blank" rel="noopener">Swift documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> version 8.9.4 runtime and NPM</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli" target="_blank" rel="noopener">Cordova CLI</a> version 8.0.0</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For information on how to set up a local Cordova development environment, see the <a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>You need the following installed on your system:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Visual Studio Tools for Xamarin from <a href="https://www.visualstudio.com/xamarin/" target="_blank" rel="noopener">Microsoft</a></p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Optional) The latest version of <a href="http://openjdk.java.net/install/index.html" target="_blank" rel="noopener">OpenJDK</a>, if you would like to install the showcase app on an Android device or emulator</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> (Optional) The latest version of XCode and command line tools for XCode available from <a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">Apple</a>, if you would like to install the showcase app on an iOS device or emulator</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For information on how to set up a local Xamarin development environment, see the <a href="https://developer.xamarin.com/getting-started/" target="_blank" rel="noopener">Xamarin documentation</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
