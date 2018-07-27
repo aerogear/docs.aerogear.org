@@ -469,7 +469,11 @@ Zepto(function($){
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide will bring you through all the required steps to get up and running with Mobile Services. By the end of this guide you will have learned how to:</p>
+<p>AeroGear Mobile Services provides solutions to common development challenges faced by mobile developers.
+With OpenShift&#8217;s Container technology providing a secure, scalable backend platform, mobile developers can use the AeroGear SDK which supports a range of native (iOS &amp; Android) and hybrid (Xamarin &amp; Cordova) platforms to create secure, high quality apps and makes it easy to add features such as Push Notifications or Authentication.</p>
+</div>
+<div class="paragraph">
+<p>This guide shows you how to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -477,15 +481,21 @@ Zepto(function($){
 <p>Set up AeroGear Mobile Services on OpenShift</p>
 </li>
 <li>
-<p>Create a Mobile Client and a Mobile Service</p>
+<p>Create a Mobile Client and a Mobile Service (Identity Management)</p>
 </li>
 <li>
 <p>Set up a local development environment</p>
 </li>
 <li>
-<p>Configure and run the AeroGear Showcase App on your platform of choice</p>
+<p>Configure the AeroGear showcase app for your mobile platform (Android, iOS, Cordova or Xamarin).</p>
+</li>
+<li>
+<p>Run the showcase app and make calls to the Identity Management service.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Make sure you satisfy all the requirements listed in the <a href="#prerequisites">Prerequisites</a> and that you have a mobile app development environment configured. Some experience with OpenShift administration would also be helpful.</p>
 </div>
 </div>
 </div>
@@ -565,6 +575,13 @@ Ensure that you can run <a href="https://github.com/openshift/origin/blob/master
 $ firewall-cmd --reload</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>A local mobile development environment for the platform you want to develop on.</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
 <h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
@@ -613,7 +630,8 @@ Wildcard DNS Host (Defaults to nip.io):</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The following installation can take a while the first time it runs, as it pulls a number of Docker images. Once completed successfully, this results in an output similar to the following:</p>
+<p>The following installation can take a while the first time it runs, as it pulls a number of Docker images.
+Once output similar to the following is displayed it indicates that it has completed successfully and you can proceed.</p>
 </div>
 <div class="listingblock">
 <div class="content">
