@@ -523,6 +523,18 @@ AeroGear recommends running OpenShift using the method described in this documen
 <ul>
 <li>
 <p>MacOS or Linux</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Due to an <a href="https://github.com/openshift/origin/issues/18747">OpenShift bug</a>, Mobile Services will not run on RHEL/CentOS 7.4 or RHEL/CentOS 7.5.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p>A system running OpenShift <code>oc cluster up</code> as described in <a href="https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md#prerequisites" target="_blank" rel="noopener">Local Cluster Management</a></p>
@@ -559,7 +571,7 @@ Ensure that you can run <a href="https://github.com/openshift/origin/blob/master
 </div>
 </li>
 <li>
-<p>A <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a> account</p>
+<p>A <a href="https://hub.docker.com/">Docker Hub</a> account</p>
 </li>
 <li>
 <p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible</a> (version 2.6 or above)</p>
@@ -630,8 +642,10 @@ Wildcard DNS Host (Defaults to nip.io):</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The following installation can take a while the first time it runs, as it pulls a number of Docker images.
-Once output similar to the following is displayed it indicates that it has completed successfully and you can proceed.</p>
+<p>For more information, see the <em>DockerHub, Cluster IP and Wildcard DNS Host values</em> section in <a href="#additional-resources">Additional resources</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following installation can take a while the first time it runs, as it pulls a number of Docker images. Once completed successfully, this results in an output similar to the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -682,7 +696,7 @@ password: password</pre>
 <div class="paragraph">
 <p><span class="image"><img src="_images/catalog-mobile-clients.png" alt="catalog mobile clients"></span></p>
 </div>
-<h2 id="additional-resources" class="discrete">Additional Resources</h2>
+<h2 id="additional-resources" class="discrete">Additional resources</h2>
 </div>
 <div class="sect2">
 <h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h3>
