@@ -424,10 +424,12 @@ Zepto(function($){
 <div class="sect2">
 <h3 id="configuring-the-service"><a class="anchor" href="#configuring-the-service"></a>Configuring the Service</h3>
 <div class="paragraph">
-<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak. This is required to enable OpenID authentication.</p>
+<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak.
+This is required to enable OpenID authentication.
+For an explanation of these terms, see <a href="https://www.keycloak.org/documentation.html">Keycloak Documentation</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h4>
+<h4 id="choose-schema"><a class="anchor" href="#choose-schema"></a>Choose the schema of a redirect url</h4>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
@@ -462,13 +464,19 @@ Zepto(function($){
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p>Log into the OpenShift console and navigate to the Project Overview.</p>
+</li>
+<li>
 <p>Navigate to the Mobile Client screen.</p>
 </li>
 <li>
 <p>Select the Mobile Services tab.</p>
 </li>
 <li>
-<p>After the binding is complete, you can expand the Identity Management Service by clicking the &gt; icon.</p>
+<p>If a binding to the Identity Management service is in progress, a spinning icon is displayed to the right of the Identity Management entry. Wait for the binding process to complete.</p>
+</li>
+<li>
+<p>If the <em>Keycloak Realm URL</em> URL is not visible, expand the Identity Management Service by clicking the &gt; icon.</p>
 </li>
 <li>
 <p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
@@ -477,16 +485,16 @@ Zepto(function($){
 <p>Log in to the Administration console using the credentials you specified at <a href="provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
 </li>
 <li>
-<p>Open <code>Clients</code> from the menu.</p>
+<p>Select <code>Clients</code> from the menu.</p>
 </li>
 <li>
-<p>Open your client. The name of your client is derived from the name of the Mobile Client, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
+<p>Select your client from the list of clients. The name of your client is derived from the name of the Mobile Client, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
 </li>
 <li>
-<p>Add <code>&lt;schema&gt;:/callback</code> to <code>Valid Redirect URIs</code>.</p>
+<p>Add <code>&lt;schema&gt;:/callback</code> as an additional entry to <code>Valid Redirect URIs</code>. See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
 </li>
 <li>
-<p>Add <code>&lt;schema&gt;</code> to <code>Web Origins</code>.</p>
+<p>Add <code>&lt;schema&gt;</code> as an additional entry to <code>Web Origins</code>.  See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
 </li>
 <li>
 <p>Save your changes.</p>
@@ -680,7 +688,8 @@ let auth = AGSAuth()</code></pre>
 <p>For Android run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0
+dotnet add package AeroGear.Mobile.Auth.Platform.Android --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
@@ -688,7 +697,8 @@ let auth = AGSAuth()</code></pre>
 <p>For iOS run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0
+dotnet add package AeroGear.Mobile.Auth.Platform.iOS --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
@@ -837,7 +847,7 @@ For Android an <a href="https://developer.android.com/guide/topics/manifest/mani
 </div>
 </li>
 <li>
-<p>For an iOS app (AppDelegate.cs):</p>
+<p>For an iOS app (FinishedLaunching method of AppDelegate.cs):</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">var app = new App();

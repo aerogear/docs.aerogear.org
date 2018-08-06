@@ -437,7 +437,7 @@ Zepto(function($){
 <li><a href="#setup">Prerequisites</a></li>
 <li><a href="#setting-up-the-identity-management-mobile-service">Setting Up the Identity Management Mobile Service</a>
 <ul class="sectlevel2">
-<li><a href="#provisioning-the-service">Provisioning the Service</a></li>
+<li><a href="#provisioning-the-identity-management-service">Provisioning the Identity Management Service</a></li>
 <li><a href="#binding-a-mobile-client">Binding a Mobile Client</a></li>
 <li><a href="#configuring-the-service">Configuring the Service</a></li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
@@ -542,10 +542,7 @@ Zepto(function($){
 <h2 id="setting-up-the-identity-management-mobile-service"><a class="anchor" href="#setting-up-the-identity-management-mobile-service"></a>Setting Up the Identity Management Mobile Service</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="provisioning-the-service"><a class="anchor" href="#provisioning-the-service"></a>Provisioning the Service</h3>
-<div class="paragraph">
-<p>To provision the Identity Management mobile service:</p>
-</div>
+<h3 id="provisioning-the-identity-management-service"><a class="anchor" href="#provisioning-the-identity-management-service"></a>Provisioning the Identity Management Service</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -582,9 +579,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </tr>
 </table>
 </div>
-</li>
-</ol>
-</div>
 <div class="paragraph">
 <p>When provisioning an Identity Management service, you are prompted to set the following configuration:</p>
 </div>
@@ -598,9 +592,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </li>
 <li>
 <p><strong>Name of the Keycloak realm</strong>: Name of the keycloak realm. (defaults to current namespace)</p>
-</li>
-</ul>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -613,8 +604,7 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><strong>Connect to an existing shared service</strong>: Select if you want to use an existing service and you have the URL and credentials to use that service.</p>
 </li>
@@ -623,8 +613,12 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 </li>
 </ul>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
+Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="sect2">
@@ -656,19 +650,7 @@ The association between a Mobile Client and Identity Management Service uses the
 <p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
 </li>
 <li>
-<p>Click on the Mobile Client and navigate to Mobile Client view.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Your mobile app will be represented by two items in OpenShift, an item in the <strong>Mobile Clients</strong> list and an item in the <strong>Provisioned Services</strong> list. Make sure to click on the item in the <strong>Mobile Clients</strong> list.
-</td>
-</tr>
-</table>
-</div>
+<p>Select the Mobile Client name listed in the Mobile Clients section.</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -714,10 +696,12 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="sect2">
 <h3 id="configuring-the-service"><a class="anchor" href="#configuring-the-service"></a>Configuring the Service</h3>
 <div class="paragraph">
-<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak. This is required to enable OpenID authentication.</p>
+<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak.
+This is required to enable OpenID authentication.
+For an explanation of these terms, see <a href="https://www.keycloak.org/documentation.html">Keycloak Documentation</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="choose-the-schema-of-a-redirect-url"><a class="anchor" href="#choose-the-schema-of-a-redirect-url"></a>Choose the schema of a redirect url</h4>
+<h4 id="choose-schema"><a class="anchor" href="#choose-schema"></a>Choose the schema of a redirect url</h4>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
@@ -752,13 +736,19 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p>Log into the OpenShift console and navigate to the Project Overview.</p>
+</li>
+<li>
 <p>Navigate to the Mobile Client screen.</p>
 </li>
 <li>
 <p>Select the Mobile Services tab.</p>
 </li>
 <li>
-<p>After the binding is complete, you can expand the Identity Management Service by clicking the &gt; icon.</p>
+<p>If a binding to the Identity Management service is in progress, a spinning icon is displayed to the right of the Identity Management entry. Wait for the binding process to complete.</p>
+</li>
+<li>
+<p>If the <em>Keycloak Realm URL</em> URL is not visible, expand the Identity Management Service by clicking the &gt; icon.</p>
 </li>
 <li>
 <p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
@@ -767,16 +757,16 @@ The <code>public</code> client type should be used to bind to Mobile Clients bec
 <p>Log in to the Administration console using the credentials you specified at <a href="keycloak/provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
 </li>
 <li>
-<p>Open <code>Clients</code> from the menu.</p>
+<p>Select <code>Clients</code> from the menu.</p>
 </li>
 <li>
-<p>Open your client. The name of your client is derived from the name of the Mobile Client, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
+<p>Select your client from the list of clients. The name of your client is derived from the name of the Mobile Client, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
 </li>
 <li>
-<p>Add <code>&lt;schema&gt;:/callback</code> to <code>Valid Redirect URIs</code>.</p>
+<p>Add <code>&lt;schema&gt;:/callback</code> as an additional entry to <code>Valid Redirect URIs</code>. See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
 </li>
 <li>
-<p>Add <code>&lt;schema&gt;</code> to <code>Web Origins</code>.</p>
+<p>Add <code>&lt;schema&gt;</code> as an additional entry to <code>Web Origins</code>.  See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
 </li>
 <li>
 <p>Save your changes.</p>
@@ -968,7 +958,8 @@ let auth = AGSAuth()</code></pre>
 <p>For Android run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0
+dotnet add package AeroGear.Mobile.Auth.Platform.Android --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
@@ -976,7 +967,8 @@ let auth = AGSAuth()</code></pre>
 <p>For iOS run:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0
+dotnet add package AeroGear.Mobile.Auth.Platform.iOS --version 1.0.0</code></pre>
 </div>
 </div>
 </li>
@@ -1123,7 +1115,7 @@ For Android an <a href="https://developer.android.com/guide/topics/manifest/mani
 </div>
 </li>
 <li>
-<p>For an iOS app (AppDelegate.cs):</p>
+<p>For an iOS app (FinishedLaunching method of AppDelegate.cs):</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">var app = new App();
@@ -1294,6 +1286,9 @@ func onLoginComplete(user: User?, err: Error?) {
 var authOptions = DependencyService.Get&lt;IAuthenticateOptionsProvider&gt;().GetOptions();
 authService.Authenticate(authOptions).ContinueWith(user =&gt;
 {
+    // Get the authenticated User from the provided Task.
+    Console.WriteLine(user.Result);
+
     // Change view to user details. No need to handle the user result here, it will be available through
     // authService.CurrentUser()
     Device.BeginInvokeOnMainThread(() =&gt; ((RootPage)(App.Current.MainPage)).ChangePage(new UserDetails()));
