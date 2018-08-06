@@ -1054,6 +1054,18 @@ If no android devices are selectable, it could mean that no virtual android devi
 <div class="sect1">
 <h2 id="certs"><a class="anchor" href="#certs"></a>Using Self-Signed Certificates in Mobile Apps</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Before you can run a mobile app and connect to Mobile Services, you must configure self-signed certificates on the mobile device.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Throughout the development lifecycle of a mobile app, a common
 requirement is to integrate and connect with back-end
@@ -1075,7 +1087,7 @@ Most client devices have a list of well-known and trusted certificate authoritie
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Log into OpenShift as the admin user.</p>
+<p>Log into OpenShift as the admin user:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc login -u system:admin</code></pre>

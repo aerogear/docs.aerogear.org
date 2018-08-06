@@ -573,6 +573,9 @@ func onLoginComplete(user: User?, err: Error?) {
 var authOptions = DependencyService.Get&lt;IAuthenticateOptionsProvider&gt;().GetOptions();
 authService.Authenticate(authOptions).ContinueWith(user =&gt;
 {
+    // Get the authenticated User from the provided Task.
+    Console.WriteLine(user.Result);
+
     // Change view to user details. No need to handle the user result here, it will be available through
     // authService.CurrentUser()
     Device.BeginInvokeOnMainThread(() =&gt; ((RootPage)(App.Current.MainPage)).ChangePage(new UserDetails()));

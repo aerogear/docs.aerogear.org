@@ -66,7 +66,7 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provisioning the Service :: AeroGear Mobile Services</title>
+    <title>Provisioning the Identity Management Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/keycloak/provisioning.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -421,10 +421,7 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/provisioning.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Provisioning the Service</h1>
-<div class="paragraph">
-<p>To provision the Identity Management mobile service:</p>
-</div>
+<h1>Provisioning the Identity Management Service</h1>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -461,9 +458,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </tr>
 </table>
 </div>
-</li>
-</ol>
-</div>
 <div class="paragraph">
 <p>When provisioning an Identity Management service, you are prompted to set the following configuration:</p>
 </div>
@@ -477,9 +471,6 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </li>
 <li>
 <p><strong>Name of the Keycloak realm</strong>: Name of the keycloak realm. (defaults to current namespace)</p>
-</li>
-</ul>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -492,8 +483,7 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><strong>Connect to an existing shared service</strong>: Select if you want to use an existing service and you have the URL and credentials to use that service.</p>
 </li>
@@ -502,8 +492,12 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 </li>
 </ul>
 </div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.</p>
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
+Provisioning a service may take some time.</p>
 </div>
 </article>
   </main>
