@@ -425,20 +425,7 @@ Zepto(function($){
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes what Device Trust Checks are available and how to execute them for the supported platforms. Also, mind that Security Checks can be performed either individually or together.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A <strong>successful</strong> check means that the environment the application is running in is more secure and no action is required, as opposed to signalling if a certain feature is enabled.
-For example, the <code>Root Access Detection Check NOT_ROOTED</code> should return <code>true</code> when it is <em>not rooted</em>, since this would be the more secure condition.
-</td>
-</tr>
-</table>
+<p>This section describes what Device Trust Checks are available and how to execute them for the supported platforms. Also, mind that Device Checks can be performed either individually or together.</p>
 </div>
 </div>
 </div>
@@ -454,7 +441,7 @@ For example, the <code>Root Access Detection Check NOT_ROOTED</code> should retu
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.NOT_ROOTED);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.ROOT_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -521,7 +508,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_JAILBROKEN
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.NO_DEVELOPER_MODE);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.DEVELOPER_MODE_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -577,7 +564,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEVELOPER_M
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.NO_DEBUGGER);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.DEBUGGER_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -631,7 +618,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEBUGGER);<
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.NOT_IN_EMULATOR);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.IS_EMULATOR);</code></pre>
 </div>
 </div>
 </div>
@@ -685,7 +672,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_IN_EMULATO
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.SCREEN_LOCK_ENABLED);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.SCREEN_LOCK_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -751,7 +738,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.SCREEN_LOCK_EN
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.ALLOW_BACKUP_DISABLED);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.BACKUP_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -807,7 +794,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.ALLOW_BACKUP_D
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.check(SecurityCheckType.HAS_ENCRYPTION_ENABLED);</code></pre>
+DeviceCheckResult result = securityService.check(DeviceCheckType.ENCRYPTION_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -852,10 +839,10 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.HAS_ENCRYPTION
 </div>
 </div>
 <div class="sect1">
-<h2 id="invoking-multiple-self-defence-checks"><a class="anchor" href="#invoking-multiple-self-defence-checks"></a>Invoking Multiple Self Defence Checks</h2>
+<h2 id="invoking-multiple-device-checks"><a class="anchor" href="#invoking-multiple-device-checks"></a>Invoking Multiple Device Checks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Security Checks can be run in group, both synchronously and asynchronously.</p>
+<p>Device Checks can be run in group, both synchronously and asynchronously.</p>
 </div>
 <div class="sect2">
 <h3 id="synchronously"><a class="anchor" href="#synchronously"></a>Synchronously</h3>
@@ -868,7 +855,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.HAS_ENCRYPTION
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
-SyncSecurityCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();</code></pre>
+SyncDeviceCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();</code></pre>
 </div>
 </div>
 </li>
@@ -876,8 +863,8 @@ SyncSecurityCheckExecutor syncCheckExecutor = securityService.getCheckExecutor()
 <p>Add your checks and execute synchronously:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, SecurityCheckResult&gt; results = syncCheckExecutor
-    .addCheck(SecurityCheckType.&lt;check_type&gt;)
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, DeviceCheckResult&gt; results = syncCheckExecutor
+    .addCheck(DeviceCheckType.&lt;check_type&gt;)
     // Add more checks here
     .execute();</code></pre>
 </div>
@@ -975,7 +962,7 @@ Dictionary&lt;string, SecurityCheckResult&gt; results = checkExecutor.Execute();
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
-AsyncSecurityCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecutor();</code></pre>
+AsyncDeviceCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecutor();</code></pre>
 </div>
 </div>
 </li>
@@ -983,8 +970,8 @@ AsyncSecurityCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExe
 <p>Add your checks and execute synchronously:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Future&lt;SecurityCheckResult&gt;&gt; results = asyncCheckExecutor
-    .addCheck(SecurityCheckType.&lt;check_type&gt;)
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Future&lt;DeviceCheckResult&gt;&gt; results = asyncCheckExecutor
+    .addCheck(DeviceCheckType.&lt;check_type&gt;)
     // Add more checks here
     .execute();</code></pre>
 </div>
@@ -1046,19 +1033,19 @@ This method returns a Promise with an array containing all <code>SecurityCheckRe
 <h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional Resources</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="adding-custom-self-defence-checks"><a class="anchor" href="#adding-custom-self-defence-checks"></a>Adding Custom Self Defence Checks</h3>
+<h3 id="adding-custom-device-checks"><a class="anchor" href="#adding-custom-device-checks"></a>Adding Custom Device Checks</h3>
 <div class="paragraph">
-<p>Besides the <a href="index.html#ref_terminology_Device%20Security_ref_terminology" class="page">Provided Self Defence Checks</a> it&#8217;s also possible to make use of your own custom checks. Follow the next steps depending on your platform to implement them:</p>
+<p>Besides the <a href="index.html#ref_terminology_Device%20Security_ref_terminology" class="page">Provided Device Checks</a> it&#8217;s also possible to make use of your own custom checks. Follow the next steps depending on your platform to implement them:</p>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Extend the <code>AbstractSecurityCheck</code> interface:</p>
+<p>Extend the <code>AbstractDeviceCheck</code> interface:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class CustomSecurityCheck extends AbstractSecurityCheck {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class CustomDeviceCheck extends AbstractDeviceCheck {
 
     @Override
     protected boolean execute(@NonNull final Context context) {
@@ -1076,8 +1063,8 @@ This method returns a Promise with an array containing all <code>SecurityCheckRe
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheck customSecurityCheck = new CustomSecurityCheck();
-SecurityCheckResult result = securityService.check(customSecurityCheck);</code></pre>
+DeviceCheck customDeviceCheck = new CustomDeviceCheck();
+DeviceCheckResult result = securityService.check(customDeviceCheck);</code></pre>
 </div>
 </div>
 </li>
@@ -1206,9 +1193,9 @@ SecurityCheckResult result = securityService.Check(new CustomSecurityCheck());</
 </div>
 </div>
 <div class="sect2">
-<h3 id="reporting-self-defence-checks-results-via-the-metrics-service"><a class="anchor" href="#reporting-self-defence-checks-results-via-the-metrics-service"></a>Reporting Self Defence Checks Results Via the Metrics Service</h3>
+<h3 id="reporting-device-checks-results-via-the-metrics-service"><a class="anchor" href="#reporting-device-checks-results-via-the-metrics-service"></a>Reporting Device Checks Results Via the Metrics Service</h3>
 <div class="paragraph">
-<p>In order to report the results of Self Defence utilize this service in conjunction with the <a href="../metrics/index.html" class="page">Metrics Service</a>.</p>
+<p>In order to report the results of Device Checks utilize this service in conjunction with the <a href="../metrics/index.html" class="page">Metrics Service</a>.</p>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
@@ -1220,7 +1207,7 @@ SecurityCheckResult result = securityService.Check(new CustomSecurityCheck());</
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = MobileCore.getInstance(MetricsService.class);
 SecurityService securityService = MobileCore.getInstance(SecurityService.class);
 
-SecurityCheckResult result = securityService.checkAndSendMetric(SecurityCheckType.&lt;check_type&gt;, metricsService);</code></pre>
+DeviceCheckResult result = securityService.checkAndSendMetric(DeviceCheckType.&lt;check_type&gt;, metricsService);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1229,8 +1216,8 @@ SecurityCheckResult result = securityService.checkAndSendMetric(SecurityCheckTyp
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = mobileCore.getInstance(MetricsService.class);
-Map&lt;String, SecurityCheckResult&gt; results = SecurityCheckExecutor.Builder.newSyncExecutor(this.getContext())
-    .withSecurityCheck(SecurityCheckType.&lt;check_type&gt;)
+Map&lt;String, DeviceCheckResult&gt; results = DeviceCheckExecutor.Builder.newSyncExecutor(this.getContext())
+    .withDeviceCheck(DeviceCheckType.&lt;check_type&gt;)
     // Add other checks...
     .withMetricsService(metricsService)
     .build()
@@ -1296,7 +1283,7 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
 <div class="paragraph">
-<p>Self Defence reports are not yet available for Xamarin.</p>
+<p>Device checks reports are not yet available for Xamarin.</p>
 </div>
 </div>
 </div>
