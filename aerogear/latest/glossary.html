@@ -591,7 +591,7 @@ Each supported variant type contains some platform specific properties, such as 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Root Access Detection (NOT_ROOTED)</dt>
+<dt class="hdlist1">Root Access Detection (ROOT_ENABLED)</dt>
 <dd>
 <p>Use it to help prevent your app running in a device that has been rooted/jailbroken. A device is considered rooted if <strong>any</strong> of the following are true:</p>
 <div class="ulist">
@@ -610,7 +610,7 @@ Each supported variant type contains some platform specific properties, such as 
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p><code>SecurityChecks.NOT_ROOTED</code>.</p>
+<p><code>DeviceChecks.ROOT_ENABLED</code>.</p>
 </div>
 <div class="paragraph">
 <p>This function uses the <a href="https://github.com/scottyab/rootbeer" target="_blank" rel="noopener">Rootbeer</a> library to check if root access is present on the device.</p>
@@ -640,29 +640,29 @@ Each supported variant type contains some platform specific properties, such as 
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Developer Mode Detection (NO_DEVELOPER_MODE)</dt>
+<dt class="hdlist1">Developer Mode Detection (DEVELOPER_MODE_ENABLED)</dt>
 <dd>
-<p>To detect if Developer Mode has been enabled on the device the <code>SecurityCheckType#NO_DEVELOPER_MODE</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/provider/Settings.html" target="_blank" rel="noopener">Settings</a> class.</p>
+<p>To detect if Developer Mode has been enabled on the device the <code>DeviceCheckType#DEVELOPER_MODE_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/provider/Settings.html" target="_blank" rel="noopener">Settings</a> class.</p>
 </dd>
-<dt class="hdlist1">Debugger Detection (NO_DEBUGGER)</dt>
+<dt class="hdlist1">Debugger Detection (DEBUGGER_ENABLED)</dt>
 <dd>
-<p>To detect if an Android debugger is attached to the app the <code>SecurityCheckType#NO_DEBUGGER</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Debug.html" target="_blank" rel="noopener">Debug</a> class.</p>
+<p>To detect if an Android debugger is attached to the app the <code>DeviceCheckType#DEBUGGER_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Debug.html" target="_blank" rel="noopener">Debug</a> class.</p>
 </dd>
-<dt class="hdlist1">Emulator Detection (NOT_IN_EMULATOR)</dt>
+<dt class="hdlist1">Emulator Detection (IS_EMULATOR)</dt>
 <dd>
-<p>To detect if the app is being run on an emulator the <code>SecurityCheckType#NOT_IN_EMULATOR</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Build.html" target="_blank" rel="noopener">Build</a> class.</p>
+<p>To detect if the app is being run on an emulator the <code>DeviceCheckType#IS_EMULATOR</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Build.html" target="_blank" rel="noopener">Build</a> class.</p>
 </dd>
 <dt class="hdlist1">Device Lock Detection (SCREEN_LOCK_ENABLED)</dt>
 <dd>
-<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>SecurityCheckType#SCREEN_LOCK_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html" target="_blank" rel="noopener">KeyguardManager</a> class.</p>
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>DeviceCheckType#SCREEN_LOCK_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html" target="_blank" rel="noopener">KeyguardManager</a> class.</p>
 </dd>
-<dt class="hdlist1">App Data Backup Detection (ALLOW_BACKUP_DISABLED)</dt>
+<dt class="hdlist1">App Data Backup Detection (BACKUP_ENABLED)</dt>
 <dd>
-<p>To detect whether the application’s data is configured to be synchronized across devices the <code>SecurityCheckType#ALLOW_BACKUP_DISABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">allowBackup</a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
+<p>To detect whether the application’s data is configured to be synchronized across devices the <code>DeviceCheckType#BACKUP_ENABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">allowBackup</a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
 </dd>
-<dt class="hdlist1">Device Encryption Detection (HAS_ENCRYPTION_ENABLED)</dt>
+<dt class="hdlist1">Device Encryption Detection (ENCRYPTION_ENABLED)</dt>
 <dd>
-<p>To detect whether the devices' filesystem is encrypted the <code>SecurityCheckType#HAS_ENCRYPTION_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html" target="_blank" rel="noopener">DevicePolicyManager</a> class.</p>
+<p>To detect whether the devices' filesystem is encrypted the <code>DeviceCheckType#ENCRYPTION_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html" target="_blank" rel="noopener">DevicePolicyManager</a> class.</p>
 </dd>
 </dl>
 </div>
