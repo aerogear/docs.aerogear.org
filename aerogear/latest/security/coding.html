@@ -524,7 +524,7 @@ Make sure this file is visible in Xcode, add the file if necessary.
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation 'org.aerogear:android-security:1.0.0'
+    implementation 'org.aerogear:android-security:2.0.0'
 }</code></pre>
 </div>
 </div>
@@ -533,7 +533,7 @@ Make sure this file is visible in Xcode, add the file if necessary.
 <p>Get an instance of <code>SecurityService</code> to start using the SDK.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">SecurityService securityService = MobileCore.getInstance(SecurityService.class);</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -543,7 +543,7 @@ Make sure this file is visible in Xcode, add the file if necessary.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Any subsequent call to MobileCore#getInstance returns the same instance of <code>SecurityService</code>.
+It is user responsibility to manage the <code>SecurityService</code> lifecycle.
 </td>
 </tr>
 </table>
@@ -562,7 +562,7 @@ Any subsequent call to MobileCore#getInstance returns the same instance of <code
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
-    pod 'AGSSecurity', '1.0.0'
+    pod 'AGSSecurity', '2.0.0'
 end</code></pre>
 </div>
 </div>
@@ -658,7 +658,7 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 <p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Security" target="_blank" rel="noopener">AeroGear Security</a> package</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security --version 2.0.1</code></pre>
 </div>
 </div>
 </li>
@@ -666,7 +666,7 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 <p>Install the specific packages for Android:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security.Platform.Android --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security.Platform.Android --version 2.0.1</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -674,7 +674,7 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security.Platform.iOS --version 1.0.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security.Platform.iOS --version 2.0.1</code></pre>
 </div>
 </div>
 </li>
