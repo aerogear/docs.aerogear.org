@@ -439,7 +439,7 @@ Zepto(function($){
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.ROOT_ENABLED);</code></pre>
 </div>
@@ -451,7 +451,7 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.ROOT_ENABLED);<
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
-let result = security.check(IsJailbrokenCheck())</code></pre>
+let result = security.check(JailbrokenDeviceCheck())</code></pre>
 </div>
 </div>
 </div>
@@ -473,23 +473,23 @@ let result = security.check(IsJailbrokenCheck())</code></pre>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
 <div class="paragraph">
-<p>Use <code>NOT_ROOTED</code> for Android:</p>
+<p>Use <code>ROOT_ENABLED</code> for Android:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_ROOTED);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.ROOT_ENABLED);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Use <code>NOT_JAILBROKEN</code> for iOS:</p>
+<p>Use <code>JAILBREAK_ENABLED</code> for iOS:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_JAILBROKEN);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.JAILBREAK_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -506,7 +506,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_JAILBROKEN
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.DEVELOPER_MODE_ENABLED);</code></pre>
 </div>
@@ -545,7 +545,7 @@ This check is available for Android only.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEVELOPER_MODE);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.DEVELOPER_MODE_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -562,7 +562,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEVELOPER_M
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.DEBUGGER_ENABLED);</code></pre>
 </div>
@@ -574,7 +574,7 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.DEBUGGER_ENABLE
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
-let result = security.check(IsDebuggerCheck())</code></pre>
+let result = security.check(DebuggerAttachedCheck())</code></pre>
 </div>
 </div>
 </div>
@@ -595,11 +595,24 @@ let result = security.check(IsDebuggerCheck())</code></pre>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>Use <code>DEBUGGER_ENABLED</code> for Android:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEBUGGER);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.DEBUGGER_ENABLED);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>DEBUGGER_ATTACHED</code> for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.DEBUGGER_ATTACHED);</code></pre>
 </div>
 </div>
 </div>
@@ -616,7 +629,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NO_DEBUGGER);<
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.IS_EMULATOR);</code></pre>
 </div>
@@ -653,7 +666,7 @@ let result = security.check(IsEmulatorCheck())</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_IN_EMULATOR);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.IS_EMULATOR);</code></pre>
 </div>
 </div>
 </div>
@@ -670,7 +683,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.NOT_IN_EMULATO
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.SCREEN_LOCK_ENABLED);</code></pre>
 </div>
@@ -682,7 +695,7 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.SCREEN_LOCK_ENA
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
-let result = security.check(IsDeviceLockCheck())</code></pre>
+let result = security.check(DeviceLockEnabledCheck())</code></pre>
 </div>
 </div>
 </div>
@@ -719,7 +732,7 @@ For iOS devices this check requires iOS 8 or above.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.SCREEN_LOCK_ENABLED);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.SCREEN_LOCK_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -736,7 +749,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.SCREEN_LOCK_EN
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.BACKUP_ENABLED);</code></pre>
 </div>
@@ -775,7 +788,7 @@ This check is available for Android only.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.ALLOW_BACKUP_DISABLED);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.BACKUP_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -792,7 +805,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.ALLOW_BACKUP_D
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.check(DeviceCheckType.ENCRYPTION_ENABLED);</code></pre>
 </div>
@@ -831,7 +844,7 @@ This check is available for Android only.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(SecurityChecks.HAS_ENCRYPTION_ENABLED);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.ENCRYPTION_ENABLED);</code></pre>
 </div>
 </div>
 </div>
@@ -854,7 +867,7 @@ SecurityCheckResult result = securityService.Check(SecurityChecks.HAS_ENCRYPTION
 <p>Get a <code>SyncCheckExecutor</code> from <code>SecurityService</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 SyncDeviceCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();</code></pre>
 </div>
 </div>
@@ -881,7 +894,7 @@ SyncDeviceCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [IsDeviceLockCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [DeviceLockEnabledCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
 let results = security.checkMany(checks)</code></pre>
 </div>
 </div>
@@ -892,7 +905,7 @@ let results = security.checkMany(checks)</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>SecurityCheckResult</code> objects in the returning array stay in the same order they were provided.
+<code>DeviceCheckResult</code> objects in the returning array stay in the same order they were provided.
 </td>
 </tr>
 </table>
@@ -938,11 +951,11 @@ let results = security.checkMany(checks)</code></pre>
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
 var checkExecutor = securityService.GetSyncExecutor()
-                        .WithSecurityCheck(SecurityChecks.NOT_ROOTED)
-                        .WithSecurityCheck(SecurityChecks.NO_DEVELOPER_MODE)
+                        .WithDeviceCheck(SecurityChecks.ROOT_ENABLED)
+                        .WithDeviceCheck(SecurityChecks.DEVELOPER_MODE_ENABLED)
                         // Add more checks here
                         .Build()
-Dictionary&lt;string, SecurityCheckResult&gt; results = checkExecutor.Execute();</code></pre>
+Dictionary&lt;string, DeviceCheckResult&gt; results = checkExecutor.Execute();</code></pre>
 </div>
 </div>
 </li>
@@ -961,7 +974,7 @@ Dictionary&lt;string, SecurityCheckResult&gt; results = checkExecutor.Execute();
 <p>Get an <code>AsyncCheckExecutor</code> from <code>SecurityService</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 AsyncDeviceCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecutor();</code></pre>
 </div>
 </div>
@@ -1061,7 +1074,7 @@ This method returns a Promise with an array containing all <code>SecurityCheckRe
 <p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
 
 DeviceCheck customDeviceCheck = new CustomDeviceCheck();
 DeviceCheckResult result = securityService.check(customDeviceCheck);</code></pre>
@@ -1077,16 +1090,16 @@ DeviceCheckResult result = securityService.check(customDeviceCheck);</code></pre
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Implement the <code>SecurityCheck</code> interface:</p>
+<p>Implement the <code>DeviceCheck</code> interface:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">public class MyCustomCheck: SecurityCheck {
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">public class MyCustomCheck: DeviceCheck {
 
     public let name = "Custom Check"
 
     public init() {}
 
-    public func check() -&gt; SecurityCheckResult {
+    public func check() -&gt; DeviceCheckResult {
         // Implement security check logic here
         return nil
     }
@@ -1156,7 +1169,7 @@ securityService.check(new CustomSecurityCheck())
 <p>Implement the <code>ISecurityCheck</code> interface:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">class CustomSecurityCheck : ISecurityCheck
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">class CustomDeviceCheck : IDeviceCheck
 {
     public string GetName()
     {
@@ -1168,7 +1181,7 @@ securityService.check(new CustomSecurityCheck())
         return typeof(CustomSecurityCheck).FullName;
     }
 
-    public SecurityCheckResult Check()
+    public DeviceCheckResult Check()
     {
         // Implement security check logic here
         return null;
@@ -1183,7 +1196,7 @@ securityService.check(new CustomSecurityCheck())
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
-SecurityCheckResult result = securityService.Check(new CustomSecurityCheck());</code></pre>
+DeviceCheckResult result = securityService.Check(new CustomDeviceCheck());</code></pre>
 </div>
 </div>
 </li>
@@ -1205,7 +1218,7 @@ SecurityCheckResult result = securityService.Check(new CustomSecurityCheck());</
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = MobileCore.getInstance(MetricsService.class);
-SecurityService securityService = MobileCore.getInstance(SecurityService.class);
+SecurityService securityService = new SecurityService();
 
 DeviceCheckResult result = securityService.checkAndSendMetric(DeviceCheckType.&lt;check_type&gt;, metricsService);</code></pre>
 </div>
@@ -1233,7 +1246,7 @@ Map&lt;String, DeviceCheckResult&gt; results = DeviceCheckExecutor.Builder.newSy
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let result = security.checkAndPublishMetric(IsDeviceLockCheck())</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let result = security.checkAndPublishMetric(DeviceLockEnabledCheck())</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1241,7 +1254,7 @@ Map&lt;String, DeviceCheckResult&gt; results = DeviceCheckExecutor.Builder.newSy
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [IsDeviceLockCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [DeviceLockEnabledCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
 let results = security.checkManyAndPublishMetric(checks)</code></pre>
 </div>
 </div>
@@ -1283,7 +1296,32 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
 <div class="paragraph">
-<p>Device checks reports are not yet available for Xamarin.</p>
+<p>Report individual checks:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+var metricsService = MobileCore.GetService&lt;MetricsService&gt;();
+
+DeviceCheckResult result = securityService.Check(SecurityChecks.ROOT_ENABLED, metricsService);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using a <code>CheckExecutor</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+var metricsService = MobileCore.GetService&lt;MetricsService&gt;();
+
+var checkExecutor = securityService.GetSyncExecutor()
+                        .WithDeviceCheck(SecurityChecks.ROOT_ENABLED)
+                        .WithDeviceCheck(SecurityChecks.DEVELOPER_MODE_ENABLED)
+                        .WithMetricsService(metricsService)
+                        // Add more checks here
+                        .Build()
+Dictionary&lt;string, DeviceCheckResult&gt; results = checkExecutor.Execute();</code></pre>
+</div>
 </div>
 </div>
 </div>
