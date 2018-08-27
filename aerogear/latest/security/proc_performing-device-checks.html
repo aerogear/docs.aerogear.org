@@ -461,7 +461,7 @@ let result = security.check(JailbrokenDeviceCheck())</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
-    .check(SecurityCheckType.notRooted)
+    .check(DeviceCheckType.rootEnabled)
     .then(result =&gt; {
         // Handle the security result metric
         // result: { id: string, name: string, passed: boolean }
@@ -584,7 +584,7 @@ let result = security.check(DebuggerAttachedCheck())</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
-    .check(SecurityCheckType.notDebugMode)
+    .check(DeviceCheckType.debugModeEnabled)
     .then(result =&gt; {
         // Handle the security result metric
         // result: { id: string, name: string, passed: boolean }
@@ -651,7 +651,7 @@ let result = security.check(IsEmulatorCheck())</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
-    .check(SecurityCheckType.notEmulated)
+    .check(DeviceCheckType.isEmulator)
     .then(result =&gt; {
         // Handle the security result metric
         // result: { id: string, name: string, passed: boolean }
@@ -717,7 +717,7 @@ For iOS devices this check requires iOS 8 or above.
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
-    .check(SecurityCheckType.hasDeviceLock)
+    .check(DeviceCheckType.screenLockEnabled)
     .then(result =&gt; {
         // Handle the security result metric
         // result: { id: string, name: string, passed: boolean }
@@ -920,8 +920,8 @@ let results = security.checkMany(checks)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const results = await securityService.checkMany(
-    SecurityCheckType.notRooted,
-    SecurityCheckType.notEmulated,
+    DeviceCheckType.rootEnabled,
+    DeviceCheckType.isEmulator,
     // Add more checks here
 );</code></pre>
 </div>
@@ -933,7 +933,7 @@ let results = security.checkMany(checks)</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>SecurityCheckResult</code> objects in the returning array stay in the same order they were provided.
+<code>DeviceCheckResult</code> objects in the returning array stay in the same order they were provided.
 </td>
 </tr>
 </table>
@@ -945,14 +945,14 @@ let results = security.checkMany(checks)</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Build a <code>SyncSecurityCheckExecutor</code> from <code>SecurityService</code> and execute:</p>
+<p>Build a <code>SyncDeviceCheckExecutor</code> from <code>SecurityService</code> and execute:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 
 var checkExecutor = securityService.GetSyncExecutor()
-                        .WithDeviceCheck(SecurityChecks.ROOT_ENABLED)
-                        .WithDeviceCheck(SecurityChecks.DEVELOPER_MODE_ENABLED)
+                        .WithDeviceCheck(DeviceChecks.ROOT_ENABLED)
+                        .WithDeviceCheck(DeviceChecks.DEVELOPER_MODE_ENABLED)
                         // Add more checks here
                         .Build()
 Dictionary&lt;string, DeviceCheckResult&gt; results = checkExecutor.Execute();</code></pre>
@@ -1009,8 +1009,8 @@ AsyncDeviceCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecu
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const checkResults = securityService.checkMany(
-    SecurityCheckType.notRooted,
-    SecurityCheckType.notEmulated,
+    DeviceCheckType.rootEnabled,
+    DevoceCheckType.isEmulator,
     // Add more checks here
 )
 .then(results =&gt; {
@@ -1025,7 +1025,7 @@ AsyncDeviceCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecu
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This method returns a Promise with an array containing all <code>SecurityCheckResult</code> objects in the same order they were provided.
+This method returns a Promise with an array containing all <code>DeviceCheckResult</code> objects in the same order they were provided.
 </td>
 </tr>
 </table>
@@ -1126,17 +1126,17 @@ let result = security.check(MyCustomCheck())</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Implement the <code>SecurityCheck</code> interface:</p>
+<p>Implement the <code>DeviceCheck</code> interface:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">class CustomSecurityCheck implements SecurityCheck {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">class CustomDeviceCheck implements DeviceCheck {
 
     get name(): string {
         return "My Custom Check";
     }
 
-    public check(): Promise&lt;SecurityCheckResult&gt; {
-        // Implement security check logic here
+    public check(): Promise&lt;DeviceCheckResult&gt; {
+        // Implement device check logic here
         return null;
     }
 
@@ -1150,7 +1150,7 @@ let result = security.check(MyCustomCheck())</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const securityService = new SecurityService();
 
-securityService.check(new CustomSecurityCheck())
+securityService.check(new CustomDeviceCheck())
     .then(result =&gt; {
         // Handle result
     });</code></pre>
@@ -1166,7 +1166,7 @@ securityService.check(new CustomSecurityCheck())
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Implement the <code>ISecurityCheck</code> interface:</p>
+<p>Implement the <code>IDeviceCheck</code> interface:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">class CustomDeviceCheck : IDeviceCheck
@@ -1178,7 +1178,7 @@ securityService.check(new CustomSecurityCheck())
 
     public string GetId()
     {
-        return typeof(CustomSecurityCheck).FullName;
+        return typeof(CustomDeviceCheck).FullName;
     }
 
     public DeviceCheckResult Check()
@@ -1268,7 +1268,7 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
-    .checkAndPublishMetric(SecurityCheckType.notRooted)
+    .checkAndPublishMetric(DeviceCheckType.rootEnabled)
     .then(result =&gt; {
         // Handle the security result metric
         // result: { id: string, name: string, passed: boolean }
@@ -1282,8 +1282,8 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
     .checkManyAndPublishMetric(
-        SecurityCheckType.notRooted,
-        SecurityCheckType.notEmulated,
+        DeviceCheckType.rootEnabled,
+        DeviceCheckType.isEmulator,
         // Add more checks here
     )
     .then(results =&gt; {
@@ -1303,7 +1303,7 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
 var metricsService = MobileCore.GetService&lt;MetricsService&gt;();
 
-DeviceCheckResult result = securityService.Check(SecurityChecks.ROOT_ENABLED, metricsService);</code></pre>
+DeviceCheckResult result = securityService.Check(DeviceChecks.ROOT_ENABLED, metricsService);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1315,8 +1315,8 @@ DeviceCheckResult result = securityService.Check(SecurityChecks.ROOT_ENABLED, me
 var metricsService = MobileCore.GetService&lt;MetricsService&gt;();
 
 var checkExecutor = securityService.GetSyncExecutor()
-                        .WithDeviceCheck(SecurityChecks.ROOT_ENABLED)
-                        .WithDeviceCheck(SecurityChecks.DEVELOPER_MODE_ENABLED)
+                        .WithDeviceCheck(DeviceChecks.ROOT_ENABLED)
+                        .WithDeviceCheck(DeviceChecks.DEVELOPER_MODE_ENABLED)
                         .WithMetricsService(metricsService)
                         // Add more checks here
                         .Build()
