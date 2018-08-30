@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Pinning in Android Devices :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/security/proc_pinning-certificates.html">
+    <title>Building a Mobile App :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobilecicd/running-a-build.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
@@ -406,69 +406,64 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/proc_pinning-certificates.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobilecicd/running-a-build.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Certificate Pinning in Android Devices</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1>Building a Mobile App</h1>
 <div class="paragraph">
-<p><a href="https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning" target="_blank" rel="noopener">Certificate pinning</a> can be enabled in individual SDKs through the <code>mobile-services.json</code> file.
-Certificate pinning will only be enabled for services which are used directly by the SDKs. For
-other services <strong>SPKI</strong> pinning is used. Mobile services must have pinning configured
-separately. For more information on setting up certificate pinning for mobile services see the
-<a href="https://developer.android.com/training/articles/security-config.html#CertificatePinning" target="_blank" rel="noopener">Android network security guide</a>.</p>
+<p>To build a mobile app.</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log in to the OpenShift Console.</p>
+</li>
+<li>
+<p>Browse to the <strong>Project Overview</strong> screen and find the {mobile-client} you want to build.</p>
+</li>
+<li>
+<p>Click on the name of the {mobile-client} to open the details view.</p>
+</li>
+<li>
+<p>From the <strong>Builds</strong> tab, select the mobile app you want to build click <strong>Start Build</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Expanding the build section will show the current status of this build.
+</td>
+</tr>
+</table>
 </div>
+</li>
+<li>
+<p>Check the mobile app build status by expanding the mobile client box.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This box lists the last 5 builds for this client.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect1">
-<h2 id="generating-pinning-configuration"><a class="anchor" href="#generating-pinning-configuration"></a>Generating Pinning Configuration</h2>
-<div class="sectionbody">
+</li>
+<li>
+<p>To view the mobile app as a pipeline build, from the left menu, click <strong>Builds &gt; Pipeline</strong>.</p>
 <div class="paragraph">
-<p>The AeroGear SDK gets its configuration from the <code>https</code> section of the <code>mobile-services.json</code> file
-in a project.</p>
+<p>Each build step is displayed (along with the current step status: completed, error or running) based on the stages in your Jenkinsfile code.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "services":[],
-    "https": {
-        "certificatePins": [{
-            "host": "example.sync.service",
-            "certificateHash": "exampleHash"
-        }]
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To include the <code>https</code> section in configuration when generating it using the Mobile CLI use the
-<code>--include-cert-pins</code> flag when retrieving a client configuration. By default, self-signed or
-invalid certs will not be permitted to be included in the certificate pinning configuration. To
-allow these to be included use the <code>--insecure-skip-tls-verify</code> flag.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./mobile get clientconfig &lt;client name&gt; --include-cert-pins --insecure-skip-tls-verify</code></pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="using-pinning-configuration"><a class="anchor" href="#using-pinning-configuration"></a>Using Pinning Configuration</h3>
-<div class="paragraph">
-<p>If the <code>https</code> section is included in the <code>mobile-services.json</code> file then certificate pinning will
-automatically be enabled for mobile services.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="considerations"><a class="anchor" href="#considerations"></a>Considerations</h3>
-<div class="paragraph">
-<p>If the certificate authority of a service changes then the <code>mobile-services.json</code> file will need to
-be regenerated in order to retrieve the correct <code>https</code> configuration. The app will then need to be
-rebuilt and republished for the end users to consume. If this is not done then an app may become
-incapable of making network requests to other services.</p>
-</div>
-</div>
-</div>
+</li>
+<li>
+<p>To view the full build log, click <strong>view log</strong> which redirects you to your Jenkins instance.</p>
+</li>
+</ol>
 </div>
 </article>
   </main>
