@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Pinning in Android Devices :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/security/proc_pinning-certificates.html">
+    <title>Adding a Jenkinsfile :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobilecicd/proc_adding-a-jenkinsfile.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
@@ -406,66 +406,155 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security/proc_pinning-certificates.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobilecicd/proc_adding-a-jenkinsfile.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Certificate Pinning in Android Devices</h1>
+<h1>Adding a Jenkinsfile</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning" target="_blank" rel="noopener">Certificate pinning</a> can be enabled in individual SDKs through the <code>mobile-services.json</code> file.
-Certificate pinning will only be enabled for services which are used directly by the SDKs. For
-other services <strong>SPKI</strong> pinning is used. Mobile services must have pinning configured
-separately. For more information on setting up certificate pinning for mobile services see the
-<a href="https://developer.android.com/training/articles/security-config.html#CertificatePinning" target="_blank" rel="noopener">Android network security guide</a>.</p>
+<p>To build a mobile app using the {mobile-ci-cd-service} service, you must add a <code>Jenkinsfile</code> to your git repository, typically in the root directory of that repository.</p>
+</div>
+<div class="paragraph">
+<p>The following sample files are suitable for the <a href="showcase-apps.html">Showcase Apps</a>. You may need a different configuration for your mobile app.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="generating-pinning-configuration"><a class="anchor" href="#generating-pinning-configuration"></a>Generating Pinning Configuration</h2>
+<h2 id="sample-android-jenkinsfile-for-debug-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-debug-build-type"></a>Sample Android Jenkinsfile for Debug Build Type</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The AeroGear SDK gets its configuration from the <code>https</code> section of the <code>mobile-services.json</code> file
-in a project.</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "services":[],
-    "https": {
-        "certificatePins": [{
-            "host": "example.sync.service",
-            "certificateHash": "exampleHash"
-        }]
-    }
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build") {
+    sh './gradlew clean assembleDebug' //comment for debug builds
+  }
+
+  uncomment the following stage if running a release build
+  stage("Sign") {
+
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-debug.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To include the <code>https</code> section in configuration when generating it using the Mobile CLI use the
-<code>--include-cert-pins</code> flag when retrieving a client configuration. By default, self-signed or
-invalid certs will not be permitted to be included in the certificate pinning configuration. To
-allow these to be included use the <code>--insecure-skip-tls-verify</code> flag.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="sample-android-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-release-build-type"></a>Sample Android Jenkinsfile for Release Build Type</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./mobile get clientconfig &lt;client name&gt; --include-cert-pins --insecure-skip-tls-verify</code></pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build"){
+    sh './gradlew clean assembleRelease' // uncomment for release build
+  }
+
+  stage("Sign") {
+    signAndroidApks (
+      keyStoreId: "myproject-testandroidcert",
+      keyAlias: "aerogear",
+      apksToSign: "**/*-unsigned.apk",
+      // uncomment the following line to output the signed APK to a separate directory as described above
+      // signedApkMapping: [ $class: UnsignedApkBuilderDirMapping ],
+      // uncomment the following line to output the signed APK as a sibling of the unsigned APK, as described above, or just omit signedApkMapping
+      // you can override these within the script if necessary
+      // androidHome: '/usr/local/Cellar/android-sdk'
+    )
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-release.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="using-pinning-configuration"><a class="anchor" href="#using-pinning-configuration"></a>Using Pinning Configuration</h3>
-<div class="paragraph">
-<p>If the <code>https</code> section is included in the <code>mobile-services.json</code> file then certificate pinning will
-automatically be enabled for mobile services.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="considerations"><a class="anchor" href="#considerations"></a>Considerations</h3>
-<div class="paragraph">
-<p>If the certificate authority of a service changes then the <code>mobile-services.json</code> file will need to
-be regenerated in order to retrieve the correct <code>https</code> configuration. The app will then need to be
-rebuilt and republished for the end users to consume. If this is not done then an app may become
-incapable of making network requests to other services.</p>
+<div class="sect1">
+<h2 id="sample-ios-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-ios-jenkinsfile-for-release-build-type"></a>Sample iOS Jenkinsfile for Release Build Type</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">CODE_SIGN_PROFILE_ID = "myproject-iostestcert"
+BUILD_CONFIG = "Debug" // Use either "Debug" or "Release"
+
+PROJECT_NAME = "helloworld-ios-app"
+INFO_PLIST = "helloworld-ios-app/helloworld-ios-app-Info.plist"
+VERSION = "1.0.0"
+SHORT_VERSION = "1.0"
+BUNDLE_ID = "org.aerogear.helloworld-ios-app"
+OUTPUT_FILE_NAME="${PROJECT_NAME}-${BUILD_CONFIG}.ipa"
+SDK = "iphoneos"
+
+// use something like 8.3 to use a specific XCode version, default version is used if not set
+XC_VERSION = ""
+
+// do a clean build and sign
+CLEAN = true
+
+node('ios') {
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Prepare') {
+      sh '/usr/local/bin/pod install'
+    }
+
+    stage('Build') {
+        withEnv(["XC_VERSION=${XC_VERSION}"]) {
+            xcodeBuild(
+                    cleanBeforeBuild: CLEAN,
+                    src: './',
+                    schema: "${PROJECT_NAME}",
+                    workspace: "${PROJECT_NAME}",
+                    buildDir: "build",
+                    sdk: "${SDK}",
+                    version: "${VERSION}",
+                    shortVersion: "${SHORT_VERSION}",
+                    bundleId: "${BUNDLE_ID}",
+                    infoPlistPath: "${INFO_PLIST}",
+                    xcodeBuildArgs: 'ENABLE_BITCODE=NO OTHER_CFLAGS="-fstack-protector -fstack-protector-all"',
+                    autoSign: false,
+                    config: "${BUILD_CONFIG}"
+            )
+        }
+    }
+
+    stage('CodeSign') {
+        codeSign(
+                profileId: "${CODE_SIGN_PROFILE_ID}",
+                clean: CLEAN,
+                verify: true,
+                ipaName: "${OUTPUT_FILE_NAME}",
+                appPath: "build/${BUILD_CONFIG}-${SDK}/${PROJECT_NAME}.app"
+        )
+    }
+
+    stage('Archive') {
+        archiveArtifacts "build/${BUILD_CONFIG}-${SDK}/${OUTPUT_FILE_NAME}"
+    }
+}</code></pre>
 </div>
 </div>
 </div>
