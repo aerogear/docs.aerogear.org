@@ -1269,7 +1269,7 @@ func onLoginComplete(user: User?, err: Error?) {
 <p>Use the <code>Authenticate</code> method to hand over to the login browser:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">IAuthService authService = MobileCore.Instance.GetInstance&lt;IAuthService&gt;();
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">IAuthService authService = MobileCore.Instance.GetService&lt;IAuthService&gt;();
 
 var authOptions = DependencyService.Get&lt;IAuthenticateOptionsProvider&gt;().GetOptions();
 authService.Authenticate(authOptions).ContinueWith(user =&gt;
@@ -1380,7 +1380,7 @@ UserPrincipal currentUser = authService.currentUser();</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authService = MobileCore.Instance.GetInstance&lt;IAuthService&gt;();
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authService = MobileCore.Instance.GetService&lt;IAuthService&gt;();
 authService.Logout(authService.CurrentUser()).ContinueWith(result =&gt;
 {
     Device.BeginInvokeOnMainThread(() =&gt; ((RootPage)(App.Current.MainPage)).ChangePage(new GoodbyePage()));
@@ -1518,7 +1518,7 @@ No function to retrieve the resource roles is currently exported but you can use
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">// auth service is already initialised
-var user = MobileCore.Instance.GetInstance&lt;IAuthService&gt;().CurrentUser();</code></pre>
+var user = MobileCore.Instance.GetService&lt;IAuthService&gt;().CurrentUser();</code></pre>
 </div>
 </div>
 </li>
