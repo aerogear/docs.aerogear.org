@@ -280,6 +280,12 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-metrics.html#identity">Identity Management</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#using-dashboards">Using Dashboards</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -309,6 +315,42 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#ui">The Data Sync UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#schema">Working with a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#sdk">Adding sync to your app</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#auth">Authentication for Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#authorization">Authorization for Data Sync Service</a>
   </li>
 </ul>
   </li>
@@ -446,12 +488,10 @@ Zepto(function($){
 </div>
 </li>
 <li>
-<p>Retrieve an instance of the <code>AuthService</code> and use the <code>login</code> method to hand over to the login browser:</p>
+<p>Use the <code>login</code> method to hand over to the login browser:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);
-
-// Build the options object and start the authentication flow
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Build the options object and start the authentication flow
 DefaultAuthenticateOptions options = new DefaultAuthenticateOptions(myActivity, LOGIN_RESULT_CODE);
 
 authService.login(options, authCallback);</code></pre>
@@ -465,7 +505,6 @@ authService.login(options, authCallback);</code></pre>
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == LOGIN_RESULT_CODE) {
-        AuthService authService = MobileCore.getInstance().getService(AuthService.class);
         authService.handleAuthResult(data);
     }
 }</code></pre>
@@ -588,11 +627,10 @@ authService.Authenticate(authOptions).ContinueWith(user =&gt;
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Get an instance of the auth service and retrieve the current user:</p>
+<p>Retrieve the current user:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">AuthService authService = MobileCore.getInstance().getService(AuthService.class);
-UserPrincipal currentUser = authService.currentUser();</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">UserPrincipal currentUser = authService.currentUser();</code></pre>
 </div>
 </div>
 </li>

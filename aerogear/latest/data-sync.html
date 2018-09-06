@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sync :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/data-sync.html">
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/runtime-connector/">
+                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li class="hidden-sm active">
+          <a href="https://docs.aerogear.org">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="latest">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-clients.html#sdk">AeroGear SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#push-ui">Using the Push Admin UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling">Handling a Notification</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setup">Device Trust</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#ui">The Data Sync UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#schema">Working with a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#resolvers">Adding resolvers to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#subscriptions">Adding subscriptions to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#sdk">Adding sync to your app</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#monitoring">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#auth">Authentication for Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#authorization">Authorization for Data Sync Service</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="device-security.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Mobile Security</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../mobile-security/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/data-sync.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Data Sync</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#ref_terminology_Data Sync_ref_terminology">Data Sync Terminology</a></li>
+<li><a href="#ref_terminology_Data Sync_additional-resources-ref_terminology_Data Sync">Additional resources</a></li>
+</ul>
+</li>
+<li><a href="#setup">Setting Up the Data Sync Mobile Service</a>
+<ul class="sectlevel2">
+<li><a href="#provisioning-data-sync-service">Provisioning Data Sync Service</a></li>
+<li><a href="#binding-a-mobile-client-with-the-data-sync-service">Binding a Mobile Client with the Data Sync Service</a></li>
+</ul>
+</li>
+<li><a href="#ui">Managing your data sources using the Data Sync UI</a>
+<ul class="sectlevel2">
+<li><a href="#data-source-introduction">Data Source Introduction</a></li>
+<li><a href="#data-source-options">Data Source Options</a></li>
+</ul>
+</li>
+<li><a href="#schema">Defining a Schema using the Data Sync UI</a>
+<ul class="sectlevel2">
+<li><a href="#the-schema-editor">The Schema Editor</a></li>
+<li><a href="#structure-view">Structure View</a></li>
+</ul>
+</li>
+<li><a href="#resolvers">Adding Resolvers to a Schema</a>
+<ul class="sectlevel2">
+<li><a href="#defining-resolvers">Defining Resolvers</a></li>
+</ul>
+</li>
+<li><a href="#subscriptions">Adding Subscriptions to a Schema</a>
+<ul class="sectlevel2">
+<li><a href="#publishing-to-a-subscription">Publishing to a subscription</a></li>
+</ul>
+</li>
+<li><a href="#sdk">Using the Data Sync SDK</a>
+<ul class="sectlevel2">
+<li><a href="#importing-the-libraries">Importing the libraries</a></li>
+<li><a href="#setting-up-the-sync-mobile-service">Setting Up the Sync Mobile Service</a></li>
+<li><a href="#using-the-sync-mobile-service">Using the Sync Mobile Service</a></li>
+</ul>
+</li>
+<li><a href="#monitoring">Monitoring Data Sync Service</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-2">Prerequisites</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#dashboard-panel-descriptions">Dashboard panel descriptions</a></li>
+<li><a href="#singlestat-panels">Singlestat Panels</a></li>
+<li><a href="#graph-panels">Graph panels</a></li>
+<li><a href="#additional-resources">Additional resources</a></li>
+</ul>
+</li>
+<li><a href="#auth">Authentication for Data Sync</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-3">Prerequisites</a></li>
+<li><a href="#binding-the-data-sync-service-to-an-identity-management-instance">Binding the Data Sync service to an Identity Management Instance</a></li>
+<li><a href="#creating-the-binding-secret-from-a-keycloak-instance">Creating the binding secret from a Keycloak Instance</a></li>
+<li><a href="#making-the-secret-available-to-the-data-sync">Making the Secret available to the Data Sync</a></li>
+<li><a href="#making-secret-available-to-application">Making Secret available to application</a></li>
+<li><a href="#data-sync-sdk-authentication">Data Sync SDK Authentication</a></li>
+</ul>
+</li>
+<li><a href="#authorization">Role Based Authorization in Data Sync</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-4">Prerequisites</a></li>
+<li><a href="#the-hasrole-directive">The @hasRole Directive</a></li>
+<li><a href="#example-using-the-hasrole-directive-to-apply-role-based-authorization-on-a-schema">Example: Using the @hasRole Directive to Apply Role Based Authorization on a Schema</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Data Sync mobile service is currently in development. Current released version is 0.1.0.
+The software is available for you to use and investigate, however it might not work as expected and functionality might change over time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The Data Sync service allows you to synchronize data between multiple mobile clients and easily query exactly the data you need.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Synchronize data between multiple clients</p>
+</li>
+<li>
+<p>Define and connect your own data sources</p>
+</li>
+<li>
+<p>Retrieve and update your records using GraphQL</p>
+</li>
+<li>
+<p>Robust offline experience and good performance thanks to Apollo caching</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="ref_terminology_Data Sync_ref_terminology"><a class="anchor" href="#ref_terminology_Data Sync_ref_terminology"></a>Data Sync Terminology</h3>
+<div class="paragraph">
+<p>This section describes terminology that is associated with Data Sync.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">GraphQL</dt>
+<dd>
+<p>A query language for data that is more powerful than a REST API. See <a href="https://graphql.org/learn">GraphQL</a></p>
+</dd>
+<dt class="hdlist1">Apollo</dt>
+<dd>
+<p>A client side library to work with a GraphQL based server. See <a href="https://www.apollographql.com/">Apollo</a></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_terminology_Data Sync_additional-resources-ref_terminology_Data Sync"><a class="anchor" href="#ref_terminology_Data Sync_additional-resources-ref_terminology_Data Sync"></a>Additional resources</h3>
+<div class="paragraph">
+<p>For more information, see the <a href="https://www.apollographql.com/docs/react/">Apollo Client Documentation</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup"><a class="anchor" href="#setup"></a>Setting Up the Data Sync Mobile Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="provisioning-data-sync-service"><a class="anchor" href="#provisioning-data-sync-service"></a>Provisioning Data Sync Service</h3>
+<h4 id="prerequisites" class="discrete">Prerequisites</h4>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To provision the Data Sync mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Create a new project or choose an existing project.</p>
+</li>
+<li>
+<p>Select <strong>Catalog</strong> from the left hand menu.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Services</strong> and choose the Data Sync service.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
+</div>
+</div>
+</li>
+<li>
+<p>Follow the wizard for provisioning that service.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When provisioning a Data Sync Service, you are prompted to set the following:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Configuration</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Storage Size (Gb)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Size of persistent volume for Postgres (default value is recommended)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User name that will be used to connect to postgres ('user' will be used if blank)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password to connect to Postgres (generated if blank)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the Postgres password was generated, retrieve the password using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc describe dc postgres-data-sync -n &lt;myproject&gt; | grep POSTGRESQL_PASSWORD</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
+Provisioning a service may take some time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="binding-a-mobile-client-with-the-data-sync-service"><a class="anchor" href="#binding-a-mobile-client-with-the-data-sync-service"></a>Binding a Mobile Client with the Data Sync Service</h3>
+<div class="paragraph">
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
+This association is called <strong>binding</strong> and once it&#8217;s done, your mobile app can use that service immediately.</p>
+</div>
+<div class="paragraph">
+<p>To associate a Mobile Client with a mobile service:</p>
+</div>
+<div class="sect3">
+<h4 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+</li>
+<li>
+<p>Select the Mobile Client name listed in the Mobile Clients section.</p>
+</li>
+<li>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-all-unprovisioned.png" alt="mobile clients services all unprovisioned">
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Data Sync Service.</p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the Data Sync Service.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ui"><a class="anchor" href="#ui"></a>Managing your data sources using the Data Sync UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Data Sync UI allows you to manage your data sources.</p>
+</div>
+<div class="paragraph">
+<p>To access the Data Sync UI, you will need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure it is <a href="sync/provisioning.html" class="page">provisioned</a>.</p>
+</li>
+<li>
+<p>Select a route in OpenShift.</p>
+</li>
+<li>
+<p>Login with your OpenShift credentials.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On first login you need to provide the OpenShift OAuth service permissions to read your user account.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="data-source-introduction"><a class="anchor" href="#data-source-introduction"></a>Data Source Introduction</h3>
+<div class="paragraph">
+<p>A Data Source is a representation of your data storage solution. The Data Source consists of a <strong>Name</strong>, a <strong>Type</strong>, and a <strong>Configuration</strong>.
+The <strong>Type</strong> of Data Source which are currently supported are <strong>Postgres</strong> and <strong>InMemory</strong>. For information on how to use <strong>Postgres</strong>, refer to the documentation <a href="https://www.postgresql.org/docs">here</a>.
+The <strong>In Memory</strong> Data Source that is currently supported is <strong>NeDB</strong>, for more information on how to use this please refer to the documentation <a href="https://github.com/louischatriot/nedb">here</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>In Memory</strong> Data Source is not recommended for production use.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-source-options"><a class="anchor" href="#data-source-options"></a>Data Source Options</h3>
+<div class="paragraph">
+<p>The data sources tab on the Data Sync UI allows you to perform the following operatations:</p>
+</div>
+<div class="sect3">
+<h4 id="view-existing-data-sources"><a class="anchor" href="#view-existing-data-sources"></a>View Existing Data Sources</h4>
+<div class="paragraph">
+<p>This is the default view on the Data Sync UI. It lists all of the existing data sources. This view currently displays the data source name and the type of the data source.</p>
+</div>
+<div class="paragraph">
+<p>Data sources can be filtered using the <strong>name</strong> property.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-an-existing-data-source"><a class="anchor" href="#edit-an-existing-data-source"></a>Edit an Existing Data Source</h4>
+<div class="paragraph">
+<p>To edit an existing data source, choose the <strong>Edit Data Source</strong> option from the data source menu.</p>
+</div>
+<div class="paragraph">
+<p>Update the data source with the new values.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-an-existing-data-source"><a class="anchor" href="#delete-an-existing-data-source"></a>Delete an Existing Data Source</h4>
+<div class="paragraph">
+<p>To delete a data source, choose the <strong>Delete Data Source</strong> option from the data source menu. Next confirm that you wish to delete the data source.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When you delete a data source, all resolvers that are attached to it will also be deleted.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-a-new-data-source"><a class="anchor" href="#create-a-new-data-source"></a>Create a New Data Source</h4>
+<div class="paragraph">
+<p>If no data source exists, a new data source can be created by clicking the <strong>Add Data Source</strong> button. Select the type of your data source from the dropdown.
+For more information about the <em>In Memory</em> option have a look at <a href="#in-memory-option">the In Memory Option</a>. Information about the Postgres option can be found <a href="#postgres-option">here</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="in-memory-option"><a class="anchor" href="#in-memory-option"></a>In Memory Data Sources</h4>
+<div class="paragraph">
+<p>You need to provide a name for the data source. The only other option is <code>TimeStamp Data</code>. If checked, timestamps will be stored along with your data in <code>NeDB</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To find more about <code>NeDB</code> and how to write queries, have a look at the <a href="https://github.com/louischatriot/nedb#finding-documents">Github Repository</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Some features like unique indices and persistence are not supported in the In Memory database and it is therefore only recommended for evaluation purposes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="postgres-option"><a class="anchor" href="#postgres-option"></a>Postgres Data Sources</h4>
+<div class="paragraph">
+<p>You need to provide a name for the data source. <code>Postgres</code> has a number of other required options:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Server</em>: The host name of the PostgreSQL instance.</p>
+</li>
+<li>
+<p><em>Port</em>: The Network Port used by PostgreSQL (defaults to <code>5432</code>).</p>
+</li>
+<li>
+<p><em>Database</em>: The name of the database to connect to. PostgreSQL servers can host multiple databases.</p>
+</li>
+<li>
+<p><em>Username</em>: The username of the PostgreSQL user account.</p>
+</li>
+<li>
+<p><em>Password</em>: (Optional) The password of the PostgreSQL user account.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To find out more about Postgres and how to work with it, have a look at the <a href="https://www.postgresql.org/docs/">official documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can test your data source before saving by clicking on the <code>Test</code> button. Data Sync will then attempt to connect to the provided PostgreSQL server. If the connection fails you will see the error message in the dialog.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="schema"><a class="anchor" href="#schema"></a>Defining a Schema using the Data Sync UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A schema describes the structure of the data the Data Sync deals with. It allows you to configure
+your data types, queries and mutations in a format that is independent of the underlying data source.
+To learn more Schemas have a look at the <a href="https://graphql.org/learn/schema/">GraphQL documentation</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="the-schema-editor"><a class="anchor" href="#the-schema-editor"></a>The Schema Editor</h3>
+<div class="paragraph">
+<p>The Schema Editor can be found under the <code>Schema</code> tab in the UI. It consists of a text editor where
+you can write and edit your schema and a structure view on the right. To try it out you can use a simple schema like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>type Query {
+    notes: [Note]
+}
+
+type Comment {
+    from: String
+    text: String
+}
+
+type Note {
+    text: String!
+    comments: [Comment]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Save the schema by pressing the <code>Save Schema</code> button. Upon saving the Data Sync will check your schema for errors and compile it to a JSON representation.
+You can download this JSON representation by clicking on <code>Download Compiled Schema</code>. This is needed in the client SDKs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When defining <a href="https://graphql.org/learn/schema/#scalar-types">custom scalars</a> on your schema it is important to assert that the data types match the expected type. This is important as custom Scalar definitions could potentially lead to security vulnerabilities such as SQL Injection.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="structure-view"><a class="anchor" href="#structure-view"></a>Structure View</h3>
+<div class="paragraph">
+<p>After saving a schema the structure view on the right side of the <code>Schema</code> tab will be updated. If your schema contains errors you will see the error message there.
+Otherwise you will see a list of all your types, queries, mutations and subscriptions. This view is read only and can be used to quickly browse a schema.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resolvers"><a class="anchor" href="#resolvers"></a>Adding Resolvers to a Schema</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A schema describes the structure of your data and the operations to query or mutate that data.
+When a query is executed, GraphQL runs the attached <code>Resolver</code>. Resolvers implement the actual
+operations on the data and can be attached to Queries, Mutations and Properties of custom types.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+to learn more about resolvers and their role in GraphQL have a look at the <a href="https://graphql.org/learn/execution/#root-fields-resolvers">official documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="defining-resolvers"><a class="anchor" href="#defining-resolvers"></a>Defining Resolvers</h3>
+<div class="paragraph">
+<p>Resolvers are defined in the <code>Resolvers</code> tab of the UI. If you have a valid schema you can see its
+structure on the left side and the resolver details on the right side.</p>
+</div>
+<div class="sect3">
+<h4 id="structure-view-2"><a class="anchor" href="#structure-view-2"></a>Structure View</h4>
+<div class="paragraph">
+<p>The structure view is different from the one in the schema tab in that it is grouped
+by <code>Queries</code>, <code>Mutations</code>, <code>Subscriptions</code> and <code>Custom Types</code>. All entries can be expanded to see their
+arguments (queries and mutations) or fields (custom types). The lines in the view have three columns:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Name</em>: The name of the Query/Mutation/Custom Type</p>
+</li>
+<li>
+<p><em>Argument count</em>: The number of fields / arguments</p>
+</li>
+<li>
+<p><em>Resolver</em>: Shows the name of the Resolver&#8217;s data source when one is assigned. Otherwise shows <code>No resolver</code>. Click here to start editing the resolver details.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Resolvers can only be attached directly to <code>Queries</code> and <code>Mutations</code> and not their arguments. For <code>Custom Types</code> the opposite is true: you usually want to assign resolvers to more complex properties, for example the <code>comments</code> field in the <code>Note</code> type of the above example.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resolver-details"><a class="anchor" href="#resolver-details"></a>Resolver Details</h4>
+<div class="paragraph">
+<p>Here you can add the details of a resolver. The following fields must be provided:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Data Source</em>: The data source this resolver gets executed against.</p>
+</li>
+<li>
+<p><em>Request Mapping Template</em>: The query that is executed to retrieve a result. <code>Mutations</code> in GraphQL are required to return a result too. NOTE: Have a look at <a href="#mapping-templates">mapping templates</a> to learn how to make use of the <code>context</code> object in your queries.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following fields are optional:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>Response Mapping Template</em>: Allows you to transform the result before passing it to the caller. For example you could convert a string response to JSON, or parse a XML response.</p>
+</li>
+<li>
+<p><em>Pre Hook</em>: A WebHook that is called before running the <code>Request Mapping</code>.</p>
+</li>
+<li>
+<p><em>Post Hook</em>: A WebHook that is called if the <code>Request Mapping</code> was run successfully.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Drop-Down buttons above the Request and Response Mappings fields allow you to pick one of the pre-defined templates of your data source.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mapping-templates"><a class="anchor" href="#mapping-templates"></a>Request Mapping Templates</h4>
+<div class="paragraph">
+<p>To write meaningful queries you need access to the arguments passed to the resolver by the client.
+This is achieved by making use of the <code>context</code> object. Request and response mappings are evaluated in the Data Sync backend and you can use Handlebars templates to inject values from the context object.</p>
+</div>
+<div class="paragraph">
+<p>The structure of the context object is the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">context: {
+    arguments,    // The arguments passed to the resolver
+    parent        // Parent object reference
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, a request mapping to retrieve all the comments for a particular <code>Note</code> could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>select * from Comments where NoteId = '{{ context.parent.id }}'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="response-mapping-templates"><a class="anchor" href="#response-mapping-templates"></a>Response Mapping Templates</h4>
+<div class="paragraph">
+<p>Use a response mapping to transform a result or extract certain properties from the result. As with request mappers, response mapper have access to a <code>context</code> object with the following format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">context: {
+    result      // The result returned from the query or mutation
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Handlebars helpers can be applied to the result. Currently the following helpers are available:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><em>toJSON</em>: Parses a string and returns the result as JSON.</p>
+</li>
+<li>
+<p><em>toBoolean</em>: Parses a string and returns the result as either <code>true</code> or <code>false</code>.</p>
+</li>
+<li>
+<p><em>convertNeDBIds</em>: Changes all id fields in the input object from <code>_id</code> to <code>id</code>, the latter being a more common name for a GraphQL property.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An example response mapper for an in memory result could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>{{ toJSON (convertNeDBIds context.result) }}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="subscriptions"><a class="anchor" href="#subscriptions"></a>Adding Subscriptions to a Schema</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GraphQL subscriptions allow you to be notified in realtime of changes to your data.
+<code>Subscriptions</code> are defined in the Schema as their own type, just like with <code>Query</code> and <code>Mutation</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>type Query {
+    notes: [Note]
+}
+
+type Mutation {
+    addNote(text: String!)
+}
+
+type Subscription {
+    noteAdded: Note
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Learn more about Subscriptions and other operation types at <a href="https://graphql.org/learn/queries/#operation-name">GraphQL documentation</a></p>
+</div>
+<div class="sect2">
+<h3 id="publishing-to-a-subscription"><a class="anchor" href="#publishing-to-a-subscription"></a>Publishing to a subscription</h3>
+<div class="paragraph">
+<p>Subscriptions can be attached to <code>Mutations</code> only.</p>
+</div>
+<div class="paragraph">
+<p>Once defined in a Schema, you can assign them to any mutation&#8217;s <code>Resolver</code> in the Resolvers tab. To do so, simply select any Resolver and choose one <code>Subscription</code> to publish to from the Subscriptions dropdown.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sdk"><a class="anchor" href="#sdk"></a>Using the Data Sync SDK</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section will help you to set up the Data Sync service SDK in your App.</p>
+</div>
+<div class="sect2">
+<h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>implementation "org.aerogear:aerogear-sync:2.1.0-alpha.1"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the dependency to your <strong>Podfile</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
+    pod 'AGSSync'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the dependencies:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-the-sync-mobile-service"><a class="anchor" href="#setting-up-the-sync-mobile-service"></a>Setting Up the Sync Mobile Service</h3>
+<div class="paragraph">
+<p>The Sync SDK is using the <a href="https://github.com/apollographql/">Apollo GraphQL Client</a> behind of the scenes to handle <a href="http://graphql.github.io/">GraphQL</a>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/apollographql">Apollo client</a> requires some configuration to work.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download Compiled GraphQL Schema from Data Sync UI</p>
+</li>
+<li>
+<p>Create a special folder <code>graphql</code> inside of <code>src/main</code></p>
+</li>
+<li>
+<p>Create a file <code>schema.json</code> with your Compiled GraphQL Schema</p>
+</li>
+<li>
+<p>Create a file with a name that corresponds to your business objects and a <code>.graphql</code> extension</p>
+</li>
+<li>
+<p>Add all your queries/mutations/subscriptions to the <code>.graphql</code> file. Apollo will generate the appropriate Java classes with nested classes for reading from the network response.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example if you create a file <code>graphql/com/example/somefile.graphql</code> with the content bellow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>query myNotes {
+  allNotes() {
+    id,
+    text
+  }
+}
+
+mutation createNote(text: String!) {
+  createNote($text: String!) {
+    id
+    text
+  }
+}
+
+subscription noteAdded {
+  noteAdded {
+    id
+    note
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apollo will automatically create a file <code>MyNotesQuery</code>, <code>CreateNoteMutation</code> and <code>NoteAddedSubscription</code> (in compile time) in the package <code>com.example</code> for you.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download Compiled GraphQL Schema from Data Sync UI.</p>
+</li>
+<li>
+<p>Create a file <code>schema.json</code> with your Compiled GraphQL Schema.</p>
+</li>
+<li>
+<p>Create a file with a name that corresponds to your business objects and a <code>.graphql</code> extension.</p>
+</li>
+<li>
+<p>Add all your queries/mutations/subscriptions to the <code>.graphql</code> file.</p>
+</li>
+<li>
+<p>Add a <a href="https://www.apollographql.com/docs/ios/installation.html#adding-build-step">code generation build step</a> to your target.</p>
+</li>
+<li>
+<p>Drag the generated API.swift file to your target.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>During a build Appolo will generate appropriate classes in API.swift file for reading from the network response.</p>
+</div>
+<div class="paragraph">
+<p>For example if you create a file <code>somefile.graphql</code> with the content bellow:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>query myNotes {
+  allNotes() {
+    id,
+    text
+  }
+}
+
+mutation createNote(text: String!) {
+  createNote($text: String!) {
+    id
+    text
+  }
+}
+
+subscription noteAdded {
+  noteAdded {
+    id
+    note
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apollo will automatically create a file called API.swift with classes <code>MyNotesQuery</code>, <code>CreateNoteMutation</code> and <code>NoteAddedSubscription</code> (in build time) for you.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-the-sync-mobile-service"><a class="anchor" href="#using-the-sync-mobile-service"></a>Using the Sync Mobile Service</h3>
+<div class="paragraph">
+<p>The Sync SDK provides a method to get a configured instance of the Apollo Client</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SyncService.getInstance().getApolloClient()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>AgsSync.instance.client</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="query"><a class="anchor" href="#query"></a>Query</h4>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Use the <code>Query</code> method from Apollo client to fire a query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SyncService
+        .getInstance()
+        .getApolloClient()
+        .query(MyNotesQuery.builder().build())
+        .enqueue(new ApolloCall.Callback&lt;MyNotesQuery.Data&gt;() {
+            @Override
+            public void onResponse(Response&lt;MyNotesQuery.Data&gt; response) {
+                // Do some magic with the response
+            }
+
+            @Override
+            public void onFailure(ApolloException e) {
+                /// Oops! Something went wrong.
+            }
+        });</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>MyNotesQuery</code> class is generated from the example schema above
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://github.com/apollographql/apollo-android/">Apollo GraphQL Client for Android</a> for a complete list of options.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Use the <code>fetch</code> method from Apollo client to fire a query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>AgsSync.instance.client?.fetch(query: MyNotesQuery()) { result, error in
+    if let error = error {
+        // Oops! Something went wrong.
+    } else {
+        // Do some magic with the response.
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>MyNotesQuery</code> class is generated from the example schema above
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mutation"><a class="anchor" href="#mutation"></a>Mutation</h4>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Use the <code>Mutate</code> method from Apollo client to fire a mutation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SyncService
+        .getInstance()
+        .getApolloClient()
+        .mutate(CreateNoteMutation.builder().text("The note text").build())
+        .enqueue(new ApolloCall.Callback&lt;CreateNoteMutation.Data&gt;() {
+            @Override
+            public void onResponse(Response&lt;CreateNoteMutation.Data&gt; response) {
+                // Do some magic with the response
+            }
+
+            @Override
+            public void onFailure(ApolloException e) {
+                /// Oops! Something went wrong.
+            }
+        });</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>CreateNoteMutation</code> class is generated from the example schema above
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://github.com/apollographql/apollo-android/">Apollo GraphQL Client for Android</a> for a complete list of options.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Use the <code>perform</code> method from Apollo client to fire a mutation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>AgsSync.instance.client?.perform(mutation: CreateNoteMutation(text: "The note text")) { result, error in
+    if let error = error {
+        // Oops! Something went wrong.
+    } else {
+        // Do some magic with the response.
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>CreateNoteMutation</code> class is generated from the example schema above
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="subscription"><a class="anchor" href="#subscription"></a>Subscription</h4>
+<div class="paragraph">
+<p>Use the <code>subscribe</code> method from Apollo client to fire a subscription</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>SyncService
+        .getInstance()
+        .getApolloClient()
+        .subscribe(new NoteAddedSubscription())
+        .execute(new ApolloSubscriptionCall.Callback&lt;NoteAddedSubscription.Data&gt;() {
+            @Override
+            public void onResponse(Response&lt;NoteAddedSubscription.Data&gt; response) {
+                // Do some magic with the response
+            }
+
+            @Override
+            public void onFailure(ApolloException e) {
+                /// Oops! Something went wrong.
+            }
+        });</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>NoteAddedSubscription</code> class is generated from the example schema above
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://github.com/apollographql/apollo-android/">Apollo GraphQL Client for Android</a> for a complete list of options.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>AgsSync.instance.client?.subscribe(subscription: NoteAddedSubscription())  { result, error in
+    if let error = error {
+        // Oops! Something went wrong.
+    } else {
+        // Do some magic with the response.
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>NoteAddedSubscription</code> class is generated from the example schema above
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="monitoring"><a class="anchor" href="#monitoring"></a>Monitoring Data Sync Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Data Sync Service as described in <a href="sync/provisioning.html" class="page">Provisioning Data Sync Service</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Mobile Metrics Service and Data Sync Service must be provisioned in the same OpenShift project to access data.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+<div class="paragraph">
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Data Sync Service are provisioned,
+you should be able to see the "Data Sync Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Data Sync Metrics</strong>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h3>
+<div class="paragraph">
+<p>The Data Sync dashboard consists of several panels which give you an overview of the specific
+events and resources, such as memory usage, CPU usage, resolved operation count etc.</p>
+</div>
+<div class="paragraph">
+<p>Below you will find a detailed description of each panel and its values.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h3>
+<div class="paragraph">
+<p>Singlestat panels show you the main summary of a single data series.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CPU Usage</strong>: CPU usage percentage of Data Sync Service used currently.</p>
+</li>
+<li>
+<p><strong>Memory Usage</strong>: The amount of memory currently used by the Data Sync Service</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h3>
+<div class="paragraph">
+<p>Used to show how certain values change over time, e.g. the number of operations resolved.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Memory Usage in Time</strong>: The amount of memory used by the Data Sync Service over time</p>
+</li>
+<li>
+<p><strong>CPU Usage in Time</strong>: The percentage of CPU used by the Data Sync Service over time</p>
+</li>
+<li>
+<p><strong>Queries/Mutations Resolved</strong>: Overview of the resolved queries and mutations over time</p>
+</li>
+<li>
+<p><strong>Resolver Timings</strong>: Overview of the how long it took to resolve operations over time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="auth"><a class="anchor" href="#auth"></a>Authentication for Data Sync</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default, Data Sync does not provide any authentication and authorization mechanism.
+Users can configure Data Sync to work with Identity Management to provide authentication and
+authorization for their applications.</p>
+</div>
+<div class="sect2">
+<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensure Data Sync is <a href="sync/provisioning.html" class="page">provisioned</a>.</p>
+</li>
+<li>
+<p>Ensure Identity Management is <a href="keycloak/provisioning.html" class="page">provisioned</a></p>
+</li>
+<li>
+<p>Ensure Identity Management is <a href="keycloak/coding.html" class="page">configured</a> to work with your mobile applications</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="binding-the-data-sync-service-to-an-identity-management-instance"><a class="anchor" href="#binding-the-data-sync-service-to-an-identity-management-instance"></a>Binding the Data Sync service to an Identity Management Instance</h3>
+<div class="paragraph">
+<p>To benefit from authentication, developers need to connect (bind) Data Sync into  Identity Management Instance.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-the-binding-secret-from-a-keycloak-instance"><a class="anchor" href="#creating-the-binding-secret-from-a-keycloak-instance"></a>Creating the binding secret from a Keycloak Instance</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to your Openshift project</p>
+</li>
+<li>
+<p>Select <strong>Applications</strong> and then <strong>Provisioned Services</strong></p>
+</li>
+<li>
+<p>Copy the <strong>Instance Name</strong> field from the <strong>Data Sync</strong> service</p>
+</li>
+<li>
+<p>Select the <strong>Identity Management</strong> service from the list of Provisioned Services</p>
+</li>
+<li>
+<p>Select the <strong>Create Binding</strong> option</p>
+</li>
+<li>
+<p>Enter the copied <strong>Instance Name</strong> of the provisioned <strong>Data Sync</strong> service</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A secret will be created as a result of this binding.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="making-the-secret-available-to-the-data-sync"><a class="anchor" href="#making-the-secret-available-to-the-data-sync"></a>Making the Secret available to the Data Sync</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Select <strong>View Secret</strong> on the <strong>Identity Management</strong> details page</p>
+</li>
+<li>
+<p>Select <strong>Add to Application</strong> and select the data-sync-server from the options</p>
+</li>
+<li>
+<p>Select the <strong>Volume</strong> option and enter the following mount path: <code>/opt/keycloak</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The mount path must be set to <code>/opt/keycloak</code> for the Data Sync to be configured to use the secret.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="making-secret-available-to-application"><a class="anchor" href="#making-secret-available-to-application"></a>Making Secret available to application</h3>
+<div class="paragraph">
+<p>By default, the secret is not visible to the server application.
+To point the server to the application, please add a new environment variable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>KEYCLOAK_CONFIG_FILE=/opt/keycloak/config</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-sync-sdk-authentication"><a class="anchor" href="#data-sync-sdk-authentication"></a>Data Sync SDK Authentication</h3>
+<div class="paragraph">
+<p>When user logs in with Identity Management SDK, user principal can be used to retrieve token. Data Sync SDK can use this token to perform requests to the Data Sync backend.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>MobileCore.getInstance().getHttpLayer().requestHeaderInterceptor().add(authService.getAuthHeaderProvider());</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>if let transport = AgsSync.instance.transport {
+  transport.headerProvider = AgsAuth.instance.getAuthHeaderProvider()
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="authorization"><a class="anchor" href="#authorization"></a>Role Based Authorization in Data Sync</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#auth">Binding Data Sync to Keycloak</a>.</p>
+</li>
+<li>
+<p><a href="https://www.keycloak.org/docs/3.4/getting_started/index.html#creating-a-realm-and-user">Creating a Realm in Keycloak</a>.</p>
+</li>
+<li>
+<p><a href="https://www.keycloak.org/docs/3.4/authorization_services/index.html#_getting_started_hello_world_enabling_authz_services">Enabling Authorization Services in Keycloak</a>.</p>
+</li>
+<li>
+<p><a href="https://www.keycloak.org/docs/3.4/authorization_services/index.html#_policy_overview">Managing Policies in Keycloak</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Role based authorization can be applied to Queries, Mutations, Subscriptions and individual fields in a GraphQL schema, when Data Sync is used with Keycloak. This means it is possible to restrict individual fields and/or operations defined in the GraphQL schema to users with specific roles in Keycloak.</p>
+</div>
+<div class="paragraph">
+<p>Take a publishing platform as an example. Role Based Authorization could be used to ensure only users with the role <code>editor</code> can perform the <code>editPublication</code> mutation.</p>
+</div>
+<div class="paragraph">
+<p>Data Sync currently supports authorization using <strong>client</strong> roles and <strong>realm</strong> roles defined in keycloak. Consult the Keycloak documentation to learn how to create roles.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.keycloak.org/docs/4.3/server_admin/index.html#realm-roles">Realm Roles in Keycloak</a></p>
+</li>
+<li>
+<p><a href="https://www.keycloak.org/docs/4.3/server_admin/index.html#client-roles">Client Roles in Keycloak</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-hasrole-directive"><a class="anchor" href="#the-hasrole-directive"></a>The @hasRole Directive</h3>
+<div class="paragraph">
+<p>Role based authorization can be defined using the <code>@hasRole</code> directive. The <code>@hasRole</code> directive is a special annotation that can be applied to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fields</p>
+</li>
+<li>
+<p>Queries</p>
+</li>
+<li>
+<p>Mutations</p>
+</li>
+<li>
+<p>Subscriptions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>@hasRole</code> usage is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@hasRole(role: String)</code></p>
+</li>
+<li>
+<p>Example - <code>@hasRole(role: "admin"])</code></p>
+</li>
+<li>
+<p>If the authenticated user has the role <code>admin</code> they will be authorized.</p>
+</li>
+<li>
+<p><code>@hasRole(role: [String])</code></p>
+</li>
+<li>
+<p>Example - <code>@hasRole(role: ["admin", "editor"])</code></p>
+</li>
+<li>
+<p>If the authenticated user has <strong>at least one of the roles</strong> in the list, they will be authorized.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>The default behaviour is to check client roles.</strong> For example, <code>@hasRole(role: "admin"])</code> will check that user has a client role called <code>admin</code>. <code>@hasRole(role: "realm:admin"])</code> will check if that user has a realm role called <code>admin</code></p>
+</div>
+<div class="paragraph">
+<p>The syntax for checking a realm role is <code>@hasRole(role: "realm:&lt;role&gt;")</code>. For example, <code>@hasRole(role: "realm:admin")</code>. Using a list of roles, it is possible to check for both client and realm roles at the same time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-using-the-hasrole-directive-to-apply-role-based-authorization-on-a-schema"><a class="anchor" href="#example-using-the-hasrole-directive-to-apply-role-based-authorization-on-a-schema"></a>Example: Using the @hasRole Directive to Apply Role Based Authorization on a Schema</h3>
+<div class="paragraph">
+<p>The following example demonstrates how the <code>@hasRole</code> directive can be used to define role based authorization on various parts of a GraphQL schema. This example schema represents publishing application like a news or blog website.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>type Post {
+  id: ID!
+  title: String!
+  author: Author!
+  content: String!
+  createdAt: Int!
+}
+
+type Author {
+  id: ID!
+  name: String!
+  posts: [Post]!
+  address: String! @hasRole(role: "admin")
+  age: Int! @hasRole(role: "admin")
+}
+
+type Query {
+  allPosts:[Post]!
+  getAuthor(id: ID!):Author!
+}
+
+type Mutation {
+  editPost:[Post]! @hasRole(role: ["editor", "admin"])
+  deletePost(id: ID!):[Post] @hasRole(role: "admin")
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Post</code> - This might be an article or a blog post</p>
+</li>
+<li>
+<p><code>Author</code> - This would represent the person that authored a Post</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are two Queries:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>allPosts</code> - This might return a list of posts</p>
+</li>
+<li>
+<p><code>getAuthor</code> - This would return details about an Author</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are two Mutations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editPost</code> - This would edit an existing post</p>
+</li>
+<li>
+<p><code>deletePost</code> - This would delete a post.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="role-based-authorization-on-queries-and-mutations"><a class="anchor" href="#role-based-authorization-on-queries-and-mutations"></a>Role Based Authorization on Queries and Mutations</h4>
+<div class="paragraph">
+<p>In the example schema, the <code>@hasRole</code> directive has been applied to the <code>editPost</code> and <code>deletePost</code> mutations. The same could be done on Queries.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Only users with the roles <code>editor</code> and/or <code>admin</code> are allowed to perform the <code>editPost</code> mutation.</p>
+</li>
+<li>
+<p>Only users with the role <code>admin</code> are allowed to perform the <code>deletePost</code> mutation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This example shows how the <code>@hasRole</code> directive can be used on various queries and mutations.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="role-based-authorization-on-fields"><a class="anchor" href="#role-based-authorization-on-fields"></a>Role Based Authorization on Fields</h4>
+<div class="paragraph">
+<p>In the example schema, the <code>Author</code> type has the fields <code>address</code> and <code>age</code> which both have <code>hasRole(role: "admin")</code> applied.</p>
+</div>
+<div class="paragraph">
+<p>This means that users without the role <code>admin</code> are not authorized to request these fields <strong>in any query or mutation</strong>.</p>
+</div>
+<div class="paragraph">
+<p>For example, non admin users are allowed to run the <code>getAuthor</code> query, but they cannot request back the <code>address</code> or <code>age</code> fields.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
