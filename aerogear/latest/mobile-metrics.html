@@ -280,6 +280,12 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#identity">Identity Management</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#sync">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#using-dashboards">Using Dashboards</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -309,6 +315,42 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#ui">The Data Sync UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#schema">Working with a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#sdk">Adding sync to your app</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#auth">Authentication for Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="data-sync.html#authorization">Authorization for Data Sync Service</a>
   </li>
 </ul>
   </li>
@@ -436,6 +478,24 @@ Zepto(function($){
 <li><a href="#singlestat-panels">Singlestat Panels</a></li>
 <li><a href="#graph-panels">Graph panels</a></li>
 <li><a href="#pie-charts">Pie Charts</a></li>
+</ul>
+</li>
+<li><a href="#sync">Monitoring Data Sync Service</a>
+<ul class="sectlevel2">
+<li><a href="#prerequisites-2">Prerequisites</a></li>
+<li><a href="#overview-2">Overview</a></li>
+<li><a href="#dashboard-panel-descriptions-2">Dashboard panel descriptions</a></li>
+<li><a href="#singlestat-panels-2">Singlestat Panels</a></li>
+<li><a href="#graph-panels-2">Graph panels</a></li>
+<li><a href="#additional-resources">Additional resources</a></li>
+</ul>
+</li>
+<li><a href="#using-dashboards">Viewing Mobile Metrics Service Dashboards</a>
+<ul class="sectlevel2">
+<li><a href="#overview-of-dashboards">Overview of Dashboards</a></li>
+<li><a href="#creating-dashboards-in-grafana">Creating Dashboards in Grafana</a></li>
+<li><a href="#importing-dashboards">Importing Dashboards</a></li>
+<li><a href="#customizing-mobile-services-dashboards">Customizing Mobile Services Dashboards</a></li>
 </ul>
 </li>
 </ul>
@@ -805,9 +865,6 @@ It can also be useful to see the uptake rate of newly published versions of an A
 </li>
 </ul>
 </div>
-<div id="trust" class="paragraph">
-<p>include::metrics/analysing-trust-checks.adoc[]</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -922,6 +979,189 @@ events, such as the number of registered users, memory usage etc.</p>
 <p><a href="https://grafana.com/plugins/grafana-piechart-panel" target="_blank" rel="noopener">Pie Chart</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync"><a class="anchor" href="#sync"></a>Monitoring Data Sync Service</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the Data Sync Service as described in <a href="sync/provisioning.html" class="page">Provisioning Data Sync Service</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Mobile Metrics Service and Data Sync Service must be provisioned in the same OpenShift project to access data.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="overview-2"><a class="anchor" href="#overview-2"></a>Overview</h3>
+<div class="paragraph">
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Data Sync Service are provisioned,
+you should be able to see the "Data Sync Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Data Sync Metrics</strong>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dashboard-panel-descriptions-2"><a class="anchor" href="#dashboard-panel-descriptions-2"></a>Dashboard panel descriptions</h3>
+<div class="paragraph">
+<p>The Data Sync dashboard consists of several panels which give you an overview of the specific
+events and resources, such as memory usage, CPU usage, resolved operation count etc.</p>
+</div>
+<div class="paragraph">
+<p>Below you will find a detailed description of each panel and its values.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="singlestat-panels-2"><a class="anchor" href="#singlestat-panels-2"></a>Singlestat Panels</h3>
+<div class="paragraph">
+<p>Singlestat panels show you the main summary of a single data series.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CPU Usage</strong>: CPU usage percentage of Data Sync Service used currently.</p>
+</li>
+<li>
+<p><strong>Memory Usage</strong>: The amount of memory currently used by the Data Sync Service</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="graph-panels-2"><a class="anchor" href="#graph-panels-2"></a>Graph panels</h3>
+<div class="paragraph">
+<p>Used to show how certain values change over time, e.g. the number of operations resolved.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Memory Usage in Time</strong>: The amount of memory used by the Data Sync Service over time</p>
+</li>
+<li>
+<p><strong>CPU Usage in Time</strong>: The percentage of CPU used by the Data Sync Service over time</p>
+</li>
+<li>
+<p><strong>Queries/Mutations Resolved</strong>: Overview of the resolved queries and mutations over time</p>
+</li>
+<li>
+<p><strong>Resolver Timings</strong>: Overview of the how long it took to resolve operations over time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-dashboards"><a class="anchor" href="#using-dashboards"></a>Viewing Mobile Metrics Service Dashboards</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview-of-dashboards"><a class="anchor" href="#overview-of-dashboards"></a>Overview of Dashboards</h3>
+<div class="paragraph">
+<p>The Mobile Metrics Service gathers metrics data from mobile services and uses <a href="https://grafana.com/" target="_blank" rel="noopener">Grafana</a> to display that data.</p>
+</div>
+<div class="paragraph">
+<p>A Grafana dashboard allows you to arrange panels and charts together to provide a visual overview of your metrics.
+See the Grafana <a href="http://docs.grafana.org/guides/getting_started/" target="_blank" rel="noopener">Getting Started</a> guide for an introduction to dashboards.</p>
+</div>
+<div class="paragraph">
+<p>When you create an instance of a Mobile Services service from the OpenShift service catalog, a dashboard that shows metrics about that service is added to Grafana.
+Also, when you configure your Mobile Client to use metrics, you can see the metrics in Grafana.</p>
+</div>
+<div class="paragraph">
+<p>In addition to those, you can create and modify custom dashboards to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>visualize metrics from apps and back-end services that are not mobile services</p>
+</li>
+<li>
+<p>monitor additional metrics from mobile services that are not displayed by default</p>
+</li>
+<li>
+<p>monitor additional metrics from OpenShift that are not displayed by default</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-dashboards-in-grafana"><a class="anchor" href="#creating-dashboards-in-grafana"></a>Creating Dashboards in Grafana</h3>
+<div class="paragraph">
+<p>You can create dashboards using <strong>Drag and Drop</strong> in Grafana.
+See the <a href="http://docs.grafana.org/" target="_blank" rel="noopener">Grafana Documentation</a> to learn about building Grafana dashboards.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-dashboards"><a class="anchor" href="#importing-dashboards"></a>Importing Dashboards</h3>
+<div class="paragraph">
+<p>All Grafana dashboards are represented by a JSON definition. Dashboards can be imported and exported using that JSON definition as described in the <a href="http://docs.grafana.org/reference/export_import/" target="_blank" rel="noopener">importing and exporting dashboards</a> Grafana documentation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="customizing-mobile-services-dashboards"><a class="anchor" href="#customizing-mobile-services-dashboards"></a>Customizing Mobile Services Dashboards</h3>
+<div class="paragraph">
+<p>When you provision a mobile service from the service catalog, a dashboard showing metrics about that service is added to Grafana.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you edit the default mobile service dashboards, your changes will be lost whenever the associated mobile service is updated.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Before editing the dashboard, clone it as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the Dashboard you want to clone.</p>
+</li>
+<li>
+<p>Click the settings icon in the dashboard controls to show the <strong>Settings</strong> screen.</p>
+</li>
+<li>
+<p>Select the <strong>Save As</strong> option and enter in a name for the new dashboard, for example <code>Copy of Sync Service Dashboard</code>.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>

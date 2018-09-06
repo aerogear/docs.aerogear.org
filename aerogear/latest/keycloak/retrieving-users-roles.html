@@ -280,6 +280,12 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-metrics.html#identity">Identity Management</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mobile-metrics.html#using-dashboards">Using Dashboards</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -309,6 +315,42 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="../data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#ui">The Data Sync UI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#schema">Working with a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#sdk">Adding sync to your app</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#auth">Authentication for Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../data-sync.html#authorization">Authorization for Data Sync Service</a>
   </li>
 </ul>
   </li>
@@ -424,9 +466,7 @@ Zepto(function($){
 <p>Retrieve the authenticated user:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// authService already initialized.
-AuthService authService = MobileCore.getInstance().getService(AuthService.class);
-UserPrincipal currentUser = authService.currentUser();</code></pre>
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">UserPrincipal currentUser = authService.currentUser();</code></pre>
 </div>
 </div>
 </li>
