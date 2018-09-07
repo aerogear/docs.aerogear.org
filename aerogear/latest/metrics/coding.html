@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adding User Authentication to your Mobile App :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/keycloak/authenticating.html">
+    <title>Configuring your Development Environment for the Mobile Metrics Service :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/metrics/coding.html">
     <meta name="generator" content="Antora 1.0.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
@@ -448,67 +448,61 @@ Zepto(function($){
   <a href="../getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/keycloak/authenticating.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/metrics/coding.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Adding User Authentication to your Mobile App</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>This section describes how to perform user authentication for the supported platforms. On authentication a browser window will open and prompt the user for login credentials.</p>
-</div>
-</div>
-</div>
+<h1>Configuring your Development Environment for the Mobile Metrics Service</h1>
 <div class="sect1">
-<h2 id="implementing-authentication"><a class="anchor" href="#implementing-authentication"></a>Implementing authentication</h2>
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The following examples show how to implement authentication using the Aerogear SDK on all the supported platforms.</p>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Provide an implementation of <code>Callback</code> which is defined in the Aerogear SDK and used to handle asynchronous results:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Callback authCallback = new Callback&lt;UserPrincipal&gt;() {
-    @Override
-    public void onSuccess(UserPrincipal principal) {
-        ...
-    }
-
-    @Override
-    public void onError(Throwable error) {
-        ...
-    }
-};</code></pre>
-</div>
+<p>Navigate to your project in OpenShift.</p>
+</li>
+<li>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
+</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
-<p>Use the <code>login</code> method to hand over to the login browser:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Build the options object and start the authentication flow
-DefaultAuthenticateOptions options = new DefaultAuthenticateOptions(myActivity, LOGIN_RESULT_CODE);
-
-authService.login(options, authCallback);</code></pre>
-</div>
-</div>
+<p>Follow the next specific additional instructions depending on your platform:</p>
 </li>
-<li>
-<p>Override <code>onActivityResult</code> to handle the result from the browser. It&#8217;s important to pass the intent back to the Auth service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if (requestCode == LOGIN_RESULT_CODE) {
-        authService.handleAuthResult(data);
-    }
-}</code></pre>
+</ol>
 </div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>app/src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
+</div>
+<div class="paragraph">
+<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -517,136 +511,57 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This handler should always invoke <code>handleAuthResult</code>, providing the <code>Intent</code>. This will exchange the temporary tokens returned from <code>login</code> for long-lived tokens and will provide a <code>UserPrincipal</code> which can be used to access a users details. If this is not invoked you will not have access to the <code>UserPrincipal</code>.
+Make sure this file is visible in Xcode, add the file if necessary.
 </td>
 </tr>
 </table>
-</div>
-</li>
-<li>
-<p>The callback provided to <code>login</code> will be invoked.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use the <code>login</code> method to hand over to the login browser:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">AgsAuth.instance.login(presentingViewController: self, onCompleted: onLoginComplete)
-
-func onLoginComplete(user: User?, err: Error?) {
-    if let error = err {
-        return
-    }
-
-    let currentUser = user
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Allow your application to handle the redirect in <code>AppDelegate</code>:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -&gt; Bool {
-    do {
-        return try AgsAuth.instance.resumeAuth(url: url as URL)
-    } catch AgsAuth.Errors.serviceNotConfigured {
-        print("AeroGear auth service is not configured")
-    } catch {
-        fatalError("Unexpected error: \(error).")
-    }
-    return false
-}</code></pre>
-</div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
 <div class="paragraph">
-<p>Authentication will be performed on initialization as described <a href="coding.html#initializing-the-sdk" class="page">here</a>. To manually redirect to the login screen, use:</p>
+<p>Locate this file at the following location in your application project:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">authService.login().then(() =&gt; {
-    // Login success
-}).catch(() =&gt; {
-    // Login error
-});;</code></pre>
-</div>
+<div class="paragraph">
+<p><code>src/mobile-services.json</code></p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use the <code>Authenticate</code> method to hand over to the login browser:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">IAuthService authService = MobileCore.Instance.GetService&lt;IAuthService&gt;();
-
-var authOptions = DependencyService.Get&lt;IAuthenticateOptionsProvider&gt;().GetOptions();
-authService.Authenticate(authOptions).ContinueWith(user =&gt;
-{
-    // Login success
-});</code></pre>
+<div class="paragraph">
+<p>Locate this file at the following location in your application project:</p>
 </div>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="adding-log-out-option-to-your-mobile-app"><a class="anchor" href="#adding-log-out-option-to-your-mobile-app"></a>Adding Log Out Option to your Mobile App</h2>
+<h2 id="setting-up-mobile-metrics-service-sdk"><a class="anchor" href="#setting-up-mobile-metrics-service-sdk"></a>Setting up Mobile Metrics service SDK</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
 <div class="paragraph">
-<p>The following section describes how to perform a logout.</p>
+<p>Metrics is included in all SDK modules, if you already use a component from the AeroGear SDK in your app, you may skip this step.
+Otherwise, install the core package by following the next steps depending on your platform:</p>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Retrieve the current user:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">UserPrincipal currentUser = authService.currentUser();</code></pre>
+<div class="paragraph">
+<p>Add the following dependency in your app&#8217;s <strong>build.gradle</strong>:</p>
 </div>
-</div>
-</li>
-<li>
-<p>Implement <code>Callback</code> and call <code>logout</code>:</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>+</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
-    @Override
-    public void onSuccess() {
-        // User Logged Out Successfully and local Auth tokens were Deleted
-    }
-
-    @Override
-    public void onError(Throwable error) {
-        // An error occurred during logout
-    }
-});</pre>
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation 'org.aerogear:android-core:1.0.0'
+}</code></pre>
 </div>
 </div>
 </div>
@@ -656,24 +571,20 @@ authService.Authenticate(authOptions).ContinueWith(user =&gt;
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Implement the logout callback:</p>
+<p>Add the dependency to your <strong>Podfile</strong></p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func onLogoutComplete(_: Error?) {
-    ...
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
+    pod 'AGSCore', '1.0.0'
+end</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Call <code>logout</code> and pass the callback:</p>
+<p>Update the dependencies by running in your terminal</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">do {
-    try AgsAuth.instance.logout(onCompleted: self.onLogoutComplete)
-} catch {
-    fatalError("Error logging out: \(error).")
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
 </div>
 </div>
 </li>
@@ -683,56 +594,63 @@ authService.Authenticate(authOptions).ContinueWith(user =&gt;
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
-<div class="paragraph">
-<p>To logout invoke the <code>logout</code> function:</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the following package:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">authService.logout().then(() =&gt; {
-    // When the logout succeeded the local tokens obtained during authentication are deleted
-});</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install --save @aerogear/core</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Install <code>cordova-plugin-aerogear-metrics</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cordova plugin add @aerogear/cordova-plugin-aerogear-metrics</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
 <div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools" target="_blank" rel="noopener">NuGet</a></p>
+</li>
+<li>
+<p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Core" target="_blank" rel="noopener">AeroGear Core</a> package</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Core --version 1.0.0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the specific packages for Android:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>To logout invoke the <code>Logout</code> method:</p>
+<p>And for iOS:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authService = MobileCore.Instance.GetService&lt;IAuthService&gt;();
-authService.Logout(authService.CurrentUser()).ContinueWith(result =&gt;
-{
-    Device.BeginInvokeOnMainThread(() =&gt; ((RootPage)(App.Current.MainPage)).ChangePage(new GoodbyePage()));
-});</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To perform <strong>backchannel or federated logouts</strong>, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">OICD Identity Providers</a>.
-</td>
-</tr>
-</table>
-</div>
-<h2 id="additional-information" class="discrete">Additional Information</h2>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="android-additional-configuration.html" class="page">Additional configuration for Android</a></p>
 </li>
-<li>
-<p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">Keycloak OICD Providers</a></p>
-</li>
-</ul>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
