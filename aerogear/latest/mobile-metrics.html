@@ -465,10 +465,14 @@ Zepto(function($){
 <ul class="sectlevel2">
 <li><a href="#provisioning-metrics-service">Provisioning Metrics Service</a></li>
 <li><a href="#binding-a-mobile-client-with-the-metrics-service">Binding a Mobile Client with the Metrics Service</a></li>
-<li><a href="#configuring-your-development-environment-for-the-metrics-service">Configuring your Development Environment for the Metrics Service</a></li>
 </ul>
 </li>
-<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
+<li><a href="#configuring-your-development-environment-for-the-mobile-metrics-service">Configuring your Development Environment for the Mobile Metrics Service</a></li>
+<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+<ul class="sectlevel2">
+<li><a href="#setting-up-mobile-metrics-service-sdk">Setting up Mobile Metrics service SDK</a></li>
+</ul>
+</li>
 <li><a href="#app">Analyzing App Usage</a></li>
 <li><a href="#identity">Monitoring the Identity Management Service</a>
 <ul class="sectlevel2">
@@ -679,10 +683,12 @@ This association is called <strong>binding</strong> and once it&#8217;s done, yo
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="configuring-your-development-environment-for-the-metrics-service"><a class="anchor" href="#configuring-your-development-environment-for-the-metrics-service"></a>Configuring your Development Environment for the Metrics Service</h3>
-
 </div>
+</div>
+<div class="sect1">
+<h2 id="configuring-your-development-environment-for-the-mobile-metrics-service"><a class="anchor" href="#configuring-your-development-environment-for-the-mobile-metrics-service"></a>Configuring your Development Environment for the Mobile Metrics Service</h2>
+<div class="sectionbody">
+
 </div>
 </div>
 <div class="sect1">
@@ -771,8 +777,117 @@ Make sure this file is visible in Xcode, add the file if necessary.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="setting-up-mobile-metrics-service-sdk"><a class="anchor" href="#setting-up-mobile-metrics-service-sdk"></a>Setting up Mobile Metrics service SDK</h3>
+<div class="sect3">
+<h4 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h4>
 <div class="paragraph">
-<p>Metrics will be sent automatically from the mobile app once any of the components from AeroGear SDK are installed.</p>
+<p>Metrics is included in all SDK modules, if you already use a component from the AeroGear SDK in your app, you may skip this step.
+Otherwise, install the core package by following the next steps depending on your platform:</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Add the following dependency in your app&#8217;s <strong>build.gradle</strong>:</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation 'org.aerogear:android-core:1.0.0'
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the dependency to your <strong>Podfile</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
+    pod 'AGSCore', '1.0.0'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the dependencies by running in your terminal</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the following package:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install --save @aerogear/core</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install <code>cordova-plugin-aerogear-metrics</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cordova plugin add @aerogear/cordova-plugin-aerogear-metrics</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools" target="_blank" rel="noopener">NuGet</a></p>
+</li>
+<li>
+<p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Core" target="_blank" rel="noopener">AeroGear Core</a> package</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Core --version 1.0.0</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the specific packages for Android:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Core.Platform.Android --version 1.0.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Core.Platform.iOS --version 1.0.0</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
