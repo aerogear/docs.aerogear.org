@@ -275,9 +275,6 @@ Zepto(function($){
     <a class="nav-link" href="../mobile-metrics.html#app">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../mobile-metrics.html#setup">Device Trust</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-metrics.html#identity">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -581,6 +578,18 @@ This is achieved by making use of the <code>context</code> object. Request and r
 <div class="content">
 <pre class="highlightjs highlight"><code>select * from Comments where NoteId = '{{ context.parent.id }}'</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For in-memory data sources <a href="https://github.com/louischatriot/nedb">NeDB</a> is used. See <a href="https://github.com/louischatriot/nedb#api">NeDB API</a> to write request mappings.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">

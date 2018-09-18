@@ -275,9 +275,6 @@ Zepto(function($){
     <a class="nav-link" href="../mobile-metrics.html#app">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../mobile-metrics.html#setup">Device Trust</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mobile-metrics.html#identity">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -464,9 +461,36 @@ Zepto(function($){
 <div class="sectionbody">
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Add <code>apollo-gradle-plugin</code> dependency to your project&#8217;s <code>build.gradle</code> file:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>implementation "org.aerogear:aerogear-sync:2.1.0-alpha.1"</code></pre>
+<pre class="highlightjs highlight"><code>buildscript {
+  repositories {
+    ...
+  }
+  dependencies {
+    classpath 'com.apollographql.apollo:apollo-gradle-plugin:0.5.0'
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the plugin in your app module&#8217;s <code>build.gradle</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>apply plugin: 'com.android.application'
+apply plugin: 'com.apollographql.android'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add <code>android-sync</code> dependency to your app module&#8217;s <code>build.gradle</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>implementation "org.aerogear:android-sync:2.1.0-alpha.1"</code></pre>
 </div>
 </div>
 </div>
@@ -632,7 +656,7 @@ subscription noteAdded {
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService.getInstance().getApolloClient()</code></pre>
+<pre class="highlightjs highlight"><code>SyncClient.getInstance()</code></pre>
 </div>
 </div>
 </div>
@@ -655,18 +679,18 @@ subscription noteAdded {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService
+<pre class="highlightjs highlight"><code>SyncClient
         .getInstance()
-        .getApolloClient()
         .query(MyNotesQuery.builder().build())
-        .enqueue(new ApolloCall.Callback&lt;MyNotesQuery.Data&gt;() {
+        .execute(MyNotesQuery.Data.class)
+        .respondWith(new Responder&lt;Response&lt;MyNotesQuery.Data&gt;&gt;() {
             @Override
-            public void onResponse(Response&lt;MyNotesQuery.Data&gt; response) {
+            public void onResult(Response&lt;MyNotesQuery.Data&gt; value) {
                 // Do some magic with the response
             }
 
             @Override
-            public void onFailure(ApolloException e) {
+            public void onException(Exception exception) {
                 /// Oops! Something went wrong.
             }
         });</code></pre>
@@ -732,19 +756,19 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService
+<pre class="highlightjs highlight"><code>SyncClient
         .getInstance()
-        .getApolloClient()
-        .mutate(CreateNoteMutation.builder().text("The note text").build())
-        .enqueue(new ApolloCall.Callback&lt;CreateNoteMutation.Data&gt;() {
+        .mutation(CreateNoteMutation.builder().text("The note text").build())
+        .execute(CreateNoteMutation.Data.class)
+        .respondWith(new Responder&lt;Response&lt;TestMutMutation.Data&gt;&gt;() {
             @Override
-            public void onResponse(Response&lt;CreateNoteMutation.Data&gt; response) {
+            public void onResult(Response&lt;TestMutMutation.Data&gt; value) {
                 // Do some magic with the response
             }
 
             @Override
-            public void onFailure(ApolloException e) {
-                /// Oops! Something went wrong.
+            public void onException(Exception exception) {
+                // Oops! Something went wrong.
             }
         });</code></pre>
 </div>
@@ -809,19 +833,19 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService
+<pre class="highlightjs highlight"><code>SyncClient
         .getInstance()
-        .getApolloClient()
         .subscribe(new NoteAddedSubscription())
-        .execute(new ApolloSubscriptionCall.Callback&lt;NoteAddedSubscription.Data&gt;() {
+        .execute(NoteAddedSubscription.Data.class)
+        .respondWith(new Responder&lt;Response&lt;NoteAddedSubscription.Data&gt;&gt;() {
             @Override
-            public void onResponse(Response&lt;NoteAddedSubscription.Data&gt; response) {
+            public void onResult(Response&lt;NoteAddedSubscription.Data&gt; response) {
                 // Do some magic with the response
             }
 
             @Override
-            public void onFailure(ApolloException e) {
-                /// Oops! Something went wrong.
+            public void onException(Exception exception) {
+                // Oops! Something went wrong.
             }
         });</code></pre>
 </div>

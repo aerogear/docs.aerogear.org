@@ -275,9 +275,6 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Device Trust</a>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -673,6 +670,14 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Password</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Password to connect to Postgres (generated if blank)</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query depth limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the complexity of the queries solely by their depth</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query complexity limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the complexity of the queries based on the data</p></td>
+</tr>
 </tbody>
 </table>
 <div class="admonitionblock note">
@@ -690,6 +695,9 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc describe dc postgres-data-sync -n &lt;myproject&gt; | grep POSTGRESQL_PASSWORD</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Wait for the database provisioning to finish before executing this command.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -703,7 +711,7 @@ Provisioning a service may take some time.</p>
 <h3 id="binding-a-mobile-client-with-the-data-sync-service"><a class="anchor" href="#binding-a-mobile-client-with-the-data-sync-service"></a>Binding a Mobile Client with the Data Sync Service</h3>
 <div class="paragraph">
 <p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
-This association is called <strong>binding</strong> and once it&#8217;s done, your mobile app can use that service immediately.</p>
+This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
 <p>To associate a Mobile Client with a mobile service:</p>
@@ -722,7 +730,7 @@ This association is called <strong>binding</strong> and once it&#8217;s done, yo
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/mobile-clients-services-all-unprovisioned.png" alt="mobile clients services all unprovisioned">
+<img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
 </div>
 </div>
 </li>
@@ -1107,6 +1115,18 @@ This is achieved by making use of the <code>context</code> object. Request and r
 <pre class="highlightjs highlight"><code>select * from Comments where NoteId = '{{ context.parent.id }}'</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For in-memory data sources <a href="https://github.com/louischatriot/nedb">NeDB</a> is used. See <a href="https://github.com/louischatriot/nedb#api">NeDB API</a> to write request mappings.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="response-mapping-templates"><a class="anchor" href="#response-mapping-templates"></a>Response Mapping Templates</h4>
@@ -1194,9 +1214,36 @@ type Subscription {
 <h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p>Add <code>apollo-gradle-plugin</code> dependency to your project&#8217;s <code>build.gradle</code> file:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>implementation "org.aerogear:aerogear-sync:2.1.0-alpha.1"</code></pre>
+<pre class="highlightjs highlight"><code>buildscript {
+  repositories {
+    ...
+  }
+  dependencies {
+    classpath 'com.apollographql.apollo:apollo-gradle-plugin:0.5.0'
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the plugin in your app module&#8217;s <code>build.gradle</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>apply plugin: 'com.android.application'
+apply plugin: 'com.apollographql.android'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add <code>android-sync</code> dependency to your app module&#8217;s <code>build.gradle</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>implementation "org.aerogear:android-sync:2.1.0-alpha.1"</code></pre>
 </div>
 </div>
 </div>
@@ -1358,7 +1405,7 @@ subscription noteAdded {
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService.getInstance().getApolloClient()</code></pre>
+<pre class="highlightjs highlight"><code>SyncClient.getInstance()</code></pre>
 </div>
 </div>
 </div>
@@ -1381,18 +1428,18 @@ subscription noteAdded {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService
+<pre class="highlightjs highlight"><code>SyncClient
         .getInstance()
-        .getApolloClient()
         .query(MyNotesQuery.builder().build())
-        .enqueue(new ApolloCall.Callback&lt;MyNotesQuery.Data&gt;() {
+        .execute(MyNotesQuery.Data.class)
+        .respondWith(new Responder&lt;Response&lt;MyNotesQuery.Data&gt;&gt;() {
             @Override
-            public void onResponse(Response&lt;MyNotesQuery.Data&gt; response) {
+            public void onResult(Response&lt;MyNotesQuery.Data&gt; value) {
                 // Do some magic with the response
             }
 
             @Override
-            public void onFailure(ApolloException e) {
+            public void onException(Exception exception) {
                 /// Oops! Something went wrong.
             }
         });</code></pre>
@@ -1458,19 +1505,19 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService
+<pre class="highlightjs highlight"><code>SyncClient
         .getInstance()
-        .getApolloClient()
-        .mutate(CreateNoteMutation.builder().text("The note text").build())
-        .enqueue(new ApolloCall.Callback&lt;CreateNoteMutation.Data&gt;() {
+        .mutation(CreateNoteMutation.builder().text("The note text").build())
+        .execute(CreateNoteMutation.Data.class)
+        .respondWith(new Responder&lt;Response&lt;TestMutMutation.Data&gt;&gt;() {
             @Override
-            public void onResponse(Response&lt;CreateNoteMutation.Data&gt; response) {
+            public void onResult(Response&lt;TestMutMutation.Data&gt; value) {
                 // Do some magic with the response
             }
 
             @Override
-            public void onFailure(ApolloException e) {
-                /// Oops! Something went wrong.
+            public void onException(Exception exception) {
+                // Oops! Something went wrong.
             }
         });</code></pre>
 </div>
@@ -1535,19 +1582,19 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 <div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>SyncService
+<pre class="highlightjs highlight"><code>SyncClient
         .getInstance()
-        .getApolloClient()
         .subscribe(new NoteAddedSubscription())
-        .execute(new ApolloSubscriptionCall.Callback&lt;NoteAddedSubscription.Data&gt;() {
+        .execute(NoteAddedSubscription.Data.class)
+        .respondWith(new Responder&lt;Response&lt;NoteAddedSubscription.Data&gt;&gt;() {
             @Override
-            public void onResponse(Response&lt;NoteAddedSubscription.Data&gt; response) {
+            public void onResult(Response&lt;NoteAddedSubscription.Data&gt; response) {
                 // Do some magic with the response
             }
 
             @Override
-            public void onFailure(ApolloException e) {
-                /// Oops! Something went wrong.
+            public void onException(Exception exception) {
+                // Oops! Something went wrong.
             }
         });</code></pre>
 </div>
@@ -1800,6 +1847,18 @@ To point the server to the application, please add a new environment variable:</
 <div class="content">
 <pre>KEYCLOAK_CONFIG_FILE=/opt/keycloak/config</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UNAUTHORIZED=0 environment variable to deployment config of data-sync-server, otherwise the Keycloak-protected Data Sync won&#8217;t work - the playground will be unavailable.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
