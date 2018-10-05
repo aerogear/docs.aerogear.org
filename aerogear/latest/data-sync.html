@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Sync :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/data-sync.html">
-    <meta name="generator" content="Antora 1.0.0">
+    <meta name="generator" content="Antora 1.1.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -109,11 +109,6 @@ Zepto(function($){
               <li>
                 <a href="https://aerogear.org/services/push/">
                   <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
-                </a>
-              </li>
-              <li>
-                <a href="https://aerogear.org/services/runtime-connector/">
-                  <i class="material-icons" aria-hidden="true">cloud</i> Runtime Connector
                 </a>
               </li>
               <li>
@@ -478,6 +473,7 @@ Zepto(function($){
 <ul class="sectlevel2">
 <li><a href="#the-schema-editor">The Schema Editor</a></li>
 <li><a href="#structure-view">Structure View</a></li>
+<li><a href="#playground">Playground</a></li>
 </ul>
 </li>
 <li><a href="#resolvers">Adding Resolvers to a Schema</a>
@@ -983,6 +979,12 @@ When defining <a href="https://graphql.org/learn/schema/#scalar-types">custom sc
 <div class="paragraph">
 <p>After saving a schema the structure view on the right side of the <code>Schema</code> tab will be updated. If your schema contains errors you will see the error message there.
 Otherwise you will see a list of all your types, queries, mutations and subscriptions. This view is read only and can be used to quickly browse a schema.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="playground"><a class="anchor" href="#playground"></a>Playground</h3>
+<div class="paragraph">
+<p>A playground is provided which allows you to test your changes to the schema. To use the playground, navigate to the tab in the UI and then write any queries or mutations you wish. Some useful features of the playground include code completion, query variables and full http header support. For more information about the playground and what is possible please visit <a href="https://github.com/prisma/graphql-playground">Prisma Playground</a>.</p>
 </div>
 </div>
 </div>
@@ -2102,7 +2104,6 @@ type Mutation {
         <ul class="list-unstyled">
          <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
          <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
-         <li><a href="https://aerogear.org/services/runtime-connector/">Runtime Connector</a></li>
          <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
          <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
          <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
