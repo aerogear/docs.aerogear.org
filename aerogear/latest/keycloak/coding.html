@@ -639,6 +639,17 @@ Make sure this file is visible in Xcode, add the file if necessary.
 </div>
 </div>
 </li>
+<li>
+<p>To prevent build errors, add the following in your app&#8217;s <strong>build.gradle</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+}</code></pre>
+</div>
+</div>
+</li>
 </ol>
 </div>
 </div>
