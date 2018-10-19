@@ -649,7 +649,7 @@ subscription noteAdded {
 <h2 id="using-the-sync-mobile-service"><a class="anchor" href="#using-the-sync-mobile-service"></a>Using the Sync Mobile Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Sync SDK provides a method to get a configured instance of the Apollo Client</p>
+<p>Use the AeroGear SDK sync library to provision a configured instance of the sync client (SyncClient):</p>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
@@ -674,7 +674,7 @@ subscription noteAdded {
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>Use the <code>Query</code> method from Apollo client to fire a query:</p>
+<p>Use the <code>query</code> method from SyncClient:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -685,7 +685,7 @@ subscription noteAdded {
         .respondWith(new Responder&lt;Response&lt;MyNotesQuery.Data&gt;&gt;() {
             @Override
             public void onResult(Response&lt;MyNotesQuery.Data&gt; value) {
-                // Do some magic with the response
+                // Do some magic with the response.
             }
 
             @Override
@@ -706,9 +706,6 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Check the <a href="https://github.com/apollographql/apollo-android/">Apollo GraphQL Client for Android</a> for a complete list of options.</p>
 </div>
 </div>
 </div>
@@ -751,7 +748,7 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>Use the <code>Mutate</code> method from Apollo client to fire a mutation:</p>
+<p>Use the <code>mutate</code> method from SyncClient:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -762,7 +759,7 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
         .respondWith(new Responder&lt;Response&lt;TestMutMutation.Data&gt;&gt;() {
             @Override
             public void onResult(Response&lt;TestMutMutation.Data&gt; value) {
-                // Do some magic with the response
+                // Do some magic with the response.
             }
 
             @Override
@@ -783,9 +780,6 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Check the <a href="https://github.com/apollographql/apollo-android/">Apollo GraphQL Client for Android</a> for a complete list of options.</p>
 </div>
 </div>
 </div>
@@ -826,7 +820,7 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 <div class="sect2">
 <h3 id="subscription"><a class="anchor" href="#subscription"></a>Subscription</h3>
 <div class="paragraph">
-<p>Use the <code>subscribe</code> method from Apollo client to fire a subscription</p>
+<p>Use the <code>subscribe</code> method from SyncClient:</p>
 </div>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
@@ -839,7 +833,7 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
         .respondWith(new Responder&lt;Response&lt;NoteAddedSubscription.Data&gt;&gt;() {
             @Override
             public void onResult(Response&lt;NoteAddedSubscription.Data&gt; response) {
-                // Do some magic with the response
+                // Do some magic with the response.
             }
 
             @Override
@@ -860,9 +854,6 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Check the <a href="https://github.com/apollographql/apollo-android/">Apollo GraphQL Client for Android</a> for a complete list of options.</p>
 </div>
 </div>
 </div>
