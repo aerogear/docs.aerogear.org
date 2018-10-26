@@ -460,37 +460,14 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#introduction">Introduction to the {custom-service} Service</a></li>
 <li><a href="#setup">Prerequisites</a></li>
 <li><a href="#setting-up-the-runtime-connector-mobile-service">Setting Up the Runtime Connector Mobile Service</a></li>
-<li><a href="#provisioning-the-custom-runtime-connector-service">Provisioning the Custom Runtime Connector Service</a></li>
-<li><a href="#binding-a-mobile-client-with-the-custom-runtime-connector-service">Binding a Mobile Client with the Custom Runtime Connector Service</a>
-<ul class="sectlevel2">
-<li><a href="#procedure">Procedure</a></li>
-</ul>
-</li>
-<li><a href="#using-custom-service-in-an-app">Using {custom-service} in an App</a>
-<ul class="sectlevel2">
-<li><a href="#retrieving-the-custom-configuration-in-a-mobile-client">Retrieving the Custom Configuration in a Mobile Client</a></li>
-</ul>
-</li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction to the {custom-service} Service</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The {custom-service} service allows you connect your mobile apps to your own back-end API servers.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Bind your mobile client to custom back-end API services and business logic</p>
-</li>
-<li>
-<p>Ability to add custom configuration for a back-end service, which becomes accessible from your Mobile App</p>
-</li>
-</ul>
+<p>include::custom/index.adoc[]</p>
 </div>
 </div>
 </div>
@@ -500,7 +477,7 @@ Zepto(function($){
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with {product-name} as described in <a href="getting-started.html" class="page">Setting up AeroGear {product-name} on OpenShift</a>.</p>
 </li>
 </ul>
 </div>
@@ -509,299 +486,29 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="setting-up-the-runtime-connector-mobile-service"><a class="anchor" href="#setting-up-the-runtime-connector-mobile-service"></a>Setting Up the Runtime Connector Mobile Service</h2>
 <div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="provisioning-the-custom-runtime-connector-service"><a class="anchor" href="#provisioning-the-custom-runtime-connector-service"></a>Provisioning the Custom Runtime Connector Service</h2>
-<div class="sectionbody">
-<h3 id="prerequisites" class="discrete">Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running a back-end service that is exposed to the internet with a known URL.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>include::custom/provisioning.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>To provision the Custom Runtime Connector mobile service:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console.</p>
-</li>
-<li>
-<p>Create a new project or choose an existing project.</p>
-</li>
-<li>
-<p>Select <strong>Catalog</strong> from the left hand menu.</p>
-<div class="paragraph">
-<p>You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.</p>
-</div>
-</li>
-<li>
-<p>Click <strong>Services</strong> and choose the Custom Runtime Connector service.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
-</div>
-</div>
-</li>
-<li>
-<p>Follow the wizard for provisioning that service.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
+<p>include::custom/binding.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>When prompted, enter the following:</p>
+<p>include::custom/configuring-dev-env-custom.adoc[]</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Service Name (required)</strong>: Service name to be exposed to the mobile application.</p>
-</li>
-<li>
-<p><strong>Service URL (required)</strong>: Service url where the service is running.</p>
-</li>
-<li>
-<p><strong>Service JSON Configuration</strong>: Service configuration in a valid JSON format.</p>
-</li>
-</ul>
+<div id="creating" class="paragraph">
+<p>include::custom/creating-an-api-server.adoc[]</p>
 </div>
-<div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
-Provisioning a service may take some time.</p>
+<div id="connecting" class="paragraph">
+<p>include::custom/connecting-to-an-api-server.adoc[]</p>
 </div>
+<div id="calling" class="paragraph">
+<p>include::custom/calling-apis.adoc[]</p>
 </div>
+<div id="updating" class="paragraph">
+<p>include::custom/updating-runtime-parameters.adoc[]</p>
 </div>
-<div class="sect1">
-<h2 id="binding-a-mobile-client-with-the-custom-runtime-connector-service"><a class="anchor" href="#binding-a-mobile-client-with-the-custom-runtime-connector-service"></a>Binding a Mobile Client with the Custom Runtime Connector Service</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
-This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
-</div>
-<div class="paragraph">
-<p>To bind a Mobile Client with a mobile service:</p>
-</div>
-<div class="sect2">
-<h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
-</li>
-<li>
-<p>Select the Mobile Client name listed in the Mobile Clients section.</p>
-</li>
-<li>
-<p>Navigate to <strong>Mobile Services</strong> tab.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
-</div>
-</div>
-</li>
-<li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Custom Runtime Connector Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the Custom Runtime Connector Service.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>After the binding is finished, the Mobile Client has been updated with the custom configuration.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="using-custom-service-in-an-app"><a class="anchor" href="#using-custom-service-in-an-app"></a>Using {custom-service} in an App</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="retrieving-the-custom-configuration-in-a-mobile-client"><a class="anchor" href="#retrieving-the-custom-configuration-in-a-mobile-client"></a>Retrieving the Custom Configuration in a Mobile Client</h3>
-<div class="paragraph">
-<p>This section shows how to retrieve the configuration of the custom service in a Mobile Client by using the Core module of the Aerogear SDK.</p>
-</div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>If you do not use any other modules of the Aerogear SDK, make sure that the <code>android-core</code> is in the dependencies of your <code>app</code> module&#8217;s <code>build.gradle</code>:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
-    implementation 'org.aerogear:android-core:1.0.0'
-}</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Use the <code>getServiceConfigurationById</code> method to get the service configuration associated with your custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">ServiceConfiguration customConfig = MobileCore.getInstance().getServiceConfigurationById("[SERVICE NAME]");</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get the URL of the custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String url = customConfig.getUrl();</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String property = customConfig.getProperty("[PROPERTY NAME]");</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>If you do not use any other modules of the Aerogear SDK, make sure that the <code>AGSCore</code> is in your <code>Podfile</code>:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target :'YourTarget' do
-    pod 'AGSCore', '1.0.0'
-end</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Use the <code>getConfigurationById</code> function to get the service configuration associated with your custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let customConfig = AgsCore.instance.getConfigurationById("[SERVICE NAME]")</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get the URL of the custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let url = customConfig.url</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let property: JSONValue = customConfig.config["[PROPERTY NAME]"]</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use the <code>getConfigById</code> function to get the service configuration associated with your custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const core = require("@aerogear/core").INSTANCE;
-const customConfig = core.getConfigById("[SERVICE NAME]");</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>@aerogear/core</code> is a dependency of <code>@aerogear/app</code> which should always be installed because it contains the `init`function to initialize all other SDK modules.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Get the URL of the custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const url = customConfig.url;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// customConfig.config contains the parsed Service JSON Configuration
-const property = customConfig.config["[PROPERTY NAME]"];</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use the <code>GetServiceConfigurationById</code> function to get the service configuration associated with your custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var customConfig = MobileCore.Instance.GetServiceConfigurationById("[SERVICE NAME]");</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get the URL of the custom service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var url = customConfig.Url;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get custom configuration properties (specified in <strong>Service JSON Configuration</strong> at provision time):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var property = customConfig["[PROPERTY NAME]"];</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
+<div id="securing" class="paragraph">
+<p>include::custom/securing-an-api-server.adoc[]</p>
 </div>
 </div>
 </div>
