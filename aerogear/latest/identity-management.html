@@ -470,6 +470,7 @@ Zepto(function($){
 <li><a href="#implementing-authentication">Implementing authentication</a></li>
 <li><a href="#refreshing-the-authentication-token">Refreshing the authentication token</a></li>
 <li><a href="#adding-log-out-option-to-your-mobile-app">Adding Log Out Option to your Mobile App</a></li>
+<li><a href="#authenticating-with-a-back-end-service">Authenticating with a back end service</a></li>
 </ul>
 </li>
 <li><a href="#access">Adding Access Control to your Mobile App</a></li>
@@ -1508,6 +1509,99 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="authenticating-with-a-back-end-service"><a class="anchor" href="#authenticating-with-a-back-end-service"></a>Authenticating with a back end service</h3>
+<div class="paragraph">
+<p>In a typical scenario, you not only want the user to authenticate on the mobile app, you also want that user to authenticate with a back end service. To achieve this, you must add an additional token:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Authorization: BEARER Yourtoken</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>SDK also provides number of helpers to build authentication headers that will provide way to refresh it once token is outdated.</p>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get the <code>AuthHeaderProvider</code> instance provided by the Aerogear SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">authService.getAuthHeaderProvider()</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Plug it into your networking layer. When using the <code>okhttp</code> library, this can be added to the list of request interceptors to automatically supply the required tokens:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MobileCore.getInstance()
+          .getHttpLayer()
+          .requestHeaderInterceptor()
+          .add(authService.getAuthHeaderProvider());</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get the <code>AuthHeaderProvider</code> instance provided by the Aerogear SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">authService.getAuthHeaderProvider()</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Plug it into your networking layer.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>The AeroGear Cordova SDK doesn&#8217;t provide an HTTP layer, therefore it cannot provide an Auth Header Provider.
+You must manually attach the <code>Bearer</code> header to your HTTP requests.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">req.setRequestHeader('Accept', 'application/json');
+req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get the <code>AuthHeaderProvider</code> instance provided by the Aerogear SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authHeaderProvider = authService.AuthHeaderProvider;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Plug it into your networking layer.</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <h3 id="additional-information" class="discrete">Additional Information</h3>
 <div class="ulist">
