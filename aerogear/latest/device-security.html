@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Security :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/device-security.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -549,7 +549,8 @@ The mobile-services.json file is the link between your provisioned services on O
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -559,7 +560,8 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -581,7 +583,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -591,7 +594,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -605,7 +609,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 <div class="sect3">
 <h4 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -643,7 +648,8 @@ It is user responsibility to manage the <code>SecurityService</code> lifecycle.
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -691,7 +697,8 @@ Any subsequent call to AGSSecurity returns the same instance of the <code>Securi
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -737,7 +744,8 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -833,7 +841,8 @@ Any subsequent call to MobileCore#getInstance returns the same instance of <code
 <p>Use this to help prevent your app running in a device that has been rooted/jailbroken.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -844,7 +853,8 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.ROOT_ENABLED);<
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
@@ -854,7 +864,8 @@ let result = security.check(JailbrokenDeviceCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
@@ -868,7 +879,8 @@ let result = security.check(JailbrokenDeviceCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Use <code>ROOT_ENABLED</code> for Android:</p>
 </div>
@@ -898,7 +910,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.JAILBREAK_ENABLED)
 <p>Use this to detect if Developer Mode has been enabled on the device.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -909,21 +922,24 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.DEVELOPER_MODE_
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>This check is not available for iOS.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>This check is not available for Cordova.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -952,7 +968,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.DEVELOPER_MODE_ENA
 <p>Use this to detect if a debugger is attached to the app.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -963,7 +980,8 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.DEBUGGER_ENABLE
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
@@ -973,7 +991,8 @@ let result = security.check(DebuggerAttachedCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
@@ -987,7 +1006,8 @@ let result = security.check(DebuggerAttachedCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Use <code>DEBUGGER_ENABLED</code> for Android:</p>
 </div>
@@ -1017,7 +1037,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.DEBUGGER_ATTACHED)
 <p>Use this to detect if the app is being run on an emulator.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -1028,7 +1049,8 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.IS_EMULATOR);</
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
@@ -1038,7 +1060,8 @@ let result = security.check(IsEmulatorCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
@@ -1052,7 +1075,8 @@ let result = security.check(IsEmulatorCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
@@ -1069,7 +1093,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.IS_EMULATOR);</cod
 <p>Use this to detect if a device has a lock screen set (with pin, fingerprint, pattern&#8230;&#8203;).</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -1080,7 +1105,8 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.SCREEN_LOCK_ENA
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
@@ -1090,7 +1116,8 @@ let result = security.check(DeviceLockEnabledCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1116,7 +1143,8 @@ For iOS devices this check requires iOS 8 or above.
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
@@ -1133,7 +1161,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.SCREEN_LOCK_ENABLE
 <p>Use this to detect whether the application’s data is configured to be synchronized across devices.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -1144,21 +1173,24 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.BACKUP_ENABLED)
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>This check is not available for iOS.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>This is not available for Cordova.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1187,7 +1219,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.BACKUP_ENABLED);</
 <p>Use this to detect whether a devices filesystem is encrypted.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
@@ -1198,21 +1231,24 @@ DeviceCheckResult result = securityService.check(DeviceCheckType.ENCRYPTION_ENAB
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>This check is not available for iOS.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>This is not available for Cordova.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1243,7 +1279,8 @@ DeviceCheckResult result = securityService.Check(DeviceChecks.ENCRYPTION_ENABLED
 <div class="sect3">
 <h4 id="synchronously"><a class="anchor" href="#synchronously"></a>Synchronously</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1271,7 +1308,8 @@ SyncDeviceCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();<
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Invoke multiple checks using the <code>checkMany</code> function:</p>
 </div>
@@ -1296,7 +1334,8 @@ let results = security.checkMany(checks)</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Executing multiple checks synchronously is not directly supported. Instead, it&#8217;s possible to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener">await</a> operator.</p>
 </div>
@@ -1324,7 +1363,8 @@ let results = security.checkMany(checks)</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1350,7 +1390,8 @@ Dictionary&lt;string, DeviceCheckResult&gt; results = checkExecutor.Execute();</
 <div class="sect3">
 <h4 id="asynchronously"><a class="anchor" href="#asynchronously"></a>Asynchronously</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1378,14 +1419,16 @@ AsyncDeviceCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecu
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Executing multiple checks asynchronously is not supported at the moment for this platform.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Invoke multiple checks using the <code>checkMany</code> method:</p>
 </div>
@@ -1416,7 +1459,8 @@ This method returns a Promise with an array containing all <code>DeviceCheckResu
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Executing multiple checks asynchronously is not supported at the moment for this platform.</p>
 </div>
@@ -1429,10 +1473,11 @@ This method returns a Promise with an array containing all <code>DeviceCheckResu
 <div class="sect3">
 <h4 id="adding-custom-device-checks"><a class="anchor" href="#adding-custom-device-checks"></a>Adding Custom Device Checks</h4>
 <div class="paragraph">
-<p>Besides the <a href="security/index.html#ref_terminology_Device%20Security_ref_terminology" class="page">Provided Device Checks</a> it&#8217;s also possible to make use of your own custom checks. Follow the next steps depending on your platform to implement them:</p>
+<p>Besides the <a href="#">security/index.adoc#ref_terminology_Device%20Security_ref_terminology</a> it&#8217;s also possible to make use of your own custom checks. Follow the next steps depending on your platform to implement them:</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1467,7 +1512,8 @@ DeviceCheckResult result = securityService.check(customDeviceCheck);</code></pre
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1503,7 +1549,8 @@ let result = security.check(MyCustomCheck())</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1543,7 +1590,8 @@ securityService.check(new CustomDeviceCheck())
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1589,10 +1637,11 @@ DeviceCheckResult result = securityService.Check(new CustomDeviceCheck());</code
 <div class="sect3">
 <h4 id="reporting-device-checks-results-via-the-metrics-service"><a class="anchor" href="#reporting-device-checks-results-via-the-metrics-service"></a>Reporting Device Checks Results Via the Metrics Service</h4>
 <div class="paragraph">
-<p>In order to report the results of Device Checks utilize this service in conjunction with the <a href="metrics/index.html" class="page">Metrics Service</a>.</p>
+<p>In order to report the results of Device Checks utilize this service in conjunction with the <a href="mobile-metrics.html" class="page">Mobile Metrics</a> service.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Report individual checks via the <code>checkAndSendMetric</code> method:</p>
 </div>
@@ -1621,7 +1670,8 @@ Map&lt;String, DeviceCheckResult&gt; results = DeviceCheckExecutor.Builder.newSy
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Report individual checks via the <code>checkAndPublishMetric</code> function:</p>
 </div>
@@ -1642,7 +1692,8 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Report individual checks via the <code>checkAndPublishMetric</code> method:</p>
 </div>
@@ -1675,7 +1726,8 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Report individual checks:</p>
 </div>

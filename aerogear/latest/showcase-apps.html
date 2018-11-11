@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Showcase Apps :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/showcase-apps.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -448,6 +448,42 @@ Zepto(function($){
 </div>
 <article class="doc">
 <h1>Introduction to Showcase Apps</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#showcase-apps">Showcase Apps</a>
+<ul class="sectlevel2">
+<li><a href="#introduction">Introduction</a></li>
+</ul>
+</li>
+<li><a href="#using-the-showcase-apps">Using the Showcase Apps</a>
+<ul class="sectlevel2">
+<li><a href="#setup">Setting up Mobile Services to Demonstrate Showcase Apps</a></li>
+<li><a href="#app">Setting Up the Showcase App</a></li>
+<li><a href="#binding">Binding the Showcase Mobile Client to Mobile Services</a></li>
+</ul>
+</li>
+<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+<ul class="sectlevel2">
+<li><a href="#build">Building and Running the Showcase App</a></li>
+</ul>
+</li>
+<li><a href="#certs">Using Self-Signed Certificates in Mobile Apps</a>
+<ul class="sectlevel2">
+<li><a href="#extracting-root-ca">1. Extracting the OpenShift Root Certificate Authority Cert</a></li>
+<li><a href="#installing-on-device">2. Installing the OpenShift Root Certificate Authority Cert on a Device</a></li>
+</ul>
+</li>
+<li><a href="#features">Demonstrating the ShowCase App Features</a>
+<ul class="sectlevel2">
+<li><a href="#identity-management">Identity Management</a></li>
+<li><a href="#device-security">Device Security</a></li>
+<li><a href="#push-notifications">Push Notifications</a></li>
+<li><a href="#mobile-metrics">Mobile Metrics</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="showcase-apps"><a class="anchor" href="#showcase-apps"></a>Showcase Apps</h2>
 <div class="sectionbody">
@@ -505,17 +541,17 @@ starting point for the developers.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>To demonstrate Mobile Metrics, <a href="metrics/provisioning.html" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="mobile-metrics.html" class="page">Mobile Metrics Service</a></p>
+<p>To demonstrate Mobile Metrics, <a href="mobile-metrics.html#provisioning-metrics-service" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="mobile-metrics.html" class="page">Mobile Metrics Service</a></p>
 </li>
 <li>
 <p>To demonstrate Identity Management:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><a href="keycloak/provisioning.html" class="page">Provision the Identity Management service</a>.</p>
+<p><a href="identity-management.html#provisioning-the-identity-management-service" class="page">Provision the Identity Management service</a>.</p>
 </li>
 <li>
-<p><a href="keycloak/keycloak-setup.html" class="page">Set up the Identity Management service</a>.</p>
+<p><a href="identity-management.html#configuring-the-service" class="page">Set up the Identity Management service</a>.</p>
 </li>
 <li>
 <p>Create a new user to authenticate as. Follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a>.</p>
@@ -530,7 +566,7 @@ starting point for the developers.</p>
 </div>
 </li>
 <li>
-<p>To demonstrate Push Notifications, <a href="push/provisioning.html" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
+<p>To demonstrate Push Notifications, <a href="push-notifications.html#provisioning-push-notifications-service" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
 </li>
 </ol>
 </div>
@@ -539,7 +575,8 @@ starting point for the developers.</p>
 <h3 id="app"><a class="anchor" href="#app"></a>Setting Up the Showcase App</h3>
 <h4 id="prerequisites-2" class="discrete">Prerequisites</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
 </div>
@@ -559,7 +596,8 @@ starting point for the developers.</p>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
 </div>
@@ -591,7 +629,8 @@ If you have not installed CocoaPods, install it by running the command:</p>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
 </div>
@@ -611,7 +650,8 @@ If you have not installed CocoaPods, install it by running the command:</p>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>You need the following installed on your system:</p>
 </div>
@@ -642,7 +682,8 @@ If you have not installed CocoaPods, install it by running the command:</p>
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
@@ -653,7 +694,8 @@ $ git checkout 1.0.0</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
@@ -664,7 +706,8 @@ $ git checkout 1.0.0</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/cordova-showcase-template.git
@@ -675,7 +718,8 @@ $ git checkout 1.0.0</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
@@ -693,7 +737,8 @@ $ git checkout 1.0.0</code></pre>
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -711,7 +756,8 @@ Firebase Cloud Messaging console.</p>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -749,7 +795,8 @@ The exported p12 file with the password will be used later when binding your Mob
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -767,7 +814,8 @@ Firebase Cloud Messaging console.</p>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Push Notifications Service is not supported on Xamarin.</p>
 </div>
@@ -779,13 +827,13 @@ Firebase Cloud Messaging console.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><a href="metrics/binding.html" class="page">Bind the Mobile Client to the Mobile Metrics service</a> if you want to demonstrate the Mobile Metrics service.</p>
+<p><a href="mobile-metrics.html" class="page">Bind the Mobile Client to the Mobile Metrics service</a> if you want to demonstrate the Mobile Metrics service.</p>
 </li>
 <li>
-<p><a href="keycloak/binding.html" class="page">Bind the Mobile Client to the Identity Management service</a> if you want to demonstrate authentication.</p>
+<p><a href="identity-management.html" class="page">Bind the Mobile Client to the Identity Management service</a> if you want to demonstrate authentication.</p>
 </li>
 <li>
-<p><a href="push/binding.html" class="page">Bind the Mobile Client to the Push Notifications service</a> if you want to demonstrate Push Notifications.</p>
+<p><a href="push-notifications.html" class="page">Bind the Mobile Client to the Push Notifications service</a> if you want to demonstrate Push Notifications.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -793,7 +841,7 @@ Firebase Cloud Messaging console.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This step also creates a variant as described in <a href="push/index.html" class="page"> Push Notifications Service</a> terminology.
+This step also creates a variant as described in <a href="push-notifications.html" class="page"> Push Notifications Service</a> terminology.
 </td>
 </tr>
 </table>
@@ -839,7 +887,8 @@ The mobile-services.json file is the link between your provisioned services on O
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -849,7 +898,8 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -871,7 +921,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -881,7 +932,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -900,7 +952,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
@@ -909,7 +962,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Run this command to install dependencies:</p>
 </div>
@@ -931,7 +985,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
@@ -941,7 +996,8 @@ $ npm run ionic:build</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Run this command to install dependencies (optional):</p>
 </div>
@@ -960,7 +1016,8 @@ $ npm run ionic:build</code></pre>
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
 no connected device, it installs and runs the application on the emulator.</p>
@@ -973,7 +1030,8 @@ no connected device, it installs and runs the application on the emulator.</p>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
 </div>
@@ -992,7 +1050,8 @@ Do not use <code>.xcodeproj</code>. If you open up a project file instead of a w
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>To run the showcase app, use these commands:</p>
 </div>
@@ -1017,7 +1076,8 @@ $ ionic cordova run android --emulator    # run on the Android emulator</code></
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1134,7 +1194,8 @@ base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/loca
 <div class="sect2">
 <h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1183,7 +1244,8 @@ certificate and let you add it to the device. Here is <a href="https://support.g
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1271,7 +1333,7 @@ application where you can see the roles and basic information of the user you ha
 <p>View the results of the Device security checks.</p>
 </li>
 <li>
-<p>Navigate to the Grafana, and view the metrics as described in <a href="metrics/analysing-app-usage.html" class="page">Analyzing App Usage</a></p>
+<p>Navigate to the Grafana, and view the metrics as described in <a href="mobile-metrics.html" class="page">Analyzing App Usage</a></p>
 </li>
 </ol>
 </div>
@@ -1282,7 +1344,7 @@ application where you can see the roles and basic information of the user you ha
 <ol class="arabic">
 <li>
 <p>Send a push notification as described in
-<a href="push/proc_sending-a-push-notification.html" class="page">Sending a Push Notification</a></p>
+<a href="push-notifications.html" class="page">Sending a Push Notification</a></p>
 </li>
 <li>
 <p>Launch the showcase app and view the notification.</p>
@@ -1295,12 +1357,12 @@ application where you can see the roles and basic information of the user you ha
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Launch the showcase app. It automatically sends <a href="metrics/analysing-app-usage.html" class="page">app and device metrics</a>.</p>
+<p>Launch the showcase app. It automatically sends <a href="mobile-metrics.html" class="page">app and device metrics</a>.</p>
 </li>
 <li>
 <p>Navigate to the Grafana, and view the metrics.</p>
 <div class="paragraph">
-<p>If you perform <a href="showcase-apps/device-security.html" class="page">device security</a> checks, related metrics are also displayed.</p>
+<p>If you perform <a href="device-security.html" class="page">device security</a> checks, related metrics are also displayed.</p>
 </div>
 </li>
 </ol>

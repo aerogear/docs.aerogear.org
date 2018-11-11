@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/identity-management.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -712,28 +712,32 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <div class="sect3">
 <h4 id="choose-schema"><a class="anchor" href="#choose-schema"></a>Choose the schema of a redirect url</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>It is recommended to use the package name of the Android app as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>It is recommended to use the Bundle Identifier of the iOS app as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template</code>)</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Redirect url is <code>http://localhost/*</code>, without <code>:/callback</code>. Web Origin is <code>http://localhost/*</code>.</p>
 </div>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Depending on the platform, set the redirect as described in either the Android or the iOS tab.</p>
 </div>
@@ -763,7 +767,7 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
 </li>
 <li>
-<p>Log in to the Administration console using the credentials you specified at <a href="keycloak/provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
+<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning-the-identity-management-service">Provisioning</a> the service (defaults to admin:admin).</p>
 </li>
 <li>
 <p>Select <code>Clients</code> from the left navigation menu.</p>
@@ -824,7 +828,8 @@ The mobile-services.json file is the link between your provisioned services on O
 </ol>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -834,7 +839,8 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -856,7 +862,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -866,7 +873,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -883,7 +891,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 <div class="sect4">
 <h5 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h5>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -912,7 +921,8 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -948,7 +958,8 @@ auth = AGSAuth()</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>:</p>
 </div>
@@ -960,7 +971,8 @@ auth = AGSAuth()</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1001,7 +1013,8 @@ dotnet add package AeroGear.Mobile.Auth.Platform.iOS --version 1.0.0</code></pre
 <div class="sect3">
 <h4 id="initializing-the-sdk"><a class="anchor" href="#initializing-the-sdk"></a>Initializing the SDK</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1028,7 +1041,8 @@ dotnet add package AeroGear.Mobile.Auth.Platform.iOS --version 1.0.0</code></pre
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Set your custom configuration to the auth service instance, making sure the redirect URL matches the App&#8217;s Bundle Id.</p>
 </div>
@@ -1042,7 +1056,8 @@ try! AgsAuth.instance.configure(authConfig: authenticationConfig, useExternalUse
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Import and initialize Auth:</p>
 </div>
@@ -1080,7 +1095,8 @@ Initialization will also perform authentication
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1191,7 +1207,8 @@ authService.Configure(authConfig);</code></pre>
 <p>The following examples show how to implement authentication using the Aerogear SDK on all the supported platforms.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1256,7 +1273,8 @@ This handler should always invoke <code>handleAuthResult</code>, providing the <
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1297,9 +1315,10 @@ func onLoginComplete(user: User?, err: Error?) {
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
-<p>Authentication will be performed on initialization as described <a href="keycloak/coding.html#initializing-the-sdk" class="page">here</a>. To manually redirect to the login screen, use:</p>
+<p>Authentication will be performed on initialization as described <a href="#">keycloak/coding.adoc#initializing-the-sdk</a>. To manually redirect to the login screen, use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1313,7 +1332,8 @@ func onLoginComplete(user: User?, err: Error?) {
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1341,7 +1361,8 @@ If the refresh token is still valid, the authentication token can be refreshed e
 The following code shows how the authentication token can be refreshed automatically:</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Retrieve the current user and refresh the access token when possible and required:</p>
 </div>
@@ -1353,7 +1374,8 @@ The following code shows how the authentication token can be refreshed automatic
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Retrieve the current user and refresh the access token when possible and required:</p>
 </div>
@@ -1371,7 +1393,8 @@ The following code shows how the authentication token can be refreshed automatic
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Retrieve the keycloak adapter object and refresh the access token, when possible and required:</p>
 </div>
@@ -1388,7 +1411,8 @@ The following code shows how the authentication token can be refreshed automatic
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>Retrieve the current user and refresh, if needed and still possible, its access token:</p>
 </div>
@@ -1407,7 +1431,8 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 <p>The following section describes how to perform a logout.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1441,7 +1466,8 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1472,7 +1498,8 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>To logout invoke the <code>logout</code> function:</p>
 </div>
@@ -1486,7 +1513,8 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="paragraph">
 <p>To logout invoke the <code>Logout</code> method:</p>
 </div>
@@ -1525,7 +1553,8 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 <p>SDK also provides number of helpers to build authentication headers that will provide way to refresh it once token is outdated.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1552,7 +1581,8 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1571,7 +1601,8 @@ To perform <strong>backchannel or federated logouts</strong>, you must enable th
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>The AeroGear Cordova SDK doesn&#8217;t provide an HTTP layer, therefore it cannot provide an Auth Header Provider.
 You must manually attach the <code>Bearer</code> header to your HTTP requests.</p>
@@ -1585,7 +1616,8 @@ req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);<
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1607,7 +1639,7 @@ req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);<
 <div class="ulist">
 <ul>
 <li>
-<p><a href="keycloak/android-additional-configuration.html" class="page">Additional configuration for Android</a></p>
+<p><a href="#android-additional-configuration">Additional configuration for Android</a></p>
 </li>
 <li>
 <p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">Keycloak OICD Providers</a></p>
@@ -1627,7 +1659,8 @@ req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);<
 <p>Roles are divided into two types. Resource roles which belong to the client the user has authenticated against, and Realm roles which belong to the realm the client is in.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1652,7 +1685,8 @@ boolean isModerator = currentUser.hasResourceRole("my_resource", "user_moderator
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1686,7 +1720,8 @@ let hasModeratorRole = currentUser.hasClientRole(client: "my_client", role: "mod
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="content">
+<div class="title">Cordova</div>
 <div class="paragraph">
 <p>Get the realm roles from the auth service:</p>
 </div>
@@ -1710,7 +1745,8 @@ No function to retrieve the resource roles is currently exported but you can use
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="content">
+<div class="title">Xamarin</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>

@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Sync :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/data-sync.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -754,7 +754,7 @@ This association is called <strong>binding</strong> and it is necessary for your
 <div class="ulist">
 <ul>
 <li>
-<p>Make sure it is <a href="sync/provisioning.html" class="page">provisioned</a>.</p>
+<p>Make sure the Data Sync service is provisioned.</p>
 </li>
 <li>
 <p>Select a route in OpenShift.</p>
@@ -1215,7 +1215,8 @@ type Subscription {
 <div class="sect2">
 <h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Add <code>apollo-gradle-plugin</code> dependency to your project&#8217;s <code>build.gradle</code> file:</p>
 </div>
@@ -1251,7 +1252,8 @@ apply plugin: 'com.apollographql.android'</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1286,7 +1288,8 @@ end</code></pre>
 <p><a href="https://github.com/apollographql">Apollo client</a> requires some configuration to work.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1339,7 +1342,8 @@ subscription noteAdded {
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1404,7 +1408,8 @@ subscription noteAdded {
 <p>Use the AeroGear SDK sync library to provision a configured instance of the sync client (SyncClient):</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>SyncClient.getInstance()</code></pre>
@@ -1413,7 +1418,8 @@ subscription noteAdded {
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>AgsSync.instance.client</code></pre>
@@ -1424,7 +1430,8 @@ subscription noteAdded {
 <div class="sect3">
 <h4 id="query"><a class="anchor" href="#query"></a>Query</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Use the <code>query</code> method from SyncClient:</p>
 </div>
@@ -1462,7 +1469,8 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Use the <code>fetch</code> method from Apollo client to fire a query:</p>
 </div>
@@ -1498,7 +1506,8 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 <div class="sect3">
 <h4 id="mutation"><a class="anchor" href="#mutation"></a>Mutation</h4>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="paragraph">
 <p>Use the <code>mutate</code> method from SyncClient:</p>
 </div>
@@ -1536,7 +1545,8 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="paragraph">
 <p>Use the <code>perform</code> method from Apollo client to fire a mutation:</p>
 </div>
@@ -1575,7 +1585,8 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 <p>Use the <code>subscribe</code> method from SyncClient:</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>SyncClient
@@ -1610,7 +1621,8 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>AgsSync.instance.client?.subscribe(subscription: NoteAddedSubscription())  { result, error in
@@ -1651,10 +1663,10 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned the Mobile Metrics Service as described in <a href="metrics/provisioning.html" class="page">Provisioning Mobile Metrics Service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="mobile-metrics.html" class="page">Mobile Metrics service</a>.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned the Data Sync Service as described in <a href="sync/provisioning.html" class="page">Provisioning Data Sync Service</a>.</p>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="data-sync.html" class="page">Data Sync</a> service.</p>
 </li>
 </ul>
 </div>
@@ -1757,13 +1769,13 @@ authorization for their applications.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Ensure Data Sync is <a href="sync/provisioning.html" class="page">provisioned</a>.</p>
+<p>Make sure the Data Sync service is provisioned.</p>
 </li>
 <li>
-<p>Ensure Identity Management is <a href="keycloak/provisioning.html" class="page">provisioned</a></p>
+<p>Make sure the <a href="identity-management.html" class="page">Identity Management</a> service is provisioned.</p>
 </li>
 <li>
-<p>Ensure Identity Management is <a href="keycloak/coding.html" class="page">configured</a> to work with your mobile applications</p>
+<p>Create an app that works with the Identity Management service.</p>
 </li>
 </ul>
 </div>
@@ -1860,7 +1872,8 @@ When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UN
 <p>When user logs in with Identity Management SDK, user principal can be used to retrieve token. Data Sync SDK can use this token to perform requests to the Data Sync backend.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="title">Android</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>MobileCore.getInstance().getHttpLayer().requestHeaderInterceptor().add(authService.getAuthHeaderProvider());</code></pre>
@@ -1869,7 +1882,8 @@ When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UN
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="content">
+<div class="title">iOS</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>if let transport = AgsSync.instance.transport {
