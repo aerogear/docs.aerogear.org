@@ -1215,8 +1215,7 @@ type Subscription {
 <div class="sect2">
 <h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="paragraph">
 <p>Add <code>apollo-gradle-plugin</code> dependency to your project&#8217;s <code>build.gradle</code> file:</p>
 </div>
@@ -1252,8 +1251,7 @@ apply plugin: 'com.apollographql.android'</code></pre>
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1288,8 +1286,7 @@ end</code></pre>
 <p><a href="https://github.com/apollographql">Apollo client</a> requires some configuration to work.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1342,8 +1339,7 @@ subscription noteAdded {
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1408,8 +1404,7 @@ subscription noteAdded {
 <p>Use the AeroGear SDK sync library to provision a configured instance of the sync client (SyncClient):</p>
 </div>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>SyncClient.getInstance()</code></pre>
@@ -1418,8 +1413,7 @@ subscription noteAdded {
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>AgsSync.instance.client</code></pre>
@@ -1430,8 +1424,7 @@ subscription noteAdded {
 <div class="sect3">
 <h4 id="query"><a class="anchor" href="#query"></a>Query</h4>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="paragraph">
 <p>Use the <code>query</code> method from SyncClient:</p>
 </div>
@@ -1469,8 +1462,7 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="paragraph">
 <p>Use the <code>fetch</code> method from Apollo client to fire a query:</p>
 </div>
@@ -1506,8 +1498,7 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 <div class="sect3">
 <h4 id="mutation"><a class="anchor" href="#mutation"></a>Mutation</h4>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="paragraph">
 <p>Use the <code>mutate</code> method from SyncClient:</p>
 </div>
@@ -1545,8 +1536,7 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="paragraph">
 <p>Use the <code>perform</code> method from Apollo client to fire a mutation:</p>
 </div>
@@ -1585,8 +1575,7 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 <p>Use the <code>subscribe</code> method from SyncClient:</p>
 </div>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>SyncClient
@@ -1621,8 +1610,7 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>AgsSync.instance.client?.subscribe(subscription: NoteAddedSubscription())  { result, error in
@@ -1872,8 +1860,7 @@ When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UN
 <p>When user logs in with Identity Management SDK, user principal can be used to retrieve token. Data Sync SDK can use this token to perform requests to the Data Sync backend.</p>
 </div>
 <div class="sidebarblock primary">
-<div class="content">
-<div class="title">Android</div>
+<div class="title">Android</div><div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>MobileCore.getInstance().getHttpLayer().requestHeaderInterceptor().add(authService.getAuthHeaderProvider());</code></pre>
@@ -1882,8 +1869,7 @@ When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UN
 </div>
 </div>
 <div class="sidebarblock secondary">
-<div class="content">
-<div class="title">iOS</div>
+<div class="title">iOS</div><div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>if let transport = AgsSync.instance.transport {

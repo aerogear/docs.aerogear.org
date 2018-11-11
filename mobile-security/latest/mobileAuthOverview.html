@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentication and Session Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/mobileAuthOverview.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -478,55 +478,7 @@ The <a href="https://github.com/aerogear/aerogear-android-sdk/blob/master/docs/g
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "version": 1,
-  "clusterName": "https://192.168.37.1:8443",
-  "namespace": "myproject",
-  "clientId": "app-android",
-  "services": [
-    {
-      "id": "custom-runtime-connector",
-      "name": "notes-service",
-      "type": "Custom Runtime Connector",
-      "url": "https://api.security.feedhenry.org",
-      "config": {
-      }
-    },
-    {
-      "id": "keycloak",
-      "name": "keycloak",
-      "type": "keycloak",
-      "url": "https://keycloak.security.feedhenry.org/auth",
-      "config": {
-        "auth-server-url": "https://keycloak.security.feedhenry.org/auth",
-        "realm": "secure-app",
-        "resource": "client-app",
-        "ssl-required": "external"
-      }
-    },
-    {
-      "id": "metrics",
-      "name": "metrics",
-      "url": "http://192.168.0.101:3000/metrics",
-      "type": "metrics",
-      "config": {
-      }
-    },
-    {
-      "id": "push",
-      "name": "push",
-      "url": "https://ups-dm-myproject-1.193b.starter-ca-central-1.openshiftapps.com/",
-      "type": "push",
-      "config": {
-        "android": {
-          "variantId": "9351f86d-9531-4ba3-beac-b73dc3c8764b",
-          "variantSecret": "22784d6d-9526-4826-bbed-b18e977fc38c",
-          "senderId": "56938872708"
-        }
-      }
-    }
-  ]
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">+include::https://raw.githubusercontent.com/aerogear/android-showcase-template/eacf9f364346d3eaa0cfc40f37aa53ae2696e17e/app/src/main/assets/mobile-services.json[]+</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -662,14 +614,7 @@ The <a href="https://github.com/aerogear/aerogear-ios-sdk/tree/master/docs/auth"
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">{
-    "version": 1.0,
-    "clusterName": "192.168.64.74:8443",
-    "namespace": "myproject",
-    "clientId": "example_client_id",
-    "services": [
-    ]
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">+include::https://raw.githubusercontent.com/aerogear/ios-showcase-template/58efd7744fd57b27145d27f5ed4459dab89fc7fa/ios-showcase-template/mobile-services.json[]+</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -790,17 +735,7 @@ KeycloakService.init()
 <div class="listingblock">
 <div class="title">Code</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-  "realm": "secure-app",
-  "url": "https://keycloak.security.feedhenry.org/auth/",
-  "ssl-required": "external",
-  "clientId": "client-app",
-  "public-client": true,
-  "use-resource-role-mappings": true,
-  "pinningFingerprint": "44 C8 9A 60 4E 29 82 85 8E 4F 75 1F 78 46 CD B3 0A 08 66 3F",
-  "apiServerUrl": "https://api.security.feedhenry.org",
-  "apiEndpoint": "/"
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">+include::https://raw.githubusercontent.com/feedhenry/mobile-security-cordova-template/c24297cda240efa40aca292e7d0657d7432d1eba/src/config/keycloak.json[]+</code></pre>
 </div>
 </div>
 <div class="paragraph">
