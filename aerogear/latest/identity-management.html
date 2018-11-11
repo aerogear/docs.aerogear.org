@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/identity-management.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -763,7 +763,7 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
 </li>
 <li>
-<p>Log in to the Administration console using the credentials you specified at <a href="keycloak/provisioning.html" class="page">Provisioning</a> (defaults to admin:admin)</p>
+<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning-the-identity-management-service">Provisioning</a> the service (defaults to admin:admin).</p>
 </li>
 <li>
 <p>Select <code>Clients</code> from the left navigation menu.</p>
@@ -1299,7 +1299,7 @@ func onLoginComplete(user: User?, err: Error?) {
 <div class="sidebarblock secondary">
 <div class="title">Cordova</div><div class="content">
 <div class="paragraph">
-<p>Authentication will be performed on initialization as described <a href="keycloak/coding.html#initializing-the-sdk" class="page">here</a>. To manually redirect to the login screen, use:</p>
+<p>Authentication will be performed on initialization as described <a href="#">keycloak/coding.adoc#initializing-the-sdk</a>. To manually redirect to the login screen, use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1607,7 +1607,7 @@ req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);<
 <div class="ulist">
 <ul>
 <li>
-<p><a href="keycloak/android-additional-configuration.html" class="page">Additional configuration for Android</a></p>
+<p><a href="#android-additional-configuration">Additional configuration for Android</a></p>
 </li>
 <li>
 <p><a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">Keycloak OICD Providers</a></p>
