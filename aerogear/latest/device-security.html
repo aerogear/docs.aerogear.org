@@ -451,7 +451,11 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#introduction">Introduction to the Device Security Service</a></li>
+<li><a href="#introduction">Introduction to the Device Security Service</a>
+<ul class="sectlevel2">
+<li><a href="#ref_terminology_Device Security_ref_terminology">Device Security Terminology</a></li>
+</ul>
+</li>
 <li><a href="#setup">Configuring your Development Environment for the Device Security Service</a></li>
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
 <ul class="sectlevel2">
@@ -505,6 +509,89 @@ Device Security is not currently associated with an OpenShift service, so there 
 </td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="ref_terminology_Device Security_ref_terminology"><a class="anchor" href="#ref_terminology_Device Security_ref_terminology"></a>Device Security Terminology</h3>
+<div class="paragraph">
+<p>This section describes terminology that is associated with Device Security.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Root Access Detection (ROOT_ENABLED)</dt>
+<dd>
+<p>Use it to help prevent your app running in a device that has been rooted/jailbroken. A device is considered rooted if <strong>any</strong> of the following are true:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A custom key has been used to sign the kernel</p>
+</li>
+<li>
+<p>The <code>su</code> binaries are present</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sidebarblock primary">
+<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<p><code>DeviceChecks.ROOT_ENABLED</code>.</p>
+</div>
+<div class="paragraph">
+<p>This function uses the <a href="https://github.com/scottyab/rootbeer" target="_blank" rel="noopener">Rootbeer</a> library to check if root access is present on the device.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">iOS</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Cordova</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for Cordova.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock secondary">
+<div class="title">Xamarin</div><div class="content">
+<div class="paragraph">
+<p>This check is not available for Xamarin.</p>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Developer Mode Detection (DEVELOPER_MODE_ENABLED)</dt>
+<dd>
+<p>To detect if Developer Mode has been enabled on the device the <code>DeviceCheckType#DEVELOPER_MODE_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/provider/Settings.html" target="_blank" rel="noopener">Settings</a> class.</p>
+</dd>
+<dt class="hdlist1">Debugger Detection (DEBUGGER_ENABLED)</dt>
+<dd>
+<p>To detect if an Android debugger is attached to the app the <code>DeviceCheckType#DEBUGGER_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Debug.html" target="_blank" rel="noopener">Debug</a> class.</p>
+</dd>
+<dt class="hdlist1">Emulator Detection (IS_EMULATOR)</dt>
+<dd>
+<p>To detect if the app is being run on an emulator the <code>DeviceCheckType#IS_EMULATOR</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Build.html" target="_blank" rel="noopener">Build</a> class.</p>
+</dd>
+<dt class="hdlist1">Device Lock Detection (SCREEN_LOCK_ENABLED)</dt>
+<dd>
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>DeviceCheckType#SCREEN_LOCK_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html" target="_blank" rel="noopener">KeyguardManager</a> class.</p>
+</dd>
+<dt class="hdlist1">App Data Backup Detection (BACKUP_ENABLED)</dt>
+<dd>
+<p>To detect whether the application’s data is configured to be synchronized across devices the <code>DeviceCheckType#BACKUP_ENABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">allowBackup</a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
+</dd>
+<dt class="hdlist1">Device Encryption Detection (ENCRYPTION_ENABLED)</dt>
+<dd>
+<p>To detect whether the devices' filesystem is encrypted the <code>DeviceCheckType#ENCRYPTION_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html" target="_blank" rel="noopener">DevicePolicyManager</a> class.</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
