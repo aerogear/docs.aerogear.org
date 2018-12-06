@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with the Mobile CLI :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobile-cli.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -133,8 +133,20 @@ Zepto(function($){
           <a href="https://aerogear.org/sdks">Mobile SDKs</a>
         </li>
 
-        <li class="hidden-sm active">
-          <a href="https://docs.aerogear.org">Docs</a>
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Docs<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://docs.aerogear.org/">
+                  Latest
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.aerogear.org/v1.0/latest/getting-started.html">
+                  1.0.0
+                </a>
+              </li>
+            </ul>
         </li>
    
         <li>
@@ -170,7 +182,10 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
+    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
@@ -188,22 +203,28 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#sdk">AeroGear SDK</a>
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -427,6 +448,9 @@ Zepto(function($){
         <li class="version is-current is-latest">
           <a href="index.html">latest</a>
         </li>
+        <li class="version">
+          <a href="../v1.0/index.html">v1.0</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -444,6 +468,13 @@ Zepto(function($){
     <li class="crumb"><a href="mobile-cli.html">Mobile CLI</a></li>
   </ul>
 </nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="mobile-cli.html">latest</a>
+    <a class="version" href="../v1.0/mobile-cli.html">v1.0</a>
+  </div>
+</div>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobile-cli.adoc"></a></div>
 </div>
 <article class="doc">
@@ -497,7 +528,7 @@ $ mobile create integration &lt;consumingServiceInstanceID&gt; &lt;providingServ
 <ul>
 <li>
 <p><strong>MobileClient:</strong> The mobile client is a resource that represents your
-mobile client application as part of the OpenShift UI and is also called the Mobile Client. It gives us the
+mobile client application as part of the OpenShift UI and is also called the Mobile App. It gives us the
 context and information needed to show you relevant information around
 your particular mobile runtime as well as allowing us to setup the
 different kind of client builds required.</p>

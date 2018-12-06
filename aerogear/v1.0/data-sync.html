@@ -162,7 +162,7 @@ Zepto(function($){
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav><div class="main-wrapper">
-<div class="navigation-container" data-component="aerogear" data-version="latest">
+<div class="navigation-container" data-component="aerogear" data-version="v1.0">
   <aside class="navigation" role="navigation">
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
@@ -182,10 +182,7 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
@@ -203,28 +200,22 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
-  </li>
-</ul>
+    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+    <a class="nav-link" href="mobile-clients.html#sdk">AeroGear SDK</a>
   </li>
 </ul>
   </li>
@@ -431,7 +422,7 @@ Zepto(function($){
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">Mobile Services</span>
-    <span class="version">latest</span>
+    <span class="version">v1.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -445,11 +436,11 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
-          <a href="index.html">latest</a>
+        <li class="version is-latest">
+          <a href="../latest/index.html">latest</a>
         </li>
-        <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+        <li class="version is-current">
+          <a href="index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -461,7 +452,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../latest/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -469,13 +460,13 @@ Zepto(function($){
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
+  <button class="versions-menu-toggle" title="Show other versions of page">v1.0</button>
   <div class="versions-menu">
-    <a class="version is-current" href="data-sync.html">latest</a>
-    <a class="version" href="../v1.0/data-sync.html">v1.0</a>
+    <a class="version" href="../latest/data-sync.html">latest</a>
+    <a class="version is-current" href="data-sync.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/data-sync.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/v1.0/modules/ROOT/pages/data-sync.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Data Sync</h1>
@@ -491,7 +482,7 @@ Zepto(function($){
 <li><a href="#setup">Setting Up the Data Sync Mobile Service</a>
 <ul class="sectlevel2">
 <li><a href="#provisioning-data-sync-service">Provisioning Data Sync Service</a></li>
-<li><a href="#binding-a-mobile-app-with-the-data-sync-service">Binding a Mobile App with the Data Sync Service</a></li>
+<li><a href="#binding-a-mobile-client-with-the-data-sync-service">Binding a Mobile Client with the Data Sync Service</a></li>
 </ul>
 </li>
 <li><a href="#ui">Managing your data sources using the Data Sync UI</a>
@@ -625,9 +616,6 @@ The software is available for you to use and investigate, however it might not w
 <li>
 <p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
 </li>
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned Mobile Developer Console as described in <a href="getting-started.html" class="page">Provisioning Mobile Developer Console</a>.</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -639,7 +627,7 @@ The software is available for you to use and investigate, however it might not w
 <p>Log into the OpenShift console.</p>
 </li>
 <li>
-<p>Choose a project where you have previously provisioned Mobile Developer Console.</p>
+<p>Create a new project or choose an existing project.</p>
 </li>
 <li>
 <p>Select <strong>Catalog</strong> from the left hand menu.</p>
@@ -648,7 +636,12 @@ The software is available for you to use and investigate, however it might not w
 </div>
 </li>
 <li>
-<p>Choose the Data Sync service.</p>
+<p>Click <strong>Services</strong> and choose the Data Sync service.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
+</div>
+</div>
 </li>
 <li>
 <p>Follow the wizard for provisioning that service.</p>
@@ -733,13 +726,13 @@ Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="binding-a-mobile-app-with-the-data-sync-service"><a class="anchor" href="#binding-a-mobile-app-with-the-data-sync-service"></a>Binding a Mobile App with the Data Sync Service</h3>
+<h3 id="binding-a-mobile-client-with-the-data-sync-service"><a class="anchor" href="#binding-a-mobile-client-with-the-data-sync-service"></a>Binding a Mobile Client with the Data Sync Service</h3>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile App, and that Mobile App must be associated with the mobile service.
+<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile Client, and that Mobile Client must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
-<p>To bind a Mobile App with a mobile service:</p>
+<p>To bind a Mobile Client with a mobile service:</p>
 </div>
 <div class="sect3">
 <h4 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h4>
@@ -749,7 +742,7 @@ This association is called <strong>binding</strong> and it is necessary for your
 <p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
 </li>
 <li>
-<p>Select the Mobile App name listed in the Mobile Apps section.</p>
+<p>Select the Mobile Client name listed in the Mobile Clients section.</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -760,7 +753,7 @@ This association is called <strong>binding</strong> and it is necessary for your
 </div>
 </li>
 <li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile App with the Data Sync Service.</p>
+<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile Client with the Data Sync Service.</p>
 </li>
 <li>
 <p>Fill out the binding parameters required by the Data Sync Service.</p>
