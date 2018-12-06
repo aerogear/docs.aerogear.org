@@ -162,7 +162,7 @@ Zepto(function($){
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav><div class="main-wrapper">
-<div class="navigation-container" data-component="aerogear" data-version="latest">
+<div class="navigation-container" data-component="aerogear" data-version="v1.0">
   <aside class="navigation" role="navigation">
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
@@ -182,10 +182,7 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
@@ -203,28 +200,22 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
-  </li>
-</ul>
+    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+    <a class="nav-link" href="mobile-clients.html#sdk">AeroGear SDK</a>
   </li>
 </ul>
   </li>
@@ -431,7 +422,7 @@ Zepto(function($){
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">Mobile Services</span>
-    <span class="version">latest</span>
+    <span class="version">v1.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -445,11 +436,11 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
-          <a href="index.html">latest</a>
+        <li class="version is-latest">
+          <a href="../latest/index.html">latest</a>
         </li>
-        <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+        <li class="version is-current">
+          <a href="index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -461,7 +452,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../latest/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -469,13 +460,13 @@ Zepto(function($){
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
+  <button class="versions-menu-toggle" title="Show other versions of page">v1.0</button>
   <div class="versions-menu">
-    <a class="version is-current" href="device-security.html">latest</a>
-    <a class="version" href="../v1.0/device-security.html">v1.0</a>
+    <a class="version" href="../latest/device-security.html">latest</a>
+    <a class="version is-current" href="device-security.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/device-security.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/v1.0/modules/ROOT/pages/device-security.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Device Security</h1>
@@ -638,10 +629,13 @@ Device Security is not currently associated with an OpenShift service, so there 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open your Mobile App in Mobile Developer Console.</p>
+<p>Navigate to your project in OpenShift.</p>
 </li>
 <li>
-<p>Copy the <code>mobile-services.json</code> configuration to your clipboard.</p>
+<p>On the <strong>Overview</strong> screen, expand your Mobile Client to view the <strong>CLIENT INFO</strong>.</p>
+</li>
+<li>
+<p>Copy the configuration to your clipboard.</p>
 </li>
 <li>
 <p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>

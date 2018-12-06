@@ -162,7 +162,7 @@ Zepto(function($){
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav><div class="main-wrapper">
-<div class="navigation-container" data-component="aerogear" data-version="latest">
+<div class="navigation-container" data-component="aerogear" data-version="v1.0">
   <aside class="navigation" role="navigation">
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
@@ -182,10 +182,7 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
@@ -203,28 +200,22 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
-  </li>
-</ul>
+    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+    <a class="nav-link" href="mobile-clients.html#sdk">AeroGear SDK</a>
   </li>
 </ul>
   </li>
@@ -431,7 +422,7 @@ Zepto(function($){
 <div class="navigation-explore" data-panel="explore">
   <div class="context">
     <span class="title">Mobile Services</span>
-    <span class="version">latest</span>
+    <span class="version">v1.0</span>
   </div>
   <ul class="components">
     <li class="component">
@@ -445,11 +436,11 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
-          <a href="index.html">latest</a>
+        <li class="version is-latest">
+          <a href="../latest/index.html">latest</a>
         </li>
-        <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+        <li class="version is-current">
+          <a href="index.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -461,7 +452,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../latest/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -469,13 +460,13 @@ Zepto(function($){
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
+  <button class="versions-menu-toggle" title="Show other versions of page">v1.0</button>
   <div class="versions-menu">
-    <a class="version is-current" href="mobile-cicd.html">latest</a>
-    <a class="version" href="../v1.0/mobile-cicd.html">v1.0</a>
+    <a class="version" href="../latest/mobile-cicd.html">latest</a>
+    <a class="version is-current" href="mobile-cicd.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobile-cicd.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/v1.0/modules/ROOT/pages/mobile-cicd.adoc"></a></div>
 </div>
 <article class="doc">
 <h1>Mobile CI/CD</h1>
@@ -532,10 +523,13 @@ Zepto(function($){
 <p>Containerised builds on OpenShift for Android</p>
 </li>
 <li>
-<p>Support for integrating macOS as build slaves for iOS builds</p>
+<p>Support for integrating OSX as build slaves for iOS builds</p>
 </li>
 <li>
 <p>Catch build errors early using automated builds</p>
+</li>
+<li>
+<p>Build status is displayed on the Mobile Client details page in the OpenShift console, along with the mobile services associated with that Mobile Client</p>
 </li>
 </ul>
 </div>
@@ -551,11 +545,11 @@ Zepto(function($){
 <dl>
 <dt class="hdlist1">CI/CD</dt>
 <dd>
-<p>Continuous Integration / Continuous Delivery</p>
+<p>Continuous Integration / Continuous Development</p>
 </dd>
 <dt class="hdlist1">Jenkins</dt>
 <dd>
-<p>A tool that helps to automate the software build process.</p>
+<p>A tool that helps to automate the software development process, with continuous integration and facilitating continuous delivery.</p>
 </dd>
 <dt class="hdlist1">Build</dt>
 <dd>
@@ -581,9 +575,6 @@ Zepto(function($){
 <li>
 <p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
 </li>
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned Mobile Developer Console as described in <a href="getting-started.html" class="page">Provisioning Mobile Developer Console</a>.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -600,7 +591,7 @@ Zepto(function($){
 <p>Log into the OpenShift console.</p>
 </li>
 <li>
-<p>Choose a project where you have previously provisioned Mobile Developer Console.</p>
+<p>Create a new project or choose an existing project.</p>
 </li>
 <li>
 <p>Select <strong>Catalog</strong> from the left hand menu.</p>
@@ -609,7 +600,12 @@ Zepto(function($){
 </div>
 </li>
 <li>
-<p>Choose the Mobile CI/CD service.</p>
+<p>Click <strong>Services</strong> and choose the Mobile CI/CD service.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
+</div>
+</div>
 </li>
 <li>
 <p>Follow the wizard for provisioning that service.</p>
@@ -652,18 +648,24 @@ Provisioning a service may take some time.</p>
 <h2 id="build-config"><a class="anchor" href="#build-config"></a>Creating a Build Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use the Mobile Developer Console to create a new client build for an existing Mobile App.</p>
+<p>You can use the OpenShift UI to create a new client build for an existing mobile client.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open Mobile Developer Console and find the Mobile App you want to build.</p>
+<p>Log in to the OpenShift Console.</p>
 </li>
 <li>
-<p>Click on the name of the Mobile App to open the details view.</p>
+<p>Browse to the <strong>Project Overview</strong> screen and find the Mobile Client you want to build.</p>
+</li>
+<li>
+<p>Click on the name of the Mobile Client to open the details view.</p>
 </li>
 <li>
 <p>From the <strong>Builds</strong> tab, select <strong>Create Build</strong> in the <strong>Actions</strong> menu. If no build configuration  exists, a <strong>Start Build</strong> button is displayed which allows you create a build configuration.</p>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-builds-empty.png" alt="mobile clients builds empty"></span></p>
+</div>
 <div class="paragraph">
 <p>The <strong>Client Build Form</strong> is displayed.</p>
 </div>
@@ -673,7 +675,7 @@ Provisioning a service may take some time.</p>
 <p>Enter a unique name for the build configuration in the <strong>Name</strong> field.</p>
 </li>
 <li>
-<p>Enter the <strong>Git Repository URL</strong> for the Mobile App you want to build.</p>
+<p>Enter the <strong>Git Repository URL</strong> for the Mobile Client you want to build.</p>
 </li>
 <li>
 <p>Select the <strong>Authentication Type</strong> for the Git repository. For example, the Mobile Services showcase apps are available to everyone, so you would choose <strong>Public</strong>. If your repo URL starts with <code>git@</code>, select <strong>SSH</strong>. If your repo URl starts with <code>http</code> and requires authentication, select <strong>Basic</strong>.</p>
@@ -683,7 +685,7 @@ Provisioning a service may take some time.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of your application repo for different builds, for example, release vs develop.</p>
+<p>Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of you application repo for different builds, for example, release vs develop.</p>
 </li>
 <li>
 <p>Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
@@ -695,7 +697,7 @@ Provisioning a service may take some time.</p>
 </div>
 </li>
 <li>
-<p>Select the <strong>Build Type</strong> for the build configuration. Typically you create two build configurations, one for debugging and another for release.</p>
+<p>Select the <strong>Build Type</strong> for the build configuration. Typically you create two build configurations, one for debugging and and another for release.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -872,16 +874,46 @@ node('ios') {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open Mobile Developer Console and find the Mobile App you want to build.</p>
+<p>Log in to the OpenShift Console.</p>
 </li>
 <li>
-<p>Click on the name of the Mobile App to open the details view.</p>
+<p>Browse to the <strong>Project Overview</strong> screen and find the Mobile Client you want to build.</p>
 </li>
 <li>
-<p>From the <strong>Builds</strong> tab, select the build configuration you want to build and click <strong>Start Build</strong>.</p>
+<p>Click on the name of the Mobile Client to open the details view.</p>
 </li>
 <li>
-<p>Check the mobile app build status by expanding the build configuration box.</p>
+<p>From the <strong>Builds</strong> tab, select the mobile app you want to build click <strong>Start Build</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Expanding the build section will show the current status of this build.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Check the mobile app build status by expanding the mobile client box.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This box lists the last 5 builds for this client.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>To view the mobile app as a pipeline build, from the left menu, click <strong>Builds &gt; Pipeline</strong>.</p>
 <div class="paragraph">
 <p>Each build step is displayed (along with the current step status: completed, error or running) based on the stages in your Jenkinsfile code.</p>
 </div>
@@ -899,10 +931,15 @@ node('ios') {
 <div class="sect2">
 <h3 id="viewing-build-history-in-the-openshift-console"><a class="anchor" href="#viewing-build-history-in-the-openshift-console"></a>Viewing Build History in the OpenShift Console</h3>
 <div class="paragraph">
-<p>All of the builds related to your Mobile App can be seen in the <strong>Builds</strong> tab of your Mobile App. Each build can be expanded to show further information about the build configuration, latest build and build history.</p>
+<p>All of the builds related to your mobile client can be seen in the <strong>Builds</strong> tab of your Mobile Client. Each build can be expanded to show further information about the build configuration, latest build and build history.</p>
 </div>
 <div class="paragraph">
 <p>All builds have a <strong>View Log</strong> link associated with them to access the detailed logs of that build.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-builds-complete.png" alt="access-build-from-notification][align=&quot;center&quot;">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -910,7 +947,7 @@ node('ios') {
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to the Mobile App and click the <strong>Builds</strong> tab.</p>
+<p>Navigate to the Mobile Client and click the <strong>Builds</strong> tab.</p>
 </li>
 <li>
 <p>Click the <strong>View Log</strong> link for the build, you are redirected to the Jenkins instance that has been running your build.</p>
@@ -946,10 +983,13 @@ This binary can be downloaded for any successful build in the build history.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to the Mobile App in the Mobile Developer Console and click the <strong>Builds</strong> tab.</p>
+<p>Open the OpenShift UI.</p>
 </li>
 <li>
-<p>Expand the <strong>build configuration</strong> that you want to deploy and click <strong>Generate Download Link</strong>.</p>
+<p>In the mobile overview screen for the mobile client, open the <strong>Build tab</strong>.</p>
+</li>
+<li>
+<p>Expand the <strong>buildconfig</strong> that you want to deploy and click <strong>Download</strong>.</p>
 </li>
 <li>
 <p>To download the binary to your mobile device, scan the QR code using your mobile device.</p>
@@ -964,7 +1004,7 @@ This binary can be downloaded for any successful build in the build history.</p>
 <div class="sect2">
 <h3 id="deleting-a-build-instance"><a class="anchor" href="#deleting-a-build-instance"></a>Deleting a Build Instance</h3>
 <div class="paragraph">
-<p>After creating and running a build, you can click through to your Mobile App screen in the Mobile Developer Console and into the <strong>Builds</strong> tab. In this tab you see the details of your various mobile client builds.</p>
+<p>After creating and running a build, you can click through to your mobile client screen from the project overview and into the <strong>Builds</strong> tab. In this tab you see the details of your various mobile client builds.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -980,7 +1020,7 @@ This binary can be downloaded for any successful build in the build history.</p>
 <div class="sect2">
 <h3 id="deleting-a-mobile-ci-cd-build-configuration"><a class="anchor" href="#deleting-a-mobile-ci-cd-build-configuration"></a>Deleting a Mobile CI/CD Build Configuration</h3>
 <div class="paragraph">
-<p>When you create a Mobile App build configuration, you create a <a href="https://docs.openshift.org/latest/dev_guide/builds/index.html#defining-a-buildconfig">BuildConfig</a> resource in OpenShift. This build config is then translated into a Jenkins Build for your mobile client in the CI/CD service. If you want to remove the entire Job from the CI/CD service and clean up everything in OpenShift, then deleting the build config  will achieve this. To delete the build config, click into your mobile client and open the builds tab. From here you can select the delete option from the more actions (the three dots) at the far right of the build row. Once deleted associated resources and builds with that Job will be removed as will the underlying Jenkins Job in the CI/CD service.</p>
+<p>When you create a Mobile Client build configuration, you create a <a href="https://docs.openshift.org/latest/dev_guide/builds/index.html#defining-a-buildconfig">BuildConfig</a> resource in OpenShift. This build config is then translated into a Jenkins Build for your mobile client in the CI/CD service. If you want to remove the entire Job from the CI/CD service and clean up everything in OpenShift, then deleting the build config  will achieve this. To delete the build config, click into your mobile client and open the builds tab. From here you can select the delete option from the more actions (the three dots) at the far right of the build row. Once deleted associated resources and builds with that Job will be removed as will the underlying Jenkins Job in the CI/CD service.</p>
 </div>
 </div>
 </div>

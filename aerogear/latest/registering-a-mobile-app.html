@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registering a Mobile Client :: AeroGear Mobile Services</title>
+    <title>Registering a Mobile App :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/registering-a-mobile-app.html">
-    <meta name="generator" content="Antora 1.1.1">
+    <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -133,8 +133,20 @@ Zepto(function($){
           <a href="https://aerogear.org/sdks">Mobile SDKs</a>
         </li>
 
-        <li class="hidden-sm active">
-          <a href="https://docs.aerogear.org">Docs</a>
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Docs<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://docs.aerogear.org/">
+                  Latest
+                </a>
+              </li>
+              <li>
+                <a href="https://docs.aerogear.org/v1.0/latest/getting-started.html">
+                  1.0.0
+                </a>
+              </li>
+            </ul>
         </li>
    
         <li>
@@ -170,7 +182,10 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile Client</a>
+    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
@@ -188,22 +203,28 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-clients.html">Mobile Clients</a>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#introduction">Introduction</a>
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#registering">Registering a Mobile Client</a>
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#services">Viewing Available Services</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#building">Building Mobile Apps</a>
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-clients.html#sdk">AeroGear SDK</a>
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -427,6 +448,9 @@ Zepto(function($){
         <li class="version is-current is-latest">
           <a href="index.html">latest</a>
         </li>
+        <li class="version">
+          <a href="../v1.0/index.html">v1.0</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -441,22 +465,29 @@ Zepto(function($){
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="registering-a-mobile-app.html">Registering a Mobile Client</a></li>
+    <li class="crumb"><a href="registering-a-mobile-app.html">Registering a Mobile App</a></li>
   </ul>
 </nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="registering-a-mobile-app.html">latest</a>
+    <a class="version" href="../v1.0/registering-a-mobile-app.html">v1.0</a>
+  </div>
+</div>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/registering-a-mobile-app.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Registering a Mobile Client</h1>
+<h1>Registering a Mobile App</h1>
 <div class="paragraph">
-<p>After the setup is completed, the next thing you need to do is to register a Mobile Client for the mobile app that you are going to develop.</p>
+<p>After the setup is completed, the next thing you need to do is to register a Mobile App for the mobile app that you are going to develop.</p>
 </div>
 <div class="paragraph">
-<p>A Mobile Client in OpenShift is a representation of the mobile app that you are developing locally. Mobile Clients allow you to bind your mobile app to mobile services such as Identity Management, Push Notification, Mobile Metrics and others. This makes many of the common tasks associated with mobile development much easier and quicker to implement. For more information, please see <a href="mobile-clients.html" class="page">Mobile Clients in OpenShift</a></p>
+<p>A Mobile Client in OpenShift is a representation of the mobile app that you are developing locally. Mobile Clients allow you to bind your mobile app to mobile services such as Identity Management, Push Notification, Mobile Metrics and others. This makes many of the common tasks associated with mobile development much easier and quicker to implement. For more information, please see <a href="#">mobile-clients.adoc</a></p>
 </div>
 <h2 id="procedure" class="discrete">Procedure</h2>
 <div class="paragraph">
-<p>To create a Mobile Client in your OpenShift project:</p>
+<p>To create a Mobile App:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -464,48 +495,24 @@ Zepto(function($){
 <p>Log into the OpenShift console.</p>
 </li>
 <li>
-<p>Choose your project.</p>
+<p>Choose project where you have previously deployed Mobile Developer Console.</p>
 </li>
 <li>
-<p>Click <strong>Add to Project</strong> and choose <strong>Browse Catalog</strong> from the options.</p>
-<div class="paragraph">
-<p>You can filter the catalog items to only show mobile specific items by clicking the <strong>Mobile</strong> tab.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/catalog-all.png" alt="Available Mobile Clients"></span></p>
-</div>
+<p>Open Mobile Developer Console by clicking on its route in Overview screen.</p>
 </li>
 <li>
-<p>Click the <strong>Apps</strong> tab and then choose the mobile platform (Android, iOS, Cordova or Xamarin) and follow the wizard.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-On the wizard&#8217;s <strong>configuration</strong> screen, it is recommended that you input the name of the showcase application into the <strong>Package Name</strong> text box.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When registering an iOS app, you are prompted for a bundle id. See the <a href="https://cocoacasts.com/what-are-app-ids-and-bundle-identifiers/">description of bundle identifiers</a> for more information.
-</td>
-</tr>
-</table>
-</div>
+<p>Log into the Mobile Developer Console.</p>
+</li>
+<li>
+<p>Click on <code>Create Mobile App</code> button.</p>
+</li>
+<li>
+<p>Enter name of your mobile application.</p>
+</li>
+<li>
+<p>Click <code>Create</code> button.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>After the Mobile Client is provisioned, you can navigate to it from Project Overview. The Mobile Client view displays a list of mobile services that you can associate with the Mobile Client, and offers to provision any mobile service that is in the service catalog but is not currently provisioned.</p>
 </div>
 </article>
   </main>

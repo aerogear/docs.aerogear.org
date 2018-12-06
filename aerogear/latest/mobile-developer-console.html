@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroGear API Reference :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ref_api.html">
+    <title>Mobile Developer Console :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobile-developer-console.html">
     <meta name="generator" content="Antora 1.1.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
@@ -201,30 +201,30 @@ Zepto(function($){
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+    <a class="nav-link" href="#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <a class="nav-link" href="#provision-mdc">Provisioning Mobile Developer Console</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+    <a class="nav-link" href="#registering">Registering a Mobile App</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+    <a class="nav-link" href="#sdk">Configure SDK</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+    <a class="nav-link" href="#services">Using mobile services</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+    <a class="nav-link" href="#building">Building Mobile Apps</a>
   </li>
 </ul>
   </li>
@@ -414,7 +414,7 @@ Zepto(function($){
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -465,23 +465,659 @@ Zepto(function($){
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="ref_api.html">API Reference</a></li>
+    <li class="crumb"><a href="mobile-developer-console.html">Mobile Developer Console</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
-    <a class="version is-current" href="ref_api.html">latest</a>
-    <a class="version" href="../v1.0/ref_api.html">v1.0</a>
+    <a class="version is-current" href="mobile-developer-console.html">latest</a>
+    <a class="version is-missing" href="../v1.0/index.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ref_api.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobile-developer-console.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>AeroGear API Reference</h1>
-<div class="paragraph">
-<p>You can find the links to the API reference of each module for each platform in the table below.</p>
+<h1>Mobile Developer Console</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#provision-mdc">Provisioning Mobile Developer Console</a></li>
+<li><a href="#registering">Registering a Mobile App</a></li>
+<li><a href="#services">Using mobile services</a>
+<ul class="sectlevel2">
+<li><a href="#viewing-mobile-services">Viewing mobile services</a></li>
+<li><a href="#binding-mobile-services">Binding mobile services</a></li>
+<li><a href="#unbinding-mobile-services">Unbinding mobile services</a></li>
+</ul>
+</li>
+<li><a href="#building">Building Mobile Apps</a>
+<ul class="sectlevel2">
+<li><a href="#provisoning-a-mobile-ci-cd-service">Provisoning a Mobile CI/CD Service</a></li>
+<li><a href="#creating-a-build">Creating a Build</a></li>
+<li><a href="#starting-a-build">Starting a Build</a></li>
+<li><a href="#downloading-and-installing-apps">Downloading and Installing Apps</a></li>
+</ul>
+</li>
+<li><a href="#sdk">Introduction to the AeroGear SDK</a>
+<ul class="sectlevel2">
+<li><a href="#android">Android</a></li>
+<li><a href="#ios">iOS</a></li>
+<li><a href="#cordova">Cordova</a></li>
+<li><a href="#xamarin">Xamarin</a></li>
+</ul>
+</li>
+<li><a href="#api-reference-documentation">API Reference Documentation</a></li>
+</ul>
 </div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobile Developer Console is part of AeroGear Mobile Services and allows you to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>create representation of your mobile application in OpenShift</p>
+</li>
+<li>
+<p>bind Mobile App with mobile services</p>
+</li>
+<li>
+<p>build your mobile app (requires <a href="mobile-cicd.html">Mobile CI/CD</a> service)</p>
+</li>
+<li>
+<p>get <code>mobile-services.json</code> configuration file for AeroGear SDK</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="provision-mdc"><a class="anchor" href="#provision-mdc"></a>Provisioning Mobile Developer Console</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To provision the Mobile Developer Console:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Create a new project or choose an existing project.</p>
+</li>
+<li>
+<p>Select <strong>Catalog</strong> from the left hand menu.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Choose the Mobile Developer Console service.</p>
+</li>
+<li>
+<p>Follow the wizard for provisioning that service.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
+Provisioning a service may take some time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering"><a class="anchor" href="#registering"></a>Registering a Mobile App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After provisioning Mobile Developer Console, the next step is to register a Mobile App for the mobile application that you are going to develop.</p>
+</div>
+<h3 id="procedure" class="discrete">Procedure</h3>
+<div class="paragraph">
+<p>To create a Mobile App:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Choose project where you have previously deployed Mobile Developer Console.</p>
+</li>
+<li>
+<p>Open Mobile Developer Console by clicking on its route in Overview screen.</p>
+</li>
+<li>
+<p>Log into the Mobile Developer Console.</p>
+</li>
+<li>
+<p>Click on <code>Create Mobile App</code> button.</p>
+</li>
+<li>
+<p>Enter name of your mobile application.</p>
+</li>
+<li>
+<p>Click <code>Create</code> button.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="services"><a class="anchor" href="#services"></a>Using mobile services</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="viewing-mobile-services"><a class="anchor" href="#viewing-mobile-services"></a>Viewing mobile services</h3>
+<div class="paragraph">
+<p>In order to use services with a mobile app, the Mobile App associated with the app must be bound to services.
+To show the list of services, go to the application <strong>Overview</strong> screen and to the <strong>Mobile Services</strong> tab.
+There is a list of services available to be bound to the Mobile App and list of services that have already been bound to the client.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-mobile-services.png" alt="mobile clients mobile services">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some services might support multiple binding and in that case a <strong>Bind to App</strong> button is also shown in a <strong>Bound Services</strong> row.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="binding-mobile-services"><a class="anchor" href="#binding-mobile-services"></a>Binding mobile services</h3>
+<div class="paragraph">
+<p>The <strong>Mobile Services</strong> tab in the Mobile App view shows the provisioned services that are available to be bound
+to the Mobile App. If a service has not yet been bound to a Mobile App, a binding can be created by selecting
+the <strong>Create Binding</strong> button.</p>
+</div>
+<div class="paragraph">
+<p>You can bind a service by clicking <strong>Bind to App</strong> (image is the example of a Push Service).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-service-bind-1.png" alt="mobile clients service bind 1">
+</div>
+</div>
+<div class="paragraph">
+<p>At the second step you can fill in configuration details for the binding (image is the example of a Push Service).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-service-bind-2.png" alt="mobile clients service bind 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Press <strong>Create</strong> to create the binding (image is the example of a Push Service).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-service-bind-3.png" alt="mobile clients service bind 3">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> You can safely close the dialog, everything is processed in the background.</p>
+</div>
+<div class="paragraph">
+<p>After the binding is complete, the configuration in <code>mobile-services.json</code> for the Mobile App is updated in the
+<strong>Configuration</strong> tab. This configuration is used by your app to interact with the bound services.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-overview-mobile-services-json.png" alt="mobile clients overview mobile services json">
+</div>
+</div>
+<div class="sect3">
+<h4 id="multiple-service-bindings"><a class="anchor" href="#multiple-service-bindings"></a>Multiple service bindings</h4>
+<div class="paragraph">
+<p>It&#8217;s most usual to have only one binding per service in the application but in some cases it&#8217;s possible to create multiple bindings.
+There will be <strong>Bind to App</strong> button on the already bound service. The process for binding is the same.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-service-multibinding.png" alt="mobile clients service multibinding">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unbinding-mobile-services"><a class="anchor" href="#unbinding-mobile-services"></a>Unbinding mobile services</h3>
+<div class="paragraph">
+<p>To remove the binding press the <span class="image"><img src="_images/3dots.png" alt="3dots"></span> button and select <strong>Delete</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-service-unbind.png" alt="mobile clients service unbind">
+</div>
+</div>
+<div class="sect3">
+<h4 id="multiple-services-unbinding"><a class="anchor" href="#multiple-services-unbinding"></a>Multiple services unbinding</h4>
+<div class="paragraph">
+<p>If there are multiple bindings for the service there will be more options for the deletion.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-service-multibinding-delete.png" alt="mobile clients service multibinding delete">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building"><a class="anchor" href="#building"></a>Building Mobile Apps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <strong>Builds</strong> tab in the Mobile App view allows you to view the previous builds of the app, and triggers a new build of the app.</p>
+</div>
+<div class="sect2">
+<h3 id="provisoning-a-mobile-ci-cd-service"><a class="anchor" href="#provisoning-a-mobile-ci-cd-service"></a>Provisoning a Mobile CI/CD Service</h3>
+<div class="paragraph">
+<p>In order to build the Mobile App app, you first need to provision a Mobile CI/CD service. If the service is not provisioned, use the link provided on the screen to browse all the available mobile services and provision a new Mobile CI/CD service.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-no-service.png" alt="mobile clients no service"></span></p>
+</div>
+<div class="paragraph">
+<p>For more details about how to provision the Mobile CI/CD service, please see <a href="mobile-cicd.html" class="page">Mobile CI/CD service guide</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-build"><a class="anchor" href="#creating-a-build"></a>Creating a Build</h3>
+<div class="paragraph">
+<p>After the Mobile CI/CD service is provisioned, you need to create a new build config for the Mobile App. You need to provide more information about the mobile app here depending on the platform. For example, the repo of the source code, the type of the build, the keys used to sign the app, etc.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-build-config.png" alt="mobile clients build config"></span></p>
+</div>
+<div class="paragraph">
+<p>For more information about how to configure the build config, please see <a href="mobile-cicd.html#build-config" class="page">the build config section of Mobile CI/CD</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="starting-a-build"><a class="anchor" href="#starting-a-build"></a>Starting a Build</h3>
+<div class="paragraph">
+<p>Once a build is configured, you can start a new build. You will be able to view the progress of the build from the OpenShift UI and access the full build log.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-build-in-progress.png" alt="mobile clients build in progress"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="downloading-and-installing-apps"><a class="anchor" href="#downloading-and-installing-apps"></a>Downloading and Installing Apps</h3>
+<div class="paragraph">
+<p>You can use the OpenShift UI to deploy a mobile app by downloading the binary directly to the mobile device. This binary can be downloaded for any successful build in the build history.</p>
+</div>
+<div class="paragraph">
+<p>Once the build has completed you can then press the <code>Download</code> button and you will be presented with a QR code. Applications to scan QR codes are available in Google Play for Android or the App Store for iPhone. Once the QR code has been scanned, it will open the download URL in the device and the application will download.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/mobile-clients-builds-complete.png" alt="Available Mobile Clients"></span></p>
+</div>
+<div class="paragraph">
+<p>If you do not have a QR code scanner you can also download the artifact from the URL in the OpenShift web console. Once downloaded connect a device to your local machine.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For iOS applications open XCode and navigate to Window &gt; Devices and Simulators. Here you can install your mobile application by pressing <code>+</code> button at the bottom, then choose your download IPA file for installation.</p>
+</li>
+<li>
+<p>For Android applications move the APK file into the device directory. On your device locate and select the APK file and select install.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may need to enable the installation of apps from unknown sources on Android devices before installing from an APK.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sdk"><a class="anchor" href="#sdk"></a>Introduction to the AeroGear SDK</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you have <a href="getting-started.html#registering" class="page">registered</a> a Mobile App, <a href="getting-started.html#binding" class="page">bound</a> the Mobile App to a mobile service, and <a href="getting-started.html#downloading-the-mobile-services-configuration-file" class="page">downloaded</a> the mobile services configuration file, you can start developing your mobile app using mobile services.</p>
+</div>
+<div class="paragraph">
+<p>The AeroGear SDK supports the following platforms:</p>
+</div>
+<div class="sect2">
+<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
+<div class="paragraph">
+<p>For information about how to develop Android apps, see  <a href="https://developer.android.com/studio/install" target="_blank" rel="noopener">Android Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To use the SDK add jcenter to the <code>build.grade</code> file in your project&#8217;s root directory</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">allprojects {
+    repositories {
+        jcenter() // &lt;-- Add This line
+        google()
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the build.gradle file of your app you can begin adding dependencies provided by the SDK.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    ...
+    implementation 'org.aerogear:android-core:1.0.0'
+    implementation 'org.aerogear:android-push:1.0.0'
+    implementation 'org.aerogear:android-auth:1.0.0'
+    implementation 'org.aerogear:android-security:1.0.0'
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>For push you also need to add a dependency to the Firebase SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    ...
+    implementation "com.google.firebase:firebase-messaging:[version]"
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To implement certificate pinning in the individual SDKs, see <a href="device-security.html#cert-pinning">Certificate Pinning in Android Devices</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html#importing-the-libraries" class="page">Steps for Push Notifications</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
+<div class="paragraph">
+<p>For information about how to develop iOS apps, see <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.adoc" target="_blank" rel="noopener">iOS Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your project directory (the directory where your <code>.xcodeproj</code> file is), create a plain text file named <code>Podfile</code> (without any file extension) and add the lines below. Replace <code>YourTarget</code> with your actual target name.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '9.0'
+use_frameworks!
+
+target :'YourTarget' do
+    ## Require one of the AeroGear SDK's here
+    pod 'AGSCore', '1.0.0'
+    pod 'AGSPush', '1.0.0'
+    pod 'AGSAuth', '1.0.0'
+    pod 'AGSSecurity', '1.0.0'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Then run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open up <code>.xcworkspace</code> with Xcode and start using the SDK.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use <code>.xcodeproj</code>. If you open a project file instead of a workspace, dependencies will not be correctly configured.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Import the SDK you want to use in the application. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">   import AGSAuth</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html#importing-the-libraries" class="page">Steps for Push Notifications</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
+<div class="paragraph">
+<p>For information about how to develop apps using Cordova, see <a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a terminal and navigate to your appplication project root folder.</p>
+</li>
+<li>
+<p>Install the AeroGear SDK base project:</p>
+<div class="listingblock bash">
+<div class="content">
+<pre class="highlightjs highlight"><code>npm install @aerogear/app</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In your application, import and call the "init" method:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { init } from "@aerogear/app";
+
+const aerogearConfig = {
+    // Replace with your own configuration
+};
+
+init(aerogearConfig);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="push-notifications.html#importing-the-libraries" class="page">Steps for Push Notifications</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="xamarin"><a class="anchor" href="#xamarin"></a>Xamarin</h3>
+<div class="paragraph">
+<p>For information about how to develop apps using Xamarin see <a href="https://developer.xamarin.com/getting-started/" target="_blank" rel="noopener">Xamarin Documentation</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your VisualStudio project expand <code>Dependencies &gt; NuGet</code></p>
+</li>
+<li>
+<p>Click on <code>Add packages&#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Select <code>AeroGear.Mobile.Core</code> and depending on your target platforms:</p>
+</li>
+<li>
+<p>for Android:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>also pick <code>AeroGear.Mobile.Core.Platform.Android</code></p>
+</li>
+<li>
+<p>Initialize Core (for Xamarin.Forms):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var app = new App();
+MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
+LoadApplication(app);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize Core (for Legacy Xamarin):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">MobileCoreAndroid.Init(ApplicationContext);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>for iOS:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>also pick <code>AeroGear.Mobile.Core.Platform.iOS</code></p>
+</li>
+<li>
+<p>Initialize Core (for Xamarin.Forms):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var app = new App();
+MobileCoreIOS.Init(app.GetType().Assembly);
+LoadApplication(app);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize Core (for Legacy Xamarin):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">MobileCoreIOS.Init();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For Service specific steps, see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="identity-management.html#importing-the-libraries" class="page">Steps for Identity Management</a></p>
+</li>
+<li>
+<p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="api-reference-documentation"><a class="anchor" href="#api-reference-documentation"></a>API Reference Documentation</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>SDKs for our Mobile Services are available for a variety of platforms, including Android, iOS, Cordova &amp; Xamarin. These SDKs will help simplify your mobile and modern application development needs, leveraging OpenShift&#8217;s Container technology to provide a secure, scalable backend platform.</p>
 </div>
@@ -536,6 +1172,8 @@ Zepto(function($){
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 </article>
   </main>
 </div>
