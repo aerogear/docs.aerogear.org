@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identity Management :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/identity-management.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -670,7 +670,7 @@ Provisioning a service may take some time.</p>
 <div class="sect2">
 <h3 id="binding-a-mobile-app-with-the-identity-management-service"><a class="anchor" href="#binding-a-mobile-app-with-the-identity-management-service"></a>Binding a Mobile App with the Identity Management Service</h3>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile App, and that Mobile App must be associated with the mobile service.
+<p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
@@ -681,10 +681,10 @@ This association is called <strong>binding</strong> and it is necessary for your
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+<p>Launch Mobile Developer Console</p>
 </li>
 <li>
-<p>Select the Mobile App name listed in the Mobile Apps section.</p>
+<p>Click on the Mobile App on the Overview screen</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -693,12 +693,6 @@ This association is called <strong>binding</strong> and it is necessary for your
 <img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
 </div>
 </div>
-</li>
-<li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile App with the Identity Management Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the Identity Management Service.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -706,7 +700,30 @@ This association is called <strong>binding</strong> and it is necessary for your
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use <code>public</code> when binding a Mobile App to a Identity Management. When binding mobile services to each other, use <code>bearer</code>.
+It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Press <strong>Bind to App</strong> in the Identity Management</p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the Identity Management Service.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-idm-parameters.png" alt="mobile clients services idm parameters">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Use <code>Public</code> when binding a Mobile App to a Identity Management. When binding mobile services to each other, use <code>Bearer</code>.
 </td>
 </tr>
 </table>
@@ -1978,7 +1995,7 @@ events, such as the number of registered users, memory usage etc.</p>
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

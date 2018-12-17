@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OWASP Mobile Verification Standard :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/owaspMobileVerificationStandard.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -378,7 +378,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="architecture-design-and-threat-modelling"><a class="anchor" href="#architecture-design-and-threat-modelling"></a>Architecture, Design and Threat Modelling</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -409,90 +409,82 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Check the <a href="https://cordova.apache.org/docs/en/latest/config_ref/#plugin">config.xml</a> for unrequired components. This also includes any JS files required from a CDN or elsewhere in the index.html or equivalent of an application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check the <a href="https://cordova.apache.org/docs/en/latest/config_ref/#plugin">config.xml</a> for unrequired components.
+This also includes any JS files required from a CDN or elsewhere in the index.html or equivalent of an application.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify all third party components used by the mobile app,"Verify all third party components used by the mobile app</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as libraries and frameworks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">are identified</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and checked for known vulnerabilities."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify all third party components used by the mobile app, such as libraries and frameworks, are identified, and checked for known vulnerabilities.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual/Tooling Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check the <a href="https://cordova.apache.org/docs/en/latest/config_ref/#plugin">config.xml</a> for vulnerable components manually or using dependency checker.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that security controls are never enforced only on the client side,"Verify that security controls are never enforced only on the client side</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">but on the respective remote endpoints."</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak/Server Task</p></td>
-<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that security controls are never enforced only on the client side, but on the respective remote endpoints.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak/Server Task</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that a high-level architecture for the mobile app and all connected remote services has been defined and security has been addressed in that architecture.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual Observation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">See 1.7</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L11+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that data considered sensitive in the context of the mobile app is clearly identified.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify all app components are defined in terms of the business functions and/or security functions they provide.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that a threat model for the mobile app and the associated remote services,"Verify that a threat model for the mobile app and the associated remote services</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">which identifies potential threats and countermeasures</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">has been produced."</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that a threat model for the mobile app and the associated remote services, which identifies potential threats and countermeasures, has been produced.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tooling Observation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A threat model diagram could be created (perhaps using OWASP Threat Dragon) where we can map out all the potential threats.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify all third party components have been assessed (associated risks) before being used or implemented. Additionally verify that a process is in place to ensure that each time a security update for a third party component is published,"Verify all third party components have been assessed (associated risks) before being used or implemented. Additionally verify that a process is in place to ensure that each time a security update for a third party component is published</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the change is inspected and the risk evaluated."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify all third party components have been assessed (associated risks) before being used or implemented. Additionally verify that a process is in place to ensure that each time a security update for a third party component is published, the change is inspected and the risk evaluated.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual/Tooling/Process Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We could also look at using <a href="https://www.w3.org/TR/SRI/">subresource integrity</a> checks for requiring JS libraries from the internet/CDN within an index.html.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that all security controls have a centralized implementation.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual/Keycloak Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -500,11 +492,10 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that all components that are not part of the application but that the application relies on to operate,"Verify that all components that are not part of the application but that the application relies on to operate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">are clearly identified and the security implications of using those components are known."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that all components that are not part of the application but that the application relies on to operate, are clearly identified and the security implications of using those components are known.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual/Keycloak Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -514,33 +505,33 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that there is an explicit policy for how cryptographic keys (if any) are managed,"Verify that there is an explicit policy for how cryptographic keys (if any) are managed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and the lifecycle of cryptographic keys is enforced. Ideally</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">follow a key management standard such as NIST SP 800-57."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that there is an explicit policy for how cryptographic keys (if any) are managed, and the lifecycle of cryptographic keys is enforced. Ideally, follow a key management standard such as NIST SP 800-57.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.12</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that remote endpoints ensure that connecting clients use the current version of the mobile app.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.13</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that security testing is performed as part of the development lifecycle. If some or all of the testing is automated,"Verify that security testing is performed as part of the development lifecycle. If some or all of the testing is automated</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the configuration of the testing tools must be tailored to the specific app."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that security testing is performed as part of the development lifecycle. If some or all of the testing is automated, the configuration of the testing tools must be tailored to the specific app.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual/Tooling Task/Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
 </tr>
 </tbody>
 </table>
@@ -549,7 +540,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="data-storage-and-privacy"><a class="anchor" href="#data-storage-and-privacy"></a>Data Storage and Privacy</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -575,127 +566,118 @@ Zepto(function($){
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that system credential storage facilities are used appropriately to store sensitive data,"Verify that system credential storage facilities are used appropriately to store sensitive data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as user credentials or cryptographic keys."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that system credential storage facilities are used appropriately to store sensitive data, such as user credentials or cryptographic keys.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Ie. Securely storing content on the device,"Ie. Securely storing content on the device</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">but also only storing data in the correct features on the OS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and not putting sensitive content where you shouldn’t or using an OS feature for the wrong purpose. "</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ie. Securely storing content on the device, but also only storing data in the correct features on the OS, and not putting sensitive content where you shouldn’t or using an OS feature for the wrong purpose.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">For Android we should use the Android <a href="https://developer.android.com/training/articles/keystore.html">Keystore</a>.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We could look at using the following <a href="https://www.npmjs.com/package/cordova-plugin-secure-key-store">cordova plugin</a> to provide secure storage.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that no sensitive data is written to application logs.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that no sensitive data is shared with third parties unless it is a necessary part of the architecture.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the keyboard cache is disabled on text inputs that process sensitive data.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the clipboard is deactivated on text fields that may contain sensitive data.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that no sensitive data is exposed via IPC mechanisms.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that no sensitive data,"Verify that no sensitive data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as passwords and credit card numbers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">is exposed through the user interface or leaks to screenshots."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that no sensitive data, such as passwords and credit card numbers, is exposed through the user interface or leaks to screenshots.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We should ensure that no sensitive information is shown as default in the mobile. This should be blurred/hidden behind asterisks instead. We should also ensure that screenshotting functionality is being blocked by the app.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We should ensure that no sensitive information is shown as default in the mobile. This should be blurred/hidden behind asterisks instead.
+We should also ensure that screenshotting functionality is being blocked by the app.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that no sensitive data is included in backups.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We should ensure that the the allowBackup setting is disabled to prevent app data recovery via backups.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We should ensure that the the allowBackup setting is disabled to prevent app data recovery via backups.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app removes sensitive data from views when backgrounded.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disabling snapshotting might be sufficient. This will blur/blank-out the screenshot of the application when displayed in the app switcher on the phone.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">This could be disabled for iOS using the following <a href="https://www.npmjs.com/package/cordova-plugin-blurred-snapshot">cordova plugin</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app does not hold sensitive data in memory longer than necessary,"Verify that the app does not hold sensitive data in memory longer than necessary</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and memory is cleared explicitly after use."</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app does not hold sensitive data in memory longer than necessary, and memory is cleared explicitly after use.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app enforces a minimum device-access-security policy,"Verify that the app enforces a minimum device-access-security policy</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as requiring the user to set a device passcode."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app enforces a minimum device-access-security policy, such as requiring the user to set a device passcode.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We could use the following <a href="https://github.com/ABarak64/Cordova-Screen-Lock-Enabled">cordova plugin</a> to check if a device passcode/lock screen has been set.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app educates the user about the types of personally identifiable information processed,"Verify that the app educates the user about the types of personally identifiable information processed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">as well as security best practices the user should follow in using the app."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app educates the user about the types of personally identifiable information processed, as well as security best practices the user should follow in using the app.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manual Observation</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -710,7 +692,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="cryptography"><a class="anchor" href="#cryptography"></a>Cryptography</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -756,16 +738,15 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app uses cryptographic primitives that are appropriate for the particular use-case,"Verify that the app uses cryptographic primitives that are appropriate for the particular use-case</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">configured with parameters that adhere to industry best practices."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app uses cryptographic primitives that are appropriate for the particular use-case, configured with parameters that adhere to industry best practices.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app does not use cryptographic protocols or algorithms that are widely considered deprecated for security purposes.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
@@ -773,9 +754,9 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app doesn&#8217;t re-use the same cryptographic key for multiple purposes.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
@@ -783,9 +764,9 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3.6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that all random values are generated using a sufficiently secure random number generator.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
@@ -793,6 +774,7 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 </tbody>
 </table>
@@ -801,7 +783,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="authentication-and-session-management"><a class="anchor" href="#authentication-and-session-management"></a>Authentication and Session Management</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -827,16 +809,15 @@ Zepto(function($){
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that if the app provides users with access to a remote service,"Verify that if the app provides users with access to a remote service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">an acceptable form of authentication such as username/password authentication is performed at the remote endpoint."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that if the app provides users with access to a remote service, an acceptable form of authentication such as username/password authentication is performed at the remote endpoint.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the remote endpoint uses randomly generated access tokens to authenticate client requests without sending the user&#8217;s credentials.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
@@ -844,9 +825,9 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the remote endpoint terminates the existing session when the user logs out.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
@@ -854,9 +835,9 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that a password policy exists and is enforced at the remote endpoint.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
@@ -864,58 +845,50 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the remote endpoint implements an exponential back-off,"Verify that the remote endpoint implements an exponential back-off</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">or temporarily locks the user account</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">when incorrect authentication credentials are submitted an excessive number of times."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the remote endpoint implements an exponential back-off, or temporarily locks the user account, when incorrect authentication credentials are submitted an excessive number of times.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak will allow you to both temporarily and permanently lock out a user after a specified number of failed login attempts.</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that biometric authentication,"Verify that biometric authentication</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if any</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">is not event-bound (i.e. using an API that simply returns "true" or "false"). Instead</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">it is based on unlocking the keychain/keystore."</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that biometric authentication, if any, is not event-bound (i.e. using an API that simply returns "true" or "false"). Instead, it is based on unlocking the keychain/keystore.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that sessions are terminated at the remote endpoint after a predefined period of inactivity.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that a second factor of authentication exists at the remote endpoint and the 2FA requirement is consistently enforced.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Keycloak can be setup to enforce 2FA. This can also be done on user creation so when the new user logs in for the first time,"Keycloak can be setup to enforce 2FA. This can also be done on user creation so when the new user logs in for the first time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the second layer of protection will already be enforced."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak can be setup to enforce 2FA. This can also be done on user creation so when the new user logs in for the first time, the second layer of protection will already be enforced.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.9</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that step-up authentication is required to enable actions that deal with sensitive data or transactions.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Keycloak Task</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We should ensure that Keycloak authentication should be performed again when carrying out a sensitive/important action in the mobile app.</p></td>
@@ -923,17 +896,16 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.10</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app informs the user of all login activities with his or her account. Users are able view a list of devices used to access the account,"Verify that the app informs the user of all login activities with his or her account. Users are able view a list of devices used to access the account</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and to block specific devices."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app informs the user of all login activities with his or her account. Users are able view a list of devices used to access the account, and to block specific devices.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak/Coding Task</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Keycloak supports viewing of sessions/IP addresses,"Keycloak supports viewing of sessions/IP addresses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">but doesn’t currently allow to see user-agents/geo locations of the device. "</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak supports viewing of sessions/IP addresses, but doesn’t currently allow to see user-agents/geo locations of the device.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
 </tr>
 </tbody>
 </table>
@@ -942,7 +914,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="network-communication"><a class="anchor" href="#network-communication"></a>Network Communication</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -978,16 +950,15 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the TLS settings are in line with current best practices,"Verify that the TLS settings are in line with current best practices</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">as far as they are supported by the mobile operating system."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the TLS settings are in line with current best practices, as far as they are supported by the mobile operating system.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app verifies the X.509 certificate of the remote endpoint when the secure channel is established. Only certificates signed by a valid CA are accepted.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
@@ -995,30 +966,22 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app either uses its own certificate store,"Verify that the app either uses its own certificate store</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">or pins the endpoint certificate or public key</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and subsequently does not establish connections with endpoints that offer a different certificate or key</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">even if signed by a trusted CA."</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak/Coding Task</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Public key pinning might be better than full certificate pinning as handling cert renewals,"Public key pinning might be better than full certificate pinning as handling cert renewals</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">compromises may be easier to work with</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">but requires more investigation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We should also consider HPKP."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app either uses its own certificate store, or pins the endpoint certificate or public key, and subsequently does not establish connections with endpoints that offer a different certificate or key, even if signed by a trusted CA.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak/Coding Task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public key pinning might be better than full certificate pinning as handling cert renewals, compromises may be easier to work with, but requires more investigation.</p>
+<p class="tableblock">We should also consider HPKP.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datatheorem/TrustKit-Android">TrustKit</a> for Android can be used for certificate pinning.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/datatheorem/TrustKit">TrustKit</a> for iOS can be user for certificate pinning.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The Secure HTTP <a href="http://plugins.telerik.com/cordova/plugin/secure-http">cordova plugin</a> will allow certificate pinning.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.5</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app doesn&#8217;t rely on a single insecure communication channel (email or SMS) for critical operations,"Verify that the app doesn&#8217;t rely on a single insecure communication channel (email or SMS) for critical operations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as enrollments and account recovery."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app doesn&#8217;t rely on a single insecure communication channel (email or SMS) for critical operations, such as enrollments and account recovery.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak Task</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Keycloak has a credentials reset flow which allows you to configure how password/credential resets should be carried out.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1043,7 +1006,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="environmental-interaction"><a class="anchor" href="#environmental-interaction"></a>Environmental Interaction</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -1079,66 +1042,55 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that all inputs from external sources and the user are validated and if necessary sanitized. This includes data received via the UI,"Verify that all inputs from external sources and the user are validated and if necessary sanitized. This includes data received via the UI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IPC mechanisms such as intents</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">custom URLs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and network sources."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that all inputs from external sources and the user are validated and if necessary sanitized. This includes data received via the UI, IPC mechanisms such as intents, custom URLs, and network sources.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We should ensure that we are HTML encoding data that is coming from the server if it’s being rendered as html.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app does not export sensitive functionality via custom URL schemes,"Verify that the app does not export sensitive functionality via custom URL schemes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unless these mechanisms are properly protected."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app does not export sensitive functionality via custom URL schemes, unless these mechanisms are properly protected.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app does not export sensitive functionality through IPC facilities,"Verify that the app does not export sensitive functionality through IPC facilities</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">unless these mechanisms are properly protected."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app does not export sensitive functionality through IPC facilities, unless these mechanisms are properly protected.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that JavaScript is disabled in WebViews unless explicitly required.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that WebViews are configured to allow only the minimum set of protocol handlers required (ideally,"Verify that WebViews are configured to allow only the minimum set of protocol handlers required (ideally</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">only https). Potentially dangerous handlers</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as file</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tel and app-id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">are disabled."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that WebViews are configured to allow only the minimum set of protocol handlers required (ideally, only https). Potentially dangerous handlers, such as file, tel and app-id, are disabled.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app does not load user-supplied local resources into WebViews.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
@@ -1146,36 +1098,37 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that if Java objects are exposed in a WebView,"Verify that if Java objects are exposed in a WebView</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">verify that the WebView only renders JavaScript contained within the app package."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that if Java objects are exposed in a WebView, verify that the WebView only renders JavaScript contained within the app package.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Some content security policies might be of use here to limit what javascript can be executed from sources.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that object serialization,"Verify that object serialization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">if any</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">is implemented using safe serialization APIs."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that object serialization, if any, is implemented using safe serialization APIs.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6.10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app detects whether it is being executed on a rooted or jailbroken device. Depending on the business requirement,"Verify that the app detects whether it is being executed on a rooted or jailbroken device. Depending on the business requirement</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">users are warned</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">or the app is terminated if the device is rooted or jailbroken."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app detects whether it is being executed on a rooted or jailbroken device. Depending on the business requirement, users are warned, or the app is terminated if the device is rooted or jailbroken.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For both iOS and Android we could use the cordova-plugin-iroot.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L2</p></td>
 </tr>
 </tbody>
 </table>
@@ -1184,7 +1137,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="code-quality-and-build-settings"><a class="anchor" href="#code-quality-and-build-settings"></a>Code Quality and Build Settings</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -1220,16 +1173,15 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app has been built in release mode,"Verify that the app has been built in release mode</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">with settings appropriate for a release build (e.g. non-debuggable)."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app has been built in release mode, with settings appropriate for a release build (e.g. non-debuggable).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that debugging symbols have been removed from native binaries.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
@@ -1237,60 +1189,51 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that debugging code has been removed,"Verify that debugging code has been removed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and the app does not log verbose errors or debugging messages."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that debugging code has been removed, and the app does not log verbose errors or debugging messages.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app catches and handles possible exceptions.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.6</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that error handling logic in security controls denies access by default.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that in unmanaged code,"Verify that in unmanaged code</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">memory is allocated</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">freed and used securely."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that in unmanaged code, memory is allocated, freed and used securely.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">L1+L2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Free security features offered by the toolchain,"Free security features offered by the toolchain</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as byte-code minification</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">stack protection</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PIE support and automatic reference counting</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">are activated."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Free security features offered by the toolchain, such as byte-code minification, stack protection, PIE support and automatic reference counting, are activated.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding/Observation Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1305,7 +1248,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="resiliency-against-reverse-engineering-requirements"><a class="anchor" href="#resiliency-against-reverse-engineering-requirements"></a>Resiliency Against Reverse Engineering Requirements</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 12.5%;">
@@ -1341,47 +1284,37 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app implements multiple functionally independent debugging defenses that,"Verify that the app implements multiple functionally independent debugging defenses that</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">in context of the overall protection scheme</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">force adversaries to invest significant manual effort to enable debugging. All available debugging protocols must be covered (e.g. JDWP and native)."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app implements multiple functionally independent debugging defenses that, in context of the overall protection scheme, force adversaries to invest significant manual effort to enable debugging. All available debugging protocols must be covered (e.g. JDWP and native).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It would be a good idea here to crash the debugger/browser where possible.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app detects,"Verify that the app detects</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and responds to</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tampering with executable files and critical data."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app detects, and responds to, tampering with executable files and critical data.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app detects the presence of widely used reverse engineering tools,"Verify that the app detects the presence of widely used reverse engineering tools</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">such as code injection tools</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">hooking frameworks and debugging servers."</p></td>
-</tr>
-<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app detects the presence of widely used reverse engineering tools, such as code injection tools, hooking frameworks and debugging servers.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app detects,"Verify that the app detects</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and response to</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">being run in an emulator using any method."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app detects, and response to, being run in an emulator using any method.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1391,93 +1324,83 @@ Zepto(function($){
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app detects,"Verify that the app detects</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">and responds to</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">modifications of process memory</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">including relocation table patches and injected code."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app detects, and responds to, modifications of process memory, including relocation table patches and injected code.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app implements multiple different responses to tampering,"Verify that the app implements multiple different responses to tampering</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">debugging and emulation (requirements 9.2 - 9.6)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">including stealthy responses that don&#8217;t simply terminate the app."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app implements multiple different responses to tampering, debugging and emulation (requirements 9.2 - 9.6), including stealthy responses that don&#8217;t simply terminate the app.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify all executable files and libraries belonging to the app are either encrypted on the file level and/or important code and data segments inside the executables are encrypted or packed. Trivial static analysis should not reveal important code or data.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that obfuscating transformations and functional defenses are interdependent and well-integrated throughout the app.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app implements a 'device binding' functionality when a mobile device is treated as being trusted. Verify that the device fingerprint is derived from multiple device properties.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that the app uses multiple functionally independent means of emulator detection that,"Verify that the app uses multiple functionally independent means of emulator detection that</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">in context of the overall protection scheme</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">force adversaries to invest significant manual effort to run the app in an emulator (supersedes requirement 8.5)."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that the app uses multiple functionally independent means of emulator detection that, in context of the overall protection scheme, force adversaries to invest significant manual effort to run the app in an emulator (supersedes requirement 8.5).</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.12</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that if the architecture requires sensitive information be stored on the device,"Verify that if the architecture requires sensitive information be stored on the device</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the app only runs on operating system versions and devices that offer hardware-backed key storage. Alternatively</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the information is protected using obfuscation. Considering current published research</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the obfuscation type and parameters are sufficient to cause significant manual effort to reverse engineers seeking to comprehend or extract the sensitive data."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that if the architecture requires sensitive information be stored on the device, the app only runs on operating system versions and devices that offer hardware-backed key storage. Alternatively, the information is protected using obfuscation. Considering current published research, the obfuscation type and parameters are sufficient to cause significant manual effort to reverse engineers seeking to comprehend or extract the sensitive data.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8.13</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Verify that if the architecture requires sensitive computations be performed on the client-side,"Verify that if the architecture requires sensitive computations be performed on the client-side</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">these computations are isolated from the operating system by using a hardware-based SE or TEE. Alternatively</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the information is protected using obfuscation. Considering current published research</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the obfuscation type and parameters are sufficient to cause significant manual effort to reverse engineers seeking to comprehend the sensitive portions of the code and/or data."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verify that if the architecture requires sensitive computations be performed on the client-side, these computations are isolated from the operating system by using a hardware-based SE or TEE. Alternatively, the information is protected using obfuscation. Considering current published research, the obfuscation type and parameters are sufficient to cause significant manual effort to reverse engineers seeking to comprehend the sensitive portions of the code and/or data.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coding Task</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
 </tr>
 </tbody>
 </table>
@@ -1486,7 +1409,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="other-mobile-vulnerabilities"><a class="anchor" href="#other-mobile-vulnerabilities"></a>Other Mobile Vulnerabilities</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 14.2857%;">
@@ -1578,7 +1501,7 @@ Zepto(function($){
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->
