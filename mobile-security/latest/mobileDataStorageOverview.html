@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Storage Summary :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/mobileDataStorageOverview.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -291,7 +291,7 @@ Zepto(function($){
 <h1>Data Storage Summary</h1>
 <div id="preamble">
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -511,7 +511,7 @@ public Key getSecretKey(String keyAlias) throws GeneralSecurityException, IOExce
 </div>
 </div>
 <div class="sect3">
-<h4 id="encrypt-decrypt-the-secret-key"><a class="anchor" href="#encrypt-decrypt-the-secret-key"></a>Encrypt/decrypt the secret key</h4>
+<h4 id="encryptdecrypt-the-secret-key"><a class="anchor" href="#encryptdecrypt-the-secret-key"></a>Encrypt/decrypt the secret key</h4>
 <div class="paragraph">
 <p>RSA encryption/decryption is used to encrypt/decrypt the secret key. It can be used to encrypt/decrypt relatively small amount of data.</p>
 </div>
@@ -570,7 +570,7 @@ public byte[] encrypt(String keyAlias, byte[] plainText) throws GeneralSecurityE
 </div>
 </div>
 <div class="sect3">
-<h4 id="encrypt-decrypt-the-content-of-notes"><a class="anchor" href="#encrypt-decrypt-the-content-of-notes"></a>Encrypt/decrypt the content of notes</h4>
+<h4 id="encryptdecrypt-the-content-of-notes"><a class="anchor" href="#encryptdecrypt-the-content-of-notes"></a>Encrypt/decrypt the content of notes</h4>
 <div class="paragraph">
 <p>Once we have the secret key, we can use it to encrypt/decrypt the content of the notes using AES.</p>
 </div>
@@ -1087,7 +1087,7 @@ func deleteAll(onComplete: @escaping (Error?, Bool?) -&gt; Void) {
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

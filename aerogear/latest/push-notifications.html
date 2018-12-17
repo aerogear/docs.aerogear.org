@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Using the Push Notifications Mobile Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/push-notifications.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -493,8 +493,8 @@ Zepto(function($){
 <li><a href="#setting-up-push-notifications-service-sdk">Setting up Push Notifications service SDK</a></li>
 </ul>
 </li>
-<li><a href="#push-ui">Accessing Push Notifications using the Unified Push Admin UI</a></li>
-<li><a href="#sending">Sending a Push Notification</a></li>
+<li><a href="#con_accessing-push-using-the-ui_con_accessing-push-using-the-ui">Accessing Push Notifications using the Unified Push Admin UI</a></li>
+<li><a href="#proc_sending-a-push-notification_proc_sending-a-push-notification">Sending a Push Notification</a></li>
 <li><a href="#handling">Handling Push Notifications</a></li>
 </ul>
 </div>
@@ -785,7 +785,7 @@ Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile App, and that Mobile App must be associated with the mobile service.
+<p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
@@ -797,10 +797,10 @@ This association is called <strong>binding</strong> and it is necessary for your
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+<p>Launch Mobile Developer Console</p>
 </li>
 <li>
-<p>Select the Mobile App name listed in the Mobile Apps section.</p>
+<p>Click on the Mobile App on the Overview screen</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -809,9 +809,21 @@ This association is called <strong>binding</strong> and it is necessary for your
 <img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile App with the Push Notifications Service.</p>
+<p>Press <strong>Bind to App</strong> in the Push Notifications</p>
 </li>
 <li>
 <p>Fill out the binding parameters required by the Push Notifications Service.</p>
@@ -828,7 +840,12 @@ Those credentials need to be provided in the binding dialog.</p>
 <div class="sidebarblock primary">
 <div class="title">Android</div><div class="content">
 <div class="paragraph">
-<p>You need to provide a <strong>Server Key</strong> and a <strong>Sender ID</strong>. Both can be found in the Firebase console under <strong>Project Settings &gt; Cloud Messaging</strong>. Make sure that you have selected <code>Android</code> in the <code>Mobile Client Type</code> dropdown.</p>
+<p>You need to provide a <strong>Server Key</strong> and a <strong>Sender ID</strong>. Both can be found in the Firebase console under <strong>Project&#160;Settings&#160;&gt;&#160;Cloud Messaging</strong>. Make sure that you have selected <code>Android</code> in the <code>Mobile Client Type</code> dropdown.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-push-parameters-android.png" alt="mobile clients services push parameters android">
+</div>
 </div>
 </div>
 </div>
@@ -851,10 +868,15 @@ The certificate needs to be encoded in base64 before copying it into the field l
 <pre>cat &lt;path/to/your/.p12&gt; | base64 --wrap=0</pre>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-push-parameters-ios.png" alt="mobile clients services push parameters ios">
+</div>
+</div>
 </div>
 </div>
 <div class="paragraph">
-<p>After clicking Bind your variant will be created in UPS and you should see a new binding for your mobile client.</p>
+<p>After clicking <strong>Create</strong> your variant will be created in UPS and you should see a new binding for your mobile client.</p>
 </div>
 </div>
 </div>
@@ -1214,7 +1236,7 @@ pushObject.on('registration').subscribe(data =&gt; {
 </div>
 </div>
 <div class="sect1">
-<h2 id="push-ui"><a class="anchor" href="#push-ui"></a>Accessing Push Notifications using the Unified Push Admin UI</h2>
+<h2 id="con_accessing-push-using-the-ui_con_accessing-push-using-the-ui"><a class="anchor" href="#con_accessing-push-using-the-ui_con_accessing-push-using-the-ui"></a>Accessing Push Notifications using the Unified Push Admin UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Unified Push Admin UI allows you to send Push Notifications.</p>
@@ -1258,7 +1280,7 @@ On first login you need to provide the OpenShift OAuth service permissions to re
 </div>
 </div>
 <div class="sect1">
-<h2 id="sending"><a class="anchor" href="#sending"></a>Sending a Push Notification</h2>
+<h2 id="proc_sending-a-push-notification_proc_sending-a-push-notification"><a class="anchor" href="#proc_sending-a-push-notification_proc_sending-a-push-notification"></a>Sending a Push Notification</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Unified Push Admin UI allows you to send push notifications to devices.</p>
@@ -1426,7 +1448,7 @@ push notifications that arrive when the application is in the background will al
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

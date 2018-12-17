@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Sync :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/data-sync.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -482,25 +482,25 @@ Zepto(function($){
 <li><a href="#binding-a-mobile-app-with-the-data-sync-service">Binding a Mobile App with the Data Sync Service</a></li>
 </ul>
 </li>
-<li><a href="#ui">Managing your data sources using the Data Sync UI</a>
+<li><a href="#data_sources_ui_data_sources_ui">Managing your data sources using the Data Sync UI</a>
 <ul class="sectlevel2">
 <li><a href="#data-source-introduction">Data Source Introduction</a></li>
 <li><a href="#data-source-options">Data Source Options</a></li>
 </ul>
 </li>
-<li><a href="#schema">Defining a Schema using the Data Sync UI</a>
+<li><a href="#schema_ui_data_sources_ui">Defining a Schema using the Data Sync UI</a>
 <ul class="sectlevel2">
 <li><a href="#the-schema-editor">The Schema Editor</a></li>
 <li><a href="#structure-view">Structure View</a></li>
 <li><a href="#playground">Playground</a></li>
 </ul>
 </li>
-<li><a href="#resolvers">Adding Resolvers to a Schema</a>
+<li><a href="#resolvers_ui_data_sources_ui">Adding Resolvers to a Schema</a>
 <ul class="sectlevel2">
 <li><a href="#defining-resolvers">Defining Resolvers</a></li>
 </ul>
 </li>
-<li><a href="#subscriptions">Adding Subscriptions to a Schema</a>
+<li><a href="#subscriptions_ui_data_sources_ui">Adding Subscriptions to a Schema</a>
 <ul class="sectlevel2">
 <li><a href="#publishing-to-a-subscription">Publishing to a subscription</a></li>
 </ul>
@@ -522,7 +522,7 @@ Zepto(function($){
 <li><a href="#additional-resources">Additional resources</a></li>
 </ul>
 </li>
-<li><a href="#auth">Authentication for Data Sync</a>
+<li><a href="#sync_auth_authentication">Authentication for Data Sync</a>
 <ul class="sectlevel2">
 <li><a href="#prerequisites-3">Prerequisites</a></li>
 <li><a href="#binding-the-data-sync-service-to-an-identity-management-instance">Binding the Data Sync service to an Identity Management Instance</a></li>
@@ -658,7 +658,7 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 <div class="paragraph">
 <p>When provisioning a Data Sync Service, you are prompted to set the following:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Configuration</caption>
 <colgroup>
 <col style="width: 50%;">
@@ -723,7 +723,7 @@ Provisioning a service may take some time.</p>
 <div class="sect2">
 <h3 id="binding-a-mobile-app-with-the-data-sync-service"><a class="anchor" href="#binding-a-mobile-app-with-the-data-sync-service"></a>Binding a Mobile App with the Data Sync Service</h3>
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile App, and that Mobile App must be associated with the mobile service.
+<p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
@@ -734,10 +734,10 @@ This association is called <strong>binding</strong> and it is necessary for your
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+<p>Launch Mobile Developer Console</p>
 </li>
 <li>
-<p>Select the Mobile App name listed in the Mobile Apps section.</p>
+<p>Click on the Mobile App on the Overview screen</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -746,9 +746,21 @@ This association is called <strong>binding</strong> and it is necessary for your
 <img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile App with the Data Sync Service.</p>
+<p>Press <strong>Bind to App</strong> in the Data Sync</p>
 </li>
 <li>
 <p>Fill out the binding parameters required by the Data Sync Service.</p>
@@ -760,7 +772,7 @@ This association is called <strong>binding</strong> and it is necessary for your
 </div>
 </div>
 <div class="sect1">
-<h2 id="ui"><a class="anchor" href="#ui"></a>Managing your data sources using the Data Sync UI</h2>
+<h2 id="data_sources_ui_data_sources_ui"><a class="anchor" href="#data_sources_ui_data_sources_ui"></a>Managing your data sources using the Data Sync UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The Data Sync UI allows you to manage your data sources.</p>
@@ -944,7 +956,7 @@ You can test your data source before saving by clicking on the <code>Test</code>
 </div>
 </div>
 <div class="sect1">
-<h2 id="schema"><a class="anchor" href="#schema"></a>Defining a Schema using the Data Sync UI</h2>
+<h2 id="schema_ui_data_sources_ui"><a class="anchor" href="#schema_ui_data_sources_ui"></a>Defining a Schema using the Data Sync UI</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A schema describes the structure of the data the Data Sync deals with. It allows you to configure
@@ -1007,7 +1019,7 @@ Otherwise you will see a list of all your types, queries, mutations and subscrip
 </div>
 </div>
 <div class="sect1">
-<h2 id="resolvers"><a class="anchor" href="#resolvers"></a>Adding Resolvers to a Schema</h2>
+<h2 id="resolvers_ui_data_sources_ui"><a class="anchor" href="#resolvers_ui_data_sources_ui"></a>Adding Resolvers to a Schema</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A schema describes the structure of your data and the operations to query or mutate that data.
@@ -1188,7 +1200,7 @@ For in-memory data sources <a href="https://github.com/louischatriot/nedb">NeDB<
 </div>
 </div>
 <div class="sect1">
-<h2 id="subscriptions"><a class="anchor" href="#subscriptions"></a>Adding Subscriptions to a Schema</h2>
+<h2 id="subscriptions_ui_data_sources_ui"><a class="anchor" href="#subscriptions_ui_data_sources_ui"></a>Adding Subscriptions to a Schema</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>GraphQL subscriptions allow you to be notified in realtime of changes to your data.
@@ -1671,7 +1683,7 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 <p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="mobile-metrics.html" class="page">Mobile Metrics service</a>.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="data-sync.html" class="page">Data Sync</a> service.</p>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="#">Data Sync</a> service.</p>
 </li>
 </ul>
 </div>
@@ -1762,7 +1774,7 @@ events and resources, such as memory usage, CPU usage, resolved operation count 
 </div>
 </div>
 <div class="sect1">
-<h2 id="auth"><a class="anchor" href="#auth"></a>Authentication for Data Sync</h2>
+<h2 id="sync_auth_authentication"><a class="anchor" href="#sync_auth_authentication"></a>Authentication for Data Sync</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>By default, Data Sync does not provide any authentication and authorization mechanism.
@@ -2148,7 +2160,7 @@ type Mutation {
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

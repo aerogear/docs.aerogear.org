@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHS Study on Mobile Device Security :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/dhsMobileDeviceSecurity.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -302,7 +302,7 @@ Zepto(function($){
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="mobile-security-threats-categories"><a class="anchor" href="#mobile-security-threats-categories"></a>Mobile Security Threats Categories</h3>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -319,52 +319,27 @@ Zepto(function($){
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Denial of Service</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deny or degrade service to users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Jamming of wireless communications, "Jamming of wireless communications</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">overloading networks with bogus traffic</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ransomware</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">theft of mobile device or mobile services."</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jamming of wireless communications, overloading networks with bogus traffic, ransomware, theft of mobile device or mobile services.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Geolocation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Physical tracking of user.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Passively or actively obtaining accurate three-dimensional coordinates of target, "Passively or actively obtaining accurate three-dimensional coordinates of target</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Passively or actively obtaining accurate three-dimensional coordinates of target, possibly including speed and direction.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">possibly including speed and direction."</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Information Disclosure</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Unauthorized access to information or services.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interception of data in transit, leakage or exfiltration of user, app, or enterprise data, tracking of user location, eavesdropping on voice or data communications, surreptitiously activating the phone’s microphone or camera to spy on the user.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Interception of data in transit, "Interception of data in transit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">leakage or exfiltration of user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">app</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">or enterprise data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tracking of user location</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">eavesdropping on voice or data communications</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">surreptitiously activating the phone’s microphone or camera to spy on the user."</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Spoofing</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Impersonating something or someone</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Email or SMS message pretending to be from boss or colleague (social engineering); fraudulent Wi-Fi access point or cellular base station mimicking a legitimate one.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tampering</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Modifying data, "Modifying data</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">software</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">firmware</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">or hardware without authorization. "</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"Modifying data in transit, "Modifying data in transit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">inserting tampered hardware or software into supply chain</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">repackaging legitimate app with malware</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modifying data, software, firmware, or hardware without authorization.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modifying data in transit, inserting tampered hardware or software into supply chain, repackaging legitimate app with malware, modifying network or device configuration (e.g., jailbreaking or rooting a phone).</p></td>
 </tr>
 </tbody>
 </table>
@@ -1278,7 +1253,7 @@ Zepto(function($){
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

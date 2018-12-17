@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeroGear Mobile Security :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/mobile-security/latest/index.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -327,7 +327,7 @@ Zepto(function($){
 <div class="sect1">
 <h2 id="authentication-and-session-management"><a class="anchor" href="#authentication-and-session-management"></a>Authentication and Session Management</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -426,19 +426,19 @@ Zepto(function($){
 </div>
 <div class="sect3">
 <h4 id="native-android"><a class="anchor" href="#native-android"></a>Native Android</h4>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-1.png" alt="android auth 1" width="270" height="480">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-2.png" alt="android auth 2" width="270" height="480">
 </div>
@@ -446,19 +446,19 @@ Zepto(function($){
 </tr>
 </tbody>
 </table>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-4.png" alt="android auth 4" width="270" height="480">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <img src="_images/android-auth-5.png" alt="android auth 5" width="270" height="480">
 </div>
@@ -615,19 +615,19 @@ public void logout(final CallbackHandler logoutCallback) {
 </div>
 <div class="sect3">
 <h4 id="native-ios"><a class="anchor" href="#native-ios"></a>Native iOS</h4>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <img src="_images/ios-auth-1.png" alt="ios auth 1" width="270" height="480">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock">
 <div class="content">
 <img src="_images/ios-auth-2.png" alt="ios auth 2" width="270" height="480">
 </div>
@@ -959,7 +959,7 @@ isAuthenticated(): boolean {
 <div class="sect1">
 <h2 id="data-storage-summary"><a class="anchor" href="#data-storage-summary"></a>Data Storage Summary</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1176,7 +1176,7 @@ public Key getSecretKey(String keyAlias) throws GeneralSecurityException, IOExce
 </div>
 </div>
 <div class="sect4">
-<h5 id="encrypt-decrypt-the-secret-key"><a class="anchor" href="#encrypt-decrypt-the-secret-key"></a>Encrypt/decrypt the secret key</h5>
+<h5 id="encryptdecrypt-the-secret-key"><a class="anchor" href="#encryptdecrypt-the-secret-key"></a>Encrypt/decrypt the secret key</h5>
 <div class="paragraph">
 <p>RSA encryption/decryption is used to encrypt/decrypt the secret key. It can be used to encrypt/decrypt relatively small amount of data.</p>
 </div>
@@ -1235,7 +1235,7 @@ public byte[] encrypt(String keyAlias, byte[] plainText) throws GeneralSecurityE
 </div>
 </div>
 <div class="sect4">
-<h5 id="encrypt-decrypt-the-content-of-notes"><a class="anchor" href="#encrypt-decrypt-the-content-of-notes"></a>Encrypt/decrypt the content of notes</h5>
+<h5 id="encryptdecrypt-the-content-of-notes"><a class="anchor" href="#encryptdecrypt-the-content-of-notes"></a>Encrypt/decrypt the content of notes</h5>
 <div class="paragraph">
 <p>Once we have the secret key, we can use it to encrypt/decrypt the content of the notes using AES.</p>
 </div>
@@ -1708,7 +1708,7 @@ func deleteAll(onComplete: @escaping (Error?, Bool?) -&gt; Void) {
 <div class="sect1">
 <h2 id="network-security"><a class="anchor" href="#network-security"></a>Network Security</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2132,7 +2132,7 @@ func performValidCertCheck(url:String? = nil, onCompleted: @escaping (Bool) -&gt
 <div class="sect1">
 <h2 id="mobile-app-self-defence"><a class="anchor" href="#mobile-app-self-defence"></a>Mobile App Self-Defence</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2602,7 +2602,7 @@ detectEmulator(): void {
 </div>
 </div>
 <div class="sect4">
-<h5 id="detecting-root-jailbreak"><a class="anchor" href="#detecting-root-jailbreak"></a>Detecting Root/Jailbreak</h5>
+<h5 id="detecting-rootjailbreak"><a class="anchor" href="#detecting-rootjailbreak"></a>Detecting Root/Jailbreak</h5>
 <div class="paragraph">
 <p>Detecting if the underlying device is Jailbroken or has Root Access.</p>
 </div>
@@ -2681,7 +2681,7 @@ detectDeviceLock() {
 <div class="sect1">
 <h2 id="handling-sensitive-data-overview"><a class="anchor" href="#handling-sensitive-data-overview"></a>Handling Sensitive Data Overview</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2726,7 +2726,7 @@ detectDeviceLock() {
 <div class="sect1">
 <h2 id="cryptography-summary"><a class="anchor" href="#cryptography-summary"></a>Cryptography Summary</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2820,7 +2820,7 @@ detectDeviceLock() {
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

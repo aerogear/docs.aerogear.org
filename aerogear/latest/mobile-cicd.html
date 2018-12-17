@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile CI/CD :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobile-cicd.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -473,8 +473,8 @@ Zepto(function($){
 <li><a href="#introduction">Introduction to the Mobile CI/CD Service</a></li>
 <li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
 <li><a href="#setup">Prerequisites</a></li>
-<li><a href="#provisioning-mobile-ci-cd-service">Provisioning Mobile CI/CD Service</a></li>
-<li><a href="#build-config">Creating a Build Configuration</a></li>
+<li><a href="#provisioning-mobile-cicd-service">Provisioning Mobile CI/CD Service</a></li>
+<li><a href="#proc_creating-a-build-configuration_proc_creating-a-build-configuration">Creating a Build Configuration</a></li>
 <li><a href="#jenkins">Adding a Jenkinsfile</a>
 <ul class="sectlevel2">
 <li><a href="#sample-android-jenkinsfile-for-debug-build-type">Sample Android Jenkinsfile for Debug Build Type</a></li>
@@ -482,18 +482,18 @@ Zepto(function($){
 <li><a href="#sample-ios-jenkinsfile-for-release-build-type">Sample iOS Jenkinsfile for Release Build Type</a></li>
 </ul>
 </li>
-<li><a href="#building">Building a Mobile App</a></li>
-<li><a href="#logs">Viewing Build Logs</a>
+<li><a href="#proc_building-a-mobile-app_proc_building-a-mobile-app">Building a Mobile App</a></li>
+<li><a href="#access-mobile-client-build-logs">Viewing Build Logs</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-build-history-in-the-openshift-console">Viewing Build History in the OpenShift Console</a></li>
 <li><a href="#viewing-build-logs-in-jenkins">Viewing Build Logs in Jenkins</a></li>
 </ul>
 </li>
-<li><a href="#deploy">Deploying a Mobile App</a></li>
-<li><a href="#clean">Cleaning up a Mobile Client Build</a>
+<li><a href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app">Deploying a Mobile App</a></li>
+<li><a href="#cleaning-up-mobile-client-builds">Cleaning up a Mobile Client Build</a>
 <ul class="sectlevel2">
 <li><a href="#deleting-a-build-instance">Deleting a Build Instance</a></li>
-<li><a href="#deleting-a-mobile-ci-cd-build-configuration">Deleting a Mobile CI/CD Build Configuration</a></li>
+<li><a href="#deleting-a-mobile-cicd-build-configuration">Deleting a Mobile CI/CD Build Configuration</a></li>
 </ul>
 </li>
 <li><a href="#ref_source-configuration_ref_source-configuration">Debug and Release Build Types</a>
@@ -577,7 +577,7 @@ Zepto(function($){
 </div>
 </div>
 <div class="sect1">
-<h2 id="provisioning-mobile-ci-cd-service"><a class="anchor" href="#provisioning-mobile-ci-cd-service"></a>Provisioning Mobile CI/CD Service</h2>
+<h2 id="provisioning-mobile-cicd-service"><a class="anchor" href="#provisioning-mobile-cicd-service"></a>Provisioning Mobile CI/CD Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To provision the Mobile CI/CD mobile service:</p>
@@ -637,7 +637,7 @@ Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="build-config"><a class="anchor" href="#build-config"></a>Creating a Build Configuration</h2>
+<h2 id="proc_creating-a-build-configuration_proc_creating-a-build-configuration"><a class="anchor" href="#proc_creating-a-build-configuration_proc_creating-a-build-configuration"></a>Creating a Build Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can use the Mobile Developer Console to create a new client build for an existing Mobile App.</p>
@@ -852,7 +852,7 @@ node('ios') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="building"><a class="anchor" href="#building"></a>Building a Mobile App</h2>
+<h2 id="proc_building-a-mobile-app_proc_building-a-mobile-app"><a class="anchor" href="#proc_building-a-mobile-app_proc_building-a-mobile-app"></a>Building a Mobile App</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To build a mobile app.</p>
@@ -882,7 +882,7 @@ node('ios') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="logs"><a class="anchor" href="#logs"></a>Viewing Build Logs</h2>
+<h2 id="access-mobile-client-build-logs"><a class="anchor" href="#access-mobile-client-build-logs"></a>Viewing Build Logs</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="viewing-build-history-in-the-openshift-console"><a class="anchor" href="#viewing-build-history-in-the-openshift-console"></a>Viewing Build History in the OpenShift Console</h3>
@@ -925,7 +925,7 @@ node('ios') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy"><a class="anchor" href="#deploy"></a>Deploying a Mobile App</h2>
+<h2 id="proc_deploying-a-mobile-app_proc_deploying-a-mobile-app"><a class="anchor" href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app"></a>Deploying a Mobile App</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can use the OpenShift UI to deploy a mobile app by downloading the binary directly to the mobile device.
@@ -947,7 +947,7 @@ This binary can be downloaded for any successful build in the build history.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="clean"><a class="anchor" href="#clean"></a>Cleaning up a Mobile Client Build</h2>
+<h2 id="cleaning-up-mobile-client-builds"><a class="anchor" href="#cleaning-up-mobile-client-builds"></a>Cleaning up a Mobile Client Build</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="deleting-a-build-instance"><a class="anchor" href="#deleting-a-build-instance"></a>Deleting a Build Instance</h3>
@@ -966,7 +966,7 @@ This binary can be downloaded for any successful build in the build history.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-mobile-ci-cd-build-configuration"><a class="anchor" href="#deleting-a-mobile-ci-cd-build-configuration"></a>Deleting a Mobile CI/CD Build Configuration</h3>
+<h3 id="deleting-a-mobile-cicd-build-configuration"><a class="anchor" href="#deleting-a-mobile-cicd-build-configuration"></a>Deleting a Mobile CI/CD Build Configuration</h3>
 <div class="paragraph">
 <p>When you create a Mobile App build configuration, you create a <a href="https://docs.openshift.org/latest/dev_guide/builds/index.html#defining-a-buildconfig">BuildConfig</a> resource in OpenShift. This build config is then translated into a Jenkins Build for your mobile client in the CI/CD service. If you want to remove the entire Job from the CI/CD service and clean up everything in OpenShift, then deleting the build config  will achieve this. To delete the build config, click into your mobile client and open the builds tab. From here you can select the delete option from the more actions (the three dots) at the far right of the build row. Once deleted associated resources and builds with that Job will be removed as will the underlying Jenkins Job in the CI/CD service.</p>
 </div>
@@ -1121,7 +1121,7 @@ Release:: An Android release build, requires an upload of a password protected P
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->

@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 1.1.0">
+    <meta name="generator" content="Antora 2.0.0-beta.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -624,6 +624,8 @@ If you don&#8217;t have OpenShift instance you can use <code>oc cluster up</code
 </div>
 <div class="sect2">
 <h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
+<div class="sect3">
+<h4 id="automated-install"><a class="anchor" href="#automated-install"></a>Automated Install</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -693,7 +695,144 @@ This step is only required on RHEL/Fedora with SELinux enabled.
 </li>
 </ol>
 </div>
+</div>
+<div class="sect3">
+<h4 id="manual-install"><a class="anchor" href="#manual-install"></a>Manual Install</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Login to your OpenShift instance as user with <code>cluster-admin</code> privileges using <code>oc</code></p>
+</li>
+<li>
+<p>Prepare the Custom Resource Definition file for mobile:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat > /tmp/crd.yaml << EOF
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: mobileclients.mobile.k8s.io
+spec:
+  group: mobile.k8s.io
+  version: v1alpha1
+  scope: Namespaced
+  names:
+    plural: mobileclients
+    singular: mobileclient
+    kind: MobileClient
+    shortNames:
+    - mc
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          properties:
+            apiKey:
+              type: string
+              pattern: '(\w{8}-\w{4}-\w{4}-\w{4}-\w{11})'
+            name:
+              type: string
+              pattern: '([\w-])'
+            dmzUrl:
+              type: string
+              nullable: true
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the following commands to setup the Custom Resource on OpenShift:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc create -f /tmp/crd.yaml
+oc create clusterrole mobileclient-admin --verb=create,delete,get,list,patch,update,watch --resource=mobileclients
+oc adm policy add-cluster-role-to-group mobileclient-admin system:authenticated</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the configurations of Automation Service Broker to add new registries:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Edit the config map object using <code>oc</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc edit configmap broker-config -n openshift-automation-service-broker</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the following new registries to the <code>registry</code> section of the config:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">registry:
+- type: dockerhub
+  name: ag
+  url: https://registry.hub.docker.com
+  org: aerogearcatalog
+  tag: 1.0.0
+  white_list:
+    - '.*-apb$'
+  black_list:
+    - '.*mobile-developer-console-apb$'
+- type: dockerhub
+  name: ag-mdc
+  org: aerogearcatalog
+  tag: 1.0.0-alpha
+  url: https://registry.hub.docker.com
+  white_list:
+  - '.*mobile-developer-console-apb$'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the following attributes in the <code>openshift</code> section of the config:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">openshift:
+  image_pull_policy: Always
+  sandbox_role: admin</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the following attributes in the <code>broker</code> section of the config:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">broker:
+  launch_apb_on_bind: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save the configmap object, and restart the automation service broker:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc rollout latest openshift-automation-service-broker -n openshift-automation-service-broker</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify the installation:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Browse to the Web console of your OpenShift instance and log in.</p>
+</li>
+<li>
+<p>Check that the <em>Mobile</em> tab is displayed in the service catalog. If this tab is not displayed, wait a few minutes to make sure that the installation process has completed.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 <h2 id="additional-resources" class="discrete">Additional resources</h2>
+</div>
 </div>
 <div class="sect2">
 <h3 id="local-setup"><a class="anchor" href="#local-setup"></a>Local OpenShift setup</h3>
@@ -1035,7 +1174,7 @@ A realm manages a set of users, credentials, roles, and groups. A user belongs t
 <h2 id="binding"><a class="anchor" href="#binding"></a>Binding a Mobile App with the Identity Management Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in OpenShift using a Mobile App, and that Mobile App must be associated with the mobile service.
+<p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
@@ -1046,10 +1185,10 @@ This association is called <strong>binding</strong> and it is necessary for your
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to the <strong>Overview</strong> of your OpenShift project.</p>
+<p>Launch Mobile Developer Console</p>
 </li>
 <li>
-<p>Select the Mobile App name listed in the Mobile Apps section.</p>
+<p>Click on the Mobile App on the Overview screen</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -1058,12 +1197,6 @@ This association is called <strong>binding</strong> and it is necessary for your
 <img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
 </div>
 </div>
-</li>
-<li>
-<p>Click <strong>Create Binding</strong> and follow the <strong>Create Binding</strong> wizard to associate the Mobile App with the Identity Management Service.</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the Identity Management Service.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1071,7 +1204,30 @@ This association is called <strong>binding</strong> and it is necessary for your
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use <code>public</code> when binding a Mobile App to a Identity Management. When binding mobile services to each other, use <code>bearer</code>.
+It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Press <strong>Bind to App</strong> in the Identity Management</p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the Identity Management Service.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-idm-parameters.png" alt="mobile clients services idm parameters">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Use <code>Public</code> when binding a Mobile App to a Identity Management. When binding mobile services to each other, use <code>Bearer</code>.
 </td>
 </tr>
 </table>
@@ -1262,7 +1418,7 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> version 8.9.4 runtime and NPM</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli" target="_blank" rel="noopener">Cordova CLI</a> version 8.0.0</p>
+<p><i class="fa fa-check-square-o"></i>  <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli" target="_blank" rel="noopener">Cordova CLI</a> version 8.0.0</p>
 </li>
 </ul>
 </div>
@@ -1799,7 +1955,7 @@ application where you can see the roles and basic information of the user you ha
           <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
-        <p>AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a></p>
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
       </div><!-- col -->
     
     </div><!-- row -->
