@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 2.0.0-beta.1">
+    <meta name="generator" content="Antora 2.0.0-rc.1">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -1253,31 +1253,43 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 </div>
 <div class="sect3">
 <h4 id="choose-schema"><a class="anchor" href="#choose-schema"></a>Choose the schema of a redirect url</h4>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset1_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset1_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset1_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_android">
 <div class="paragraph">
 <p>It is recommended to use the package name of the Android app as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_ios">
 <div class="paragraph">
 <p>It is recommended to use the Bundle Identifier of the iOS app as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template</code>)</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_cordova">
 <div class="paragraph">
 <p>Redirect url is <code>http://localhost/*</code>, without <code>:/callback</code>. Web Origin is <code>http://localhost/*</code>.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_xamarin">
 <div class="paragraph">
 <p>Depending on the platform, set the redirect as described in either the Android or the iOS tab.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1952,7 +1964,7 @@ application where you can see the roles and basic information of the user you ha
         <ul class="list-inline">
           <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
           <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
-          <li><a target="_blank" href="/feed.atom"><i class="fa fa-rss-square"></i> Feed</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
         </ul>
         
         <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
