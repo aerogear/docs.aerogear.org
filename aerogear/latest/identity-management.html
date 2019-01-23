@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identity Management :: AeroGear Mobile Services</title>
+    <title>Using the Identity Management Mobile Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/identity-management.html">
-    <meta name="generator" content="Antora 2.0.0-rc.1">
+    <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -228,16 +228,16 @@ Zepto(function($){
     <a class="nav-link" href="#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#setup">Setting Up</a>
+    <a class="nav-link" href="#setting-up-the-idm-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#user-auth">User Authentication</a>
+    <a class="nav-link" href="#adding-user-authentication-to-your-mobile-app">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#access">Access Control</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#sso">Single Sign On</a>
+    <a class="nav-link" href="#adding-sso-to-your-mobile-app">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#monitoring">Monitoring Identity Management</a>
@@ -422,14 +422,6 @@ Zepto(function($){
     <span class="version">latest</span>
   </div>
   <ul class="components">
-    <li class="component">
-      <span class="title">Mobile Security</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../mobile-security/latest/index.html">latest</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
@@ -466,43 +458,35 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/identity-management.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Identity Management</h1>
+<h1>Using the Identity Management Mobile Service</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#introduction">Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#ref_terminology_Identity Management_ref_terminology">Identity Management Terminology</a></li>
+<li><a href="#reference-material-Identity Management">Identity Management Service terminology</a></li>
+<li><a href="#setting-up-the-idm-service">Setting Up the Identity Management Service</a>
+<ul class="sectlevel2">
+<li><a href="#provisioning-the-Identity Management">Provisioning the Identity Management Service</a></li>
+<li><a href="#binding-an-app-to-Identity Management">Binding a Mobile App with the Identity Management Service</a></li>
+<li><a href="#configuring-Identity Management">Configuring the Identity Management Service</a></li>
+<li><a href="#downloading-the-configuration-file-Identity Management">Downloading the Configuration File</a></li>
+<li><a href="#setting-up-sdk-Identity Management">Setting up the Identity Management Service SDK</a></li>
 </ul>
 </li>
-<li><a href="#setup">Prerequisites</a></li>
-<li><a href="#setting-up-the-identity-management-mobile-service">Setting Up the Identity Management Mobile Service</a>
+<li><a href="#adding-user-authentication-to-your-mobile-app">Adding User Authentication to your Mobile App</a>
 <ul class="sectlevel2">
-<li><a href="#provisioning-the-identity-management-service">Provisioning the Identity Management Service</a></li>
-<li><a href="#binding-a-mobile-app-with-the-identity-management-service">Binding a Mobile App with the Identity Management Service</a></li>
-<li><a href="#configuring-the-service">Configuring the Service</a></li>
-<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
+<li><a href="#implementing-authentication-Identity Management">Implementing authentication</a></li>
+<li><a href="#refreshing-the-authentication-token-Identity Management">Refreshing the authentication token</a></li>
+<li><a href="#adding-log-out-option-Identity Management">Adding Log Out Option to your Mobile App</a></li>
+<li><a href="#authenticating-with-a-back-end-service-Identity Management">Authenticating with a back end service</a></li>
+<li><a href="#adding-access-control-Identity Management">Adding Access Control to your Mobile App</a></li>
 </ul>
 </li>
-<li><a href="#user-auth">Adding User Authentication to your Mobile App</a>
+<li><a href="#adding-sso-to-your-mobile-app">Adding SSO to your Mobile App</a>
 <ul class="sectlevel2">
-<li><a href="#implementing-authentication">Implementing authentication</a></li>
-<li><a href="#refreshing-the-authentication-token">Refreshing the authentication token</a></li>
-<li><a href="#adding-log-out-option-to-your-mobile-app">Adding Log Out Option to your Mobile App</a></li>
-<li><a href="#authenticating-with-a-back-end-service">Authenticating with a back end service</a></li>
-</ul>
-</li>
-<li><a href="#access">Adding Access Control to your Mobile App</a></li>
-<li><a href="#sso">Adding Single Sign-On (SSO) to your Mobile App</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#using-sso-with-the-device-browser">Using SSO with the Device Browser</a></li>
-<li><a href="#known-issues">Known Issues</a></li>
-</ul>
-</li>
+<li><a href="#using-sso-Identity Management">Using SSO with the Device Browser</a></li>
 <li><a href="#monitoring">Monitoring the Identity Management Service</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites-2">Prerequisites</a></li>
+<ul class="sectlevel3">
+<li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#dashboard-panel-descriptions">Dashboard panel descriptions</a></li>
 <li><a href="#singlestat-panels">Singlestat Panels</a></li>
@@ -511,11 +495,13 @@ Zepto(function($){
 </ul>
 </li>
 </ul>
+</li>
+<li><a href="#additional-resources">Additional resources</a></li>
+</ul>
 </div>
-<div class="sect1">
-<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
+<div id="introduction" class="paragraph">
 <p>The Identity Management service allows you to add authentication and authorization to your mobile app.</p>
 </div>
 <div class="ulist">
@@ -534,62 +520,68 @@ Zepto(function($){
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See the <a href="https://www.keycloak.org/documentation.html" target="_blank" rel="noopener">Keycloak documentation</a> for more info.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="ref_terminology_Identity Management_ref_terminology"><a class="anchor" href="#ref_terminology_Identity Management_ref_terminology"></a>Identity Management Terminology</h3>
+<h3 id="reference-material-Identity Management"><a class="anchor" href="#reference-material-Identity Management"></a>Identity Management Service terminology</h3>
 <div class="paragraph">
 <p>This section describes terminology that is associated with Identity Management.</p>
 </div>
 <div class="dlist">
+<div class="title">Identity Management Terminology</div>
 <dl>
 <dt class="hdlist1">SSO</dt>
 <dd>
-<p><em>Single Sign On</em>, the ability to share a login between multiple services</p>
+<p>Single Sign On, the ability to share a login between multiple services</p>
 </dd>
 <dt class="hdlist1">OpenID Connect</dt>
 <dd>
-<p>a standard for providing identity on top of OAuth 2.0</p>
+<p>A standard for providing identity on top of OAuth 2.0</p>
 </dd>
 <dt class="hdlist1">Keycloak</dt>
 <dd>
-<p>Red Hat&#8217;s implementation of <em>SSO</em> and <em>OpenID</em> used as the identity provider</p>
+<p>Red Hat’s implementation of SSO and OpenID used as the identity provider</p>
 </dd>
 <dt class="hdlist1">Client ID</dt>
 <dd>
-<p>is the client identifier for <em>OpenID Connect</em> requests, a simple alpha-numeric string</p>
+<p>Is the client identifier for OpenID Connect requests, a simple alpha-numeric string</p>
 </dd>
 <dt class="hdlist1">User Attributes</dt>
 <dd>
-<p>additional properties for user accounts (besides name and email) managed by Keycloak</p>
+<p>Additional properties for user accounts (besides name and email) managed by Keycloak</p>
 </dd>
 </dl>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="setup"><a class="anchor" href="#setup"></a>Prerequisites</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
 <li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned Mobile Developer Console as described in <a href="getting-started.html" class="page">Provisioning Mobile Developer Console</a>.</p>
+<p>You have provisioned Mobile Developer Console as described in <a href="getting-started.html">Provisioning Mobile Developer Console</a>.</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="setting-up-the-identity-management-mobile-service"><a class="anchor" href="#setting-up-the-identity-management-mobile-service"></a>Setting Up the Identity Management Mobile Service</h2>
+<h2 id="setting-up-the-idm-service"><a class="anchor" href="#setting-up-the-idm-service"></a>Setting Up the Identity Management Service</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="provisioning-the-identity-management-service"><a class="anchor" href="#provisioning-the-identity-management-service"></a>Provisioning the Identity Management Service</h3>
+<h3 id="provisioning-the-Identity Management"><a class="anchor" href="#provisioning-the-Identity Management"></a>Provisioning the Identity Management Service</h3>
+<div class="paragraph">
+<p>This section describes how to set up the IDM Mobile Service.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You understand identity management, and have a mobile app you want to protect.</p>
+</li>
+<li>
+<p>You have logged into the OpenShift console and the Mobile Developer Console.</p>
+</li>
+</ul>
+</div>
 <div class="olist arabic">
+<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
 <p>Log into the OpenShift console.</p>
@@ -604,7 +596,7 @@ Zepto(function($){
 </div>
 </li>
 <li>
-<p>Click <strong>Services</strong> and choose the Identity Management service.</p>
+<p>Click <strong>Services</strong> and choose the  service.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
@@ -668,23 +660,33 @@ Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="binding-a-mobile-app-with-the-identity-management-service"><a class="anchor" href="#binding-a-mobile-app-with-the-identity-management-service"></a>Binding a Mobile App with the Identity Management Service</h3>
+<h3 id="binding-an-app-to-Identity Management"><a class="anchor" href="#binding-an-app-to-Identity Management"></a>Binding a Mobile App with the Identity Management Service</h3>
 <div class="paragraph">
 <p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
+<p>This section describes how to set up the Identity Management service.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have created a Mobile App.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
 <p>To bind a Mobile App with a mobile service:</p>
 </div>
-<div class="sect3">
-<h4 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Launch Mobile Developer Console</p>
+<p>Launch Mobile Developer Console.</p>
 </li>
 <li>
-<p>Click on the Mobile App on the Overview screen</p>
+<p>Click on the Mobile App on the Overview screen.</p>
 </li>
 <li>
 <p>Navigate to <strong>Mobile Services</strong> tab.</p>
@@ -707,10 +709,10 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 </div>
 </li>
 <li>
-<p>Press <strong>Bind to App</strong> in the Identity Management</p>
+<p>Press <strong>Bind to App</strong> in the </p>
 </li>
 <li>
-<p>Fill out the binding parameters required by the Identity Management Service.</p>
+<p>Fill out the binding parameters required by the  Service.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-services-idm-parameters.png" alt="mobile clients services idm parameters">
@@ -723,7 +725,7 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use <code>Public</code> when binding a Mobile App to a Identity Management. When binding mobile services to each other, use <code>Bearer</code>.
+Use <code>Public</code> when binding a Mobile App to a . When binding mobile services to each other, use <code>Bearer</code>.
 </td>
 </tr>
 </table>
@@ -732,7 +734,7 @@ Use <code>Public</code> when binding a Mobile App to a Identity Management. When
 </ol>
 </div>
 <div class="paragraph">
-<p>The Identity Management service will now be expandable, details about the service can be viewed.</p>
+<p>The  service will now be expandable, details about the service can be viewed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -740,16 +742,50 @@ Use <code>Public</code> when binding a Mobile App to a Identity Management. When
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="configuring-the-service"><a class="anchor" href="#configuring-the-service"></a>Configuring the Service</h3>
+<h3 id="configuring-Identity Management"><a class="anchor" href="#configuring-Identity Management"></a>Configuring the Identity Management Service</h3>
 <div class="paragraph">
-<p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak.
+<p>This section guides you through configuring the redirect url and web origin for a client in Keycloak.
 This is required to enable OpenID authentication.
 For an explanation of these terms, see <a href="https://www.keycloak.org/documentation.html">Keycloak Documentation</a>.</p>
 </div>
-<div class="sect3">
-<h4 id="choose-schema"><a class="anchor" href="#choose-schema"></a>Choose the schema of a redirect url</h4>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>An understanding of <a href="https://openid.net/" target="_blank" rel="noopener">OpenID</a></p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log into the Mobile Developer Console and navigate to the Mobile App screen.</p>
+</li>
+<li>
+<p>Select the <strong>Mobile Services</strong> tab.</p>
+</li>
+<li>
+<p>If a binding to the Identity Management service is in progress, a spinning icon is displayed to the right of the Identity Management entry. Wait for the binding process to complete.</p>
+</li>
+<li>
+<p>If the <em>Keycloak Realm URL</em> URL is not visible, expand the Identity Management Service by clicking the &gt; icon.</p>
+</li>
+<li>
+<p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
+</li>
+<li>
+<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning">Provisioning</a> the service (defaults to admin/admin).</p>
+</li>
+<li>
+<p>Select <code>Clients</code> from the left navigation menu.</p>
+</li>
+<li>
+<p>Select your client from the list of clients. The name of your client is derived from the name of the Mobile App, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
+</li>
+<li>
+<p>Add an additional entry to <strong>Valid Redirect URIs</strong> as follows:</p>
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
@@ -780,53 +816,59 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_cordova">
 <div class="paragraph">
-<p>Redirect url is <code>http://localhost/*</code>, without <code>:/callback</code>. Web Origin is <code>http://localhost/*</code>.</p>
+<p>Set the additional value to <code>http://localhost/\*</code>.</p>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_xamarin">
 <div class="paragraph">
-<p>Depending on the platform, set the redirect as described in either the Android or the iOS tab.</p>
+<p>Depending on the platform, set the redirect URL as described in either the Android or the iOS tab.</p>
 </div>
 </div>
 </div>
 </div>
+</li>
+<li>
+<p>Add an additional entry to <strong>Web Origins</strong> as follows:</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset2_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset2_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset2_xamarin"></a>Xamarin</p>
+</li>
+</ul>
 </div>
-<div class="sect3">
-<h4 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console and navigate to the Project Overview.</p>
-</li>
-<li>
-<p>Navigate to the Mobile App screen.</p>
-</li>
-<li>
-<p>Select the Mobile Services tab.</p>
-</li>
-<li>
-<p>If a binding to the Identity Management service is in progress, a spinning icon is displayed to the right of the Identity Management entry. Wait for the binding process to complete.</p>
-</li>
-<li>
-<p>If the <em>Keycloak Realm URL</em> URL is not visible, expand the Identity Management Service by clicking the &gt; icon.</p>
-</li>
-<li>
-<p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
-</li>
-<li>
-<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning">Provisioning</a> the service (defaults to admin:admin).</p>
-</li>
-<li>
-<p>Select <code>Clients</code> from the left navigation menu.</p>
-</li>
-<li>
-<p>Select your client from the list of clients. The name of your client is derived from the name of the Mobile App, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
-</li>
-<li>
-<p>Add <code>&lt;schema&gt;:/callback</code> as an additional entry to <code>Valid Redirect URIs</code>. See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
-</li>
-<li>
-<p>Add <code>&lt;schema&gt;</code> as an additional entry to <code>Web Origins</code>.  See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_android">
+<div class="paragraph">
+<p>Use the package name of the Android app to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_ios">
+<div class="paragraph">
+<p>Use the Bundle Identifier of the iOS app. (e.g. <code>org.aerogear.ios-showcase-template</code>)</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_cordova">
+<div class="paragraph">
+<p>Set additional value to <code>http://localhost/\*</code>.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_xamarin">
+<div class="paragraph">
+<p>Depending on the target platform, set the additional value as described in either the Android or the iOS tab.</p>
+</div>
+</div>
+</div>
+</div>
 </li>
 <li>
 <p>Save your changes.</p>
@@ -840,10 +882,25 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 </ol>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h3>
+<h3 id="downloading-the-configuration-file-Identity Management"><a class="anchor" href="#downloading-the-configuration-file-Identity Management"></a>Downloading the Configuration File</h3>
+<div class="paragraph">
+<p>The <code>mobile-services.json</code> file provides the information for your mobile app to communicate with services.
+After you change any configuration in the Mobile Developer Console, it is important to update that file in your IDE.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The configuration of your Mobile App in Mobile Developer Console is up-to-date.</p>
+</li>
+<li>
+<p>You have set up your mobile app development environment.</p>
+</li>
+</ul>
+</div>
 <div class="olist arabic">
+<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
 <p>Open your Mobile App in Mobile Developer Console.</p>
@@ -860,7 +917,7 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
+The <code>mobile-services.json</code> file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
 </td>
 </tr>
 </table>
@@ -871,8 +928,25 @@ The mobile-services.json file is the link between your provisioned services on O
 </li>
 </ol>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset3_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset3_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset3_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_android">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -880,9 +954,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p><code>app/src/main/assets/mobile-services.json</code></p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_ios">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -902,9 +974,7 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_cordova">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -912,9 +982,7 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 <p><code>src/mobile-services.json</code></p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_xamarin">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -923,15 +991,46 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="setting-up-identity-management-service-sdk"><a class="anchor" href="#setting-up-identity-management-service-sdk"></a>Setting up Identity Management service SDK</h4>
-<div class="paragraph">
-<p>This section will help you to set up the Identity Management service SDK in your App.</p>
 </div>
-<div class="sect4">
-<h5 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h5>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+</div>
+<div class="sect2">
+<h3 id="setting-up-sdk-Identity Management"><a class="anchor" href="#setting-up-sdk-Identity Management"></a>Setting up the Identity Management Service SDK</h3>
+<div class="paragraph">
+<p>This section helps you to set up the Identity Management service SDK in your App.
+It describes how to set up and initialize the Identity Management service SDK.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Your local <code>mobile-services.json</code> file is up-to-date.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Import the libraries</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset4_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset4_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset4_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_android">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -958,9 +1057,7 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_ios">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -994,9 +1091,7 @@ auth = AGSAuth()</code></pre>
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_cordova">
 <div class="paragraph">
 <p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>:</p>
 </div>
@@ -1006,9 +1101,7 @@ auth = AGSAuth()</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_xamarin">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1045,11 +1138,28 @@ dotnet add package AeroGear.Mobile.Auth.Platform.iOS --version 1.0.0</code></pre
 </div>
 </div>
 </div>
+</li>
+<li>
+<p>Initialize the SDK</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset5_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset5_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset5_xamarin"></a>Xamarin</p>
+</li>
+</ul>
 </div>
-<div class="sect3">
-<h4 id="initializing-the-sdk"><a class="anchor" href="#initializing-the-sdk"></a>Initializing the SDK</h4>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_android">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1074,9 +1184,7 @@ dotnet add package AeroGear.Mobile.Auth.Platform.iOS --version 1.0.0</code></pre
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_ios">
 <div class="paragraph">
 <p>Set your custom configuration to the auth service instance, making sure the redirect URL matches the App&#8217;s Bundle Id.</p>
 </div>
@@ -1088,9 +1196,7 @@ try! AgsAuth.instance.configure(authConfig: authenticationConfig, useExternalUse
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_cordova">
 <div class="paragraph">
 <p>Import and initialize Auth:</p>
 </div>
@@ -1126,9 +1232,7 @@ Initialization will also perform authentication
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_xamarin">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1224,22 +1328,48 @@ authService.Configure(authConfig);</code></pre>
 </div>
 </div>
 </div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-auth"><a class="anchor" href="#user-auth"></a>Adding User Authentication to your Mobile App</h2>
+<h2 id="adding-user-authentication-to-your-mobile-app"><a class="anchor" href="#adding-user-authentication-to-your-mobile-app"></a>Adding User Authentication to your Mobile App</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This section describes how to perform user authentication for the supported platforms. On authentication a browser window will open and prompt the user for login credentials.</p>
-</div>
 <div class="sect2">
-<h3 id="implementing-authentication"><a class="anchor" href="#implementing-authentication"></a>Implementing authentication</h3>
-<div class="paragraph">
-<p>The following examples show how to implement authentication using the Aerogear SDK on all the supported platforms.</p>
+<h3 id="implementing-authentication-Identity Management"><a class="anchor" href="#implementing-authentication-Identity Management"></a>Implementing authentication</h3>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The <code>mobile-services.json</code> file is up-to-date in your development environment.</p>
+</li>
+</ul>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To implement authentication using the Aerogear SDK:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset6_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset6_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset6_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_android">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1302,9 +1432,7 @@ This handler should always invoke <code>handleAuthResult</code>, providing the <
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_ios">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1343,9 +1471,7 @@ func onLoginComplete(user: User?, err: Error?) {
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_cordova">
 <div class="paragraph">
 <p>Authentication will be performed on initialization as described in the section <a href="#initializing-the-sdk">Initializing the SDK</a>. To manually redirect to the login screen, use:</p>
 </div>
@@ -1359,9 +1485,7 @@ func onLoginComplete(user: User?, err: Error?) {
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_xamarin">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1380,16 +1504,45 @@ var user = await authService.Authenticate(authOptions);</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="refreshing-the-authentication-token"><a class="anchor" href="#refreshing-the-authentication-token"></a>Refreshing the authentication token</h3>
+<h3 id="refreshing-the-authentication-token-Identity Management"><a class="anchor" href="#refreshing-the-authentication-token-Identity Management"></a>Refreshing the authentication token</h3>
 <div class="paragraph">
 <p>When a user is authenticated, an access token and a refresh token are generated by the authentication server.
 See the <a href="https://www.keycloak.org/docs/3.2/server_admin/topics/sessions/timeouts.html">Keycloak documentation</a> for information about configuring the lifespan of these tokens.
-If the refresh token is still valid, the authentication token can be refreshed even if the authentication token has expired.
-The following code shows how the authentication token can be refreshed automatically:</p>
+If the refresh token is still valid, the authentication token can be refreshed even if the authentication token has expired.</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A working mobile app that uses authentication with the Identity Management service.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To automatically refresh the authenticate token :</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset7_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset7_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset7_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_android">
 <div class="paragraph">
 <p>Retrieve the current user and refresh the access token when possible and required:</p>
 </div>
@@ -1399,9 +1552,7 @@ The following code shows how the authentication token can be refreshed automatic
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_ios">
 <div class="paragraph">
 <p>Retrieve the current user and refresh the access token when possible and required:</p>
 </div>
@@ -1417,9 +1568,7 @@ The following code shows how the authentication token can be refreshed automatic
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_cordova">
 <div class="paragraph">
 <p>Retrieve the keycloak adapter object and refresh the access token, when possible and required:</p>
 </div>
@@ -1434,9 +1583,7 @@ The following code shows how the authentication token can be refreshed automatic
 <p>More information about the keycloak javascript adapter can be found <a href="https://www.keycloak.org/docs/3.0/securing_apps/topics/oidc/javascript-adapter.html">here</a></p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_xamarin">
 <div class="paragraph">
 <p>Retrieve the current user and refresh, if needed and still possible, its access token:</p>
 </div>
@@ -1449,13 +1596,56 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="adding-log-out-option-to-your-mobile-app"><a class="anchor" href="#adding-log-out-option-to-your-mobile-app"></a>Adding Log Out Option to your Mobile App</h3>
+<h3 id="adding-log-out-option-Identity Management"><a class="anchor" href="#adding-log-out-option-Identity Management"></a>Adding Log Out Option to your Mobile App</h3>
 <div class="paragraph">
 <p>The following section describes how to perform a logout.</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To perform <strong>backchannel or federated logouts</strong>, you must enable the Backchannel Logout option for the federated identity provider.
+More information is available in the Keycloak documentation under <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">OICD Identity Providers</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A working mobile app that uses authentication with the Identity Management service.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To perform a logout:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset8_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset8_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset8_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset8_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_android">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1487,9 +1677,7 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_ios">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1518,9 +1706,7 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_cordova">
 <div class="paragraph">
 <p>To logout invoke the <code>logout</code> function:</p>
 </div>
@@ -1532,9 +1718,7 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_xamarin">
 <div class="paragraph">
 <p>To logout invoke the <code>Logout</code> method:</p>
 </div>
@@ -1546,113 +1730,143 @@ var result = await authService.Logout(authService.CurrentUser());</code></pre>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To perform <strong>backchannel or federated logouts</strong>, you must enable the Backchannel Logout option for the federated identity provider. More information is available in the Keycloak documentation under <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/identity-broker/oidc.html" target="_blank" rel="noopener">OICD Identity Providers</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="authenticating-with-a-back-end-service"><a class="anchor" href="#authenticating-with-a-back-end-service"></a>Authenticating with a back end service</h3>
+<h3 id="authenticating-with-a-back-end-service-Identity Management"><a class="anchor" href="#authenticating-with-a-back-end-service-Identity Management"></a>Authenticating with a back end service</h3>
 <div class="paragraph">
-<p>In a typical scenario, you not only want the user to authenticate on the mobile app, you also want that user to authenticate with a back end service. To achieve this, you must add an additional token:</p>
+<p>In a typical scenario, you not only want the user to authenticate on the mobile app, you also want that user to authenticate with a back end service.</p>
 </div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A working mobile app that uses authentication with the Identity Management service.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add an additional token:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>Authorization: BEARER Yourtoken</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Add code to authenticate with a back end service:</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset9_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset9_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset9_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset9_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset9_android">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the current user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">UserPrincipal currentUser = authService.currentUser();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement <code>Callback</code> and call <code>logout</code>:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>authService.logout(currentUser, new Callback&lt;UserPrincipal&gt;() {
+    @Override
+    public void onSuccess() {
+        // User Logged Out Successfully and local Auth tokens were Deleted
+    }
+
+    @Override
+    public void onError(Throwable error) {
+        // An error occurred during logout
+    }
+});</pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset9_ios">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the logout callback:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">func onLogoutComplete(_: Error?) {
+    // User Logged Out Successfully and local Auth tokens were Deleted
+    ...
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Call <code>logout</code> and pass the callback:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">do {
+    try AgsAuth.instance.logout(onCompleted: self.onLogoutComplete)
+} catch {
+    fatalError("Error logging out: \(error).")
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset9_cordova">
 <div class="paragraph">
-<p>SDK also provides number of helpers to build authentication headers that will provide way to refresh it once token is outdated.</p>
+<p>To logout invoke the <code>logout</code> function:</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get the <code>AuthHeaderProvider</code> instance provided by the Aerogear SDK:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">authService.getAuthHeaderProvider()</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Plug it into your networking layer. When using the <code>okhttp</code> library, this can be added to the list of request interceptors to automatically supply the required tokens:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MobileCore.getInstance()
-          .getHttpLayer()
-          .requestHeaderInterceptor()
-          .add(authService.getAuthHeaderProvider());</code></pre>
-</div>
-</div>
-</li>
-</ol>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">authService.logout().then(() =&gt; {
+    // User Logged Out Successfully and local Auth tokens were Deleted
+});</code></pre>
 </div>
 </div>
 </div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get the <code>AuthHeaderProvider</code> instance provided by the Aerogear SDK:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">authService.getAuthHeaderProvider()</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Plug it into your networking layer.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset9_xamarin">
 <div class="paragraph">
-<p>The AeroGear Cordova SDK doesn&#8217;t provide an HTTP layer, therefore it cannot provide an Auth Header Provider.
-You must manually attach the <code>Bearer</code> header to your HTTP requests.</p>
+<p>To logout invoke the <code>Logout</code> method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">req.setRequestHeader('Accept', 'application/json');
-req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authService = MobileCore.Instance.GetService&lt;IAuthService&gt;();
+var result = await authService.Logout(authService.CurrentUser());</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get the <code>AuthHeaderProvider</code> instance provided by the Aerogear SDK:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var authHeaderProvider = authService.AuthHeaderProvider;</code></pre>
 </div>
-</div>
-</li>
-<li>
-<p>Plug it into your networking layer.</p>
 </li>
 </ol>
 </div>
-</div>
-</div>
-<h3 id="additional-information" class="discrete">Additional Information</h3>
 <div class="ulist">
+<div class="title">Additional resources</div>
 <ul>
 <li>
 <p><a href="#android-additional-configuration">Additional configuration for Android</a></p>
@@ -1663,19 +1877,44 @@ req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);<
 </ul>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="access"><a class="anchor" href="#access"></a>Adding Access Control to your Mobile App</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="adding-access-control-Identity Management"><a class="anchor" href="#adding-access-control-Identity Management"></a>Adding Access Control to your Mobile App</h3>
 <div class="paragraph">
-<p>Once a <code>UserPrincipal</code> has been retrieved, the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles" target="_blank" rel="noopener">roles</a> of the user can be listed and checked. This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.</p>
+<p>Once a <code>UserPrincipal</code> has been retrieved, the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles" target="_blank" rel="noopener">roles</a> of the user can be listed and checked.
+This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.
+Roles are divided into two types. Resource roles which belong to the client the user has authenticated against, and Realm roles which belong to the realm the client is in.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A working mobile app that uses authentication with the Identity Management service.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Roles are divided into two types. Resource roles which belong to the client the user has authenticated against, and Realm roles which belong to the realm the client is in.</p>
+<div class="title">Procedure</div>
+<p>To add Access Control:</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset10_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset10_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset10_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset10_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset10_android">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1698,9 +1937,7 @@ boolean isModerator = currentUser.hasResourceRole("my_resource", "user_moderator
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset10_ios">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1732,9 +1969,7 @@ let hasModeratorRole = currentUser.hasClientRole(client: "my_client", role: "mod
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset10_cordova">
 <div class="paragraph">
 <p>Get the realm roles from the auth service:</p>
 </div>
@@ -1756,9 +1991,7 @@ No function to retrieve the resource roles is currently exported but you can use
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset10_xamarin">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1794,29 +2027,34 @@ bool isModerator = user.HasResourceRole("my_resource", "user_moderator");</code>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="sso"><a class="anchor" href="#sso"></a>Adding Single Sign-On (SSO) to your Mobile App</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Auth SDK uses OpenID Connect <a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth">Authorization Code Flow</a> to achieve SSO via a mobile device browser.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="adding-sso-to-your-mobile-app"><a class="anchor" href="#adding-sso-to-your-mobile-app"></a>Adding SSO to your Mobile App</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<h3 id="using-sso-Identity Management"><a class="anchor" href="#using-sso-Identity Management"></a>Using SSO with the Device Browser</h3>
+<div class="paragraph">
+<p>The AeroGear mobile SDK uses OpenID Connect <a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth">Authorization Code Flow</a> to implement SSO using a mobile device browser.</p>
+</div>
 <div class="ulist">
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Two Mobile Apps bound to the Identity Management service</p>
+<p>You have completed all steps in <a href="#adding-access-control-Identity Management">Adding Access Control to your Mobile App</a>.</p>
 </li>
 <li>
-<p>Two mobile apps built and running on the same device that are using the AeroGear SDK Auth module</p>
+<p>Two Mobile Apps bound to the Identity Management service.</p>
+</li>
+<li>
+<p>Two Mobile Apps built and running on the same device that are using the AeroGear SDK Auth module.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="using-sso-with-the-device-browser"><a class="anchor" href="#using-sso-with-the-device-browser"></a>Using SSO with the Device Browser</h3>
 <div class="paragraph">
-<p>For this guide, assume that your two apps are called <strong>Email App</strong> and <strong>Messaging App</strong>.</p>
+<div class="title">Procedure</div>
+<p>In the following procedure, the two apps are named <strong>Email App</strong> and <strong>Messaging App</strong>.
+Substitute the appropriate names for your SSO scenario.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1834,20 +2072,16 @@ bool isModerator = user.HasResourceRole("my_resource", "user_moderator");</code>
 </li>
 </ol>
 </div>
-</div>
-<div class="sect2">
-<h3 id="known-issues"><a class="anchor" href="#known-issues"></a>Known Issues</h3>
 <div class="paragraph">
-<p>On iOS 11 and above, Apple has introduced <a href="https://developer.apple.com/documentation/safariservices/sfauthenticationsession">SFAuthenticationSession</a> for apps to perform SSO, instead of using the system Safari browser. However, there are a few known issues with this new feature and sometimes user may have to enter their credentials again in other apps, even if they have already logged in once previously in one of the apps.</p>
+<div class="title">Additional resources</div>
+<p>With iOS 11 and later, Apple has introduced SFAuthenticationSession for apps to perform SSO, instead of using the system Safari browser and there are known issues with this new feature.
+Sometimes, the user may have to enter their credentials again, even if they have logged in previously in another app.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="monitoring"><a class="anchor" href="#monitoring"></a>Monitoring the Identity Management Service</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
+<h3 id="monitoring"><a class="anchor" href="#monitoring"></a>Monitoring the Identity Management Service</h3>
+<div class="sect3">
+<h4 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h4>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
@@ -1856,15 +2090,15 @@ bool isModerator = user.HasResourceRole("my_resource", "user_moderator");</code>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
+<div class="sect3">
+<h4 id="overview"><a class="anchor" href="#overview"></a>Overview</h4>
 <div class="paragraph">
 <p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Identity Management Service are provisioned,
 you should be able to see the "Keycloak Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>).</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h3>
+<div class="sect3">
+<h4 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h4>
 <div class="paragraph">
 <p>The Keycloak dashboard consists of several panels which give you an overview of the specific
 events, such as the number of registered users, memory usage etc.</p>
@@ -1873,8 +2107,8 @@ events, such as the number of registered users, memory usage etc.</p>
 <p>Below you will find a detailed description of each panel and its values.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h3>
+<div class="sect3">
+<h4 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h4>
 <div class="paragraph">
 <p>Singlestat panels show you the main summary of a single data series.</p>
 </div>
@@ -1895,8 +2129,8 @@ events, such as the number of registered users, memory usage etc.</p>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h3>
+<div class="sect3">
+<h4 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h4>
 <div class="paragraph">
 <p>Used to show how certain values change over time, e.g. the number of successful logins.</p>
 </div>
@@ -1927,8 +2161,8 @@ events, such as the number of registered users, memory usage etc.</p>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="pie-charts"><a class="anchor" href="#pie-charts"></a>Pie Charts</h3>
+<div class="sect3">
+<h4 id="pie-charts"><a class="anchor" href="#pie-charts"></a>Pie Charts</h4>
 <div class="paragraph">
 <p>Used to show the distribution of data, e.g. the number of logins per identity provider.</p>
 </div>
@@ -1942,7 +2176,7 @@ events, such as the number of registered users, memory usage etc.</p>
 </li>
 </ul>
 </div>
-<h3 id="related-information" class="discrete">Related Information</h3>
+<h4 id="related-information" class="discrete">Related Information</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1956,6 +2190,22 @@ events, such as the number of registered users, memory usage etc.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>For more information about OpenID, see the <a href="https://openid.net/" target="_blank" rel="noopener">OpenID Foundation</a> website.</p>
+</li>
+<li>
+<p>See the <a href="https://www.keycloak.org/documentation.html" target="_blank" rel="noopener">Keycloak documentation</a> for more info.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Started with AeroGear Mobile Services :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started.html">
-    <meta name="generator" content="Antora 2.0.0-rc.1">
+    <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -228,16 +228,16 @@ Zepto(function($){
     <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#access">Access Control</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
@@ -422,14 +422,6 @@ Zepto(function($){
     <span class="version">latest</span>
   </div>
   <ul class="components">
-    <li class="component">
-      <span class="title">Mobile Security</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../mobile-security/latest/index.html">latest</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
@@ -853,8 +845,19 @@ On Mac only Minishift is currently supported.
 </div>
 <div class="sect3">
 <h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h4>
-<div class="sidebarblock primary">
-<div class="title">Minishift</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_minishift"></a>Minishift</p>
+</li>
+<li>
+<p><a id="tabset1_oc-cluster-up"></a>oc cluster up</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_minishift">
 <div class="ulist">
 <ul>
 <li>
@@ -869,9 +872,7 @@ On Mac only Minishift is currently supported.
 </ul>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">oc cluster up</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_oc-cluster-up">
 <div class="ulist">
 <ul>
 <li>
@@ -901,6 +902,7 @@ firewall-cmd --reload</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h4>
 <div class="olist arabic">
@@ -917,20 +919,30 @@ git checkout 1.0.0</code></pre>
 </li>
 <li>
 <p>Run the installation script:</p>
-<div class="sidebarblock primary">
-<div class="title">Minishift</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_minishift"></a>Minishift</p>
+</li>
+<li>
+<p><a id="tabset2_oc-cluster-up"></a>oc cluster up</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_minishift">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./scripts/minishift.sh</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">oc cluster up</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_oc-cluster-up">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./scripts/oc-cluster-up.sh</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1257,36 +1269,36 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset1_android"></a>Android</p>
+<p><a id="tabset3_android"></a>Android</p>
 </li>
 <li>
-<p><a id="tabset1_ios"></a>iOS</p>
+<p><a id="tabset3_ios"></a>iOS</p>
 </li>
 <li>
-<p><a id="tabset1_cordova"></a>Cordova</p>
+<p><a id="tabset3_cordova"></a>Cordova</p>
 </li>
 <li>
-<p><a id="tabset1_xamarin"></a>Xamarin</p>
+<p><a id="tabset3_xamarin"></a>Xamarin</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_android">
+<div class="tab-pane" aria-labelledby="tabset3_android">
 <div class="paragraph">
 <p>It is recommended to use the package name of the Android app as the schema of the redirect url to avoid conflicts. (e.g. <code>com.aerogear.androidshowcase</code>)</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_ios">
+<div class="tab-pane" aria-labelledby="tabset3_ios">
 <div class="paragraph">
 <p>It is recommended to use the Bundle Identifier of the iOS app as the schema of the redirect url. (e.g. <code>org.aerogear.ios-showcase-template</code>)</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_cordova">
+<div class="tab-pane" aria-labelledby="tabset3_cordova">
 <div class="paragraph">
 <p>Redirect url is <code>http://localhost/*</code>, without <code>:/callback</code>. Web Origin is <code>http://localhost/*</code>.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_xamarin">
+<div class="tab-pane" aria-labelledby="tabset3_xamarin">
 <div class="paragraph">
 <p>Depending on the platform, set the redirect as described in either the Android or the iOS tab.</p>
 </div>
@@ -1367,8 +1379,25 @@ You can only use the AeroGear Xamarin SDK to create iOS and Android Apps.
 </tr>
 </table>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset4_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset4_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset4_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_android">
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
 </div>
@@ -1386,9 +1415,7 @@ You can only use the AeroGear Xamarin SDK to create iOS and Android Apps.
 <p>For information on how to set up a local Android development environment, see the <a href="https://developer.android.com/studio/install" target="_blank" rel="noopener">Android Studio documentation</a>.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_ios">
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
 </div>
@@ -1418,9 +1445,7 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <p>For information on how to set up a local iOS development environment, see the <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html" target="_blank" rel="noopener">Swift documentation</a>.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_cordova">
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
 </div>
@@ -1438,9 +1463,7 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <p>For information on how to set up a local Cordova development environment, see the <a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova documentation</a>.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_xamarin">
 <div class="paragraph">
 <p>You need the following installed on your system:</p>
 </div>
@@ -1465,24 +1488,43 @@ If you have not installed CocoaPods, install it by running the command:</p>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="running"><a class="anchor" href="#running"></a>Running your First Mobile App</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="cloning-the-showcase-app"><a class="anchor" href="#cloning-the-showcase-app"></a>Cloning the Showcase App</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset5_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset5_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset5_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_android">
+<div class="paragraph">
+<p>$ git clone <a href="https://github.com/aerogear/android-showcase-template.git" class="bare">https://github.com/aerogear/android-showcase-template.git</a>
+$ cd android-showcase-template
+$ git checkout 1.0.0</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
-$ cd android-showcase-template
-$ git checkout 1.0.0</code></pre>
+<pre></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_ios">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
@@ -1491,9 +1533,7 @@ $ git checkout 1.0.0</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_cordova">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/cordova-showcase-template.git
@@ -1502,14 +1542,13 @@ $ git checkout 1.0.0</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_xamarin">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
 $ cd xamarin-showcase-template
 $ git checkout 1.0.0</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1545,8 +1584,25 @@ The mobile-services.json file is the link between your provisioned services on O
 </li>
 </ol>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset6_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset6_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset6_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_android">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -1554,9 +1610,7 @@ The mobile-services.json file is the link between your provisioned services on O
 <p><code>app/src/main/assets/mobile-services.json</code></p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_ios">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -1576,9 +1630,7 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_cordova">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -1586,9 +1638,7 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 <p><code>src/mobile-services.json</code></p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_xamarin">
 <div class="paragraph">
 <p>Move mobile-services.json to the following location in your application project:</p>
 </div>
@@ -1598,61 +1648,10 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="building-the-app"><a class="anchor" href="#building-the-app"></a>Building the app</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
-<div class="paragraph">
-<p>Run this command to install dependencies:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Install CocoaPods as described in <a href="https://cocoapods.org/" class="bare">https://cocoapods.org/</a> if it is not already installed.</p>
-</li>
-<li>
-<p>Run this command to install dependencies:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
-$ npm run ionic:build</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
-<div class="paragraph">
-<p>Run this command to install dependencies (optional):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
-</div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="sect2">
 <h3 id="using-self-signed-certificates-in-mobile-apps"><a class="anchor" href="#using-self-signed-certificates-in-mobile-apps"></a>Using Self-Signed Certificates in Mobile Apps</h3>
@@ -1713,8 +1712,19 @@ base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/loca
 </div>
 <div class="sect3">
 <h4 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h4>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset7_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_android">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1761,9 +1771,7 @@ certificate and let you add it to the device. Here is <a href="https://support.g
 </ol>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_ios">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1813,10 +1821,28 @@ installed certificate. Instructions can be found on the
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="running-the-app-in-an-emulator"><a class="anchor" href="#running-the-app-in-an-emulator"></a>Running the app in an emulator</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset8_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset8_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset8_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset8_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_android">
 <div class="paragraph">
 <p>To run an Android app in an emulator, see the following <a href="https://developer.android.com/training/basics/firstapp/running-app" target="_blank" rel="noopener">documentation</a>.</p>
 </div>
@@ -1833,16 +1859,12 @@ The AeroGear SDK supports API level 21 or later.
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_ios">
 <div class="paragraph">
 <p>To run an iOS app in an emulator, see the following <a href="https://help.apple.com/xcode/mac/current/#/dev2809b6cff" target="_blank" rel="noopener">documentation</a>.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_cordova">
 <div class="paragraph">
 <p>Cordova cross-platform applications can be run in the following emulators:</p>
 </div>
@@ -1869,9 +1891,7 @@ A running emulator on macOS is required to run an iOS application.
 </ul>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_xamarin">
 <div class="paragraph">
 <p>Xamarin cross-platform applications are run in the following emulators:</p>
 </div>
@@ -1896,6 +1916,7 @@ A running emulator on macOS is required to run an iOS application.
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
