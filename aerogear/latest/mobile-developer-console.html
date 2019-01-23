@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Developer Console :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/mobile-developer-console.html">
-    <meta name="generator" content="Antora 2.0.0-rc.1">
+    <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -228,16 +228,16 @@ Zepto(function($){
     <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#access">Access Control</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
@@ -422,14 +422,6 @@ Zepto(function($){
     <span class="version">latest</span>
   </div>
   <ul class="components">
-    <li class="component">
-      <span class="title">Mobile Security</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../mobile-security/latest/index.html">latest</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
@@ -488,14 +480,7 @@ Zepto(function($){
 <li><a href="#downloading-and-installing-apps">Downloading and Installing Apps</a></li>
 </ul>
 </li>
-<li><a href="#sdk">Introduction to the AeroGear SDK</a>
-<ul class="sectlevel2">
-<li><a href="#android">Android</a></li>
-<li><a href="#ios">iOS</a></li>
-<li><a href="#cordova">Cordova</a></li>
-<li><a href="#xamarin">Xamarin</a></li>
-</ul>
-</li>
+<li><a href="#sdk">Introduction to the AeroGear SDK</a></li>
 <li><a href="#api-reference-documentation">API Reference Documentation</a></li>
 </ul>
 </div>
@@ -810,8 +795,25 @@ You may need to enable the installation of apps from unknown sources on Android 
 <div class="paragraph">
 <p>The AeroGear SDK supports the following platforms:</p>
 </div>
-<div class="sect2">
-<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset1_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset1_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset1_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_android">
 <div class="paragraph">
 <p>For information about how to develop Android apps, see  <a href="https://developer.android.com/studio/install" target="_blank" rel="noopener">Android Documentation</a>.</p>
 </div>
@@ -886,8 +888,7 @@ To implement certificate pinning in the individual SDKs, see <a href="device-sec
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
+<div class="tab-pane" aria-labelledby="tabset1_ios">
 <div class="paragraph">
 <p>For information about how to develop iOS apps, see <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.adoc" target="_blank" rel="noopener">iOS Documentation</a>.</p>
 </div>
@@ -962,8 +963,7 @@ Do not use <code>.xcodeproj</code>. If you open a project file instead of a work
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
+<div class="tab-pane" aria-labelledby="tabset1_cordova">
 <div class="paragraph">
 <p>For information about how to develop apps using Cordova, see <a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova Documentation</a>.</p>
 </div>
@@ -1013,8 +1013,7 @@ init(aerogearConfig);</code></pre>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="xamarin"><a class="anchor" href="#xamarin"></a>Xamarin</h3>
+<div class="tab-pane" aria-labelledby="tabset1_xamarin">
 <div class="paragraph">
 <p>For information about how to develop apps using Xamarin see <a href="https://developer.xamarin.com/getting-started/" target="_blank" rel="noopener">Xamarin Documentation</a>.</p>
 </div>
@@ -1099,6 +1098,8 @@ LoadApplication(app);</code></pre>
 <p><a href="device-security.html#importing-the-libraries" class="page">Steps for Device Security</a></p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 </div>
 </div>

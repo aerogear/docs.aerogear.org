@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Sync :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/data-sync.html">
-    <meta name="generator" content="Antora 2.0.0-rc.1">
+    <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -228,16 +228,16 @@ Zepto(function($){
     <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#access">Access Control</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
@@ -422,14 +422,6 @@ Zepto(function($){
     <span class="version">latest</span>
   </div>
   <ul class="components">
-    <li class="component">
-      <span class="title">Mobile Security</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../mobile-security/latest/index.html">latest</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
@@ -1243,8 +1235,19 @@ type Subscription {
 </div>
 <div class="sect2">
 <h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset1_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_android">
 <div class="paragraph">
 <p>Add <code>apollo-gradle-plugin</code> dependency to your project&#8217;s <code>build.gradle</code> file:</p>
 </div>
@@ -1278,9 +1281,7 @@ apply plugin: 'com.apollographql.android'</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_ios">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1306,6 +1307,7 @@ end</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="setting-up-the-sync-mobile-service"><a class="anchor" href="#setting-up-the-sync-mobile-service"></a>Setting Up the Sync Mobile Service</h3>
 <div class="paragraph">
@@ -1314,8 +1316,19 @@ end</code></pre>
 <div class="paragraph">
 <p><a href="https://github.com/apollographql">Apollo client</a> requires some configuration to work.</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset2_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_android">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1366,9 +1379,7 @@ subscription noteAdded {
 <p>Apollo will automatically create a file <code>MyNotesQuery</code>, <code>CreateNoteMutation</code> and <code>NoteAddedSubscription</code> (in compile time) in the package <code>com.example</code> for you.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_ios">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1427,22 +1438,32 @@ subscription noteAdded {
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="using-the-sync-mobile-service"><a class="anchor" href="#using-the-sync-mobile-service"></a>Using the Sync Mobile Service</h3>
 <div class="paragraph">
 <p>Use the AeroGear SDK sync library to provision a configured instance of the sync client (SyncClient):</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset3_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_android">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>SyncClient.getInstance()</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_ios">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>AgsSync.instance.client</code></pre>
@@ -1450,10 +1471,22 @@ subscription noteAdded {
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="query"><a class="anchor" href="#query"></a>Query</h4>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset4_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_android">
 <div class="paragraph">
 <p>Use the <code>query</code> method from SyncClient:</p>
 </div>
@@ -1489,9 +1522,7 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_ios">
 <div class="paragraph">
 <p>Use the <code>fetch</code> method from Apollo client to fire a query:</p>
 </div>
@@ -1524,10 +1555,22 @@ The <code>MyNotesQuery</code> class is generated from the example schema above
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="mutation"><a class="anchor" href="#mutation"></a>Mutation</h4>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset5_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_android">
 <div class="paragraph">
 <p>Use the <code>mutate</code> method from SyncClient:</p>
 </div>
@@ -1563,9 +1606,7 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_ios">
 <div class="paragraph">
 <p>Use the <code>perform</code> method from Apollo client to fire a mutation:</p>
 </div>
@@ -1598,13 +1639,25 @@ The <code>CreateNoteMutation</code> class is generated from the example schema a
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="subscription"><a class="anchor" href="#subscription"></a>Subscription</h4>
 <div class="paragraph">
 <p>Use the <code>subscribe</code> method from SyncClient:</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset6_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_android">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>SyncClient
@@ -1637,9 +1690,7 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 </table>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_ios">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>AgsSync.instance.client?.subscribe(subscription: NoteAddedSubscription())  { result, error in
@@ -1665,6 +1716,7 @@ The <code>NoteAddedSubscription</code> class is generated from the example schem
 </div>
 <div class="paragraph">
 <p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1888,22 +1940,32 @@ When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UN
 <div class="paragraph">
 <p>When user logs in with Identity Management SDK, user principal can be used to retrieve token. Data Sync SDK can use this token to perform requests to the Data Sync backend.</p>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset7_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_android">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>MobileCore.getInstance().getHttpLayer().requestHeaderInterceptor().add(authService.getAuthHeaderProvider());</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_ios">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>if let transport = AgsSync.instance.transport {
   transport.headerProvider = AgsAuth.instance.getAuthHeaderProvider()
 }</code></pre>
+</div>
 </div>
 </div>
 </div>

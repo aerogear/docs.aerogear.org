@@ -68,7 +68,7 @@ Zepto(function($){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glossary :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/glossary.html">
-    <meta name="generator" content="Antora 2.0.0-rc.1">
+    <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -228,16 +228,16 @@ Zepto(function($){
     <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#setup">Setting Up</a>
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#user-auth">User Authentication</a>
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#access">Access Control</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="identity-management.html#sso">Single Sign On</a>
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
@@ -422,14 +422,6 @@ Zepto(function($){
     <span class="version">latest</span>
   </div>
   <ul class="components">
-    <li class="component">
-      <span class="title">Mobile Security</span>
-      <ul class="versions">
-        <li class="version is-latest">
-          <a href="../../mobile-security/latest/index.html">latest</a>
-        </li>
-      </ul>
-    </li>
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
@@ -663,8 +655,25 @@ Each supported variant type contains some platform specific properties, such as 
 </dd>
 </dl>
 </div>
-<div class="sidebarblock primary">
-<div class="title">Android</div><div class="content">
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset1_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset1_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset1_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_android">
 <div class="paragraph">
 <p><code>DeviceChecks.ROOT_ENABLED</code>.</p>
 </div>
@@ -672,25 +681,20 @@ Each supported variant type contains some platform specific properties, such as 
 <p>This function uses the <a href="https://github.com/scottyab/rootbeer" target="_blank" rel="noopener">Rootbeer</a> library to check if root access is present on the device.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">iOS</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_ios">
 <div class="paragraph">
 <p>This check is not available for iOS.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Cordova</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_cordova">
 <div class="paragraph">
 <p>This check is not available for Cordova.</p>
 </div>
 </div>
-</div>
-<div class="sidebarblock secondary">
-<div class="title">Xamarin</div><div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_xamarin">
 <div class="paragraph">
 <p>This check is not available for Xamarin.</p>
+</div>
 </div>
 </div>
 </div>
