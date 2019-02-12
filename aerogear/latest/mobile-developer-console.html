@@ -793,7 +793,23 @@ You may need to enable the installation of apps from unknown sources on Android 
 <p>After you have <a href="getting-started.html#registering" class="page">registered</a> a Mobile App, <a href="getting-started.html#binding" class="page">bound</a> the Mobile App to a mobile service, and <a href="getting-started.html#downloading-the-mobile-services-configuration-file" class="page">downloaded</a> the mobile services configuration file, you can start developing your mobile app using mobile services.</p>
 </div>
 <div class="paragraph">
-<p>The AeroGear SDK supports the following platforms:</p>
+<p>The AeroGear SDK supports the following mobile platforms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#android">Android</a>: SDK is hosted on <a href="https://bintray.com/bintray/jcenter">jCenter</a>.</p>
+</li>
+<li>
+<p><a href="#ios">iOS</a>: SDK is hosted on <a href="https://cocoapods.org/">CocoaPods</a>.</p>
+</li>
+<li>
+<p><a href="#cordova">Cordova</a>: SDK is hosted on <a href="https://www.npmjs.com/">npm</a>.</p>
+</li>
+<li>
+<p><a href="#xamarin">Xamarin</a>: SDK is hosted on <a href="https://www.nuget.org/">NuGet</a>.</p>
+</li>
+</ul>
 </div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
@@ -990,7 +1006,7 @@ const aerogearConfig = {
     // Replace with your own configuration
 };
 
-init(aerogearConfig);</code></pre>
+const app = init(aerogearConfig);</code></pre>
 </div>
 </div>
 </li>
