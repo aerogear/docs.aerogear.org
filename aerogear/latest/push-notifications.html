@@ -1248,7 +1248,7 @@ The SDKs will handle this for you and the following steps will give you everythi
 // Registration handler
 push.on('registration', data =&gt; {
     // PushRegistration is part of @aerogear/push
-    new PushRegistration().register(data.registrationId).then(() =&gt; {
+    new PushRegistration(app.config).register(data.registrationId).then(() =&gt; {
         // Registration with UPS successful, you can now send push notifications from the UPS UI
     }).catch(err =&gt; {
         // Error on device registration
@@ -1273,7 +1273,7 @@ const pushObject = new Push().init({
 });
 
 pushObject.on('registration').subscribe(data =&gt; {
-    new PushRegistration().register(data.registrationId).then(() =&gt; {
+    new PushRegistration(app.config).register(data.registrationId).then(() =&gt; {
         // Registration with UPS successful, you can now send push notifications from the UPS UI
     }).catch(err =&gt; {
         //Error on device registration

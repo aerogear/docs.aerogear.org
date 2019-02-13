@@ -848,7 +848,7 @@ Any subsequent call to AGSSecurity returns the same instance of the <code>Securi
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const SecurityService = require("@aerogear/security");
 
-const securityService = new SecurityService();</code></pre>
+const securityService = new SecurityService(app.metrics);</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1001,7 +1001,7 @@ let result = security.check(JailbrokenDeviceCheck())</code></pre>
 <div class="tab-pane" aria-labelledby="tabset4_cordova">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
     .check(DeviceCheckType.rootEnabled)
     .then(result =&gt; {
         // Handle the security result metric
@@ -1144,7 +1144,7 @@ let result = security.check(DebuggerAttachedCheck())</code></pre>
 <div class="tab-pane" aria-labelledby="tabset6_cordova">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
     .check(DeviceCheckType.debugModeEnabled)
     .then(result =&gt; {
         // Handle the security result metric
@@ -1221,7 +1221,7 @@ let result = security.check(IsEmulatorCheck())</code></pre>
 <div class="tab-pane" aria-labelledby="tabset7_cordova">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
     .check(DeviceCheckType.isEmulator)
     .then(result =&gt; {
         // Handle the security result metric
@@ -1297,7 +1297,7 @@ For iOS devices this check requires iOS 8 or above.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
     .check(DeviceCheckType.screenLockEnabled)
     .then(result =&gt; {
         // Handle the security result metric
@@ -1781,7 +1781,7 @@ let result = security.check(MyCustomCheck())</code></pre>
 <p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const securityService = new SecurityService();
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const securityService = new SecurityService(app.metrics);
 
 securityService.check(new CustomDeviceCheck())
     .then(result =&gt; {
@@ -1912,7 +1912,7 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
     .checkAndPublishMetric(DeviceCheckType.rootEnabled)
     .then(result =&gt; {
         // Handle the security result metric
@@ -1925,7 +1925,7 @@ let results = security.checkManyAndPublishMetric(checks)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService()
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
     .checkManyAndPublishMetric(
         DeviceCheckType.rootEnabled,
         DeviceCheckType.isEmulator,

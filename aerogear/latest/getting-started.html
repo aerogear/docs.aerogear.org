@@ -606,10 +606,13 @@ If you don&#8217;t have OpenShift instance you can use <code>oc cluster up</code
 <p><a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.11</p>
 </li>
 <li>
-<p><a href="https://www.docker.com/">Docker</a></p>
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></p>
 </li>
 <li>
 <p>A local mobile development environment for the platform you want to develop on.</p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible 2.7.x</a> installed on the machine where you want to run the installation scripts from</p>
 </li>
 </ul>
 </div>
@@ -621,7 +624,7 @@ If you don&#8217;t have OpenShift instance you can use <code>oc cluster up</code
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Clone the Mobile Developer Console repository:</p>
+<p>Clone the Mobile Services Installer repository:</p>
 <div class="paragraph">
 <p>The repository contains installation script for AeroGear Mobile Services.</p>
 </div>
@@ -630,8 +633,8 @@ If you don&#8217;t have OpenShift instance you can use <code>oc cluster up</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/aerogear/mobile-developer-console.git
-cd mobile-developer-console
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/aerogear/mobile-services-installer.git
+cd mobile-services-installer
 git checkout 1.0.0</code></pre>
 </div>
 </div>
@@ -668,7 +671,7 @@ This step is only required on RHEL/Fedora with SELinux enabled.
 <p>In the same directory, run the installer:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./scripts/post_install.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible-playbook install-mobile-services.yml</code></pre>
 </div>
 </div>
 </li>
@@ -861,13 +864,16 @@ On Mac only Minishift is currently supported.
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.okd.io/minishift/">Minishift</a></p>
+<p><a href="https://www.okd.io/minishift/" target="_blank" rel="noopener">Minishift</a></p>
 </li>
 <li>
 <p><a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.11</p>
 </li>
 <li>
-<p><a href="https://www.docker.com/">Docker</a></p>
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible 2.7.x</a> installed on the machine where you want to run the installation scripts from</p>
 </li>
 </ul>
 </div>
@@ -882,7 +888,10 @@ On Mac only Minishift is currently supported.
 <p><a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.11</p>
 </li>
 <li>
-<p><a href="https://www.docker.com/">Docker</a></p>
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></p>
+</li>
+<li>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible 2.7.x</a> installed on the machine where you want to run the installation scripts from</p>
 </li>
 <li>
 <p>Firewall configured:</p>
@@ -908,11 +917,11 @@ firewall-cmd --reload</code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Clone the Mobile Developer Console repository:</p>
+<p>Clone the Mobile Services Installer repository:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/aerogear/mobile-developer-console.git
-cd mobile-developer-console
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/aerogear/mobile-services-installer.git
+cd mobile-services-installer
 git checkout 1.0.0</code></pre>
 </div>
 </div>
