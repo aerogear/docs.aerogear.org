@@ -252,16 +252,13 @@ Zepto(function($){
     <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="push-notifications.html#setup">Setting Up</a>
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="push-notifications.html#push-ui">Using the Push Admin UI</a>
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="push-notifications.html#sending">Sending a Notification</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="push-notifications.html#handling">Handling a Notification</a>
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
   </li>
 </ul>
   </li>
@@ -462,32 +459,32 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel2">
-<li><a href="#reference-material-Identity Management">Identity Management Service terminology</a></li>
+<li><a href="#reference-material-idm">Identity Management Service terminology</a></li>
 <li><a href="#setting-up-the-idm-service">Setting Up the Identity Management Service</a>
 <ul class="sectlevel2">
-<li><a href="#provisioning-the-Identity Management">Provisioning the Identity Management Service</a></li>
-<li><a href="#binding-an-app-to-Identity Management">Binding a Mobile App with the Identity Management Service</a></li>
-<li><a href="#configuring-Identity Management">Configuring the Identity Management Service</a></li>
+<li><a href="#provisioning-the-idm">Provisioning the Identity Management Service</a></li>
+<li><a href="#binding-an-app-to-idm">Binding a Mobile App with the Identity Management Service</a></li>
+<li><a href="#configuring-idm">Configuring the Identity Management Service</a></li>
 </ul>
 </li>
 <li><a href="#configuring-your-development-environment-for-the-identity-management-service">Configuring your development environment for the Identity Management Service</a>
 <ul class="sectlevel2">
-<li><a href="#downloading-the-configuration-file-Identity Management">Downloading the Configuration File</a></li>
-<li><a href="#setting-up-sdk-Identity Management">Setting up the Identity Management Service SDK</a></li>
+<li><a href="#downloading-the-configuration-file-idm">Downloading the Configuration File</a></li>
+<li><a href="#setting-up-sdk-idm">Setting up the Identity Management Service SDK</a></li>
 </ul>
 </li>
 <li><a href="#adding-user-authentication-to-your-mobile-app">Adding User Authentication to your Mobile App</a>
 <ul class="sectlevel2">
-<li><a href="#implementing-authentication-Identity Management">Implementing authentication</a></li>
-<li><a href="#refreshing-the-authentication-token-Identity Management">Refreshing the authentication token</a></li>
-<li><a href="#adding-log-out-option-Identity Management">Adding Log Out Option to your Mobile App</a></li>
-<li><a href="#authenticating-with-a-back-end-service-Identity Management">Authenticating with a back end service</a></li>
-<li><a href="#adding-access-control-Identity Management">Adding Access Control to your Mobile App</a></li>
+<li><a href="#implementing-authentication-idm">Implementing authentication</a></li>
+<li><a href="#refreshing-the-authentication-token-idm">Refreshing the authentication token</a></li>
+<li><a href="#adding-log-out-option-idm">Adding Log Out Option to your Mobile App</a></li>
+<li><a href="#authenticating-with-a-back-end-service-idm">Authenticating with a back end service</a></li>
+<li><a href="#adding-access-control-idm">Adding Access Control to your Mobile App</a></li>
 </ul>
 </li>
 <li><a href="#adding-sso-to-your-mobile-app">Adding SSO to your Mobile App</a>
 <ul class="sectlevel2">
-<li><a href="#using-sso-Identity Management">Using SSO with the Device Browser</a></li>
+<li><a href="#using-sso-idm">Using SSO with the Device Browser</a></li>
 <li><a href="#monitoring">Monitoring the Identity Management Service</a>
 <ul class="sectlevel3">
 <li><a href="#prerequisites">Prerequisites</a></li>
@@ -527,7 +524,7 @@ Zepto(function($){
 </div>
 </div>
 <div class="sect2">
-<h3 id="reference-material-Identity Management"><a class="anchor" href="#reference-material-Identity Management"></a>Identity Management Service terminology</h3>
+<h3 id="reference-material-idm"><a class="anchor" href="#reference-material-idm"></a>Identity Management Service terminology</h3>
 <div class="paragraph">
 <p>This section describes terminology that is associated with Identity Management.</p>
 </div>
@@ -569,7 +566,7 @@ Zepto(function($){
 <h2 id="setting-up-the-idm-service"><a class="anchor" href="#setting-up-the-idm-service"></a>Setting Up the Identity Management Service</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="provisioning-the-Identity Management"><a class="anchor" href="#provisioning-the-Identity Management"></a>Provisioning the Identity Management Service</h3>
+<h3 id="provisioning-the-idm"><a class="anchor" href="#provisioning-the-idm"></a>Provisioning the Identity Management Service</h3>
 <div class="paragraph">
 <p>This section describes how to set up the IDM Mobile Service.</p>
 </div>
@@ -664,7 +661,7 @@ Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="binding-an-app-to-Identity Management"><a class="anchor" href="#binding-an-app-to-Identity Management"></a>Binding a Mobile App with the Identity Management Service</h3>
+<h3 id="binding-an-app-to-idm"><a class="anchor" href="#binding-an-app-to-idm"></a>Binding a Mobile App with the Identity Management Service</h3>
 <div class="paragraph">
 <p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
@@ -747,7 +744,7 @@ Use <code>Public</code> when binding a Mobile App to a . When binding mobile ser
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring-Identity Management"><a class="anchor" href="#configuring-Identity Management"></a>Configuring the Identity Management Service</h3>
+<h3 id="configuring-idm"><a class="anchor" href="#configuring-idm"></a>Configuring the Identity Management Service</h3>
 <div class="paragraph">
 <p>This section guides you through configuring the redirect url and web origin for a client in Keycloak.
 This is required to enable OpenID authentication.
@@ -892,7 +889,7 @@ For an explanation of these terms, see <a href="{sso-docs-link}">{sso-name} Docu
 <h2 id="configuring-your-development-environment-for-the-identity-management-service"><a class="anchor" href="#configuring-your-development-environment-for-the-identity-management-service"></a>Configuring your development environment for the Identity Management Service</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="downloading-the-configuration-file-Identity Management"><a class="anchor" href="#downloading-the-configuration-file-Identity Management"></a>Downloading the Configuration File</h3>
+<h3 id="downloading-the-configuration-file-idm"><a class="anchor" href="#downloading-the-configuration-file-idm"></a>Downloading the Configuration File</h3>
 <div class="paragraph">
 <p>The <code>mobile-services.json</code> file provides the information for your mobile app to communicate with services.
 After you change any configuration in the Mobile Developer Console, it is important to update that file in your IDE.</p>
@@ -980,7 +977,7 @@ NOTE: Ensure that <code>mobile-services.json</code> is a member of the project i
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-sdk-Identity Management"><a class="anchor" href="#setting-up-sdk-Identity Management"></a>Setting up the Identity Management Service SDK</h3>
+<h3 id="setting-up-sdk-idm"><a class="anchor" href="#setting-up-sdk-idm"></a>Setting up the Identity Management Service SDK</h3>
 <div class="paragraph">
 <p>This section helps you to set up the Identity Management service SDK in your App.
 It describes how to set up and initialize the Identity Management service SDK.</p>
@@ -1324,7 +1321,7 @@ authService.Configure(authConfig);</code></pre>
 <h2 id="adding-user-authentication-to-your-mobile-app"><a class="anchor" href="#adding-user-authentication-to-your-mobile-app"></a>Adding User Authentication to your Mobile App</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="implementing-authentication-Identity Management"><a class="anchor" href="#implementing-authentication-Identity Management"></a>Implementing authentication</h3>
+<h3 id="implementing-authentication-idm"><a class="anchor" href="#implementing-authentication-idm"></a>Implementing authentication</h3>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
@@ -1459,7 +1456,7 @@ func onLoginComplete(user: User?, err: Error?) {
 </div>
 <div class="tab-pane" aria-labelledby="tabset6_cordova">
 <div class="paragraph">
-<p>Authentication is enabled during initialization as described in the section <a href="#setting-up-sdk-Identity Management">Setting up the Identity Management Service SDK</a>. To manually redirect to the login screen, use:</p>
+<p>Authentication is enabled during initialization as described in the section <a href="#setting-up-sdk-idm">Setting up the Identity Management Service SDK</a>. To manually redirect to the login screen, use:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1492,7 +1489,7 @@ var user = await authService.Authenticate(authOptions);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="refreshing-the-authentication-token-Identity Management"><a class="anchor" href="#refreshing-the-authentication-token-Identity Management"></a>Refreshing the authentication token</h3>
+<h3 id="refreshing-the-authentication-token-idm"><a class="anchor" href="#refreshing-the-authentication-token-idm"></a>Refreshing the authentication token</h3>
 <div class="paragraph">
 <p>When a user is authenticated, an access token and a refresh token are generated by the authentication server.
 See the <a href="https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html-single/server_administration_guide/#timeouts">Keycloak documentation</a> for information about configuring the lifespan of these tokens.
@@ -1584,7 +1581,7 @@ var currentUser = await authService.CurrentUser(true);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-log-out-option-Identity Management"><a class="anchor" href="#adding-log-out-option-Identity Management"></a>Adding Log Out Option to your Mobile App</h3>
+<h3 id="adding-log-out-option-idm"><a class="anchor" href="#adding-log-out-option-idm"></a>Adding Log Out Option to your Mobile App</h3>
 <div class="paragraph">
 <p>The following section describes how to perform a logout.</p>
 </div>
@@ -1719,7 +1716,7 @@ var result = await authService.Logout(authService.CurrentUser());</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="authenticating-with-a-back-end-service-Identity Management"><a class="anchor" href="#authenticating-with-a-back-end-service-Identity Management"></a>Authenticating with a back end service</h3>
+<h3 id="authenticating-with-a-back-end-service-idm"><a class="anchor" href="#authenticating-with-a-back-end-service-idm"></a>Authenticating with a back end service</h3>
 <div class="paragraph">
 <p>In a typical scenario, you not only want the user to authenticate on the mobile app, you also want that user to authenticate with a back end service.</p>
 </div>
@@ -1851,7 +1848,7 @@ req.setRequestHeader('Authorization', 'Bearer ' + authService.extract().token);<
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-access-control-Identity Management"><a class="anchor" href="#adding-access-control-Identity Management"></a>Adding Access Control to your Mobile App</h3>
+<h3 id="adding-access-control-idm"><a class="anchor" href="#adding-access-control-idm"></a>Adding Access Control to your Mobile App</h3>
 <div class="paragraph">
 <p>Once a <code>UserPrincipal</code> has been retrieved, the <a href="http://www.keycloak.org/docs/latest/server_admin/index.html#roles" target="_blank" rel="noopener">roles</a> of the user can be listed and checked.
 This can be used to perform client side access control, such as hiding UI components related to actions the user doesn&#8217;t have permissions to perform.
@@ -2006,7 +2003,7 @@ bool isModerator = user.HasResourceRole("my_resource", "user_moderator");</code>
 <h2 id="adding-sso-to-your-mobile-app"><a class="anchor" href="#adding-sso-to-your-mobile-app"></a>Adding SSO to your Mobile App</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="using-sso-Identity Management"><a class="anchor" href="#using-sso-Identity Management"></a>Using SSO with the Device Browser</h3>
+<h3 id="using-sso-idm"><a class="anchor" href="#using-sso-idm"></a>Using SSO with the Device Browser</h3>
 <div class="paragraph">
 <p>The AeroGear mobile SDK uses OpenID Connect <a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth">Authorization Code Flow</a> to implement SSO using a mobile device browser.</p>
 </div>
