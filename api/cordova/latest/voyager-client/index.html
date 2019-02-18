@@ -1,0 +1,553 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@aerogear/voyager-client</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@aerogear/voyager-client</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> @aerogear/voyager-client</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="aerogear-voyager-graphql-client">AeroGear Voyager GraphQL client</h1>
+				<p>Client JavaScript library for <a href="https://github.com/aerogear/voyager-server">Voyager GraphQL Server</a></p>
+				<h1 id="getting-started">Getting Started</h1>
+				<h2 id="importing-the-package">Importing the package</h2>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> {
+  createClient,
+  strategies
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@aerogear/voyager-client'</span>;
+</code></pre>
+				<h2 id="configuration">Configuration</h2>
+				<p>To provide custom configuration to the client, the following options are available. If you wish, these are also available by using the <code>DataSyncConfig</code> interface from the SDK.</p>
+				<pre><code class="lang-javascript">
+<span class="hljs-keyword">let</span> config: DataSyncConfig = {
+  <span class="hljs-attr">httpUrl</span>: <span class="hljs-string">"http://localhost:4000/graphql"</span>,
+  <span class="hljs-attr">wsUrl</span>: <span class="hljs-string">"ws://localhost:4000/graphql"</span>,
+}
+</code></pre>
+				<h2 id="creating-a-client">Creating a Client</h2>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> client = createClient(config);
+</code></pre>
+				<h1 id="example-application">Example application</h1>
+				<p>Try SDK using sample application:
+				<a href="https://github.com/aerogear/ionic-showcase">https://github.com/aerogear/ionic-showcase</a></p>
+				<h1 id="basic-concepts">Basic concepts</h1>
+				<p>Client is basing on Apollo GraphQL client that can be used with various web and mobile frameworks.
+					We provide version for web and Apache Cordova.
+				For basic concepts about Apollo GraphQL please refer to documentation for your own platform.</p>
+				<p>For React:
+				<a href="https://www.apollographql.com/docs/react/">https://www.apollographql.com/docs/react/</a></p>
+				<p>For Angular:
+				<a href="https://www.apollographql.com/docs/angular/">https://www.apollographql.com/docs/angular/</a></p>
+				<h2 id="cache">Cache</h2>
+				<p>Client is strongly leveraging Apollo Cache layer.
+				Please follow documentation for more information about caching in Apollo GraphQL</p>
+				<p><a href="https://www.apollographql.com/docs/react/advanced/caching.html">https://www.apollographql.com/docs/react/advanced/caching.html</a></p>
+				<h3 id="querying-your-data">Querying your data</h3>
+				<p>Cache is used to hold data that can be fetched when client is offline.
+					To effectively work with cache users can use <code>cache-first</code> fetchPolicy
+					when performing queries. This policy will try to use local cache in
+				situations when cache was already populated with the server side data.</p>
+				<pre><code>    <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">this</span><span class="hljs-selector-class">.apollo</span><span class="hljs-selector-class">.watchQuery</span>&lt;<span class="hljs-selector-tag">YourType</span>&gt;({
+      <span class="hljs-attribute">query</span>: YOUR_QUERY,
+      fetchPolicy: <span class="hljs-string">'cache-first'</span>,
+    });
+</code></pre><p>Cache is going to be refueled by subscriptions, pooling or regular queries happening in UI.</p>
+				<h2 id="designing-your-types">Designing your types</h2>
+				<p>When designing your GraphQL schema types <code>id</code> field will be always required.
+					We also expect that id will be always queried back from server.
+				Library will perform business logic assuming that <code>id</code> field will be supplied and returned from server. Without this field some offline functionalities will not work properly.</p>
+				<h1 id="offline-support">Offline support</h1>
+				<p>SDK provides first class support for performing GraphQL operations while offline.
+					Queries and mutations are hold in queue that is being configured to hold requests when client goes offline.
+				When client goes offline for long periods of time clients will be able still negotiate local updates with the server state thanks to powerful conflict resolution strategies.</p>
+				<p><img src="./resources/features.png" alt=""></p>
+				<p>Client offers comprehensive set of features to perform data operations when offline.
+					Thanks to offline mutation store users can stage their changes to be replicated back
+				to server when becoming online:</p>
+				<p><img src="./resources/going_offline.png" alt=""></p>
+				<p>Please follow chapters bellow for more information.</p>
+				<h2 id="querying-local-cache">Querying local cache</h2>
+				<p>By default client will save all performed query results in the cache.
+					Data will be available to be used when application goes offline.
+					Queries are cached out of the box based on the type and <code>id</code> field.
+				When performing mutations that affects some queries users can use <code>refetchQueries</code> or <code>update</code> methods:</p>
+				<pre><code>    <span class="hljs-selector-tag">client</span><span class="hljs-selector-class">.mutate</span>&lt;<span class="hljs-selector-tag">Task</span>&gt;({
+      <span class="hljs-attribute">mutation</span>: ADD_TASK, variables: item,
+      optimisticResponse: <span class="hljs-built_in">createOptimisticResponse</span>(<span class="hljs-string">'createTask'</span>, <span class="hljs-string">'Task'</span>, item),
+      update: this.updateCacheOnAdd
+    });
+</code></pre><h2 id="making-modifications-when-offline">Making modifications when offline</h2>
+				<p>AeroGear Sync SDK provides queue that stores mutations performed when offline.
+					By default queue saves data in storage to be available after application restarts.
+				Queue will hold requests until application will come back online.</p>
+				<p>Developers can adjust how queue will process new mutations by supplying custom <code>NetworkStatus</code> implementation.</p>
+				<h3 id="online-only-queries">Online Only Queries</h3>
+				<p>To ensure certain queries are not queued and are always delivered to the network layer, you must make use of Graphql directives.
+				To do so on your client, ensure the query has the annotation attached like so:</p>
+				<pre><code><span class="hljs-function"><span class="hljs-title">exampleQuery</span>(<span class="hljs-params">...</span>)</span> @onlineOnly {
+  ...
+}
+</code></pre><h3 id="squashing-mutations">Squashing Mutations</h3>
+				<p>Multiple changes performed on the same object ID and with the same mutation will automatically be joined by the AeroGear Sync SDK when your client is offline. This is beneficial as the client will not have to queue a large amount of mutations to replay once it returns online.</p>
+				<h4 id="global-squashing">Global Squashing</h4>
+				<p>This feature is on by default at a global level. To disable it on a global level simply do so in your config:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> config = {
+...
+  mergeOfflineMutations: <span class="hljs-literal">false</span>
+...
+}
+</code></pre>
+				<h4 id="mutation-level-squashing">Mutation Level Squashing</h4>
+				<p>To disable this feature at a mutation level be sure to include the annotation on the mutation like so:</p>
+				<pre><code><span class="hljs-function"><span class="hljs-title">exampleMutation</span>(<span class="hljs-params">...</span>)</span> @noSquash {
+  ...
+}
+</code></pre><h2 id="listening-for-events">Listening for Events</h2>
+				<p>It is possible to provide <code>offlineQueueListener</code> in config to be notified about offline related events:</p>
+				<ul>
+					<li><code>onOperationEnqueued</code> - Called when new operation is being added to offline queue</li>
+					<li><code>onOperationSuccess</code> - Called when back online and operation succeeds</li>
+					<li><code>onOperationFailure</code> - Called when back online and operation fails with GraphQL error</li>
+					<li><code>queueCleared</code> - Called when offline operation queue is cleared</li>
+				</ul>
+				<h2 id="conflicts">Conflicts</h2>
+				<p>When obtaining copy of the server side data, client data can get out of the sync.
+					Edits that happened on the client data need to be replicated back to server.
+					When replicating local changes to server it may happen that local changes no longer reflect the server state.
+				This situations are often called &quot;Data Conflicts&quot; or &quot;Data Collisions&quot;</p>
+				<p>Voyager client offers way to detect and handle conflicts for any GraphQL type by supplying
+					<code>ConflictLink</code> implementation to client.
+				When collision is detected it can be handled on both server or client.</p>
+				<p>See Voyager Server documentation for information about writing conflicts for the server.</p>
+				<h3 id="working-with-pluggable-conflict-implementations">Working with pluggable conflict implementations</h3>
+				<p>Plugable conflict resolution allows developers to define way to determine how conflicts are detected and handled.
+					Conflict resolution can be fully controlled by server side implementation.
+					If users chose to resolve conflicts in the client they need to configure their resolvers first return conflict back to client.
+				Client will resolve them automatically basing on current strategy and notify listeners if developer supplied any.</p>
+				<p>Conflict resolution will work out of the box with recommended defaults and do not require any specific handling on the client.</p>
+				<blockquote>
+					<p>Advanced users may customize conflict implementation by supplying custom <code>conflictStateProvider</code> in config.</p>
+				</blockquote>
+				<h3 id="default-conflict-implementation">Default conflict implementation</h3>
+				<p>By default plugable conflict resolution is configured to rely on <code>version</code> field on each
+					GraphQL type.
+				For example:</p>
+				<p><code>type User {
+  id: ID!
+  version: String!
+  name: String!
+}</code></p>
+				<p>Version field is going to be controlled on the server and will map last version
+					that was sent from server. All operations on version field happen automatically
+					however users need to make sure that version field is always being passed to server
+				for mutations that supports conflict resolution:</p>
+				<pre><code>type Mutation {
+  updateUser(id: ID!, version: String!):<span class="hljs-built_in"> User
+</span>}
+</code></pre><p>Alternatively developers can create input element that can be reused in every mutation
+				that supports conflict resolution</p>
+				<pre><code>type Mutation {
+  updateUser(user: UserInput):<span class="hljs-built_in"> User
+</span>}
+</code></pre><h3 id="conflict-resolution-strategies">Conflict resolution strategies</h3>
+				<p>Client can define custom resolution strategies.
+					You can provide custom conflict resolution strategies to the client in the config by using the provided <code>ConflictResolutionStrategy</code> type from the SDK. By default developers do not need to pass any strategy (<code>clientVersionWins</code> strategy is used).
+				Custom strategies can be used also to provide different resolution strategy for certain operations:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> updateUserConflictResolver = <span class="hljs-function">(<span class="hljs-params">serverData, clientData</span>) =&gt;</span> {
+    <span class="hljs-keyword">delete</span> clientData.socialKey
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign(serverData, clientData);
+};
+
+<span class="hljs-keyword">let</span> updateTaskConflictResolver = <span class="hljs-function">(<span class="hljs-params">serverData, clientData</span>) =&gt;</span> {
+    ...
+};
+</code></pre>
+				<blockquote>
+					<p>Note: Client strategies will work only when specific server side resolver explicitly states that conflicts should be fixed on the client. Client strategy will be ignored when conflict is resolved on the server.</p>
+				</blockquote>
+				<p>To use strategy pass it as argument to conflictStrategy in your config object:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> config = {
+...
+  conflictStrategy: {<span class="hljs-string">"TaskUpdated"</span>: updateTaskConflictResolver, <span class="hljs-string">"UserUpdated"</span>: updateUserConflictResolver}
+...
+}
+</code></pre>
+				<h3 id="listening-to-conflicts">Listening to conflicts</h3>
+				<p>Framework allows to receive information about the data conflict that occurred between client and server. Client will be notified for both server and client conflicts.</p>
+				<p>Developers can supply their own <code>conflictListener</code> implementation</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">class</span> ConflictLogger <span class="hljs-keyword">implements</span> ConflictListener {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`data: <span class="hljs-subst">${JSON.stringify(resolvedData)}</span>, server: <span class="hljs-subst">${JSON.stringify(server)}</span> client: <span class="hljs-subst">${JSON.stringify(client)}</span> `</span>);
+  }
+}
+
+<span class="hljs-keyword">let</span> config = {
+...
+  conflictListener: <span class="hljs-keyword">new</span> ConflictLogger()
+...
+}
+</code></pre>
+				<h1 id="advanced-topics">Advanced topics</h1>
+				<h2 id="implementing-custom-network-status-checks">Implementing Custom Network Status checks</h2>
+				<p>To use your own custom network checks, implement the <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/NetworkStatus.ts">NetworkStatus</a>
+				interface which provides two functions;</p>
+				<pre><code class="lang-javascript">  onStatusChangeListener(callback: NetworkStatusChangeCallback): <span class="hljs-keyword">void</span>;
+
+  isOffline(): boolean;
+</code></pre>
+				<h2 id="logging-debug-messages">Logging debug messages</h2>
+				<p>Sync package is using debug package to print out debug messages</p>
+				<p>To enable debug please execute in console
+				<code>localStorage.debug = &#39;AeroGearSync:*&#39;</code></p>
+				<p>Some certain features can be enabled separately</p>
+				<p><code>localStorage.debug = &#39;AeroGearSync:OfflineMutations*&#39;</code></p>
+				<h2 id="optimistic-ui">Optimistic UI</h2>
+				<p>By default user changes that are made when offline will not appear in the app
+					until they going to be synced to server. In some circumstances users may want to see them instantly to perform various operations on the data
+					When performing mutations users can decide to supply <code>optimisticResponse</code> object that will
+				appear instantly in the application UI. SDK provides helper method to work with optimistic responses.</p>
+				<pre><code> <span class="hljs-keyword">import</span> { createOptimisticResponse } from <span class="hljs-string">"@aerogear/datasync-js"</span>;
+
+ createOptimisticResponse(<span class="hljs-string">"updateTest"</span>, <span class="hljs-string">"Test"</span>, { <span class="hljs-keyword">data</span>: <span class="hljs-string">"test"</span> });
+</code></pre><p>Users can detect if the provided data is optimistic response by checking <code>optimisticResponse</code> flag is set to true.</p>
+				<h3 id="mapping-client-and-server-id-for-optimistic-reponses">Mapping Client and Server ID for Optimistic Reponses</h3>
+				<p>When using <code>OptimisticReponse</code> helper from SDK specific mutations that create new element response is going to have client side generated id. Subsequent edits for this objects will also refer to this id. When becoming online, all offline changes are going to be performed in specific order updating client side id with id returned from server for subsequent edits.</p>
+				<h2 id="listening-to-the-offline-queue-events">Listening to the offline queue events</h2>
+				<p>Developers can implement <code>offlineQueueListener</code> that can be passed as config element.
+					This listener is going to be notified about new items that were added to offline queue.
+					Listener can be used to build UI support and show pending changes.
+					This feature can be mixed together with <code>OptimisticResponse</code> to deliver great offline experience
+				See example application for more information.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/localdirectives.html" class="tsd-kind-icon">local<wbr>Directives</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/auditlogginglink.html" class="tsd-kind-icon">Audit<wbr>Logging<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/configerror.html" class="tsd-kind-icon">Config<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cordovanetworkstatus.html" class="tsd-kind-icon">Cordova<wbr>Network<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/localdirectivefilterlink.html" class="tsd-kind-icon">Local<wbr>Directive<wbr>Filter<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/offlinelink.html" class="tsd-kind-icon">Offline<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/offlinequeue.html" class="tsd-kind-icon">Offline<wbr>Queue</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/offlinerestorehandler.html" class="tsd-kind-icon">Offline<wbr>Restore<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/operationqueue.html" class="tsd-kind-icon">Operation<wbr>Queue</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/operationqueueentry.html" class="tsd-kind-icon">Operation<wbr>Queue<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/retriableoperation.html" class="tsd-kind-icon">Retriable<wbr>Operation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/retrylink.html" class="tsd-kind-icon">Retry<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/syncconfig.html" class="tsd-kind-icon">Sync<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/versionednextstate.html" class="tsd-kind-icon">Versioned<wbr>Next<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/webnetworkstatus.html" class="tsd-kind-icon">Web<wbr>Network<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/authcontext.html" class="tsd-kind-icon">Auth<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/conflictlistener.html" class="tsd-kind-icon">Conflict<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/conflictresolutionstrategies.html" class="tsd-kind-icon">Conflict<wbr>Resolution<wbr>Strategies</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/datasyncconfig.html" class="tsd-kind-icon">Data<wbr>Sync<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/networkinfo.html" class="tsd-kind-icon">Network<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/networkstatus.html" class="tsd-kind-icon">Network<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/networkstatuschangecallback.html" class="tsd-kind-icon">Network<wbr>Status<wbr>Change<wbr>Callback</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nextstate.html" class="tsd-kind-icon">Next<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/offlinelinkoptions.html" class="tsd-kind-icon">Offline<wbr>Link<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/offlinequeuelistener.html" class="tsd-kind-icon">Offline<wbr>Queue<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/offlinequeueoptions.html" class="tsd-kind-icon">Offline<wbr>Queue<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/operationqueueentryoptions.html" class="tsd-kind-icon">Operation<wbr>Queue<wbr>Entry<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/operationqueueoptions.html" class="tsd-kind-icon">Operation<wbr>Queue<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/persistentstore.html" class="tsd-kind-icon">Persistent<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/retrylinkoptions.html" class="tsd-kind-icon">Retry<wbr>Link<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#authcontextprovider" class="tsd-kind-icon">Auth<wbr>Context<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#conflictresolutiondata" class="tsd-kind-icon">Conflict<wbr>Resolution<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#conflictresolutionstrategy" class="tsd-kind-icon">Conflict<wbr>Resolution<wbr>Strategy</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#operationqueuechangehandler" class="tsd-kind-icon">Operation<wbr>Queue<wbr>Change<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#persisteddata" class="tsd-kind-icon">Persisted<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#voyagerclient" class="tsd-kind-icon">Voyager<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#shouldretryfn" class="tsd-kind-icon">should<wbr>Retry<wbr>Fn</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#client_id_prefix" class="tsd-kind-icon">CLIENT_<wbr>ID_<wbr>PREFIX</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#initial_timeout" class="tsd-kind-icon">INITIAL_<wbr>TIMEOUT</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#mutation_queue_logger" class="tsd-kind-icon">MUTATION_<wbr>QUEUE_<wbr>LOGGER</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#type" class="tsd-kind-icon">TYPE</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#document" class="tsd-kind-icon">document</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#localdirectivesarray" class="tsd-kind-icon">local<wbr>Directives<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#logger" class="tsd-kind-icon">logger</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#window" class="tsd-kind-icon">window</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#buildcachepersistence" class="tsd-kind-icon">build<wbr>Cache<wbr>Persistence</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#conflictlink" class="tsd-kind-icon">conflict<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createauditlogginglink" class="tsd-kind-icon">create<wbr>Audit<wbr>Logging<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createclient" class="tsd-kind-icon">create<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createheaderslink" class="tsd-kind-icon">create<wbr>Headers<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#createofflinelink" class="tsd-kind-icon">create<wbr>Offline<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createoptimisticresponse" class="tsd-kind-icon">create<wbr>Optimistic<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defaulthttplinks" class="tsd-kind-icon">default<wbr>Http<wbr>Links</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defaultlink" class="tsd-kind-icon">default<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#defaultwebsocketlink" class="tsd-kind-icon">default<wbr>Web<wbr>Socket<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#diffmergeclientwins" class="tsd-kind-icon">diff<wbr>Merge<wbr>Client<wbr>Wins</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#diffmergeserverwins" class="tsd-kind-icon">diff<wbr>Merge<wbr>Server<wbr>Wins</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#extractconfig" class="tsd-kind-icon">extract<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#generateid" class="tsd-kind-icon">generate<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isclientgeneratedid" class="tsd-kind-icon">is<wbr>Client<wbr>Generated<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ismutation" class="tsd-kind-icon">is<wbr>Mutation</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isnetworkerror" class="tsd-kind-icon">is<wbr>Network<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#isonlineonly" class="tsd-kind-icon">is<wbr>Online<wbr>Only</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#issubscription" class="tsd-kind-icon">is<wbr>Subscription</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#squashoperations" class="tsd-kind-icon">squash<wbr>Operations</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

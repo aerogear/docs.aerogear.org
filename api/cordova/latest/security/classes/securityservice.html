@@ -87,6 +87,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="securityservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="securityservice.html#check" class="tsd-kind-icon">check</a></li>
@@ -99,18 +105,44 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="check" class="tsd-anchor"></a>
-					<h3>check</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">check<span class="tsd-signature-symbol">(</span>check<span class="tsd-signature-symbol">: </span><a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresult.html" class="tsd-signature-type">SecurityCheckResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Security<wbr>Service<span class="tsd-signature-symbol">(</span>metrics<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">MetricsService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="securityservice.html" class="tsd-signature-type">SecurityService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/SecurityService.ts#L20">SecurityService.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/SecurityService.ts#L13">SecurityService.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metrics: <span class="tsd-signature-type">MetricsService</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="securityservice.html" class="tsd-signature-type">SecurityService</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="check" class="tsd-anchor"></a>
+					<h3>check</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">check<span class="tsd-signature-symbol">(</span>check<span class="tsd-signature-symbol">: </span><a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/devicecheckresult.html" class="tsd-signature-type">DeviceCheckResult</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/SecurityService.ts#L23">SecurityService.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -121,10 +153,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>check: <a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a></h5>
+									<h5>check: <a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresult.html" class="tsd-signature-type">SecurityCheckResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/devicecheckresult.html" class="tsd-signature-type">DeviceCheckResult</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The result of the provided check.</p>
 						</li>
 					</ul>
@@ -133,13 +165,13 @@
 					<a name="checkandpublishmetric" class="tsd-anchor"></a>
 					<h3>check<wbr>And<wbr>Publish<wbr>Metric</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>And<wbr>Publish<wbr>Metric<span class="tsd-signature-symbol">(</span>check<span class="tsd-signature-symbol">: </span><a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresultmetric.html" class="tsd-signature-type">SecurityCheckResultMetric</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">check<wbr>And<wbr>Publish<wbr>Metric<span class="tsd-signature-symbol">(</span>check<span class="tsd-signature-symbol">: </span><a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresultmetric.html" class="tsd-signature-type">SecurityCheckResultMetric</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/SecurityService.ts#L29">SecurityService.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/SecurityService.ts#L32">SecurityService.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -150,7 +182,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>check: <a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a></h5>
+									<h5>check: <a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresultmetric.html" class="tsd-signature-type">SecurityCheckResultMetric</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -162,13 +194,13 @@
 					<a name="checkmany" class="tsd-anchor"></a>
 					<h3>check<wbr>Many</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Many<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>checks<span class="tsd-signature-symbol">: </span><a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresult.html" class="tsd-signature-type">SecurityCheckResult</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Many<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>checks<span class="tsd-signature-symbol">: </span><a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/devicecheckresult.html" class="tsd-signature-type">DeviceCheckResult</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/SecurityService.ts#L40">SecurityService.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/SecurityService.ts#L43">SecurityService.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,10 +211,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>checks: <a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>checks: <a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresult.html" class="tsd-signature-type">SecurityCheckResult</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/devicecheckresult.html" class="tsd-signature-type">DeviceCheckResult</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>An array of results for the provided checks.</p>
 						</li>
 					</ul>
@@ -191,13 +223,13 @@
 					<a name="checkmanyandpublishmetric" class="tsd-anchor"></a>
 					<h3>check<wbr>Many<wbr>And<wbr>Publish<wbr>Metric</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Many<wbr>And<wbr>Publish<wbr>Metric<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>checks<span class="tsd-signature-symbol">: </span><a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresultmetric.html" class="tsd-signature-type">SecurityCheckResultMetric</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Many<wbr>And<wbr>Publish<wbr>Metric<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>checks<span class="tsd-signature-symbol">: </span><a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresultmetric.html" class="tsd-signature-type">SecurityCheckResultMetric</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/SecurityService.ts#L49">SecurityService.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/SecurityService.ts#L52">SecurityService.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -208,7 +240,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>checks: <a href="../interfaces/securitycheck.html" class="tsd-signature-type">SecurityCheck</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>checks: <a href="../interfaces/devicecheck.html" class="tsd-signature-type">DeviceCheck</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/securitycheckresultmetric.html" class="tsd-signature-type">SecurityCheckResultMetric</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -232,22 +264,25 @@
 						<a href="checkresultmetrics.html" class="tsd-kind-icon">Check<wbr>Result<wbr>Metrics</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="devicelockcheck.html" class="tsd-kind-icon">Device<wbr>Lock<wbr>Check</a>
+						<a href="debuggerenabledcheck.html" class="tsd-kind-icon">Debugger<wbr>Enabled<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="nondebugcheck.html" class="tsd-kind-icon">Non<wbr>Debug<wbr>Check</a>
+						<a href="isemulatorcheck.html" class="tsd-kind-icon">Is<wbr>Emulator<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="nonemulatedcheck.html" class="tsd-kind-icon">Non<wbr>Emulated<wbr>Check</a>
+						<a href="rootenabledcheck.html" class="tsd-kind-icon">Root<wbr>Enabled<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="nonrootedcheck.html" class="tsd-kind-icon">Non<wbr>Rooted<wbr>Check</a>
+						<a href="screenlockenabledcheck.html" class="tsd-kind-icon">Screen<wbr>Lock<wbr>Enabled<wbr>Check</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
 						<a href="securityservice.html" class="tsd-kind-icon">Security<wbr>Service</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="securityservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="securityservice.html#check" class="tsd-kind-icon">check</a>
 							</li>
@@ -265,10 +300,10 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/securitycheck.html" class="tsd-kind-icon">Security<wbr>Check</a>
+						<a href="../interfaces/devicecheck.html" class="tsd-kind-icon">Device<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/securitycheckresult.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result</a>
+						<a href="../interfaces/devicecheckresult.html" class="tsd-kind-icon">Device<wbr>Check<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/securitycheckresultmetric.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result<wbr>Metric</a>
@@ -279,6 +314,9 @@
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#cordova" class="tsd-kind-icon">cordova</a>
 					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#debugmodeenabled" class="tsd-kind-icon">debug<wbr>Mode<wbr>Enabled</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#device" class="tsd-kind-icon">device</a>
 					</li>
@@ -286,16 +324,13 @@
 						<a href="../globals.html#document" class="tsd-kind-icon">document</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../globals.html#hasdevicelock" class="tsd-kind-icon">has<wbr>Device<wbr>Lock</a>
+						<a href="../globals.html#isemulator" class="tsd-kind-icon">is<wbr>Emulator</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../globals.html#notdebugmode" class="tsd-kind-icon">not<wbr>Debug<wbr>Mode</a>
+						<a href="../globals.html#rootenabled" class="tsd-kind-icon">root<wbr>Enabled</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="../globals.html#notemulated" class="tsd-kind-icon">not<wbr>Emulated</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#notrooted" class="tsd-kind-icon">not<wbr>Rooted</a>
+						<a href="../globals.html#screenlockenabled" class="tsd-kind-icon">screen<wbr>Lock<wbr>Enabled</a>
 					</li>
 				</ul>
 			</nav>

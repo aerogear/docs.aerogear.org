@@ -69,18 +69,18 @@
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class"><a href="classes/checkresultmetrics.html" class="tsd-kind-icon">Check<wbr>Result<wbr>Metrics</a></li>
-								<li class="tsd-kind-class"><a href="classes/devicelockcheck.html" class="tsd-kind-icon">Device<wbr>Lock<wbr>Check</a></li>
-								<li class="tsd-kind-class"><a href="classes/nondebugcheck.html" class="tsd-kind-icon">Non<wbr>Debug<wbr>Check</a></li>
-								<li class="tsd-kind-class"><a href="classes/nonemulatedcheck.html" class="tsd-kind-icon">Non<wbr>Emulated<wbr>Check</a></li>
-								<li class="tsd-kind-class"><a href="classes/nonrootedcheck.html" class="tsd-kind-icon">Non<wbr>Rooted<wbr>Check</a></li>
+								<li class="tsd-kind-class"><a href="classes/debuggerenabledcheck.html" class="tsd-kind-icon">Debugger<wbr>Enabled<wbr>Check</a></li>
+								<li class="tsd-kind-class"><a href="classes/isemulatorcheck.html" class="tsd-kind-icon">Is<wbr>Emulator<wbr>Check</a></li>
+								<li class="tsd-kind-class"><a href="classes/rootenabledcheck.html" class="tsd-kind-icon">Root<wbr>Enabled<wbr>Check</a></li>
+								<li class="tsd-kind-class"><a href="classes/screenlockenabledcheck.html" class="tsd-kind-icon">Screen<wbr>Lock<wbr>Enabled<wbr>Check</a></li>
 								<li class="tsd-kind-class"><a href="classes/securityservice.html" class="tsd-kind-icon">Security<wbr>Service</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface"><a href="interfaces/securitycheck.html" class="tsd-kind-icon">Security<wbr>Check</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/securitycheckresult.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/devicecheck.html" class="tsd-kind-icon">Device<wbr>Check</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/devicecheckresult.html" class="tsd-kind-icon">Device<wbr>Check<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/securitycheckresultmetric.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result<wbr>Metric</a></li>
 							</ul>
 						</section>
@@ -89,12 +89,12 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#iroot" class="tsd-kind-icon">IRoot</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#cordova" class="tsd-kind-icon">cordova</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#debugmodeenabled" class="tsd-kind-icon">debug<wbr>Mode<wbr>Enabled</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#device" class="tsd-kind-icon">device</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#document" class="tsd-kind-icon">document</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#hasdevicelock" class="tsd-kind-icon">has<wbr>Device<wbr>Lock</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#notdebugmode" class="tsd-kind-icon">not<wbr>Debug<wbr>Mode</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#notemulated" class="tsd-kind-icon">not<wbr>Emulated</a></li>
-								<li class="tsd-kind-variable"><a href="globals.html#notrooted" class="tsd-kind-icon">not<wbr>Rooted</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#isemulator" class="tsd-kind-icon">is<wbr>Emulator</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#rootenabled" class="tsd-kind-icon">root<wbr>Enabled</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#screenlockenabled" class="tsd-kind-icon">screen<wbr>Lock<wbr>Enabled</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,7 +108,7 @@
 					<div class="tsd-signature tsd-kind-icon">IRoot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/NonRootedCheck.ts#L5">deviceTrust/checks/NonRootedCheck.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/RootEnabledCheck.ts#L5">deviceTrust/checks/RootEnabledCheck.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -118,10 +118,25 @@
 					<div class="tsd-signature tsd-kind-icon">cordova<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/NonDebugCheck.ts#L4">deviceTrust/checks/NonDebugCheck.ts:4</a></li>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/DeviceLockCheck.ts#L4">deviceTrust/checks/DeviceLockCheck.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/DebuggerEnabledCheck.ts#L4">deviceTrust/checks/DebuggerEnabledCheck.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/ScreenLockEnabledCheck.ts#L4">deviceTrust/checks/ScreenLockEnabledCheck.ts:4</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="debugmodeenabled" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> debug<wbr>Mode<wbr>Enabled</h3>
+					<div class="tsd-signature tsd-kind-icon">debug<wbr>Mode<wbr>Enabled<span class="tsd-signature-symbol">:</span> <a href="classes/debuggerenabledcheck.html" class="tsd-signature-type">DebuggerEnabledCheck</a><span class="tsd-signature-symbol"> =&nbsp;new DebuggerEnabledCheck()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/DeviceCheckType.ts#L14">deviceTrust/DeviceCheckType.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Detect whether a device is running in debug mode.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 					<a name="device" class="tsd-anchor"></a>
@@ -129,7 +144,7 @@
 					<div class="tsd-signature tsd-kind-icon">device<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/NonEmulatedCheck.ts#L4">deviceTrust/checks/NonEmulatedCheck.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/IsEmulatorCheck.ts#L4">deviceTrust/checks/IsEmulatorCheck.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,50 +154,20 @@
 					<div class="tsd-signature tsd-kind-icon">document<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/NonRootedCheck.ts#L6">deviceTrust/checks/NonRootedCheck.ts:6</a></li>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/NonEmulatedCheck.ts#L5">deviceTrust/checks/NonEmulatedCheck.ts:5</a></li>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/NonDebugCheck.ts#L5">deviceTrust/checks/NonDebugCheck.ts:5</a></li>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/checks/DeviceLockCheck.ts#L5">deviceTrust/checks/DeviceLockCheck.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/RootEnabledCheck.ts#L6">deviceTrust/checks/RootEnabledCheck.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/IsEmulatorCheck.ts#L5">deviceTrust/checks/IsEmulatorCheck.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/DebuggerEnabledCheck.ts#L5">deviceTrust/checks/DebuggerEnabledCheck.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/checks/ScreenLockEnabledCheck.ts#L5">deviceTrust/checks/ScreenLockEnabledCheck.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="hasdevicelock" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> has<wbr>Device<wbr>Lock</h3>
-					<div class="tsd-signature tsd-kind-icon">has<wbr>Device<wbr>Lock<span class="tsd-signature-symbol">:</span> <a href="classes/devicelockcheck.html" class="tsd-signature-type">DeviceLockCheck</a><span class="tsd-signature-symbol"> =&nbsp;new DeviceLockCheck()</span></div>
+					<a name="isemulator" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Emulator</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Emulator<span class="tsd-signature-symbol">:</span> <a href="classes/isemulatorcheck.html" class="tsd-signature-type">IsEmulatorCheck</a><span class="tsd-signature-symbol"> =&nbsp;new IsEmulatorCheck()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/SecurityCheckType.ts#L18">deviceTrust/SecurityCheckType.ts:18</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Detect whether a device has a screen lock set or not.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="notdebugmode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> not<wbr>Debug<wbr>Mode</h3>
-					<div class="tsd-signature tsd-kind-icon">not<wbr>Debug<wbr>Mode<span class="tsd-signature-symbol">:</span> <a href="classes/nondebugcheck.html" class="tsd-signature-type">NonDebugCheck</a><span class="tsd-signature-symbol"> =&nbsp;new NonDebugCheck()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/SecurityCheckType.ts#L14">deviceTrust/SecurityCheckType.ts:14</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Detect whether a device is running in debug mode.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="notemulated" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> not<wbr>Emulated</h3>
-					<div class="tsd-signature tsd-kind-icon">not<wbr>Emulated<span class="tsd-signature-symbol">:</span> <a href="classes/nonemulatedcheck.html" class="tsd-signature-type">NonEmulatedCheck</a><span class="tsd-signature-symbol"> =&nbsp;new NonEmulatedCheck()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/SecurityCheckType.ts#L10">deviceTrust/SecurityCheckType.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/DeviceCheckType.ts#L10">deviceTrust/DeviceCheckType.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,17 +177,32 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable">
-					<a name="notrooted" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> not<wbr>Rooted</h3>
-					<div class="tsd-signature tsd-kind-icon">not<wbr>Rooted<span class="tsd-signature-symbol">:</span> <a href="classes/nonrootedcheck.html" class="tsd-signature-type">NonRootedCheck</a><span class="tsd-signature-symbol"> =&nbsp;new NonRootedCheck()</span></div>
+					<a name="rootenabled" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> root<wbr>Enabled</h3>
+					<div class="tsd-signature tsd-kind-icon">root<wbr>Enabled<span class="tsd-signature-symbol">:</span> <a href="classes/rootenabledcheck.html" class="tsd-signature-type">RootEnabledCheck</a><span class="tsd-signature-symbol"> =&nbsp;new RootEnabledCheck()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/c4af832/packages/security/src/deviceTrust/SecurityCheckType.ts#L6">deviceTrust/SecurityCheckType.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/DeviceCheckType.ts#L6">deviceTrust/DeviceCheckType.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Detect whether a device is rooted (Android) or Jailbroken (iOS).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="screenlockenabled" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> screen<wbr>Lock<wbr>Enabled</h3>
+					<div class="tsd-signature tsd-kind-icon">screen<wbr>Lock<wbr>Enabled<span class="tsd-signature-symbol">:</span> <a href="classes/screenlockenabledcheck.html" class="tsd-signature-type">ScreenLockEnabledCheck</a><span class="tsd-signature-symbol"> =&nbsp;new ScreenLockEnabledCheck()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/security/src/deviceTrust/DeviceCheckType.ts#L18">deviceTrust/DeviceCheckType.ts:18</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Detect whether a device has a screen lock set or not.</p>
 						</div>
 					</div>
 				</section>
@@ -222,25 +222,25 @@
 						<a href="classes/checkresultmetrics.html" class="tsd-kind-icon">Check<wbr>Result<wbr>Metrics</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/devicelockcheck.html" class="tsd-kind-icon">Device<wbr>Lock<wbr>Check</a>
+						<a href="classes/debuggerenabledcheck.html" class="tsd-kind-icon">Debugger<wbr>Enabled<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/nondebugcheck.html" class="tsd-kind-icon">Non<wbr>Debug<wbr>Check</a>
+						<a href="classes/isemulatorcheck.html" class="tsd-kind-icon">Is<wbr>Emulator<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/nonemulatedcheck.html" class="tsd-kind-icon">Non<wbr>Emulated<wbr>Check</a>
+						<a href="classes/rootenabledcheck.html" class="tsd-kind-icon">Root<wbr>Enabled<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/nonrootedcheck.html" class="tsd-kind-icon">Non<wbr>Rooted<wbr>Check</a>
+						<a href="classes/screenlockenabledcheck.html" class="tsd-kind-icon">Screen<wbr>Lock<wbr>Enabled<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/securityservice.html" class="tsd-kind-icon">Security<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/securitycheck.html" class="tsd-kind-icon">Security<wbr>Check</a>
+						<a href="interfaces/devicecheck.html" class="tsd-kind-icon">Device<wbr>Check</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/securitycheckresult.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result</a>
+						<a href="interfaces/devicecheckresult.html" class="tsd-kind-icon">Device<wbr>Check<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/securitycheckresultmetric.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result<wbr>Metric</a>
@@ -251,6 +251,9 @@
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#cordova" class="tsd-kind-icon">cordova</a>
 					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#debugmodeenabled" class="tsd-kind-icon">debug<wbr>Mode<wbr>Enabled</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#device" class="tsd-kind-icon">device</a>
 					</li>
@@ -258,16 +261,13 @@
 						<a href="globals.html#document" class="tsd-kind-icon">document</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#hasdevicelock" class="tsd-kind-icon">has<wbr>Device<wbr>Lock</a>
+						<a href="globals.html#isemulator" class="tsd-kind-icon">is<wbr>Emulator</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#notdebugmode" class="tsd-kind-icon">not<wbr>Debug<wbr>Mode</a>
+						<a href="globals.html#rootenabled" class="tsd-kind-icon">root<wbr>Enabled</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#notemulated" class="tsd-kind-icon">not<wbr>Emulated</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#notrooted" class="tsd-kind-icon">not<wbr>Rooted</a>
+						<a href="globals.html#screenlockenabled" class="tsd-kind-icon">screen<wbr>Lock<wbr>Enabled</a>
 					</li>
 				</ul>
 			</nav>
