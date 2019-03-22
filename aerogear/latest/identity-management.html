@@ -167,25 +167,43 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -270,19 +288,19 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
   </li>
 </ul>
   </li>
@@ -324,31 +342,88 @@ Zepto(function($){
     <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#setup">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server">Voyager Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-data-access">Data Access</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#server-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-metrics">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-audit-logs">Audit Logs</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#ui">The Data Sync UI</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-js-client">Voyager Client</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-basic-concepts">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#js-client-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-audit-logs">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-advanced-topics">Advanced Topics</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#schema">Working with a Schema</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server-openshift">Running Data Sync in OpenShift</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-openshift">Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#building-and-publishing-the-container">Prepare Container</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-service">Provisioning Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#sdk">Adding sync to your app</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding">Binding Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#auth">Authentication for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding-keycloak">Binding KeyCloak</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#authorization">Authorization for Data Sync Service</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -398,6 +473,9 @@ Zepto(function($){
     <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
@@ -458,7 +536,7 @@ Zepto(function($){
 <h1>Using the Identity Management Mobile Service</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel2">
+<ul class="sectlevel1">
 <li><a href="#reference-material-idm">Identity Management Service terminology</a></li>
 <li><a href="#setting-up-the-idm-service">Setting Up the Identity Management Service</a>
 <ul class="sectlevel2">
@@ -485,19 +563,14 @@ Zepto(function($){
 <li><a href="#adding-sso-to-your-mobile-app">Adding SSO to your Mobile App</a>
 <ul class="sectlevel2">
 <li><a href="#using-sso-idm">Using SSO with the Device Browser</a></li>
-<li><a href="#monitoring">Monitoring the Identity Management Service</a>
-<ul class="sectlevel3">
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#overview">Overview</a></li>
+<li><a href="#monitoring-idm-with-idm">Monitoring the Identity Management Service</a>
+<ul class="sectlevel4">
 <li><a href="#dashboard-panel-descriptions">Dashboard panel descriptions</a></li>
-<li><a href="#singlestat-panels">Singlestat Panels</a></li>
-<li><a href="#graph-panels">Graph panels</a></li>
-<li><a href="#pie-charts">Pie Charts</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#additional-resources">Additional resources</a></li>
+<li><a href="#additional-resources-2">Additional resources</a></li>
 </ul>
 </div>
 <div id="preamble">
@@ -523,8 +596,9 @@ Zepto(function($){
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="reference-material-idm"><a class="anchor" href="#reference-material-idm"></a>Identity Management Service terminology</h3>
+<div class="sect1">
+<h2 id="reference-material-idm"><a class="anchor" href="#reference-material-idm"></a>Identity Management Service terminology</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This section describes terminology that is associated with Identity Management.</p>
 </div>
@@ -560,6 +634,7 @@ Zepto(function($){
 <p>You have provisioned Mobile Developer Console as described in <a href="getting-started.html">Provisioning Mobile Developer Console</a>.</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1075,13 +1150,31 @@ auth = AGSAuth()</code></pre>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset4_cordova">
-<div class="paragraph">
-<p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>* file:</code> to <code>default-src</code> in the <code>Content-Security-Policy</code> meta tag inside the <code>index.html</code> file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;meta http-equiv="Content-Security-Policy" content="default-src * file: 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"&gt;</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Install the <a href="https://www.npmjs.com/package/@aerogear/auth">AeroGear Auth</a> package from <a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install @aerogear/auth</code></pre>
 </div>
+</div>
+</li>
+<li>
+<p>Use e.g <code>browserify</code> so that you can use the <code>require</code> statement</p>
+</li>
+<li>
+<p>In the <code>init</code> snippet use <code>require</code> instead of <code>import</code></p>
+</li>
+</ol>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset4_xamarin">
@@ -1213,6 +1306,40 @@ Initialization also enables authentication.
 </td>
 </tr>
 </table>
+</div>
+<div class="olist arabic">
+<div class="title">To use self-signed certificates with Cordova Android:</div>
+<ol class="arabic">
+<li>
+<p>Create a file <code>network_security_config.xml</code> in your project with the following code:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;network-security-config&gt;
+  &lt;base-config&gt;
+    &lt;trust-anchors&gt;
+      &lt;certificates src="user"/&gt;
+      &lt;certificates src="system"/&gt;
+    &lt;/trust-anchors&gt;
+  &lt;/base-config&gt;
+&lt;/network-security-config&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Include it into the <code>config.xml</code> file for the <code>android</code> platform</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;resource-file src="network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" /&gt;
+&lt;edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"&gt;
+    &lt;application android:networkSecurityConfig="@xml/network_security_config" /&gt;
+&lt;/edit-config&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add <code>xmlns:android="http://schemas.android.com/apk/res/android"</code> to the <code>widget</code> tag in the <code>config.xml</code> file</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset5_xamarin">
@@ -1557,7 +1684,7 @@ If the refresh token is still valid, the authentication token can be refreshed e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">authService.service.extract().updateToken(30).then(() =&gt; {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">authService.extract().updateToken(30).then(() =&gt; {
     // Token has been refreshed
 });</code></pre>
 </div>
@@ -2049,26 +2176,46 @@ Sometimes, the user may have to enter their credentials again, even if they have
 </div>
 </div>
 <div class="sect2">
-<h3 id="monitoring"><a class="anchor" href="#monitoring"></a>Monitoring the Identity Management Service</h3>
-<div class="sect3">
-<h4 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h4>
-<div class="ulist checklist">
-<ul class="checklist">
+<h3 id="monitoring-idm-with-idm"><a class="anchor" href="#monitoring-idm-with-idm"></a>Monitoring the Identity Management Service</h3>
+<div class="paragraph">
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Identity Management Service are provisioned,
+you should be able to see the "Keycloak Metrics" in the list of available dashboards.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
 <li>
-<p><i class="fa fa-check-square-o"></i> The Mobile Metrics Service and Identity Management Service must be provisioned in the same OpenShift project to access data.</p>
+<p>The Mobile Metrics Service and Identity Management Service must be provisioned in the same OpenShift project to access data.</p>
 </li>
 </ul>
 </div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Navigate to Grafana.</p>
+</li>
+<li>
+<p>Select <strong>Keycloak Metrics</strong>.</p>
+</li>
+</ol>
 </div>
-<div class="sect3">
-<h4 id="overview"><a class="anchor" href="#overview"></a>Overview</h4>
-<div class="paragraph">
-<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Identity Management Service are provisioned,
-you should be able to see the "Keycloak Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Keycloak Metrics</strong>).</p>
+<h4 id="additional-resources" class="discrete">Additional resources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel" target="_blank" rel="noopener">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel" target="_blank" rel="noopener">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel" target="_blank" rel="noopener">Pie Chart</a></p>
+</li>
+</ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h4>
+<div class="sect4">
+<h5 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h5>
 <div class="paragraph">
 <p>The Keycloak dashboard consists of several panels which give you an overview of the specific
 events, such as the number of registered users, memory usage etc.</p>
@@ -2076,10 +2223,8 @@ events, such as the number of registered users, memory usage etc.</p>
 <div class="paragraph">
 <p>Below you will find a detailed description of each panel and its values.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h4>
 <div class="paragraph">
+<div class="title">Singlestat Panels</div>
 <p>Singlestat panels show you the main summary of a single data series.</p>
 </div>
 <div class="ulist">
@@ -2098,10 +2243,8 @@ events, such as the number of registered users, memory usage etc.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h4>
 <div class="paragraph">
+<div class="title">Graph panels</div>
 <p>Used to show how certain values change over time, e.g. the number of successful logins.</p>
 </div>
 <div class="ulist">
@@ -2130,10 +2273,8 @@ events, such as the number of registered users, memory usage etc.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="pie-charts"><a class="anchor" href="#pie-charts"></a>Pie Charts</h4>
 <div class="paragraph">
+<div class="title">Pie Charts</div>
 <p>Used to show the distribution of data, e.g. the number of logins per identity provider.</p>
 </div>
 <div class="ulist">
@@ -2146,26 +2287,12 @@ events, such as the number of registered users, memory usage etc.</p>
 </li>
 </ul>
 </div>
-<h4 id="related-information" class="discrete">Related Information</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel" target="_blank" rel="noopener">Singlestat Panel</a></p>
-</li>
-<li>
-<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel" target="_blank" rel="noopener">Graph Panel</a></p>
-</li>
-<li>
-<p><a href="https://grafana.com/plugins/grafana-piechart-panel" target="_blank" rel="noopener">Pie Chart</a></p>
-</li>
-</ul>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h2>
+<h2 id="additional-resources-2"><a class="anchor" href="#additional-resources-2"></a>Additional resources</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>

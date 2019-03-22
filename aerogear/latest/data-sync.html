@@ -66,7 +66,7 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Sync :: AeroGear Mobile Services</title>
+    <title>Developing a Data Sync App :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/data-sync.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -167,25 +167,43 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -270,19 +288,19 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
   </li>
 </ul>
   </li>
@@ -324,31 +342,88 @@ Zepto(function($){
     <a class="nav-link" href="#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#setup">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="#sync-server">Voyager Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-data-access">Data Access</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#server-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-metrics">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-audit-logs">Audit Logs</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#ui">The Data Sync UI</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="#sync-js-client">Voyager Client</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-basic-concepts">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-client-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-client-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-client-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#js-client-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-client-audit-logs">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-js-client-advanced-topics">Advanced Topics</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#schema">Working with a Schema</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="#sync-server-openshift">Running Data Sync in OpenShift</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-getting-started-openshift">Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#resolvers">Adding resolvers to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#building-and-publishing-the-container">Prepare Container</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#subscriptions">Adding subscriptions to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#provisioning-data-sync-service">Provisioning Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#sdk">Adding sync to your app</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#monitoring">Monitoring Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-binding">Binding Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#auth">Authentication for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="#sync-server-binding-keycloak">Binding KeyCloak</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#authorization">Authorization for Data Sync Service</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -398,6 +473,9 @@ Zepto(function($){
     <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
@@ -455,118 +533,93 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/data-sync.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Data Sync</h1>
+<h1>Developing a Data Sync App</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#introduction">Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#ref_terminology_Data Sync_ref_terminology">Data Sync Terminology</a></li>
-<li><a href="#ref_terminology_Data Sync_additional-resources-ref_terminology_Data Sync">Additional resources</a></li>
+<li><a href="#ref_terminology_sync">Data Sync Terminology</a></li>
+<li><a href="#sync-server">Data Sync Server</a>
+<ul class="sectlevel3">
+<li><a href="#hello-world-data-sync">Hello World Data Sync</a></li>
+<li><a href="#sync-server-offline-and-conflict">Conflict Resolution</a></li>
+<li><a href="#sync-server-data-access">Data Access</a></li>
+<li><a href="#sync-server-realtime-updates">Realtime Updates</a></li>
+<li><a href="#sync-server-auth">Authentication and Authorization using Keycloak</a></li>
+<li><a href="#setting-up-keycloak-protection-in-voyager-server">Setting Up Keycloak Protection in Voyager Server</a></li>
+<li><a href="#protecting-subscriptions-with-keycloak">Protecting Subscriptions with Keycloak</a></li>
+<li><a href="#using-the-hasrole-directive-in-a-schema">Using the <code>@hasRole</code> Directive in a Schema</a></li>
+<li><a href="#server-files">Enabling file uploads</a></li>
+<li><a href="#sync-server-metrics">Metrics</a></li>
+<li><a href="#monitoring-a-voyager-server-application">Monitoring a Voyager Server Application</a></li>
+<li><a href="#sync-server-audit-logs">Audit Logs</a></li>
+<li><a href="#audit-logging-architecture">Audit Logging Architecture</a></li>
+<li><a href="#enabling-audit-logging-in-voyager-server">Enabling Audit Logging in Voyager Server</a></li>
+<li><a href="#sending-device-information-in-voyager-client">Sending Device Information in Voyager Client</a></li>
+<li><a href="#exploring-audit-logs">Exploring Audit Logs</a></li>
+<li><a href="#configuring-openshift-logging">Configuring OpenShift Logging</a></li>
+<li><a href="#importing-kibana-saved-objects">Importing Kibana Saved Objects</a></li>
+<li><a href="#viewing-the-dashboard-and-audit-logs">Viewing the Dashboard and Audit Logs</a></li>
 </ul>
 </li>
-<li><a href="#setup">Setting Up the Data Sync Mobile Service</a>
+<li><a href="#sync-js-client">Data Sync Javascript Client</a>
 <ul class="sectlevel2">
+<li><a href="#sync-js-basic-concepts">Introduction</a></li>
+<li><a href="#sync-js-client-offline-and-conflict">Offline support</a></li>
+<li><a href="#sync-js-client-realtime-updates">Realtime Updates</a></li>
+<li><a href="#sync-js-client-auth">Authentication and Authorization</a></li>
+<li><a href="#js-client-files">File Upload Client</a></li>
+<li><a href="#uploading-files-from-graphql">Uploading Files from GraphQL</a></li>
+<li><a href="#sync-js-client-audit-logs">Audit Logs</a></li>
+<li><a href="#sync-js-client-advanced-topics">Advanced Topics</a></li>
+</ul>
+</li>
+<li><a href="#sync-server-openshift">Running Data Sync on OpenShift</a>
+<ul class="sectlevel2">
+<li><a href="#overview-2">Overview</a></li>
+<li><a href="#building-and-publishing-the-container">Building and publishing the server container</a></li>
 <li><a href="#provisioning-data-sync-service">Provisioning Data Sync Service</a></li>
-<li><a href="#binding-a-mobile-app-with-the-data-sync-service">Binding a Mobile App with the Data Sync Service</a></li>
+<li><a href="#sync-server-getting-started-mdc-client">Connecting a Client</a></li>
+<li><a href="#sync-server-binding">Binding a Mobile App with Data Sync</a></li>
+<li><a href="#sync-server-binding-keycloak">Binding Data Sync to Identity Management</a></li>
 </ul>
 </li>
-<li><a href="#data_sources_ui_data_sources_ui">Managing your data sources using the Data Sync UI</a>
-<ul class="sectlevel2">
-<li><a href="#data-source-introduction">Data Source Introduction</a></li>
-<li><a href="#data-source-options">Data Source Options</a></li>
-</ul>
-</li>
-<li><a href="#schema_ui_data_sources_ui">Defining a Schema using the Data Sync UI</a>
-<ul class="sectlevel2">
-<li><a href="#the-schema-editor">The Schema Editor</a></li>
-<li><a href="#structure-view">Structure View</a></li>
-<li><a href="#playground">Playground</a></li>
-</ul>
-</li>
-<li><a href="#resolvers_ui_data_sources_ui">Adding Resolvers to a Schema</a>
-<ul class="sectlevel2">
-<li><a href="#defining-resolvers">Defining Resolvers</a></li>
-</ul>
-</li>
-<li><a href="#subscriptions_ui_data_sources_ui">Adding Subscriptions to a Schema</a>
-<ul class="sectlevel2">
-<li><a href="#publishing-to-a-subscription">Publishing to a subscription</a></li>
-</ul>
-</li>
-<li><a href="#sdk">Using the Data Sync SDK</a>
-<ul class="sectlevel2">
-<li><a href="#importing-the-libraries">Importing the libraries</a></li>
-<li><a href="#setting-up-the-sync-mobile-service">Setting Up the Sync Mobile Service</a></li>
-<li><a href="#using-the-sync-mobile-service">Using the Sync Mobile Service</a></li>
-</ul>
-</li>
-<li><a href="#monitoring">Monitoring Data Sync Service</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites-2">Prerequisites</a></li>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#dashboard-panel-descriptions">Dashboard panel descriptions</a></li>
-<li><a href="#singlestat-panels">Singlestat Panels</a></li>
-<li><a href="#graph-panels">Graph panels</a></li>
-<li><a href="#additional-resources">Additional resources</a></li>
-</ul>
-</li>
-<li><a href="#sync_auth_authentication">Authentication for Data Sync</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites-3">Prerequisites</a></li>
-<li><a href="#binding-the-data-sync-service-to-an-identity-management-instance">Binding the Data Sync service to an Identity Management Instance</a></li>
-<li><a href="#creating-the-binding-secret-from-a-keycloak-instance">Creating the binding secret from a Keycloak Instance</a></li>
-<li><a href="#making-the-secret-available-to-the-data-sync">Making the Secret available to the Data Sync</a></li>
-<li><a href="#making-secret-available-to-application">Making Secret available to application</a></li>
-<li><a href="#data-sync-sdk-authentication">Data Sync SDK Authentication</a></li>
-</ul>
-</li>
-<li><a href="#authorization">Role Based Authorization in Data Sync</a>
-<ul class="sectlevel2">
-<li><a href="#prerequisites-4">Prerequisites</a></li>
-<li><a href="#the-hasrole-directive">The @hasRole Directive</a></li>
-<li><a href="#example-using-the-hasrole-directive-to-apply-role-based-authorization-on-a-schema">Example: Using the @hasRole Directive to Apply Role Based Authorization on a Schema</a></li>
-</ul>
-</li>
+<li><a href="#sync-sample-app">Showcase App</a></li>
 </ul>
 </div>
-<div class="sect1">
-<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Data Sync mobile service is currently in development. Current released version is 0.1.0.
-The software is available for you to use and investigate, however it might not work as expected and functionality might change over time.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The Data Sync service allows you to synchronize data between multiple mobile clients and easily query exactly the data you need.</p>
+<div id="introduction" class="paragraph">
+<p>Unlike other AeroGear mobile services which provide a server and an API, Data Sync is a library that is used to develop services. Typically, you develop a Data Sync service as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Synchronize data between multiple clients</p>
+<p>Design a <a href="https://graphql.org/learn">GraphQL</a> schema.</p>
 </li>
 <li>
-<p>Define and connect your own data sources</p>
+<p>Develop a server side service.</p>
 </li>
 <li>
-<p>Retrieve and update your records using GraphQL</p>
+<p>Containerize your server and deploy it to OpenShift as a Data Sync App.</p>
 </li>
 <li>
-<p>Robust offline experience and good performance thanks to Apollo caching</p>
+<p>Bind your mobile app to that data sync server app.</p>
+</li>
+<li>
+<p>Configure your mobile app to point to the data sync server app.</p>
+</li>
+<li>
+<p>Complete your mobile app development.</p>
+</li>
+<li>
+<p>Build and run your mobile app.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="ref_terminology_Data Sync_ref_terminology"><a class="anchor" href="#ref_terminology_Data Sync_ref_terminology"></a>Data Sync Terminology</h3>
+<h3 id="ref_terminology_sync"><a class="anchor" href="#ref_terminology_sync"></a>Data Sync Terminology</h3>
 <div class="paragraph">
 <p>This section describes terminology that is associated with Data Sync.</p>
 </div>
@@ -574,1447 +627,924 @@ The software is available for you to use and investigate, however it might not w
 <dl>
 <dt class="hdlist1">GraphQL</dt>
 <dd>
-<p>A query language for data that is more powerful than a REST API. See <a href="https://graphql.org/learn">GraphQL</a></p>
+<p>A query language for your API, and a server-side runtime for executing queries by using a type system you define for your data. An alternative approach to REST for building APIs and applications. See <a href="https://graphql.org/learn">GraphQL</a>.</p>
 </dd>
 <dt class="hdlist1">Apollo</dt>
 <dd>
-<p>A client side library to work with a GraphQL based server. See <a href="https://www.apollographql.com/">Apollo</a></p>
+<p>Apollo is an implementation of GraphQL designed for the needs of product engineering teams building modern, data-driven applications. Apollo includes two open-source libraries, Apollo Server and Apollo Client. See <a href="https://www.apollographql.com">Apollo</a>.</p>
+</dd>
+<dt class="hdlist1">Apollo Server</dt>
+<dd>
+<p>Apollo Server is a library for building GraphQL APIs in Node.js. A developer defines a GraphQL schema and a set of resolvers to implement each part of the schema. See <a href="https://www.apollographql.com/docs/apollo-server">Apollo Server</a>.</p>
+</dd>
+<dt class="hdlist1">Apollo Client</dt>
+<dd>
+<p>Apollo Client is a JavaScript client library for building web and mobile applications powered by a GraphQL API. See <a href="https://www.apollographql.com/docs/react">Apollo Client</a>.</p>
 </dd>
 </dl>
 </div>
-</div>
-<div class="sect2">
-<h3 id="ref_terminology_Data Sync_additional-resources-ref_terminology_Data Sync"><a class="anchor" href="#ref_terminology_Data Sync_additional-resources-ref_terminology_Data Sync"></a>Additional resources</h3>
-<div class="paragraph">
-<p>For more information, see the <a href="https://www.apollographql.com/docs/react/">Apollo Client Documentation</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="setup"><a class="anchor" href="#setup"></a>Setting Up the Data Sync Mobile Service</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="provisioning-data-sync-service"><a class="anchor" href="#provisioning-data-sync-service"></a>Provisioning Data Sync Service</h3>
-<h4 id="prerequisites" class="discrete">Prerequisites</h4>
-<div class="ulist checklist">
-<ul class="checklist">
+<div id="sync_additional-resources-sync" class="ulist">
+<div class="title">Additional resources</div>
+<ul>
 <li>
-<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+<p><a href="https://graphql.org/learn">Learn GraphQL</a></p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned Mobile Developer Console as described in <a href="getting-started.html" class="page">Provisioning Mobile Developer Console</a>.</p>
+<p><a href="https://github.com/aerogear/voyager-server">Voyager Server GitHub repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/aerogear/aerogear-js-sdk/tree/master/packages/sync">Voyager Client GitHub repository</a></p>
+</li>
+<li>
+<p><a href="https://www.apollographql.com/docs/apollo-server">Apollo Server</a></p>
+</li>
+<li>
+<p><a href="https://www.apollographql.com/docs/react">Apollo Client</a></p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect1">
+<h2 id="sync-server"><a class="anchor" href="#sync-server"></a>Data Sync Server</h2>
+<div class="sectionbody">
+<div id="sync-server-getting-started" class="ulist checklist">
+<div class="title">Prerequisites</div>
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have Node.js and npm installed.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have created a node.js project</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="hello-world-data-sync"><a class="anchor" href="#hello-world-data-sync"></a>Hello World Data Sync</h4>
 <div class="paragraph">
-<p>To provision the Data Sync mobile service:</p>
+<p>Voyager Server is a set of Node.js libraries that can be used to build a custom backend Data Sync service using GraphQL.</p>
+</div>
+<div class="paragraph">
+<p>Voyager Server is the starting point for developing a Data Sync application. Used with <a href="https://expressjs.com/">Express</a>, this module leverages Apollo Server and provides extension points for additional features and integrations.</p>
+</div>
+<div class="paragraph">
+<p>In this example, you add libraries to your node.js project, create an <code>index.js</code> file, run the server, and confirm that it works.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Log into the OpenShift console.</p>
-</li>
-<li>
-<p>Choose a project where you have previously provisioned Mobile Developer Console.</p>
-</li>
-<li>
-<p>Select <strong>Catalog</strong> from the left hand menu.</p>
-<div class="paragraph">
-<p>You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.</p>
+<p>Add libraries to your Node.js application,</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install graphql <i class="conum" data-value="1"></i><b>(1)</b>
+$ npm install express <i class="conum" data-value="2"></i><b>(2)</b>
+$ npm install @aerogear/voyager-server <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>See <a href="https://graphql.org/" class="bare">https://graphql.org/</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>See <a href="https://expressjs.com/" class="bare">https://expressjs.com/</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The Voyager Server library that enables data sync</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </li>
 <li>
-<p>Choose the Data Sync service.</p>
+<p>Create an <code>index.js</code> file with the following content:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const express = require('express')
+//Include our server libraries
+const { VoyagerServer, gql } = require('@aerogear/voyager-server')
+
+//Provide your graphql schema
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`
+
+//Create the resolvers for your schema
+const resolvers = {
+  Query: {
+    hello: (obj, args, context, info) =&gt; {
+      return `Hello world`
+    }
+  }
+}
+
+//Initialize the library with your Graphql information
+const server = VoyagerServer({
+  typeDefs,
+  resolvers
+})
+
+//Connect the server to express
+const app = express()
+server.applyMiddleware({ app })
+
+app.listen(4000, () =&gt;
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`)
+)</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Follow the wizard for provisioning that service.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
-</td>
-</tr>
-</table>
+<p>Run the server:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ node index.js
+
+🚀 Server ready at http://localhost:4000/graphql</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Browse <code><a href="http://localhost:4000/graphql" class="bare">http://localhost:4000/graphql</a></code> and interact with the playground. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  hello
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the output. For the example above, the output should be:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  "data": {
+    "hello": "Hello world"
+  }
+}</code></pre>
+</div>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>When provisioning a Data Sync Service, you are prompted to set the following:</p>
+<p>To make it easier for developers to get started with our Data Sync framework, see the <a href="https://github.com/aerogear/ionic-showcase">sample application</a>. In this app, you can explore a more complex schema.</p>
+</div>
+<div class="paragraph">
+<p>Before proceeding, make sure you have an understanding of the following GraphQL concepts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Schema design</p>
+</li>
+<li>
+<p>Resolvers</p>
+</li>
+<li>
+<p>Subscriptions</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-offline-and-conflict"><a class="anchor" href="#sync-server-offline-and-conflict"></a>Conflict Resolution</h3>
+<div class="paragraph">
+<p>Applications that allow users to modify data while offline most likely have to deal with conflicts.
+A <strong>conflict</strong> occurs whenever two or more clients try to modify the same data in between synchronizations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong> A user tried to modify a record while they were offline. When they came back online, they discovered that the record was already deleted.</p>
+</div>
+<div class="paragraph">
+<p><strong>Conflict resolution</strong> is how the application handles the conflict and ensures the correct data is stored. In most cases, the way conflicts are detected and resolved are incredibly specific to an application and the underlying data storage.</p>
+</div>
+<div class="paragraph">
+<p>In a GraphQL server, conflict detection and resolution happens exclusively in <strong>mutations</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="resolving-conflicts"><a class="anchor" href="#resolving-conflicts"></a>Resolving Conflicts</h4>
+<div class="paragraph">
+<p>At a very high level, there is a typical flow to detecting and resolving conflicts.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>A Mutation Occurs</strong> - A client tries to modify or delete an object on the server using a GraphQL mutation.</p>
+</li>
+<li>
+<p><strong>Read the Object</strong> - The server reads the current object the client is trying to modify from the data source (usually a database).</p>
+</li>
+<li>
+<p><strong>Conflict Detection</strong> - The server compares the current object with the data sent by the client to see if there was a conflict. The developer can choose <em>how the comparison</em> is done.</p>
+</li>
+<li>
+<p><strong>Conflict Resolution</strong> - Conflict resolution can be deferred to the client or it can be done on the server. The developer can choose the resolution strategy.</p>
+</li>
+<li>
+<p><strong>Persist the Data</strong> - Conflict Resolution on the server results in a new object which should be persisted.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>aerogear/voyager-conflicts</code> module uses the concept of <strong>pluggable conflict resolution</strong> to help developers with the <strong>Conflict Detection</strong> and <strong>Conflict Resolution</strong> steps.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pluggable-conflict-resolution"><a class="anchor" href="#pluggable-conflict-resolution"></a>Pluggable Conflict Resolution</h4>
+<div class="paragraph">
+<p>Pluggable conflict resolution is a concept that allows developers to define their own logic for <strong>conflict detection</strong> and <strong>conflict resolution</strong>, regardless of the data storage.</p>
+</div>
+<div class="paragraph">
+<p>The conflict detection and resolution is enabled by Voyager Server, while the fetching and storing of data is the responsibility of the developer.</p>
+</div>
+<div class="paragraph">
+<p>Pluggable conflict resolution supports the following implementations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>VersionedObjectState</code> - depends on version field supplied in objects (used by default when importing conflictHandler)</p>
+</li>
+<li>
+<p><code>HashObjectState</code> - depends on hash calculated from entire object</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Implementations are based on the <code>ObjectState</code> interface that can be extended to provide custom implementation for conflict detection.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>GraphQL server with resolvers.</p>
+</li>
+<li>
+<p>Database or any other form of data storage that can cause data conflicts.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="version-based-conflict-resolution"><a class="anchor" href="#version-based-conflict-resolution"></a>Version Based Conflict Resolution</h4>
+<div class="paragraph">
+<p>Version based conflict resolution is the recommended and simplest approach for conflict detection and resolution.
+The core idea is that every object has a <code>version</code> property with an integer value. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  title: "Buy some milk"
+  version: 1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a client tries to update object, they must send along their last known version number along with the changes to the server.
+The server updates the version, persists the changes and sends back the new object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  title: "Buy some bread"
+  version: 2
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <strong>conflict</strong> occurs when the version number sent by the client does not match the version stored in the server. This means a different client already updated the object.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-version-based-conflict-resolution"><a class="anchor" href="#using-version-based-conflict-resolution"></a>Using Version Based Conflict Resolution</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import the <a href="https://npmjs.com/package/@aerogear/voyager-conflicts">@aerogear/voyager-conflicts</a> package.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { conflictHandler } = require('@aerogear/voyager-conflicts')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a version field to the GraphQL type that should support conflict resolution. The version should also be stored in the data storage.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Task {
+  title: String
+  version: Int
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an example mutation.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Mutation {
+  updateTask(title: String!, version: Int!): Task
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the resolver.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Conflicts can be resolved either on the client or the server. Depending on the strategy used, the resolver implementation will differ.
+Please see the sections below for the individual implementations.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resolving-conflicts-on-the-client"><a class="anchor" href="#resolving-conflicts-on-the-client"></a>Resolving Conflicts on the Client</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  updateTask: async (obj, clientData, context, info) =&gt; {
+    // 1. Read the Object from the database. This example uses Knex https://knexjs.org/.
+    const task = await context.db('tasks').select().where('id', clientData.id).then((rows) =&gt; rows[0])
+
+    // 2. Conflict Detection using `VersionedObjectState`
+    //    If the version number from the database does not match the one sent by the client
+    //    A conflict occurs
+    if (conflictHandler.hasConflict(task, clientData)) {
+      // If a conflict is detected, choose to resolve on the client.
+      const { response } = conflictHandler.resolveOnClient(task, clientData)
+      return response
+    }
+
+    // 3. Always call nextState before persisting the updated record.
+    // This ensures it has the correct version number
+    conflictHandler.nextState(clientData)
+
+    // 4. Persist the update to the database
+    const update = await context.db('tasks')
+      .update(clientData)
+      .where('id', clientData.id)
+      .returning('*')
+      .then((rows) =&gt; rows[0])
+
+    return update
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above, <code>conflictHandler.resolveOnClient</code> is used when a conflict is detected. <code>resolveOnClient</code> returns a <code>response</code> object which should be returned to the client. The <code>response</code> contains the conflicting data and some metadata which the client can use to resolve the conflict.</p>
+</div>
+<div class="paragraph">
+<p>Since the conflict will be resolved on the client, it is not required to persist the data. However, if there is no conflict, the data sent by the client should be persisted.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="resolving-conflicts-on-the-server"><a class="anchor" href="#resolving-conflicts-on-the-server"></a>Resolving Conflicts on the Server</h4>
+<div class="paragraph">
+<p><code>conflictHandler.resolveOnServer</code> is used to resolve conflicts on the server side. <code>resolveOnServer</code> accepts a <code>ConfictResolutionStrategy</code> function as its first argument. The example below uses one of the default conflict resolution strategies from the <code>@aerogear/voyager-conflicts</code> module.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { conflictHandler, strategies } = require('@aerogear/voyager-conflicts')</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"> {
+   updateTask: async (obj, clientData, context, info) =&gt; {
+     // 1. Read the Object from the database. This example uses Knex https://knexjs.org/.
+     const task = await context.db('tasks').select().where('id', clientData.id).then((rows) =&gt; rows[0])
+
+     // 2. Conflict Detection using `VersionedObjectState`
+     //    If the version number from the database does not match the one sent by the client
+     //    A conflict occurs
+     if (conflictHandler.hasConflict(task, clientData)) {
+       // If a conflict is detected, resolve it on the server using one of the default strategies.
+       const { resolvedState, response } = await conflictHandler.resolveOnServer(strategies.clientWins, task, clientData)
+
+       // persist the resolved data to the database and then return the conflict response
+       await context.db('tasks')
+         .update(resolvedState)
+         .where('id', resolvedState.id)
+         .returning('*')
+         .then((rows) =&gt; rows[0])
+
+       return response
+     }
+
+     // 3. Always call nextState before persisting the updated record.
+     // This ensures it has the correct version number
+     conflictHandler.nextState(clientData)
+
+     // 4. Persist the update to the database and return it to the client
+     const update = await context.db('tasks')
+       .update(clientData)
+       .where('id', clientData.id)
+       .returning('*')
+       .then((rows) =&gt; rows[0])
+
+     return update
+   }
+ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When there is no conflict, <code>conflictHandler.nextState(clientData)</code> is called and the data is persisted. When a conflict occurs, the following happens.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>conflictHandler.resolveOnServer</code> is called with the <code>clientWins</code> strategy. In this case, the <code>resolvedState</code> will be the new data provided by the client. The newly <code>resolvedState</code> should be persisted.</p>
+</li>
+<li>
+<p><code>conflictHandler.resolveOnServer</code> also returns a <code>response</code>, which should be returned to the client.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>response</code> object is a <code>ConflictResolution</code> object that tells the client there was a conflict, that it was resolved on the server and provides the new <code>resolvedState</code>. In most cases, the client needs to know about conflicts that happen on the server. This allows the client to handle the conflict accordingly. For example, the screen the user is looking at might need to be refreshed with new data after a conflict.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="conflict-resolution-strategies"><a class="anchor" href="#conflict-resolution-strategies"></a>Conflict Resolution Strategies</h4>
+<div class="paragraph">
+<p>There is one default conflict resolution strategy.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clientWins</code> - This strategy accepts the data provided by the client.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="conflict-resolution-using-the-reject-function"><a class="anchor" href="#conflict-resolution-using-the-reject-function"></a>Conflict Resolution using the <code>reject</code> Function</h4>
+<div class="paragraph">
+<p>It is possible to implement a 'server wins' style strategy using the <code>reject</code> method. This is useful in conflict cases where we want to reject the client&#8217;s changes and force the client to use the latest data stored on the sever.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// If a conflict is detected, call the reject function
+// to keep the server side data and force the client to update
+if (conflictHandler.hasConflict(serverData, clientData)) {
+  return conflictHandler.reject(task, clientData)
+}
+// otherwise continue and perform the standard mutation logic</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="custom-conflict-resolution-strategies"><a class="anchor" href="#custom-conflict-resolution-strategies"></a>Custom Conflict Resolution Strategies</h4>
+<div class="paragraph">
+<p>In most real world cases, the conflict resolution strategies used by your application are custom and specific to your application&#8217;s needs. Your application may deal with different conflicts in different ways. It is possible to implement a custom <code>ConflictResolutionStrategy</code> function to be used with <code>resolveOnServer</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function customResolutionStrategy (serverState, clientState) {
+  return {
+    title: `${serverState.title} ${clientState.title}`
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example takes string values from the server and the client records, merges them together and returns the newly resolved object. This example is a little contrived but it shows how any strategy could be implemented.</p>
+</div>
+<div class="paragraph">
+<p>Use the custom strategy in your resolvers the same way as the previous examples.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">if (conflictHandler.hasConflict(serverData, clientData)) {
+  // If a conflict is detected, resolve it on the server using the custom strategy.
+  const { resolvedState, response } = conflictHandler.resolveOnServer(customResolutionStrategy, serverData, clientData)
+  // persist the resolved data to the database and then return the conflict response
+  await persistToDatabase(resolvedState)
+  return response
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The custom <code>ConflictResolutionStrategy</code> function can also be <code>async</code> or return a <code>Promise</code> if you need to do some asynchronous operations as part of your strategy (e.g. call to an external service).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementing-custom-conflict-mechanism"><a class="anchor" href="#implementing-custom-conflict-mechanism"></a>Implementing Custom Conflict Mechanism</h4>
+<div class="paragraph">
+<p>The <code>ObjectState</code> interface is a complete conflict resolution implementation that provides a set of rules to detect and handle conflict. Interface will allow developers to handle conflict on the client or the server. <code>nextState</code> method is a way for interface to modify existing object before is being saved to the database.
+For example when using <code>lastModified</code> field as a way to detect conflicts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">public nextState(currentObjectState: ObjectStateData) {
+  currentObjectState.lastModified = new Date()
+  return currentObjectState
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-data-access"><a class="anchor" href="#sync-server-data-access"></a>Data Access</h3>
+<div class="paragraph">
+<p>A Data Sync application will most likely need to access to a database. The GraphQL specification and Voyager Server modules not require an application to use a particular type of database, and the developer of the application can choose a database that is most suitable for the application.</p>
+</div>
+<div class="paragraph">
+<p>From a very high level, here are the steps to access data from a database in a Data Sync application:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Initialize the database connection on app start.</p>
+</li>
+<li>
+<p>Add the database connection to the <code>context</code> object.</p>
+</li>
+<li>
+<p>Retrieve/persist data to the database in the application&#8217;s resolvers.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="initialize-database-connection"><a class="anchor" href="#initialize-database-connection"></a>Initialize Database Connection</h4>
+<div class="paragraph">
+<p>Generally speaking, the application should set up the database connection on start, and fail if the connection can not be established. In order to connect to the database, usually the information like the hostname and port number of the database server, the credentials to authenticate will be required. It is recommended to use environment variables to set these details.</p>
+</div>
+<div class="paragraph">
+<p>If the application is going to be deployed on OpenShift as described in the <a href="#sync-server-openshift">Running Data Sync on OpenShift</a> section, then the following environment variables will be setup for the application automatically:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Configuration</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Field Name</th>
+<th class="tableblock halign-left valign-top">Environment Variable Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Storage Size (Gb)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Size of persistent volume for Postgres (default value is recommended)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Hostname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_HOSTNAME</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User name that will be used to connect to postgres ('user' will be used if blank)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_PORT</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Postgres Password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password to connect to Postgres (generated if blank)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_USERNAME</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query depth limit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the complexity of the queries solely by their depth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_PASSWORD</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query complexity limit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the complexity of the queries based on the data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_NAME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use SSL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_SSL</p></td>
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>If the Postgres password was generated, retrieve the password using:</p>
+<p>It is highly recommended that the application use these environment variables to setup the database connection.</p>
+</div>
+<div class="paragraph">
+<p>For example, if an application needs to connect to a PostgreSQL database (where all tables and schemas are already set up) then a database connection can be established on app start as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc describe dc postgres-data-sync -n &lt;myproject&gt; | grep POSTGRESQL_PASSWORD</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Wait for the database provisioning to finish before executing this command.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
-Provisioning a service may take some time.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="binding-a-mobile-app-with-the-data-sync-service"><a class="anchor" href="#binding-a-mobile-app-with-the-data-sync-service"></a>Binding a Mobile App with the Data Sync Service</h3>
-<div class="paragraph">
-<p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
-This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
-</div>
-<div class="paragraph">
-<p>To bind a Mobile App with a mobile service:</p>
-</div>
-<div class="sect3">
-<h4 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Launch Mobile Developer Console</p>
-</li>
-<li>
-<p>Click on the Mobile App on the Overview screen</p>
-</li>
-<li>
-<p>Navigate to <strong>Mobile Services</strong> tab.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Press <strong>Bind to App</strong> in the Data Sync</p>
-</li>
-<li>
-<p>Fill out the binding parameters required by the Data Sync Service.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="data_sources_ui_data_sources_ui"><a class="anchor" href="#data_sources_ui_data_sources_ui"></a>Managing your data sources using the Data Sync UI</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Data Sync UI allows you to manage your data sources.</p>
-</div>
-<div class="paragraph">
-<p>To access the Data Sync UI, you will need to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure the Data Sync service is provisioned.</p>
-</li>
-<li>
-<p>Select a route in OpenShift.</p>
-</li>
-<li>
-<p>Login with your OpenShift credentials.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-On first login you need to provide the OpenShift OAuth service permissions to read your user account.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="data-source-introduction"><a class="anchor" href="#data-source-introduction"></a>Data Source Introduction</h3>
-<div class="paragraph">
-<p>A Data Source is a representation of your data storage solution. The Data Source consists of a <strong>Name</strong>, a <strong>Type</strong>, and a <strong>Configuration</strong>.
-The <strong>Type</strong> of Data Source which are currently supported are <strong>Postgres</strong> and <strong>InMemory</strong>. For information on how to use <strong>Postgres</strong>, refer to the documentation <a href="https://www.postgresql.org/docs">here</a>.
-The <strong>In Memory</strong> Data Source that is currently supported is <strong>NeDB</strong>, for more information on how to use this please refer to the documentation <a href="https://github.com/louischatriot/nedb">here</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <strong>In Memory</strong> Data Source is not recommended for production use.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="data-source-options"><a class="anchor" href="#data-source-options"></a>Data Source Options</h3>
-<div class="paragraph">
-<p>The data sources tab on the Data Sync UI allows you to perform the following operatations:</p>
-</div>
-<div class="sect3">
-<h4 id="view-existing-data-sources"><a class="anchor" href="#view-existing-data-sources"></a>View Existing Data Sources</h4>
-<div class="paragraph">
-<p>This is the default view on the Data Sync UI. It lists all of the existing data sources. This view currently displays the data source name and the type of the data source.</p>
-</div>
-<div class="paragraph">
-<p>Data sources can be filtered using the <strong>name</strong> property.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="edit-an-existing-data-source"><a class="anchor" href="#edit-an-existing-data-source"></a>Edit an Existing Data Source</h4>
-<div class="paragraph">
-<p>To edit an existing data source, choose the <strong>Edit Data Source</strong> option from the data source menu.</p>
-</div>
-<div class="paragraph">
-<p>Update the data source with the new values.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="delete-an-existing-data-source"><a class="anchor" href="#delete-an-existing-data-source"></a>Delete an Existing Data Source</h4>
-<div class="paragraph">
-<p>To delete a data source, choose the <strong>Delete Data Source</strong> option from the data source menu. Next confirm that you wish to delete the data source.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When you delete a data source, all resolvers that are attached to it will also be deleted.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="create-a-new-data-source"><a class="anchor" href="#create-a-new-data-source"></a>Create a New Data Source</h4>
-<div class="paragraph">
-<p>If no data source exists, a new data source can be created by clicking the <strong>Add Data Source</strong> button. Select the type of your data source from the dropdown.
-For more information about the <em>In Memory</em> option have a look at <a href="#in-memory-option">the In Memory Option</a>. Information about the Postgres option can be found <a href="#postgres-option">here</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="in-memory-option"><a class="anchor" href="#in-memory-option"></a>In Memory Data Sources</h4>
-<div class="paragraph">
-<p>You need to provide a name for the data source. The only other option is <code>TimeStamp Data</code>. If checked, timestamps will be stored along with your data in <code>NeDB</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To find more about <code>NeDB</code> and how to write queries, have a look at the <a href="https://github.com/louischatriot/nedb#finding-documents">Github Repository</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Some features like unique indices and persistence are not supported in the In Memory database and it is therefore only recommended for evaluation purposes.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="postgres-option"><a class="anchor" href="#postgres-option"></a>Postgres Data Sources</h4>
-<div class="paragraph">
-<p>You need to provide a name for the data source. <code>Postgres</code> has a number of other required options:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><em>Server</em>: The host name of the PostgreSQL instance.</p>
-</li>
-<li>
-<p><em>Port</em>: The Network Port used by PostgreSQL (defaults to <code>5432</code>).</p>
-</li>
-<li>
-<p><em>Database</em>: The name of the database to connect to. PostgreSQL servers can host multiple databases.</p>
-</li>
-<li>
-<p><em>Username</em>: The username of the PostgreSQL user account.</p>
-</li>
-<li>
-<p><em>Password</em>: (Optional) The password of the PostgreSQL user account.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-To find out more about Postgres and how to work with it, have a look at the <a href="https://www.postgresql.org/docs/">official documentation</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can test your data source before saving by clicking on the <code>Test</code> button. Data Sync will then attempt to connect to the provided PostgreSQL server. If the connection fails you will see the error message in the dialog.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="schema_ui_data_sources_ui"><a class="anchor" href="#schema_ui_data_sources_ui"></a>Defining a Schema using the Data Sync UI</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A schema describes the structure of the data the Data Sync deals with. It allows you to configure
-your data types, queries and mutations in a format that is independent of the underlying data source.
-To learn more Schemas have a look at the <a href="https://graphql.org/learn/schema/">GraphQL documentation</a>.</p>
-</div>
-<div class="sect2">
-<h3 id="the-schema-editor"><a class="anchor" href="#the-schema-editor"></a>The Schema Editor</h3>
-<div class="paragraph">
-<p>The Schema Editor can be found under the <code>Schema</code> tab in the UI. It consists of a text editor where
-you can write and edit your schema and a structure view on the right. To try it out you can use a simple schema like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>type Query {
-    notes: [Note]
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">//knex is a SQL query builder
+const knex = require('knex')
+
+const config = {
+  database: process.env.DB_NAME || 'users',
+  user: process.env.DB_USERNAME || 'postgresql',
+  password: process.env.DB_PASSWORD || 'postgres',
+  host: process.env.DB_HOSTNAME || '127.0.0.1',
+  port: process.env.DB_PORT || '5432'
 }
 
-type Comment {
-    from: String
-    text: String
+const db = knex({
+  client: 'pg',
+  connection: config
+})</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-database-connection-to-the-context-object"><a class="anchor" href="#add-database-connection-to-the-context-object"></a>Add Database Connection to the <code>context</code> Object</h4>
+<div class="paragraph">
+<p>Add the database connection to the <code>context</code> object so that a resolver can access the database.</p>
+</div>
+<div class="paragraph">
+<p>From a very high level, the <code>context</code> object is an object shared by all resolvers in a particular query, and is used to contain per-request state, including authentication information, dataloader instances, and anything else that should be taken into account when resolving the query. For more information, please check <a href="https://www.apollographql.com/docs/apollo-server/essentials/data.html#context">the Apollo doc on the context argument</a>.</p>
+</div>
+<div class="paragraph">
+<p>It is very easy to add the database connection to the <code>context</code> object. Following the example from the section above, the database connection can be added to the <code>context</code> object like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const typeDefs = //define the schema
+const resolvers = //define the resolvers
+
+const apolloConfig = {
+  typeDefs,
+  resolvers,
+  context: {
+    db: db.client
+  }
 }
 
-type Note {
-    text: String!
-    comments: [Comment]
+const voyagerConfig = {...} //other config for the Voyager server
+const apolloServer = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="use-the-database-connection-in-resolvers"><a class="anchor" href="#use-the-database-connection-in-resolvers"></a>Use the Database Connection in Resolvers</h4>
+<div class="paragraph">
+<p>Now the database connection is available in the <code>context</code> object, it can be used in resolvers to retrieve/persist data.</p>
+</div>
+<div class="paragraph">
+<p>Use the same example from the sections above, here is the schema for the application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Task {
+  id: ID!
+  version: Int
+  title: String!
+  description: String!
+}
+
+type Query {
+  allTasks(first: Int, after: String): [Task],
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Save the schema by pressing the <code>Save Schema</code> button. Upon saving the Data Sync will check your schema for errors and compile it to a JSON representation.
-You can download this JSON representation by clicking on <code>Download Compiled Schema</code>. This is needed in the client SDKs.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When defining <a href="https://graphql.org/learn/schema/#scalar-types">custom scalars</a> on your schema it is important to assert that the data types match the expected type. This is important as custom Scalar definitions could potentially lead to security vulnerabilities such as SQL Injection.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="structure-view"><a class="anchor" href="#structure-view"></a>Structure View</h3>
-<div class="paragraph">
-<p>After saving a schema the structure view on the right side of the <code>Schema</code> tab will be updated. If your schema contains errors you will see the error message there.
-Otherwise you will see a list of all your types, queries, mutations and subscriptions. This view is read only and can be used to quickly browse a schema.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="playground"><a class="anchor" href="#playground"></a>Playground</h3>
-<div class="paragraph">
-<p>A playground is provided which allows you to test your changes to the schema. To use the playground, navigate to the tab in the UI and then write any queries or mutations you wish. Some useful features of the playground include code completion, query variables and full http header support. For more information about the playground and what is possible please visit <a href="https://github.com/prisma/graphql-playground">Prisma Playground</a>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="resolvers_ui_data_sources_ui"><a class="anchor" href="#resolvers_ui_data_sources_ui"></a>Adding Resolvers to a Schema</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A schema describes the structure of your data and the operations to query or mutate that data.
-When a query is executed, GraphQL runs the attached <code>Resolver</code>. Resolvers implement the actual
-operations on the data and can be attached to Queries, Mutations and Properties of custom types.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-to learn more about resolvers and their role in GraphQL have a look at the <a href="https://graphql.org/learn/execution/#root-fields-resolvers">official documentation</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="defining-resolvers"><a class="anchor" href="#defining-resolvers"></a>Defining Resolvers</h3>
-<div class="paragraph">
-<p>Resolvers are defined in the <code>Resolvers</code> tab of the UI. If you have a valid schema you can see its
-structure on the left side and the resolver details on the right side.</p>
-</div>
-<div class="sect3">
-<h4 id="structure-view-2"><a class="anchor" href="#structure-view-2"></a>Structure View</h4>
-<div class="paragraph">
-<p>The structure view is different from the one in the schema tab in that it is grouped
-by <code>Queries</code>, <code>Mutations</code>, <code>Subscriptions</code> and <code>Custom Types</code>. All entries can be expanded to see their
-arguments (queries and mutations) or fields (custom types). The lines in the view have three columns:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><em>Name</em>: The name of the Query/Mutation/Custom Type</p>
-</li>
-<li>
-<p><em>Argument count</em>: The number of fields / arguments</p>
-</li>
-<li>
-<p><em>Resolver</em>: Shows the name of the Resolver&#8217;s data source when one is assigned. Otherwise shows <code>No resolver</code>. Click here to start editing the resolver details.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Resolvers can only be attached directly to <code>Queries</code> and <code>Mutations</code> and not their arguments. For <code>Custom Types</code> the opposite is true: you usually want to assign resolvers to more complex properties, for example the <code>comments</code> field in the <code>Note</code> type of the above example.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="resolver-details"><a class="anchor" href="#resolver-details"></a>Resolver Details</h4>
-<div class="paragraph">
-<p>Here you can add the details of a resolver. The following fields must be provided:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><em>Data Source</em>: The data source this resolver gets executed against.</p>
-</li>
-<li>
-<p><em>Request Mapping Template</em>: The query that is executed to retrieve a result. <code>Mutations</code> in GraphQL are required to return a result too. NOTE: Have a look at <a href="#mapping-templates">mapping templates</a> to learn how to make use of the <code>context</code> object in your queries.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>The following fields are optional:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><em>Response Mapping Template</em>: Allows you to transform the result before passing it to the caller. For example you could convert a string response to JSON, or parse a XML response.</p>
-</li>
-<li>
-<p><em>Pre Hook</em>: A WebHook that is called before running the <code>Request Mapping</code>.</p>
-</li>
-<li>
-<p><em>Post Hook</em>: A WebHook that is called if the <code>Request Mapping</code> was run successfully.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Drop-Down buttons above the Request and Response Mappings fields allow you to pick one of the pre-defined templates of your data source.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="mapping-templates"><a class="anchor" href="#mapping-templates"></a>Request Mapping Templates</h4>
-<div class="paragraph">
-<p>To write meaningful queries you need access to the arguments passed to the resolver by the client.
-This is achieved by making use of the <code>context</code> object. Request and response mappings are evaluated in the Data Sync backend and you can use Handlebars templates to inject values from the context object.</p>
-</div>
-<div class="paragraph">
-<p>The structure of the context object is the following:</p>
+<p>In the resolver for the <code>allTasks</code> query, the database connection can be used to retrieve data from the database:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">context: {
-    arguments,    // The arguments passed to the resolver
-    parent        // Parent object reference
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const resolvers = {
+  Query: {
+    allTasks: async (obj, args, context) =&gt; {
+      return context.db.select().from('tasks') //use `db` from the `context` object
+    }
+  }
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For example, a request mapping to retrieve all the comments for a particular <code>Note</code> could look like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>select * from Comments where NoteId = '{{ context.parent.id }}'</code></pre>
+<p>Similarly, if there are mutations, the database connection can be used in the resolvers to insert or update data to the database.</p>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-For in-memory data sources <a href="https://github.com/louischatriot/nedb">NeDB</a> is used. See <a href="https://github.com/louischatriot/nedb#api">NeDB API</a> to write request mappings.
-</td>
-</tr>
-</table>
+</div>
+<div class="sect2">
+<h3 id="sync-server-realtime-updates"><a class="anchor" href="#sync-server-realtime-updates"></a>Realtime Updates</h3>
+<div class="sect3">
+<h4 id="subscriptions"><a class="anchor" href="#subscriptions"></a>Subscriptions</h4>
+<div class="paragraph">
+<p>A core concept of the GraphQL specification is an operation type called <code>Subscription</code>.
+These subscriptions can be leveraged to provide a mechanism for real time updates.
+For more information on GraphQL subscriptions please see <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions.html">Subscriptions</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="response-mapping-templates"><a class="anchor" href="#response-mapping-templates"></a>Response Mapping Templates</h4>
+<h4 id="schema"><a class="anchor" href="#schema"></a>Schema</h4>
 <div class="paragraph">
-<p>Use a response mapping to transform a result or extract certain properties from the result. As with request mappers, response mapper have access to a <code>context</code> object with the following format:</p>
+<p>To enable Subscriptions on the server, an appropriate schema should be defined. A recommended implementation
+pattern can be seen in the schema below.</p>
+</div>
+<div class="paragraph">
+<p>In this example schema, we first set up a <code>Task</code> type, and then define the Mutations and Subscriptions required.
+When a new task is created, the resolver for that task publishes the result of this mutation to the <code>TaskCreated</code> channel.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">context: {
-    result      // The result returned from the query or mutation
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Handlebars helpers can be applied to the result. Currently the following helpers are available:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><em>toJSON</em>: Parses a string and returns the result as JSON.</p>
-</li>
-<li>
-<p><em>toBoolean</em>: Parses a string and returns the result as either <code>true</code> or <code>false</code>.</p>
-</li>
-<li>
-<p><em>convertNeDBIds</em>: Changes all id fields in the input object from <code>_id</code> to <code>id</code>, the latter being a more common name for a GraphQL property.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>An example response mapper for an in memory result could look like this:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>{{ toJSON (convertNeDBIds context.result) }}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="subscriptions_ui_data_sources_ui"><a class="anchor" href="#subscriptions_ui_data_sources_ui"></a>Adding Subscriptions to a Schema</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>GraphQL subscriptions allow you to be notified in realtime of changes to your data.
-<code>Subscriptions</code> are defined in the Schema as their own type, just like with <code>Query</code> and <code>Mutation</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>type Query {
-    notes: [Note]
+<pre class="highlightjs highlight"><code>const { gql } = require('@aerogear/voyager-server')
+
+const typeDefs = gql `
+type Task {
+  id: ID!
+  title: String!
+  description: String!
 }
 
 type Mutation {
-    addNote(text: String!)
+  createTask(title: String!, description: String!): Task
 }
 
 type Subscription {
-    noteAdded: Note
+  taskCreated: Task
+}
+`
+
+const resolvers = {
+    Mutation: {
+        createTask: async (obj, args, context, info) =&gt; {
+            const result = tasks.create(args)
+            pubSub.publish('TaskCreated', {
+                taskCreated: result
+              });
+            return result
+        }
+    },
+    Subscription: {
+        taskCreated: {
+            subscribe: () =&gt; pubSub.asyncIterator('TaskCreated')
+        }
+  },
 }</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The pubSub mechanism used in the above example is deliberately ommited to focus on the GraphQL aspects of
+Subscriptions. For more information on the available PubSub implementations see: <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions.html#PubSub-Implementations">PubSub Implementations</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Learn more about Subscriptions and other operation types at <a href="https://graphql.org/learn/queries/#operation-name">GraphQL documentation</a></p>
+<p>To then setup the server the <code>subscriptions-transport-ws</code> package can be used. For more information on how to use
+and configure <code>SubscriptionServer</code> please see: <a href="https://www.apollographql.com/docs/graphql-subscriptions/setup.html#subscription-server">Apollo Subscription Server</a>.
+Following on from the example server described in <a href="#sync-server-getting-started">Getting Started</a> we can add subscriptions as follows by introducing http and wraping our express app.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>const http = require('http')
+const { SubscriptionServer } = require('subscriptions-transport-ws')
+const { execute, subscribe } = require('graphql')
+
+const httpServer = http.createServer(app)
+
+server.applyMiddleware({ app })
+
+httpServer.listen(4000, () =&gt; {
+  new SubscriptionServer ({
+    execute,
+    subscribe,
+    schema: server.schema
+  }, {
+    server: httpServer,
+    path: '/graphql'
+  })
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For documentation on how to use Subscriptions on your client, see <a href="#sync-js-client-realtime-updates">Realtime Updates</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For information on how to protect this subscription server with Identity Management please see <a href="#sync-server-auth">Authentication and Authorization using Keycloak</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="publishing-to-a-subscription"><a class="anchor" href="#publishing-to-a-subscription"></a>Publishing to a subscription</h3>
+<h3 id="sync-server-auth"><a class="anchor" href="#sync-server-auth"></a>Authentication and Authorization using Keycloak</h3>
 <div class="paragraph">
-<p>Subscriptions can be attached to <code>Mutations</code> only.</p>
+<p>Using a Keycloak service and the <a href="https://www.npmjs.com/package/@aerogear/voyager-keycloak">@aerogear/voyager-keycloak</a> module, it is possible to add security to a Voyager Server application. <code>@aerogear/voyager-keycloak</code> provides the following features out of the box.</p>
 </div>
-<div class="paragraph">
-<p>Once defined in a Schema, you can assign them to any mutation&#8217;s <code>Resolver</code> in the Resolvers tab. To do so, simply select any Resolver and choose one <code>Subscription</code> to publish to from the Subscriptions dropdown.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sdk"><a class="anchor" href="#sdk"></a>Using the Data Sync SDK</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This section will help you to set up the Data Sync service SDK in your App.</p>
-</div>
-<div class="sect2">
-<h3 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
+<div class="ulist">
 <ul>
 <li>
-<p><a id="tabset1_android"></a>Android</p>
+<p>Authentication - Ensure only authenticated users can access your server endpoints, including the main GraphQL endpoint.</p>
 </li>
 <li>
-<p><a id="tabset1_ios"></a>iOS</p>
+<p>Authorization - Use the <code>@hasRole()</code> directive within the GraphQL schema to implement role based access control (RBAC) on the GraphQL level.</p>
+</li>
+<li>
+<p>Integration with GraphQL context - Use the <code>context</code> object within the GraphQL resolvers to access user credentials and several helper functions.</p>
 </li>
 </ul>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_android">
-<div class="paragraph">
-<p>Add <code>apollo-gradle-plugin</code> dependency to your project&#8217;s <code>build.gradle</code> file:</p>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>There is a Keycloak service available.</p>
+</li>
+<li>
+<p>You must add a valid <code>keycloak.json</code> config file to your project.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a client for your application in the Keycloak administration console.</p>
+</li>
+<li>
+<p>Click on the Installation tab.</p>
+</li>
+<li>
+<p>Select <strong>Keycloak OIDC JSON</strong> for Format option, and click <strong>Download</strong>.</p>
+</li>
+</ul>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>buildscript {
-  repositories {
-    ...
-  }
-  dependencies {
-    classpath 'com.apollographql.apollo:apollo-gradle-plugin:0.5.0'
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Apply the plugin in your app module&#8217;s <code>build.gradle</code> file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>apply plugin: 'com.android.application'
-apply plugin: 'com.apollographql.android'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add <code>android-sync</code> dependency to your app module&#8217;s <code>build.gradle</code> file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>implementation "org.aerogear:android-sync:2.1.0-alpha.1"</code></pre>
+</li>
+</ul>
 </div>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_ios">
+<div class="sect2">
+<h3 id="setting-up-keycloak-protection-in-voyager-server"><a class="anchor" href="#setting-up-keycloak-protection-in-voyager-server"></a>Setting Up Keycloak Protection in Voyager Server</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add the dependency to your <strong>Podfile</strong>:</p>
+<p>Import the <code>@aerogear/voyager-keycloak</code> module</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
-    pod 'AGSSync'
-end</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { KeycloakSecurityService } = require('@aerogear/voyager-keycloak')</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Update the dependencies:</p>
+<p>Read the Keycloak config and pass it to initialise the <code>KeycloakSecurityService</code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const keycloakConfig = JSON.parse(fs.readFileSync(path.resolve(__dirname, './path/to/keycloak.json')))
+const keycloakService = new KeycloakSecurityService(keycloakConfig)</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Use the <code>keycloakService</code> instance to protect your app:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const app = express()
+keycloakService.applyAuthMiddleware(app)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The last piece of work to do is telling Voyager server that the <code>keycloakService</code> above will be used as the security service:</p>
 </li>
 </ol>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="setting-up-the-sync-mobile-service"><a class="anchor" href="#setting-up-the-sync-mobile-service"></a>Setting Up the Sync Mobile Service</h3>
-<div class="paragraph">
-<p>The Sync SDK is using the <a href="https://github.com/apollographql/">Apollo GraphQL Client</a> behind of the scenes to handle <a href="http://graphql.github.io/">GraphQL</a>.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/apollographql">Apollo client</a> requires some configuration to work.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset2_ios"></a>iOS</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_android">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Download Compiled GraphQL Schema from Data Sync UI</p>
-</li>
-<li>
-<p>Create a special folder <code>graphql</code> inside of <code>src/main</code></p>
-</li>
-<li>
-<p>Create a file <code>schema.json</code> with your Compiled GraphQL Schema</p>
-</li>
-<li>
-<p>Create a file with a name that corresponds to your business objects and a <code>.graphql</code> extension</p>
-</li>
-<li>
-<p>Add all your queries/mutations/subscriptions to the <code>.graphql</code> file. Apollo will generate the appropriate Java classes with nested classes for reading from the network response.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>For example if you create a file <code>graphql/com/example/somefile.graphql</code> with the content bellow:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>query myNotes {
-  allNotes() {
-    id,
-    text
-  }
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const voyagerConfig = {
+  securityService: keycloakService
 }
-
-mutation createNote(text: String!) {
-  createNote($text: String!) {
-    id
-    text
-  }
-}
-
-subscription noteAdded {
-  noteAdded {
-    id
-    note
-  }
-}</code></pre>
+const server = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Apollo will automatically create a file <code>MyNotesQuery</code>, <code>CreateNoteMutation</code> and <code>NoteAddedSubscription</code> (in compile time) in the package <code>com.example</code> for you.</p>
+<p>The <a href="https://github.com/aerogear/voyager-server/blob/master/examples/keycloak">Keycloak Example Server Guide</a> has an example server based off the instructions above and shows all of the steps needed to get it running.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset2_ios">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Download Compiled GraphQL Schema from Data Sync UI.</p>
-</li>
-<li>
-<p>Create a file <code>schema.json</code> with your Compiled GraphQL Schema.</p>
-</li>
-<li>
-<p>Create a file with a name that corresponds to your business objects and a <code>.graphql</code> extension.</p>
-</li>
-<li>
-<p>Add all your queries/mutations/subscriptions to the <code>.graphql</code> file.</p>
-</li>
-<li>
-<p>Add a <a href="https://www.apollographql.com/docs/ios/installation.html#adding-build-step">code generation build step</a> to your target.</p>
-</li>
-<li>
-<p>Drag the generated API.swift file to your target.</p>
-</li>
-</ol>
-</div>
+<div class="sect2">
+<h3 id="protecting-subscriptions-with-keycloak"><a class="anchor" href="#protecting-subscriptions-with-keycloak"></a>Protecting Subscriptions with Keycloak</h3>
 <div class="paragraph">
-<p>During a build Appolo will generate appropriate classes in API.swift file for reading from the network response.</p>
-</div>
-<div class="paragraph">
-<p>For example if you create a file <code>somefile.graphql</code> with the content bellow:</p>
+<p>If you have set up a subscription server as described in <a href="#sync-server-realtime-updates">Realtime Updates</a> and you have set up Identity Management as described above then your application should make use of the <code>onConnect</code> function to validate the token provided by the client. An example implementation of <code>onConnect</code> is shown below with a <code>KeycloakService</code> set up as shown above in <a href="#sync-server-auth">Setting Up Keycloak Protection in Voyager Server</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>query myNotes {
-  allNotes() {
-    id,
-    text
-  }
-}
-
-mutation createNote(text: String!) {
-  createNote($text: String!) {
-    id
-    text
-  }
-}
-
-subscription noteAdded {
-  noteAdded {
-    id
-    note
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Apollo will automatically create a file called API.swift with classes <code>MyNotesQuery</code>, <code>CreateNoteMutation</code> and <code>NoteAddedSubscription</code> (in build time) for you.</p>
-</div>
-</div>
+<pre class="highlightjs highlight"><code>  new SubscriptionServer ({
+    execute,
+    subscribe,
+    onConnect: async connectionParams =&gt; {
+      return await keycloakService.validateToken(connectionParams)
+    },
+    schema: server.schema
+  }, ...)</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using-the-sync-mobile-service"><a class="anchor" href="#using-the-sync-mobile-service"></a>Using the Sync Mobile Service</h3>
+<h3 id="using-the-hasrole-directive-in-a-schema"><a class="anchor" href="#using-the-hasrole-directive-in-a-schema"></a>Using the <code>@hasRole</code> Directive in a Schema</h3>
 <div class="paragraph">
-<p>Use the AeroGear SDK sync library to provision a configured instance of the sync client (SyncClient):</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset3_ios"></a>iOS</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_android">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SyncClient.getInstance()</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_ios">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>AgsSync.instance.client</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="query"><a class="anchor" href="#query"></a>Query</h4>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset4_ios"></a>iOS</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_android">
-<div class="paragraph">
-<p>Use the <code>query</code> method from SyncClient:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SyncClient
-        .getInstance()
-        .query(MyNotesQuery.builder().build())
-        .execute(MyNotesQuery.Data.class)
-        .respondWith(new Responder&lt;Response&lt;MyNotesQuery.Data&gt;&gt;() {
-            @Override
-            public void onResult(Response&lt;MyNotesQuery.Data&gt; value) {
-                // Do some magic with the response.
-            }
-
-            @Override
-            public void onException(Exception exception) {
-                /// Oops! Something went wrong.
-            }
-        });</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>MyNotesQuery</code> class is generated from the example schema above
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_ios">
-<div class="paragraph">
-<p>Use the <code>fetch</code> method from Apollo client to fire a query:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>AgsSync.instance.client?.fetch(query: MyNotesQuery()) { result, error in
-    if let error = error {
-        // Oops! Something went wrong.
-    } else {
-        // Do some magic with the response.
-    }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>MyNotesQuery</code> class is generated from the example schema above
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="mutation"><a class="anchor" href="#mutation"></a>Mutation</h4>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset5_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset5_ios"></a>iOS</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_android">
-<div class="paragraph">
-<p>Use the <code>mutate</code> method from SyncClient:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SyncClient
-        .getInstance()
-        .mutation(CreateNoteMutation.builder().text("The note text").build())
-        .execute(CreateNoteMutation.Data.class)
-        .respondWith(new Responder&lt;Response&lt;TestMutMutation.Data&gt;&gt;() {
-            @Override
-            public void onResult(Response&lt;TestMutMutation.Data&gt; value) {
-                // Do some magic with the response.
-            }
-
-            @Override
-            public void onException(Exception exception) {
-                // Oops! Something went wrong.
-            }
-        });</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>CreateNoteMutation</code> class is generated from the example schema above
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_ios">
-<div class="paragraph">
-<p>Use the <code>perform</code> method from Apollo client to fire a mutation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>AgsSync.instance.client?.perform(mutation: CreateNoteMutation(text: "The note text")) { result, error in
-    if let error = error {
-        // Oops! Something went wrong.
-    } else {
-        // Do some magic with the response.
-    }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>CreateNoteMutation</code> class is generated from the example schema above
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="subscription"><a class="anchor" href="#subscription"></a>Subscription</h4>
-<div class="paragraph">
-<p>Use the <code>subscribe</code> method from SyncClient:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset6_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset6_ios"></a>iOS</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_android">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>SyncClient
-        .getInstance()
-        .subscribe(new NoteAddedSubscription())
-        .execute(NoteAddedSubscription.Data.class)
-        .respondWith(new Responder&lt;Response&lt;NoteAddedSubscription.Data&gt;&gt;() {
-            @Override
-            public void onResult(Response&lt;NoteAddedSubscription.Data&gt; response) {
-                // Do some magic with the response.
-            }
-
-            @Override
-            public void onException(Exception exception) {
-                // Oops! Something went wrong.
-            }
-        });</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>NoteAddedSubscription</code> class is generated from the example schema above
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_ios">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>AgsSync.instance.client?.subscribe(subscription: NoteAddedSubscription())  { result, error in
-    if let error = error {
-        // Oops! Something went wrong.
-    } else {
-        // Do some magic with the response.
-    }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <code>NoteAddedSubscription</code> class is generated from the example schema above
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Check the <a href="https://github.com/apollographql/apollo-ios/">Apollo GraphQL Client for iOS</a> for a complete list of options.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="monitoring"><a class="anchor" href="#monitoring"></a>Monitoring Data Sync Service</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="mobile-metrics.html" class="page">Mobile Metrics service</a>.</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="#">Data Sync</a> service.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Mobile Metrics Service and Data Sync Service must be provisioned in the same OpenShift project to access data.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="overview"><a class="anchor" href="#overview"></a>Overview</h3>
-<div class="paragraph">
-<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and Data Sync Service are provisioned,
-you should be able to see the "Data Sync Metrics" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594; Home &#8594; Select <strong>Data Sync Metrics</strong>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h3>
-<div class="paragraph">
-<p>The Data Sync dashboard consists of several panels which give you an overview of the specific
-events and resources, such as memory usage, CPU usage, resolved operation count etc.</p>
-</div>
-<div class="paragraph">
-<p>Below you will find a detailed description of each panel and its values.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="singlestat-panels"><a class="anchor" href="#singlestat-panels"></a>Singlestat Panels</h3>
-<div class="paragraph">
-<p>Singlestat panels show you the main summary of a single data series.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>CPU Usage</strong>: CPU usage percentage of Data Sync Service used currently.</p>
-</li>
-<li>
-<p><strong>Memory Usage</strong>: The amount of memory currently used by the Data Sync Service</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="graph-panels"><a class="anchor" href="#graph-panels"></a>Graph panels</h3>
-<div class="paragraph">
-<p>Used to show how certain values change over time, e.g. the number of operations resolved.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Memory Usage in Time</strong>: The amount of memory used by the Data Sync Service over time</p>
-</li>
-<li>
-<p><strong>CPU Usage in Time</strong>: The percentage of CPU used by the Data Sync Service over time</p>
-</li>
-<li>
-<p><strong>Queries/Mutations Resolved</strong>: Overview of the resolved queries and mutations over time</p>
-</li>
-<li>
-<p><strong>Resolver Timings</strong>: Overview of the how long it took to resolve operations over time.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
-</li>
-<li>
-<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
-</li>
-<li>
-<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sync_auth_authentication"><a class="anchor" href="#sync_auth_authentication"></a>Authentication for Data Sync</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>By default, Data Sync does not provide any authentication and authorization mechanism.
-Users can configure Data Sync to work with Identity Management to provide authentication and
-authorization for their applications.</p>
-</div>
-<div class="sect2">
-<h3 id="prerequisites-3"><a class="anchor" href="#prerequisites-3"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Make sure the Data Sync service is provisioned.</p>
-</li>
-<li>
-<p>Make sure the <a href="identity-management.html" class="page">Identity Management</a> service is provisioned.</p>
-</li>
-<li>
-<p>Create an app that works with the Identity Management service.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="binding-the-data-sync-service-to-an-identity-management-instance"><a class="anchor" href="#binding-the-data-sync-service-to-an-identity-management-instance"></a>Binding the Data Sync service to an Identity Management Instance</h3>
-<div class="paragraph">
-<p>To benefit from authentication, developers need to connect (bind) Data Sync into  Identity Management Instance.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="creating-the-binding-secret-from-a-keycloak-instance"><a class="anchor" href="#creating-the-binding-secret-from-a-keycloak-instance"></a>Creating the binding secret from a Keycloak Instance</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Navigate to your Openshift project</p>
-</li>
-<li>
-<p>Select <strong>Applications</strong> and then <strong>Provisioned Services</strong></p>
-</li>
-<li>
-<p>Copy the <strong>Instance Name</strong> field from the <strong>Data Sync</strong> service</p>
-</li>
-<li>
-<p>Select the <strong>Identity Management</strong> service from the list of Provisioned Services</p>
-</li>
-<li>
-<p>Select the <strong>Create Binding</strong> option</p>
-</li>
-<li>
-<p>Enter the copied <strong>Instance Name</strong> of the provisioned <strong>Data Sync</strong> service</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>A secret will be created as a result of this binding.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="making-the-secret-available-to-the-data-sync"><a class="anchor" href="#making-the-secret-available-to-the-data-sync"></a>Making the Secret available to the Data Sync</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Select <strong>View Secret</strong> on the <strong>Identity Management</strong> details page</p>
-</li>
-<li>
-<p>Select <strong>Add to Application</strong> and select the data-sync-server from the options</p>
-</li>
-<li>
-<p>Select the <strong>Volume</strong> option and enter the following mount path: <code>/opt/keycloak</code></p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The mount path must be set to <code>/opt/keycloak</code> for the Data Sync to be configured to use the secret.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="making-secret-available-to-application"><a class="anchor" href="#making-secret-available-to-application"></a>Making Secret available to application</h3>
-<div class="paragraph">
-<p>By default, the secret is not visible to the server application.
-To point the server to the application, please add a new environment variable:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>KEYCLOAK_CONFIG_FILE=/opt/keycloak/config</pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UNAUTHORIZED=0 environment variable to deployment config of data-sync-server, otherwise the Keycloak-protected Data Sync won&#8217;t work - the playground will be unavailable.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="data-sync-sdk-authentication"><a class="anchor" href="#data-sync-sdk-authentication"></a>Data Sync SDK Authentication</h3>
-<div class="paragraph">
-<p>When user logs in with Identity Management SDK, user principal can be used to retrieve token. Data Sync SDK can use this token to perform requests to the Data Sync backend.</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset7_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset7_ios"></a>iOS</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_android">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>MobileCore.getInstance().getHttpLayer().requestHeaderInterceptor().add(authService.getAuthHeaderProvider());</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset7_ios">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>if let transport = AgsSync.instance.transport {
-  transport.headerProvider = AgsAuth.instance.getAuthHeaderProvider()
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="authorization"><a class="anchor" href="#authorization"></a>Role Based Authorization in Data Sync</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="prerequisites-4"><a class="anchor" href="#prerequisites-4"></a>Prerequisites</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#auth">Binding Data Sync to Keycloak</a>.</p>
-</li>
-<li>
-<p><a href="https://www.keycloak.org/docs/3.4/getting_started/index.html#creating-a-realm-and-user">Creating a Realm in Keycloak</a>.</p>
-</li>
-<li>
-<p><a href="https://www.keycloak.org/docs/3.4/authorization_services/index.html#_getting_started_hello_world_enabling_authz_services">Enabling Authorization Services in Keycloak</a>.</p>
-</li>
-<li>
-<p><a href="https://www.keycloak.org/docs/3.4/authorization_services/index.html#_policy_overview">Managing Policies in Keycloak</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Role based authorization can be applied to Queries, Mutations, Subscriptions and individual fields in a GraphQL schema, when Data Sync is used with Keycloak. This means it is possible to restrict individual fields and/or operations defined in the GraphQL schema to users with specific roles in Keycloak.</p>
-</div>
-<div class="paragraph">
-<p>Take a publishing platform as an example. Role Based Authorization could be used to ensure only users with the role <code>editor</code> can perform the <code>editPublication</code> mutation.</p>
-</div>
-<div class="paragraph">
-<p>Data Sync currently supports authorization using <strong>client</strong> roles and <strong>realm</strong> roles defined in keycloak. Consult the Keycloak documentation to learn how to create roles.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.keycloak.org/docs/4.3/server_admin/index.html#realm-roles">Realm Roles in Keycloak</a></p>
-</li>
-<li>
-<p><a href="https://www.keycloak.org/docs/4.3/server_admin/index.html#client-roles">Client Roles in Keycloak</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="the-hasrole-directive"><a class="anchor" href="#the-hasrole-directive"></a>The @hasRole Directive</h3>
-<div class="paragraph">
-<p>Role based authorization can be defined using the <code>@hasRole</code> directive. The <code>@hasRole</code> directive is a special annotation that can be applied to</p>
+<p>The Voyager Keycloak module provides the <code>@hasRole</code> directive to define role based authorisation in your schema. The <code>@hasRole</code> directive is a special annotation that can be applied to</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2063,15 +1593,14 @@ When working with OpenShift with self-signed certificate, add NODE_TLS_REJECT_UN
 <div class="paragraph">
 <p>The syntax for checking a realm role is <code>@hasRole(role: "realm:&lt;role&gt;")</code>. For example, <code>@hasRole(role: "realm:admin")</code>. Using a list of roles, it is possible to check for both client and realm roles at the same time.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="example-using-the-hasrole-directive-to-apply-role-based-authorization-on-a-schema"><a class="anchor" href="#example-using-the-hasrole-directive-to-apply-role-based-authorization-on-a-schema"></a>Example: Using the @hasRole Directive to Apply Role Based Authorization on a Schema</h3>
+<div class="sect3">
+<h4 id="example-using-the-hasrole-directive-to-apply-role-based-authorization-in-a-schema"><a class="anchor" href="#example-using-the-hasrole-directive-to-apply-role-based-authorization-in-a-schema"></a>Example: Using the @hasRole Directive to Apply Role Based Authorization in a Schema</h4>
 <div class="paragraph">
 <p>The following example demonstrates how the <code>@hasRole</code> directive can be used to define role based authorization on various parts of a GraphQL schema. This example schema represents publishing application like a news or blog website.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>type Post {
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Post {
   id: ID!
   title: String!
   author: Author!
@@ -2095,7 +1624,7 @@ type Query {
 type Mutation {
   editPost:[Post]! @hasRole(role: ["editor", "admin"])
   deletePost(id: ID!):[Post] @hasRole(role: "admin")
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2137,6 +1666,7 @@ type Mutation {
 </li>
 </ul>
 </div>
+</div>
 <div class="sect3">
 <h4 id="role-based-authorization-on-queries-and-mutations"><a class="anchor" href="#role-based-authorization-on-queries-and-mutations"></a>Role Based Authorization on Queries and Mutations</h4>
 <div class="paragraph">
@@ -2168,6 +1698,1935 @@ type Mutation {
 <p>For example, non admin users are allowed to run the <code>getAuthor</code> query, but they cannot request back the <code>address</code> or <code>age</code> fields.</p>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="server-files"><a class="anchor" href="#server-files"></a>Enabling file uploads</h3>
+<div class="paragraph">
+<p>Voyager Server provides support for uploading binary data along with the GraphQL queries.
+The implementation relies on upstream <code>Apollo Server</code> capabilities.</p>
+</div>
+<div class="paragraph">
+<p>The upload functionality uses the GraphQL multipart form requests specification.
+File upload needs to be implemented on both server and client:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the client HTML FileList objects are mapped into a mutation and sent to the server in a multipart request.</p>
+</li>
+<li>
+<p>On the server: The multipart request is handled. The server processes it and provides an upload argument to a resolver.
+In the resolver function, the upload promise resolves an object.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+File upload is based on <a href="https://github.com/jaydenseric/graphql-multipart-request-spec">graphql-multipart-request-spec</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To enable file uploads, create a schema and use the <code>Upload</code> scalar.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { ApolloServer, gql } = require('apollo-server');
+
+const typeDefs = gql`
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+  type Query {
+    uploads: [File]
+  }
+  type Mutation {
+    singleUpload(file: Upload!): File!
+  }
+`;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following schema enables file uploads. The <code>Upload</code> scalar will be injected as one of the arguments in the resolvers.
+The <code>Upload</code> scalar contains all file metadata and a <a href="https://nodejs.org/api/stream.html#stream_readable_streams">Readable Stream</a> that can be used to save the file to a specific location.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    async singleUpload(parent, { file }) {
+      const { stream, filename, mimetype, encoding } = await file;
+      // Save file and return required metadata
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="https://blog.apollographql.com/file-uploads-with-apollo-server-2-0-5db2f3f60675">Official Apollo blog post</a> for more information</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-metrics"><a class="anchor" href="#sync-server-metrics"></a>Metrics</h3>
+<div class="paragraph">
+<p>Voyager Server can expose a variety of useful metrics that can be consumed and visualised by the Mobile Metrics service. (Prometheus for data collection and Grafana for Visualisation).</p>
+</div>
+<div class="paragraph">
+<p>The <code>@aerogear/voyager-metrics</code> module can be used to mount a metrics middleware, exposing a metrics endpoint that can be consumed by prometheus (default: <code>/metrics</code>).</p>
+</div>
+<div class="sect3">
+<h4 id="enabling-metrics-in-voyager-server"><a class="anchor" href="#enabling-metrics-in-voyager-server"></a>Enabling Metrics in Voyager Server</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import the <code>@aerogear/voyager-metrics</code> module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const metrics = require('@aerogear/voyager-metrics')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the metrics middleware to your Express app. This will expose metrics at the given endpoint.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const app = express()
+metrics.applyMetricsMiddlewares(app, { path: '/metrics' })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inject the metrics module into Voyager Server. This will ensure metrics at the GraphQL level can be exposed.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const voyagerConfig = {
+  metrics
+}
+const server = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/voyager-server/blob/master/examples/metrics">Metrics Example Server Guide</a> has an example server based off the instructions above and shows all of the steps needed to get it running.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="monitoring-a-voyager-server-application"><a class="anchor" href="#monitoring-a-voyager-server-application"></a>Monitoring a Voyager Server Application</h3>
+<div class="ulist checklist">
+<div class="title">Prerequisites</div>
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned the <a href="mobile-metrics.html" class="page">Mobile Metrics service</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned your <a href="#sync-server-openshift">Data Sync</a> service.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have enabled metrics in Voyager Server.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Mobile Metrics Service and your Voyager Server application must be provisioned in the same OpenShift project to access data.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="overview"><a class="anchor" href="#overview"></a>Overview</h4>
+<div class="paragraph">
+<p>As there can be multiple Voyager Server applications in a namespace, Voyager Server application provisioning procedure creates a new Grafana dashboard for the Voyager Server application
+that is being provisioned.</p>
+</div>
+<div class="paragraph">
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and your Voyager Server application are provisioned,
+you should be able to see the "Data Sync Metrics - &lt;your app name&gt;" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594;
+Home &#8594; Select <strong>Data Sync Metrics - &lt;your app name&gt;</strong>).</p>
+</div>
+<div class="sect4">
+<h5 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h5>
+<div class="paragraph">
+<p>The Data Sync dashboard consists of several panels which give you an overview of the specific
+events and resources, such as memory usage, CPU usage, resolved operation count etc.</p>
+</div>
+<div class="paragraph">
+<p>The dashboard is separated into 2 section. "Client" section shows some basic metrics about the clients and users and the "Server" secion shows some metrics about the server status.</p>
+</div>
+<div class="paragraph">
+<p>Below you will find a detailed description of each panel and its values.</p>
+</div>
+<div class="paragraph">
+<div class="title">Singlestat Panels</div>
+<p>Singlestat panels show you the main summary of a single data series.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CPU Usage</strong>: CPU usage percentage of the Voyager Server application used currently.</p>
+</li>
+<li>
+<p><strong>Memory Usage</strong>: The amount of memory currently used by the Voyager Server application.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Graph panels</div>
+<p>Used to show how certain values change over time, e.g. the number of operations resolved.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unique Clients Over Time</strong>: Overview of the number of unique clients over the selected time range. Note that a "client" is a an application installation on a device.
+The client id is reset when the application is reinstalled on the same device.</p>
+</li>
+<li>
+<p><strong>Unique Users Over Time</strong>: Overview of the number of unique users over the selected time range. Note that a "user" is a user who is authenticated with the Identity Management.</p>
+</li>
+<li>
+<p><strong>Memory Usage in Time</strong>: The amount of memory used by the Voyager Server application over time.</p>
+</li>
+<li>
+<p><strong>CPU Usage in Time</strong>: The percentage of CPU used by the Voyager Server application over time.</p>
+</li>
+<li>
+<p><strong>Queries/Mutations Resolved</strong>: Overview of the resolved queries and mutations over time.</p>
+</li>
+<li>
+<p><strong>Resolver Timings</strong>: Overview of the how long it took to resolve operations over time.</p>
+</li>
+<li>
+<p><strong>Server Response Time</strong>: Overview of the how long it took the server to respond the requests.</p>
+</li>
+<li>
+<p><strong>Operations vs Conflicts</strong>: Overview of the resolver executions and the conflicts happened.</p>
+</li>
+<li>
+<p><strong>Conflicts Over Time per Operation</strong>: Overview of the conflicts and what operation caused them.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-audit-logs"><a class="anchor" href="#sync-server-audit-logs"></a>Audit Logs</h3>
+<div class="paragraph">
+<p>Audit logging is a mechanism to track all of the actions that occur inside your application. Audit Logging in Voyager Server provides two main benefits.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It is possible to build a detailed audit trail of every action that has occured in the application. This can also include information about the user that performed the action, and the mobile device they were using.</p>
+</li>
+<li>
+<p>The data from the audit logs can be aggregated and visualised to provide more insight into how your application is used.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="audit-logging-architecture"><a class="anchor" href="#audit-logging-architecture"></a>Audit Logging Architecture</h3>
+<div class="paragraph">
+<p>Audit logging can be enabled in Voyager Server using the <a href="https://www.npmjs.com/package/@aerogear/voyager-audit">@aerogear/voyager-audit</a> module. When enabled, all actions such as GraphQL mutations, queries and subscriptions are logged in great detail to <code>stdout</code> in JSON format.</p>
+</div>
+<div class="paragraph">
+<p>An audit log example message is shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "level": 30,
+  "time": 1545385687476,
+  "pid": 11889,
+  "hostname": "localhost.localdomain",
+  "tag": "AUDIT",
+  "logType" "RESOLVER_COMPLETION",
+  "msg": "",
+  "operationType": "query",
+  "fieldName": "hello",
+  "parentTypeName": "Query",
+  "path": "hello",
+  "success": true,
+  "arguments": {},
+  "clientInfo": {
+    "clientId": "848d2a10-0505-11e9-888f-8d166149101a",
+    "timestamp": 1545385686843,
+    "data": {
+      "app": {
+        "appId": "org.aerogear.sync.example",
+        "appVersion": "0.0.1",
+        "sdkVersion": "0.0.1",
+        "framework": "cordova"
+      },
+      "device": {
+        "platform": "android",
+        "platformVersion": "9",
+        "device": "General Mobile GM8 Pro"
+      }
+    }
+  },
+  "userInfo": {
+    "jti": "6ae0966a-9d61-430b-8167-d2b3c0b42709",
+    "exp": 1545761725,
+    "nbf": 0,
+    "iat": 1545725725,
+    "iss": "http://localhost:8080/auth/realms/voyager-testing",
+    "aud": "voyager-testing",
+    "sub": "ea2312e9-1aae-4b67-8674-a3aacf20a71d",
+    "typ": "Bearer",
+    "azp": "voyager-testing",
+    "auth_time": 1545725725,
+    "session_state": "1ba4d429-8010-4f38-8002-9cc72550850d",
+    "acr": "1",
+    "allowed-origins": [
+      "*"
+    ],
+    "realm_access": {
+      "roles": [
+        "admin",
+        "uma_authorization"
+      ]
+    },
+    "resource_access": {
+      "voyager-testing": {
+        "roles": [
+          "admin"
+        ]
+      },
+      "account": {
+        "roles": [
+          "manage-account",
+          "manage-account-links",
+          "view-profile"
+        ]
+      }
+    },
+    "name": "Ali Ok",
+    "preferred_username": "developer",
+    "given_name": "Ali",
+    "family_name": "Ok",
+    "email": "aliok@example.com"
+  },
+  "v": 1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>clientInfo</code> property of the audit log message is available only if the client is sending the client information to Voyager Server. That has to be enabled separately in the client. Additionally, data in that property can only be collected if the app is a Cordova app or a native app. Simple web clients cannot get the device, client nor app details and cannot send this information.</p>
+</div>
+<div class="paragraph">
+<p>The <code>userInfo</code> property is available only if Voyager Server is protected by an identity manager, such as Keycloak, and if the user is authenticated. See <a href="#sync-server-auth">Authentication and Authorization using Keycloak</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enabling-audit-logging-in-voyager-server"><a class="anchor" href="#enabling-audit-logging-in-voyager-server"></a>Enabling Audit Logging in Voyager Server</h3>
+<div class="paragraph">
+<p>Audit logging is enabled in Voyager Server using the <a href="https://www.npmjs.com/package/@aerogear/voyager-audit">@aerogear/voyager-audit</a></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import the <code>@aerogear/voyager-audit</code> module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const auditLogger = require('@aerogear/voyager-audit')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inject the auditLogger module into the Voyager Server. This enables audit logging within your application.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const voyagerConfig = {
+  auditLogger
+}
+const server = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/voyager-server/blob/master/examples/auditLogging">Audit Logging Example Server Guide</a> has an example server based off the instructions above and shows all of the steps needed to get it running.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, if the default audit logger does not match your requirements, you can create an audit logger that implements the <code>AuditLogger</code> interface as defined below.</p>
+</div>
+<div class="listingblock">
+<div class="title">Definition of the <code>AuditLogger</code> interface</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">export interface AuditLogger {
+  logResolverCompletion(msg: string, success: boolean, obj: any, args: any, context: any, info: GraphQLResolveInfo): void
+  logConflict (msg: string, serverData: any, clientData: any, obj: any, args: any, context: any, info: GraphQLResolveInfo): void
+  auditLog(msg: string, obj: any, args: any, context: any, info: GraphQLResolveInfo): void
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example implements an <code>AuditLogger</code> and injects it into the Voyager Server.
+The example redacts the arguments using a <code>myCustomRedactionFunction</code> function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">const { buildPath } = require('@aerogear/voyager-tools')
+// ...
+
+const auditLogger = {
+  auditLog: function(msg, obj, args, context, info){
+    console.log(JSON.stringify(
+      {
+        audit: {
+          tag: 'AUDIT',
+          logType: logType,
+          msg: msg || '',
+          requestId: context &amp;&amp; context.request ? context.request.id : '',
+          operationType: info.operation.operation,
+          fieldName: info.fieldName,
+          parentTypeName: info.parentType.name,
+          path: buildPath(info.path),
+          parent: obj,
+          arguments: myCustomRedactionFunction(args),
+          clientInfo: context &amp;&amp; context.request &amp;&amp; context.request.body &amp;&amp; context.request.body.extensions &amp;&amp; context.request.body.extensions.metrics || undefined,
+          authenticated: !!(context &amp;&amp; context.auth &amp;&amp; context.auth.isAuthenticated()),
+          userInfo: (context &amp;&amp; context.auth &amp;&amp; context.auth.accessToken) ? context.auth.accessToken.content : undefined
+        }
+      }
+    ));
+  },
+
+  logResolverCompletion: function(msg, success, obj, args, context, info){
+    console.log(JSON.stringify(
+      {
+        audit: {
+          tag: 'AUDIT',
+          logType: 'RESOLVER_COMPLETION',
+          msg: msg || '',
+          requestId: context &amp;&amp; context.request ? context.request.id : '',
+          operationType: info.operation.operation,
+          fieldName: info.fieldName,
+          parentTypeName: info.parentType.name,
+          path: buildPath(info.path),
+          success,
+          parent: obj,
+          arguments: myCustomRedactionFunction(args),
+          clientInfo: context &amp;&amp; context.request &amp;&amp; context.request.body &amp;&amp; context.request.body.extensions &amp;&amp; context.request.body.extensions.metrics || undefined,
+          authenticated: !!(context &amp;&amp; context.auth &amp;&amp; context.auth.isAuthenticated()),
+          userInfo: (context &amp;&amp; context.auth &amp;&amp; context.auth.accessToken) ? context.auth.accessToken.content : undefined
+        }
+      }
+    ));
+  },
+
+  logConflict: function (msg, serverData, clientData, obj, args, context, info) {
+    console.log(JSON.stringify(
+      {
+        audit: {
+          tag: 'AUDIT',
+          logType: LOG_TYPE_CONFLICT,
+          msg: msg || '',
+          requestId: context &amp;&amp; context.request ? context.request.id : '',
+          operationType: info.operation.operation,
+          fieldName: info.fieldName,
+          parentTypeName: info.parentType.name,
+          path: buildPath(info.path),
+          parent: obj,
+          arguments: myCustomRedactionFunction(args),
+          clientInfo: context &amp;&amp; context.request &amp;&amp; context.request.body &amp;&amp; context.request.body.extensions &amp;&amp; context.request.body.extensions.metrics || undefined,
+          authenticated: !!(context &amp;&amp; context.auth &amp;&amp; context.auth.isAuthenticated()),
+          userInfo: (context &amp;&amp; context.auth &amp;&amp; context.auth.accessToken) ? context.auth.accessToken.content : undefined,
+          conflict: true,
+          conflictData: {
+            message: msg,
+            myCustomRedactionFunction(serverData),
+            myCustomRedactionFunction(clientData),
+          }
+        }
+      }
+    ));
+  }
+}
+
+// ...
+
+const voyagerConfig = {
+  auditLogger
+}
+const server = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sending-device-information-in-voyager-client"><a class="anchor" href="#sending-device-information-in-voyager-client"></a>Sending Device Information in Voyager Client</h3>
+<div class="paragraph">
+<p>See the <a href="#sync-js-client-audit-logs">Voyager Client Audit Logs</a> section for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exploring-audit-logs"><a class="anchor" href="#exploring-audit-logs"></a>Exploring Audit Logs</h3>
+<div class="paragraph">
+<p>Voyager Server simply prints audit logs to <code>stdout</code> and it is the responsibility of another component to pick up these logs and provide
+functionality to the user to make use of the logs.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>EFK stack</strong> (ElasticSearch, Fluentd and Kibana) on OpenShift is the recommended solution in this guide. We provide Kibana dashboards with a number of useful visualisations and insights into Voyager Server.</p>
+</div>
+<div class="paragraph">
+<p>All application logs printed to <code>stdout</code> are sent to ElasticSearch by Fluentd. However, the audit log messages printed by <code>@aerogear/voyager-audit</code> are printed in a format that is used by the Kibana dashboards.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-openshift-logging"><a class="anchor" href="#configuring-openshift-logging"></a>Configuring OpenShift Logging</h3>
+<div class="paragraph">
+<p>OpenShift logging can be enabled as described in <a href="https://docs.okd.io/3.11/install_config/aggregate_logging.html">OpenShift documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once enabled, OpenShift logging will create a Fluentd instance per cluster node that reads the <code>stdout</code> and <code>stderr</code> of the pods in that node
+and pushes the readings to the centralized ElasticSearch instance. Documents created in ElasticSearch instance can be then explored and
+visualized by the Kibana instance, which is also installed by OpenShift logging.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift logging creates an index per namespace and that index is only available to users who have access to that namespace.
+It also creates the index patterns in Kibana in the same way.</p>
+</div>
+<div class="paragraph">
+<p>By default, OpenShift also provides a <a href="https://www.elastic.co/guide/en/elasticsearch/client/curator/current/about.html">curator</a> which deletes the old
+log messages from ElasticSearch to reduce storage needs and improve performance. This has an impact on audit trails and also metrics.</p>
+</div>
+<div class="paragraph">
+<p>For long term audit trails, curator can be configured to delete messages older than your choice. If this is not sufficient,
+Fluentd can be configured to write log messages to a separate storage, such as <a href="https://docs.fluentd.org/v0.12/articles/out_s3">S3</a>.</p>
+</div>
+<div class="paragraph">
+<p>In terms of metrics, curator&#8217;s deletion age config should not be set shorter than the desired time range that you would like
+to see the metrics for.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-kibana-saved-objects"><a class="anchor" href="#importing-kibana-saved-objects"></a>Importing Kibana Saved Objects</h3>
+<div class="paragraph">
+<p>Kibana is a visualization tool that has a great integration with ElasticSearch.</p>
+</div>
+<div class="paragraph">
+<p>A template for Kibana saved objects is available. When the saved objects are imported, a number of saved searches, visualizations and a
+dashboard are created in Kibana. These then can be used to have an overview of the Voyager application.</p>
+</div>
+<div class="paragraph">
+<p>See the screenshot of the provided dashboard below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kibana-dashboard-screenshot.png" alt="kibana dashboard screenshot">
+</div>
+</div>
+<div class="paragraph">
+<p>OpenShift logging creates ElasticSearch indices per namespace and the index names have the format <code>project.&lt;project-name&gt;.&lt;project-uid&gt;</code>.
+For example <code>project.myproject.49f9a0b6-09b5-11e9-9597-069f7827c758</code>.</p>
+</div>
+<div class="paragraph">
+<p>It also creates a Kibana index pattern for that index using the pattern <code>project.&lt;project-name&gt;.&lt;project-uid&gt;.*</code>.</p>
+</div>
+<div class="paragraph">
+<p>In order to make sure the Kibana saved objects use the correct index pattern, project UID should be fetched and
+fed to the Kibana import template.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PROJECT_NAME=&lt;your_project_name&gt;
+# login with your user that has access to your project
+oc login
+# get project UUID, which is used to build the index name
+PROJECT_UUID=`oc get project $PROJECT_NAME -o go-template='{{.metadata.uid}}'`
+
+# replace the placeholders in the template
+sed \
+    -e "s/&lt;PROJECT_NAME&gt;/${PROJECT_NAME}/g" \
+    -e "s/&lt;PROJECT_UUID&gt;/${PROJECT_UUID}/g" \
+ kibanaImportTemplate.json &gt; kibanaImport.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You may find <code>kibanaImportTemplate.json</code> <a href="https://raw.githubusercontent.com/aerogear/voyager-server/master/doc/guides/kibanaImportTemplate.json">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once the <code>kibanaImport.json</code> file is generated, it has to be imported into Kibana.</p>
+</div>
+<div class="paragraph">
+<p>To do that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Open Kibana (URL: <a href="https://kibana.&lt;YOUR" class="bare">https://kibana.&lt;YOUR</a> OPENSHIFT APPS SUBDOMAIN&gt;)</p>
+</li>
+<li>
+<p>Click <strong>Management</strong> in the left</p>
+</li>
+<li>
+<p>Click <strong>Saved Objects</strong></p>
+</li>
+<li>
+<p>Click <strong>Import</strong> and select <code>kibanaImport.json</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Imported saved objects have ids and names that have the project name or the UID in them. So, they may be created for each
+namespace without affecting each other.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>No index pattern is created in Kibana if there are no logs generated by an application.</p>
+</div>
+<div class="paragraph">
+<p>Also, if the fields referenced in the prepared Kibana saved objects do not exist, errors such as the following can be seen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Error: Importing AeroGear Data Sync - top level execution per platform - aaa (top_level_execution_per_platform_49f9a0b6-09b5-11e9-9597-069f7827c758) failed: Could not locate that index-pattern-field (id: audit.clientInfo.data.device.platform.raw)
+Error: Could not locate that index-pattern-field (id: audit.clientInfo.data.device.platform.raw)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because of these conditions, Kibana saved objects have to be imported after there are some audit logs already in ElasticSearch.
+At the moment, no mechanisms are provided to overcome this problem.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-the-dashboard-and-audit-logs"><a class="anchor" href="#viewing-the-dashboard-and-audit-logs"></a>Viewing the Dashboard and Audit Logs</h3>
+<div class="paragraph">
+<p>When the Kibana saved objects are imported, a dashboard is available with several visualizations that can be used as an
+overview of the Voyager application status.</p>
+</div>
+<div class="paragraph">
+<p>At the bottom of the dashboard, audit log messages can be explored directly.</p>
+</div>
+<div class="paragraph">
+<p>For more information on how to use Kibana, please consult <a href="https://www.elastic.co/products/kibana">Kibana documentation</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-js-client"><a class="anchor" href="#sync-js-client"></a>Data Sync Javascript Client</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="sync-js-basic-concepts"><a class="anchor" href="#sync-js-basic-concepts"></a>Introduction</h3>
+<div class="paragraph">
+<p>The Voyager Client is built on top of the popular <a href="https://www.apollographql.com/docs/react">Apollo GraphQL Javascript client</a>, and it adds the following additional features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Offline query and mutation support</p>
+</li>
+<li>
+<p>Conflict detection and resolution</p>
+</li>
+<li>
+<p>Authentication and authorization support</p>
+</li>
+<li>
+<p>Audit logging</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Because the Voyager Client is an extension to Apollo, it works with all the frameworks that Apollo supports.</p>
+</div>
+<div class="paragraph">
+<p>For React:
+<a href="https://www.apollographql.com/docs/react/" class="bare">https://www.apollographql.com/docs/react/</a></p>
+</div>
+<div class="paragraph">
+<p>For Angular:
+<a href="https://www.apollographql.com/docs/angular/" class="bare">https://www.apollographql.com/docs/angular/</a></p>
+</div>
+<div class="sect3">
+<h4 id="cache"><a class="anchor" href="#cache"></a>Cache</h4>
+<div class="paragraph">
+<p>In order to support offline use cases, the client SDK strongly leverages Apollo Cache layer. Please refer link: <a href="https://www.apollographql.com/docs/react/advanced/caching.html">their documentation</a> for more information about caching in Apollo GraphQL.</p>
+</div>
+<div class="sect4">
+<h5 id="querying-data"><a class="anchor" href="#querying-data"></a>Querying Data</h5>
+<div class="paragraph">
+<p>To work with cache effectively, it is recommended that developers use the <code>cache-first</code> fetchPolicy when perform queries.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">  return this.apollo.watchQuery({
+    query: YOUR_QUERY,
+    fetchPolicy: 'cache-first',
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The cache is populated by subscriptions, pooling or regular queries happening in UI. Please see the <em>client-offline-support, Offline Support</em> section for more details.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="required-field-in-graphql-types"><a class="anchor" href="#required-field-in-graphql-types"></a>Required Field in GraphQL Types</h4>
+<div class="paragraph">
+<p>A field called <code>id</code> is required in all the types when design the GraphQL schema for an application. The client SDK expects this field to be returned from the server for a query. Without this field some offline functionalities will not work properly.</p>
+</div>
+<div id="sync-js-client-getting-started" class="ulist checklist">
+<div class="title">Prerequisites</div>
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have Node.js and npm installed.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have created an empty web project that supports ES6.  The <a href="https://webpack.js.org/guides/getting-started/">webpack getting started</a> project is a useful guide.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have completed the server getting started guide and the application is running.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This section describes how to use the Voyager Client to create mobile and web applications that can communicate with the Voyager server application.</p>
+</div>
+<div class="paragraph">
+<p>Data Sync provides JavaScript libraries which integrate your javascript app using AeroGear mobile services with a server that also uses Data Sync.  The client libraries are based on the <a href="https://www.apollographql.com/docs/react/api/apollo-client.html">Apollo client</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="hello-world-sync"><a class="anchor" href="#hello-world-sync"></a>Hello World Sync</h4>
+<div class="paragraph">
+<p>Connecting our client to the server "Hello World" example. You will add the libraries to your mobile project, configure the client classes, connect to the server, and confirm that it works.</p>
+</div>
+<div class="listingblock">
+<div class="title">Add our libraries to your javascript client,</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install @aerogear/voyager-client</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a simple code example to connect to and query our Voyager Server.  To configure the client, a configuration object should be used. At a minimum, the <code>httpUrl</code> field is required and it is the url of the Voyager server application. If the client app uses subscription as well, then the <code>wsUrl</code> field is required too.</p>
+</div>
+<div class="paragraph">
+<p>Core to connect to and query our server application would look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="title">src/index.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// gql is a utility function that handles gql queries
+import gql from 'graphql-tag';
+
+// createClient configures the Data Sync client based on options you provide
+import {createClient} from '@aerogear/voyager-client';
+
+// For our client application, we will connect to the local service.
+let config = {
+  httpUrl: "http://localhost:4000/graphql",
+  wsUrl: "ws://localhost:4000/graphql",
+}
+
+async function helloWorld() {
+
+  // Actually create the client
+  let client = await createClient(config);
+
+  // Execute the hello query
+  client.query({
+      fetchPolicy: 'network-only',
+      query: gql`{hello}`
+    })
+    //Print the response of the query
+    .then( ({data}) =&gt; {
+      console.log(data.hello)
+    });
+}
+
+helloWorld();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can build and run this code in your project.  You should see "Hello world" in your JavaScript console.  At this point your server and your client are able to talk to each other.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-js-client-offline-and-conflict"><a class="anchor" href="#sync-js-client-offline-and-conflict"></a>Offline support</h3>
+<div class="paragraph">
+<p>The Voyager Client provides first class support for performing GraphQL operations while offline. This is because the SDK uses the "cache-first" strategy when perform queries, regardless of the network status of the client. As illustrated in the diagram below, all the queries will be performed against the cache, and the Apollo client will manage filling the cache with data from the server. On top of that, the Voyager Client uses a mutation store to support offline mutations.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/datasync-features.png" alt="datasync features">
+</div>
+</div>
+<div class="paragraph">
+<p>The mutation store is effectively a persisted queue, and it is used to hold query and mutation requests when the client is offline. If a client goes offline for a long period of time, it will be able to negotiate local updates with the server using conflict resolution strategies.</p>
+</div>
+<div class="paragraph">
+<p>When a client becomes online from the offline state, the mutations that are persisted locally will be replicated back to the server, as shown in the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/datasync-going_offline.png" alt="datasync going offline">
+</div>
+</div>
+<div class="paragraph">
+<p>Developers can attach listeners to get notification about if a update is applied on the server or not, and take appropriate actions.</p>
+</div>
+<div class="sect3">
+<h4 id="mutations-and-local-cache"><a class="anchor" href="#mutations-and-local-cache"></a>Mutations and Local Cache</h4>
+<div class="paragraph">
+<p>By default queries are cached based on the type and <code>id</code> field, and the results of performed queries are cached as well and they will be available when the client is offline.</p>
+</div>
+<div class="paragraph">
+<p>Because of this, when mutations that can change query results are performed, the <code>refetchQueries</code> or <code>update</code> options of the <code>mutate</code> method should be used to ensure the local cache is kept up to date.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, the app will perform an <code>ADD_TASK</code> mutation which will create a new task. The app also has a <code>GET_TASKS</code> query to list all the tasks. In order to make sure the cache for the <code>GET_TASKS</code> query is kept up to date whenever a new task is created, the <code>update</code> option is used to add the newly created task to the cache:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">  client.mutate({
+    mutation: ADD_TASK, variables: item,
+    update: updateCacheOnAdd
+  });
+
+  function updateCacheOnAdd(cache, { data: { createTask } }) {
+    let { allTasks } = cache.readQuery({ query: GET_TASKS });
+    if (allTasks) {
+      if (!allTasks.find((task) =&gt; task.id === createTask.id)) {
+        allTasks.push(createTask);
+      }
+    } else {
+      allTasks = [createTask];
+    }
+    cache.writeQuery({
+      query: GET_TASKS,
+      data: {
+        'allTasks': allTasks
+      }
+    });
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information, please check out <a href="https://www.apollographql.com/docs/react/essentials/mutations.html#props">Apollo&#8217;s document about mutations</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="online-only-queries"><a class="anchor" href="#online-only-queries"></a>Online Only Queries</h5>
+<div class="paragraph">
+<p>To ensure certain queries are only executed when the client is online, a GraphQL directive called <code>@onlineOnly</code> can be used to annotate a query, as the example shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">exampleQuery(...) @onlineOnly {
+  ...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sync-client-offline-queue-listener"><a class="anchor" href="#sync-client-offline-queue-listener"></a>Listening for Events</h4>
+<div class="paragraph">
+<p>In order to get notification about offline related events, the <code>offlineQueueListener</code> in the config object should be used. The following events will be emitted:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>onOperationEnqueued</code> - Called when new operation is being added to offline queue</p>
+</li>
+<li>
+<p><code>onOperationSuccess</code> - Called when back online and operation succeeds</p>
+</li>
+<li>
+<p><code>onOperationFailure</code> - Called when back online and operation fails with GraphQL error</p>
+</li>
+<li>
+<p><code>queueCleared</code> - Called when offline operation queue is cleared</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This listener can be used to build UIs that can show pending changes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="conflicts"><a class="anchor" href="#conflicts"></a>Conflicts</h4>
+<div class="paragraph">
+<p>A <strong>conflict</strong> occurs whenever two or more clients try to modify the same data in between synchronizations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Conflict resolution</strong> is how the application detects and resolves the conflict and ensures the correct data is stored. In most cases, the way conflicts are detected and resolved are incredibly specific to an application and the underlying data storage.</p>
+</div>
+<div class="paragraph">
+<p>The Data Sync SDK provides some utilities to help applications detect and resolve conflicts on either server or client side. To handle conflicts on client side, developers need to configure their resolvers on the server side to return conflicts back to clients first. For more information, please refer to <a href="#sync-server-offline-and-conflict">Voyager server document</a>.</p>
+</div>
+<div class="paragraph">
+<p>If conflicts need to be handled on client side, developers can either use the default conflict resolution implementations, or implement their own ones thanks to the pluggable conflict resolution mechanism.</p>
+</div>
+<div class="sect4">
+<h5 id="pluggable-conflict-resolution-2"><a class="anchor" href="#pluggable-conflict-resolution-2"></a>Pluggable Conflict Resolution</h5>
+<div class="paragraph">
+<p>Pluggable conflict resolution is a concept that allows developers to implement their own conflict detection and resolution logic regardless of the data storage.</p>
+</div>
+<div class="paragraph">
+<p>It has two parts: one for detecting conflicts, and the other for resolving conflicts.</p>
+</div>
+<div class="paragraph">
+<p>To detect conflicts, developers can use either the default version-based conflict detection mechanism, or provide their own implementation via the <code>conflictStateProvider</code> option in the config object that is used to initialize the sync client.</p>
+</div>
+<div class="paragraph">
+<p>To resolve conflicts, developers can either use the default conflict resolution strategy, or provide their own ones via the <code>conflictStrategy</code> option in the config object.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="version-based-conflict-detection"><a class="anchor" href="#version-based-conflict-detection"></a>Version Based Conflict Detection</h5>
+<div class="paragraph">
+<p>For more details about how it works, please check the <em>server-version-based-conflict-resolution, Voyager server document</em>.</p>
+</div>
+<div class="paragraph">
+<p>On the client side, if this default implementation is used, developers need to make sure the version value is always passed to the server when a mutation is invoked.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="conflict-resolution-strategies-2"><a class="anchor" href="#conflict-resolution-strategies-2"></a>Conflict Resolution Strategies</h5>
+<div class="paragraph">
+<p>To resolve conflicts on the client side, a <code>conflictStrategy</code> needs to be provided. If none is provided, by default, the <code>clientVersionWins</code> strategy is used. This means the SDK will automatically override the server data with the current client data.</p>
+</div>
+<div class="paragraph">
+<p>To implement a custom conflict resolution strategy provide at least one of the parameters below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>strategies - a dictionary object where each key is the name of a mutation and the value is the custom action to take for a conflict caused by that mutation</p>
+</li>
+<li>
+<p>default - the default behavior to use if one of your mutations is not listed in <code>strategies</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If strategies are provided but no default then <code>clientVersionWins</code> will become the default. This will only be used if a mutation you have not specified causes a conflict.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An example can be seen below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">//define a custom conflict resolver
+let updateTaskConflictResolver = (serverData, clientData) =&gt; {
+    ...
+    return Object.assign(serverData, clientData);
+};
+
+let deleteTaskConflictResolver = (serverData, clientData) =&gt; {
+    ...
+    return serverData;
+}
+
+//define a default where the clientData is used
+let defaultConflictResolver = (serverData, clientData) =&gt; {
+    return clientData
+}
+
+//pass it to the config object
+let config = {
+...
+  conflictStrategy: {
+    strategies: {
+      "TaskUpdated": updateTaskConflictResolver,
+      "TaskDeleted": deleteTaskConflictResolver
+    },
+    default: defaultConflictResolver
+  }
+...
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Client strategy will be ignored when conflicts are resolved on the server.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="listening-to-conflicts"><a class="anchor" href="#listening-to-conflicts"></a>Listening to Conflicts</h5>
+<div class="paragraph">
+<p>Developers can supply their own <code>conflictListener</code> implementation to get notifications about conflicts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let config = {
+...
+  conflictListener: {
+    conflictOccurred: function(operationName, resolvedData, server, client) {
+      console.log(`data: ${JSON.stringify(resolvedData)}, server: ${JSON.stringify(server)} client: ${JSON.stringify(client)} `);
+    }
+  }
+...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-js-client-realtime-updates"><a class="anchor" href="#sync-js-client-realtime-updates"></a>Realtime Updates</h3>
+<div class="paragraph">
+<p>Subscriptions are a core concept of GraphQL and one which allow us to enable real time updates of data
+from the server to the client.
+To do this GraphQL Subscriptions utilise websockets to enable clients to subscribe to published changes.</p>
+</div>
+<div class="paragraph">
+<p>The architecture of websockets is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Client connects to websocket server</p>
+</li>
+<li>
+<p>Upon certain events, the server can publish the results of these events to the websocket</p>
+</li>
+<li>
+<p>Any <em>currently connected</em> client to that websocket will receive these results</p>
+</li>
+<li>
+<p>The client can close the connection at any time and will no longer recieve updates</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Websockets are a perfect solution for delivering messages to currently active clients. To receive updates the
+client must be currently connected to the websocket server, updates made over this websocket while the client is offline
+will not be consumed by the client. For this use case Push Notifications are recommended.</p>
+</div>
+<div class="paragraph">
+<p>Voyager Client comes with subscription support out of the box including auto-reconnection upon device restart or network reconnect.
+To enable subscriptions on your client set the following
+paramater in the Voyager Client config object. A DataSyncConfig interface is also available from Voyager Client if you wish to use it.</p>
+</div>
+<div class="sect3">
+<h4 id="setting-up-a-client-to-use-subscriptions"><a class="anchor" href="#setting-up-a-client-to-use-subscriptions"></a>Setting up a Client to use Subscriptions</h4>
+<div class="paragraph">
+<p>To set up a client to use subscriptions simply provide a wsUrl string in the config object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>const config = {
+    wsUrl: "ws://your_websocket_url"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where wsUrl is the full URL of the websocket endpoint of your GraphQL server. Once this object is created, use it to initialise Voyager Client with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>const { createClient } = require("@aerogear/voyager-client");
+
+const client = createClient(config)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-subscriptions"><a class="anchor" href="#using-subscriptions"></a>Using Subscriptions</h4>
+<div class="paragraph">
+<p>Once the client is configured we can then make use of subscriptions. There are many ways to do this, however some are
+preferred over others.</p>
+</div>
+<div class="paragraph">
+<p>A standard flow to utilise subscriptions is as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a network query to get data from the server</p>
+</li>
+<li>
+<p>Watch the cache for changes to queries</p>
+</li>
+<li>
+<p>Subscribe to changes pushed from the server</p>
+</li>
+<li>
+<p>Unsubscibe when leaving the view where there is an active subscription</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We can see this happening in the three examples below. <code>subscribeToMore</code> ensures that any further updates received from the server force the updateQuery function to be called with <code>subscriptionData</code> from the server. Using <code>subscribeToMore</code> we can ensure the cache is easily updated as all GraphQL
+queries are automatically notified. For more information please see: <a href="https://www.apollographql.com/docs/angular/features/subscriptions.html#subscribe-to-more">subscribeToMore Docs</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">getTasks() {
+  const tasks = client.watchQuery({
+    query: GET_TASKS
+  });
+
+  tasks.subscribeToMore({
+    document: TASK_ADDED_SUBSCRIPTION,
+    updateQuery: (prev, { subscriptionData }) =&gt; {
+      if(subscriptionData.data){
+        const newTask = subscriptionData.data.taskAdded;
+        if (prev.allTasks.find(task =&gt; task.id === newTask.id)) {
+          return prev;
+        } else {
+          return Object.assign({}, prev, {
+            allTasks: [...prev.allTasks, newTask]
+          });
+        }
+      }
+    }
+  });
+  return tasks;
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the above example some deduplication is performed to ensure the same task is not returned to the UI when it is
+already present.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can then use this query in our application to subscribe to changes so that the front end is always updated when new
+data is returned from the server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">this.tasks = [];
+this.getTasks().subscribe(result =&gt; {
+  this.tasks = result.data &amp;&amp; result.data.allTasks;
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that it is also a good idea to unsubscribe from a query upon leaving a page. This prevents possible memory leaks.
+This can be done by calling unsubscribe() as shown in the following example. This code should be placed in the appropriate place.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">this.getTasks().unsubscribe();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="client-network-state-changes"><a class="anchor" href="#client-network-state-changes"></a>Client Network State Changes</h4>
+<div class="paragraph">
+<p>When using subscriptions to provide your client with realtime updates it is important to monitor network state. This is
+because of the architecture of websockets as described <a href="#sync-js-client-realtime-updates">above</a>. The problem is that if the
+client goes offline for any amount of time and some updates occur on the server in this time then the
+client will be out of sync. To remedy this Voyager Client provides a <code>NetworkStatus</code> interface which can be used along with
+the <code>NetworkInfo</code> interface to implement custom checks of network status. For more information about how to import and configure a
+custom network status checker please see <a href="#sync-js-client-advanced-topics">Advanced Topics</a>.</p>
+</div>
+<div class="paragraph">
+<p>An example of using the provided Cordova Network Status, which is an implementation of the NetworkStatus interface can be seen below.
+This code should be used to re-run a query upon the client coming back to an online state.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { CordovaNetworkStatus, NetworkInfo } = require("@aerogear/voyager-client");
+const networkStatus = new CordovaNetworkStatus();
+
+networkStatus.onStatusChangeListener({
+  onStatusChange(networkInfo: NetworkInfo) {
+    const online = networkInfo.online;
+    if (online) {
+      client.watchQuery({
+        query: GET_TASKS
+      });
+    }
+  }
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-js-client-auth"><a class="anchor" href="#sync-js-client-auth"></a>Authentication and Authorization</h3>
+<div class="paragraph">
+<p>With Voyager Client, user information can be passed to a Data Sync server application in two ways: headers or tokens.</p>
+</div>
+<div class="paragraph">
+<p>Headers are used to authentication HTTP requests to the server, which are used for queries and mutations.</p>
+</div>
+<div class="paragraph">
+<p>Tokens are used to authenticate WebSocket connections, which are used for subscriptions.</p>
+</div>
+<div class="paragraph">
+<p>Both of them can be set via the <code>authContextProvider</code> configuration option. Here is an example</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">//get the token value from somewhere, for example the authentication service
+const token = "REPLACE_WITH_REAL_TOKEN";
+
+const config = {
+  ...
+  authContextProvider: function() {
+    return {
+      header: {
+        "Authorization": `Bearer ${token}`
+      },
+      token: token
+    }
+  },
+  ...
+};
+
+//create a new client</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For information about how to perform authentication and authorization on the server, please check out <a href="#sync-server-auth">Server Authentication and Authorization Guide</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="js-client-files"><a class="anchor" href="#js-client-files"></a>File Upload Client</h3>
+<div class="paragraph">
+<p>Voyager Client provides support for uploading binary data along with the GraphQL queries.
+The binary upload implementation uses the <code>apollo-upload-client</code> package built by the Apollo community.</p>
+</div>
+<div class="sect3">
+<h4 id="introduction-2"><a class="anchor" href="#introduction-2"></a>Introduction</h4>
+<div class="paragraph">
+<p>The upload functionality uses the GraphQL multipart form requests specification.
+The File upload needs to be implemented on both server and client:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the client HTML FileList objects are mapped into a mutation and sent to the server in a multipart request.</p>
+</li>
+<li>
+<p>On the server: The multipart request is handled. The server processes it and provides an upload argument to a resolver.
+In the resolver function, the upload promise resolves an object.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+File upload is based on <a href="https://github.com/jaydenseric/graphql-multipart-request-spec">graphql-multipart-request-spec</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enabling-file-upload"><a class="anchor" href="#enabling-file-upload"></a>Enabling File Upload</h4>
+<div class="paragraph">
+<p>File upload feature needs to be enabled by passing <code>fileUpload</code> flag to config object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const config = {
+  ...
+  fileUpload: true
+  ...
+};
+
+//create a new client</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uploading-files-from-graphql"><a class="anchor" href="#uploading-files-from-graphql"></a>Uploading Files from GraphQL</h3>
+<div class="paragraph">
+<p>File upload capability adds a new GraphQL scalar <code>Upload</code> that can be used for mutations that operate on binary data.
+The <code>Upload</code> scalar maps html <code>FileList</code> HTML5 object in GraphQL schemas.
+The first step required to work with binary uploads is to write mutation that will contain <code>Upload</code> scalar.
+The following example demonstrates how to upload a profile picture:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
+
+export const UPLOAD_PROFILE = gql`
+mutation changeProfilePicture($file: Upload!) {
+  changeProfilePicture(file: $file) {
+    filename
+    mimetype
+    encoding
+  }
+}
+`;</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="executing-mutations"><a class="anchor" href="#executing-mutations"></a>Executing mutations</h4>
+<div class="paragraph">
+<p>The <code>Upload</code> scalar will be mapped  to object returned from HTML file input.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows file upload in a React application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const uploadOneFile = () =&gt; {
+  return (
+    &lt;Mutation mutation={UPLOAD_PROFILE}&gt;
+      {uploadFile =&gt; (
+        &lt;input
+        type="file"
+        required
+        onChange={({ target: { validity, files: [file] } }) =&gt;
+          validity.valid &amp;&amp; uploadFile({ variables: { file } });
+        }
+       /&gt;
+      )}
+    &lt;/Mutation&gt;
+  );
+};</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-js-client-audit-logs"><a class="anchor" href="#sync-js-client-audit-logs"></a>Audit Logs</h3>
+<div class="paragraph">
+<p>As described in the <a href="#sync-server-audit-logs">Server Audit Logs</a> section, device information can be logged as part of an audit log message. To enable it:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The Cordova plugin <code>cordova-plugin-aerogear-metrics</code> has to be installed so that the device, client and app information can be collected.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cordova plugin add cordova-plugin-aerogear-metrics</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set <code>auditLogging</code> to true when creating a client instance.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { createClient } from '@aerogear/voyager-client';
+
+const config = {
+  ...
+  auditLogging: true,
+  ...
+}
+
+return await createClient(config);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-js-client-advanced-topics"><a class="anchor" href="#sync-js-client-advanced-topics"></a>Advanced Topics</h3>
+<div class="sect3">
+<h4 id="network-status"><a class="anchor" href="#network-status"></a>Network Status</h4>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/NetworkStatus.ts">NetworkStatus</a> interface can be used to check the current network status, or register a listener to perform certain actions when the status of the network changes.</p>
+</div>
+<div class="paragraph">
+<p>Two default implementations are provided to support <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/WebNetworkStatus.ts">web browsers</a> and <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/CordovaNetworkStatus.ts">Cordova</a>. The following example demonstrates how to register a listener using <code>CordovaNetworkStatus</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { CordovaNetworkStatus, NetworkInfo } from '@aerogear/voyager-client';
+const networkStatus = new CordovaNetworkStatus();
+
+networkStatus.onStatusChangeListener({
+  onStatusChange: info =&gt; {
+    const online = info.online;
+    if (online) {
+      //client is online, perform some actions
+    } else {
+      //client is offline
+    }
+  }
+});
+
+let config = {
+  ...
+  networkStatus: networkStatus,
+  ...
+};
+
+//create a new client using the config</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logging-debug-messages"><a class="anchor" href="#logging-debug-messages"></a>Logging Debug Messages</h4>
+<div class="paragraph">
+<p>The Voyager Client uses the <a href="https://www.npmjs.com/package/debug">debug module</a> to log debug messages.</p>
+</div>
+<div class="paragraph">
+<p>To enable debug logs please execute the following code in a browser&#8217;s console:
+<code>localStorage.debug = 'AeroGearSync:*'</code>.</p>
+</div>
+<div class="paragraph">
+<p>Certain features can be enabled separately:
+<code>localStorage.debug = 'AeroGearSync:OfflineMutations*'</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="optimistic-ui"><a class="anchor" href="#optimistic-ui"></a>Optimistic UI</h4>
+<div class="paragraph">
+<p>By default mutations are not applied to the UI until responses are received from the server. To provide better user experience, an application may want to update the UI immediately. <a href="https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-mutation-options-optimisticResponse">Optimistic response</a> is an easy way to achieve this goal, and Voyager Client provides a helper method to work with optimistic responses:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"> import { createOptimisticResponse } from "@aerogear/voyager-client";
+
+ client.mutate({
+   mutation: ADD_TASK,
+   variables: item,
+   optimisticResponse: createOptimisticResponse("createTask", "Task", item);
+ });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To detect if the provided data is an optimistic response, the <code>optimisticResponse</code> flag can be used.</p>
+</div>
+<div class="paragraph">
+<p>The <code>OptimisticResponse</code> feature and the <a href="#sync-client-offline-queue-listener">offlineQueueListener</a> can be used together to deliver great offline experience for an application. For more information, please checkout the showcase application.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-server-openshift"><a class="anchor" href="#sync-server-openshift"></a>Running Data Sync on OpenShift</h2>
+<div class="sectionbody">
+<div id="sync-server-getting-started-openshift" class="ulist checklist">
+<div class="title">Prerequisites</div>
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have Docker installed.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have access to an OpenShift cluster with the Service Catalog.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have completed the server getting started guide.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="overview-2"><a class="anchor" href="#overview-2"></a>Overview</h3>
+<div class="paragraph">
+<p>To connect your Data Sync server and client to other mobile services, you need to run your application in OpenShift.  Data Sync provides a service catalog item to help with this.</p>
+</div>
+<div class="paragraph">
+<p>Data Sync requires your server application to be packaged as a Docker formatted container and published to a public respository such as <a href="https://hub.docker.com/">Docker hub</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="building-and-publishing-the-container"><a class="anchor" href="#building-and-publishing-the-container"></a>Building and publishing the server container</h3>
+<div class="paragraph">
+<p>To build a server into a container, create a <code>Dockerfile</code> in the project&#8217;s directory.  This container will need to include your server source code, its dependencies, and be configured to execute your server.</p>
+</div>
+<div class="paragraph">
+<p>As an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM node:8
+WORKDIR /usr/src/app
+# copy Node.js specific files
+COPY package*.json ./
+# copy application source file to the workdir
+COPY index.js .
+RUN npm install
+# TCP port that application is listening on
+EXPOSE 4000
+CMD [ "node", "index.js" ]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Build the Docker container and tag it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker build . --tag  &lt;your-repo&gt;/&lt;container-name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Push your container to Dockerhub&#8217;s repository :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker push &lt;your-repo&gt;/&lt;container-name&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="provisioning-data-sync-service"><a class="anchor" href="#provisioning-data-sync-service"></a>Provisioning Data Sync Service</h3>
+<div class="paragraph">
+<p>To provision the Data Sync mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Choose a project where you have previously provisioned Mobile Developer Console.</p>
+</li>
+<li>
+<p>Select <strong>Catalog</strong> from the left hand menu.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.</p>
+</div>
+</li>
+<li>
+<p>Choose the Data Sync service.</p>
+</li>
+<li>
+<p>Follow the wizard for provisioning that service.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Fill in all of the required parameters for the service:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/sync-app-creation-dialog.png" alt="Sync Application Creation Dialog">
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Configuration</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Name</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fill in name of your Data Sync application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fill in URL too your Data Sync application docker image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">latest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag of your docker image</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Port</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port number that Data Sync application is listening on</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application metrics endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/metrics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the metrics endpoint (default value is recommended)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application GraphQL Endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/graphql</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the GraphQL endpoint (default value is recommended)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Hostname</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database server hostname that is used to connect by the Data Sync</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Port</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database server port that is used to connect by the Data Sync</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Username</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database server username that is used to connect by the Data Sync</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Password</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database server password that is used to connect by the Data Sync</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the database that is used to connect by the Data Sync</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use SSL?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use SSL connection to the SQL server</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
+Provisioning a service may take some time.</p>
+</div>
+<div class="paragraph">
+<p>Once the provision is completed, you should be able to see it in the Mobile Developer Console: go to the Mobile Developer Console and click on any mobile client, and you should see the newly provisioned Data Sync server in the <code>Unbound Services</code> section. If you want your client app to use the Data Sync server, just click on <code>Bind To App</code> button and complete the wizard. Once it&#8217;s bound, copy the updated <code>mobile-services.json</code> file to your client app and you can then initialise the Data Sync client SDK.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-getting-started-mdc-client"><a class="anchor" href="#sync-server-getting-started-mdc-client"></a>Connecting a Client</h3>
+<div class="ulist checklist">
+<div class="title">Prerequisites</div>
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You have access to an OpenShift cluster with the Service Catalog.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have completed the OpenShift getting started guide.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have created a mobile client and bound your data sync server.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have completed the client getting started guide.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once a service is bound to a mobile client, MDC will provide a mobile-services.json file that is used by the AeroGear client libraries to automatically configure the Data Sync client.  It is very important that you use your version of this file and not the one used in this example as system specific values will be different.</p>
+</div>
+<div class="sect3">
+<h4 id="updating-the-hello-world-sync-client"><a class="anchor" href="#updating-the-hello-world-sync-client"></a>Updating the Hello World Sync Client</h4>
+<div class="paragraph">
+<p>The Hello World client application we wrote uses a hard coded server url.  We need to remove this url and instead pass the mobile-services config to the client.  We will also use the AeroGear core library to parse this file and pass that configuration to the Data Sync library.</p>
+</div>
+<div class="listingblock">
+<div class="title">Configure the core library with mobile-services.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { init }  = require("@aerogear/app");
+
+const core = init({
+  "version": 1,
+  "namespace": "myproject",
+  "clientId": "getting-started",
+  "services": [
+    {
+      "id": "0637bfd3-33aa-11e9-968e-52540014a8c2",
+      "name": "sync-app-getting-started-getting-started",
+      "type": "sync-app",
+      "url": "https://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql",
+      "config": {
+        "websocketUrl": "wss://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql"
+      }
+    }
+  ]
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have initialized the core, we can use it to configure the Data Sync client by setting the <code>openShiftConfig</code> property when we call <code>createClient</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Updated data sync client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let client = await createClient({
+    openShiftConfig:core.config
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now, as before, we can use the client to make queries.  A full example may look like the following code</p>
+</div>
+<div class="listingblock">
+<div class="title">Updated hello world index.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import gql from 'graphql-tag';
+const { init }  = require("@aerogear/app");
+import { createClient } from '@aerogear/voyager-client';
+
+const core = init({
+  "version": 1,
+  "namespace": "myproject",
+  "clientId": "getting-started",
+  "services": [
+    {
+      "id": "0637bfd3-33aa-11e9-968e-52540014a8c2",
+      "name": "sync-app-getting-started-getting-started",
+      "type": "sync-app",
+      "url": "https://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql",
+      "config": {
+        "websocketUrl": "wss://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql"
+      }
+    }
+  ]
+});
+
+async function helloWorld() {
+  let client = await createClient({
+    openShiftConfig:core.config
+  });
+  client.query({
+      fetchPolicy: 'network-only',
+      query: gql`{hello}`
+    })
+    .then( ({data}) =&gt; {
+      console.log(data.hello)
+    });
+}
+
+helloWorld();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-binding"><a class="anchor" href="#sync-server-binding"></a>Binding a Mobile App with Data Sync</h3>
+<div class="paragraph">
+<p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
+This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
+</div>
+<div class="paragraph">
+<p>To bind a Mobile App with a mobile service:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Launch Mobile Developer Console</p>
+</li>
+<li>
+<p>Click on the Mobile App on the Overview screen</p>
+</li>
+<li>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Press <strong>Bind to App</strong> in the Data Sync</p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the Data Sync Service.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-server-binding-keycloak"><a class="anchor" href="#sync-server-binding-keycloak"></a>Binding Data Sync to Identity Management</h3>
+<div class="paragraph">
+<p>In this section, we will show you how to protect your Data Sync application using the Identity Management service.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>There is a Identity Management service available.</p>
+</li>
+<li>
+<p>You have provisioned a Data Sync application using our playbook.</p>
+</li>
+<li>
+<p>oc tools must be installed</p>
+</li>
+<li>
+<p>You must first create a client for your application in the Identity Management Administration Console, and then click on the <code>Installation</code> tab, select <code>Keycloak OIDC JSON</code> for <code>Format</code> Option, and then click on <code>Download</code>. Save the downloaded <code>keycloak.json</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="connecting-your-application-to-identity-management"><a class="anchor" href="#connecting-your-application-to-identity-management"></a>Connecting your application to Identity Management</h4>
+<div class="paragraph">
+<p>Any application that connects to Identity Management must consume a keycloak.json file. This guide demonstrates how to add a keycloak.json file to your Data Sync application deployment. It is still your application&#8217;s responsibility to consume this file. We have provided an <a href="https://github.com/aerogear/voyager-server/tree/master/examples/keycloak">example project</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-a-identity-management-secret"><a class="anchor" href="#create-a-identity-management-secret"></a>Create a Identity Management Secret</h4>
+<div class="paragraph">
+<p>The following command will create a secret called <code>sync-keycloak-doc</code>. It will contain one key, <code>keycloak</code>, and its value is the text of your keycloak.json file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc create secret generic sync-keycloak-doc \
+  --from-file=keycloak=./keycloak.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can view the secret with either <code>oc get secret sync-keycloak-doc</code> or the OpenShift web console.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-a-patch-for-your-deployment-configuration"><a class="anchor" href="#create-a-patch-for-your-deployment-configuration"></a>Create a patch for your deployment configuration</h4>
+<div class="paragraph">
+<p>This step requires patching the Data Sync application&#8217;s deployment config to create and mount a volume with the Identity Management secret we just created. Replace <code>$YOUR_DEPLOYMENT_CONFIG_NAME</code> in the following yaml section with the deployment config name of your Data Sync application and save this file as <code>secret.yaml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  template:
+    spec:
+      containers:
+        - env:
+          - name: KEYCLOAK_CONFIG
+            value: /config/keycloak.json
+          name: $YOUR_DEPLOYMENT_CONFIG_NAME
+          volumeMounts:
+            - name: secret-volume
+              mountPath: /config
+              readOnly: true
+      volumes:
+          - name: secret-volume
+            secret:
+              items:
+                - key: keycloak
+                  path: keycloak.json
+              secretName: sync-keycloak-doc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="apply-the-patch"><a class="anchor" href="#apply-the-patch"></a>Apply the patch</h4>
+<div class="paragraph">
+<p>After replacing <code>$YOUR_DEPLOYMENT_CONFIG_NAME</code> with the deployment config name, run the following command to patch the deployment configuration and trigger your application to redeploy.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch deploymentconfig $YOUR_DEPLOYMENT_CONFIG_NAME -p "$(cat secret.yaml)"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once your application has redeployed, it should be able to read the keycloak.json file pointed to by the KEYCLOAK_CONFIG environment variable.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-sample-app"><a class="anchor" href="#sync-sample-app"></a>Showcase App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/ionic-showcase">sample application</a> demonstrates features offered by the Data Sync framework, including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GraphQL Schema</p>
+</li>
+<li>
+<p>Offline Storage</p>
+</li>
+<li>
+<p>Conflict Resolution</p>
+</li>
+<li>
+<p>Subscriptions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See the Showcase Apps section for instructions about how to run it.</p>
 </div>
 </div>
 </div>
