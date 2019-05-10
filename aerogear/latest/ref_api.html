@@ -167,25 +167,43 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -255,6 +273,12 @@ Zepto(function($){
     <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -270,19 +294,19 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
   </li>
 </ul>
   </li>
@@ -324,31 +348,91 @@ Zepto(function($){
     <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#setup">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server">Voyager Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-data-access">Data Access</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#server-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-metrics">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-audit-logs">Audit Logs</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#ui">The Data Sync UI</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-js-client">Voyager Client</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-basic-concepts">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#js-client-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-audit-logs">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-advanced-topics">Advanced Topics</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#schema">Working with a Schema</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server-openshift">Running Data Sync in OpenShift</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-openshift">Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#building-and-publishing-the-container">Prepare Container</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-service">Provisioning Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#sdk">Adding sync to your app</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-templates">Provisioning From Templates</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#auth">Authentication for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding">Binding Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#authorization">Authorization for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding-keycloak">Binding KeyCloak</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -399,6 +483,9 @@ Zepto(function($){
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
@@ -426,7 +513,7 @@ Zepto(function($){
           <a href="index.html">latest</a>
         </li>
         <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+          <a href="../v2.0/index.html">v2.0</a>
         </li>
       </ul>
     </li>
@@ -449,7 +536,7 @@ Zepto(function($){
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
     <a class="version is-current" href="ref_api.html">latest</a>
-    <a class="version" href="../v1.0/ref_api.html">v1.0</a>
+    <a class="version" href="../v2.0/ref_api.html">v2.0</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ref_api.adoc"></a></div>

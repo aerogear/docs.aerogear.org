@@ -167,25 +167,43 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -255,6 +273,12 @@ Zepto(function($){
     <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -270,19 +294,19 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
   </li>
 </ul>
   </li>
@@ -324,31 +348,91 @@ Zepto(function($){
     <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#setup">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server">Voyager Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-data-access">Data Access</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#server-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-metrics">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-audit-logs">Audit Logs</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#ui">The Data Sync UI</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-js-client">Voyager Client</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-basic-concepts">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#js-client-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-audit-logs">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-advanced-topics">Advanced Topics</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#schema">Working with a Schema</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server-openshift">Running Data Sync in OpenShift</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-openshift">Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#building-and-publishing-the-container">Prepare Container</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-service">Provisioning Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#sdk">Adding sync to your app</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-templates">Provisioning From Templates</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#auth">Authentication for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding">Binding Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#authorization">Authorization for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding-keycloak">Binding KeyCloak</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -400,6 +484,9 @@ Zepto(function($){
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -426,7 +513,7 @@ Zepto(function($){
           <a href="index.html">latest</a>
         </li>
         <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+          <a href="../v2.0/index.html">v2.0</a>
         </li>
       </ul>
     </li>
@@ -449,7 +536,7 @@ Zepto(function($){
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
     <a class="version is-current" href="glossary.html">latest</a>
-    <a class="version" href="../v1.0/glossary.html">v1.0</a>
+    <a class="version" href="../v2.0/glossary.html">v2.0</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/glossary.adoc"></a></div>
@@ -460,11 +547,11 @@ Zepto(function($){
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#aerogear-mobile-services-terminology">AeroGear Mobile Services Terminology</a></li>
-<li><a href="#ref_terminology_Data Sync_ref_terminology">Data Sync Terminology</a></li>
-<li><a href="#ref_terminology_Identity Management_ref_terminology">Identity Management Terminology</a></li>
-<li><a href="#push-terminology-ref_terminology_Identity Management">Push Notifications Terminology</a></li>
+<li><a href="#ref_terminology_glossary">Data Sync Terminology</a></li>
+<li><a href="#reference-material-glossary">Identity Management Service terminology</a></li>
+<li><a href="#push-terminology-glossary">Push Notifications Terminology</a></li>
 <li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
-<li><a href="#ref_terminology_Device Security_ref_terminology">Device Security Terminology</a></li>
+<li><a href="#security-terminology-ref_terminology_Mobile CI/CD">Device Security Terminology</a></li>
 </ul>
 </div>
 <div class="sect1">
@@ -503,7 +590,7 @@ For more information, see <a href="registering-a-mobile-app.html" class="page">R
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref_terminology_Data Sync_ref_terminology"><a class="anchor" href="#ref_terminology_Data Sync_ref_terminology"></a>Data Sync Terminology</h2>
+<h2 id="ref_terminology_glossary"><a class="anchor" href="#ref_terminology_glossary"></a>Data Sync Terminology</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes terminology that is associated with Data Sync.</p>
@@ -512,50 +599,59 @@ For more information, see <a href="registering-a-mobile-app.html" class="page">R
 <dl>
 <dt class="hdlist1">GraphQL</dt>
 <dd>
-<p>A query language for data that is more powerful than a REST API. See <a href="https://graphql.org/learn">GraphQL</a></p>
+<p>A query language for your API, and a server-side runtime for executing queries by using a type system you define for your data. An alternative approach to REST for building APIs and applications. See <a href="https://graphql.org/learn">GraphQL</a>.</p>
 </dd>
 <dt class="hdlist1">Apollo</dt>
 <dd>
-<p>A client side library to work with a GraphQL based server. See <a href="https://www.apollographql.com/">Apollo</a></p>
+<p>Apollo is an implementation of GraphQL designed for the needs of product engineering teams building modern, data-driven applications. Apollo includes two open-source libraries, Apollo Server and Apollo Client. See <a href="https://www.apollographql.com">Apollo</a>.</p>
+</dd>
+<dt class="hdlist1">Apollo Server</dt>
+<dd>
+<p>Apollo Server is a library for building GraphQL APIs in Node.js. A developer defines a GraphQL schema and a set of resolvers to implement each part of the schema. See <a href="https://www.apollographql.com/docs/apollo-server">Apollo Server</a>.</p>
+</dd>
+<dt class="hdlist1">Apollo Client</dt>
+<dd>
+<p>Apollo Client is a JavaScript client library for building web and mobile applications powered by a GraphQL API. See <a href="https://www.apollographql.com/docs/react">Apollo Client</a>.</p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref_terminology_Identity Management_ref_terminology"><a class="anchor" href="#ref_terminology_Identity Management_ref_terminology"></a>Identity Management Terminology</h2>
+<h2 id="reference-material-glossary"><a class="anchor" href="#reference-material-glossary"></a>Identity Management Service terminology</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes terminology that is associated with Identity Management.</p>
 </div>
 <div class="dlist">
+<div class="title">Identity Management Terminology</div>
 <dl>
 <dt class="hdlist1">SSO</dt>
 <dd>
-<p><em>Single Sign On</em>, the ability to share a login between multiple services</p>
+<p>Single Sign On, the ability to share a login between multiple services</p>
 </dd>
 <dt class="hdlist1">OpenID Connect</dt>
 <dd>
-<p>a standard for providing identity on top of OAuth 2.0</p>
+<p>A standard for providing identity on top of OAuth 2.0</p>
 </dd>
 <dt class="hdlist1">Keycloak</dt>
 <dd>
-<p>Red Hat&#8217;s implementation of <em>SSO</em> and <em>OpenID</em> used as the identity provider</p>
+<p>Red Hat’s implementation of SSO and OpenID used as the identity provider</p>
 </dd>
 <dt class="hdlist1">Client ID</dt>
 <dd>
-<p>is the client identifier for <em>OpenID Connect</em> requests, a simple alpha-numeric string</p>
+<p>Is the client identifier for OpenID Connect requests, a simple alpha-numeric string</p>
 </dd>
 <dt class="hdlist1">User Attributes</dt>
 <dd>
-<p>additional properties for user accounts (besides name and email) managed by Keycloak</p>
+<p>Additional properties for user accounts (besides name and email) managed by Keycloak</p>
 </dd>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="push-terminology-ref_terminology_Identity Management"><a class="anchor" href="#push-terminology-ref_terminology_Identity Management"></a>Push Notifications Terminology</h2>
+<h2 id="push-terminology-glossary"><a class="anchor" href="#push-terminology-glossary"></a>Push Notifications Terminology</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes terminology that is associated with Push Notifications.</p>
@@ -629,7 +725,7 @@ Each supported variant type contains some platform specific properties, such as 
 </div>
 </div>
 <div class="sect1">
-<h2 id="ref_terminology_Device Security_ref_terminology"><a class="anchor" href="#ref_terminology_Device Security_ref_terminology"></a>Device Security Terminology</h2>
+<h2 id="security-terminology-ref_terminology_Mobile CI/CD"><a class="anchor" href="#security-terminology-ref_terminology_Mobile CI/CD"></a>Device Security Terminology</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes terminology that is associated with Device Security.</p>

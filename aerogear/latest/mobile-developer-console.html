@@ -167,25 +167,43 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -255,6 +273,12 @@ Zepto(function($){
     <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -270,19 +294,19 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
   </li>
 </ul>
   </li>
@@ -324,31 +348,91 @@ Zepto(function($){
     <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#setup">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server">Voyager Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-data-access">Data Access</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#server-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-metrics">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-audit-logs">Audit Logs</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#ui">The Data Sync UI</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-js-client">Voyager Client</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-basic-concepts">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#js-client-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-audit-logs">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-advanced-topics">Advanced Topics</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#schema">Working with a Schema</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server-openshift">Running Data Sync in OpenShift</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-openshift">Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#building-and-publishing-the-container">Prepare Container</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-service">Provisioning Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#sdk">Adding sync to your app</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-templates">Provisioning From Templates</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#auth">Authentication for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding">Binding Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#authorization">Authorization for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding-keycloak">Binding KeyCloak</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -400,6 +484,9 @@ Zepto(function($){
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -426,7 +513,7 @@ Zepto(function($){
           <a href="index.html">latest</a>
         </li>
         <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+          <a href="../v2.0/index.html">v2.0</a>
         </li>
       </ul>
     </li>
@@ -449,7 +536,7 @@ Zepto(function($){
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
     <a class="version is-current" href="mobile-developer-console.html">latest</a>
-    <a class="version is-missing" href="../v1.0/index.html">v1.0</a>
+    <a class="version" href="../v2.0/mobile-developer-console.html">v2.0</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/mobile-developer-console.adoc"></a></div>
@@ -466,7 +553,6 @@ Zepto(function($){
 <ul class="sectlevel2">
 <li><a href="#viewing-mobile-services">Viewing mobile services</a></li>
 <li><a href="#binding-mobile-services">Binding mobile services</a></li>
-<li><a href="#unbinding-mobile-services">Unbinding mobile services</a></li>
 </ul>
 </li>
 <li><a href="#building">Building Mobile Apps</a>
@@ -490,7 +576,7 @@ Zepto(function($){
 <div class="ulist">
 <ul>
 <li>
-<p>create representation of your mobile application in OpenShift</p>
+<p>create a representation of your mobile application in OpenShift</p>
 </li>
 <li>
 <p>bind Mobile App with mobile services</p>
@@ -499,7 +585,7 @@ Zepto(function($){
 <p>build your mobile app (requires <a href="mobile-cicd.html">Mobile CI/CD</a> service)</p>
 </li>
 <li>
-<p>get <code>mobile-services.json</code> configuration file for AeroGear SDK</p>
+<p>get the <code>mobile-services.json</code> configuration file for use in your local development environment</p>
 </li>
 </ul>
 </div>
@@ -556,7 +642,7 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </div>
 <div class="paragraph">
 <p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
-Provisioning a service may take some time.</p>
+Provisioning the Mobile Developer Console may take some time.</p>
 </div>
 </div>
 </div>
@@ -564,10 +650,10 @@ Provisioning a service may take some time.</p>
 <h2 id="registering"><a class="anchor" href="#registering"></a>Registering a Mobile App</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After provisioning Mobile Developer Console, the next step is to register a Mobile App for the mobile application that you are going to develop.</p>
+<p>After provisioning Mobile Developer Console, the next step is to register the Mobile App that you are going to develop.</p>
 </div>
-<h3 id="procedure" class="discrete">Procedure</h3>
 <div class="paragraph">
+<div class="title">Procedure</div>
 <p>To create a Mobile App:</p>
 </div>
 <div class="olist arabic">
@@ -579,16 +665,16 @@ Provisioning a service may take some time.</p>
 <p>Choose project where you have previously deployed Mobile Developer Console.</p>
 </li>
 <li>
-<p>Open Mobile Developer Console by clicking on its route in Overview screen.</p>
+<p>Open Mobile Developer Console by clicking on its route in the <strong>Overview</strong> screen.</p>
 </li>
 <li>
-<p>Log into the Mobile Developer Console.</p>
+<p>Log into the <strong>Mobile Developer Console</strong>.</p>
 </li>
 <li>
 <p>Click on <code>Create Mobile App</code> button.</p>
 </li>
 <li>
-<p>Enter name of your mobile application.</p>
+<p>Enter a name for your Mobile App.</p>
 </li>
 <li>
 <p>Click <code>Create</code> button.</p>
@@ -603,9 +689,9 @@ Provisioning a service may take some time.</p>
 <div class="sect2">
 <h3 id="viewing-mobile-services"><a class="anchor" href="#viewing-mobile-services"></a>Viewing mobile services</h3>
 <div class="paragraph">
-<p>In order to use services with a mobile app, the Mobile App associated with the app must be bound to services.
-To show the list of services, go to the application <strong>Overview</strong> screen and to the <strong>Mobile Services</strong> tab.
-There is a list of services available to be bound to the Mobile App and list of services that have already been bound to the client.</p>
+<p>In order to use services with a mobile app, the Mobile App associated with the app must be bound to the appropriate services.
+To show the list of services, navigate to the application <strong>Overview</strong> screen and to the <strong>Mobile Services</strong> tab.
+A list of bound and available services is displayed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -633,57 +719,70 @@ to the Mobile App. If a service has not yet been bound to a Mobile App, a bindin
 the <strong>Create Binding</strong> button.</p>
 </div>
 <div class="paragraph">
-<p>You can bind a service by clicking <strong>Bind to App</strong> (image is the example of a Push Service).</p>
+<p>You can bind your Mobile App to a service by :</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click <strong>Bind to App</strong> (example image shows a Push Service binding).</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-service-bind-1.png" alt="mobile clients service bind 1">
 </div>
 </div>
-<div class="paragraph">
-<p>At the second step you can fill in configuration details for the binding (image is the example of a Push Service).</p>
-</div>
+</li>
+<li>
+<p>Fill in configuration details for the binding (example image shows a Push Service binding).</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-service-bind-2.png" alt="mobile clients service bind 2">
 </div>
 </div>
-<div class="paragraph">
-<p>Press <strong>Create</strong> to create the binding (image is the example of a Push Service).</p>
-</div>
+</li>
+<li>
+<p>Press <strong>Create</strong> to create the binding (example image shows a Push Service binding).</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-service-bind-3.png" alt="mobile clients service bind 3">
 </div>
 </div>
-<div class="paragraph">
-<p><strong>Note:</strong> You can safely close the dialog, everything is processed in the background.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can safely close the dialog, the process continues in the background.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>After the binding is complete, the configuration in <code>mobile-services.json</code> for the Mobile App is updated in the
-<strong>Configuration</strong> tab. This configuration is used by your app to interact with the bound services.</p>
+<strong>Configuration</strong> tab.
+This configuration is used by your app to interact with the bound services.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-overview-mobile-services-json.png" alt="mobile clients overview mobile services json">
 </div>
 </div>
-<div class="sect3">
-<h4 id="multiple-service-bindings"><a class="anchor" href="#multiple-service-bindings"></a>Multiple service bindings</h4>
 <div class="paragraph">
-<p>It&#8217;s most usual to have only one binding per service in the application but in some cases it&#8217;s possible to create multiple bindings.
-There will be <strong>Bind to App</strong> button on the already bound service. The process for binding is the same.</p>
+<div class="title">Multiple service bindings</div>
+<p>Typically, you create only one binding per service but in some cases it is possible to create multiple bindings.
+In this case, a  <strong>Bind to App</strong> button is displayed for an already bound service.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-service-multibinding.png" alt="mobile clients service multibinding">
 </div>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="unbinding-mobile-services"><a class="anchor" href="#unbinding-mobile-services"></a>Unbinding mobile services</h3>
 <div class="paragraph">
+<div class="title">Unbinding mobile services</div>
 <p>To remove the binding press the <span class="image"><img src="_images/3dots.png" alt="3dots"></span> button and select <strong>Delete</strong>.</p>
 </div>
 <div class="imageblock">
@@ -691,15 +790,13 @@ There will be <strong>Bind to App</strong> button on the already bound service. 
 <img src="_images/mobile-clients-service-unbind.png" alt="mobile clients service unbind">
 </div>
 </div>
-<div class="sect3">
-<h4 id="multiple-services-unbinding"><a class="anchor" href="#multiple-services-unbinding"></a>Multiple services unbinding</h4>
 <div class="paragraph">
+<div class="title">Multiple services unbinding</div>
 <p>If there are multiple bindings for the service there will be more options for the deletion.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/mobile-clients-service-multibinding-delete.png" alt="mobile clients service multibinding delete">
-</div>
 </div>
 </div>
 </div>
@@ -851,10 +948,10 @@ You may need to enable the installation of apps from unknown sources on Android 
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
     ...
-    implementation 'org.aerogear:android-core:1.0.0'
-    implementation 'org.aerogear:android-push:1.0.0'
-    implementation 'org.aerogear:android-auth:1.0.0'
-    implementation 'org.aerogear:android-security:1.0.0'
+    implementation 'org.aerogear:android-core:2.0.0'
+    implementation 'org.aerogear:android-push:2.0.0'
+    implementation 'org.aerogear:android-auth:2.0.0'
+    implementation 'org.aerogear:android-security:2.0.0'
 }</code></pre>
 </div>
 </div>
@@ -918,10 +1015,10 @@ use_frameworks!
 
 target :'YourTarget' do
     ## Require one of the AeroGear SDK's here
-    pod 'AGSCore', '1.0.0'
-    pod 'AGSPush', '1.0.0'
-    pod 'AGSAuth', '1.0.0'
-    pod 'AGSSecurity', '1.0.0'
+    pod 'AGSCore', '2.0.0'
+    pod 'AGSPush', '2.0.0'
+    pod 'AGSAuth', '2.0.0'
+    pod 'AGSSecurity', '2.0.0'
 end</code></pre>
 </div>
 </div>

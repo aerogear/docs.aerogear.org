@@ -167,25 +167,43 @@ Zepto(function($){
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provision-mdc">Provisioning Mobile Developer Console</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#registering">Registering a Mobile App</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#provisioning">Provisioning a Service</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#binding">Binding Services</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="getting-started.html#running">Running a Mobile App</a>
+</ul>
   </li>
 </ul>
   </li>
@@ -255,6 +273,12 @@ Zepto(function($){
     <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -270,19 +294,19 @@ Zepto(function($){
     <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#setup">Setting Up</a>
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#app">App and Device</a>
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#identity">Identity Management</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#sync">Monitoring Data Sync Service</a>
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="mobile-metrics.html#using-dashboards">Using Dashboards</a>
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
   </li>
 </ul>
   </li>
@@ -324,31 +348,91 @@ Zepto(function($){
     <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#setup">Setting Up</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server">Voyager Server</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-data-access">Data Access</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#server-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-metrics">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-audit-logs">Audit Logs</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#ui">The Data Sync UI</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-js-client">Voyager Client</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-basic-concepts">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-getting-started">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-realtime-updates">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-auth">Authentication and Authorization</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#js-client-files">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-audit-logs">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-js-client-advanced-topics">Advanced Topics</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#schema">Working with a Schema</a>
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html#sync-server-openshift">Running Data Sync in OpenShift</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-openshift">Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#resolvers">Adding resolvers to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#building-and-publishing-the-container">Prepare Container</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#subscriptions">Adding subscriptions to a Schema</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-service">Provisioning Overview</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#sdk">Adding sync to your app</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#provisioning-data-sync-templates">Provisioning From Templates</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#monitoring">Monitoring Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#auth">Authentication for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding">Binding Mobile App</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#authorization">Authorization for Data Sync Service</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="data-sync.html#sync-server-binding-keycloak">Binding KeyCloak</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -400,6 +484,9 @@ Zepto(function($){
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ref_api.html">API Reference</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -426,7 +513,7 @@ Zepto(function($){
           <a href="index.html">latest</a>
         </li>
         <li class="version">
-          <a href="../v1.0/index.html">v1.0</a>
+          <a href="../v2.0/index.html">v2.0</a>
         </li>
       </ul>
     </li>
@@ -449,7 +536,7 @@ Zepto(function($){
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
     <a class="version is-current" href="showcase-apps.html">latest</a>
-    <a class="version" href="../v1.0/showcase-apps.html">v1.0</a>
+    <a class="version" href="../v2.0/showcase-apps.html">v2.0</a>
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/showcase-apps.adoc"></a></div>
@@ -485,6 +572,7 @@ Zepto(function($){
 <li><a href="#features">Demonstrating the ShowCase App Features</a>
 <ul class="sectlevel2">
 <li><a href="#identity-management">Identity Management</a></li>
+<li><a href="#data-sync">Data Sync</a></li>
 <li><a href="#device-security">Device Security</a></li>
 <li><a href="#push-notifications">Push Notifications</a></li>
 <li><a href="#mobile-metrics">Mobile Metrics</a></li>
@@ -576,6 +664,105 @@ starting point for the developers.</p>
 <li>
 <p>To demonstrate Push Notifications, <a href="push-notifications.html#provisioning-push-notifications-service" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
 </li>
+<li>
+<p>To demonstrate Data Sync:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only demonstrate Data Sync on Cordova.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Provision a PostgreSQL database if there isn&#8217;t one available.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Login to the OpenShift web console, create a new project or use an existing one</p>
+</li>
+<li>
+<p>Click on the <code>Add to Project</code> dropdown on the top right, and choose <code>Browse Catalog</code></p>
+</li>
+<li>
+<p>Select <code>Databases</code> &#8594; <code>Postgres</code> &#8594; <code>PostgreSQL</code>, and complete the wizard to start the deployment of the database. Take notes of the values for <code>PostgreSQL Connection Username</code>, <code>PostgreSQL Connection Password</code> and <code>PostgreSQL Database Name</code>. You will need them later.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Provision a new Data Sync app from the catalog as described in <a href="data-sync.html#sync-server-openshift" class="page">Running Data Sync in OpenShift</a> with the following parameters:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">syncshowcase</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docker.io/aerogear/voyager-server-example-task" class="bare">http://docker.io/aerogear/voyager-server-example-task</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application health endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">health</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application metrics endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metrics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync App Port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync App GraphQL Endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">graphql</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Hostname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Hostname of the PostgreSQL server</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Port number of the PostgreSQL server, usually should be 5432</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Username of the PostgreSQL database connection</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Password of the PostgreSQL database connection</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>PostgreSQL database name</strong></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><a href="data-sync.html#sync-server-binding-keycloak" class="page">Protect the Data Sync app using Identity Management</a></p>
+</li>
+</ol>
+</div>
+</li>
 </ol>
 </div>
 </div>
@@ -586,13 +773,13 @@ starting point for the developers.</p>
 <div class="ulist tabs">
 <ul>
 <li>
+<p><a id="tabset1_cordova"></a>Cordova</p>
+</li>
+<li>
 <p><a id="tabset1_android"></a>Android</p>
 </li>
 <li>
 <p><a id="tabset1_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset1_cordova"></a>Cordova</p>
 </li>
 <li>
 <p><a id="tabset1_xamarin"></a>Xamarin</p>
@@ -600,6 +787,27 @@ starting point for the developers.</p>
 </ul>
 </div>
 <div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_cordova">
+<div class="paragraph">
+<p>You need the following installed on your machine:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> version 8.9.4 runtime and NPM</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli" target="_blank" rel="noopener">Cordova CLI</a> version 8.0.0</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> <a href="https://github.com/ionic-team/ionic">Ionic</a> version 4</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For information on how to set up a local Cordova development environment, see the <a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova documentation</a>.</p>
+</div>
+</div>
 <div class="tab-pane" aria-labelledby="tabset1_android">
 <div class="paragraph">
 <p>You need the following installed on your machine:</p>
@@ -648,24 +856,6 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <p>For information on how to set up a local iOS development environment, see the <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html" target="_blank" rel="noopener">Swift documentation</a>.</p>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset1_cordova">
-<div class="paragraph">
-<p>You need the following installed on your machine:</p>
-</div>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-check-square-o"></i> <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> version 8.9.4 runtime and NPM</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i>  <a href="https://cordova.apache.org/docs/en/latest/guide/cli/#installing-the-cordova-cli" target="_blank" rel="noopener">Cordova CLI</a> version 8.0.0</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For information on how to set up a local Cordova development environment, see the <a href="https://cordova.apache.org/#getstarted" target="_blank" rel="noopener">Cordova documentation</a>.</p>
-</div>
-</div>
 <div class="tab-pane" aria-labelledby="tabset1_xamarin">
 <div class="paragraph">
 <p>You need the following installed on your system:</p>
@@ -693,7 +883,7 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Clone the showcase app and checkout the release tag 1.0.0</p>
+<p>Clone the showcase app and checkout the release tag 2.0.0</p>
 </li>
 </ol>
 </div>
@@ -701,13 +891,13 @@ If you have not installed CocoaPods, install it by running the command:</p>
 <div class="ulist tabs">
 <ul>
 <li>
+<p><a id="tabset2_cordova"></a>Cordova</p>
+</li>
+<li>
 <p><a id="tabset2_android"></a>Android</p>
 </li>
 <li>
 <p><a id="tabset2_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset2_cordova"></a>Cordova</p>
 </li>
 <li>
 <p><a id="tabset2_xamarin"></a>Xamarin</p>
@@ -715,12 +905,21 @@ If you have not installed CocoaPods, install it by running the command:</p>
 </ul>
 </div>
 <div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_cordova">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ionic-showcase.git
+$ cd ionic-showcase
+$ git checkout 2.0.0</code></pre>
+</div>
+</div>
+</div>
 <div class="tab-pane" aria-labelledby="tabset2_android">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
 $ cd android-showcase-template
-$ git checkout 1.0.0</code></pre>
+$ git checkout 2.0.0</code></pre>
 </div>
 </div>
 </div>
@@ -729,16 +928,7 @@ $ git checkout 1.0.0</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
 $ cd ios-showcase-template
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_cordova">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/cordova-showcase-template.git
-$ cd cordova-showcase-template
-$ git checkout 1.0.0</code></pre>
+$ git checkout 2.0.0</code></pre>
 </div>
 </div>
 </div>
@@ -747,7 +937,7 @@ $ git checkout 1.0.0</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
 $ cd xamarin-showcase-template
-$ git checkout 1.0.0</code></pre>
+$ git checkout 2.0.0</code></pre>
 </div>
 </div>
 </div>
@@ -764,13 +954,13 @@ $ git checkout 1.0.0</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
+<p><a id="tabset3_cordova"></a>Cordova</p>
+</li>
+<li>
 <p><a id="tabset3_android"></a>Android</p>
 </li>
 <li>
 <p><a id="tabset3_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset3_cordova"></a>Cordova</p>
 </li>
 <li>
 <p><a id="tabset3_xamarin"></a>Xamarin</p>
@@ -778,6 +968,22 @@ $ git checkout 1.0.0</code></pre>
 </ul>
 </div>
 <div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_cordova">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You will need to create a project on <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>.</p>
+</li>
+<li>
+<p>Follow steps outlined <a href="https://support.google.com/firebase/answer/7015592?hl=en" target="_blank" rel="noopener">here</a> to download <code>google-services.json</code> from your Firebase project.</p>
+</li>
+<li>
+<p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
+Firebase Cloud Messaging console.</p>
+</li>
+</ol>
+</div>
+</div>
 <div class="tab-pane" aria-labelledby="tabset3_android">
 <div class="olist arabic">
 <ol class="arabic">
@@ -830,22 +1036,6 @@ The exported p12 file with the password will be used later when binding your Mob
 </ol>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_cordova">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>You will need to create a project on <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>.</p>
-</li>
-<li>
-<p>Follow steps outlined <a href="https://support.google.com/firebase/answer/7015592?hl=en" target="_blank" rel="noopener">here</a> to download <code>google-services.json</code> from your Firebase project.</p>
-</li>
-<li>
-<p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
-Firebase Cloud Messaging console.</p>
-</li>
-</ol>
-</div>
-</div>
 <div class="tab-pane" aria-labelledby="tabset3_xamarin">
 <div class="paragraph">
 <p>Push Notifications Service is not supported on Xamarin.</p>
@@ -879,6 +1069,9 @@ This step also creates a variant as described in <a href="push-notifications.htm
 </table>
 </div>
 </li>
+<li>
+<p><a href="data-sync.html#sync-server-binding" class="page">Bind the Mobile App to the Data Sync app</a> if you want to demonstrate Data Sync.</p>
+</li>
 </ol>
 </div>
 </div>
@@ -887,16 +1080,26 @@ This step also creates a variant as described in <a href="push-notifications.htm
 <div class="sect1">
 <h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section only applies to the Ionic platform.
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Open your Mobile App in Mobile Developer Console.</p>
 </li>
 <li>
-<p>Copy the <code>mobile-services.json</code> configuration to your clipboard.</p>
-</li>
-<li>
-<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<p>Copy the <code>mobile-services.json</code> configuration to your clipboard.
+Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -911,73 +1114,9 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </li>
 <li>
-<p>Follow the platform-specific instructions:</p>
+<p>Copy the contents of the <code>mobile-services.json</code> file and paste them into the <code>mobile-services.json</code> located in <code>src</code>.</p>
 </li>
 </ol>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset4_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset4_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset4_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset4_xamarin"></a>Xamarin</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_android">
-<div class="paragraph">
-<p>Move mobile-services.json to the following location in your application project:</p>
-</div>
-<div class="paragraph">
-<p><code>app/src/main/assets/mobile-services.json</code></p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_ios">
-<div class="paragraph">
-<p>Move mobile-services.json to the following location in your application project:</p>
-</div>
-<div class="paragraph">
-<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Ensure that <code>mobile-services.json</code> is a member of the project in the Xcode Project Navigator.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_cordova">
-<div class="paragraph">
-<p>Move mobile-services.json to the following location in your application project:</p>
-</div>
-<div class="paragraph">
-<p><code>src/mobile-services.json</code></p>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_xamarin">
-<div class="paragraph">
-<p>Move mobile-services.json to the following location in your application project:</p>
-</div>
-<div class="paragraph">
-<p><code>Resources/mobile-services.json</code></p>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="build"><a class="anchor" href="#build"></a>Building and Running the Showcase App</h3>
@@ -992,15 +1131,62 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset5_android"></a>Android</p>
+<p><a id="tabset4_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset4_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset4_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset4_xamarin"></a>Xamarin</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_android">
+<div class="tab-pane" aria-labelledby="tabset4_cordova">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
+$ npm run ionic:build</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_android">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_ios">
+<div class="paragraph">
+<p>Run this command to install dependencies:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install CocoaPods as described in <a href="https://cocoapods.org/" class="bare">https://cocoapods.org/</a> if it is not already installed.</p>
+</li>
+<li>
+<p>Run this command to install dependencies:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_xamarin">
+<div class="paragraph">
+<p>Run this command to install dependencies (optional):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
 </div>
 </div>
 </div>
@@ -1017,49 +1203,21 @@ Ensure that <code>mobile-services.json</code> is a member of the project in the 
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset6_android"></a>Android</p>
+<p><a id="tabset5_cordova"></a>Cordova</p>
 </li>
 <li>
-<p><a id="tabset6_ios"></a>iOS</p>
+<p><a id="tabset5_android"></a>Android</p>
 </li>
 <li>
-<p><a id="tabset6_cordova"></a>Cordova</p>
+<p><a id="tabset5_ios"></a>iOS</p>
 </li>
 <li>
-<p><a id="tabset6_xamarin"></a>Xamarin</p>
+<p><a id="tabset5_xamarin"></a>Xamarin</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset6_android">
-<div class="paragraph">
-<p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
-no connected device, it installs and runs the application on the emulator.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew installDebug</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_ios">
-<div class="paragraph">
-<p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Do not use <code>.xcodeproj</code>. If you open up a project file instead of a workspace, dependencies will not be correctly configured.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset6_cordova">
+<div class="tab-pane" aria-labelledby="tabset5_cordova">
 <div class="paragraph">
 <p>To run the showcase app, use these commands:</p>
 </div>
@@ -1082,7 +1240,35 @@ $ ionic cordova run android --emulator    # run on the Android emulator</code></
 </div>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset6_xamarin">
+<div class="tab-pane" aria-labelledby="tabset5_android">
+<div class="paragraph">
+<p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
+no connected device, it installs and runs the application on the emulator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew installDebug</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_ios">
+<div class="paragraph">
+<p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Do not use <code>.xcodeproj</code>. If you open up a project file instead of a workspace, dependencies will not be correctly configured.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_xamarin">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1203,15 +1389,15 @@ base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/loca
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset7_android"></a>Android</p>
+<p><a id="tabset6_android"></a>Android</p>
 </li>
 <li>
-<p><a id="tabset7_ios"></a>iOS</p>
+<p><a id="tabset6_ios"></a>iOS</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset7_android">
+<div class="tab-pane" aria-labelledby="tabset6_android">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1258,7 +1444,7 @@ certificate and let you add it to the device. Here is <a href="https://support.g
 </ol>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset7_ios">
+<div class="tab-pane" aria-labelledby="tabset6_ios">
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1315,13 +1501,53 @@ installed certificate. Instructions can be found on the
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="identity-management"><a class="anchor" href="#identity-management"></a>Identity Management</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Please make sure you have <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">created a user</a> and <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">set up credentials</a> first.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>From the showcase app:</p>
 </div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset7_others"></a>Others</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_cordova">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Press the <strong>Authenticate</strong> menu item. A login screen is displayed.</p>
+<p>To log in, click the <strong>Login</strong> button.</p>
+</li>
+<li>
+<p>A login page is displayed, enter your credentials.</p>
+</li>
+<li>
+<p>Once the login is successful, go to <strong>User Profile</strong> page and see the basic and roles information about the user.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_others">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press the <strong>Authenticate</strong> menu item depending on the platform. A login screen is displayed.</p>
 </li>
 <li>
 <p>Log in using the credentials you set up with setting up the service.</p>
@@ -1329,6 +1555,55 @@ installed certificate. Instructions can be found on the
 <p>Once the login is successful, you will be taken back to the showcase
 application where you can see the roles and basic information of the user you have just logged in with.</p>
 </div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-sync"><a class="anchor" href="#data-sync"></a>Data Sync</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is only available in the Cordova showcase app.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To demonstrate all the features that Data Sync offers, it&#8217;s best to run the same app on multiple devices at the same time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>From the showcase app:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press the <strong>Manage Tasks</strong> menu item.</p>
+</li>
+<li>
+<p>View tasks created by other people and try to edit them. See them changed on other devices.</p>
+</li>
+<li>
+<p>Create new tasks and see them show up on other devices.</p>
+</li>
+<li>
+<p>Bring the device offline by switching to <strong>Airplane Mode</strong>, create a few more tasks and edit a few existing tasks. Then switch the device back online and see them changed on other devices.</p>
 </li>
 </ol>
 </div>
