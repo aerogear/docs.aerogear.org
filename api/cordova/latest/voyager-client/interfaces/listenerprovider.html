@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NextState | @aerogear/voyager-client</title>
+	<title>ListenerProvider | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,35 +54,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="nextstate.html">NextState</a>
+					<a href="listenerprovider.html">ListenerProvider</a>
 				</li>
 			</ul>
-			<h1>Interface NextState</h1>
+			<h1>Interface ListenerProvider</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Interface for handling changing state of the object.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">NextState</span>
+						<span class="target">ListenerProvider</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../classes/versionednextstate.html" class="tsd-signature-type">VersionedNextState</a></li>
+					<li><a href="../classes/offlineclient.html" class="tsd-signature-type">OfflineClient</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -90,44 +83,25 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="nextstate.html#nextstate-1" class="tsd-kind-icon">next<wbr>State</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="listenerprovider.html#queuelisteners" class="tsd-kind-icon">queue<wbr>Listeners</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="nextstate-1" class="tsd-anchor"></a>
-					<h3>next<wbr>State</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">next<wbr>State<span class="tsd-signature-symbol">(</span>currentObjectState<span class="tsd-signature-symbol">: </span><a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/conflicts/NextState.ts#L11">conflicts/NextState.ts:11</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>currentObjectState: <a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the object wish you would like
-										to progress to its next state</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="queuelisteners" class="tsd-anchor"></a>
+					<h3>queue<wbr>Listeners</h3>
+					<div class="tsd-signature tsd-kind-icon">queue<wbr>Listeners<span class="tsd-signature-symbol">:</span> <a href="offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/ListenerProvider.ts#L4">offline/events/ListenerProvider.ts:4</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -144,10 +118,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="nextstate.html" class="tsd-kind-icon">Next<wbr>State</a>
+						<a href="listenerprovider.html" class="tsd-kind-icon">Listener<wbr>Provider</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="nextstate.html#nextstate-1" class="tsd-kind-icon">next<wbr>State</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="listenerprovider.html#queuelisteners" class="tsd-kind-icon">queue<wbr>Listeners</a>
 							</li>
 						</ul>
 					</li>

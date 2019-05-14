@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OfflineRestoreHandler | @aerogear/voyager-client</title>
+	<title>AppSecurity | @aerogear/security</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@aerogear/voyager-client</a>
+					<a href="../index.html" class="title">@aerogear/security</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,30 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="offlinerestorehandler.html">OfflineRestoreHandler</a>
+					<a href="appsecurity.html">AppSecurity</a>
 				</li>
 			</ul>
-			<h1>Class OfflineRestoreHandler</h1>
+			<h1>Class AppSecurity</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Class used to restore offline queue after page/application restarts.
-							It will trigger saved offline mutations using client to
-						restore all elements in the link.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OfflineRestoreHandler</span>
+						<span class="target">AppSecurity</span>
 					</li>
 				</ul>
 			</section>
@@ -88,13 +79,15 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="offlinerestorehandler.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="appsecurity.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinerestorehandler.html#replayofflinemutations" class="tsd-kind-icon">replay<wbr>Offline<wbr>Mutations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="appsecurity.html#clientinit" class="tsd-kind-icon">client<wbr>Init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="appsecurity.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="appsecurity.html#hasconfig" class="tsd-kind-icon">has<wbr>Config</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,28 +99,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Offline<wbr>Restore<wbr>Handler<span class="tsd-signature-symbol">(</span>apolloClient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ApolloClient</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NormalizedCacheObject</span><span class="tsd-signature-symbol">&gt;</span>, storage<span class="tsd-signature-symbol">: </span><a href="../interfaces/persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span>, storageKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlinerestorehandler.html" class="tsd-signature-type">OfflineRestoreHandler</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>App<wbr>Security<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConfigurationService</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/appsecurityoptions.html" class="tsd-signature-type">AppSecurityOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="appsecurity.html" class="tsd-signature-type">AppSecurity</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineRestoreHandler.ts#L19">offline/OfflineRestoreHandler.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/security/src/appSecurity/AppSecurity.ts#L18">appSecurity/AppSecurity.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>apolloClient: <span class="tsd-signature-type">ApolloClient</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">NormalizedCacheObject</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>config: <span class="tsd-signature-type">ConfigurationService</span></h5>
 								</li>
 								<li>
-									<h5>storage: <a href="../interfaces/persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-								<li>
-									<h5>storageKey: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/appsecurityoptions.html" class="tsd-signature-type">AppSecurityOptions</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="offlinerestorehandler.html" class="tsd-signature-type">OfflineRestoreHandler</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="appsecurity.html" class="tsd-signature-type">AppSecurity</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -135,26 +125,68 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="replayofflinemutations" class="tsd-anchor"></a>
-					<h3>replay<wbr>Offline<wbr>Mutations</h3>
+					<a name="clientinit" class="tsd-anchor"></a>
+					<h3>client<wbr>Init</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">replay<wbr>Offline<wbr>Mutations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">client<wbr>Init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineRestoreHandler.ts#L34">offline/OfflineRestoreHandler.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/security/src/appSecurity/AppSecurity.ts#L41">appSecurity/AppSecurity.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Replay mutations to client.
-										This operation will help to rebuild Apollo Link observer chain
-									after page refresh/app restart</p>
+									<p>client Init called on device start returns app security enable/disable data</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getconfig" class="tsd-anchor"></a>
+					<h3>get<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/security/src/appSecurity/AppSecurity.ts#L59">appSecurity/AppSecurity.ts:59</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the config used for the Security server</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="hasconfig" class="tsd-anchor"></a>
+					<h3>has<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/security/src/appSecurity/AppSecurity.ts#L66">appSecurity/AppSecurity.ts:66</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return true if config is present</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -173,18 +205,78 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="offlinerestorehandler.html" class="tsd-kind-icon">Offline<wbr>Restore<wbr>Handler</a>
+						<a href="appsecurity.html" class="tsd-kind-icon">App<wbr>Security</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="offlinerestorehandler.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="appsecurity.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinerestorehandler.html#replayofflinemutations" class="tsd-kind-icon">replay<wbr>Offline<wbr>Mutations</a>
+								<a href="appsecurity.html#clientinit" class="tsd-kind-icon">client<wbr>Init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="appsecurity.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="appsecurity.html#hasconfig" class="tsd-kind-icon">has<wbr>Config</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="checkresultmetrics.html" class="tsd-kind-icon">Check<wbr>Result<wbr>Metrics</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="debuggerenabledcheck.html" class="tsd-kind-icon">Debugger<wbr>Enabled<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="isemulatorcheck.html" class="tsd-kind-icon">Is<wbr>Emulator<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="rootenabledcheck.html" class="tsd-kind-icon">Root<wbr>Enabled<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="screenlockenabledcheck.html" class="tsd-kind-icon">Screen<wbr>Lock<wbr>Enabled<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="securityservice.html" class="tsd-kind-icon">Security<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/appsecurityoptions.html" class="tsd-kind-icon">App<wbr>Security<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/devicecheck.html" class="tsd-kind-icon">Device<wbr>Check</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/devicecheckresult.html" class="tsd-kind-icon">Device<wbr>Check<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/securitycheckresultmetric.html" class="tsd-kind-icon">Security<wbr>Check<wbr>Result<wbr>Metric</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#iroot" class="tsd-kind-icon">IRoot</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#cordova" class="tsd-kind-icon">cordova</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#debugmodeenabled" class="tsd-kind-icon">debug<wbr>Mode<wbr>Enabled</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#device" class="tsd-kind-icon">device</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#document" class="tsd-kind-icon">document</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#isemulator" class="tsd-kind-icon">is<wbr>Emulator</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#rootenabled" class="tsd-kind-icon">root<wbr>Enabled</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#screenlockenabled" class="tsd-kind-icon">screen<wbr>Lock<wbr>Enabled</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

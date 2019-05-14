@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OfflineQueueOptions | @aerogear/voyager-client</title>
+	<title>OfflineError | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,21 +54,35 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="offlinequeueoptions.html">OfflineQueueOptions</a>
+					<a href="offlineerror.html">OfflineError</a>
 				</li>
 			</ul>
-			<h1>Interface OfflineQueueOptions</h1>
+			<h1>Class OfflineError</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents error object returned to user when offline</p>
+					</div>
+					<p>Usage:</p>
+					<pre><code class="language-javascript">client.mutate(...).catch(<span class="hljs-function">(<span class="hljs-params">error</span>)=&gt;</span> {
+ <span class="hljs-keyword">if</span>(error.networkError &amp;&amp; error.networkError.offline){
+   <span class="hljs-keyword">const</span> offlineError: OfflineError =  error.networkError;
+   offlineError.watchOfflineChange().then(...)
+ }
+});</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OfflineQueueOptions</span>
+						<span class="target">OfflineError</span>
 					</li>
 				</ul>
 			</section>
@@ -77,80 +91,94 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="offlineerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeueoptions.html#listener" class="tsd-kind-icon">listener</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeueoptions.html#ondequeue" class="tsd-kind-icon">on<wbr>Dequeue</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeueoptions.html#onenqueue" class="tsd-kind-icon">on<wbr>Enqueue</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeueoptions.html#squashoperations" class="tsd-kind-icon">squash<wbr>Operations</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeueoptions.html#storage" class="tsd-kind-icon">storage</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeueoptions.html#storagekey" class="tsd-kind-icon">storage<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="offlineerror.html#offline" class="tsd-kind-icon">offline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="offlineerror.html#offlinemutationpromise" class="tsd-kind-icon">offline<wbr>Mutation<wbr>Promise</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlineerror.html#watchofflinechange" class="tsd-kind-icon">watch<wbr>Offline<wbr>Change</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Offline<wbr>Error<span class="tsd-signature-symbol">(</span>offlineMutationPromise<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlineerror.html" class="tsd-signature-type">OfflineError</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineError.ts#L18">offline/OfflineError.ts:18</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>offlineMutationPromise: <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="offlineerror.html" class="tsd-signature-type">OfflineError</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="listener" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> listener</h3>
-					<div class="tsd-signature tsd-kind-icon">listener<span class="tsd-signature-symbol">:</span> <a href="offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="offline" class="tsd-anchor"></a>
+					<h3>offline</h3>
+					<div class="tsd-signature tsd-kind-icon">offline<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineQueue.ts#L12">offline/OfflineQueue.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineError.ts#L17">offline/OfflineError.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ondequeue" class="tsd-anchor"></a>
-					<h3>on<wbr>Dequeue</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Dequeue<span class="tsd-signature-symbol">:</span> <a href="../globals.html#operationqueuechangehandler" class="tsd-signature-type">OperationQueueChangeHandler</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="offlinemutationpromise" class="tsd-anchor"></a>
+					<h3>offline<wbr>Mutation<wbr>Promise</h3>
+					<div class="tsd-signature tsd-kind-icon">offline<wbr>Mutation<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineQueue.ts#L14">offline/OfflineQueue.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineError.ts#L18">offline/OfflineError.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onenqueue" class="tsd-anchor"></a>
-					<h3>on<wbr>Enqueue</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Enqueue<span class="tsd-signature-symbol">:</span> <a href="../globals.html#operationqueuechangehandler" class="tsd-signature-type">OperationQueueChangeHandler</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineQueue.ts#L13">offline/OfflineQueue.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="squashoperations" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> squash<wbr>Operations</h3>
-					<div class="tsd-signature tsd-kind-icon">squash<wbr>Operations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineQueue.ts#L11">offline/OfflineQueue.ts:11</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="storage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> storage</h3>
-					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineQueue.ts#L9">offline/OfflineQueue.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="storagekey" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> storage<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">storage<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OfflineQueue.ts#L10">offline/OfflineQueue.ts:10</a></li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="watchofflinechange" class="tsd-anchor"></a>
+					<h3>watch<wbr>Offline<wbr>Change</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">watch<wbr>Offline<wbr>Change<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineError.ts#L24">offline/OfflineError.ts:24</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -166,26 +194,20 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="offlinequeueoptions.html" class="tsd-kind-icon">Offline<wbr>Queue<wbr>Options</a>
+					<li class="current tsd-kind-class">
+						<a href="offlineerror.html" class="tsd-kind-icon">Offline<wbr>Error</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeueoptions.html#listener" class="tsd-kind-icon">listener</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="offlineerror.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeueoptions.html#ondequeue" class="tsd-kind-icon">on<wbr>Dequeue</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="offlineerror.html#offline" class="tsd-kind-icon">offline</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeueoptions.html#onenqueue" class="tsd-kind-icon">on<wbr>Enqueue</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="offlineerror.html#offlinemutationpromise" class="tsd-kind-icon">offline<wbr>Mutation<wbr>Promise</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeueoptions.html#squashoperations" class="tsd-kind-icon">squash<wbr>Operations</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeueoptions.html#storage" class="tsd-kind-icon">storage</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeueoptions.html#storagekey" class="tsd-kind-icon">storage<wbr>Key</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="offlineerror.html#watchofflinechange" class="tsd-kind-icon">watch<wbr>Offline<wbr>Change</a>
 							</li>
 						</ul>
 					</li>

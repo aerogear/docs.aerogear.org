@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PushRegistration | @aerogear/push</title>
+	<title>OfflineClient | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@aerogear/push</a>
+					<a href="../index.html" class="title">@aerogear/voyager-client</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="pushregistration.html">PushRegistration</a>
+					<a href="offlineclient.html">OfflineClient</a>
 				</li>
 			</ul>
-			<h1>Class PushRegistration</h1>
+			<h1>Class OfflineClient</h1>
 		</div>
 	</div>
 </header>
@@ -67,21 +67,27 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>AeroGear UPS registration SDK</p>
+						<p>OfflineClient</p>
 					</div>
-					<p>Usage:
-						// Initialize SDK first
-						app.init(config);
-						let registration = new PushRegistration();
-					registration.register(&quot;myAppleOrFirebaseToken&quot;);</p>
+					<p>Enables offline workflows, conflict resolution and cache
+					storage on top Apollo GraphQL JavaScript client.</p>
+					<p>Usage:</p>
+					<pre><code class="language-javascript"> <span class="hljs-keyword">const</span> offlineClient = <span class="hljs-keyword">new</span> OfflineClient(config);
+ <span class="hljs-keyword">await</span> offlineClient.init();</code></pre>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PushRegistration</span>
+						<span class="target">OfflineClient</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/listenerprovider.html" class="tsd-signature-type">ListenerProvider</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -91,22 +97,28 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="pushregistration.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="offlineclient.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="pushregistration.html#api_path" class="tsd-kind-icon">API_<wbr>PATH</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="pushregistration.html#type" class="tsd-kind-icon">TYPE</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="offlineclient.html#queuelisteners" class="tsd-kind-icon">queue<wbr>Listeners</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="offlineclient.html#offlinestore" class="tsd-kind-icon">offline<wbr>Store</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pushregistration.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pushregistration.html#hasconfig" class="tsd-kind-icon">has<wbr>Config</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="pushregistration.html#register" class="tsd-kind-icon">register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="offlineclient.html#decorateapolloclient" class="tsd-kind-icon">decorate<wbr>Apollo<wbr>Client</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlineclient.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlineclient.html#registerofflineeventlistener" class="tsd-kind-icon">register<wbr>Offline<wbr>Event<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="offlineclient.html#restoreofflineoperations" class="tsd-kind-icon">restore<wbr>Offline<wbr>Operations</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,135 +130,165 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Push<wbr>Registration<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConfigurationService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="pushregistration.html" class="tsd-signature-type">PushRegistration</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Offline<wbr>Client<span class="tsd-signature-symbol">(</span>userConfig<span class="tsd-signature-symbol">: </span><a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlineclient.html" class="tsd-signature-type">OfflineClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/push/src/PushRegistration.ts#L21">PushRegistration.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L47">OfflineClient.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <span class="tsd-signature-type">ConfigurationService</span></h5>
+									<h5>userConfig: <a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="pushregistration.html" class="tsd-signature-type">PushRegistration</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="offlineclient.html" class="tsd-signature-type">OfflineClient</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="api_path" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> API_<wbr>PATH</h3>
-					<div class="tsd-signature tsd-kind-icon">API_<wbr>PATH<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;rest/registry/device&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="queuelisteners" class="tsd-anchor"></a>
+					<h3>queue<wbr>Listeners</h3>
+					<div class="tsd-signature tsd-kind-icon">queue<wbr>Listeners<span class="tsd-signature-symbol">:</span> <a href="../interfaces/offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/listenerprovider.html">ListenerProvider</a>.<a href="../interfaces/listenerprovider.html#queuelisteners">queueListeners</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/push/src/PushRegistration.ts#L19">PushRegistration.ts:19</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="type" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> TYPE</h3>
-					<div class="tsd-signature tsd-kind-icon">TYPE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;push&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/push/src/PushRegistration.ts#L18">PushRegistration.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L44">OfflineClient.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="offlinestore" class="tsd-anchor"></a>
+					<h3>offline<wbr>Store</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> offlineStore<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlinestore.html" class="tsd-signature-type">OfflineStore</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L77">OfflineClient.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get access to offline store that can be used to
+									visualize  offline  operations that are currently pending</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="offlinestore.html" class="tsd-signature-type">OfflineStore</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getconfig" class="tsd-anchor"></a>
-					<h3>get<wbr>Config</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServiceConfiguration</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="decorateapolloclient" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> decorate<wbr>Apollo<wbr>Client</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">decorate<wbr>Apollo<wbr>Client<span class="tsd-signature-symbol">(</span>apolloClient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/apolloofflineclient.html" class="tsd-signature-type">ApolloOfflineClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/push/src/PushRegistration.ts#L94">PushRegistration.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L90">OfflineClient.ts:90</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the config used for the push service</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ServiceConfiguration</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>apolloClient: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/apolloofflineclient.html" class="tsd-signature-type">ApolloOfflineClient</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="hasconfig" class="tsd-anchor"></a>
-					<h3>has<wbr>Config</h3>
+					<a name="init" class="tsd-anchor"></a>
+					<h3>init</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">has<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/apolloofflineclient.html" class="tsd-signature-type">ApolloOfflineClient</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/push/src/PushRegistration.ts#L101">PushRegistration.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L58">OfflineClient.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return true if config is present</p>
+									<p>Initialize client</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/apolloofflineclient.html" class="tsd-signature-type">ApolloOfflineClient</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="register" class="tsd-anchor"></a>
-					<h3>register</h3>
+					<a name="registerofflineeventlistener" class="tsd-anchor"></a>
+					<h3>register<wbr>Offline<wbr>Event<wbr>Listener</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span>deviceToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, alias<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, categories<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Offline<wbr>Event<wbr>Listener<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><a href="../interfaces/offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/push/src/PushRegistration.ts#L39">PushRegistration.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L86">OfflineClient.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Register deviceToken for Android or IOS platforms</p>
+									<p>Add new listener for listening for queue changes</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>deviceToken: <span class="tsd-signature-type">string</span></h5>
+									<h5>listener: <a href="../interfaces/offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>token that will be sent to Unified Push server</p>
 									</div>
 								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="restoreofflineoperations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> restore<wbr>Offline<wbr>Operations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">restore<wbr>Offline<wbr>Operations<span class="tsd-signature-symbol">(</span>offlineLink<span class="tsd-signature-symbol">: </span><a href="offlinelink.html" class="tsd-signature-type">OfflineLink</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/OfflineClient.ts#L99">OfflineClient.ts:99</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Restore offline operations into the queue</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alias: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>device alias used for registration</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> categories: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>array list of categories that device should be register to.</p>
-									</div>
+									<h5>offlineLink: <a href="offlinelink.html" class="tsd-signature-type">OfflineLink</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -268,33 +310,33 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="pushregistration.html" class="tsd-kind-icon">Push<wbr>Registration</a>
+						<a href="offlineclient.html" class="tsd-kind-icon">Offline<wbr>Client</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="pushregistration.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="offlineclient.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="pushregistration.html#api_path" class="tsd-kind-icon">API_<wbr>PATH</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="offlineclient.html#queuelisteners" class="tsd-kind-icon">queue<wbr>Listeners</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="pushregistration.html#type" class="tsd-kind-icon">TYPE</a>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="offlineclient.html#offlinestore" class="tsd-kind-icon">offline<wbr>Store</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="pushregistration.html#getconfig" class="tsd-kind-icon">get<wbr>Config</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="pushregistration.html#hasconfig" class="tsd-kind-icon">has<wbr>Config</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="offlineclient.html#decorateapolloclient" class="tsd-kind-icon">decorate<wbr>Apollo<wbr>Client</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="pushregistration.html#register" class="tsd-kind-icon">register</a>
+								<a href="offlineclient.html#init" class="tsd-kind-icon">init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="offlineclient.html#registerofflineeventlistener" class="tsd-kind-icon">register<wbr>Offline<wbr>Event<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="offlineclient.html#restoreofflineoperations" class="tsd-kind-icon">restore<wbr>Offline<wbr>Operations</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#window" class="tsd-kind-icon">window</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
