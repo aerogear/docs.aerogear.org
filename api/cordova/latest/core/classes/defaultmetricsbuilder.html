@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ConfigurationService | @aerogear/core</title>
+	<title>DefaultMetricsBuilder | @aerogear/core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,29 +54,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="configurationservice.html">ConfigurationService</a>
+					<a href="defaultmetricsbuilder.html">DefaultMetricsBuilder</a>
 				</li>
 			</ul>
-			<h1>Class ConfigurationService</h1>
+			<h1>Class DefaultMetricsBuilder</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Abstraction for AeroGear configuration</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ConfigurationService</span>
+						<span class="target">DefaultMetricsBuilder</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/metricsbuilder.html" class="tsd-signature-type">MetricsBuilder</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -86,20 +85,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="configurationservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="defaultmetricsbuilder.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="configurationservice.html#configurations" class="tsd-kind-icon">configurations</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="defaultmetricsbuilder.html#client_id_key" class="tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="configurationservice.html#getconfigbyid" class="tsd-kind-icon">get<wbr>Config<wbr>ById</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="configurationservice.html#getconfigbytype" class="tsd-kind-icon">get<wbr>Config<wbr>ByType</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="defaultmetricsbuilder.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="defaultmetricsbuilder.html#buildmetricspayload" class="tsd-kind-icon">build<wbr>Metrics<wbr>Payload</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="defaultmetricsbuilder.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="defaultmetricsbuilder.html#getsavedclientid" class="tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="defaultmetricsbuilder.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,42 +113,35 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Configuration<wbr>Service<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/aerogearconfiguration.html" class="tsd-signature-type">AeroGearConfiguration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="configurationservice.html" class="tsd-signature-type">ConfigurationService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Default<wbr>Metrics<wbr>Builder<span class="tsd-signature-symbol">(</span>storage<span class="tsd-signature-symbol">?: </span><a href="../interfaces/storage.html" class="tsd-signature-type">Storage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="defaultmetricsbuilder.html" class="tsd-signature-type">DefaultMetricsBuilder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/config/ConfigurationService.ts#L10">config/ConfigurationService.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L19">metrics/DefaultMetricsBuilder.ts:19</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>config: <a href="../interfaces/aerogearconfiguration.html" class="tsd-signature-type">AeroGearConfiguration</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>configuration that should be injected to all available SDK&#39;s</p>
-										</div>
-									</div>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> storage: <a href="../interfaces/storage.html" class="tsd-signature-type">Storage</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="configurationservice.html" class="tsd-signature-type">ConfigurationService</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="defaultmetricsbuilder.html" class="tsd-signature-type">DefaultMetricsBuilder</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="configurations" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> configurations</h3>
-					<div class="tsd-signature tsd-kind-icon">configurations<span class="tsd-signature-symbol">:</span> <a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a><span class="tsd-signature-symbol">[]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="client_id_key" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> CLIENT_<wbr>ID_<wbr>KEY</h3>
+					<div class="tsd-signature tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"aerogear_metrics_client_key"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;aerogear_metrics_client_key&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/config/ConfigurationService.ts#L10">config/ConfigurationService.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L17">metrics/DefaultMetricsBuilder.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -154,55 +149,46 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getconfigbyid" class="tsd-anchor"></a>
-					<h3>get<wbr>Config<wbr>ById</h3>
+					<a name="builddefaultmetrics" class="tsd-anchor"></a>
+					<h3>build<wbr>Default<wbr>Metrics</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<wbr>ById<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Default<wbr>Metrics<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/metricsbuilder.html">MetricsBuilder</a>.<a href="../interfaces/metricsbuilder.html#builddefaultmetrics">buildDefaultMetrics</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/config/ConfigurationService.ts#L33">config/ConfigurationService.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L51">metrics/DefaultMetricsBuilder.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get a service configuration object, provided an existing id is given</p>
+									<p>Builds array of default metrics objects that are sent to server on every request.
+									Other platforms can override this method to provide custom behavior</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>unique id of the service</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getconfigbytype" class="tsd-anchor"></a>
-					<h3>get<wbr>Config<wbr>ByType</h3>
+					<a name="buildmetricspayload" class="tsd-anchor"></a>
+					<h3>build<wbr>Metrics<wbr>Payload</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Config<wbr>ByType<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Metrics<wbr>Payload<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, metrics<span class="tsd-signature-symbol">: </span><a href="../interfaces/metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/metricspayload.html" class="tsd-signature-type">MetricsPayload</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/metricsbuilder.html">MetricsBuilder</a>.<a href="../interfaces/metricsbuilder.html#buildmetricspayload">buildMetricsPayload</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/config/ConfigurationService.ts#L23">config/ConfigurationService.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L68">metrics/DefaultMetricsBuilder.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get a service configuration object, provided an existing type is given</p>
+									<p>Builds the payload</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -210,14 +196,86 @@
 								<li>
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The type of the service</p>
+										<p>string</p>
+									</div>
+								</li>
+								<li>
+									<h5>metrics: <a href="../interfaces/metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Metrics array, typically can be new buildDefaultMetrics()
+										returns promise with metrics payload</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/serviceconfiguration.html" class="tsd-signature-type">ServiceConfiguration</a><span class="tsd-signature-symbol">[]</span>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/metricspayload.html" class="tsd-signature-type">MetricsPayload</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getclientid" class="tsd-anchor"></a>
+					<h3>get<wbr>Client<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/metricsbuilder.html">MetricsBuilder</a>.<a href="../interfaces/metricsbuilder.html#getclientid">getClientId</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L28">metrics/DefaultMetricsBuilder.ts:28</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates or gets mobile client id</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsavedclientid" class="tsd-anchor"></a>
+					<h3>get<wbr>Saved<wbr>Client<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/metricsbuilder.html">MetricsBuilder</a>.<a href="../interfaces/metricsbuilder.html#getsavedclientid">getSavedClientId</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L39">metrics/DefaultMetricsBuilder.ts:39</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
 								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
+								<span class="tsd-signature-type">null</span>
 							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="saveclientid" class="tsd-anchor"></a>
+					<h3>save<wbr>Client<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">save<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/metricsbuilder.html">MetricsBuilder</a>.<a href="../interfaces/metricsbuilder.html#saveclientid">saveClientId</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/DefaultMetricsBuilder.ts#L43">metrics/DefaultMetricsBuilder.ts:43</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -233,36 +291,45 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="configurationservice.html" class="tsd-kind-icon">Configuration<wbr>Service</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="configurationservice.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="configurationservice.html#configurations" class="tsd-kind-icon">configurations</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="configurationservice.html#getconfigbyid" class="tsd-kind-icon">get<wbr>Config<wbr>ById</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="configurationservice.html#getconfigbytype" class="tsd-kind-icon">get<wbr>Config<wbr>ByType</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="cordovaappmetrics.html" class="tsd-kind-icon">Cordova<wbr>App<wbr>Metrics</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="cordovadevicemetrics.html" class="tsd-kind-icon">Cordova<wbr>Device<wbr>Metrics</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="defaultmetricsbuilder.html" class="tsd-kind-icon">Default<wbr>Metrics<wbr>Builder</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="defaultmetricsbuilder.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="defaultmetricsbuilder.html#client_id_key" class="tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="defaultmetricsbuilder.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="defaultmetricsbuilder.html#buildmetricspayload" class="tsd-kind-icon">build<wbr>Metrics<wbr>Payload</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="defaultmetricsbuilder.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="defaultmetricsbuilder.html#getsavedclientid" class="tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="defaultmetricsbuilder.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="metricsservice.html" class="tsd-kind-icon">Metrics<wbr>Service</a>
 					</li>

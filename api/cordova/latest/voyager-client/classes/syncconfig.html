@@ -100,20 +100,23 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#auditlogging" class="tsd-kind-icon">audit<wbr>Logging</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#authcontextprovider" class="tsd-kind-icon">auth<wbr>Context<wbr>Provider</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#cachestorage" class="tsd-kind-icon">cache<wbr>Storage</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#conflictstateprovider" class="tsd-kind-icon">conflict<wbr>State<wbr>Provider</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#conflictstrategy" class="tsd-kind-icon">conflict<wbr>Strategy</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#mergeofflinemutations" class="tsd-kind-icon">merge<wbr>Offline<wbr>Mutations</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#mutationsqueuename" class="tsd-kind-icon">mutations<wbr>Queue<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#fileupload" class="tsd-kind-icon">file<wbr>Upload</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#httpurl" class="tsd-kind-icon">http<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#networkstatus" class="tsd-kind-icon">network<wbr>Status</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#storage" class="tsd-kind-icon">storage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#offlinequeuelistener" class="tsd-kind-icon">offline<wbr>Queue<wbr>Listener</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#offlinestorage" class="tsd-kind-icon">offline<wbr>Storage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#openshiftconfig" class="tsd-kind-icon">open<wbr>Shift<wbr>Config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="syncconfig.html#wsurl" class="tsd-kind-icon">ws<wbr>Url</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="syncconfig.html#applyplatformconfig" class="tsd-kind-icon">apply<wbr>Platform<wbr>Config</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="syncconfig.html#merge" class="tsd-kind-icon">merge</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="syncconfig.html#validate" class="tsd-kind-icon">validate</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="syncconfig.html#retryoptions" class="tsd-kind-icon">retry<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,15 +128,21 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sync<wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="syncconfig.html" class="tsd-signature-type">SyncConfig</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Sync<wbr>Config<span class="tsd-signature-symbol">(</span>clientOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="syncconfig.html" class="tsd-signature-type">SyncConfig</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L27">config/SyncConfig.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L45">config/SyncConfig.ts:45</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientOptions: <a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="syncconfig.html" class="tsd-signature-type">SyncConfig</a></h4>
 						</li>
 					</ul>
@@ -148,187 +157,202 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#auditlogging">auditLogging</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L23">config/SyncConfig.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L28">config/SyncConfig.ts:28</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authcontextprovider" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> auth<wbr>Context<wbr>Provider</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Context<wbr>Provider<span class="tsd-signature-symbol">:</span> <a href="../globals.html#authcontextprovider" class="tsd-signature-type">AuthContextProvider</a></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#authcontextprovider">authContextProvider</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L25">config/SyncConfig.ts:25</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="cachestorage" class="tsd-anchor"></a>
+					<h3>cache<wbr>Storage</h3>
+					<div class="tsd-signature tsd-kind-icon">cache<wbr>Storage<span class="tsd-signature-symbol">:</span> <a href="../interfaces/persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L33">config/SyncConfig.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="conflictstateprovider" class="tsd-anchor"></a>
 					<h3>conflict<wbr>State<wbr>Provider</h3>
-					<div class="tsd-signature tsd-kind-icon">conflict<wbr>State<wbr>Provider<span class="tsd-signature-symbol">:</span> <a href="versionednextstate.html" class="tsd-signature-type">VersionedNextState</a><span class="tsd-signature-symbol"> =&nbsp;new VersionedNextState()</span></div>
+					<div class="tsd-signature tsd-kind-icon">conflict<wbr>State<wbr>Provider<span class="tsd-signature-symbol">:</span> <a href="versionedstate.html" class="tsd-signature-type">VersionedState</a><span class="tsd-signature-symbol"> =&nbsp;new VersionedState()</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#conflictstateprovider">conflictStateProvider</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L25">config/SyncConfig.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L30">config/SyncConfig.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="conflictstrategy" class="tsd-anchor"></a>
 					<h3>conflict<wbr>Strategy</h3>
-					<div class="tsd-signature tsd-kind-icon">conflict<wbr>Strategy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;diffMergeClientWins</span></div>
+					<div class="tsd-signature tsd-kind-icon">conflict<wbr>Strategy<span class="tsd-signature-symbol">:</span> <a href="../interfaces/conflictresolutionstrategies.html" class="tsd-signature-type">ConflictResolutionStrategies</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#conflictstrategy">conflictStrategy</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L24">config/SyncConfig.ts:24</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>operationName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, server<span class="tsd-signature-symbol">: </span><a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a>, client<span class="tsd-signature-symbol">: </span><a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>operationName: <span class="tsd-signature-type">string</span></h5>
-											</li>
-											<li>
-												<h5>server: <a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></h5>
-											</li>
-											<li>
-												<h5>client: <a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <a href="../globals.html#conflictresolutiondata" class="tsd-signature-type">ConflictResolutionData</a></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="mergeofflinemutations" class="tsd-anchor"></a>
-					<h3>merge<wbr>Offline<wbr>Mutations</h3>
-					<div class="tsd-signature tsd-kind-icon">merge<wbr>Offline<wbr>Mutations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
-					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#mergeofflinemutations">mergeOfflineMutations</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L22">config/SyncConfig.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L29">config/SyncConfig.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="mutationsqueuename" class="tsd-anchor"></a>
-					<h3>mutations<wbr>Queue<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">mutations<wbr>Queue<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;offline-mutation-store&quot;</span></div>
+					<a name="fileupload" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> file<wbr>Upload</h3>
+					<div class="tsd-signature tsd-kind-icon">file<wbr>Upload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#mutationsqueuename">mutationsQueueName</a></p>
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#fileupload">fileUpload</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L21">config/SyncConfig.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L26">config/SyncConfig.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="httpurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> http<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">http<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#httpurl">httpUrl</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L23">config/SyncConfig.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="networkstatus" class="tsd-anchor"></a>
 					<h3>network<wbr>Status</h3>
-					<div class="tsd-signature tsd-kind-icon">network<wbr>Status<span class="tsd-signature-symbol">:</span> <a href="webnetworkstatus.html" class="tsd-signature-type">WebNetworkStatus</a><span class="tsd-signature-symbol"> | </span><a href="cordovanetworkstatus.html" class="tsd-signature-type">CordovaNetworkStatus</a><span class="tsd-signature-symbol"> =&nbsp;(isMobileCordova()) ? new CordovaNetworkStatus() : new WebNetworkStatus()</span></div>
+					<div class="tsd-signature tsd-kind-icon">network<wbr>Status<span class="tsd-signature-symbol">:</span> <a href="../interfaces/networkstatus.html" class="tsd-signature-type">NetworkStatus</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#networkstatus">networkStatus</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L27">config/SyncConfig.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L31">config/SyncConfig.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="storage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> storage</h3>
-					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="../interfaces/persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="offlinequeuelistener" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> offline<wbr>Queue<wbr>Listener</h3>
+					<div class="tsd-signature tsd-kind-icon">offline<wbr>Queue<wbr>Listener<span class="tsd-signature-symbol">:</span> <a href="../interfaces/offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#storage">storage</a></p>
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#offlinequeuelistener">offlineQueueListener</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L20">config/SyncConfig.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L24">config/SyncConfig.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="offlinestorage" class="tsd-anchor"></a>
+					<h3>offline<wbr>Storage</h3>
+					<div class="tsd-signature tsd-kind-icon">offline<wbr>Storage<span class="tsd-signature-symbol">:</span> <a href="../interfaces/persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L34">config/SyncConfig.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="openshiftconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> open<wbr>Shift<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">open<wbr>Shift<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConfigurationService</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#openshiftconfig">openShiftConfig</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L27">config/SyncConfig.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="wsurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ws<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">ws<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#wsurl">wsUrl</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L22">config/SyncConfig.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="applyplatformconfig" class="tsd-anchor"></a>
-					<h3>apply<wbr>Platform<wbr>Config</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">apply<wbr>Platform<wbr>Config<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class">
+					<a name="retryoptions" class="tsd-anchor"></a>
+					<h3>retry<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">retry<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/datasyncconfig.html">DataSyncConfig</a>.<a href="../interfaces/datasyncconfig.html#retryoptions">retryOptions</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L36">config/SyncConfig.ts:36</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="retryoptions.attempts" class="tsd-anchor"></a>
+						<h3>attempts</h3>
+						<div class="tsd-signature tsd-kind-icon">attempts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L42">config/SyncConfig.ts:42</a></li>
+							</ul>
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="retryoptions.attempts.max" class="tsd-anchor"></a>
+							<h3>max</h3>
+							<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L47">config/SyncConfig.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L43">config/SyncConfig.ts:43</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Platform configuration that is generated and supplied by OpenShift</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>config: <a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>user supplied configuration</p>
-									</div>
-								</li>
+						</section>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="retryoptions.delay" class="tsd-anchor"></a>
+						<h3>delay</h3>
+						<div class="tsd-signature tsd-kind-icon">delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L37">config/SyncConfig.ts:37</a></li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="merge" class="tsd-anchor"></a>
-					<h3>merge</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">merge<span class="tsd-signature-symbol">(</span>clientOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="retryoptions.delay.initial" class="tsd-anchor"></a>
+							<h3>initial</h3>
+							<div class="tsd-signature tsd-kind-icon">initial<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1000</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L38">config/SyncConfig.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L38">config/SyncConfig.ts:38</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Method used to join user configuration with defaults</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientOptions: <a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="validate" class="tsd-anchor"></a>
-					<h3>validate</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>userConfig<span class="tsd-signature-symbol">: </span><a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="retryoptions.delay.jitter" class="tsd-anchor"></a>
+							<h3>jitter</h3>
+							<div class="tsd-signature tsd-kind-icon">jitter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/SyncConfig.ts#L58">config/SyncConfig.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L40">config/SyncConfig.ts:40</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>userConfig: <a href="../interfaces/datasyncconfig.html" class="tsd-signature-type">DataSyncConfig</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="retryoptions.delay.max-1" class="tsd-anchor"></a>
+							<h3>max</h3>
+							<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Infinity</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/SyncConfig.ts#L39">config/SyncConfig.ts:39</a></li>
+								</ul>
+							</aside>
+						</section>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -354,31 +378,40 @@
 								<a href="syncconfig.html#auditlogging" class="tsd-kind-icon">audit<wbr>Logging</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="syncconfig.html#authcontextprovider" class="tsd-kind-icon">auth<wbr>Context<wbr>Provider</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="syncconfig.html#cachestorage" class="tsd-kind-icon">cache<wbr>Storage</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="syncconfig.html#conflictstateprovider" class="tsd-kind-icon">conflict<wbr>State<wbr>Provider</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="syncconfig.html#conflictstrategy" class="tsd-kind-icon">conflict<wbr>Strategy</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="syncconfig.html#mergeofflinemutations" class="tsd-kind-icon">merge<wbr>Offline<wbr>Mutations</a>
+								<a href="syncconfig.html#fileupload" class="tsd-kind-icon">file<wbr>Upload</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="syncconfig.html#mutationsqueuename" class="tsd-kind-icon">mutations<wbr>Queue<wbr>Name</a>
+								<a href="syncconfig.html#httpurl" class="tsd-kind-icon">http<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="syncconfig.html#networkstatus" class="tsd-kind-icon">network<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="syncconfig.html#storage" class="tsd-kind-icon">storage</a>
+								<a href="syncconfig.html#offlinequeuelistener" class="tsd-kind-icon">offline<wbr>Queue<wbr>Listener</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="syncconfig.html#applyplatformconfig" class="tsd-kind-icon">apply<wbr>Platform<wbr>Config</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="syncconfig.html#offlinestorage" class="tsd-kind-icon">offline<wbr>Storage</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="syncconfig.html#merge" class="tsd-kind-icon">merge</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="syncconfig.html#openshiftconfig" class="tsd-kind-icon">open<wbr>Shift<wbr>Config</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="syncconfig.html#validate" class="tsd-kind-icon">validate</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="syncconfig.html#wsurl" class="tsd-kind-icon">ws<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class">
+								<a href="syncconfig.html#retryoptions" class="tsd-kind-icon">retry<wbr>Options</a>
 							</li>
 						</ul>
 					</li>

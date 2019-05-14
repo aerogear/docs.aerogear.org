@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OperationQueueOptions | @aerogear/voyager-client</title>
+	<title>CacheUpdates | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,60 +54,51 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="operationqueueoptions.html">OperationQueueOptions</a>
+					<a href="cacheupdates.html">CacheUpdates</a>
 				</li>
 			</ul>
-			<h1>Interface OperationQueueOptions</h1>
+			<h1>Interface CacheUpdates</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Interface map mutation names to their respective update functions.
+							Developers can write cache updates for individual views
+						in form of object with keys referencing mutation names that are being used.</p>
+					</div>
+					<p>For example:</p>
+					<p>const taskUpdates =  {
+						createTask: () =&gt; {...}
+					}</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OperationQueueOptions</span>
+						<span class="target">CacheUpdates</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="operationqueueoptions.html#ondequeue" class="tsd-kind-icon">on<wbr>Dequeue</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="operationqueueoptions.html#onenqueue" class="tsd-kind-icon">on<wbr>Enqueue</a></li>
-							</ul>
-						</section>
+			<section class="tsd-panel tsd-kind-interface">
+				<h3 class="tsd-before-signature">Indexable</h3>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">MutationUpdaterFn</span></div>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Interface map mutation names to their respective update functions.
+							Developers can write cache updates for individual views
+						in form of object with keys referencing mutation names that are being used.</p>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ondequeue" class="tsd-anchor"></a>
-					<h3>on<wbr>Dequeue</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Dequeue<span class="tsd-signature-symbol">:</span> <a href="../globals.html#operationqueuechangehandler" class="tsd-signature-type">OperationQueueChangeHandler</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OperationQueue.ts#L8">offline/OperationQueue.ts:8</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onenqueue" class="tsd-anchor"></a>
-					<h3>on<wbr>Enqueue</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Enqueue<span class="tsd-signature-symbol">:</span> <a href="../globals.html#operationqueuechangehandler" class="tsd-signature-type">OperationQueueChangeHandler</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/offline/OperationQueue.ts#L7">offline/OperationQueue.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
+					<p>For example:</p>
+					<p>const taskUpdates =  {
+						createTask: () =&gt; {...}
+					}</p>
+				</div>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -123,15 +114,7 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="operationqueueoptions.html" class="tsd-kind-icon">Operation<wbr>Queue<wbr>Options</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="operationqueueoptions.html#ondequeue" class="tsd-kind-icon">on<wbr>Dequeue</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="operationqueueoptions.html#onenqueue" class="tsd-kind-icon">on<wbr>Enqueue</a>
-							</li>
-						</ul>
+						<a href="cacheupdates.html" class="tsd-kind-icon">Cache<wbr>Updates</a>
 					</li>
 				</ul>
 				<ul class="after-current">

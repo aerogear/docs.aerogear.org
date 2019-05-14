@@ -57,7 +57,7 @@
 					<a href="metricsbuilder.html">MetricsBuilder</a>
 				</li>
 			</ul>
-			<h1>Class MetricsBuilder</h1>
+			<h1>Interface MetricsBuilder</h1>
 		</div>
 	</div>
 </header>
@@ -72,86 +72,42 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/defaultmetricsbuilder.html" class="tsd-signature-type">DefaultMetricsBuilder</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="metricsbuilder.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="metricsbuilder.html#client_id_key" class="tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsbuilder.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsbuilder.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsbuilder.html#getsavedclientid" class="tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="metricsbuilder.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="metricsbuilder.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="metricsbuilder.html#buildmetricspayload" class="tsd-kind-icon">build<wbr>Metrics<wbr>Payload</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="metricsbuilder.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="metricsbuilder.html#getsavedclientid" class="tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="metricsbuilder.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Metrics<wbr>Builder<span class="tsd-signature-symbol">(</span>storage<span class="tsd-signature-symbol">?: </span><a href="../interfaces/storage.html" class="tsd-signature-type">Storage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metricsbuilder.html" class="tsd-signature-type">MetricsBuilder</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/core/src/metrics/MetricsBuilder.ts#L19">metrics/MetricsBuilder.ts:19</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> storage: <a href="../interfaces/storage.html" class="tsd-signature-type">Storage</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="metricsbuilder.html" class="tsd-signature-type">MetricsBuilder</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="client_id_key" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> CLIENT_<wbr>ID_<wbr>KEY</h3>
-					<div class="tsd-signature tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"aerogear_metrics_client_key"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;aerogear_metrics_client_key&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/core/src/metrics/MetricsBuilder.ts#L17">metrics/MetricsBuilder.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="builddefaultmetrics" class="tsd-anchor"></a>
 					<h3>build<wbr>Default<wbr>Metrics</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">build<wbr>Default<wbr>Metrics<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Default<wbr>Metrics<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/core/src/metrics/MetricsBuilder.ts#L51">metrics/MetricsBuilder.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/model/MetricsBuilder.ts#L24">metrics/model/MetricsBuilder.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -160,21 +116,59 @@
 									Other platforms can override this method to provide custom behavior</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="buildmetricspayload" class="tsd-anchor"></a>
+					<h3>build<wbr>Metrics<wbr>Payload</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Metrics<wbr>Payload<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, metrics<span class="tsd-signature-symbol">: </span><a href="metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metricspayload.html" class="tsd-signature-type">MetricsPayload</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/model/MetricsBuilder.ts#L32">metrics/model/MetricsBuilder.ts:32</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Builds the metrics payload</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>string</p>
+									</div>
+								</li>
+								<li>
+									<h5>metrics: <a href="metrics.html" class="tsd-signature-type">Metrics</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Metrics array
+										returns promise with metrics payload</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="metricspayload.html" class="tsd-signature-type">MetricsPayload</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getclientid" class="tsd-anchor"></a>
 					<h3>get<wbr>Client<wbr>Id</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/core/src/metrics/MetricsBuilder.ts#L28">metrics/MetricsBuilder.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/model/MetricsBuilder.ts#L8">metrics/model/MetricsBuilder.ts:8</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -186,19 +180,24 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getsavedclientid" class="tsd-anchor"></a>
 					<h3>get<wbr>Saved<wbr>Client<wbr>Id</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/core/src/metrics/MetricsBuilder.ts#L39">metrics/MetricsBuilder.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/model/MetricsBuilder.ts#L13">metrics/model/MetricsBuilder.ts:13</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter for getting the client id from storage</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
 								<span class="tsd-signature-symbol"> | </span>
 								<span class="tsd-signature-type">null</span>
@@ -206,23 +205,31 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="saveclientid" class="tsd-anchor"></a>
 					<h3>save<wbr>Client<wbr>Id</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
 						<li class="tsd-signature tsd-kind-icon">save<wbr>Client<wbr>Id<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/core/src/metrics/MetricsBuilder.ts#L43">metrics/MetricsBuilder.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/core/src/metrics/model/MetricsBuilder.ts#L18">metrics/model/MetricsBuilder.ts:18</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Setter for saving the client id to storage</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>string typically UUID</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -242,70 +249,70 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="configurationservice.html" class="tsd-kind-icon">Configuration<wbr>Service</a>
+						<a href="../classes/configurationservice.html" class="tsd-kind-icon">Configuration<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="cordovaappmetrics.html" class="tsd-kind-icon">Cordova<wbr>App<wbr>Metrics</a>
+						<a href="../classes/cordovaappmetrics.html" class="tsd-kind-icon">Cordova<wbr>App<wbr>Metrics</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="cordovadevicemetrics.html" class="tsd-kind-icon">Cordova<wbr>Device<wbr>Metrics</a>
+						<a href="../classes/cordovadevicemetrics.html" class="tsd-kind-icon">Cordova<wbr>Device<wbr>Metrics</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/defaultmetricsbuilder.html" class="tsd-kind-icon">Default<wbr>Metrics<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/metricsservice.html" class="tsd-kind-icon">Metrics<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/networkmetricspublisher.html" class="tsd-kind-icon">Network<wbr>Metrics<wbr>Publisher</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="aerogearconfiguration.html" class="tsd-kind-icon">Aero<wbr>Gear<wbr>Configuration</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="appmetrics.html" class="tsd-kind-icon">App<wbr>Metrics</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="devicemetrics.html" class="tsd-kind-icon">Device<wbr>Metrics</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="metrics.html" class="tsd-kind-icon">Metrics</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class="current tsd-kind-interface">
 						<a href="metricsbuilder.html" class="tsd-kind-icon">Metrics<wbr>Builder</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="metricsbuilder.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="metricsbuilder.html#client_id_key" class="tsd-kind-icon">CLIENT_<wbr>ID_<wbr>KEY</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="metricsbuilder.html#builddefaultmetrics" class="tsd-kind-icon">build<wbr>Default<wbr>Metrics</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="metricsbuilder.html#buildmetricspayload" class="tsd-kind-icon">build<wbr>Metrics<wbr>Payload</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="metricsbuilder.html#getclientid" class="tsd-kind-icon">get<wbr>Client<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="metricsbuilder.html#getsavedclientid" class="tsd-kind-icon">get<wbr>Saved<wbr>Client<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="metricsbuilder.html#saveclientid" class="tsd-kind-icon">save<wbr>Client<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="metricsservice.html" class="tsd-kind-icon">Metrics<wbr>Service</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="networkmetricspublisher.html" class="tsd-kind-icon">Network<wbr>Metrics<wbr>Publisher</a>
+					<li class=" tsd-kind-interface">
+						<a href="metricspayload.html" class="tsd-kind-icon">Metrics<wbr>Payload</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/aerogearconfiguration.html" class="tsd-kind-icon">Aero<wbr>Gear<wbr>Configuration</a>
+						<a href="metricspublisher.html" class="tsd-kind-icon">Metrics<wbr>Publisher</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/appmetrics.html" class="tsd-kind-icon">App<wbr>Metrics</a>
+						<a href="serviceconfiguration.html" class="tsd-kind-icon">Service<wbr>Configuration</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/devicemetrics.html" class="tsd-kind-icon">Device<wbr>Metrics</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/metrics.html" class="tsd-kind-icon">Metrics</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/metricspayload.html" class="tsd-kind-icon">Metrics<wbr>Payload</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/metricspublisher.html" class="tsd-kind-icon">Metrics<wbr>Publisher</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/serviceconfiguration.html" class="tsd-kind-icon">Service<wbr>Configuration</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/storage.html" class="tsd-kind-icon">Storage</a>
+						<a href="storage.html" class="tsd-kind-icon">Storage</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#document" class="tsd-kind-icon">document</a>

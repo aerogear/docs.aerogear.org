@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OfflineQueue | @aerogear/voyager-client</title>
+	<title>OfflineStore | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="offlinequeue.html">OfflineQueue</a>
+					<a href="offlinestore.html">OfflineStore</a>
 				</li>
 			</ul>
-			<h1>Class OfflineQueue</h1>
+			<h1>Class OfflineStore</h1>
 		</div>
 	</div>
 </header>
@@ -67,21 +67,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Class implementing persistent operation queue.</p>
+						<p>Abstract Offline storage</p>
 					</div>
-					<p>This class is designed to be used by OfflineLink
-					It provides these functionalities:</p>
-					<ul>
-						<li>persisting operation queue in provided storage</li>
-						<li>updating client IDs with server IDs (explained below)</li>
-					</ul>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OfflineQueue</span>
+						<span class="target">OfflineStore</span>
 					</li>
 				</ul>
 			</section>
@@ -92,21 +86,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="offlinequeue.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="offlinequeue.html#queue" class="tsd-kind-icon">queue</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="offlinestore.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinequeue.html#enqueueofflinechange" class="tsd-kind-icon">enqueue<wbr>Offline<wbr>Change</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinequeue.html#forwardoperations" class="tsd-kind-icon">forward<wbr>Operations</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinequeue.html#persistitemwithqueue" class="tsd-kind-icon">persist<wbr>Item<wbr>With<wbr>Queue</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinestore.html#getofflinedata" class="tsd-kind-icon">get<wbr>Offline<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinestore.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinestore.html#removeentry" class="tsd-kind-icon">remove<wbr>Entry</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinestore.html#saveentry" class="tsd-kind-icon">save<wbr>Entry</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,116 +107,128 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Offline<wbr>Queue<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/offlinelinkoptions.html" class="tsd-signature-type">OfflineLinkOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlinequeue.html" class="tsd-signature-type">OfflineQueue</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Offline<wbr>Store<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="syncconfig.html" class="tsd-signature-type">SyncConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlinestore.html" class="tsd-signature-type">OfflineStore</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L24">offline/OfflineQueue.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/storage/OfflineStore.ts#L13">offline/storage/OfflineStore.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/offlinelinkoptions.html" class="tsd-signature-type">OfflineLinkOptions</a></h5>
+									<h5>config: <a href="syncconfig.html" class="tsd-signature-type">SyncConfig</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="offlinequeue.html" class="tsd-signature-type">OfflineQueue</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="offlinestore.html" class="tsd-signature-type">OfflineStore</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="queue" class="tsd-anchor"></a>
-					<h3>queue</h3>
-					<div class="tsd-signature tsd-kind-icon">queue<span class="tsd-signature-symbol">:</span> <a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L21">offline/OfflineQueue.ts:21</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="enqueueofflinechange" class="tsd-anchor"></a>
-					<h3>enqueue<wbr>Offline<wbr>Change</h3>
+					<a name="getofflinedata" class="tsd-anchor"></a>
+					<h3>get<wbr>Offline<wbr>Data</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">enqueue<wbr>Offline<wbr>Change<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Operation</span>, forward<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NextLink</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Offline<wbr>Data<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/offlineitem.html" class="tsd-signature-type">OfflineItem</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L47">offline/OfflineQueue.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/storage/OfflineStore.ts#L54">offline/storage/OfflineStore.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Enqueue offline change and wait for it to be sent to server when online.
-									Every offline change is added to queue.</p>
+									<p>Fetch data from the offline store</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>operation: <span class="tsd-signature-type">Operation</span></h5>
-								</li>
-								<li>
-									<h5>forward: <span class="tsd-signature-type">NextLink</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/offlineitem.html" class="tsd-signature-type">OfflineItem</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="forwardoperations" class="tsd-anchor"></a>
-					<h3>forward<wbr>Operations</h3>
+					<a name="init" class="tsd-anchor"></a>
+					<h3>init</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">forward<wbr>Operations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L62">offline/OfflineQueue.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/storage/OfflineStore.ts#L23">offline/storage/OfflineStore.ts:23</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Init store</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="persistitemwithqueue" class="tsd-anchor"></a>
-					<h3>persist<wbr>Item<wbr>With<wbr>Queue</h3>
+					<a name="removeentry" class="tsd-anchor"></a>
+					<h3>remove<wbr>Entry</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">persist<wbr>Item<wbr>With<wbr>Queue<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Operation</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Entry<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L36">offline/OfflineQueue.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/storage/OfflineStore.ts#L44">offline/storage/OfflineStore.ts:44</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Persist entire queue with the new item to make sure that change
-									is going to be working across restarts</p>
+									<p>Remove an entry from the store</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>operation: <span class="tsd-signature-type">Operation</span></h5>
+									<h5>entry: <a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="saveentry" class="tsd-anchor"></a>
+					<h3>save<wbr>Entry</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">save<wbr>Entry<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/storage/OfflineStore.ts#L33">offline/storage/OfflineStore.ts:33</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save an entry to store</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entry: <a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the entry to be saved</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -246,22 +247,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="offlinequeue.html" class="tsd-kind-icon">Offline<wbr>Queue</a>
+						<a href="offlinestore.html" class="tsd-kind-icon">Offline<wbr>Store</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="offlinequeue.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="offlinequeue.html#queue" class="tsd-kind-icon">queue</a>
+								<a href="offlinestore.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinequeue.html#enqueueofflinechange" class="tsd-kind-icon">enqueue<wbr>Offline<wbr>Change</a>
+								<a href="offlinestore.html#getofflinedata" class="tsd-kind-icon">get<wbr>Offline<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinequeue.html#forwardoperations" class="tsd-kind-icon">forward<wbr>Operations</a>
+								<a href="offlinestore.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinequeue.html#persistitemwithqueue" class="tsd-kind-icon">persist<wbr>Item<wbr>With<wbr>Queue</a>
+								<a href="offlinestore.html#removeentry" class="tsd-kind-icon">remove<wbr>Entry</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="offlinestore.html#saveentry" class="tsd-kind-icon">save<wbr>Entry</a>
 							</li>
 						</ul>
 					</li>

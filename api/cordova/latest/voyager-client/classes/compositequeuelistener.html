@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OfflineQueue | @aerogear/voyager-client</title>
+	<title>CompositeQueueListener | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="offlinequeue.html">OfflineQueue</a>
+					<a href="compositequeuelistener.html">CompositeQueueListener</a>
 				</li>
 			</ul>
-			<h1>Class OfflineQueue</h1>
+			<h1>Class CompositeQueueListener</h1>
 		</div>
 	</div>
 </header>
@@ -67,22 +67,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Class implementing persistent operation queue.</p>
+						<p>Wraps multiple listeners allowing them to be
+						registered and unregistered dynamically.</p>
 					</div>
-					<p>This class is designed to be used by OfflineLink
-					It provides these functionalities:</p>
-					<ul>
-						<li>persisting operation queue in provided storage</li>
-						<li>updating client IDs with server IDs (explained below)</li>
-					</ul>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OfflineQueue</span>
+						<span class="target">CompositeQueueListener</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -92,21 +93,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="offlinequeue.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="offlinequeue.html#queue" class="tsd-kind-icon">queue</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="compositequeuelistener.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinequeue.html#enqueueofflinechange" class="tsd-kind-icon">enqueue<wbr>Offline<wbr>Change</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinequeue.html#forwardoperations" class="tsd-kind-icon">forward<wbr>Operations</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="offlinequeue.html#persistitemwithqueue" class="tsd-kind-icon">persist<wbr>Item<wbr>With<wbr>Queue</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="compositequeuelistener.html#onoperationenqueued" class="tsd-kind-icon">on<wbr>Operation<wbr>Enqueued</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="compositequeuelistener.html#onoperationfailure" class="tsd-kind-icon">on<wbr>Operation<wbr>Failure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="compositequeuelistener.html#onoperationsuccess" class="tsd-kind-icon">on<wbr>Operation<wbr>Success</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="compositequeuelistener.html#queuecleared" class="tsd-kind-icon">queue<wbr>Cleared</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,58 +114,115 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Offline<wbr>Queue<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/offlinelinkoptions.html" class="tsd-signature-type">OfflineLinkOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="offlinequeue.html" class="tsd-signature-type">OfflineQueue</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Composite<wbr>Queue<wbr>Listener<span class="tsd-signature-symbol">(</span>listenerProvider<span class="tsd-signature-symbol">: </span><a href="../interfaces/listenerprovider.html" class="tsd-signature-type">ListenerProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="compositequeuelistener.html" class="tsd-signature-type">CompositeQueueListener</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L24">offline/OfflineQueue.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/CompositeQueueListener.ts#L10">offline/events/CompositeQueueListener.ts:10</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="../interfaces/offlinelinkoptions.html" class="tsd-signature-type">OfflineLinkOptions</a></h5>
+									<h5>listenerProvider: <a href="../interfaces/listenerprovider.html" class="tsd-signature-type">ListenerProvider</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>instance that contains all registered providers</p>
+										</div>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="offlinequeue.html" class="tsd-signature-type">OfflineQueue</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="compositequeuelistener.html" class="tsd-signature-type">CompositeQueueListener</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="queue" class="tsd-anchor"></a>
-					<h3>queue</h3>
-					<div class="tsd-signature tsd-kind-icon">queue<span class="tsd-signature-symbol">:</span> <a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L21">offline/OfflineQueue.ts:21</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="enqueueofflinechange" class="tsd-anchor"></a>
-					<h3>enqueue<wbr>Offline<wbr>Change</h3>
+					<a name="onoperationenqueued" class="tsd-anchor"></a>
+					<h3>on<wbr>Operation<wbr>Enqueued</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">enqueue<wbr>Offline<wbr>Change<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Operation</span>, forward<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NextLink</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Operation<wbr>Enqueued<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L47">offline/OfflineQueue.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/CompositeQueueListener.ts#L21">offline/events/CompositeQueueListener.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Enqueue offline change and wait for it to be sent to server when online.
-									Every offline change is added to queue.</p>
+									<p>Called when new operation is being added to offline queue</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>operation: <a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onoperationfailure" class="tsd-anchor"></a>
+					<h3>on<wbr>Operation<wbr>Failure</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Operation<wbr>Failure<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Operation</span>, graphQLError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, networkError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/CompositeQueueListener.ts#L46">offline/events/CompositeQueueListener.ts:46</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called when back online and operation fails with GraphQL error</p>
+								</div>
+								<p>graphQLError - application error (it means that user need to react to error and sent this operation again)
+								networkError - operation was retried but it did not reached server (it will be reatempted again)</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>operation: <span class="tsd-signature-type">Operation</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> graphQLError: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> networkError: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onoperationsuccess" class="tsd-anchor"></a>
+					<h3>on<wbr>Operation<wbr>Success</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Operation<wbr>Success<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Operation</span>, result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">FetchResult</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/CompositeQueueListener.ts#L32">offline/events/CompositeQueueListener.ts:32</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called when back online and operation succeeds</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -178,56 +231,32 @@
 									<h5>operation: <span class="tsd-signature-type">Operation</span></h5>
 								</li>
 								<li>
-									<h5>forward: <span class="tsd-signature-type">NextLink</span></h5>
+									<h5>result: <span class="tsd-signature-type">FetchResult</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="forwardoperations" class="tsd-anchor"></a>
-					<h3>forward<wbr>Operations</h3>
+					<a name="queuecleared" class="tsd-anchor"></a>
+					<h3>queue<wbr>Cleared</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">forward<wbr>Operations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">queue<wbr>Cleared<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L62">offline/OfflineQueue.ts:62</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="persistitemwithqueue" class="tsd-anchor"></a>
-					<h3>persist<wbr>Item<wbr>With<wbr>Queue</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">persist<wbr>Item<wbr>With<wbr>Queue<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Operation</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OfflineQueue.ts#L36">offline/OfflineQueue.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/CompositeQueueListener.ts#L57">offline/events/CompositeQueueListener.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Persist entire queue with the new item to make sure that change
-									is going to be working across restarts</p>
+									<p>Called when offline operation queue is cleared</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>operation: <span class="tsd-signature-type">Operation</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -246,22 +275,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="offlinequeue.html" class="tsd-kind-icon">Offline<wbr>Queue</a>
+						<a href="compositequeuelistener.html" class="tsd-kind-icon">Composite<wbr>Queue<wbr>Listener</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="offlinequeue.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="offlinequeue.html#queue" class="tsd-kind-icon">queue</a>
+								<a href="compositequeuelistener.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinequeue.html#enqueueofflinechange" class="tsd-kind-icon">enqueue<wbr>Offline<wbr>Change</a>
+								<a href="compositequeuelistener.html#onoperationenqueued" class="tsd-kind-icon">on<wbr>Operation<wbr>Enqueued</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinequeue.html#forwardoperations" class="tsd-kind-icon">forward<wbr>Operations</a>
+								<a href="compositequeuelistener.html#onoperationfailure" class="tsd-kind-icon">on<wbr>Operation<wbr>Failure</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="offlinequeue.html#persistitemwithqueue" class="tsd-kind-icon">persist<wbr>Item<wbr>With<wbr>Queue</a>
+								<a href="compositequeuelistener.html#onoperationsuccess" class="tsd-kind-icon">on<wbr>Operation<wbr>Success</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="compositequeuelistener.html#queuecleared" class="tsd-kind-icon">queue<wbr>Cleared</a>
 							</li>
 						</ul>
 					</li>

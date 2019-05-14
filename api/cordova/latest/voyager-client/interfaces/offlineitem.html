@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OfflineQueueListener | @aerogear/voyager-client</title>
+	<title>OfflineItem | @aerogear/voyager-client</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="offlinequeuelistener.html">OfflineQueueListener</a>
+					<a href="offlineitem.html">OfflineItem</a>
 				</li>
 			</ul>
-			<h1>Interface OfflineQueueListener</h1>
+			<h1>Interface OfflineItem</h1>
 		</div>
 	</div>
 </header>
@@ -67,9 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface for creating listeners for offline queue.
-							Offline queue will add elements to queue when it&#39;s closed.
-						This listener can be supplied to detect this events.</p>
+						<p>Represents data that is being saved to the offlien store</p>
 					</div>
 				</div>
 			</section>
@@ -77,14 +75,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OfflineQueueListener</span>
+						<span class="target">OfflineItem</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../classes/compositequeuelistener.html" class="tsd-signature-type">CompositeQueueListener</a></li>
+					<li><a href="../classes/operationqueueentry.html" class="tsd-signature-type">OperationQueueEntry</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -94,10 +92,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeuelistener.html#onoperationenqueued" class="tsd-kind-icon">on<wbr>Operation<wbr>Enqueued</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeuelistener.html#onoperationfailure" class="tsd-kind-icon">on<wbr>Operation<wbr>Failure</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeuelistener.html#onoperationsuccess" class="tsd-kind-icon">on<wbr>Operation<wbr>Success</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlinequeuelistener.html#queuecleared" class="tsd-kind-icon">queue<wbr>Cleared</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlineitem.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlineitem.html#operation" class="tsd-kind-icon">operation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="offlineitem.html#optimisticresponse" class="tsd-kind-icon">optimistic<wbr>Response</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,66 +103,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onoperationenqueued" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Operation<wbr>Enqueued</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Operation<wbr>Enqueued<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/OfflineQueueListener.ts#L14">offline/events/OfflineQueueListener.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OperationQueueEntry.ts#L10">offline/OperationQueueEntry.ts:10</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when new operation is being added to offline queue</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onoperationfailure" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Operation<wbr>Failure</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Operation<wbr>Failure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<a name="operation" class="tsd-anchor"></a>
+					<h3>operation</h3>
+					<div class="tsd-signature tsd-kind-icon">operation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Operation</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/OfflineQueueListener.ts#L27">offline/events/OfflineQueueListener.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OperationQueueEntry.ts#L8">offline/OperationQueueEntry.ts:8</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when back online and operation fails with GraphQL error</p>
-						</div>
-						<p>graphQLError - application error (it means that user need to react to error and sent this operation again)
-						networkError - operation was retried but it did not reached server (it will be reatempted again)</p>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="onoperationsuccess" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Operation<wbr>Success</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Operation<wbr>Success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<a name="optimisticresponse" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> optimistic<wbr>Response</h3>
+					<div class="tsd-signature tsd-kind-icon">optimistic<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/OfflineQueueListener.ts#L19">offline/events/OfflineQueueListener.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/OperationQueueEntry.ts#L9">offline/OperationQueueEntry.ts:9</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when back online and operation succeeds</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="queuecleared" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> queue<wbr>Cleared</h3>
-					<div class="tsd-signature tsd-kind-icon">queue<wbr>Cleared<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/offline/events/OfflineQueueListener.ts#L32">offline/events/OfflineQueueListener.ts:32</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when offline operation queue is cleared</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -182,19 +147,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="offlinequeuelistener.html" class="tsd-kind-icon">Offline<wbr>Queue<wbr>Listener</a>
+						<a href="offlineitem.html" class="tsd-kind-icon">Offline<wbr>Item</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeuelistener.html#onoperationenqueued" class="tsd-kind-icon">on<wbr>Operation<wbr>Enqueued</a>
+								<a href="offlineitem.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeuelistener.html#onoperationfailure" class="tsd-kind-icon">on<wbr>Operation<wbr>Failure</a>
+								<a href="offlineitem.html#operation" class="tsd-kind-icon">operation</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeuelistener.html#onoperationsuccess" class="tsd-kind-icon">on<wbr>Operation<wbr>Success</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="offlinequeuelistener.html#queuecleared" class="tsd-kind-icon">queue<wbr>Cleared</a>
+								<a href="offlineitem.html#optimisticresponse" class="tsd-kind-icon">optimistic<wbr>Response</a>
 							</li>
 						</ul>
 					</li>

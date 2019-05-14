@@ -67,7 +67,11 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Contains all configuration options required to initialize SDK</p>
+						<p>Contains all configuration options required to initialize Voyager Client
+							Options marked with [Modifier] flag are used to modify behavior of client.
+							SDK provides default values for all [Modifier] flags.
+							Users do not need to pass them for normal initialization of the client.
+						Please refer to documentation for more information about the individual flag and it&#39;s side effects.</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>see</dt>
@@ -104,12 +108,11 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#conflictstrategy" class="tsd-kind-icon">conflict<wbr>Strategy</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#fileupload" class="tsd-kind-icon">file<wbr>Upload</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#httpurl" class="tsd-kind-icon">http<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#mergeofflinemutations" class="tsd-kind-icon">merge<wbr>Offline<wbr>Mutations</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#mutationsqueuename" class="tsd-kind-icon">mutations<wbr>Queue<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#mutationcacheupdates" class="tsd-kind-icon">mutation<wbr>Cache<wbr>Updates</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#networkstatus" class="tsd-kind-icon">network<wbr>Status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#offlinequeuelistener" class="tsd-kind-icon">offline<wbr>Queue<wbr>Listener</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#openshiftconfig" class="tsd-kind-icon">open<wbr>Shift<wbr>Config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#shouldretry" class="tsd-kind-icon">should<wbr>Retry</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#retryoptions" class="tsd-kind-icon">retry<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#storage" class="tsd-kind-icon">storage</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="datasyncconfig.html#wsurl" class="tsd-kind-icon">ws<wbr>Url</a></li>
 							</ul>
@@ -122,10 +125,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="auditlogging" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> audit<wbr>Logging</h3>
-					<div class="tsd-signature tsd-kind-icon">audit<wbr>Logging<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<div class="tsd-signature tsd-kind-icon">audit<wbr>Logging<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L63">config/DataSyncConfig.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L64">config/DataSyncConfig.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -140,14 +143,15 @@
 					<div class="tsd-signature tsd-kind-icon">auth<wbr>Context<wbr>Provider<span class="tsd-signature-symbol">:</span> <a href="../globals.html#authcontextprovider" class="tsd-signature-type">AuthContextProvider</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L58">config/DataSyncConfig.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L59">config/DataSyncConfig.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An implementation of AuthContextProvider. If none passed, a default one will be used.
-							The default one doesn&#39;t add any headers.</p>
+							<p>[Modifier]</p>
 						</div>
+						<p>An implementation of AuthContextProvider. If none passed, a default one will be used.
+						The default one doesn&#39;t add any headers.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -156,58 +160,67 @@
 					<div class="tsd-signature tsd-kind-icon">conflict<wbr>Listener<span class="tsd-signature-symbol">:</span> <a href="conflictlistener.html" class="tsd-signature-type">ConflictListener</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L78">config/DataSyncConfig.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L86">config/DataSyncConfig.ts:86</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Interface that can be implemented to receive information about the data conflict</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>see OfflineClient.registerOfflineEventListener</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="conflictstateprovider" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> conflict<wbr>State<wbr>Provider</h3>
-					<div class="tsd-signature tsd-kind-icon">conflict<wbr>State<wbr>Provider<span class="tsd-signature-symbol">:</span> <a href="nextstate.html" class="tsd-signature-type">NextState</a></div>
+					<div class="tsd-signature tsd-kind-icon">conflict<wbr>State<wbr>Provider<span class="tsd-signature-symbol">:</span> <a href="objectstate.html" class="tsd-signature-type">ObjectState</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L73">config/DataSyncConfig.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L79">config/DataSyncConfig.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Interface that defines how object state is progressed</p>
+							<p>[Modifier]</p>
 						</div>
+						<p>Interface that defines how object state is progressed
+						This interface needs to match state provider supplied on server.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="conflictstrategy" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> conflict<wbr>Strategy</h3>
-					<div class="tsd-signature tsd-kind-icon">conflict<wbr>Strategy<span class="tsd-signature-symbol">:</span> <a href="../globals.html#conflictresolutionstrategy" class="tsd-signature-type">ConflictResolutionStrategy</a><span class="tsd-signature-symbol"> | </span><a href="conflictresolutionstrategies.html" class="tsd-signature-type">ConflictResolutionStrategies</a></div>
+					<div class="tsd-signature tsd-kind-icon">conflict<wbr>Strategy<span class="tsd-signature-symbol">:</span> <a href="conflictresolutionstrategies.html" class="tsd-signature-type">ConflictResolutionStrategies</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L88">config/DataSyncConfig.ts:88</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L99">config/DataSyncConfig.ts:99</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The conflict resolution strategy your client should use. By default it takes client version.</p>
+							<p>[Modifier]</p>
 						</div>
+						<p>The conflict resolution strategy your client should use. By default it takes client version.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="fileupload" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> file<wbr>Upload</h3>
-					<div class="tsd-signature tsd-kind-icon">file<wbr>Upload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<div class="tsd-signature tsd-kind-icon">file<wbr>Upload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L68">config/DataSyncConfig.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L71">config/DataSyncConfig.ts:71</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>If set to true, GraphGL file uploads will be enabled and supported</p>
+							<p>[Modifier]</p>
 						</div>
+						<p>If set to true, GraphGL file uploads will be enabled and supported</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -216,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L20">config/DataSyncConfig.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L25">config/DataSyncConfig.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -226,33 +239,20 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="mergeofflinemutations" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> merge<wbr>Offline<wbr>Mutations</h3>
-					<div class="tsd-signature tsd-kind-icon">merge<wbr>Offline<wbr>Mutations<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></div>
+					<a name="mutationcacheupdates" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mutation<wbr>Cache<wbr>Updates</h3>
+					<div class="tsd-signature tsd-kind-icon">mutation<wbr>Cache<wbr>Updates<span class="tsd-signature-symbol">:</span> <a href="cacheupdates.html" class="tsd-signature-type">CacheUpdates</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L46">config/DataSyncConfig.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L107">config/DataSyncConfig.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether or not you wish to squash mutations in your queue. By default true</p>
+							<p>[Modifier]</p>
 						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="mutationsqueuename" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mutations<wbr>Queue<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">mutations<wbr>Queue<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L41">config/DataSyncConfig.ts:41</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The name to store requests under in your offline queue. By default &quot;offline-mutation-store&quot;</p>
-						</div>
+						<p>Cache updates functions for your mutations
+						Argument allows to restore optimistic responses on application restarts.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -261,14 +261,15 @@
 					<div class="tsd-signature tsd-kind-icon">network<wbr>Status<span class="tsd-signature-symbol">:</span> <a href="networkstatus.html" class="tsd-signature-type">NetworkStatus</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L36">config/DataSyncConfig.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L45">config/DataSyncConfig.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Interface for detecting changes in network status.
-							See <code>WebNetworkStatus</code> and <code>CordovaNetworkStatus</code></p>
+							<p>[Modifier]</p>
 						</div>
+						<p>Interface for detecting changes in network status.
+						See <code>WebNetworkStatus</code> and <code>CordovaNetworkStatus</code></p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -277,7 +278,7 @@
 					<div class="tsd-signature tsd-kind-icon">offline<wbr>Queue<wbr>Listener<span class="tsd-signature-symbol">:</span> <a href="offlinequeuelistener.html" class="tsd-signature-type">OfflineQueueListener</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L52">config/DataSyncConfig.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L51">config/DataSyncConfig.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -293,29 +294,30 @@
 					<div class="tsd-signature tsd-kind-icon">open<wbr>Shift<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ConfigurationService</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L83">config/DataSyncConfig.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L92">config/DataSyncConfig.ts:92</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>OpenShift specific configuration</p>
+							<p>OpenShift specific configuration that provides alternative way to setup
+							http and websocket urls.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="shouldretry" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> should<wbr>Retry</h3>
-					<div class="tsd-signature tsd-kind-icon">should<wbr>Retry<span class="tsd-signature-symbol">:</span> <a href="../globals.html#shouldretryfn" class="tsd-signature-type">shouldRetryFn</a></div>
+					<a name="retryoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> retry<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">retry<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RetryLink.Options</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L94">config/DataSyncConfig.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L115">config/DataSyncConfig.ts:115</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Function that enables retry mechanism for queries that failed on network errors.
-							See <a href="https://www.apollographql.com/docs/link/links/retry.html">https://www.apollographql.com/docs/link/links/retry.html</a> for more information</p>
+							<p>[Modifier]</p>
 						</div>
+						<p>The options to configure how failed offline mutations are retried.</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -324,13 +326,14 @@
 					<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="persistentstore.html" class="tsd-signature-type">PersistentStore</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#persisteddata" class="tsd-signature-type">PersistedData</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L30">config/DataSyncConfig.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L37">config/DataSyncConfig.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The storage you want your client to use (Uses window.localStorage by default)</p>
+							<p>[Modifier]</p>
 						</div>
+						<p>The storage you want your client to use (Uses window.localStorage by default)</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -339,7 +342,7 @@
 					<div class="tsd-signature tsd-kind-icon">ws<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/b3c0c1f/packages/sync/src/config/DataSyncConfig.ts#L25">config/DataSyncConfig.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/aerogear/aerogear-js-sdk/blob/44ad77b/packages/sync/src/config/DataSyncConfig.ts#L30">config/DataSyncConfig.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -387,10 +390,7 @@
 								<a href="datasyncconfig.html#httpurl" class="tsd-kind-icon">http<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="datasyncconfig.html#mergeofflinemutations" class="tsd-kind-icon">merge<wbr>Offline<wbr>Mutations</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="datasyncconfig.html#mutationsqueuename" class="tsd-kind-icon">mutations<wbr>Queue<wbr>Name</a>
+								<a href="datasyncconfig.html#mutationcacheupdates" class="tsd-kind-icon">mutation<wbr>Cache<wbr>Updates</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="datasyncconfig.html#networkstatus" class="tsd-kind-icon">network<wbr>Status</a>
@@ -402,7 +402,7 @@
 								<a href="datasyncconfig.html#openshiftconfig" class="tsd-kind-icon">open<wbr>Shift<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="datasyncconfig.html#shouldretry" class="tsd-kind-icon">should<wbr>Retry</a>
+								<a href="datasyncconfig.html#retryoptions" class="tsd-kind-icon">retry<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="datasyncconfig.html#storage" class="tsd-kind-icon">storage</a>
