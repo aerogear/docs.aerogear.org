@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote File :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/readme.html">
+    <title>Monitoring a Voyager Server :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-metrics.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
@@ -365,7 +365,7 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-auth.html">Authz</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="ds-metrics.html">Metrics</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -498,24 +498,209 @@ Zepto(function($){
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="readme.html">Remote File</a></li>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-metrics.html">Metrics</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
-    <a class="version is-current" href="readme.html">latest</a>
-    <a class="version" href="../v2.0/readme.html">v2.0</a>
+    <a class="version is-current" href="ds-metrics.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/readme.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-metrics.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Remote File</h1>
+<h1>Monitoring a Voyager Server</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#enabling-metrics-in-voyager-server">Enabling Metrics in Voyager Server</a></li>
+<li><a href="#monitoring-a-voyager-server-application">Monitoring a Voyager Server Application</a></li>
+<li><a href="#overview">Overview</a>
+<ul class="sectlevel2">
+<li><a href="#dashboard-panel-descriptions">Dashboard panel descriptions</a></li>
+</ul>
+</li>
+<li><a href="#additional-resources">Additional resources</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voyager Server can expose a variety of useful metrics that can be consumed and visualised by the Mobile Metrics service. (Prometheus for data collection and Grafana for Visualisation).</p>
+</div>
+<div class="paragraph">
+<p>The <code>@aerogear/voyager-metrics</code> module can be used to mount a metrics middleware, exposing a metrics endpoint that can be consumed by prometheus (default: <code>/metrics</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="enabling-metrics-in-voyager-server"><a class="anchor" href="#enabling-metrics-in-voyager-server"></a>Enabling Metrics in Voyager Server</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import the <code>@aerogear/voyager-metrics</code> module.</p>
 <div class="listingblock">
 <div class="content">
-<pre>// include::https://raw.githubusercontent.com/finp/metrics-apb/MOBDOC-23/docs/modules/ROOT/pages/index.adoc[]</pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const metrics = require('@aerogear/voyager-metrics')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the metrics middleware to your Express app. This will expose metrics at the given endpoint.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const app = express()
+metrics.applyMetricsMiddlewares(app, { path: '/metrics' })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inject the metrics module into Voyager Server. This will ensure metrics at the GraphQL level can be exposed.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const voyagerConfig = {
+  metrics
+}
+const server = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/voyager-server/blob/master/examples/metrics">Metrics Example Server Guide</a> has an example server based off the instructions above and shows all of the steps needed to get it running.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="monitoring-a-voyager-server-application"><a class="anchor" href="#monitoring-a-voyager-server-application"></a>Monitoring a Voyager Server Application</h2>
+<div class="sectionbody">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have provisioned the Mobile Metrics service.</p>
+</li>
+<li>
+<p>You have provisioned your Data Sync service.</p>
+</li>
+<li>
+<p>You have enabled metrics in Voyager Server.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Mobile Metrics Service and your Voyager Server application must be provisioned in the same OpenShift project to access data.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As there can be multiple Voyager Server applications in a namespace, Voyager Server application provisioning procedure creates a new Grafana dashboard for the Voyager Server application
+that is being provisioned.</p>
+</div>
+<div class="paragraph">
+<p>After the Mobile Metrics Service (includes Grafana for visualization and the Prometheus monitoring system) and your Voyager Server application are provisioned,
+you should be able to see the "Data Sync Metrics - &lt;your app name&gt;" in the list of available dashboards (navigate to Grafana&#8217;s exposed URL &#8594; Log in &#8594;
+Home &#8594; Select <strong>Data Sync Metrics - &lt;your app name&gt;</strong>).</p>
+</div>
+<div class="sect2">
+<h3 id="dashboard-panel-descriptions"><a class="anchor" href="#dashboard-panel-descriptions"></a>Dashboard panel descriptions</h3>
+<div class="paragraph">
+<p>The Data Sync dashboard consists of several panels which give you an overview of the specific
+events and resources, such as memory usage, CPU usage, resolved operation count etc.</p>
+</div>
+<div class="paragraph">
+<p>The dashboard is separated into 2 section. "Client" section shows some basic metrics about the clients and users and the "Server" secion shows some metrics about the server status.</p>
+</div>
+<div class="paragraph">
+<p>Below you will find a detailed description of each panel and its values.</p>
+</div>
+<div class="paragraph">
+<div class="title">Singlestat Panels</div>
+<p>Singlestat panels show you the main summary of a single data series.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CPU Usage</strong>: CPU usage percentage of the Voyager Server application used currently.</p>
+</li>
+<li>
+<p><strong>Memory Usage</strong>: The amount of memory currently used by the Voyager Server application.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Graph panels</div>
+<p>Used to show how certain values change over time, e.g. the number of operations resolved.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unique Clients Over Time</strong>: Overview of the number of unique clients over the selected time range. Note that a "client" is a an application installation on a device.
+The client id is reset when the application is reinstalled on the same device.</p>
+</li>
+<li>
+<p><strong>Unique Users Over Time</strong>: Overview of the number of unique users over the selected time range. Note that a "user" is a user who is authenticated with the Identity Management.</p>
+</li>
+<li>
+<p><strong>Memory Usage in Time</strong>: The amount of memory used by the Voyager Server application over time.</p>
+</li>
+<li>
+<p><strong>CPU Usage in Time</strong>: The percentage of CPU used by the Voyager Server application over time.</p>
+</li>
+<li>
+<p><strong>Queries/Mutations Resolved</strong>: Overview of the resolved queries and mutations over time.</p>
+</li>
+<li>
+<p><strong>Resolver Timings</strong>: Overview of the how long it took to resolve operations over time.</p>
+</li>
+<li>
+<p><strong>Server Response Time</strong>: Overview of the how long it took the server to respond the requests.</p>
+</li>
+<li>
+<p><strong>Operations vs Conflicts</strong>: Overview of the resolver executions and the conflicts happened.</p>
+</li>
+<li>
+<p><strong>Conflicts Over Time per Operation</strong>: Overview of the conflicts and what operation caused them.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/singlestat/#singlestat-panel">Singlestat Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.grafana.org/features/panels/graph/#graph-panel">Graph Panel</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/plugins/grafana-piechart-panel">Pie Chart</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </article>
