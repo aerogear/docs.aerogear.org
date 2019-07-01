@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote File :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/readme.html">
+    <title>Supporting offline functionality in your mobile app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-offline.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
@@ -356,7 +356,7 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -498,24 +498,282 @@ Zepto(function($){
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="readme.html">Remote File</a></li>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-offline.html">Offline</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
-    <a class="version is-current" href="readme.html">latest</a>
-    <a class="version" href="../v2.0/readme.html">v2.0</a>
+    <a class="version is-current" href="ds-offline.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/readme.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-offline.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Remote File</h1>
+<h1>Supporting offline functionality in your mobile app</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#mutations-and-local-cache">Mutations and Local Cache</a></li>
+<li><a href="#offline-client">Offline Client</a></li>
+<li><a href="#offline-workflow">Offline Workflow</a>
+<ul class="sectlevel2">
+<li><a href="#global-update-functions">Global Update Functions</a></li>
+<li><a href="#online-only-queries">Online Only Queries</a></li>
+</ul>
+</li>
+<li><a href="#sync-client-offline-queue-listener">Listening for Events</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Voyager Client provides first class support for performing GraphQL operations while offline. This is because the SDK uses the "cache-first" strategy when perform queries, regardless of the network status of the client. As illustrated in the diagram below, all the queries will be performed against the cache, and the Apollo client will manage filling the cache with data from the server. On top of that, the Voyager Client uses a mutation store to support offline mutations.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/datasync-features.png" alt="datasync features">
+</div>
+</div>
+<div class="paragraph">
+<p>The mutation store is effectively a persisted queue, and it is used to hold query and mutation requests when the client is offline. If a client goes offline for a long period of time, it will be able to negotiate local updates with the server using conflict resolution strategies.</p>
+</div>
+<div class="paragraph">
+<p>When a client becomes online from the offline state, the mutations that are persisted locally will be replicated back to the server, as shown in the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/datasync-going_offline.png" alt="datasync going offline">
+</div>
+</div>
+<div class="paragraph">
+<p>Developers can attach listeners to get notification about if a update is applied on the server or not, and take appropriate actions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mutations-and-local-cache"><a class="anchor" href="#mutations-and-local-cache"></a>Mutations and Local Cache</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default queries are cached based on the type and <code>id</code> field, and the results of performed queries are cached as well and they will be available when the client is offline.</p>
+</div>
+<div class="paragraph">
+<p>Because of this, when mutations that can change query results are performed, the <code>refetchQueries</code> or <code>update</code> options of the <code>mutate</code> method should be used to ensure the local cache is kept up to date. Voyager Client also provides cache helper functions and an offline client to reduce the amount of code required. Please see <a href="#cache-update-helpers">[cache-update-helpers]</a> for more information.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, the app will perform an <code>ADD_TASK</code> mutation which will create a new task. The app also has a <code>GET_TASKS</code> query to list all the tasks. In order to make sure the cache for the <code>GET_TASKS</code> query is kept up to date whenever a new task is created, the <code>update</code> option is used to add the newly created task to the cache:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>// include::https://raw.githubusercontent.com/finp/metrics-apb/MOBDOC-23/docs/modules/ROOT/pages/index.adoc[]</pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">  client.mutate({
+    mutation: ADD_TASK, variables: item,
+    update: updateCacheOnAdd
+  });
+
+  function updateCacheOnAdd(cache, { data: { createTask } }) {
+    let { allTasks } = cache.readQuery({ query: GET_TASKS });
+    if (allTasks) {
+      if (!allTasks.find((task) =&gt; task.id === createTask.id)) {
+        allTasks.push(createTask);
+      }
+    } else {
+      allTasks = [createTask];
+    }
+    cache.writeQuery({
+      query: GET_TASKS,
+      data: {
+        'allTasks': allTasks
+      }
+    });
+  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="https://www.apollographql.com/docs/react/essentials/mutations.html#props">Apollo&#8217;s document about mutations</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="offline-client"><a class="anchor" href="#offline-client"></a>Offline Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you need to support offline use cases, Voyager Client comes with some functionality that may be useful.
+It provides an <code>OfflineClient</code> class which exposes the following functionality:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Automatically ensuring your application&#8217;s local cache is kept up to date. This client will automatically generate <code>update</code> methods mentioned in the previous section. See: <a href="#cache-update-helpers">[cache-update-helpers]</a></p>
+</li>
+<li>
+<p>Giving you direct access to the offline store the client uses.</p>
+</li>
+<li>
+<p>Register multiple offline event listeners. See: <a href="#sync-client-offline-queue-listener">Listening for Events</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To create this client the following code example can be used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { OfflineClient } from '@aerogear/voyager-client';
+
+let config = {
+  httpUrl: "Your",
+  wsUrl: "ws://localhost:4000/graphql",
+}
+
+async function setupClient() {
+
+  let offlineClient = new OfflineClient(config);
+  let client = await offlineClient.init();
+}
+
+setupClient();</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="offline-workflow"><a class="anchor" href="#offline-workflow"></a>Offline Workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If a mutation occurs while the device is offline, the client.mutate function:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>returns immediately</p>
+</li>
+<li>
+<p>returns a promise with an error</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can check the <em>error</em> object to isolate errors relating to offline state.
+Invoking the <code>watchOfflineChange()</code> method on an <em>error</em> object watches for when an offline change is synced with the server, and sends an notification when triggered.
+after the device is online again.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">  client.mutate(...).catch((error)=&gt; {
+    // 1. Detect if this was an offline error
+   if(error.networkError &amp;&amp; error.networkError.offline){
+     const offlineError: OfflineError =  error.networkError;
+     // 2. We can still track when offline change is going to be replicated.
+     offlineError.watchOfflineChange().then(...)
+   }
+  });</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In addition to watching individual mutations, you can add a global offline listener when creating a client.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="global-update-functions"><a class="anchor" href="#global-update-functions"></a>Global Update Functions</h3>
+<div class="paragraph">
+<p>Apollo client holds all mutation parameters in memory.
+An offline Apollo client will continue to store mutation parameters and once online, it will restore all mutations to memory. Any Update Functions that are supplied to mutations cannot be cached by an Apollo client resulting in the loss of all optimisticResponses after a restart. <em>Update functions</em> supplied to mutations cannot be saved in the cache.
+As a result, all <em>optimisticResponses</em> will disappear from the application after a restart and it will only reappear when the Apollo client becomes online and successfully syncs with the server.</p>
+</div>
+<div class="paragraph">
+<p>To prevent the loss of all <em>optimisticResponses</em> after a restart, you can configure the <em>Update Functions</em> to restore all <em>optimisticResponses</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const updateFunctions = {
+  // Can contain update functions from each component
+  ...ItemUpdates,
+  ...TasksUpdates
+}
+
+let config = {
+  mutationCacheUpdates: updateFunctions,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use <code>getUpdateFunction</code> to automatically generate functions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { createMutationOptions, CacheOperation } = require('@aerogear/voyager-client');
+
+const updateFunctions = {
+  // Can contain update functions from each component
+  createTask: getUpdateFunction('createTask', 'id', GET_TASKS, CacheOperation.ADD),
+  deleteTask: getUpdateFunction('deleteTask', 'id', GET_TASKS, CacheOperation.DELETE)
+}
+
+let config = {
+  ...
+  mutationCacheUpdates: updateFunctions,
+  ...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="online-only-queries"><a class="anchor" href="#online-only-queries"></a>Online Only Queries</h3>
+<div class="paragraph">
+<p>To ensure certain queries are only executed when the client is online, a GraphQL directive called <code>@onlineOnly</code> can be used to annotate a query, as the example shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">exampleQuery(...) @onlineOnly {
+  ...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-client-offline-queue-listener"><a class="anchor" href="#sync-client-offline-queue-listener"></a>Listening for Events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To handle all notifications about offline related events, use the <strong>offlineQueueListener</strong> listener in the config object</p>
+</div>
+<div class="paragraph">
+<p>The following events are emitted:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>onOperationEnqueued</code> - Called when new operation is being added to offline queue</p>
+</li>
+<li>
+<p><code>onOperationSuccess</code> - Called when back online and operation succeeds</p>
+</li>
+<li>
+<p><code>onOperationFailure</code> - Called when back online and operation fails with GraphQL error</p>
+</li>
+<li>
+<p><code>queueCleared</code> - Called when offline operation queue is cleared</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can use this listener to build User Interfaces that show pending changes.</p>
+</div>
 </div>
 </div>
 </article>

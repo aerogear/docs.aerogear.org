@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote File :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/readme.html">
+    <title>Allowing users upload files from your mobile app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-files.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
@@ -371,7 +371,7 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="ds-files.html">File Upload</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -498,24 +498,223 @@ Zepto(function($){
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="readme.html">Remote File</a></li>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-files.html">File Upload</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
-    <a class="version is-current" href="readme.html">latest</a>
-    <a class="version" href="../v2.0/readme.html">v2.0</a>
+    <a class="version is-current" href="ds-files.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/readme.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-files.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Remote File</h1>
+<h1>Allowing users upload files from your mobile app</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#enabling-file-uploads-on-the-server">Enabling file uploads on the server</a></li>
+<li><a href="#implementing-file-upload-on-the-client">Implementing file upload on the client</a>
+<ul class="sectlevel2">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#enabling-file-upload">Enabling File Upload</a></li>
+</ul>
+</li>
+<li><a href="#uploading-files-from-graphql">Uploading Files from GraphQL</a>
+<ul class="sectlevel2">
+<li><a href="#executing-mutations">Executing mutations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="enabling-file-uploads-on-the-server"><a class="anchor" href="#enabling-file-uploads-on-the-server"></a>Enabling file uploads on the server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voyager Server provides support for uploading binary data along with the GraphQL queries.
+The implementation relies on upstream <code>Apollo Server</code> capabilities.</p>
+</div>
+<div class="paragraph">
+<p>The upload functionality uses the GraphQL multipart form requests specification.
+File upload needs to be implemented on both server and client:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the client HTML FileList objects are mapped into a mutation and sent to the server in a multipart request.</p>
+</li>
+<li>
+<p>On the server: The multipart request is handled. The server processes it and provides an upload argument to a resolver.
+In the resolver function, the upload promise resolves an object.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+File upload is based on <a href="https://github.com/jaydenseric/graphql-multipart-request-spec">graphql-multipart-request-spec</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>To enable file uploads, create a schema and use the <code>Upload</code> scalar.
+For example:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>// include::https://raw.githubusercontent.com/finp/metrics-apb/MOBDOC-23/docs/modules/ROOT/pages/index.adoc[]</pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { ApolloServer, gql } = require('apollo-server');
+
+const typeDefs = gql`
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+  type Query {
+    uploads: [File]
+  }
+  type Mutation {
+    singleUpload(file: Upload!): File!
+  }
+`;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following schema enables file uploads. The <code>Upload</code> scalar will be injected as one of the arguments in the resolvers.
+The <code>Upload</code> scalar contains all file metadata and a <a href="https://nodejs.org/api/stream.html#stream_readable_streams">Readable Stream</a> that can be used to save the file to a specific location.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">    async singleUpload(parent, { file }) {
+      const { stream, filename, mimetype, encoding } = await file;
+      // Save file and return required metadata
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="https://blog.apollographql.com/file-uploads-with-apollo-server-2-0-5db2f3f60675">Official Apollo blog post</a> for more information.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementing-file-upload-on-the-client"><a class="anchor" href="#implementing-file-upload-on-the-client"></a>Implementing file upload on the client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Voyager Client provides support for uploading binary data along with the GraphQL queries.
+The binary upload implementation uses the <code>apollo-upload-client</code> package built by the Apollo community.</p>
+</div>
+<div class="sect2">
+<h3 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h3>
+<div class="paragraph">
+<p>The upload functionality uses the GraphQL multipart form requests specification.
+The File upload needs to be implemented on both server and client:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the client HTML FileList objects are mapped into a mutation and sent to the server in a multipart request.</p>
+</li>
+<li>
+<p>On the server: The multipart request is handled. The server processes it and provides an upload argument to a resolver.
+In the resolver function, the upload promise resolves an object.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+File upload is based on <a href="https://github.com/jaydenseric/graphql-multipart-request-spec">graphql-multipart-request-spec</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enabling-file-upload"><a class="anchor" href="#enabling-file-upload"></a>Enabling File Upload</h3>
+<div class="paragraph">
+<p>File upload feature needs to be enabled by passing <code>fileUpload</code> flag to config object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const config = {
+  ...
+  fileUpload: true
+  ...
+};
+
+//create a new client</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="uploading-files-from-graphql"><a class="anchor" href="#uploading-files-from-graphql"></a>Uploading Files from GraphQL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>File upload capability adds a new GraphQL scalar <code>Upload</code> that can be used for mutations that operate on binary data.
+The <code>Upload</code> scalar maps html <code>FileList</code> HTML5 object in GraphQL schemas.
+The first step required to work with binary uploads is to write mutation that will contain <code>Upload</code> scalar.
+The following example demonstrates how to upload a profile picture:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
+
+export const UPLOAD_PROFILE = gql`
+mutation changeProfilePicture($file: Upload!) {
+  changeProfilePicture(file: $file) {
+    filename
+    mimetype
+    encoding
+  }
+}
+`;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="executing-mutations"><a class="anchor" href="#executing-mutations"></a>Executing mutations</h3>
+<div class="paragraph">
+<p>The <code>Upload</code> scalar will be mapped  to object returned from HTML file input.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows file upload in a React application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const uploadOneFile = () =&gt; {
+  return (
+    &lt;Mutation mutation={UPLOAD_PROFILE}&gt;
+      {uploadFile =&gt; (
+        &lt;input
+        type="file"
+        required
+        onChange={({ target: { validity, files: [file] } }) =&gt;
+          validity.valid &amp;&amp; uploadFile({ variables: { file } });
+        }
+       /&gt;
+      )}
+    &lt;/Mutation&gt;
+  );
+};</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </article>

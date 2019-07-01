@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote File :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/readme.html">
+    <title>Adding a mutation to a Data Sync client :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-mutation.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
@@ -499,23 +499,100 @@ Zepto(function($){
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="readme.html">Remote File</a></li>
+    <li class="crumb"><a href="ds-mutation.html">Adding a mutation to a Data Sync client</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
-    <a class="version is-current" href="readme.html">latest</a>
-    <a class="version" href="../v2.0/readme.html">v2.0</a>
+    <a class="version is-current" href="ds-mutation.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/readme.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-mutation.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Remote File</h1>
+<h1>Adding a mutation to a Data Sync client</h1>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have Node.js and npm installed.</p>
+</li>
+<li>
+<p>You have created an empty web project that supports ES6, for example, using the <a href="https://webpack.js.org/guides/getting-started/">webpack getting started</a> guide.</p>
+</li>
+<li>
+<p>You have completed the server getting started guide and the application is running.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Add our libraries to your javascript client,</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install @aerogear/voyager-client</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Below is a simple code example to connect to and query our Voyager Server.
+To configure the client, a configuration object should be used.
+At a minimum, the <code>httpUrl</code> field is required and it is the url of the Voyager server application.
+If the client app uses subscription as well, then the <code>wsUrl</code> field is required too.</p>
+</div>
+<div class="listingblock">
+<div class="title">src/index.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// gql is a utility function that handles gql queries
+//import gql from 'graphql-tag';
+
+import { OfflineClient } from '@aerogear/voyager-client';
+
+// For our client application, we will connect to the local service.
+let config = {
+  httpUrl: "http://localhost:4000/graphql",
+  wsUrl: "ws://localhost:4000/graphql",
+}
+
+async function addPerson() {
+
+  // Actually create the client
+  let offlineClient = new OfflineClient(config);
+  let client = await offlineClient.init();
+
+  // Execute the mutation
+  client.query({
+      fetchPolicy: 'network-only',
+      query: gql`mutation {
+  post(
+    name: "John Doe"
+    address: "1 Red Hill"
+  ) {
+    id
+  }
+}
+}`
+    })
+    //Print the response of the query
+    .then( ({data}) =&gt; {
+      console.log(data.hello)
+    });
+}
+
+addPerson();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can build and run this code in your project. You should see the following in your JavaScript console:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>// include::https://raw.githubusercontent.com/finp/metrics-apb/MOBDOC-23/docs/modules/ROOT/pages/index.adoc[]</pre>
+<pre>{
+  "data": {
+    "post": {
+      "id": "person-1"
+    }
+  }
+}</pre>
 </div>
 </div>
 </article>

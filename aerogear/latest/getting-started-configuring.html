@@ -191,6 +191,9 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#binding">Binding Services</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#configuring">Configuring Services</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -345,112 +348,79 @@ Zepto(function($){
     <a class="nav-link" href="data-sync.html">Data Sync</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="data-sync.html#introduction">Introduction</a>
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="data-sync.html#sync-server">Voyager Server</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-getting-started">Getting Started</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-offline-and-conflict">Offline and Conflicts</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-data-access">Data Access</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-realtime-updates">Realtime Updates</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-auth">Authentication and Authorization</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#server-files">File Upload</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-metrics">Metrics</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-audit-logs">Audit Logs</a>
-  </li>
-</ul>
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="data-sync.html#sync-js-client">Voyager Client</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-basic-concepts">Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-client-getting-started">Getting Started</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-client-offline-and-conflict">Offline and Conflicts</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-client-realtime-updates">Realtime Updates</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-client-auth">Authentication and Authorization</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#js-client-files">File Upload</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-client-audit-logs">Audit Logs</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-js-client-advanced-topics">Advanced Topics</a>
-  </li>
-</ul>
+    <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <button class="nav-toggle"></button>
-    <a class="nav-link" href="data-sync.html#sync-server-openshift">Running Data Sync in OpenShift</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-getting-started-openshift">Overview</a>
+    <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#building-and-publishing-the-container">Prepare Container</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#provisioning-data-sync-service">Provisioning Overview</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#provisioning-data-sync-templates">Provisioning From Templates</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-getting-started-mdc-client">Configuring Mobile App</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-binding">Binding Mobile App</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="data-sync.html#sync-server-binding-keycloak">Binding KeyCloak</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="app-security.html">App Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="app-security.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="app-security.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="app-security.html#monitoring">Monitoring App Security</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="device-security.html">Device Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="device-security.html#introduction">Introduction</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="device-security.html#setup">Setting Up</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -554,9 +524,8 @@ Zepto(function($){
 </ul>
 </li>
 <li><a href="#binding">Binding a Mobile App with the Identity Management Service</a></li>
-<li><a href="#localdev">Configuring the Service</a>
+<li><a href="#configuring">Configuring the Service</a>
 <ul class="sectlevel2">
-<li><a href="#choose-schema">Choose the schema of a redirect url</a></li>
 <li><a href="#configuring-keycloak">Configuring Keycloak</a></li>
 </ul>
 </li>
@@ -790,7 +759,7 @@ Use <code>Public</code> when binding a Mobile App to a Identity Management. When
 </div>
 </div>
 <div class="sect1">
-<h2 id="localdev"><a class="anchor" href="#localdev"></a>Configuring the Service</h2>
+<h2 id="configuring"><a class="anchor" href="#configuring"></a>Configuring the Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following section will guide you through configuring the schema of the redirect url and web origin for a client in Keycloak.
@@ -798,7 +767,32 @@ This is required to enable OpenID authentication.
 For an explanation of these terms, see <a href="https://www.keycloak.org/documentation.html">Keycloak Documentation</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="choose-schema"><a class="anchor" href="#choose-schema"></a>Choose the schema of a redirect url</h3>
+<h3 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the Mobile Developer Console and navigate to the Mobile App screen.</p>
+</li>
+<li>
+<p>Select the <strong>Mobile Services</strong> tab and if a spinning icon is displayed to the right of the Identity Management entry, wait for the binding process to complete.</p>
+</li>
+<li>
+<p>If the <em>Keycloak Realm URL</em> URL is not visible, expand the Identity Management Service by clicking the &gt; icon.</p>
+</li>
+<li>
+<p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
+</li>
+<li>
+<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning">Provisioning</a> the service (defaults to admin/admin).</p>
+</li>
+<li>
+<p>Select <strong>Clients</strong> from the left navigation menu.</p>
+</li>
+<li>
+<p>Select your client from the list of clients. The name of your client is derived from the name of the Mobile App, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
+</li>
+<li>
+<p>Add an additional entry to the <strong>Valid Redirect URIs</strong> input field.</p>
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
@@ -829,62 +823,68 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_cordova">
 <div class="paragraph">
-<p>Redirect url is <code>http://localhost/*</code>, without <code>:/callback</code>. Web Origin is <code>http://localhost/*</code>.</p>
+<p>Set the additional value to <code><a href="http://localhost*" class="bare">http://localhost*</a></code>.</p>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset1_xamarin">
 <div class="paragraph">
-<p>Depending on the platform, set the redirect as described in either the Android or the iOS tab.</p>
+<p>Depending on the platform, set the redirect URL as described in either the Android or the iOS tab.</p>
 </div>
 </div>
 </div>
 </div>
+</li>
+<li>
+<p>Add an additional entry to <strong>Web Origins</strong>.</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset2_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset2_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset2_xamarin"></a>Xamarin</p>
+</li>
+</ul>
 </div>
-<div class="sect2">
-<h3 id="configuring-keycloak"><a class="anchor" href="#configuring-keycloak"></a>Configuring Keycloak</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console and navigate to the Project Overview.</p>
-</li>
-<li>
-<p>Navigate to the Mobile App screen.</p>
-</li>
-<li>
-<p>Select the Mobile Services tab.</p>
-</li>
-<li>
-<p>If a binding to the Identity Management service is in progress, a spinning icon is displayed to the right of the Identity Management entry. Wait for the binding process to complete.</p>
-</li>
-<li>
-<p>If the <em>Keycloak Realm URL</em> URL is not visible, expand the Identity Management Service by clicking the &gt; icon.</p>
-</li>
-<li>
-<p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
-</li>
-<li>
-<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning">Provisioning</a> the service (defaults to admin:admin).</p>
-</li>
-<li>
-<p>Select <code>Clients</code> from the left navigation menu.</p>
-</li>
-<li>
-<p>Select your client from the list of clients. The name of your client is derived from the name of the Mobile App, the name of the mobile development platform and the client type, for example <code>myapp-android-public</code>.</p>
-</li>
-<li>
-<p>Add <code>&lt;schema&gt;:/callback</code> as an additional entry to <code>Valid Redirect URIs</code>. See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
-</li>
-<li>
-<p>Add <code>&lt;schema&gt;</code> as an additional entry to <code>Web Origins</code>.  See <a href="#choose-schema">Choose the schema of a redirect url</a> to determine the value for <code>&lt;schema&gt;</code>.</p>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_android">
+<div class="paragraph">
+<p>Use the package name of the Android app to avoid conflicts, for example, <code>com.aerogear.androidshowcase</code>.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_ios">
+<div class="paragraph">
+<p>Use the Bundle Identifier of the iOS app, for example, <code>org.aerogear.ios-showcase-template</code>.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_cordova">
+<div class="paragraph">
+<p>Set the additional value to <code><a href="http://localhost*" class="bare">http://localhost*</a></code>.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_xamarin">
+<div class="paragraph">
+<p>Depending on the target platform, set the additional value as described in either the Android or the iOS tab.</p>
+</div>
+</div>
+</div>
+</div>
 </li>
 <li>
 <p>Save your changes.</p>
 </li>
 <li>
-<p>Create a new user account as described in <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">Creating a New User</a>.</p>
+<p>Create a new user account as described in <a href="https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html-single/server_administration_guide/#create-new-user">Creating a New User</a>.</p>
 </li>
 <li>
-<p>Set up credentials for the new user as described in <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">User Credentials</a>.</p>
+<p>Create credentials for the new user as described in <a href="https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.2/html-single/server_administration_guide/#user_credentials">User Credentials</a>.</p>
 </li>
 </ol>
 </div>
@@ -892,10 +892,10 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <div class="title">Next Steps</div>
 <ul>
 <li>
-<p><a href="getting-started-running.html#running" class="page">Configure the AeroGear showcase app for your mobile platform</a> (Android, iOS, Cordova or Xamarin)</p>
+<p><a href="getting-started-running.html" class="page">Configure the AeroGear showcase app for your mobile platform</a> (Android, iOS, Cordova or Xamarin)</p>
 </li>
 <li>
-<p><a href="getting-started-running.html#running-emulator" class="page">Run the showcase app and make calls to the Identity Management service</a></p>
+<p><a href="getting-started-running.html#running" class="page">Run the showcase app and make calls to the Identity Management service</a></p>
 </li>
 </ul>
 </div>

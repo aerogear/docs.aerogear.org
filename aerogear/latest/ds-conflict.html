@@ -66,8 +66,8 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setting up AeroGear Mobile Services on OpenShift :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started-installing.html">
+    <title>Resolving conflicts in your Data Sync app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-conflict.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
@@ -166,15 +166,15 @@ Zepto(function($){
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
     <a class="nav-link" href="getting-started-installing.html">Installing</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#provision-mdc">Provisioning Mobile Developer Console</a>
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
   </li>
 </ul>
   </li>
@@ -368,7 +368,7 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-metrics.html">Metrics</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -498,518 +498,524 @@ Zepto(function($){
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="getting-started.html">Getting Started</a></li>
-    <li class="crumb"><a href="getting-started-installing.html">Installing</a></li>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-conflict.html">Conflict Resolution</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
-    <a class="version is-current" href="getting-started-installing.html">latest</a>
-    <a class="version" href="../v2.0/getting-started-installing.html">v2.0</a>
+    <a class="version is-current" href="ds-conflict.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/getting-started-installing.adoc"></a></div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-conflict.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Setting up AeroGear Mobile Services on OpenShift</h1>
-<div id="preamble">
+<h1>Resolving conflicts in your Data Sync app</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#conflict-resolution-{context}">Resolving conflicts on the server</a>
+<ul class="sectlevel2">
+<li><a href="#resolving-conflicts">Resolving Conflicts</a></li>
+<li><a href="#pluggable-conflict-resolution">Pluggable Conflict Resolution</a></li>
+<li><a href="#version-based-conflict-resolution">Version Based Conflict Resolution</a></li>
+<li><a href="#using-version-based-conflict-resolution">Using Version Based Conflict Resolution</a></li>
+<li><a href="#resolving-conflicts-on-the-client">Resolving Conflicts on the Client</a></li>
+<li><a href="#resolving-conflicts-on-the-server">Resolving Conflicts on the Server</a></li>
+<li><a href="#conflict-resolution-strategies">Conflict Resolution Strategies</a></li>
+<li><a href="#conflict-resolution-using-the-reject-function">Conflict Resolution using the <code>reject</code> Function</a></li>
+<li><a href="#custom-conflict-resolution-strategies">Custom Conflict Resolution Strategies</a></li>
+<li><a href="#implementing-custom-conflict-mechanism">Implementing Custom Conflict Mechanism</a></li>
+</ul>
+</li>
+<li><a href="#resolving-conflicts-on-the-client-2">Resolving conflicts on the client</a>
+<ul class="sectlevel2">
+<li><a href="#version-based-conflict-detection">Version Based Conflict Detection</a></li>
+<li><a href="#conflict-resolution-strategies-2">Conflict Resolution Strategies</a></li>
+<li><a href="#listening-to-conflicts">Listening to Conflicts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="conflict-resolution-{context}"><a class="anchor" href="#conflict-resolution-{context}"></a>Resolving conflicts on the server</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Mobile Services run natively on <a href="https://www.openshift.org/" target="_blank" rel="noopener">OpenShift</a>.</p>
+<p>Applications that allow users to modify data while offline most likely have to deal with conflicts.
+A <strong>conflict</strong> occurs whenever two or more clients try to modify the same data in between synchronizations.</p>
 </div>
 <div class="paragraph">
-<p>There are two options for installing Mobile Services:</p>
+<p><strong>Example:</strong> A user tried to modify a record while they were offline. When they came back online, they discovered that the record was already deleted.</p>
+</div>
+<div class="paragraph">
+<p><strong>Conflict resolution</strong> is how the application handles the conflict and ensures the correct data is stored. In most cases, the way conflicts are detected and resolved are incredibly specific to an application and the underlying data storage.</p>
+</div>
+<div class="paragraph">
+<p>In a GraphQL server, conflict detection and resolution happens exclusively in <strong>mutations</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="resolving-conflicts"><a class="anchor" href="#resolving-conflicts"></a>Resolving Conflicts</h3>
+<div class="paragraph">
+<p>At a high level, there is a typical flow to detecting and resolving conflicts.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>A Mutation Occurs</strong> - A client tries to modify or delete an object on the server using a GraphQL mutation.</p>
+</li>
+<li>
+<p><strong>Read the Object</strong> - The server reads the current object the client is trying to modify from the data source (usually a database).</p>
+</li>
+<li>
+<p><strong>Conflict Detection</strong> - The server compares the current object with the data sent by the client to see if there was a conflict. The developer can choose <em>how the comparison</em> is done.</p>
+</li>
+<li>
+<p><strong>Conflict Resolution</strong> - Conflict resolution can be deferred to the client or it can be done on the server. The developer can choose the resolution strategy.</p>
+</li>
+<li>
+<p><strong>Persist the Data</strong> - Conflict Resolution on the server results in a new object which should be persisted.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>aerogear/voyager-conflicts</code> module uses the concept of <strong>pluggable conflict resolution</strong> to help developers with the <strong>Conflict Detection</strong> and <strong>Conflict Resolution</strong> steps.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pluggable-conflict-resolution"><a class="anchor" href="#pluggable-conflict-resolution"></a>Pluggable Conflict Resolution</h3>
+<div class="paragraph">
+<p>Pluggable conflict resolution is a concept that allows developers to define their own logic for <strong>conflict detection</strong> and <strong>conflict resolution</strong>, regardless of the data storage.</p>
+</div>
+<div class="paragraph">
+<p>It has two parts: one for detecting conflicts, and the other for resolving conflicts.</p>
+</div>
+<div class="paragraph">
+<p>To detect conflicts, developers can use either the default version-based conflict detection mechanism, or provide their own implementation via the <code>conflictStateProvider</code> option in the config object that is used to initialize the sync client.</p>
+</div>
+<div class="paragraph">
+<p>To resolve conflicts, developers can either use the default conflict resolution strategy, or provide their own ones via the <code>conflictStrategy</code> option in the config object.</p>
+</div>
+<div class="paragraph">
+<p>The conflict detection and resolution is enabled by Voyager Server, while the fetching and storing of data is the responsibility of the developer.</p>
+</div>
+<div class="paragraph">
+<p>Pluggable conflict resolution supports the following implementations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>using an installation script</p>
+<p><code>VersionedObjectState</code> - depends on version field supplied in objects (used by default when importing conflictHandler)</p>
 </li>
 <li>
-<p>using the OpenShift CLI</p>
+<p><code>HashObjectState</code> - depends on hash calculated from entire object</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Typically, developers use the installation script method.</p>
+<p>Implementations are based on the <code>ObjectState</code> interface that can be extended to provide custom implementation for conflict detection.</p>
 </div>
-<div id="prerequisites" class="ulist">
+<div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>OpenShift 3.11 instance</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This instance must have Service Catalog, Ansible Service Broker and Template Service Broker services installed.</p>
+<p>GraphQL server with resolvers.</p>
 </li>
 <li>
-<p>You need to have full access to this OpenShift instance, i.e. user with <code>cluster-admin</code> privileges.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you don&#8217;t have OpenShift instance you can use <code>oc cluster up</code> or Minishift to <a href="#local-setup">setup OpenShift locally</a>.
-</td>
-</tr>
-</table>
-</div>
+<p>Database or any other form of data storage that can cause data conflicts.
+AeroGear recommends that you store data in a secure location.
+If you use a database, it is your responsibility to administer, maintain and backup that database.
+If you use any other form of data storage, you are responsible for backing up the data.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.11</p>
-</li>
-<li>
-<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></p>
-</li>
-<li>
-<p>A local mobile development environment for the platform you want to develop on.</p>
-</li>
-<li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible 2.7.x</a> installed on the machine where you want to run the installation scripts from</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="installing-mobile-services-using-the-installer-script"><a class="anchor" href="#installing-mobile-services-using-the-installer-script"></a>Installing Mobile Services using the installer script</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Clone the Mobile Services Installer repository:</p>
-<div class="paragraph">
-<p>The repository contains installation script for AeroGear Mobile Services.</p>
-</div>
-<div class="paragraph">
-<p>Clone this repo to your local machine and check out the 2.0.0 tag using:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/aerogear/mobile-services-installer.git
-cd mobile-services-installer
-git checkout 2.0.0</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Login to your OpenShift instance as user with <code>cluster-admin</code> privileges:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc login &lt;OPENSHIFT_MASTER_URL&gt;</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Change directory SELinux security context (RHEL/Fedora):</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This step is only required on RHEL/Fedora with SELinux enabled.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ chcon -Rt svirt_sandbox_file_t .</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>In the same directory, run the installer:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ansible-playbook install-mobile-services.yml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify the installation:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Browse to the Web console of your OpenShift instance and log in.</p>
-</li>
-<li>
-<p>Check that the <em>Mobile</em> tab is displayed in the service catalog. If this tab is not displayed, wait a few minutes to make sure that the installation process has completed.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="installing-mobile-services-using-the-openshift-cli"><a class="anchor" href="#installing-mobile-services-using-the-openshift-cli"></a>Installing Mobile Services using the OpenShift CLI</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log in to the OpenShift console as a user with <code>cluster-admin</code> privileges using the <code>oc</code> command.</p>
-</li>
-<li>
-<p>Create a Custom Resource Definition file:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; /tmp/crd.yaml &lt;&lt; EOF
-apiVersion: apiextensions.k8s.io/v1beta1
-kind: CustomResourceDefinition
-metadata:
-  name: mobileclients.mobile.k8s.io
-spec:
-  group: mobile.k8s.io
-  version: v1alpha1
-  scope: Namespaced
-  names:
-    plural: mobileclients
-    singular: mobileclient
-    kind: MobileClient
-    shortNames:
-    - mc
-  validation:
-    openAPIV3Schema:
-      properties:
-        spec:
-          properties:
-            apiKey:
-              type: string
-              pattern: '(\w{8}-\w{4}-\w{4}-\w{4}-\w{11})'
-            name:
-              type: string
-              pattern: '([\w-])'
-            dmzUrl:
-              type: string
-              nullable: true
-EOF</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Run the following commands to setup the Custom Resource on OpenShift:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc create -f /tmp/crd.yaml
-oc create clusterrole mobileclient-admin --verb=create,delete,get,list,patch,update,watch --resource=mobileclients
-oc adm policy add-cluster-role-to-group mobileclient-admin system:authenticated</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Update the configuration of the Automation Service Broker to add new registries:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Edit the config map object using <code>oc</code></p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc edit configmap broker-config -n openshift-automation-service-broker</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Add the following new registries to the <code>registry</code> section of the config:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">registry:
-- type: dockerhub
-  name: ag
-  url: https://registry.hub.docker.com
-  org: aerogearcatalog
-  tag: 1.0.0
-  white_list:
-    - '.*-apb$'
-  black_list:
-    - '.*mobile-developer-console-apb$'
-- type: dockerhub
-  name: ag-mdc
-  org: aerogearcatalog
-  tag: 1.0.0-alpha
-  url: https://registry.hub.docker.com
-  white_list:
-  - '.*mobile-developer-console-apb$'</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Update the following attributes in the <code>openshift</code> section of the config:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">openshift:
-  image_pull_policy: Always
-  sandbox_role: admin</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Update the following attributes in the <code>broker</code> section of the config:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">broker:
-  launch_apb_on_bind: true</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Save the configmap object, and restart the automation service broker:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc rollout latest openshift-automation-service-broker -n openshift-automation-service-broker</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Verify the installation:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Browse to the Web console of your OpenShift instance and log in.</p>
-</li>
-<li>
-<p>Check that the <em>Mobile</em> tab is displayed in the service catalog. If this tab is not displayed, wait a few minutes to make sure that the installation process has completed.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<h1 id="additional-resources" class="discrete">Additional resources</h1>
-</div>
-</div>
-<div class="sect1">
-<h2 id="local-setup"><a class="anchor" href="#local-setup"></a>Local OpenShift setup</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can run OpenShift locally on your machine. There are two scripts in Mobile Services Installer repository which will create the cluster using Minishift or <code>oc cluster up</code>, and enable AeroGear Mobile Services.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-On Mac only Minishift is currently supported.
-</td>
-</tr>
-</table>
 </div>
 <div class="sect2">
-<h3 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h3>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minishift"></a>Minishift</p>
-</li>
-<li>
-<p><a id="tabset1_oc-cluster-up"></a>oc cluster up</p>
-</li>
-</ul>
+<h3 id="version-based-conflict-resolution"><a class="anchor" href="#version-based-conflict-resolution"></a>Version Based Conflict Resolution</h3>
+<div class="paragraph">
+<p>Version based conflict resolution is the recommended and simplest approach for conflict detection and resolution.
+The core idea is that every object has a <code>version</code> property with an integer value. For example:</p>
 </div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minishift">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.okd.io/minishift/" target="_blank" rel="noopener">Minishift</a></p>
-</li>
-<li>
-<p><a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.11</p>
-</li>
-<li>
-<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></p>
-</li>
-<li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible 2.7.x</a> installed on the machine where you want to run the installation scripts from</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_oc-cluster-up">
-<div class="ulist">
-<ul>
-<li>
-<p>Linux</p>
-</li>
-<li>
-<p><a href="https://www.openshift.org/download.html" target="_blank" rel="noopener">OpenShift client tools</a> version 3.11</p>
-</li>
-<li>
-<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></p>
-</li>
-<li>
-<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html" target="_blank" rel="noopener">Ansible 2.7.x</a> installed on the machine where you want to run the installation scripts from</p>
-</li>
-<li>
-<p>Firewall configured:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">firewall-cmd --permanent --add-port=8443/tcp
-firewall-cmd --permanent --add-port=8053/tcp
-firewall-cmd --permanent --add-port=53/udp
-firewall-cmd --permanent --add-port=443/tcp
-firewall-cmd --permanent --add-port=80/tcp
-firewall-cmd --reload</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  title: "Buy some milk"
+  version: 1
+}</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>When a client tries to update object, they must send along their last known version number along with the changes to the server.
+The server updates the version, persists the changes and sends back the new object.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  title: "Buy some bread"
+  version: 2
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <strong>conflict</strong> occurs when the version number sent by the client does not match the version stored in the server. This means a different client already updated the object.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-version-based-conflict-resolution"><a class="anchor" href="#using-version-based-conflict-resolution"></a>Using Version Based Conflict Resolution</h3>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Import the <a href="https://npmjs.com/package/@aerogear/voyager-conflicts">@aerogear/voyager-conflicts</a> package.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { conflictHandler } = require('@aerogear/voyager-conflicts')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a version field to the GraphQL type that should support conflict resolution. The version should also be stored in the data storage.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Task {
+  title: String
+  version: Int
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an example mutation.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Mutation {
+  updateTask(title: String!, version: Int!): Task
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the resolver.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Conflicts can be resolved either on the client or the server. Depending on the strategy used, the resolver implementation will differ.
+See the sections below for the individual implementations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resolving-conflicts-on-the-client"><a class="anchor" href="#resolving-conflicts-on-the-client"></a>Resolving Conflicts on the Client</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  updateTask: async (obj, clientData, context, info) =&gt; {
+    // 1. Read the Object from the database. This example uses Knex https://knexjs.org/.
+    const task = await context.db('tasks').select().where('id', clientData.id).then((rows) =&gt; rows[0])
+
+    // 2. Conflict Detection using `VersionedObjectState`
+    //    If the version number from the database does not match the one sent by the client
+    //    A conflict occurs
+    if (conflictHandler.hasConflict(task, clientData)) {
+      // If a conflict is detected, choose to resolve on the client.
+      const { response } = conflictHandler.resolveOnClient(task, clientData)
+      return response
+    }
+
+    // 3. Always call nextState before persisting the updated record.
+    // This ensures it has the correct version number
+    conflictHandler.nextState(clientData)
+
+    // 4. Persist the update to the database
+    const update = await context.db('tasks')
+      .update(clientData)
+      .where('id', clientData.id)
+      .returning('*')
+      .then((rows) =&gt; rows[0])
+
+    return update
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example above, <code>conflictHandler.resolveOnClient</code> is used when a conflict is detected. <code>resolveOnClient</code> returns a <code>response</code> object which should be returned to the client. The <code>response</code> contains the conflicting data and some metadata which the client can use to resolve the conflict.</p>
+</div>
+<div class="paragraph">
+<p>Since the conflict will be resolved on the client, it is not required to persist the data. However, if there is no conflict, the data sent by the client should be persisted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resolving-conflicts-on-the-server"><a class="anchor" href="#resolving-conflicts-on-the-server"></a>Resolving Conflicts on the Server</h3>
+<div class="paragraph">
+<p><code>conflictHandler.resolveOnServer</code> is used to resolve conflicts on the server side. <code>resolveOnServer</code> accepts a <code>ConfictResolutionStrategy</code> function as its first argument. The example below uses one of the default conflict resolution strategies from the <code>@aerogear/voyager-conflicts</code> module.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { conflictHandler, strategies } = require('@aerogear/voyager-conflicts')</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"> {
+   updateTask: async (obj, clientData, context, info) =&gt; {
+     // 1. Read the Object from the database. This example uses Knex https://knexjs.org/.
+     const task = await context.db('tasks').select().where('id', clientData.id).then((rows) =&gt; rows[0])
+
+     // 2. Conflict Detection using `VersionedObjectState`
+     //    If the version number from the database does not match the one sent by the client
+     //    A conflict occurs
+     if (conflictHandler.hasConflict(task, clientData)) {
+       // If a conflict is detected, resolve it on the server using one of the default strategies.
+       const { resolvedState, response } = await conflictHandler.resolveOnServer(strategies.clientWins, task, clientData)
+
+       // persist the resolved data to the database and then return the conflict response
+       await context.db('tasks')
+         .update(resolvedState)
+         .where('id', resolvedState.id)
+         .returning('*')
+         .then((rows) =&gt; rows[0])
+
+       return response
+     }
+
+     // 3. Always call nextState before persisting the updated record.
+     // This ensures it has the correct version number
+     conflictHandler.nextState(clientData)
+
+     // 4. Persist the update to the database and return it to the client
+     const update = await context.db('tasks')
+       .update(clientData)
+       .where('id', clientData.id)
+       .returning('*')
+       .then((rows) =&gt; rows[0])
+
+     return update
+   }
+ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When there is no conflict, <code>conflictHandler.nextState(clientData)</code> is called and the data is persisted. When a conflict occurs, the following happens.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>conflictHandler.resolveOnServer</code> is called with the <code>clientWins</code> strategy. In this case, the <code>resolvedState</code> will be the new data provided by the client. The newly <code>resolvedState</code> should be persisted.</p>
+</li>
+<li>
+<p><code>conflictHandler.resolveOnServer</code> also returns a <code>response</code>, which should be returned to the client.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>response</code> object is a <code>ConflictResolution</code> object that tells the client there was a conflict, that it was resolved on the server and provides the new <code>resolvedState</code>. In most cases, the client needs to know about conflicts that happen on the server. This allows the client to handle the conflict accordingly. For example, the screen the user is looking at might need to be refreshed with new data after a conflict.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="conflict-resolution-strategies"><a class="anchor" href="#conflict-resolution-strategies"></a>Conflict Resolution Strategies</h3>
+<div class="paragraph">
+<p>There is one default conflict resolution strategy.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clientWins</code> - This strategy accepts the data provided by the client.</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="conflict-resolution-using-the-reject-function"><a class="anchor" href="#conflict-resolution-using-the-reject-function"></a>Conflict Resolution using the <code>reject</code> Function</h3>
+<div class="paragraph">
+<p>It is possible to implement a 'server wins' style strategy using the <code>reject</code> method. This is useful in conflict cases where we want to reject the client&#8217;s changes and force the client to use the latest data stored on the sever.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// If a conflict is detected, call the reject function
+// to keep the server side data and force the client to update
+if (conflictHandler.hasConflict(serverData, clientData)) {
+  return conflictHandler.reject(task, clientData)
+}
+// otherwise continue and perform the standard mutation logic</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Clone the Mobile Services Installer repository:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/aerogear/mobile-services-installer.git
-cd mobile-services-installer
-git checkout 2.0.0</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Run the installation script:</p>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset2_minishift"></a>Minishift</p>
-</li>
-<li>
-<p><a id="tabset2_oc-cluster-up"></a>oc cluster up</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_minishift">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./scripts/minishift.sh</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_oc-cluster-up">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./scripts/oc-cluster-up.sh</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Copy cluster self-signed certificate:</p>
+<h3 id="custom-conflict-resolution-strategies"><a class="anchor" href="#custom-conflict-resolution-strategies"></a>Custom Conflict Resolution Strategies</h3>
 <div class="paragraph">
-<p>When the script finishes it will save OpenShift&#8217;s self-signed certificate to <code>/tmp/oc-certs/localcluster.crt</code>. Copy this file so you can later <a href="showcase-apps.html#installing-on-device" class="page">install it to your mobile device</a>.</p>
+<p>In most real world cases, the conflict resolution strategies used by your application are custom and specific to your application&#8217;s needs. Your application may deal with different conflicts in different ways. It is possible to implement a custom <code>ConflictResolutionStrategy</code> function to be used with <code>resolveOnServer</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">function customResolutionStrategy (serverState, clientState) {
+  return {
+    title: `${serverState.title} ${clientState.title}`
+  }
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>This is needed so that your mobile app can communicate with OpenShift.</p>
+<p>This example takes string values from the server and the client records, merges them together and returns the newly resolved object. This example is a little contrived but it shows how any strategy could be implemented.</p>
 </div>
-</li>
-<li>
-<p>Browse to the Web console of your local OpenShift instance, accept self-signed certificate and log in.</p>
 <div class="paragraph">
-<p>You can get OpenShift URL with:</p>
+<p>Use the custom strategy in your resolvers the same way as the previous examples.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc status</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">if (conflictHandler.hasConflict(serverData, clientData)) {
+  // If a conflict is detected, resolve it on the server using the custom strategy.
+  const { resolvedState, response } = conflictHandler.resolveOnServer(customResolutionStrategy, serverData, clientData)
+  // persist the resolved data to the database and then return the conflict response
+  await persistToDatabase(resolvedState)
+  return response
+}</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Browser may redirect you to <code>localhost</code>. If that happens just enter the URL again and make sure to add <code>/console</code> at the end.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The custom <code>ConflictResolutionStrategy</code> function can also be <code>async</code> or return a <code>Promise</code> if you need to do some asynchronous operations as part of your strategy (e.g. call to an external service).</p>
 </div>
-</li>
-</ol>
+</div>
+<div class="sect2">
+<h3 id="implementing-custom-conflict-mechanism"><a class="anchor" href="#implementing-custom-conflict-mechanism"></a>Implementing Custom Conflict Mechanism</h3>
+<div class="paragraph">
+<p>The <code>ObjectState</code> interface is a complete conflict resolution implementation that provides a set of rules to detect and handle conflict. Interface will allow developers to handle conflict on the client or the server. <code>nextState</code> method is a way for interface to modify existing object before is being saved to the database.
+For example when using <code>lastModified</code> field as a way to detect conflicts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">public nextState(currentObjectState: ObjectStateData) {
+  currentObjectState.lastModified = new Date()
+  return currentObjectState
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="provision-mdc"><a class="anchor" href="#provision-mdc"></a>Provisioning Mobile Developer Console</h2>
+<h2 id="resolving-conflicts-on-the-client-2"><a class="anchor" href="#resolving-conflicts-on-the-client-2"></a>Resolving conflicts on the client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To provision the Mobile Developer Console:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console.</p>
-</li>
-<li>
-<p>Create a new project or choose an existing project.</p>
-</li>
-<li>
-<p>Select <strong>Catalog</strong> from the left hand menu.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Choose the Mobile Developer Console service.</p>
-</li>
-<li>
-<p>Follow the wizard for provisioning that service.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
+<p>A <strong>conflict</strong> occurs whenever two or more clients try to modify the same data in between synchronizations.</p>
 </div>
 <div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
-Provisioning the Mobile Developer Console may take some time.</p>
+<p><strong>Conflict resolution</strong> is how the application detects and resolves the conflict and ensures the correct data is stored. In most cases, the way conflicts are detected and resolved are incredibly specific to an application and the underlying data storage.</p>
+</div>
+<div class="paragraph">
+<p>The Data Sync SDK provides some utilities to help applications detect and resolve conflicts on either server or client side. To handle conflicts on client side, developers need to configure their resolvers on the server side to return conflicts back to clients first. For more information, see the <a href="#sync-server-offline-and-conflict">Voyager server document</a>.</p>
+</div>
+<div class="paragraph">
+<p>If conflicts need to be handled on client side, developers can either use the default conflict resolution implementations, or implement their own ones thanks to the pluggable conflict resolution mechanism.</p>
+</div>
+<div class="sect2">
+<h3 id="version-based-conflict-detection"><a class="anchor" href="#version-based-conflict-detection"></a>Version Based Conflict Detection</h3>
+<div class="paragraph">
+<p>For more details about how it works, see the <em>server-version-based-conflict-resolution, Voyager server document</em>.</p>
+</div>
+<div class="paragraph">
+<p>On the client side, if this default implementation is used, developers need to make sure the version value is always passed to the server when a mutation is invoked.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="conflict-resolution-strategies-2"><a class="anchor" href="#conflict-resolution-strategies-2"></a>Conflict Resolution Strategies</h3>
+<div class="paragraph">
+<p>To resolve conflicts on the client side, a <code>conflictStrategy</code> needs to be provided. If none is provided, by default, the <code>clientVersionWins</code> strategy is used. This means the SDK will automatically override the server data with the current client data.</p>
+</div>
+<div class="paragraph">
+<p>To implement a custom conflict resolution strategy provide at least one of the parameters below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>strategies - a dictionary object where each key is the name of a mutation and the value is the custom action for a conflict caused by that mutation</p>
+</li>
+<li>
+<p>default - the default behavior to use if one of your mutations is not listed in <code>strategies</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If strategies are provided but no default then <code>clientVersionWins</code> becomes the default.
+If a mutation causes a conflict and you have not specified a conflict resolution strategy for that mutation, the system uses the <code>clientVersionWins</code> strategy.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">//define a custom conflict resolver
+let updateTaskConflictResolver = (serverData, clientData) =&gt; {
+    ...
+    return Object.assign(serverData, clientData);
+};
+
+let deleteTaskConflictResolver = (serverData, clientData) =&gt; {
+    ...
+    return serverData;
+}
+
+//define a default where the clientData is used
+let defaultConflictResolver = (serverData, clientData) =&gt; {
+    return clientData
+}
+
+//pass it to the config object
+let config = {
+...
+  conflictStrategy: {
+    strategies: {
+      "TaskUpdated": updateTaskConflictResolver,
+      "TaskDeleted": deleteTaskConflictResolver
+    },
+    default: defaultConflictResolver
+  }
+...
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Client strategy is ignored when conflicts are resolved on the server.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listening-to-conflicts"><a class="anchor" href="#listening-to-conflicts"></a>Listening to Conflicts</h3>
+<div class="paragraph">
+<p>Developers can supply their own <code>conflictListener</code> implementation to get notifications about conflicts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let config = {
+...
+  conflictListener: {
+    conflictOccurred: function(operationName, resolvedData, server, client) {
+      console.log(`data: ${JSON.stringify(resolvedData)}, server: ${JSON.stringify(server)} client: ${JSON.stringify(client)} `);
+    }
+  }
+...
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
