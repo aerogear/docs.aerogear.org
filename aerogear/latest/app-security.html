@@ -66,7 +66,7 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using the App Security Service :: AeroGear Mobile Services</title>
+    <title>Using the Mobile Security Service :: AeroGear Mobile Services</title>
     <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/app-security.html">
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -357,6 +357,9 @@ Zepto(function($){
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -387,38 +390,35 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="security.html">Security</a>
+    <a class="nav-link" href="security.html">Secure your app</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="app-security.html">App Security</a>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="#monitoring">Monitoring App Security</a>
+    <a class="nav-link" href="security.html#console">Console</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Device Checks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -498,9 +498,8 @@ Zepto(function($){
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
-    <li class="crumb"><a href="security.html">Security</a></li>
-    <li class="crumb"><a href="app-security.html">App Security</a></li>
+    <li class="crumb"><a href="index.html">Mobile Services</a></li>
+    <li class="crumb"><a href="app-security.html">Using the Mobile Security Service</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -513,48 +512,40 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/app-security.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Using the App Security Service</h1>
+<h1>Using the Mobile Security Service</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#setup">Setting Up the App Security Service</a>
+<li><a href="#app-setup">Setting Up the Mobile Security Service</a>
 <ul class="sectlevel2">
-<li><a href="#provisioning-the-security-service">Provisioning the App Security Service</a></li>
-<li><a href="#binding-an-app-to-security-service">Binding a Mobile App with the App Security Service</a></li>
-<li><a href="#configuring-security-service">Configuring the App Security Service</a></li>
-<li><a href="#configuring-your-development-environment-for-the-app-security-service">Configuring your Development Environment for the App Security Service</a>
+<li><a href="#provisioning-the-security-service">Provisioning the Mobile Security Service</a></li>
+<li><a href="#binding-an-app-to-security-service">Binding a Mobile App with the Mobile Security Service</a></li>
+<li><a href="#configuring-security-service">Configuring the Mobile Security Service</a></li>
+<li><a href="#configuring-your-development-environment-for-the-mobile-security-service">Configuring your Development Environment for the Mobile Security Service</a>
 <ul class="sectlevel3">
 <li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
-<li><a href="#setting-up-app-security-service-sdk">Setting up App Security service SDK</a>
+<li><a href="#setting-up-mobile-security-service-sdk">Setting up Mobile Security service SDK</a>
 <ul class="sectlevel4">
 <li><a href="#importing-the-libraries">Importing the libraries</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#using-the-app-security-service">Using the App Security Service</a></li>
 </ul>
 </li>
-<li><a href="#monitoring">Using the App Security Console</a>
+<li><a href="#app-coding">Implementing the Mobile Security service in your mobile app</a></li>
+<li><a href="#console">Managing mobile apps using the Mobile Security Console</a>
 <ul class="sectlevel2">
-<li><a href="#accessing-the-console">Accessing the console</a></li>
-<li><a href="#console-overview">Console overview</a></li>
-<li><a href="#application-details-view">Application details view</a>
-<ul class="sectlevel3">
-<li><a href="#enabling-and-disabling-an-application-version">Enabling and Disabling an application version</a></li>
+<li><a href="#enabling-and-disabling-mobile-app-versions">Enabling and disabling mobile app versions</a></li>
 <li><a href="#adding-or-updating-a-custom-disabled-message">Adding or updating a custom disabled message</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li><a href="#additional-resources">Additional resources</a></li>
-</ul>
 </div>
-<div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="ulist">
+<div class="title">Prerequisites</div>
 <ul>
 <li>
 <p>You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
@@ -567,12 +558,12 @@ Zepto(function($){
 </div>
 </div>
 <div class="sect1">
-<h2 id="setup"><a class="anchor" href="#setup"></a>Setting Up the App Security Service</h2>
+<h2 id="app-setup"><a class="anchor" href="#app-setup"></a>Setting Up the Mobile Security Service</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="provisioning-the-security-service"><a class="anchor" href="#provisioning-the-security-service"></a>Provisioning the App Security Service</h3>
+<h3 id="provisioning-the-security-service"><a class="anchor" href="#provisioning-the-security-service"></a>Provisioning the Mobile Security Service</h3>
 <div class="paragraph">
-<p>This section describes how to set up the App Security Service.</p>
+<p>This section describes how to set up the Mobile Security Service.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -598,7 +589,7 @@ Zepto(function($){
 </div>
 </li>
 <li>
-<p>Click <strong>Services</strong> and choose the App Security service.</p>
+<p>Click <strong>Services</strong> and choose the Mobile Security service.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/catalog-mobile-services.png" alt="catalog mobile services">
@@ -628,13 +619,13 @@ Provisioning a service may take some time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="binding-an-app-to-security-service"><a class="anchor" href="#binding-an-app-to-security-service"></a>Binding a Mobile App with the App Security Service</h3>
+<h3 id="binding-an-app-to-security-service"><a class="anchor" href="#binding-an-app-to-security-service"></a>Binding a Mobile App with the Mobile Security Service</h3>
 <div class="paragraph">
 <p>To use mobile services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
 This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
 </div>
 <div class="paragraph">
-<p>This section describes how to set up the App Security service.</p>
+<p>This section describes how to set up the Mobile Security service.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -677,19 +668,19 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 </div>
 </li>
 <li>
-<p>Click <strong>Bind to App</strong> for App Security.</p>
+<p>Click <strong>Bind to App</strong> for Mobile Security.</p>
 </li>
 <li>
-<p>Fill out the binding parameters required by the App Security Service.</p>
+<p>Fill out the binding parameters required by the Mobile Security Service.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The App Security service will now be expandable, details about the service can be viewed.</p>
+<p>The Mobile Security service will now be expandable, details about the service can be viewed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring-security-service"><a class="anchor" href="#configuring-security-service"></a>Configuring the App Security Service</h3>
+<h3 id="configuring-security-service"><a class="anchor" href="#configuring-security-service"></a>Configuring the Mobile Security Service</h3>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
@@ -708,7 +699,7 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 <p>Select the <strong>Mobile Services</strong> tab.</p>
 </li>
 <li>
-<p>If a binding to the App Securityservice is in progress, a spinning icon is displayed to the right of the App Securityentry. Wait for the binding process to complete.</p>
+<p>If a binding to the Mobile Securityservice is in progress, a spinning icon is displayed to the right of the Mobile Securityentry. Wait for the binding process to complete.</p>
 </li>
 <li>
 <p>Save your changes.</p>
@@ -717,7 +708,7 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuring-your-development-environment-for-the-app-security-service"><a class="anchor" href="#configuring-your-development-environment-for-the-app-security-service"></a>Configuring your Development Environment for the App Security Service</h3>
+<h3 id="configuring-your-development-environment-for-the-mobile-security-service"><a class="anchor" href="#configuring-your-development-environment-for-the-mobile-security-service"></a>Configuring your Development Environment for the Mobile Security Service</h3>
 <div class="sect3">
 <h4 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h4>
 <div class="olist arabic">
@@ -769,7 +760,7 @@ The mobile-services.json file is the link between your provisioned services on O
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-app-security-service-sdk"><a class="anchor" href="#setting-up-app-security-service-sdk"></a>Setting up App Security service SDK</h4>
+<h4 id="setting-up-mobile-security-service-sdk"><a class="anchor" href="#setting-up-mobile-security-service-sdk"></a>Setting up Mobile Security service SDK</h4>
 <div class="sect4">
 <h5 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h5>
 <div class="tabset is-loading">
@@ -830,21 +821,15 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="using-the-app-security-service"><a class="anchor" href="#using-the-app-security-service"></a>Using the App Security Service</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="app-coding"><a class="anchor" href="#app-coding"></a>Implementing the Mobile Security service in your mobile app</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Call the appSecurity clientInit function to implement the App Security Service. Call this service on application initialization.</p>
+<p>Call the appSecurity clientInit function to implement the App Security Service.
+Call this service on application initialization, for example:</p>
 </div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset3_cordova"></a>Cordova</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_cordova">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">appSecurity.clientInit()
@@ -871,17 +856,11 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="monitoring"><a class="anchor" href="#monitoring"></a>Using the App Security Console</h2>
+<h2 id="console"><a class="anchor" href="#console"></a>Managing mobile apps using the Mobile Security Console</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="accessing-the-console"><a class="anchor" href="#accessing-the-console"></a>Accessing the console</h3>
 <div class="paragraph">
-<p>To access the App Security Console:</p>
+<p>To access the Mobile Security Console:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -894,13 +873,11 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </ol>
 </div>
 <div class="paragraph">
-<p>The console is only available after the App Security Service has been provisioned.</p>
+<p>The console is only available after the Mobile Security Service has been provisioned.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="console-overview"><a class="anchor" href="#console-overview"></a>Console overview</h3>
 <div class="paragraph">
-<p>The App Security Console allows you to monitor applications, their respective versions, and disable versions of those applications.</p>
+<div class="title">Overview of the Mobile Security Console</div>
+<p>The Mobile Security Console allows you to monitor applications, their respective versions, and disable versions of those applications.</p>
 </div>
 <div class="paragraph">
 <p>Opening the console lists all applications. Click on an application to view version details for that application.</p>
@@ -908,10 +885,8 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 <div class="paragraph">
 <p>Below is a detailed description of each of these views and the information you can expect each to contain.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="application-details-view"><a class="anchor" href="#application-details-view"></a>Application details view</h3>
 <div class="paragraph">
+<div class="title">Application details view</div>
 <p>This view provides statistics and information about each deployed version of an application:</p>
 </div>
 <div class="ulist">
@@ -936,8 +911,8 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="enabling-and-disabling-an-application-version"><a class="anchor" href="#enabling-and-disabling-an-application-version"></a>Enabling and Disabling an application version</h4>
+<div class="sect2">
+<h3 id="enabling-and-disabling-mobile-app-versions"><a class="anchor" href="#enabling-and-disabling-mobile-app-versions"></a>Enabling and disabling mobile app versions</h3>
 <div class="paragraph">
 <p>To enable/disable one or more versions of the application:</p>
 </div>
@@ -965,8 +940,8 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="adding-or-updating-a-custom-disabled-message"><a class="anchor" href="#adding-or-updating-a-custom-disabled-message"></a>Adding or updating a custom disabled message</h4>
+<div class="sect2">
+<h3 id="adding-or-updating-a-custom-disabled-message"><a class="anchor" href="#adding-or-updating-a-custom-disabled-message"></a>Adding or updating a custom disabled message</h3>
 <div class="paragraph">
 <p>To add or update a custom message for the version(s) of an application:</p>
 </div>
@@ -983,19 +958,6 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 <div class="paragraph">
 <p>Navigating away from this screen with unsaved changes prompts you to save or discard these changes.</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional resources</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>For more information about mobile security see</p>
-</li>
-</ul>
 </div>
 </div>
 </div>

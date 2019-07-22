@@ -357,6 +357,9 @@ Zepto(function($){
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -387,38 +390,35 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="security.html">Security</a>
+    <a class="nav-link" href="security.html">Secure your app</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="app-security.html">App Security</a>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#monitoring">Monitoring App Security</a>
+    <a class="nav-link" href="security.html#console">Console</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Device Checks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -524,12 +524,13 @@ Zepto(function($){
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.6666%;">
-<col style="width: 16.667%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
 </colgroup>
 <thead>
 <tr>
@@ -537,8 +538,9 @@ Zepto(function($){
 <th class="tableblock halign-left valign-top">Core</th>
 <th class="tableblock halign-left valign-top">Identity Management</th>
 <th class="tableblock halign-left valign-top">Push Notifications</th>
-<th class="tableblock halign-left valign-top">Device Security</th>
-<th class="tableblock halign-left valign-top">App Security</th>
+<th class="tableblock halign-left valign-top">Device Checks</th>
+<th class="tableblock halign-left valign-top">Mobile Security</th>
+<th class="tableblock halign-left valign-top">Data Sync Client</th>
 </tr>
 </thead>
 <tbody>
@@ -549,6 +551,7 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-push/">✔</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.javadoc.io/doc/org.aerogear/android-security/">✔</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">iOS</p></td>
@@ -556,6 +559,7 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/auth/">✔</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/push/">✔</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/ios/latest/security/">✔</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -565,6 +569,7 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/push/">✔</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/security">✔</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/cordova/latest/security">✔</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.aerogear.org/api/cordova/latest/voyager-client/">✔</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Xamarin</p></td>
@@ -572,6 +577,7 @@ Zepto(function($){
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/namespace_aero_gear_1_1_mobile_1_1_auth.html">✔</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/api/xamarin/latest/namespace_aero_gear_1_1_mobile_1_1_security.html">✔</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>

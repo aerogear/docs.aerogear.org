@@ -357,6 +357,9 @@ Zepto(function($){
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -387,38 +390,35 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="security.html">Security</a>
+    <a class="nav-link" href="security.html">Secure your app</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="app-security.html">App Security</a>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#monitoring">Monitoring App Security</a>
+    <a class="nav-link" href="security.html#console">Console</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Device Checks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -1200,14 +1200,6 @@ end</code></pre>
 </div>
 </li>
 <li>
-<p>Ionic Apps require an additional dependency, the <a href="https://ionicframework.com/docs/native/push/" target="_blank" rel="noopener">Ionic Native Push Library</a></p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install --save @ionic-native/push</code></pre>
-</div>
-</div>
-</li>
-<li>
 <p>Install the Unified Push Server package needed for device registration:</p>
 <div class="listingblock">
 <div class="content">
@@ -1354,51 +1346,13 @@ Since the Push Network  may assign a new token to a device, AeroGear recommends 
 </div>
 <div class="tab-pane" aria-labelledby="tabset6_cordova">
 <div class="listingblock">
-<div class="title">Using plain Cordova</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { PushRegistration } from "@aerogear/push";
 
-const push = PushNotification.init({
-    android: {},
-    ios: {
-        alert: "true",
-        badge: "true",
-        sound: "true"
-    }
-});
-
-// Registration handler
-push.on('registration', data =&gt; {
-    // PushRegistration is part of @aerogear/push
-    new PushRegistration(app.config).register(data.registrationId).then(() =&gt; {
-        // Registration with UPS successful, you can now send push notifications from the UPS UI
-    }).catch(err =&gt; {
-        // Error on device registration
-    });
-});</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Using Ionic</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { PushRegistration } from "@aerogear/push";
-import { Push } from "@ionic-native/push";
-
-const pushObject = new Push().init({
-    android: {},
-    ios: {
-        alert: true,
-        badge: true,
-        sound: true
-    }
-});
-
-pushObject.on('registration').subscribe(data =&gt; {
-    new PushRegistration(app.config).register(data.registrationId).then(() =&gt; {
-        // Registration with UPS successful, you can now send push notifications from the UPS UI
-    }).catch(err =&gt; {
-        //Error on device registration
-    });
+new PushRegistration(app.config).register().then(() =&gt; {
+    // Registration with UPS successful, you can now send push notifications from the UPS UI
+}).catch(err =&gt; {
+    // Error on device registration
 });</code></pre>
 </div>
 </div>
@@ -1588,7 +1542,7 @@ agSender.Sender(settings)
       "sound": "default"
      }
    }'  \
-   &lt;pushServerURL&gt;</code></pre>
+   &lt;pushServerURL&gt;/rest/sender</code></pre>
 </div>
 </div>
 </div>
@@ -1682,30 +1636,15 @@ Push notifications that arrive when the application is in the background are alw
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset8_cordova">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>For plain Cordova, install the push plugin:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cordova plugin add @aerogear/cordova-plugin-aerogear-push</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>For Ionic, review the push plugin documentation at <a href="https://ionicframework.com/docs/native/push" target="_blank" rel="noopener">Ionic Push plugin</a>.</p>
-</li>
-<li>
+<div class="paragraph">
 <p>Add the following code to your app:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pushObject.on('notification').subscribe(data =&gt; {
-    // Handle incoming message
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PushRegistration.onMessageReceived((notification: any) =&gt; {
+  console.log('Received a push notification', notification);
 });</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset8_xamarin">

@@ -357,6 +357,9 @@ Zepto(function($){
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -387,38 +390,35 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="security.html">Security</a>
+    <a class="nav-link" href="security.html">Secure your app</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="app-security.html">App Security</a>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#monitoring">Monitoring App Security</a>
+    <a class="nav-link" href="security.html#console">Console</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Device Checks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -514,8 +514,6 @@ Zepto(function($){
 </div>
 <article class="doc">
 <h1>Getting Started with Hello World Data Sync</h1>
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
 <p>In this example, you add the Voyager Server library to your <a href="https://expressjs.com/">Express</a> node.js project, create an <code>index-1.js</code> file, run the server, and query GraphQL.</p>
 </div>
@@ -598,14 +596,14 @@ const resolvers = {
 }
 
 //Initialize the library with your Graphql information
-const server = VoyagerServer({
+const apolloserver = VoyagerServer({
   typeDefs,
   resolvers
 })
 
 //Connect the server to express
 const app = express()
-server.applyMiddleware({ app })
+apolloserver.applyMiddleware({ app })
 
 app.listen(4000, () =&gt;
   console.log(`🚀 Server ready at http://localhost:4000/graphql`)
@@ -664,188 +662,6 @@ In this app, you can explore a more complex schema.</p>
 </li>
 <li>
 <p>Subscriptions</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<h1 id="server-getting-started-with-an-example-data-source-schema-{context}" class="sect0"><a class="anchor" href="#server-getting-started-with-an-example-data-source-schema-{context}"></a>Getting started with an example data source schema</h1>
-<div class="paragraph">
-<p>Create a GraphQL schema for an existing data source schema.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch Employee">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">employee_id, <code>ID</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">employee_name, <code>String</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">category_id, <code>ID</code></p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch Category">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">category_id, <code>ID</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">employee_type, <code>String</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">security_clearance, <code>ID</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information on data sources, see <a href="https://docs.okd.io/latest/using_images/db_images/mysql.html">MySQL</a>, <a href="https://docs.okd.io/latest/using_images/db_images/postgresql.html">PostgreSQL</a>, <a href="https://docs.okd.io/latest/using_images/db_images/mongodb.html">MongoDB</a>, or <a href="https://docs.okd.io/latest/using_images/db_images/mariadb.html">MariaDB</a>.</p>
-</li>
-</ul>
-</div>
-<h1 id="server-create-a-graphql-schema-for-an-existing-data-source-{context}" class="sect0"><a class="anchor" href="#server-create-a-graphql-schema-for-an-existing-data-source-{context}"></a>Create a GraphQL schema for an existing data source schema.</h1>
-<div class="paragraph">
-<p>Create a GraphQL schema for an existing data source schema.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p><a href="https://github.com/jstaffor/mobile-docs/blob/master/modules/ROOT/pages/_partials/sync/server-getting-started.adoc">Getting Started with Hello World Data Sync</a>.</p>
-</li>
-<li>
-<p>You are familiar with Data Sync Server operations, for example, stopping and starting Data Sync Server.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>If the Data Sync Server is running, stop it.</p>
-</li>
-<li>
-<p>Edit the <code>index.js</code> file and replace its contents with the following content:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const express = require('express')
-//Include our server libraries
-const { VoyagerServer, gql } = require('@aerogear/voyager-server')
-
-// Stub that reflects data source mapping
-const employees = [{employee_id: 1, employee_name: "joe", cateory_id: 1 }, {employee_id: 2, employee_name: "john", cateory_id: 2}];
-
-const categories = [{category_id: 1, employee_type:"Manager", security_clearance: 1}, {category_id: 2, employee_type:"Associate", security_clearance: 2}];
-
-//GraphQL schema for mapping to data source mapping
-const typeDefs = gql`
-  type Employee {
-      employee_id: ID!,
-      employee_name: String!
-      category: Category
-  }
-  type Category {
-      category_id: ID!,
-      employee_type: String!,
-      security_clearance: ID!
-  }
-  type Query {
-    listEmployees: [Employee]
-  }
-`
-
-//Create the resolvers for your schema
-const resolvers = {
-  Query: {
-    listEmployees: (obj, args, context, info) =&gt; {
-      return employees;
-    }
-  },
-  Employee: {
-    category(employee) {
-        return filter(categories, {category_id: employee.cateory_id});
-    }
-  }
-}
-
-//Initialize the library with your GraphQL information
-const server = VoyagerServer({
-  typeDefs,
-  resolvers
-})
-
-//Connect the server to express
-const app = express()
-server.applyMiddleware({ app })
-
-app.listen(4000, () =&gt;
-  console.log(`🚀 Server ready at http://localhost:4000/graphql`)
-)</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Start the server.</p>
-</li>
-<li>
-<p>Open an internet browser and browse to <code><a href="http://localhost:4000/graphql" class="bare">http://localhost:4000/graphql</a></code>.</p>
-</li>
-<li>
-<p>To list Employees, execute the following command in the GraphQL window:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-  listEmployees
-  {
-    employee_id,
-    employee_name,
-  }
-}</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<div class="title">Verification steps</div>
-<p>For the example above, the output should be:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-  "data": {
-    "listEmployees": [
-      {
-        "employee_id": "1",
-        "employee_name": "joe"
-      },
-      {
-        "employee_id": "2",
-        "employee_name": "john"
-      }
-    ]
-  }
-}</code></pre>
-</div>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p>For more information about Mutations, Queries and Input Types, please see <a href="https://graphql.org/graphql-js/mutations-and-input-types/">Mutations and Input Types</a>.</p>
-</li>
-<li>
-<p>For more information about Resolver Maps, see <a href="https://www.apollographql.com/docs/graphql-tools/resolvers#resolver-map">Resolver Maps</a>.</p>
 </li>
 </ul>
 </div>

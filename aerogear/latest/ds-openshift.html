@@ -357,6 +357,9 @@ Zepto(function($){
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -387,38 +390,35 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="security.html">Security</a>
+    <a class="nav-link" href="security.html">Secure your app</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="app-security.html">App Security</a>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#monitoring">Monitoring App Security</a>
+    <a class="nav-link" href="security.html#console">Console</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Device Checks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -752,7 +752,9 @@ that will help developers with provisioning their DataSync applications to OpenS
 </ul>
 </div>
 <div class="paragraph">
-<p>The DataSync App template allows developers to deploy the Node.js DataSync App on Openshift using source code only.  <em>Node s2i</em>  is used to build the DataSync App image.</p>
+<p>The DataSync App template allows developers to deploy the Node.js DataSync App on Openshift using source code only.
+<em>Node s2i</em>  is used to build the Data Sync App image.
+NOTE: You must set the <code>NODE_ENV</code> environment variable to <code>development</code> and redeploy the pod to ensure access to the GraphQL playground.</p>
 </div>
 <div class="paragraph">
 <p>The DataSync App can connect with other services running on OpenShift and can also connect to external data sources.</p>

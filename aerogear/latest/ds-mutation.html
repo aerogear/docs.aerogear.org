@@ -356,6 +356,9 @@ Zepto(function($){
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-query.html">Queries</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="ds-offline.html">Offline</a>
   </li>
@@ -387,38 +390,35 @@ Zepto(function($){
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="security.html">Security</a>
+    <a class="nav-link" href="security.html">Secure your app</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="app-security.html">App Security</a>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="app-security.html#monitoring">Monitoring App Security</a>
+    <a class="nav-link" href="security.html#console">Console</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-toggle"></button>
-    <a class="nav-link" href="device-security.html">Device Security</a>
+    <a class="nav-link" href="security.html">Device Checks</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#introduction">Introduction</a>
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#setup">Setting Up</a>
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#device-trust">Performing Device Trust Checks</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="device-security.html#cert-pinning">Certificate Pinning</a>
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
   </li>
 </ul>
   </li>
@@ -498,8 +498,9 @@ Zepto(function($){
   <a href="getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
-    <li class="crumb"><a href="index.html">Mobile Services</a></li>
-    <li class="crumb"><a href="ds-mutation.html">Adding a mutation to a Data Sync client</a></li>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-mutation.html">Mutations</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -520,34 +521,20 @@ Zepto(function($){
 <p>You have Node.js and npm installed.</p>
 </li>
 <li>
-<p>You have created an empty web project that supports ES6, for example, using the <a href="https://webpack.js.org/guides/getting-started/">webpack getting started</a> guide.</p>
-</li>
+<p>You have completed <a href="ds-query.html" class="page">Queries section</a> and the server is still running.</p>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>You have completed the server getting started guide and the application is running.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Add our libraries to your javascript client,</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install @aerogear/voyager-client</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Below is a simple code example to connect to and query our Voyager Server.
-To configure the client, a configuration object should be used.
-At a minimum, the <code>httpUrl</code> field is required and it is the url of the Voyager server application.
-If the client app uses subscription as well, then the <code>wsUrl</code> field is required too.</p>
-</div>
+<p>Modify the client application to perform the mutation:</p>
 <div class="listingblock">
 <div class="title">src/index.js</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// gql is a utility function that handles gql queries
-//import gql from 'graphql-tag';
+import gql from 'graphql-tag';
 
 import { OfflineClient } from '@aerogear/voyager-client';
 
-// For our client application, we will connect to the local service.
+// connect to the local service.
 let config = {
   httpUrl: "http://localhost:4000/graphql",
   wsUrl: "ws://localhost:4000/graphql",
@@ -560,29 +547,32 @@ async function addPerson() {
   let client = await offlineClient.init();
 
   // Execute the mutation
-  client.query({
-      fetchPolicy: 'network-only',
-      query: gql`mutation {
-  post(
-    name: "John Doe"
-    address: "1 Red Hill"
-  ) {
-    id
-  }
-}
-}`
+  client.mutate({
+      mutation: gql`
+       mutation {
+         post(name: "John Doe", address: "1 Red Hill") {
+           id
+         }
+       }
+       `
     })
     //Print the response of the query
     .then( ({data}) =&gt; {
-      console.log(data.hello)
+      console.log(data)
     });
 }
 
 addPerson();</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Build and run the client application.</p>
+</li>
+<li>
+<p>Browse the client application and check the console output.</p>
 <div class="paragraph">
-<p>You can build and run this code in your project. You should see the following in your JavaScript console:</p>
+<p>It should include an array similar to the following:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -594,6 +584,12 @@ addPerson();</code></pre>
   }
 }</pre>
 </div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
 </div>
 </article>
   </main>
