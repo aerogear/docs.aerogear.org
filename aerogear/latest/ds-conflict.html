@@ -67,8 +67,8 @@ Zepto(function($){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resolving Conflicts in your Data Sync app :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-conflict.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-conflict.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -506,6 +509,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/ds-conflict.html">Native</a>
     <a class="version is-current" href="ds-conflict.html">latest</a>
     <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
@@ -518,21 +522,20 @@ Zepto(function($){
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#conflict-resolution-introduction">Introduction</a></li>
-<li><a href="#conflict-resolution-{context}">Detecting Conflicts on the Server</a>
+<li><a href="#conflict-resolution-{context}">Detecting conflicts on the server</a>
 <ul class="sectlevel2">
-<li><a href="#pluggable-conflict-detection">Pluggable Conflict Detection</a></li>
-<li><a href="#version-based-conflict">Version Based Conflict Detection</a></li>
-<li><a href="#hash-based-conflict">Hash Based Conflict Detection</a></li>
-<li><a href="#error-structure">Structure of the Conflict Error</a></li>
+<li><a href="#version-based-conflict">Implementing version based conflict detection</a></li>
+<li><a href="#hash-based-conflict">Implementing hash based conflict detection</a></li>
+<li><a href="#error-structure">About the structure of the conflict error</a></li>
 </ul>
 </li>
-<li><a href="#resolving-conflicts-on-the-client">Resolving Conflicts on the Client</a>
+<li><a href="#resolving-conflicts-on-the-client">Resolving Conflicts on the client</a>
 <ul class="sectlevel2">
-<li><a href="#working-with-conflicts-client">Working with Conflict Resolution on the Client</a></li>
-<li><a href="#default-conflict-implementation">Default Conflict Implementation</a></li>
-<li><a href="#conflict-resolution-strategies">Conflict Resolution Strategies</a></li>
-<li><a href="#listening-to-conflicts">Listening to Conflicts</a></li>
-<li><a href="#pre-conflict-errors">Pre-Conflict Errors</a></li>
+<li><a href="#working-with-conflicts-client">Implementing conflict resolution on the client</a></li>
+<li><a href="#about-the-default-conflict-implementation">About the default conflict implementation</a></li>
+<li><a href="#conflict-resolution-strategies">Implementing conflict resolution strategies</a></li>
+<li><a href="#listening-to-conflicts">Listening to conflicts</a></li>
+<li><a href="#handling-pre-conflict-errors">Handling pre-conflict errors</a></li>
 </ul>
 </li>
 </ul>
@@ -541,37 +544,49 @@ Zepto(function($){
 <h2 id="conflict-resolution-introduction"><a class="anchor" href="#conflict-resolution-introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Applications that allow users to modify data while offline must deal with conflicts. A <strong>conflict</strong> occurs when two or more clients try to modify the same data in between synchronizations.</p>
+<p>Typically, mobile apps allow users to modify data while offline, which results in conflicts.
+A <strong>conflict</strong> occurs when two or more users try to modify the same data.</p>
 </div>
 <div class="paragraph">
-<p><strong>Example:</strong> A user modifies a record while offline. When back online, they discover that the record has been deleted by another user.</p>
+<p>For example, a user modifies a record while offline, and another user deletes that record at the same time.
+The system needs to resolve the conflicting data.</p>
 </div>
 <div class="paragraph">
-<p>Discussions about conflicts can be broken down into two parts.</p>
+<p>Conflict resolution can be handled in two phases:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Conflict Detection</strong> is the ability of an application to detect the presence of outdated data which cannot be stored without possible data loss occuring.</p>
+<p><strong>Conflict detection</strong> is the ability of an application to detect the possibility of incorrect data being stored.</p>
 </li>
 <li>
-<p><strong>Conflict Resolution</strong> is how the application handles the conflict and ensures the correct data is stored.</p>
+<p><strong>Conflict resolution</strong> is the process of ensuring that the correct data is stored.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In most cases, the way conflicts are detected and resolved are specific to an application and the underlying data storage. You implement conflict detection exclusively in the code associated with mutations.</p>
+<p>With AeroGear Data Sync:</p>
 </div>
-<div class="paragraph">
-<p>Voyager Server provides conflict detection on the server side while Voyager Client provides conflict resolution on the client side.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You implement conflict detection exclusively in the code associated with mutations.</p>
+</li>
+<li>
+<p>The Voyager Server module provides conflict detection on the server side.</p>
+</li>
+<li>
+<p>The Voyager Client module provides conflict resolution on the client side.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="conflict-resolution-{context}"><a class="anchor" href="#conflict-resolution-{context}"></a>Detecting Conflicts on the Server</h2>
+<h2 id="conflict-resolution-{context}"><a class="anchor" href="#conflict-resolution-{context}"></a>Detecting conflicts on the server</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At a high level, there is a typical flow to detecting conflicts.</p>
+<p>A typical flow for detecting conflicts includes the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -582,33 +597,29 @@ Zepto(function($){
 <p><strong>Read the Object</strong> - The server reads the current object that the client is trying to modify from the data source</p>
 </li>
 <li>
-<p><strong>Conflict Detection</strong> - The server compares the current object with the data sent by the client to see if there is a conflict. The developer can choose <em>how</em> the comparison is performed.</p>
+<p><strong>Conflict Detection</strong> - The server compares the current object with the data sent by the client to see if there is a conflict.
+The developer chooses how the comparison is performed.</p>
 </li>
 </ol>
 </div>
-<div class="sect2">
-<h3 id="pluggable-conflict-detection"><a class="anchor" href="#pluggable-conflict-detection"></a>Pluggable Conflict Detection</h3>
 <div class="paragraph">
-<p>The <code>aerogear/voyager-conflicts</code> module uses the concept of <strong>pluggable conflict detection</strong> to help developers with the <strong>Conflict Detection</strong> steps regardless of their storage.</p>
+<p>The <code>aerogear/voyager-conflicts</code> module helps developers with the <strong>Conflict Detection</strong> steps regardless of the storage technology, while the fetching and storing of data is the responsibility of the developer.</p>
 </div>
 <div class="paragraph">
-<p>The conflict detection is enabled by Voyager Server, while the fetching and storing of data is the responsibility of the developer.</p>
-</div>
-<div class="paragraph">
-<p>Pluggable conflict detection supports the following implementations:</p>
+<p>This release supports the following implementations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedObjectState</code> - depends on the version field supplied in objects (the version field is used by default when importing conflictHandler). For details, please see: <a href="#version-based-conflict">Version Based Conflict Detection</a></p>
+<p><code>VersionedObjectState</code> - depends on the version field supplied in objects (the version field is used by default when importing conflictHandler). For details, please see: <a href="#version-based-conflict">Implementing version based conflict detection</a></p>
 </li>
 <li>
-<p><code>HashObjectState</code> - depends on a hash calculated from the entire object. For details, please see: <a href="#hash-based-conflict">Hash Based Conflict Detection</a></p>
+<p><code>HashObjectState</code> - depends on a hash calculated from the entire object. For details, please see: <a href="#hash-based-conflict">Implementing hash based conflict detection</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These implementations are based on the <code>ObjectState</code> interface that can be extended to provide custom implementations for conflict detection.</p>
+<p>These implementations are based on the <code>ObjectState</code> interface and that interface can be extended to provide custom implementations for conflict detection.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -624,9 +635,8 @@ If you use any other form of data storage, you are responsible for backing up th
 </li>
 </ul>
 </div>
-</div>
 <div class="sect2">
-<h3 id="version-based-conflict"><a class="anchor" href="#version-based-conflict"></a>Version Based Conflict Detection</h3>
+<h3 id="version-based-conflict"><a class="anchor" href="#version-based-conflict"></a>Implementing version based conflict detection</h3>
 <div class="paragraph">
 <p>Version based conflict resolution is the recommended and simplest approach for conflict detection and resolution. The core idea is that every object has a <code>version</code> property with an integer value. A <strong>conflict</strong> occurs when the version number sent by the client does not match the version stored in the server. This means a different client has already updated the object.</p>
 </div>
@@ -689,7 +699,7 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="hash-based-conflict"><a class="anchor" href="#hash-based-conflict"></a>Hash Based Conflict Detection</h3>
+<h3 id="hash-based-conflict"><a class="anchor" href="#hash-based-conflict"></a>Implementing hash based conflict detection</h3>
 <div class="paragraph">
 <p>Hash based conflict detection is a mechanism to detect conflicts based on the <em>total</em> object being updated by the client. It does this by hashing each object and comparing the hashes. This tells the server whether or not the objects are equivalent and can be considered conflict free.</p>
 </div>
@@ -752,7 +762,7 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="error-structure"><a class="anchor" href="#error-structure"></a>Structure of the Conflict Error</h3>
+<h3 id="error-structure"><a class="anchor" href="#error-structure"></a>About the structure of the conflict error</h3>
 <div class="paragraph">
 <p>The server needs to return a specific error when a conflict is detected containing both the server and client states. This allows the client to resolve the conflict.</p>
 </div>
@@ -777,10 +787,10 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="resolving-conflicts-on-the-client"><a class="anchor" href="#resolving-conflicts-on-the-client"></a>Resolving Conflicts on the Client</h2>
+<h2 id="resolving-conflicts-on-the-client"><a class="anchor" href="#resolving-conflicts-on-the-client"></a>Resolving Conflicts on the client</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At a high level, there is a typical flow to resolving conflicts on the client.</p>
+<p>A typical flow for resolving conflicts includes the following steps:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -818,31 +828,40 @@ db.save(clientData.id, clientData)</code></pre>
 <p>Developers can either use the default conflict resolution implementations, or implement their own conflict resolution implementations using the conflict resolution mechanism.</p>
 </div>
 <div class="paragraph">
-<p>By default, when no changes are made on the same fields, the implementation will attempt to resend the modified payload back to the server. When changes on the server and on the client cover the same fields, one of the specified conflict resolution strategies can be used. The default strategy will apply client changes on top of the server side data. Developers can modify strategies to suit their needs.</p>
+<p>By default, when no changes are made on the same fields, the implementation attempts to resend the modified payload back to the server.
+When changes on the server and on the client affect the same fields, one of the specified conflict resolution strategies can be used.
+The default strategy applies client changes on top of the server side data.
+Developers can modify strategies to suit their needs.</p>
 </div>
 <div class="sect2">
-<h3 id="working-with-conflicts-client"><a class="anchor" href="#working-with-conflicts-client"></a>Working with Conflict Resolution on the Client</h3>
+<h3 id="working-with-conflicts-client"><a class="anchor" href="#working-with-conflicts-client"></a>Implementing conflict resolution on the client</h3>
 <div class="paragraph">
-<p>To enable conflict resolution, the server side resolvers must be configured to perform conflict detection. Detection can rely on many different implementations and return the conflict error back to the client. For more information about how to do this, please see <a href="#conflict-resolution-{context}">Server Side Conflict Detection</a>.</p>
+<p>To enable conflict resolution, the server side resolvers must be configured to perform conflict detection.
+Detection can rely on different implementations and return the conflict error back to the client.
+See <a href="#conflict-resolution-{context}">Server Side Conflict Detection</a> for more information.</p>
 </div>
 <div class="paragraph">
-<p>Next, we must provide mutations with one extra piece of information that will be used to resolve any conflicts, by using the context. This piece of information is the <code>returnType</code> parameter. This parameter defines the Object type being operated on.</p>
+<div class="title">Procedure</div>
+<p>Provide the mutation context with the <code>returnType</code> parameter to resolve conflicts.
+This parameter defines the Object type being operated on.
+You can implement this in two ways:</p>
 </div>
-<div class="paragraph">
-<p>If using Data Sync&#8217;s <code>offlineMutation</code> you can provide this parameter directly as follows:</p>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If using Data Sync&#8217;s <code>offlineMutate</code> you can provide the <code>returnType</code> parameter directly as follows:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">client.offlineMutation({
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">client.offlineMutate({
   ...
   returnType: 'Task'
   ...
 })</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>or if using Apollo&#8217;s mutate function:</p>
-</div>
+</li>
+<li>
+<p>If using Apollo&#8217;s <code>mutate</code> function, provide the <code>returnType</code> parameter as follows:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">client.mutate({
@@ -854,27 +873,34 @@ db.save(clientData.id, clientData)</code></pre>
 })</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The client will then automatically resolve them based on the current strategy and notify listeners if the developer supplied any.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Conflict resolution will work with the recommended defaults and does not require any specific handling on the client.</p>
+<p>The client automatically resolves the conflicts based on the current strategy and notifies listeners as required.</p>
 </div>
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>For advanced use cases, the conflict implementation may be customised by supplying a custom <code>conflictProvider</code> in the application config. See <a href="#conflict-resolution-strategies">Conflict Resolution Strategies</a> below.</p>
+<p>Conflict resolution works with the recommended defaults and does not require any specific handling on the client.</p>
 </div>
-</blockquote>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For advanced use cases, the conflict implementation can be customised by supplying a custom <code>conflictProvider</code> in the application config. See <a href="#conflict-resolution-strategies">Conflict Resolution Strategies</a> below.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="default-conflict-implementation"><a class="anchor" href="#default-conflict-implementation"></a>Default Conflict Implementation</h3>
+<h3 id="about-the-default-conflict-implementation"><a class="anchor" href="#about-the-default-conflict-implementation"></a>About the default conflict implementation</h3>
 <div class="paragraph">
-<p>By default, conflict resolution is configured to rely on a <code>version</code> field on each GraphQL type. A version field will also need to be saved to the database in order to detect changes on the server.</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
+<p>By default, conflict resolution is configured to rely on a <code>version</code> field on each GraphQL type.
+You must save a version field to the database in order to detect changes on the server.
+For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -886,7 +912,9 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The version field is controlled on the server and will map the last version that was sent from the server. All operations on the version field happen automatically. However, users need to make sure that the version field is always passed to the server for mutations that supports conflict resolution:</p>
+<p>The version field is controlled on the server and maps the last version that was sent from the server.
+All operations on the version field happen automatically.
+Make sure that the version field is always passed to the server for mutations that supports conflict resolution:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -897,9 +925,11 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="conflict-resolution-strategies"><a class="anchor" href="#conflict-resolution-strategies"></a>Conflict Resolution Strategies</h3>
+<h3 id="conflict-resolution-strategies"><a class="anchor" href="#conflict-resolution-strategies"></a>Implementing conflict resolution strategies</h3>
 <div class="paragraph">
-<p>Data Sync allows developers to define custom conflict resolution strategies. You can provide custom conflict resolution strategies to the client in the config by using the provided <code>ConflictResolutionStrategies</code> type. By default developers do not need to pass any strategy as <code>UseClient</code> is the default. Custom strategies can also be used to provide different resolution strategies for certain operations:</p>
+<p>Data Sync allows developers to define custom conflict resolution strategies. You can provide custom conflict resolution strategies to the client in the config by using the provided <code>ConflictResolutionStrategies</code> type.
+By default developers do not need to pass any strategy as <code>UseClient</code> is the default.
+Custom strategies can also be used to provide different resolution strategies for certain operations:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -924,7 +954,9 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This custom strategy provides two distinct strategies to be used when a conflict occurs. They are based on the name of the operation to give developers granular control. To use this custom strategy, pass it as an argument to conflictStrategy in your config object:</p>
+<p>This custom strategy object provides two distinct strategies.
+The strategies are named to match the operation.
+You pass the name of the object as an argument to conflictStrategy in your config object:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -937,21 +969,26 @@ db.save(clientData.id, clientData)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listening-to-conflicts"><a class="anchor" href="#listening-to-conflicts"></a>Listening to Conflicts</h3>
+<h3 id="listening-to-conflicts"><a class="anchor" href="#listening-to-conflicts"></a>Listening to conflicts</h3>
 <div class="paragraph">
-<p>Data Sync allows developers to receive information about the data conflict that has occurred between the client and the server.</p>
+<p>Data Sync allows developers to receive information about the data conflict.</p>
 </div>
 <div class="paragraph">
-<p>When a conflict occurs, Data Sync attempts to perform a field level resolution of data - it will check all fields of its type to see if both the client or server has changed the same field. The client can be notified in one of two scenarios.</p>
+<p>When a conflict occurs, Data Sync attempts to perform a field level resolution of data - it checks all fields of its type to see if both the client or server has changed the same field.
+The client can be notified in one of two scenarios.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If both client and server have changed any of the same fields, the <code>conflictOccurred</code> method of the <code>ConflictListener</code> is triggered.</p>
+</li>
+<li>
+<p>If the client and server have not changed any of the same fields, and the data can be easily merged, the <code>mergeOccurred</code> method of your <code>ConflictListener</code> is triggered.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>If both client and server have changed any of the same fields, the <code>conflictOccurred</code> method of the <code>ConflictListener</code> will be triggered.</p>
-</div>
-<div class="paragraph">
-<p>If the client and server have not changed any of the same fields, and the data can be easily merged, the <code>mergeOccurred</code> method of your <code>ConflictListener</code> will be triggered.</p>
-</div>
-<div class="paragraph">
-<p>Developers can supply their own <code>conflictListener</code> implementation</p>
+<p>Developers can supply their own <code>conflictListener</code> implementation, for example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -975,38 +1012,43 @@ let config = {
 </div>
 </div>
 <div class="sect2">
-<h3 id="pre-conflict-errors"><a class="anchor" href="#pre-conflict-errors"></a>Pre-Conflict Errors</h3>
+<h3 id="handling-pre-conflict-errors"><a class="anchor" href="#handling-pre-conflict-errors"></a>Handling pre-conflict errors</h3>
 <div class="paragraph">
-<p>Data Sync provides a mechanism for developers to check for a 'pre-conflict' before a mutation occurs. It does this out of the box by checking whether or not the data being sent conflicts locally. This happens when a mutation (or the act of creating a mutation) is initiated and before being sent new data arrives via subscriptions.</p>
+<p>Data Sync provides a mechanism for developers to check for a 'pre-conflict' before a mutation occurs.
+It checks whether or not the data being sent conflicts locally.
+This happens when a mutation (or the act of creating a mutation) is initiated.</p>
 </div>
 <div class="paragraph">
-<p>An example of when this is useful could be when a user performs the following actions:</p>
+<p>For example, consider a user performing the following actions:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open a form on their device</p>
+<p>opens a form</p>
 </li>
 <li>
-<p>Begin working on the pre-populated data on this form</p>
+<p>begins working on the pre-populated data on this form</p>
 </li>
 <li>
-<p>While working, the client receives new data from the server from subscriptions</p>
+<p>the client receives new data from the server from subscriptions</p>
 </li>
 <li>
-<p>The client is now conflicted but the user is unaware.</p>
+<p>the client is now conflicted but the user is unaware</p>
 </li>
 <li>
-<p>When the user presses submit Data Sync notices that their data is conflicted and provides the developer with a way to warn the user.</p>
+<p>when the user presses <strong>Submit</strong> Data Sync notices that their data is conflicted and provides the developer with the information to warn the user</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>To use this feature, and therefore potentially save unecessary round-trips to the server with data which is definitely conflicted, developers can make use of the error returned by Data Sync. An example of how developers can use this error can be seen below.</p>
+<p>To use this feature, and therefore potentially save unecessary round-trips to the server with data which is definitely conflicted, developers can make use of the error returned by Data Sync.</p>
+</div>
+<div class="paragraph">
+<p>An example of how developers can use this error:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">return client.offlineMutation({
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">return client.offlineMutate({
   ...
 }).then(result =&gt; {
   // handle the result

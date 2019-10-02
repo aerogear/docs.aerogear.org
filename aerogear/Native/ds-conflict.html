@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolving Conflicts in your Data Sync app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-conflict.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-conflict.html">Conflict Resolution</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="ds-conflict.html">Native</a>
+    <a class="version" href="../latest/ds-conflict.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/ds-conflict.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Resolving Conflicts in your Data Sync app</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#conflict-resolution-introduction">Introduction</a></li>
+<li><a href="#conflict-resolution-{context}">Detecting conflicts on the server</a>
+<ul class="sectlevel2">
+<li><a href="#version-based-conflict">Implementing version based conflict detection</a></li>
+<li><a href="#hash-based-conflict">Implementing hash based conflict detection</a></li>
+<li><a href="#error-structure">About the structure of the conflict error</a></li>
+</ul>
+</li>
+<li><a href="#resolving-conflicts-on-the-client">Resolving Conflicts on the client</a>
+<ul class="sectlevel2">
+<li><a href="#working-with-conflicts-client">Implementing conflict resolution on the client</a></li>
+<li><a href="#about-the-default-conflict-implementation">About the default conflict implementation</a></li>
+<li><a href="#conflict-resolution-strategies">Implementing conflict resolution strategies</a></li>
+<li><a href="#listening-to-conflicts">Listening to conflicts</a></li>
+<li><a href="#handling-pre-conflict-errors">Handling pre-conflict errors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="conflict-resolution-introduction"><a class="anchor" href="#conflict-resolution-introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Typically, mobile apps allow users to modify data while offline, which results in conflicts.
+A <strong>conflict</strong> occurs when two or more users try to modify the same data.</p>
+</div>
+<div class="paragraph">
+<p>For example, a user modifies a record while offline, and another user deletes that record at the same time.
+The system needs to resolve the conflicting data.</p>
+</div>
+<div class="paragraph">
+<p>Conflict resolution can be handled in two phases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Conflict detection</strong> is the ability of an application to detect the possibility of incorrect data being stored.</p>
+</li>
+<li>
+<p><strong>Conflict resolution</strong> is the process of ensuring that the correct data is stored.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With AeroGear Data Sync:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You implement conflict detection exclusively in the code associated with mutations.</p>
+</li>
+<li>
+<p>The Voyager Server module provides conflict detection on the server side.</p>
+</li>
+<li>
+<p>The Voyager Client module provides conflict resolution on the client side.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conflict-resolution-{context}"><a class="anchor" href="#conflict-resolution-{context}"></a>Detecting conflicts on the server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A typical flow for detecting conflicts includes the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>A Mutation Occurs</strong> - A client tries to modify or delete an object on the server using a GraphQL mutation</p>
+</li>
+<li>
+<p><strong>Read the Object</strong> - The server reads the current object that the client is trying to modify from the data source</p>
+</li>
+<li>
+<p><strong>Conflict Detection</strong> - The server compares the current object with the data sent by the client to see if there is a conflict.
+The developer chooses how the comparison is performed.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>aerogear/voyager-conflicts</code> module helps developers with the <strong>Conflict Detection</strong> steps regardless of the storage technology, while the fetching and storing of data is the responsibility of the developer.</p>
+</div>
+<div class="paragraph">
+<p>This release supports the following implementations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>VersionedObjectState</code> - depends on the version field supplied in objects (the version field is used by default when importing conflictHandler). For details, please see: <a href="#version-based-conflict">Implementing version based conflict detection</a></p>
+</li>
+<li>
+<p><code>HashObjectState</code> - depends on a hash calculated from the entire object. For details, please see: <a href="#hash-based-conflict">Implementing hash based conflict detection</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These implementations are based on the <code>ObjectState</code> interface and that interface can be extended to provide custom implementations for conflict detection.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>GraphQL server with resolvers.</p>
+</li>
+<li>
+<p>Database or any other form of data storage that can cause data conflicts.
+AeroGear recommends that you store data in a secure location.
+If you use a database, it is your responsibility to administer, maintain and backup that database.
+If you use any other form of data storage, you are responsible for backing up the data.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="version-based-conflict"><a class="anchor" href="#version-based-conflict"></a>Implementing version based conflict detection</h3>
+<div class="paragraph">
+<p>Version based conflict resolution is the recommended and simplest approach for conflict detection and resolution. The core idea is that every object has a <code>version</code> property with an integer value. A <strong>conflict</strong> occurs when the version number sent by the client does not match the version stored in the server. This means a different client has already updated the object.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Import the <a href="https://npmjs.com/package/@aerogear/voyager-conflicts">@aerogear/voyager-conflicts</a> package.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { conflictHandler } = require('@aerogear/voyager-conflicts')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a version field to the GraphQL type that should support conflict resolution. The version should also be stored in the data storage.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Task {
+  title: String
+  version: Int
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an example mutation.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Mutation {
+  updateTask(title: String!, version: Int!): Task
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the resolver. Every conflict can be handled using a set of predefined steps, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// 1. Read data from data source
+const serverData = db.find(clientData.id)
+// 2. Check for conflicts
+const conflict = conflictHandler.checkForConflicts(serverData, clientData)
+// 3. If there is a conflict, return the details to the client
+if(conflict) {
+    throw conflict;
+}
+// 4. Save object to data source
+db.save(clientData.id, clientData)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the example above, the <code>throw</code> statement ensures that the client receives all necessary data to resolve the conflict client-side. For more information about this data, please see <a href="#error-structure">Structure of the Conflict Error</a>.</p>
+</div>
+<div class="paragraph">
+<p>Since the conflict will be resolved on the client, it is not required to persist the data. However, if there is no conflict, the data sent by the client should be persisted. For more information on resolving the conflict client-side, please see: <a href="#resolving-conflicts-on-the-client-2">Resolving Conflicts on the Client</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hash-based-conflict"><a class="anchor" href="#hash-based-conflict"></a>Implementing hash based conflict detection</h3>
+<div class="paragraph">
+<p>Hash based conflict detection is a mechanism to detect conflicts based on the <em>total</em> object being updated by the client. It does this by hashing each object and comparing the hashes. This tells the server whether or not the objects are equivalent and can be considered conflict free.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Import the <a href="https://npmjs.com/package/@aerogear/voyager-conflicts">@aerogear/voyager-conflicts</a> package.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { HashObjectState } = require('@aerogear/voyager-conflicts')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>When using the <code>HashObjectState</code> implementation, a hashing function must be provided. The function signature should be as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const hashFunction = (object) {
+  // Using the Hash library of your choice
+  const hashedObject = Hash(object)
+  // return the hashedObject in string form
+  return hashedObject;
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Provide this function when instantiating the <code>HashObjectState</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const conflictHandler = new HashObjectState(hashFunction)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the resolver. Every conflict can be handled using a set of predefined steps, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// 1. Read data from data source
+const serverData = db.find(clientData.id)
+// 2. Check for conflicts
+const conflict = conflictHandler.checkForConflicts(serverData, clientData)
+// 3. If there is a conflict, return the details to the client
+if(conflict) {
+    throw conflict;
+}
+// 4. Save object to data source
+db.save(clientData.id, clientData)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the example above, the <code>throw</code> statement ensures the client receives all necessary data to resolve the conflict client-side. For more information about this data please see <a href="#error-structure">Structure of the Conflict Error</a>.</p>
+</div>
+<div class="paragraph">
+<p>Since the conflict will be resolved on the client, it is not required to persist the data. However, if there is no conflict, the data sent by the client should be persisted. For more information on resolving the conflict client-side, please see: <a href="#resolving-conflicts-on-the-client-2">Resolving Conflicts on the Client</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="error-structure"><a class="anchor" href="#error-structure"></a>About the structure of the conflict error</h3>
+<div class="paragraph">
+<p>The server needs to return a specific error when a conflict is detected containing both the server and client states. This allows the client to resolve the conflict.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript"> "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "conflictInfo": {
+            "serverState": {
+                 //..
+            },
+            "clientState": {
+              //..
+            }
+          },
+        }
+ }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resolving-conflicts-on-the-client"><a class="anchor" href="#resolving-conflicts-on-the-client"></a>Resolving Conflicts on the client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A typical flow for resolving conflicts includes the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>A Mutation Occurs</strong> - A client tries to modify or delete an object on the server using a GraphQL mutation.</p>
+</li>
+<li>
+<p><strong>Read the Object</strong> - The server reads the current object the client is trying to modify from the data source (usually a database).</p>
+</li>
+<li>
+<p><strong>Conflict Detection</strong> - The server compares the current object with the data sent by the client to see if there was a conflict. If there is a conflict, the server returns a response to the client containing information outlined in <a href="#error-structure">Structure of the Conflict Error</a></p>
+</li>
+<li>
+<p><strong>Conflict Resolution</strong> - The client attempts to resolve this conflict and makes a new request to the server in the hope that this data is no longer conflicted.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The conflict resolution implementation requires the following additions to your application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>returnType</code> added to the context of any mutation. see: <a href="#working-with-conflicts-client">Working With Conflict Resolution on the Client</a>.</p>
+</li>
+<li>
+<p>Additional metadata inside types (for example version field) depending on the conflict implementation you chose. see: <a href="#version-based-conflict">Version Based Conflict Detection</a>.</p>
+</li>
+<li>
+<p>Server-side resolvers to return conflicts back to clients first. For more information, see: <a href="#conflict-resolution-{context}">Server Side Conflict Detection</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Developers can either use the default conflict resolution implementations, or implement their own conflict resolution implementations using the conflict resolution mechanism.</p>
+</div>
+<div class="paragraph">
+<p>By default, when no changes are made on the same fields, the implementation attempts to resend the modified payload back to the server.
+When changes on the server and on the client affect the same fields, one of the specified conflict resolution strategies can be used.
+The default strategy applies client changes on top of the server side data.
+Developers can modify strategies to suit their needs.</p>
+</div>
+<div class="sect2">
+<h3 id="working-with-conflicts-client"><a class="anchor" href="#working-with-conflicts-client"></a>Implementing conflict resolution on the client</h3>
+<div class="paragraph">
+<p>To enable conflict resolution, the server side resolvers must be configured to perform conflict detection.
+Detection can rely on different implementations and return the conflict error back to the client.
+See <a href="#conflict-resolution-{context}">Server Side Conflict Detection</a> for more information.</p>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>Provide the mutation context with the <code>returnType</code> parameter to resolve conflicts.
+This parameter defines the Object type being operated on.
+You can implement this in two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If using Data Sync&#8217;s <code>offlineMutate</code> you can provide the <code>returnType</code> parameter directly as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">client.offlineMutate({
+  ...
+  returnType: 'Task'
+  ...
+})</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If using Apollo&#8217;s <code>mutate</code> function, provide the <code>returnType</code> parameter as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">client.mutate({
+  ...
+  context: {
+    returnType: 'Task'
+  }
+  ...
+})</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The client automatically resolves the conflicts based on the current strategy and notifies listeners as required.</p>
+</div>
+<div class="paragraph">
+<p>Conflict resolution works with the recommended defaults and does not require any specific handling on the client.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For advanced use cases, the conflict implementation can be customised by supplying a custom <code>conflictProvider</code> in the application config. See <a href="#conflict-resolution-strategies">Conflict Resolution Strategies</a> below.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="about-the-default-conflict-implementation"><a class="anchor" href="#about-the-default-conflict-implementation"></a>About the default conflict implementation</h3>
+<div class="paragraph">
+<p>By default, conflict resolution is configured to rely on a <code>version</code> field on each GraphQL type.
+You must save a version field to the database in order to detect changes on the server.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">type User {
+  id: ID!
+  version: String!
+  name: String!
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The version field is controlled on the server and maps the last version that was sent from the server.
+All operations on the version field happen automatically.
+Make sure that the version field is always passed to the server for mutations that supports conflict resolution:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">type Mutation {
+  updateUser(id: ID!, version: String!): User
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="conflict-resolution-strategies"><a class="anchor" href="#conflict-resolution-strategies"></a>Implementing conflict resolution strategies</h3>
+<div class="paragraph">
+<p>Data Sync allows developers to define custom conflict resolution strategies. You can provide custom conflict resolution strategies to the client in the config by using the provided <code>ConflictResolutionStrategies</code> type.
+By default developers do not need to pass any strategy as <code>UseClient</code> is the default.
+Custom strategies can also be used to provide different resolution strategies for certain operations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let customStrategy = {
+  resolve = (base, server, client, operationName) =&gt; {
+    let resolvedData;
+    switch (operationName) {
+      case "updateUser":
+        delete client.socialKey
+        resolvedData = Object.assign(base, server, client)
+        break
+      case "updateRole":
+        client.role = "none"
+        resolvedData = Object.assign(base, server, client)
+        break
+      default:
+        resolvedData = Object.assign(base, server, client)
+    }
+    return resolvedData
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This custom strategy object provides two distinct strategies.
+The strategies are named to match the operation.
+You pass the name of the object as an argument to conflictStrategy in your config object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let config = {
+...
+  conflictStrategy: customStrategy
+...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listening-to-conflicts"><a class="anchor" href="#listening-to-conflicts"></a>Listening to conflicts</h3>
+<div class="paragraph">
+<p>Data Sync allows developers to receive information about the data conflict.</p>
+</div>
+<div class="paragraph">
+<p>When a conflict occurs, Data Sync attempts to perform a field level resolution of data - it checks all fields of its type to see if both the client or server has changed the same field.
+The client can be notified in one of two scenarios.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If both client and server have changed any of the same fields, the <code>conflictOccurred</code> method of the <code>ConflictListener</code> is triggered.</p>
+</li>
+<li>
+<p>If the client and server have not changed any of the same fields, and the data can be easily merged, the <code>mergeOccurred</code> method of your <code>ConflictListener</code> is triggered.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Developers can supply their own <code>conflictListener</code> implementation, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">class ConflictLogger implements ConflictListener {
+  conflictOccurred(operationName, resolvedData, server, client) {
+    console.log("Conflict occurred with the following:")
+    console.log(`data: ${JSON.stringify(resolvedData)}, server: ${JSON.stringify(server)}, client: ${JSON.stringify(client)}, operation:  ${JSON.stringify(operationName)}`);
+  }
+  mergeOccurred(operationName, resolvedData, server, client) {
+    console.log("Merge occurred with the following:")
+    console.log(`data: ${JSON.stringify(resolvedData)}, server: ${JSON.stringify(server)}, client: ${JSON.stringify(client)}, operation:  ${JSON.stringify(operationName)}`);
+  }
+}
+
+let config = {
+...
+  conflictListener: new ConflictLogger()
+...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-pre-conflict-errors"><a class="anchor" href="#handling-pre-conflict-errors"></a>Handling pre-conflict errors</h3>
+<div class="paragraph">
+<p>Data Sync provides a mechanism for developers to check for a 'pre-conflict' before a mutation occurs.
+It checks whether or not the data being sent conflicts locally.
+This happens when a mutation (or the act of creating a mutation) is initiated.</p>
+</div>
+<div class="paragraph">
+<p>For example, consider a user performing the following actions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>opens a form</p>
+</li>
+<li>
+<p>begins working on the pre-populated data on this form</p>
+</li>
+<li>
+<p>the client receives new data from the server from subscriptions</p>
+</li>
+<li>
+<p>the client is now conflicted but the user is unaware</p>
+</li>
+<li>
+<p>when the user presses <strong>Submit</strong> Data Sync notices that their data is conflicted and provides the developer with the information to warn the user</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To use this feature, and therefore potentially save unecessary round-trips to the server with data which is definitely conflicted, developers can make use of the error returned by Data Sync.</p>
+</div>
+<div class="paragraph">
+<p>An example of how developers can use this error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">return client.offlineMutate({
+  ...
+}).then(result =&gt; {
+  // handle the result
+}).catch(error =&gt; {
+  if (error.networkError &amp;&amp; error.networkError.localConflict) {
+    // handle pre-conflict here by potentially
+    // providing an alert with a chance to update data before pressing send again
+  }
+})</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

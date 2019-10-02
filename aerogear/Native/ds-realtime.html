@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supporting real-time updates in your mobile app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-realtime.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-realtime.html">Realtime Updates</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="ds-realtime.html">Native</a>
+    <a class="version" href="../latest/ds-realtime.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/ds-realtime.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Supporting real-time updates in your mobile app</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#realtime-intro-{context}">Introduction to real-time updates</a></li>
+<li><a href="#realtime-updates-{context}">Implementing real-time updates on a Data Sync server</a>
+<ul class="sectlevel2">
+<li><a href="#implementing-a-subscriptionserver-using-voyager-subscription">Implementing a SubscriptionServer using voyager-subscription</a></li>
+<li><a href="#implementing-a-publish-subscribe-mechanism">Implementing a Publish Subscribe Mechanism</a></li>
+<li><a href="#defining-subscriptions-in-the-schema">Defining subscriptions in the schema</a></li>
+<li><a href="#implementing-resolvers">Implementing resolvers</a></li>
+</ul>
+</li>
+<li><a href="#pub-sub">Configuring a Publish Subscribe mechanism</a>
+<ul class="sectlevel2">
+<li><a href="#using-the-apollo-pubsub-mechanism">Using the Apollo PubSub mechanism</a></li>
+<li><a href="#using-the-mqtt-pubsub-mechanism">Using the MQTT PubSub mechanism</a></li>
+<li><a href="#configuring-amq-online-for-mqtt-messaging">Configuring AMQ Online for MQTT Messaging</a></li>
+<li><a href="#using-graphql-mqtt-pubsub-with-amq-online">Using GraphQL MQTT PubSub with AMQ Online</a></li>
+</ul>
+</li>
+<li><a href="#sync-js-client-realtime-updates">Implementing real-time updates on on the client</a>
+<ul class="sectlevel2">
+<li><a href="#setting-up-a-client-to-use-subscriptions">Setting up a client to use subscriptions</a></li>
+<li><a href="#using-subscriptions">Using Subscriptions</a></li>
+<li><a href="#handling-network-state-changes">Handling network state changes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="realtime-intro-{context}"><a class="anchor" href="#realtime-intro-{context}"></a>Introduction to real-time updates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After developing some queries and mutations, you might want to implement real-time updates.
+These are supported in the GraphQL specification by an operation type called <code>Subscription</code>.
+To support subscriptions in a production environment, Data Sync implements subscriptions using an MQTT PubSub subscription mechanism, however you might want to use the Apollo PubSub module to develop proof-of-concept applications.</p>
+</div>
+<div class="paragraph">
+<p>When coding for real-time updates, you use the following modules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>@aerogear/voyager-server - supports clients that use voyager-client to enable GraphQL queries and mutations</p>
+</li>
+<li>
+<p>@aerogear/voyager-subscriptions - supports clients that use voyager-client to enable GraphQL subscriptions</p>
+</li>
+<li>
+<p>@aerogear/graphql-mqtt-subscriptions - supports GraphQL resolvers connections to a MQTT broker</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>GraphQL Subscriptions enable clients to subscribe to server events over a websocket connection.</p>
+</div>
+<div class="paragraph">
+<p>The flow can be summarized as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Client connects to the server using websockets, and subscribes to certain events.</p>
+</li>
+<li>
+<p>As events occur, the server notifies the clients that are subscribed to those events.</p>
+</li>
+<li>
+<p>Any <em>currently connected</em> client that is subscribed to a given event receives it.</p>
+</li>
+<li>
+<p>The client can close the connection at any time and no longer receives updates.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To receive updates, the client must be currently connected to the server.
+The client does not receive events from subscriptions while offline.
+To support inactive clients, use Push Notifications.</p>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p>For more information about GraphQL subscriptions, see the <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions.html">Subscriptions documentation</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="realtime-updates-{context}"><a class="anchor" href="#realtime-updates-{context}"></a>Implementing real-time updates on a Data Sync server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The follow code shows typical code for a Data Sync Server without subscriptions:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const apolloServer = VoyagerServer({
+  typeDefs,
+  resolvers
+})
+
+const app = express()
+apolloServer.applyMiddleware({ app })
+
+app.listen({ port }, () =&gt;
+  console.log(`🚀 Server ready at http://localhost:${port}${apolloServer.graphqlPath}`)
+)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sections outline the steps required to enable real-time updates:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement a SubscriptionServer</p>
+</li>
+<li>
+<p>Implement a Publish Subscribe Mechanism</p>
+</li>
+<li>
+<p>Define subscriptions in the schema</p>
+</li>
+<li>
+<p>Implement resolvers</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="implementing-a-subscriptionserver-using-voyager-subscription"><a class="anchor" href="#implementing-a-subscriptionserver-using-voyager-subscription"></a>Implementing a SubscriptionServer using voyager-subscription</h3>
+<div class="paragraph">
+<p>To allow you create GraphQL subscription types in your schema:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the <code>@aerogear/voyager-subscriptions</code> package:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ npm i @aerogear/voyager-subscriptions</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure SubscriptionServer using <code>@aerogear/voyager-subscriptions</code></p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const { createSubscriptionServer } = require('@aerogear/voyager-subscriptions')
+
+const apolloServer = VoyagerServer({
+  typeDefs,
+  resolvers
+})
+
+const app = express()
+apolloServer.applyMiddleware({ app })
+const port = 4000
+
+const server = app.listen({ port }, () =&gt; {
+  console.log(`🚀 Server ready at http://localhost:${port}${apolloServer.graphqlPath}`)
+
+  createSubscriptionServer({ schema: apolloServer.schema }, {
+    server,
+    path: '/graphql'
+  })
+})</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>createSubscriptionServer</code> code:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>returns a <code>SubscriptionServer</code> instance</p>
+</li>
+<li>
+<p>installs handlers for</p>
+<div class="ulist">
+<ul>
+<li>
+<p>managing websocket connections</p>
+</li>
+<li>
+<p>delivering subscriptions on the server</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>provides integrations with other modules such as <code>@aerogear/voyager-keycloak</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Additional Information</div>
+<p>For more information about arguments and options, see the <a href="https://npm.im/subscriptions-transport-ws">subscriptions-transport-ws</a> module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementing-a-publish-subscribe-mechanism"><a class="anchor" href="#implementing-a-publish-subscribe-mechanism"></a>Implementing a Publish Subscribe Mechanism</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This procedure describes an in-memory implementation which is useful for prototyping but not suitable for production. AeroGear recommends using <a href="npm.im/@aerogear/graphql-mqtt-subscriptions">MQTT PubSub</a> in production. See <a href="#pub-sub">Configuring a Publish Subscribe mechanism</a> for more information about all the implementation methods.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To provide a channel to push updates to the client using the default <code>PubSub</code> provided by <code>apollo-server</code>, you implement a Publish Subscribe mechanism, for example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const { PubSub } = require('apollo-server')
+
+const pubsub = new PubSub()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Addtional Information</div>
+<p>Subscriptions depend on a <a href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern">publish subscribe</a> mechanism to generate the events that notify a subscription. There are <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions/#pubsub-implementations">several PubSub implementations</a> available based on the <code>PubSubEngine</code> interface.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="defining-subscriptions-in-the-schema"><a class="anchor" href="#defining-subscriptions-in-the-schema"></a>Defining subscriptions in the schema</h3>
+<div class="paragraph">
+<p>Subscriptions are a root level type.
+They are defined in the schema similar to <code>Query</code> and <code>Mutation</code>.
+For example, in the following schema, a <code>Task</code> type is defined and so are mutations and subscriptions.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>type Subscription {
+  taskCreated: Task
+}
+
+type Mutation {
+  createTask(title: String!, description: String!): Task
+}
+
+type Task {
+  id: ID!
+  title: String!
+  description: String!
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementing-resolvers"><a class="anchor" href="#implementing-resolvers"></a>Implementing resolvers</h3>
+<div class="paragraph">
+<p>Inside the resolver map, subscription resolvers return an <code>AsyncIterator,</code> which listens for events.
+To generate an event, call the <code>publish</code> method.
+The <code>pubsub.publish</code> code is typically located inside a mutation resolver.</p>
+</div>
+<div class="paragraph">
+<p>In the following example, when a new task is created, the <code>createTask</code> resolver publishes the result of this mutation to the <code>TaskCreated</code> channel.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const TASK_CREATED = 'TaskCreated'
+
+const resolvers = {
+  Subscription: {
+    taskCreated: {
+      subscribe: () =&gt; pubSub.asyncIterator(TASK_CREATED)
+    }
+  },
+  Mutation: {
+    createTask: async (obj, args, context, info) =&gt; {
+      const task = tasks.create(args)
+      pubSub.publish(TASK_CREATED, { taskCreated: task })
+      return task
+    }
+  },
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This subscription server does not implement authentication or authorization. For information about implementing authenication and authorization, see <a href="/aerogear/latest/ds-auth.html">Supporting authentication and authorization in your mobile app</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Additional Information</div>
+<p>For information on how to use subscriptions in your client code, see <a href="#sync-js-client-realtime-updates">Realtime Updates</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pub-sub"><a class="anchor" href="#pub-sub"></a>Configuring a Publish Subscribe mechanism</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the Apollo PubSub mechanism for development, but you must use the MQTT PubSub mechanism for production.</p>
+</div>
+<div class="sect2">
+<h3 id="using-the-apollo-pubsub-mechanism"><a class="anchor" href="#using-the-apollo-pubsub-mechanism"></a>Using the Apollo PubSub mechanism</h3>
+<div class="paragraph">
+<p>The <a href="#realtime-updates-{context}">Implementing real-time updates on a Data Sync server</a> section describes how to set up the default <code>PubSub</code> provided by <code>apollo-server</code>. For a production system, you require <a href="npm.im/@aerogear/graphql-mqtt-subscriptions">MQTT PubSub</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-the-mqtt-pubsub-mechanism"><a class="anchor" href="#using-the-mqtt-pubsub-mechanism"></a>Using the MQTT PubSub mechanism</h3>
+<div class="paragraph">
+<p>The <a href="https://npm.im/@aerogear/graphql-mqtt-subscriptions"><code>@aerogear/graphql-mqtt-subscriptions</code></a> module provides an <code>AsyncIterator</code> interface used for <a href="#realtime-updates-{context}">implementing subscription resolvers</a>
+It connects the Data Sync server to an MQTT broker to support horizontally scalable subscriptions.</p>
+</div>
+<div class="paragraph">
+<p>Initialize an MQTT client and pass that client to the <code>@aerogeaar/graphql-mqtt-subscriptions</code> module, for example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const mqtt = require('mqtt')
+const { MQTTPubSub } = require('@aerogear/graphql-mqtt-subscriptions')
+
+const client = mqtt.connect('mqtt://test.mosquitto.org', {
+  reconnectPeriod: 1000,
+})
+
+const pubsub = new MQTTPubSub({
+  client
+})</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example, an <code>mqtt</code> client is created using <code>mqtt.connect</code> and then this client is passed into an <code>MQTTPubSub</code> instance.
+The <code>pubsub</code> instance can then be used to publish and subscribe to events in the server.</p>
+</div>
+<div class="ulist">
+<div class="title">Additional Information</div>
+<ul>
+<li>
+<p><a href="https://www.npmjs.com/package/mqtt#connect">mqtt.connect documentation</a>.</p>
+</li>
+<li>
+<p><a href="https://npmjs.com/package/@aerogear/graphql-mqtt-subscriptions">MQTTPubSub documentation</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-amq-online-for-mqtt-messaging"><a class="anchor" href="#configuring-amq-online-for-mqtt-messaging"></a>Configuring AMQ Online for MQTT Messaging</h3>
+<div class="paragraph">
+<p>Red Hat AMQ supports the MQTT protocol which makes it a suitable PubSub technology for powering GraphQL subscriptions at scale.</p>
+</div>
+<div class="paragraph">
+<p>This section provides recommendations for</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuring AMQ Online for MQTT messaging.</p>
+</li>
+<li>
+<p>Connecting to AMQ Online and using it as a pubsub within server applications.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Terminology</div>
+<ul>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_amq/7.2/html-single/using_amq_online_on_openshift_container_platform/index#assembly-intro-using-messaging">AMQ Online</a> is a mechanism that allows developers to consume the features of Red Hat AMQ within OpenShift.</p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_amq/7.3/html/introducing_red_hat_amq_7/about">Red Hat AMQ</a> provides fast, lightweight, and secure messaging for Internet-scale applications. AMQ Broker supports multiple protocols and fast message persistence.</p>
+</li>
+<li>
+<p><a href="http://mqtt.org/">MQTT</a> stands for MQ Telemetry Transport. It is a publish/subscribe, extremely simple and lightweight messaging protocol.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>OpenShift Cluster</p>
+</li>
+<li>
+<p>AMQ Online is installed in the OpenShift cluster</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>AMQ Online includes many configuration options that could address the specific needs of your application.
+The minimum configuration steps for using AMQ Online for MQTT messaging and enabling GraphQL subscriptions are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an <code>AddressSpace</code></p>
+</li>
+<li>
+<p>Create an <code>Address</code></p>
+</li>
+<li>
+<p>Create a <code>MessagingUser</code></p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="creating-an-address-space"><a class="anchor" href="#creating-an-address-space"></a>Creating an address space</h4>
+<div class="paragraph">
+<p>A user can request messaging resources by creating an <code>AddressSpace</code>. There are two types of address space, <code>standard</code> and <code>brokered</code>.
+You must use the <code>brokered</code> address space for MQTT based applications.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create an address space, for example, the following resource creates a brokered <code>AddressSpace</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-yaml hljs" data-lang="yaml">apiVersion: enmasse.io/v1beta1
+kind: AddressSpace
+metadata:
+  name: myaddressspace
+spec:
+  type: brokered
+  plan: brokered-single-broker</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the <code>AddressSpace</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc create -f brokered-address-space.yaml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the status of the address space:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc get &lt;`AddressSpace` name&gt; -o yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output displays information about the address space, including details required for connecting applications.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Additional Information</div>
+<p>See <a href="https://access.redhat.com/documentation/en-us/red_hat_amq/7.3/html-single/using_amq_online_on_openshift_container_platform/index#create-address-space-cli-messaging">Creating address spaces using the command line</a> for more information.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-an-address"><a class="anchor" href="#creating-an-address"></a>Creating an Address</h4>
+<div class="paragraph">
+<p>An adress is part of an <code>AddressSpace</code> and represents a destination for sending and receiving messages.
+Use an <code>Address</code> with type <code>topic</code> to represent an MQTT topic.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an address definition:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: enmasse.io/v1beta1
+kind: Address
+metadata:
+    name: myaddressspace.myaddress # must have the format &lt;`AddressSpace` name&gt;.&lt;address name&gt;
+spec:
+    address: myaddress
+    type: topic
+    plan: brokered-topic</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the address:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc create -f topic-address.yaml</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the <a href="#realtime-updates-{context}">Configuring your server for real-time updates</a> guide for more information about using <code>pubsub.asyncIterator()</code>.
+Create an Address for each topic name passed into <code>pubsub.asyncIterator()</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Additional Information</div>
+<p>See <a href="https://access.redhat.com/documentation/en-us/red_hat_amq/7.2/html-single/using_amq_online_on_openshift_container_platform/index#create-address-cli-messaging">Creating addresses using the command line</a> for more information.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="creating-an-amq-online-user"><a class="anchor" href="#creating-an-amq-online-user"></a>Creating an AMQ Online user</h4>
+<div class="paragraph">
+<p>A messaging client connects using an AMQ Online user, also known as a`MessagingUser`.
+A <code>MessagingUser</code> specifies an authorization policy that controls which addresses can be used and the operations that can be performed on those addresses.</p>
+</div>
+<div class="paragraph">
+<p>Users are configured as <code>MessagingUser</code> resources.
+Users can be created, deleted, read, updated, and listed.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a user definition:</p>
+<div class="listingblock">
+<div class="content">
+<pre>apiVersion: user.enmasse.io/v1beta1
+kind: MessagingUser
+metadata:
+  name: myaddressspace.mymessaginguser # must be in the format &lt;`AddressSpace` name&gt;.&lt;username&gt;
+spec:
+  username: mymessaginguser
+  authentication:
+    type: password
+    password: cGFzc3dvcmQ= # must be Base64 encoded. Password is 'password'
+  authorization:
+    - addresses: ["*"]
+      operations: ["send", "recv"]</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the <code>MessagingUser</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc create -f my-messaging-user.yaml</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An application can now connect to an AMQ Online address using this user&#8217;s credentials.</p>
+</div>
+<div class="paragraph">
+<p>For more information see the <a href="https://access.redhat.com/documentation/en-us/red_hat_amq/7.2/html-single/using_amq_online_on_openshift_container_platform/index#con-user-model-messaging">AMQ Online User Model</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-graphql-mqtt-pubsub-with-amq-online"><a class="anchor" href="#using-graphql-mqtt-pubsub-with-amq-online"></a>Using GraphQL MQTT PubSub with AMQ Online</h3>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>OpenShift cluster</p>
+</li>
+<li>
+<p>AMQ Online is installed in the OpenShift cluster</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following AMQ Online resources are available for MQTT Applications</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>AddressSpace</p>
+</li>
+<li>
+<p>Address</p>
+</li>
+<li>
+<p>MessagingUser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This section describes how to use <a href="https://npm.im/@aerogear/graphql-mqtt-subscriptions"><code>@aerogear/graphql-mqtt-subscriptions</code></a> to connect to an AMQ Online <code>Address</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the connection details for the <code>AddressSpace</code> you want to use:</p>
+<div class="listingblock">
+<div class="content">
+<pre>oc get addressspace &lt;addressspace&gt; -o yaml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Determine which method you want to use to connect to the address:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Using the service hostname - Allows clients to connect from within the OpenShift cluster.</p>
+<div class="paragraph">
+<p>AeroGear recommends that applications running inside OpenShift connect using the service hostname.
+The service hostname is only accessible within the OpenShift cluster. This ensures messages routed between your application and AMQ Online stay within the OpenShift cluster and never go onto the public internet.</p>
+</div>
+</li>
+<li>
+<p>Using the external hostname - Allows clients to connect from outside the OpenShift cluster.</p>
+<div class="paragraph">
+<p>The external hostname allows connections from outside the OpenShift cluster. This is useful for the following cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Production applications running outside of OpenShift connecting and publishing messages.</p>
+</li>
+<li>
+<p>Quick Prototyping and local development. Create a non-production <code>AddressSpace</code>, allowing developers to connect applications from their local environments.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To connect to an AMQ Online <code>Address</code> using the service hostname</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Retrieve the service hostname:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get addressspace &lt;addressspace name&gt; -o jsonpath='{.status.endpointStatuses[?(@.name=="messaging")].serviceHost</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add code to create the connection, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const mqtt = require('mqtt')
+const { MQTTPubSub } = require('@aerogear/graphql-mqtt-subscriptions')
+
+const client = mqtt.connect({
+  host: '&lt;internal host name&gt;',
+  username: '&lt;MessagingUser name&gt;',
+  password: '&lt;MessagingUser password&gt;',
+  port: 5762,
+})
+
+const pubsub = new MQTTPubSub({ client })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To encrypt all messages between your application and the AMQ Online broker, enable TLS, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const mqtt = require('mqtt')
+const { MQTTPubSub } = require('@aerogear/graphql-mqtt-subscriptions')
+
+const host = '&lt;internal host name&gt;'
+
+const client = mqtt.connect({
+  host: host,
+  servername: host,
+  username: '&lt;MessagingUser name&gt;',
+  password: '&lt;MessagingUser password&gt;',
+  port: 5761,
+  protocol: 'tls',
+  rejectUnauthorized: false,
+})
+
+const pubsub = new MQTTPubSub({ client })</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>To connect to an AMQ Online <code>Address</code> using the external hostname:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The external hostname typically accept only accept TLS connections.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Retrieve the external hostname:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get addressspace &lt;addressspace name&gt; -o jsonpath='{.status.endpointStatuses[?(@.name=="messaging")].externalHost</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Connect to the external hostname, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const mqtt = require('mqtt')
+const { MQTTPubSub } = require('@aerogear/graphql-mqtt-subscriptions')
+
+const host = '&lt;internal host name&gt;'
+
+const client = mqtt.connect({
+  host: host,
+  servername: host,
+  username: '&lt;MessagingUser name&gt;',
+  password: '&lt;MessagingUser password&gt;',
+  port: 443,
+  protocol: 'tls',
+  rejectUnauthorized: false,
+})
+
+const pubsub = new MQTTPubSub({ client })</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If you use TLS, note the following additional <code>mqtt.connect</code> options:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>servername</code> - when connecting to a message broker in OpenShift using TLS, this property must be set otherwise the connection will fail, because the messages are being routed through a proxy resulting in the client being presented with multiple certificates. By setting the <code>servername</code>, the client will use <a href="https://en.wikipedia.org/wiki/Server_Name_Indication">Server Name Indication (SNI)</a> to request the correct certificate as part of the TLS connection setup.</p>
+</li>
+<li>
+<p><code>protocol</code> - must be set to <code>'tls'</code></p>
+</li>
+<li>
+<p><code>rejectUnauthorizated</code> - must be set to false, otherwise the connection will fail. This tells the client to ignore certificate errors. Again, this is needed because the client is presented with multiple certificates and one of the certificates is for a different hostname than the one being requested, which normally results in an error.</p>
+</li>
+<li>
+<p><code>port</code> - must be set to 5761 for service hostname or 443 for external hostname.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="using-environment-variables-for-configuration"><a class="anchor" href="#using-environment-variables-for-configuration"></a>Using environment variables for configuration</h4>
+<div class="paragraph">
+<p>AeroGear recommends that you use environment variables for connection, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const mqtt = require('mqtt')
+const { MQTTPubSub } = require('@aerogear/graphql-mqtt-subscriptions')
+
+const host = process.env.MQTT_HOST || 'localhost'
+
+const client = mqtt.connect({
+  host: host,
+  servername: host,
+  username: process.env.MQTT_USERNAME,
+  password: process.env.MQTT_PASSWORD,
+  port: process.env.MQTT_PORT || 1883,
+  protocol: process.env.MQTT_PROTOCOL || 'mqtt',
+  rejectUnauthorized: false,
+})
+
+const pubsub = new MQTTPubSub({ client })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, the connection options can be configured using environment variables, but sensible defaults for the <code>host</code>, <code>port</code> and <code>protocol</code> are provided for local development.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="troubleshooting-mqtt-connection-issues"><a class="anchor" href="#troubleshooting-mqtt-connection-issues"></a>Troubleshooting MQTT Connection Issues</h4>
+<div class="sect4">
+<h5 id="troubleshooting-mqtt-events"><a class="anchor" href="#troubleshooting-mqtt-events"></a>Troubleshooting MQTT Events</h5>
+<div class="paragraph">
+<p>The <code>mqtt</code> module emits various events during runtime.
+It recommended to add listeners for these events for regular operation and for troubleshooting.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">client.on('connect', () =&gt; {
+  console.log('client has connected')
+})
+
+client.on('reconnect', () =&gt; {
+  console.log('client has reconnected')
+})
+
+client.on('offline', () =&gt; {
+  console.log('Client has gone offline')
+})
+
+client.on('error', (error) =&gt; {
+  console.log(`an error has occurred ${error}`)
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Read the <a href="https://www.npmjs.com/package/mqtt"><code>mqtt documentation</code></a> to learn about all of the events and what causes them.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="troubleshooting-mqtt-configuration-issues"><a class="anchor" href="#troubleshooting-mqtt-configuration-issues"></a>Troubleshooting MQTT Configuration Issues</h5>
+<div class="paragraph">
+<p>If your application is experiencing connection errors, the most important thing to check is the configuration being passed into <code>mqtt.connect</code>. Because your application may run locally or in OpenShift, it may connect using internal or external hostnames, and it may or may not use TLS, it&#8217;s very easy to accidentally provide the wrong configuration.</p>
+</div>
+<div class="paragraph">
+<p>The Node.js <code>mqtt</code> module does not report any errors if parameters such as <code>hostname</code> or <code>port</code> are incorrect. Instead, it will silently fail and allow your application to start without messaging capabilities.</p>
+</div>
+<div class="paragraph">
+<p>It may be necessary to handle this scenario in your application. The following workaround can be used.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const TIMEOUT = 10 // number of seconds to wait before checking if the client is connected
+
+setTimeout(() =&gt; {
+  if (!client.connected) {
+    console.log(`client not connected after ${TIMEOUT} seconds`)
+	// process.exit(1) if you wish
+  }
+}, TIMEOUT * 1000)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code can be used to detect if the MQTT client hasn&#8217;t connected. This can be helpful for detecting potential configuration issues and allows your application to respond to that scenario.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-js-client-realtime-updates"><a class="anchor" href="#sync-js-client-realtime-updates"></a>Implementing real-time updates on on the client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A core concept of the GraphQL specification is an operation type called <code>Subscription</code>, they provide a mechanism for real time updates.
+For more information on GraphQL subscriptions  see the <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions.html">Subscriptions documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>To do this GraphQL Subscriptions utilise websockets to enable clients to subscribe to published changes.</p>
+</div>
+<div class="paragraph">
+<p>The architecture of websockets is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Client connects to websocket server.</p>
+</li>
+<li>
+<p>Upon certain events, the server can publish the results of these events to the websocket.</p>
+</li>
+<li>
+<p>Any <em>currently connected</em> client to that websocket receives these results.</p>
+</li>
+<li>
+<p>The client can close the connection at any time and no longer receives updates.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Websockets are a perfect solution for delivering messages to currently active clients.
+To receive updates the client must be currently connected to the websocket server, updates made over this websocket while the client is offline are not consumed by the client.
+For this use case Push Notifications are recommended.</p>
+</div>
+<div class="paragraph">
+<p>Voyager Client comes with subscription support out of the box including auto-reconnection upon device restart or network reconnect.
+To enable subscriptions on your client set the following
+paramater in the Voyager Client config object. A DataSyncConfig interface is also available from Voyager Client if you wish to use it.</p>
+</div>
+<div class="sect2">
+<h3 id="setting-up-a-client-to-use-subscriptions"><a class="anchor" href="#setting-up-a-client-to-use-subscriptions"></a>Setting up a client to use subscriptions</h3>
+<div class="paragraph">
+<p>To set up a client to use subscriptions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Provide a <code>wsUrl</code> string in the config object as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const config = {
+    wsUrl: "ws://&lt;your_websocket_url&gt;"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>&lt;your_websocket_url&gt;</code> is the full URL of the websocket endpoint of your GraphQL server.</p>
+</div>
+</li>
+<li>
+<p>Use the object from step 1 to initialise Voyager Client:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { createClient } = require("@aerogear/voyager-client");
+
+const client = createClient(config)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-subscriptions"><a class="anchor" href="#using-subscriptions"></a>Using Subscriptions</h3>
+<div class="paragraph">
+<p>A standard flow to utilise subscriptions is as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make a network query to get data from the server</p>
+</li>
+<li>
+<p>Watch the cache for changes to queries</p>
+</li>
+<li>
+<p>Subscribe to changes pushed from the server</p>
+</li>
+<li>
+<p>Unsubscibe when leaving the view where there is an active subscription</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In the three examples below, <code>subscribeToMore</code> ensures that any further updates received from the server force the updateQuery function to be called with <code>subscriptionData</code> from the server.</p>
+</div>
+<div class="paragraph">
+<p>Using <code>subscribeToMore</code> ensures the cache is easily updated as all GraphQL queries are automatically notified.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see the  <a href="https://www.apollographql.com/docs/angular/features/subscriptions.html#subscribe-to-more">subscribeToMore documentation</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">getTasks() {
+  const tasks = client.watchQuery({
+    query: GET_TASKS
+  });
+
+  tasks.subscribeToMore({
+    document: TASK_ADDED_SUBSCRIPTION,
+    updateQuery: (prev, { subscriptionData }) =&gt; {
+    // Update logic here.
+    }
+  });
+  return tasks;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To allow Voyager Client to automatically generate the <code>updateQuery</code> function for you, please see the <a href="#cache-update-helpers">Cache Update Helpers</a> section.</p>
+</div>
+<div class="paragraph">
+<p>You can then use this query in our application to subscribe to changes so that the front end is always updated when new
+data is returned from the server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">this.tasks = [];
+this.getTasks().subscribe(result =&gt; {
+  this.tasks = result.data &amp;&amp; result.data.allTasks;
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that it is also a good idea to unsubscribe from a query upon leaving a page. This prevents possible memory leaks.
+This can be done by calling unsubscribe() as shown in the following example. This code should be placed in the appropriate place.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">this.getTasks().unsubscribe();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-network-state-changes"><a class="anchor" href="#handling-network-state-changes"></a>Handling network state changes</h3>
+<div class="paragraph">
+<p>When using subscriptions to provide your client with realtime updates it is important to monitor network state because the client will be out of sync if the server if updated when the the client is offline.</p>
+</div>
+<div class="paragraph">
+<p>To avoid this, Voyager Client provides a <code>NetworkStatus</code> interface which can be used along with the <code>NetworkInfo</code> interface to implement custom checks of network status.</p>
+</div>
+<div class="paragraph">
+<p>For more information about how to import and configure a custom network status checker, see <a href="#sync-js-client-advanced-topics">Advanced Topics</a>.</p>
+</div>
+<div class="paragraph">
+<p>Use the following example to re-run a query after a client returns to an online state:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { CordovaNetworkStatus, NetworkInfo } = require("@aerogear/voyager-client");
+const networkStatus = new CordovaNetworkStatus();
+
+networkStatus.onStatusChangeListener({
+  onStatusChange(networkInfo: NetworkInfo) {
+    const online = networkInfo.online;
+    if (online) {
+      client.watchQuery({
+        query: GET_TASKS
+      });
+    }
+  }
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

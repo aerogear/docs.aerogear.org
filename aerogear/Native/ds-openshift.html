@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running a Data Sync app on OpenShift :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-openshift.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-openshift.html">Running on OpenShift</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="ds-openshift.html">Native</a>
+    <a class="version" href="../latest/ds-openshift.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/ds-openshift.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Running a Data Sync app on OpenShift</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#building-and-publishing-the-container">Building and publishing the Data Sync server container</a></li>
+<li><a href="#sync-server-provisioning-data-sync-templates">Provisioning the Data Sync server applications using templates</a></li>
+<li><a href="#sync-server-getting-started-mdc-client">Connecting a Client</a>
+<ul class="sectlevel2">
+<li><a href="#updating-the-hello-world-sync-client">Updating the Hello World Sync Client</a></li>
+</ul>
+</li>
+<li><a href="#sync-server-binding">Binding a Mobile App with the Data Sync server application service</a></li>
+<li><a href="#sync-server-binding-keycloak">Binding Data Sync to Identity Management</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have Docker installed on your local machine.</p>
+</li>
+<li>
+<p>You have access to an OpenShift cluster with the Service Catalog.</p>
+</li>
+<li>
+<p>You have completed the server getting started guide.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To connect your Data Sync server and client to other services, you need to run your application in OpenShift.  Data Sync provides a service catalog item to help with this.</p>
+</div>
+<div class="paragraph">
+<p>Data Sync requires your server application to be packaged as a Docker formatted container and published to a public respository such as <a href="https://hub.docker.com/">Docker hub</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="building-and-publishing-the-container"><a class="anchor" href="#building-and-publishing-the-container"></a>Building and publishing the Data Sync server container</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To build a server into a container, create a <code>Dockerfile</code> in the project&#8217;s directory.  This container will need to include your server source code, its dependencies, and be configured to execute your server.</p>
+</div>
+<div class="paragraph">
+<p>As an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM node:10
+WORKDIR /usr/src/app
+# copy Node.js specific files
+COPY package*.json ./
+# copy application source file to the workdir
+COPY index.js .
+RUN npm install
+# TCP port that application is listening on
+EXPOSE 4000
+CMD [ "node", "index.js" ]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Build the Docker container and tag it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker build . --tag  &lt;your-repo&gt;/&lt;container-name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Push your container to Dockerhub&#8217;s repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker push &lt;your-repo&gt;/&lt;container-name&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-server-provisioning-data-sync-templates"><a class="anchor" href="#sync-server-provisioning-data-sync-templates"></a>Provisioning the Data Sync server applications using templates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Data Sync offers following OpenShift templates
+that will help developers with provisioning their DataSync applications to OpenShift platform.</p>
+</div>
+<div class="paragraph">
+<p>Templates:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DataSync App</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The DataSync App template allows developers to deploy the Node.js DataSync App on Openshift using source code only.
+<em>Node s2i</em>  is used to build the Data Sync App image.
+NOTE: You must set the <code>NODE_ENV</code> environment variable to <code>development</code> and redeploy the pod to ensure access to the GraphQL playground.</p>
+</div>
+<div class="paragraph">
+<p>The DataSync App can connect with other services running on OpenShift and can also connect to external data sources.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DataSync Showcase</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Showcase application will deploy fully functional server with example Task implementation.
+Server side requires client application available on github <a href="https://github.com/aerogear/ionic-showcase">aerogear/ionic-showcase</a></p>
+</div>
+<div class="paragraph">
+<p>Note: Use the Showcase server template for demo purposes only. Do not use this template in a production environment.</p>
+</div>
+<div class="paragraph">
+<p>When running on Red Hat Managed Integration templates will be available in <strong>Mobile</strong> &gt; <strong>App</strong>  category in OpenShift catalog</p>
+</div>
+<div class="paragraph">
+<p>Templates along with documentation can be found in <a href="https://github.com/aerogear/datasync-deployment">datasync-deployment</a> repository.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-server-getting-started-mdc-client"><a class="anchor" href="#sync-server-getting-started-mdc-client"></a>Connecting a Client</h2>
+<div class="sectionbody">
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have access to an OpenShift cluster with the Service Catalog.</p>
+</li>
+<li>
+<p>You have completed the OpenShift getting started guide.</p>
+</li>
+<li>
+<p>You have created a mobile client and bound your data sync server.</p>
+</li>
+<li>
+<p>You have completed the client getting started guide.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once a service is bound to a mobile client, MDC will provide a mobile-services.json file that is used by the AeroGear client libraries to automatically configure the Data Sync client.  It is very important that you use your version of this file and not the one used in this example as system specific values will be different.</p>
+</div>
+<div class="sect2">
+<h3 id="updating-the-hello-world-sync-client"><a class="anchor" href="#updating-the-hello-world-sync-client"></a>Updating the Hello World Sync Client</h3>
+<div class="paragraph">
+<p>The Hello World client application we wrote uses a hard coded server url.  We need to remove this url and instead pass the mobile-services config to the client.  We will also use the AeroGear core library to parse this file and pass that configuration to the Data Sync library.</p>
+</div>
+<div class="listingblock">
+<div class="title">Configure the core library with mobile-services.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { init }  = require("@aerogear/app");
+
+const core = init({
+  "version": 1,
+  "namespace": "myproject",
+  "clientId": "getting-started",
+  "services": [
+    {
+      "id": "0637bfd3-33aa-11e9-968e-52540014a8c2",
+      "name": "sync-app-getting-started-getting-started",
+      "type": "sync-app",
+      "url": "https://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql",
+      "config": {
+        "websocketUrl": "wss://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql"
+      }
+    }
+  ]
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once you have initialized the core, we can use it to configure the Data Sync client by setting the <code>openShiftConfig</code> property when we call <code>createClient</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Updated data sync client</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let client = await createClient({
+    openShiftConfig:core.config
+  });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now, as before, we can use the client to make queries.  A full example may look like the following code</p>
+</div>
+<div class="listingblock">
+<div class="title">Updated hello world index.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import gql from 'graphql-tag';
+const { init }  = require("@aerogear/app");
+import { createClient } from '@aerogear/voyager-client';
+
+const core = init({
+  "version": 1,
+  "namespace": "myproject",
+  "clientId": "getting-started",
+  "services": [
+    {
+      "id": "0637bfd3-33aa-11e9-968e-52540014a8c2",
+      "name": "sync-app-getting-started-getting-started",
+      "type": "sync-app",
+      "url": "https://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql",
+      "config": {
+        "websocketUrl": "wss://sync-app-getting-started-myproject.192.168.42.138.nip.io/graphql"
+      }
+    }
+  ]
+});
+
+async function helloWorld() {
+  let client = await createClient({
+    openShiftConfig:core.config
+  });
+  client.query({
+      fetchPolicy: 'network-only',
+      query: gql`{hello}`
+    })
+    .then( ({data}) =&gt; {
+      console.log(data.hello)
+    });
+}
+
+helloWorld();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-server-binding"><a class="anchor" href="#sync-server-binding"></a>Binding a Mobile App with the Data Sync server application service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use Mobile Services, you must represent your mobile app in <strong>Mobile Developer Console</strong>, and that app must be associated with the mobile service.
+This association is called <strong>binding</strong> and it is necessary for your mobile app to use that service.</p>
+</div>
+<div class="paragraph">
+<p>To bind a Mobile App with a mobile service:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Launch Mobile Developer Console</p>
+</li>
+<li>
+<p>Click on the Mobile App on the Overview screen</p>
+</li>
+<li>
+<p>Navigate to <strong>Mobile Services</strong> tab.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-all-unbound.png" alt="mobile clients services all unbound">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is possible to bind a Mobile App with a mobile service in the OpenShift console, however such bindings are not valid for the purposes of this procedure.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Press <strong>Bind to App</strong> in the </p>
+</li>
+<li>
+<p>Fill out the binding parameters required by the  Service.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-server-binding-keycloak"><a class="anchor" href="#sync-server-binding-keycloak"></a>Binding Data Sync to Identity Management</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will show you how to protect your Data Sync application using the Identity Management service.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>There is a Identity Management service available.</p>
+</li>
+<li>
+<p>You have provisioned a Data Sync application using our playbook.</p>
+</li>
+<li>
+<p>oc tools must be installed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any application that connects to Identity Management must consume a <code>keycloak.json</code> file. This section demonstrates how to add a <code>keycloak.json</code> file to your Data Sync application deployment. It is still your application&#8217;s responsibility to consume this file. We have provided an <a href="https://github.com/aerogear/voyager-server/tree/master/examples/keycloak">example project</a>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a client for your application in the Identity Management Administration Console</p>
+</li>
+<li>
+<p>Click on the <code>Installation</code> tab, select <code>Keycloak OIDC JSON</code> for <code>Format</code> Option, and then click on <code>Download</code>. Save the downloaded <code>keycloak.json</code>.</p>
+</li>
+<li>
+<p>Create a Identity Management secret:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc create secret generic sync-keycloak-doc \
+  --from-file=keycloak=./keycloak.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command creates a secret named <code>sync-keycloak-doc</code>.</p>
+</div>
+<div class="paragraph">
+<p>The secret will contain one key, <code>keycloak</code>, with the value being the text of the <code>keycloak.json</code> file.</p>
+</div>
+<div class="paragraph">
+<p>You can view the secret with either <code>oc get secret sync-keycloak-doc</code> or the OpenShift web console.</p>
+</div>
+</li>
+<li>
+<p>Create a patch for your deployment configuration</p>
+<div class="paragraph">
+<p>This step requires patching the Data Sync application&#8217;s deployment config to create and mount a volume with the Identity Management secret we just created. Replace <code>$YOUR_DEPLOYMENT_CONFIG_NAME</code> in the following yaml section with the deployment config name of your Data Sync application and save this file as <code>secret.yaml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  template:
+    spec:
+      containers:
+        - env:
+          - name: KEYCLOAK_CONFIG
+            value: /config/keycloak.json
+          name: $YOUR_DEPLOYMENT_CONFIG_NAME
+          volumeMounts:
+            - name: secret-volume
+              mountPath: /config
+              readOnly: true
+      volumes:
+          - name: secret-volume
+            secret:
+              items:
+                - key: keycloak
+                  path: keycloak.json
+              secretName: sync-keycloak-doc</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply the patch.</p>
+<div class="paragraph">
+<p>After replacing <code>$YOUR_DEPLOYMENT_CONFIG_NAME</code> with the deployment config name, run the following command to patch the deployment configuration and trigger your application to redeploy.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch deploymentconfig $YOUR_DEPLOYMENT_CONFIG_NAME -p "$(cat secret.yaml)"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once your application has redeployed, it should be able to read the keycloak.json file pointed to by the KEYCLOAK_CONFIG environment variable.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

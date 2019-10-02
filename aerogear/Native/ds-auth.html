@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supporting authentication and authorization in your mobile app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-auth.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+    <li class="crumb"><a href="ds-auth.html">Authz</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="ds-auth.html">Native</a>
+    <a class="version" href="../latest/ds-auth.html">latest</a>
+    <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/ds-auth.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Supporting authentication and authorization in your mobile app</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#sync-server-auth">Configuring your server for authentication and authorization using Keycloak</a>
+<ul class="sectlevel2">
+<li><a href="#protecting-voyager-server-using-keycloak">Protecting Voyager Server using Keycloak</a></li>
+<li><a href="#using-the-hasrole-directive-in-a-schema">Using the hasRole directive in a schema</a></li>
+</ul>
+</li>
+<li><a href="#authentication-and-authorization-websockets-{context}">Authentication Over Websockets using Keycloak</a>
+<ul class="sectlevel2">
+<li><a href="#keycloak-authorization-in-subscriptions">Keycloak Authorization in Subscriptions</a></li>
+</ul>
+</li>
+<li><a href="#sync-js-client-auth">Implementing authentication and authorization on your client</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="sync-server-auth"><a class="anchor" href="#sync-server-auth"></a>Configuring your server for authentication and authorization using Keycloak</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the Identity Management service and the <a href="https://www.npmjs.com/package/@aerogear/voyager-keycloak">@aerogear/voyager-keycloak</a> module, it is possible to add security to a Voyager Server application.</p>
+</div>
+<div class="paragraph">
+<p>The <code>@aerogear/voyager-keycloak</code> module provides the following features out of the box:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Authentication - Ensure only authenticated users can access your server endpoints, including the main GraphQL endpoint.</p>
+</li>
+<li>
+<p>Authorization - Use the <code>@hasRole()</code> directive within the GraphQL schema to implement role based access control (RBAC) on the GraphQL level.</p>
+</li>
+<li>
+<p>Integration with GraphQL context - Use the <code>context</code> object within the GraphQL resolvers to access user credentials and several helper functions.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>There is a Keycloak service available.</p>
+</li>
+<li>
+<p>You must add a valid <code>keycloak.json</code> config file to your project.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a client for your application in the Keycloak administration console.</p>
+</li>
+<li>
+<p>Click on the Installation tab.</p>
+</li>
+<li>
+<p>Select <strong>Keycloak OIDC JSON</strong> for Format option, and click <strong>Download</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="protecting-voyager-server-using-keycloak"><a class="anchor" href="#protecting-voyager-server-using-keycloak"></a>Protecting Voyager Server using Keycloak</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import the <code>@aerogear/voyager-keycloak</code> module</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { KeycloakSecurityService } = require('@aerogear/voyager-keycloak')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Read the Keycloak config and pass it to initialise the <code>KeycloakSecurityService</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const keycloakConfig = JSON.parse(fs.readFileSync(path.resolve(__dirname, './path/to/keycloak.json')))
+const keycloakService = new KeycloakSecurityService(keycloakConfig)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>keycloakService</code> instance to protect your app:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const app = express()
+keycloakService.applyAuthMiddleware(app)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the Voyager server so that the <code>keycloakService</code> is used as the security service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const voyagerConfig = {
+  securityService: keycloakService
+}
+const server = VoyagerServer(apolloConfig, voyagerConfig)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/aerogear/voyager-server/blob/master/examples/keycloak">Keycloak Example Server Guide</a> has an example server based off the instructions above and shows all of the steps needed to get it running.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-the-hasrole-directive-in-a-schema"><a class="anchor" href="#using-the-hasrole-directive-in-a-schema"></a>Using the hasRole directive in a schema</h3>
+<div class="paragraph">
+<p>The Voyager Keycloak module provides the <code>@hasRole</code> directive to define role based authorisation in your schema. The <code>@hasRole</code> directive is a special annotation that can be applied to</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fields</p>
+</li>
+<li>
+<p>Queries</p>
+</li>
+<li>
+<p>Mutations</p>
+</li>
+<li>
+<p>Subscriptions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>@hasRole</code> usage is as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@hasRole(role: String)</code></p>
+</li>
+<li>
+<p>Example - <code>@hasRole(role: "admin"])</code></p>
+</li>
+<li>
+<p>If the authenticated user has the role <code>admin</code> they will be authorized.</p>
+</li>
+<li>
+<p><code>@hasRole(role: [String])</code></p>
+</li>
+<li>
+<p>Example - <code>@hasRole(role: ["admin", "editor"])</code></p>
+</li>
+<li>
+<p>If the authenticated user has at least one of the roles in the list, they will be authorized.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The default behaviour is to check client roles. For example, <code>@hasRole(role: "admin")</code> will check that user has a client role called <code>admin</code>. <code>@hasRole(role: "realm:admin")</code> will check if that user has a realm role called <code>admin</code></p>
+</div>
+<div class="paragraph">
+<p>The syntax for checking a realm role is <code>@hasRole(role: "realm:&lt;role&gt;")</code>. For example, <code>@hasRole(role: "realm:admin")</code>. Using a list of roles, it is possible to check for both client and realm roles at the same time.</p>
+</div>
+<div class="paragraph">
+<div class="title">Example: Using the @hasRole Directive to Apply Role Based Authorization in a Schema</div>
+<p>The following example demonstrates how the <code>@hasRole</code> directive can be used to define role based authorization on various parts of a GraphQL schema. This example schema represents publishing application like a news or blog website.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-graphql hljs" data-lang="graphql">type Post {
+  id: ID!
+  title: String!
+  author: Author!
+  content: String!
+  createdAt: Int!
+}
+
+type Author {
+  id: ID!
+  name: String!
+  posts: [Post]!
+  address: String! @hasRole(role: "admin")
+  age: Int! @hasRole(role: "admin")
+}
+
+type Query {
+  allPosts:[Post]!
+  getAuthor(id: ID!):Author!
+}
+
+type Mutation {
+  editPost:[Post]! @hasRole(role: ["editor", "admin"])
+  deletePost(id: ID!):[Post] @hasRole(role: "admin")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Post</code> - This might be an article or a blog post</p>
+</li>
+<li>
+<p><code>Author</code> - This would represent the person that authored a Post</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are two Queries:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>allPosts</code> - This might return a list of posts</p>
+</li>
+<li>
+<p><code>getAuthor</code> - This would return details about an Author</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are two Mutations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>editPost</code> - This would edit an existing post</p>
+</li>
+<li>
+<p><code>deletePost</code> - This would delete a post.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Role Based Authorization on Queries and Mutations</div>
+<p>In the example schema, the <code>@hasRole</code> directive has been applied to the <code>editPost</code> and <code>deletePost</code> mutations. The same could be done on Queries.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Only users with the roles <code>editor</code> and/or <code>admin</code> are allowed to perform the <code>editPost</code> mutation.</p>
+</li>
+<li>
+<p>Only users with the role <code>admin</code> are allowed to perform the <code>deletePost</code> mutation.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This example shows how the <code>@hasRole</code> directive can be used on various queries and mutations.</p>
+</div>
+<div class="paragraph">
+<div class="title">Role Based Authorization on Fields</div>
+<p>In the example schema, the <code>Author</code> type has the fields <code>address</code> and <code>age</code> which both have <code>hasRole(role: "admin")</code> applied.</p>
+</div>
+<div class="paragraph">
+<p>This means that users without the role <code>admin</code> are not authorized to request these fields in any query or mutation.</p>
+</div>
+<div class="paragraph">
+<p>For example, non admin users are allowed to run the <code>getAuthor</code> query, but they cannot request back the <code>address</code> or <code>age</code> fields.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="authentication-and-authorization-websockets-{context}"><a class="anchor" href="#authentication-and-authorization-websockets-{context}"></a>Authentication Over Websockets using Keycloak</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prerequisites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#sync-server-auth">Configure Data Sync Server for Authentication and Authorization</a></p>
+</li>
+<li>
+<p><a href="ds-realtime.html#realtime-updates-{context}" class="page">Configuring Your Server for real-time updates</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This section describes how to implement Authentication and Authorization over websockets with Keycloak. For more generic documentation on Authentication over Websockets, read Apollo&#8217;s <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions/#authentication-over-websocket">Authentication Over Websocket</a> document.</p>
+</div>
+<div class="paragraph">
+<p>The Voyager Client supports adding token information to <code>connectionParams</code> that will be sent with the first WebSocket message. In the server, this token is used to authenticate the connection and to allow the subscription to proceeed. Read the section on <a href="#sync-js-client-auth">Keycloak Authentication in Voyager Client</a> to ensure the Keycloak token is being sent to the server.</p>
+</div>
+<div class="paragraph">
+<p>In the server, <code>createSubscriptionServer</code> accepts a <code>SecurityService</code> instance in addition to the regular options that can be passed to a standard <code>SubscriptionServer</code>. The <code>KeycloakSecurityService</code> from <code>@aerogear/voyager-keycloak</code> is used to validate the Keycloak token passed by the client in the initial WebSocket message.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const { createSubscriptionServer } = require('@aerogear/voyager-subscriptions')
+const { KeycloakSecurityService } = require('@aerogear/voyager-keycloak')
+const keycloakConfig = require('./keycloak.json') // typical Keycloak OIDC installation
+
+const apolloServer = VoyagerServer({
+  typeDefs,
+  resolvers
+})
+
+securityService = new KeycloakSecurityService(keycloakConfig)
+
+const app = express()
+
+keycloakService.applyAuthMiddleware(app)
+apolloServer.applyMiddleware({ app })
+
+const server = app.listen({ port }, () =&gt;
+  console.log(`🚀 Server ready at http://localhost:${port}${apolloServer.graphqlPath}`)
+
+  createSubscriptionServer({ schema: apolloServer.schema }, {
+    securityService,
+    server,
+    path: '/graphql'
+  })
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The example shows how the Keycloak <code>securityService</code> is created and how it is passed into <code>createSubscriptionServer</code>. This enables Keycloak authentication on all subscriptions.</p>
+</div>
+<div class="sect2">
+<h3 id="keycloak-authorization-in-subscriptions"><a class="anchor" href="#keycloak-authorization-in-subscriptions"></a>Keycloak Authorization in Subscriptions</h3>
+<div class="paragraph">
+<p>The Keycloak <code>securityService</code> will validate and parse the token sent by the client into a <a href="https://github.com/keycloak/keycloak-nodejs-connect/blob/master/middleware/auth-utils/token.js">Token Object</a>. This token is available in Subscription resolvers with <code>context.auth</code> and can be used to implement finer grained role based access control.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const resolvers = {
+  Subscription: {
+    taskAdded: {
+      subscribe: (obj, args, context, info) =&gt; {
+        const role = 'admin'
+        if (!context.auth.hasRole(role)) {
+          return new Error(`Access Denied - missing role ${role}`)
+        }
+        return pubSub.asyncIterator(TASK_ADDED)
+      }
+    },
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above example shows role based access control inside a subscription resolver. <code>context.auth</code> is a full <a href="https://github.com/keycloak/keycloak-nodejs-connect/blob/master/middleware/auth-utils/token.js">Keycloak Token Object</a> which means methods like <code>hasRealmRole</code> and <code>hasApplicationRole</code> are available.</p>
+</div>
+<div class="paragraph">
+<p>The user details can be accessed through <code>context.auth.content</code>. Here is an example.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "jti": "dc1d6286-c572-43c1-99c7-4f36982b0e56",
+  "exp": 1561495720,
+  "nbf": 0,
+  "iat": 1561461830,
+  "iss": "http://localhost:8080/auth/realms/voyager-testing",
+  "aud": "voyager-testing-public",
+  "sub": "57e1dcda-990f-4cc2-8542-0d1f9aae302b",
+  "typ": "Bearer",
+  "azp": "voyager-testing-public",
+  "nonce": "552c3cba-a6c2-490a-9914-28784ba0e4bc",
+  "auth_time": 1561459720,
+  "session_state": "ed35e1b4-b43c-438f-b1a3-18b1be8c6307",
+  "acr": "0",
+  "allowed-origins": [
+    "*"
+  ],
+  "realm_access": {
+    "roles": [
+      "developer",
+      "uma_authorization"
+    ]
+  },
+  "resource_access": {
+    "voyager-testing-public": {
+      "roles": [
+        "developer"
+      ]
+    },
+    "account": {
+      "roles": [
+        "manage-account",
+        "manage-account-links",
+        "view-profile"
+      ]
+    }
+  },
+  "preferred_username": "developer"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Having access to the user details (e.g. <code>context.auth.content.sub</code> is the authenticated user&#8217;s ID) means it is possible to implement <a href="https://www.apollographql.com/docs/apollo-server/features/subscriptions/#subscription-filters">Subscription Filters</a> and to subscribe to more fine grained pubsub topics based off the user details.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sync-js-client-auth"><a class="anchor" href="#sync-js-client-auth"></a>Implementing authentication and authorization on your client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With Voyager Client, user information can be passed to a Data Sync server application in two ways: headers or tokens.</p>
+</div>
+<div class="paragraph">
+<p>Headers are used to authentication HTTP requests to the server, which are used for queries and mutations.</p>
+</div>
+<div class="paragraph">
+<p>Tokens are used to authenticate WebSocket connections, which are used for subscriptions.</p>
+</div>
+<div class="paragraph">
+<p>Both of them can be set via the <code>authContextProvider</code> configuration option. Here is an example</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">//get the token value from somewhere, for example the authentication service
+const token = "REPLACE_WITH_REAL_TOKEN";
+
+const config = {
+  ...
+  authContextProvider: function() {
+    return {
+      header: {
+        "Authorization": `Bearer ${token}`
+      },
+      token: token
+    }
+  },
+  ...
+};
+
+//create a new client</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For information about how to perform authentication and authorization on the server, see the <a href="#sync-server-auth">Server Authentication and Authorization Guide</a>.</p>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

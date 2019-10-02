@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Topics :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-advanced.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-advanced.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -506,6 +509,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/ds-advanced.html">Native</a>
     <a class="version is-current" href="ds-advanced.html">latest</a>
     <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
@@ -513,60 +517,11 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-advanced.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Advanced Topics</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#network-status">Network Status</a></li>
-<li><a href="#logging-debug-messages">Logging Debug Messages</a></li>
-<li><a href="#optimistic-ui">Optimistic UI</a></li>
-<li><a href="#cache-update-helpers">Cache Update Helpers</a>
-<ul class="sectlevel2">
-<li><a href="#mutations">Mutations</a></li>
-<li><a href="#subscriptions">Subscriptions</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="sect1">
-<h2 id="network-status"><a class="anchor" href="#network-status"></a>Network Status</h2>
+<h2 id="sync-js-client-advanced-topics"><a class="anchor" href="#sync-js-client-advanced-topics"></a>Advanced Topics</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/network/NetworkStatus.ts">NetworkStatus</a> interface can be used to check the current network status, or register a listener to perform certain actions when the status of the network changes.</p>
-</div>
-<div class="paragraph">
-<p>Two default implementations are provided to support <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/network/WebNetworkStatus.ts">web browsers</a> and <a href="https://github.com/aerogear/aerogear-js-sdk/blob/master/packages/sync/src/offline/network/CordovaNetworkStatus.ts">Cordova</a>. The following example demonstrates how to register a listener using <code>CordovaNetworkStatus</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { CordovaNetworkStatus, NetworkInfo } from '@aerogear/voyager-client';
-const networkStatus = new CordovaNetworkStatus();
-
-networkStatus.onStatusChangeListener({
-  onStatusChange: info =&gt; {
-    const online = info.online;
-    if (online) {
-      //client is online, perform some actions
-    } else {
-      //client is offline
-    }
-  }
-});
-
-let config = {
-  ...
-  networkStatus: networkStatus,
-  ...
-};
-
-//create a new client using the config</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="logging-debug-messages"><a class="anchor" href="#logging-debug-messages"></a>Logging Debug Messages</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="logging-debug-messages"><a class="anchor" href="#logging-debug-messages"></a>Logging Debug Messages</h3>
 <div class="paragraph">
 <p>The Voyager Client uses the <a href="https://www.npmjs.com/package/debug">debug module</a> to log debug messages.</p>
 </div>
@@ -583,14 +538,12 @@ let config = {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">localStorage.debug = 'AeroGearSync:OfflineMutations*'</code></pre>
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">localStorage.debug = 'AeroGearSync:offlineMutates*'</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="optimistic-ui"><a class="anchor" href="#optimistic-ui"></a>Optimistic UI</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="optimistic-ui"><a class="anchor" href="#optimistic-ui"></a>Optimistic UI</h3>
 <div class="paragraph">
 <p>By default mutations are not applied to the UI until responses are received from the server. To provide better user experience, an application may want to update the UI immediately. <a href="https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-mutation-options-optimisticResponse">Optimistic response</a> is an easy way to achieve this goal, and Voyager Client provides a helper method to work with optimistic responses:</p>
 </div>
@@ -613,167 +566,6 @@ let config = {
 </div>
 <div class="paragraph">
 <p>See the <a href="showcase-apps.html" class="page">Showcase Apps section</a> for more information.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="cache-update-helpers"><a class="anchor" href="#cache-update-helpers"></a>Cache Update Helpers</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Voyager Client provides an out of the box solution for managing updates to your application&#8217;s cache.
-It can intelligently generate cache update methods for both mutations and subscriptions.</p>
-</div>
-<div class="sect2">
-<h3 id="mutations"><a class="anchor" href="#mutations"></a>Mutations</h3>
-<div class="paragraph">
-<p>The following example shows how to use these helper methods for mutations.
-To use these methods, create an offline client as described in <a href="#offline-client">[offline-client]</a> and then use the  <code>offlineMutation</code> method.
-The <code>offlineMutation</code> function accepts a <code>MutationHelperOptions</code> object as a parameter.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { createMutationOptions, CacheOperation } = require('@aerogear/voyager-client');
-
-const mutationOptions = {
-  mutation: ADD_TASK,
-  variables: {
-    title: 'item title'
-  },
-  updateQuery: {
-    query: GET_TASKS,
-    variables: {
-      filterBy: 'some filter'
-    }
-  },
-  typeName: 'Task',
-  operationType: CacheOperation.ADD,
-  idField: 'id'
-};</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We can also provide more than one query to update in the cache by providing an array to the <code>updateQuery</code> parameter:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const mutationOptions = {
-  ...
-  updateQuery: [
-    { query: GET_TASKS, variables: {} }
-  ]
-  ,
-  ...
-};</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following example shows how to prepare an offline mutation to add a task using the <code>mutationOptions</code> object and how to update the <code>GET_TASK</code> query for the client&#8217;s cache.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { createMutationOptions, CacheOperation } = require('@aerogear/voyager-client');
-
-client.offlineMutation&lt;Task&gt;(mutationOptions);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you do not wish to use the offline client you can also use the <code>createMutationOptions</code> function directly. This function provides an Apollo compatible <code>MutationOptions</code> object to pass to your pre-existing client.
-This is shown below where <code>mutationOptions</code> is the same object shown in the above code example.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const options = createMutationOptions(mutationOptions);
-
-client.mutate&lt;Task&gt;(options);</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="subscriptions"><a class="anchor" href="#subscriptions"></a>Subscriptions</h3>
-<div class="paragraph">
-<p>Voyager Client also provides a subscription helper which can generate the necessary options to be used with Apollo Client&#8217;s <code>subscribeToMore</code> function.</p>
-</div>
-<div class="paragraph">
-<p>To use this helper, we first need to create some options. These options should take the folowing form:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { CacheOperation } = require('@aerogear/voyager-client');
-
-const options = {
-  subscriptionQuery: TASK_ADDED_SUBSCRIPTION,
-  cacheUpdateQuery: GET_TASKS,
-  operationType: CacheOperation.ADD
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This options object will be used to inform the subscription helper that for every data object
-received because of the <code>TASK_ADDED_SUBSCRIPTION</code> the <code>GET_TASKS</code> query should also be kept up to date in the cache.</p>
-</div>
-<div class="paragraph">
-<p>We can then create the required cache update functions in the following way:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { createSubscriptionOptions } = require('@aerogear/voyager-client');
-
-const subscriptionOptions = createSubscriptionOptions(options);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To use this helper we then pass this <code>subscriptionOptions</code> variable to the <code>subscribeToMore</code> function of our <code>ObservableQuery</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const query = client.watchQuery&lt;AllTasks&gt;({
-  query: GET_TASKS
-});
-
-query.subscribeToMore(subscriptionOptions);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The cache will now be kept up to date with automatic data deduplication being performed.</p>
-</div>
-<div class="sect3">
-<h4 id="multiple-subscriptions"><a class="anchor" href="#multiple-subscriptions"></a>Multiple Subscriptions</h4>
-<div class="paragraph">
-<p>Voyager Client also provides the ability to automatically call <code>subscribeToMore</code> on your <code>ObservableQuery</code>. This can be useful
-in a situation where you may have multiple subscriptions which can affect one single query. For example, if you have a
-<code>TaskAdded</code>, <code>TaskDeleted</code> and a <code>TaskUpdated</code> subscription you would need three separate <code>subscribeToMore</code> function calls. This can become
-tedious as your number of subscriptions grow. To combat this, we can use the <code>subscribeToMoreHelper</code> function from Voyager Client to automatically handle this for us by passing
-it an array of subscriptions and their corresponding queries which need to be updated.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const { CacheOperation } = require('@aerogear/voyager-client');
-
-const addOptions = {
-  subscriptionQuery: TASK_ADDED_SUBSCRIPTION,
-  cacheUpdateQuery: GET_TASKS,
-  operationType: CacheOperation.ADD
-}
-
-const deleteOptions = {
-  subscriptionQuery: TASK_DELETED_SUBSCRIPTION,
-  cacheUpdateQuery: GET_TASKS,
-  operationType: CacheOperation.DELETE
-}
-
-const updateOptions = {
-  subscriptionQuery: TASK_UPDATED_SUBSCRIPTION,
-  cacheUpdateQuery: GET_TASKS,
-  operationType: CacheOperation.REFRESH
-}
-
-const query = client.watchQuery&lt;AllTasks&gt;({
-  query: GET_TASKS
-});
-
-subscribeToMoreHelper(query, [addOptions, deleteOptions, updateOptions]);</code></pre>
-</div>
-</div>
 </div>
 </div>
 </div>

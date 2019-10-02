@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Showcase Apps :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/showcase-apps.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <title>Using the Showcase Mobile App :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/showcase-apps.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Services</a></li>
@@ -505,6 +508,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/showcase-apps.html">Native</a>
     <a class="version is-current" href="showcase-apps.html">latest</a>
     <a class="version" href="../v2.0/showcase-apps.html">v2.0</a>
   </div>
@@ -512,15 +516,21 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/showcase-apps.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Introduction to Showcase Apps</h1>
+<h1>Using the Showcase Mobile App</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#showcase-apps">Showcase Apps</a>
+<li><a href="#introducing-the-showcase-app">Introducing the Showcase App</a>
 <ul class="sectlevel2">
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#using-the-showcase-apps">Using the Showcase Apps</a></li>
-<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></li>
+<li><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up mobile services to demonstrate Showcase App features</a></li>
+<li><a href="#demonstrating-data-sync">Demonstrating Data Sync</a></li>
+<li><a href="#app">Setting Up the Showcase App</a></li>
+<li><a href="#binding">Binding the Showcase Mobile App to Mobile Services</a></li>
+</ul>
+</li>
+<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+<ul class="sectlevel2">
+<li><a href="#build">Building and Running the Showcase App</a></li>
 </ul>
 </li>
 <li><a href="#certs">Using Self-Signed Certificates in Mobile Apps</a>
@@ -530,7 +540,7 @@ Zepto(function($){
 <li><a href="#trust-self-signed-cert">3. Trusting the Certificate In Your App.</a></li>
 </ul>
 </li>
-<li><a href="#features">Demonstrating the ShowCase App Features</a>
+<li><a href="#features">Demonstrating the ShowCase App features</a>
 <ul class="sectlevel2">
 <li><a href="#identity-management">Identity Management</a></li>
 <li><a href="#data-sync">Data Sync</a></li>
@@ -542,33 +552,21 @@ Zepto(function($){
 </ul>
 </div>
 <div class="sect1">
-<h2 id="showcase-apps"><a class="anchor" href="#showcase-apps"></a>Showcase Apps</h2>
+<h2 id="introducing-the-showcase-app"><a class="anchor" href="#introducing-the-showcase-app"></a>Introducing the Showcase App</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h3>
-<div class="paragraph">
-<p>Showcase apps demonstrate many features of Mobile Services.</p>
-</div>
-<div class="paragraph">
-<p>These mobile apps are ready to work with the mobile services provisioned and they present an easy
-starting point for the developers.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="using-the-showcase-apps"><a class="anchor" href="#using-the-showcase-apps"></a>Using the Showcase Apps</h3>
 <div class="paragraph">
 <p>Showcase apps demonstrate many features of Mobile Services. To see these features:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Set up the appropriate services as described in <a href="#setup">Setting up Mobile Services to Demonstrate Showcase Apps</a>.</p>
+<p>Set up the appropriate services as described in <a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up mobile services to demonstrate Showcase App features</a>.</p>
 </li>
 <li>
 <p>Set up the showcase app as described in <a href="#app">Setting Up the Showcase App</a>.</p>
 </li>
 <li>
-<p>Register your showcase app as described in <a href="registering-a-mobile-app.html" class="page">Registering a Mobile App</a>.</p>
+<p>Register your showcase app as described in <a href="/aerogear/latest/getting-started.html">Registering a Mobile App</a>.</p>
 </li>
 <li>
 <p>Bind your Mobile App to the appropriate services as described in <a href="#binding">Binding the Showcase Mobile App to Mobile Services</a></p>
@@ -581,19 +579,19 @@ starting point for the developers.</p>
 </li>
 </ol>
 </div>
-<div class="sect3">
-<h4 id="setup"><a class="anchor" href="#setup"></a>Setting up Mobile Services to Demonstrate Showcase Apps</h4>
-<div class="ulist discrete">
+<div class="sect2">
+<h3 id="setting-up-mobile-services-to-demonstrate-showcase-apps"><a class="anchor" href="#setting-up-mobile-services-to-demonstrate-showcase-apps"></a>Setting up mobile services to demonstrate Showcase App features</h3>
+<div class="ulist">
 <div class="title">Prerequisites</div>
-<ul class="discrete">
+<ul>
 <li>
 <p>You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
 </li>
 </ul>
 </div>
-<div class="olist discrete">
+<div class="olist arabic">
 <div class="title">Procedure</div>
-<ol class="discrete">
+<ol class="arabic">
 <li>
 <p>To demonstrate Mobile Metrics, <a href="mobile-metrics.html#provisioning-metrics-service" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="mobile-metrics.html" class="page">Mobile Metrics Service</a></p>
 </li>
@@ -605,28 +603,28 @@ starting point for the developers.</p>
 <p><a href="identity-management.html#provisioning-the-identity-management-service" class="page">Provision the Identity Management service</a>.</p>
 </li>
 <li>
-<p><a href="identity-management.html#configuring-the-service" class="page">Set up the Identity Management service</a>.</p>
+<p><a href="/aerogear/latest/identity-management.html#configuring-the-service">Set up the Identity Management service</a>.</p>
 </li>
 <li>
-<p>Create a new user to authenticate as. Follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">here</a>.</p>
+<p>Create a new user to authenticate using the <a href="https://www.keycloak.org/documentation.html">Identity Management documentation</a>.</p>
 </li>
 <li>
-<p>Set credentials for the created user. Follow the steps <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">here</a>.</p>
+<p>Set credentials for the created user. Follow the steps <a href="https://www.keycloak.org/documentation.html">documentation</a>.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>For more information about features, see <a href="identity-management.html" class="page">Identity Management Service</a></p>
+<p>For more information about features, see <a href="/aerogear/latest/identity-management.html">Identity Management Service</a></p>
 </div>
 </li>
 <li>
-<p>To demonstrate Push Notifications, <a href="push-notifications.html#provisioning-push-notifications-service" class="page">Provision the Push Notifications service</a>. For more information about features, see <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
+<p>To demonstrate Push Notifications <a href="push-notifications.html#provisioning-push-notifications-service" class="page">Provision the Push Notifications service</a>. For more information about features, see the <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
 </li>
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="demonstrating-data-sync"><a class="anchor" href="#demonstrating-data-sync"></a>Demonstrating Data Sync</h4>
+<div class="sect2">
+<h3 id="demonstrating-data-sync"><a class="anchor" href="#demonstrating-data-sync"></a>Demonstrating Data Sync</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -733,8 +731,8 @@ Record the value for <code>PostgreSQL Connection Username</code>, <code>PostgreS
 </li>
 </ol>
 </div>
-<div class="sect4">
-<h5 id="creating-the-data-sync-mobile-app-binding"><a class="anchor" href="#creating-the-data-sync-mobile-app-binding"></a>Creating the Data Sync Mobile App binding</h5>
+<div class="sect3">
+<h4 id="creating-the-data-sync-mobile-app-binding"><a class="anchor" href="#creating-the-data-sync-mobile-app-binding"></a>Creating the Data Sync Mobile App binding</h4>
 <div class="paragraph">
 <div class="title">Prerequisites</div>
 <p><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up Mobile Services to Demonstrate Showcase Apps</a></p>
@@ -781,8 +779,8 @@ Record the value for <code>PostgreSQL Connection Username</code>, <code>PostgreS
 </ol>
 </div>
 </div>
-<div class="sect4">
-<h5 id="configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service"><a class="anchor" href="#configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service"></a>Configuring the Showcase App to point at the provisioned Data Sync service</h5>
+<div class="sect3">
+<h4 id="configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service"><a class="anchor" href="#configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service"></a>Configuring the Showcase App to point at the provisioned Data Sync service</h4>
 <div class="paragraph">
 <div class="title">Prerequisites</div>
 <p><a href="#creating-the-data-sync-mobile-app-binding">Creating the Data Sync Mobile App binding</a></p>
@@ -796,53 +794,17 @@ Record the value for <code>PostgreSQL Connection Username</code>, <code>PostgreS
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset1_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset1_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset1_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset1_xamarin"></a>Xamarin</p>
+<p><a id="tabset1_ionic"></a>Ionic</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_cordova">
+<div class="tab-pane" aria-labelledby="tabset1_ionic">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ionic-showcase.git
 $ cd ionic-showcase
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_android">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
-$ cd android-showcase-template
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_ios">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
-$ cd ios-showcase-template
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_xamarin">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
-$ cd xamarin-showcase-template
-$ git checkout 1.0.0</code></pre>
+$ git checkout0.8.0</code></pre>
 </div>
 </div>
 </div>
@@ -855,8 +817,8 @@ $ git checkout 1.0.0</code></pre>
 </ol>
 </div>
 </div>
-<div class="sect4">
-<h5 id="running-the-showcase-app-with-data-sync-configured"><a class="anchor" href="#running-the-showcase-app-with-data-sync-configured"></a>Running the showcase app with Data Sync configured</h5>
+<div class="sect3">
+<h4 id="running-the-showcase-app-with-data-sync-configured"><a class="anchor" href="#running-the-showcase-app-with-data-sync-configured"></a>Running the showcase app with Data Sync configured</h4>
 <div class="paragraph">
 <div class="title">Prerequisites</div>
 <p><a href="#configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service">Configuring the Showcase App to point at the provisioned Data Sync service</a></p>
@@ -898,102 +860,54 @@ $ git checkout 1.0.0</code></pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="app"><a class="anchor" href="#app"></a>Setting Up the Showcase App</h4>
+<div class="sect2">
+<h3 id="app"><a class="anchor" href="#app"></a>Setting Up the Showcase App</h3>
 <div class="paragraph">
 <div class="title">Prerequisites</div>
-<p><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up Mobile Services to Demonstrate Showcase Apps</a></p>
+<p><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up mobile services to demonstrate Showcase App features</a></p>
 </div>
 <div class="olist discrete">
 <div class="title">Procedure</div>
 <ol class="discrete">
 <li>
-<p>Clone the showcase app and checkout the release tag 1.0.0</p>
-</li>
-</ol>
-</div>
+<p>Clone the showcase app and checkout the release tag 0.8.0</p>
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset2_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset2_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset2_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset2_xamarin"></a>Xamarin</p>
+<p><a id="tabset2_ionic"></a>Ionic</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset2_cordova">
+<div class="tab-pane" aria-labelledby="tabset2_ionic">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ionic-showcase.git
 $ cd ionic-showcase
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_android">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/android-showcase-template.git
-$ cd android-showcase-template
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_ios">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ios-showcase-template.git
-$ cd ios-showcase-template
-$ git checkout 1.0.0</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset2_xamarin">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/xamarin-showcase-template.git
-$ cd xamarin-showcase-template
-$ git checkout 1.0.0</code></pre>
+$ git checkout0.8.0</code></pre>
 </div>
 </div>
 </div>
 </div>
+</div>
+</li>
+</ol>
 </div>
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
 <p>The following steps will help you enable Push Notifications in a showcase application.</p>
-</li>
-</ol>
-</div>
 <div class="tabset is-loading">
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset3_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset3_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset3_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset3_xamarin"></a>Xamarin</p>
+<p><a id="tabset3_ionic"></a>Ionic</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset3_cordova">
+<div class="tab-pane" aria-labelledby="tabset3_ionic">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1009,78 +923,24 @@ Firebase Cloud Messaging console.</p>
 </ol>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_android">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>You will need to create a project on <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>.</p>
-</li>
-<li>
-<p>Follow steps outlined <a href="https://support.google.com/firebase/answer/7015592?hl=en" target="_blank" rel="noopener">here</a> to download <code>google-services.json</code> from your Firebase project.</p>
-</li>
-<li>
-<p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
-Firebase Cloud Messaging console.</p>
-</li>
-</ol>
 </div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset3_ios">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Follow the <a href="https://help.apple.com/xcode/mac/current/#/devdfd3d04a1" target="_blank" rel="noopener">official guide</a> to enable push notifications for your Xcode project.</p>
-</li>
-<li>
-<p>Follow  the <a href="https://help.apple.com/developer-account/#/dev82a71386a" target="_blank" rel="noopener">official guide</a> to generate an APNs client TLS certificate and export the client TLS identity from your Mac.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Make sure to protect the p12 file with a password.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The exported p12 file with the password will be used later when binding your Mobile App to the Push Notifications.
-</td>
-</tr>
-</table>
 </div>
 </li>
 </ol>
 </div>
 </div>
-<div class="tab-pane" aria-labelledby="tabset3_xamarin">
-<div class="paragraph">
-<p>Push Notifications Service is not supported on Xamarin.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="binding"><a class="anchor" href="#binding"></a>Binding the Showcase Mobile App to Mobile Services</h4>
+<div class="sect2">
+<h3 id="binding"><a class="anchor" href="#binding"></a>Binding the Showcase Mobile App to Mobile Services</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p><a href="mobile-metrics.html#binding-a-mobile-client-with-the-metrics-service" class="page">Bind the Mobile App to the Mobile Metrics service</a> if you want to demonstrate the Mobile Metrics service.</p>
 </li>
 <li>
-<p><a href="identity-management.html#binding-a-mobile-client-with-the-identity-management-service" class="page">Bind the Mobile App to the Identity Management service</a> if you want to demonstrate authentication.</p>
+<p><a href="/aerogear/latest/identity-management.html#binding-a-mobile-client-with-the-identity-management-service">Bind the Mobile App to the Identity Management service</a> if you want to demonstrate authentication.</p>
 </li>
 <li>
-<p><a href="push-notifications.html#binding-a-mobile-client-with-the-push-notifications-service" class="page">Bind the Mobile App to the Push Notifications service</a> if you want to demonstrate Push Notifications.</p>
+<p><a href="/aerogear/latest/push-notifications.html#binding-a-mobile-client-with-the-push-notifications-service">Bind the Mobile App to the Push Notifications service</a> if you want to demonstrate Push Notifications.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1088,33 +948,23 @@ The exported p12 file with the password will be used later when binding your Mob
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This step also creates a variant as described in <a href="push-notifications.html" class="page"> Push Notifications Service</a> terminology.
+This step also creates a variant as described in <a href="/aerogear/latest/push-notifications.html"> Push Notifications Service</a> terminology.
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p><a href="data-sync.html#sync-server-binding" class="page">Bind the Mobile App to the Data Sync app</a> if you want to demonstrate Data Sync.</p>
+<p><a href="/aerogear/latest/data-sync.html#sync-server-binding">Bind the Mobile App to the Data Sync app</a> if you want to demonstrate Data Sync.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This section only applies to the Ionic platform.
-</td>
-</tr>
-</table>
 </div>
+<div class="sect1">
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1130,19 +980,19 @@ Save the contents of the clipboard to a new file called <code>mobile-services.js
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The mobile-services.json file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
+The mobile-services.json file is the link between the mobile services running on OpenShift and the mobile app you are developing. The mobile-services.json file provides all required configuration to initialise the various SDKs and connect them to the back-end services.
 </td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Copy the contents of the <code>mobile-services.json</code> file and paste them into the <code>mobile-services.json</code> located in <code>src</code>.</p>
+<p>Copy the contents of the <code>mobile-services.json</code> file into the <code>mobile-services.json</code> file located in <code>src</code>.</p>
 </li>
 </ol>
 </div>
-<div class="sect3">
-<h4 id="build"><a class="anchor" href="#build"></a>Building and Running the Showcase App</h4>
+<div class="sect2">
+<h3 id="build"><a class="anchor" href="#build"></a>Building and Running the Showcase App</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1154,62 +1004,16 @@ The mobile-services.json file is the link between your provisioned services on O
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset4_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset4_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset4_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset4_xamarin"></a>Xamarin</p>
+<p><a id="tabset4_ionic"></a>Ionic</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset4_cordova">
+<div class="tab-pane" aria-labelledby="tabset4_ionic">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
 $ npm run ionic:build</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_android">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew assembleDebug</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_ios">
-<div class="paragraph">
-<p>Run this command to install dependencies:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Install CocoaPods as described in <a href="https://cocoapods.org/" class="bare">https://cocoapods.org/</a> if it is not already installed.</p>
-</li>
-<li>
-<p>Run this command to install dependencies:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset4_xamarin">
-<div class="paragraph">
-<p>Run this command to install dependencies (optional):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ nuget restore</code></pre>
 </div>
 </div>
 </div>
@@ -1226,21 +1030,12 @@ $ npm run ionic:build</code></pre>
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset5_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset5_android"></a>Android</p>
-</li>
-<li>
-<p><a id="tabset5_ios"></a>iOS</p>
-</li>
-<li>
-<p><a id="tabset5_xamarin"></a>Xamarin</p>
+<p><a id="tabset5_ionic"></a>Ionic</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset5_cordova">
+<div class="tab-pane" aria-labelledby="tabset5_ionic">
 <div class="paragraph">
 <p>To run the showcase app, use these commands:</p>
 </div>
@@ -1260,87 +1055,6 @@ $ npm run ionic:ios # to run on an iOS device or emulator</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ionic cordova run android --device      # run on a connected device
 $ ionic cordova run android --emulator    # run on the Android emulator</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_android">
-<div class="paragraph">
-<p>Following command installs and runs the debug version of the showcase app on the connected device if any. If there is
-no connected device, it installs and runs the application on the emulator.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./gradlew installDebug</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_ios">
-<div class="paragraph">
-<p>Open up <code>.xcworkspace</code> with Xcode  and click the <strong>Build &amp; Run</strong> button in Xcode. This should start the showcase application in an emulator.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Do not use <code>.xcodeproj</code>. If you open up a project file instead of a workspace, dependencies will not be correctly configured.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset5_xamarin">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Open up <code>xamarin-showcase-template.sln</code> with VisualStudio.</p>
-</li>
-<li>
-<p>If you didn&#8217;t run <code>nuget restore</code> before, right click on the solution in the left pane then click on <code>Restore Nuget Packages</code>.</p>
-</li>
-<li>
-<p>In the top bar, select the project to run: <code>Example.Android</code> or <code>Example.iOS</code></p>
-</li>
-<li>
-<p>Again in the top bar, select the correct configuration:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Debug/Release: for compiling Example.Android</p>
-</li>
-<li>
-<p>[Debug|Release]|iPhoneSimulator: to compile and run Example.iOS on the iPhoneSimulator</p>
-</li>
-<li>
-<p>[Debug|Release]|iPhone: to compile and run Example.iOS on a real iPhone device</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>At the right of the configuration, select the target device (the android or iPhone version)</p>
-</li>
-<li>
-<p>Click on <strong>Build &#8594; Rebuild All</strong></p>
-</li>
-<li>
-<p>Click on the <strong>Run</strong> button in the top left</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If no android devices are selectable, it could mean that no virtual android devices has been configured. To add one, click on <strong>Tools&#8594;Device Manager&#8594;Add Device</strong>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -1700,21 +1414,13 @@ Only perform these steps for development or debug purposes, the resulting app wi
 </div>
 </div>
 <div class="sect1">
-<h2 id="features"><a class="anchor" href="#features"></a>Demonstrating the ShowCase App Features</h2>
+<h2 id="features"><a class="anchor" href="#features"></a>Demonstrating the ShowCase App features</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="identity-management"><a class="anchor" href="#identity-management"></a>Identity Management</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Please make sure you have <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/create-user.html">created a user</a> and <a href="https://www.keycloak.org/docs/3.3/server_admin/topics/users/credentials.html">set up credentials</a> first.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<div class="title">Prerequisite</div>
+<p>Make sure you have created a user and set up credentials for that user as describe in the <a href="https://www.keycloak.org/documentation.html">Keycloak Documentation</a>.</p>
 </div>
 <div class="paragraph">
 <p>From the showcase app:</p>
@@ -1723,15 +1429,12 @@ Please make sure you have <a href="https://www.keycloak.org/docs/3.3/server_admi
 <div class="ulist tabs">
 <ul>
 <li>
-<p><a id="tabset8_cordova"></a>Cordova</p>
-</li>
-<li>
-<p><a id="tabset8_others"></a>Others</p>
+<p><a id="tabset8_ionic"></a>Ionic</p>
 </li>
 </ul>
 </div>
 <div class="content">
-<div class="tab-pane" aria-labelledby="tabset8_cordova">
+<div class="tab-pane" aria-labelledby="tabset8_ionic">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1741,23 +1444,7 @@ Please make sure you have <a href="https://www.keycloak.org/docs/3.3/server_admi
 <p>A login page is displayed, enter your credentials.</p>
 </li>
 <li>
-<p>Once the login is successful, go to <strong>User Profile</strong> page and see the basic and roles information about the user.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset8_others">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Press the <strong>Authenticate</strong> menu item depending on the platform. A login screen is displayed.</p>
-</li>
-<li>
-<p>Log in using the credentials you set up with setting up the service.</p>
-<div class="paragraph">
-<p>Once the login is successful, you will be taken back to the showcase
-application where you can see the roles and basic information of the user you have just logged in with.</p>
-</div>
+<p>Once the login is successful, navigate to <strong>User Profile</strong> page and see the roles and basic information about the user.</p>
 </li>
 </ol>
 </div>
@@ -1774,7 +1461,7 @@ application where you can see the roles and basic information of the user you ha
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is only available in the Cordova showcase app.
+Data Sync is only available in the Cordova showcase app.
 </td>
 </tr>
 </table>
@@ -1786,7 +1473,7 @@ This is only available in the Cordova showcase app.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To demonstrate all the features that Data Sync offers, it&#8217;s best to run the same app on multiple devices at the same time.
+To demonstrate all the features that Data Sync offers, use the same app from multiple devices at the same time.
 </td>
 </tr>
 </table>
@@ -1797,16 +1484,22 @@ To demonstrate all the features that Data Sync offers, it&#8217;s best to run th
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Press the <strong>Manage Tasks</strong> menu item.</p>
+<p>Select the <strong>Manage Tasks</strong> menu item.</p>
 </li>
 <li>
-<p>View tasks created by other people and try to edit them. See them changed on other devices.</p>
+<p>View tasks created from other devices and edit them. Check that the tasks have changed from other devices.</p>
 </li>
 <li>
-<p>Create new tasks and see them show up on other devices.</p>
+<p>Create new tasks and see those tasks displayed on other devices.</p>
 </li>
 <li>
-<p>Bring the device offline by switching to <strong>Airplane Mode</strong>, create a few more tasks and edit a few existing tasks. Then switch the device back online and see them changed on other devices.</p>
+<p>Invoke <strong>Airplane Mode</strong> to bring your device offline.</p>
+</li>
+<li>
+<p>Create more tasks and edit some existing tasks.</p>
+</li>
+<li>
+<p>Switch the device back online and see the new and edited tasks synchronized to the other devices.</p>
 </li>
 </ol>
 </div>
@@ -1855,21 +1548,9 @@ To demonstrate all the features that Data Sync offers, it&#8217;s best to run th
 </div>
 </div>
 <div class="sect3">
-<h4 id="mobile-security"><a class="anchor" href="#mobile-security"></a>Mobile Security</h4>
+<h4 id="mobile-security-service"><a class="anchor" href="#mobile-security-service"></a>Mobile Security Service</h4>
 <div class="paragraph">
-<p>Application Trust will allow you to connect to the Mobile Security Service and that can be used to enable or disable an application from a remote console.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The service it will not disable the showcase application it will only demonstrate the functionality.
-</td>
-</tr>
-</table>
+<p>Application Trust allows you to connect to the Mobile Security Service and that allows you to enable or disable a mobile app from the Mobile Security console.</p>
 </div>
 <div class="paragraph">
 <p>To use Application Trust in the showcase app:</p>
@@ -1883,7 +1564,7 @@ The service it will not disable the showcase application it will only demonstrat
 <p>From the drop down press <strong>Application Trust</strong>.</p>
 </li>
 <li>
-<p>Navigate to the Mobile Security Service link to set the enable/disable message as described in <a href="app-security.html#monitoring" class="page">Using the App Security Console</a>.</p>
+<p>Navigate to the Mobile Security Service link to set the enable/disable message as described in link:Mobile Security#monitoring[Using the App Security Console].</p>
 </li>
 <li>
 <p>Press the <strong>CHECK THE SECURITY SERVICE</strong> button to check the message from the service.</p>
@@ -1898,7 +1579,7 @@ The service it will not disable the showcase application it will only demonstrat
 <ol class="arabic">
 <li>
 <p>Send a push notification as described in
-<a href="push-notifications.html#sending" class="page">Sending a Push Notification</a></p>
+<a href="/aerogear/latest/push-notifications.html#sending">Sending a Push Notification</a></p>
 </li>
 <li>
 <p>Launch the showcase app and view the notification.</p>

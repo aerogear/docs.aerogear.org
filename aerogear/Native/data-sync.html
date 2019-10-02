@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developing a Data Sync Application :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/data-sync.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="data-sync.html">Data Sync</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="data-sync.html">Native</a>
+    <a class="version" href="../latest/data-sync.html">latest</a>
+    <a class="version" href="../v2.0/data-sync.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/data-sync.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Developing a Data Sync Application</h1>
+<div class="paragraph">
+<p>Unlike other mobile services which provide a server and an API, Data Sync is a framework that you use to develop services. Typically, you develop a Data Sync service as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Design a <a href="https://graphql.org/learn">GraphQL</a> schema.</p>
+</li>
+<li>
+<p>Develop a Data Sync server and Data Sync client, with the features you require, for example, real-time updates.</p>
+</li>
+<li>
+<p>Containerize your Data Sync server and deploy it to OpenShift.</p>
+</li>
+<li>
+<p>Bind your mobile app to that Data Sync server.</p>
+</li>
+<li>
+<p>Configure your mobile app to point to the Data Sync server.</p>
+</li>
+<li>
+<p>Complete your mobile app development.</p>
+</li>
+<li>
+<p>Build and run your mobile app.</p>
+</li>
+</ol>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

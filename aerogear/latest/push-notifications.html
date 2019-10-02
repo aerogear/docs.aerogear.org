@@ -67,8 +67,8 @@ Zepto(function($){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Using the Push Notifications Mobile Service :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/push-notifications.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/push-notifications.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -505,6 +508,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/push-notifications.html">Native</a>
     <a class="version is-current" href="push-notifications.html">latest</a>
     <a class="version" href="../v2.0/push-notifications.html">v2.0</a>
   </div>
@@ -1044,6 +1048,18 @@ NOTE: Ensure that <code>mobile-services.json</code> is a member of the project i
 <div class="paragraph">
 <p><code>src/mobile-services.json</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To run the Cordova app on the Android device you also need to download the <code>google-services.json</code> from Firebase and put it on the root folder of your project.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset3_xamarin">
 <div class="paragraph">
@@ -1356,6 +1372,27 @@ new PushRegistration(app.config).register().then(() =&gt; {
 });</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Optionally, you can pass the parameters below to the register method
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
+  alias: 'some-alias',
+  categories: ['one', 'or', 'more', 'categories'],
+  timeout: 5000 // in milliseconds
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="tab-pane" aria-labelledby="tabset6_xamarin">
 <div class="paragraph">
@@ -1498,26 +1535,32 @@ sender.send(unifiedMessage, () -&gt; {
 <p>Send the message to the target application.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">var agSender = require("unifiedpush-node-sender"),
-  settings = {
-    url: "&lt;pushServerURL e.g http(s)//host:port/context&gt;",
-    applicationId: "&lt;pushApplicationId e.g. 1234456-234320&gt;",
-    masterSecret: "&lt;masterSecret e.g. 1234456-234320&gt;"
-  },
-  message = {
-    alert: "Hello from the Node.js Sender API!"
-  },
-  options = {
-    config: {
-        ttl: 3600,
-    }
-  };
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const agSender = require('unifiedpush-node-sender');
 
-agSender.Sender(settings)
-    .send(message, options)
-    .on("success", function(response) {
-        console.log("success called", response);
-    });</code></pre>
+const settings = {
+  url: "&lt;pushServerURL e.g http(s)//host:port/context&gt;",
+  applicationId: "&lt;pushApplicationId e.g. 1234456-234320&gt;",
+  masterSecret: "&lt;masterSecret e.g. 1234456-234320&gt;"
+
+};
+
+const message = {
+  alert: "Hello from the Node.js Sender API!"
+};
+
+const options = {
+  config: {
+    ttl: 3600
+  }
+};
+
+agSender(settings).then((client) =&gt; {
+  client.sender.send(message, options).then((response) =&gt; {
+    console.log('success', response);
+  }).catch((error) =&gt; {
+    console.log('error', error);
+  })
+});</code></pre>
 </div>
 </div>
 </li>
@@ -1641,7 +1684,9 @@ Push notifications that arrive when the application is in the background are alw
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PushRegistration.onMessageReceived((notification: any) =&gt; {
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">import { PushRegistration } from "@aerogear/push";
+
+PushRegistration.onMessageReceived((notification: any) =&gt; {
   console.log('Received a push notification', notification);
 });</code></pre>
 </div>
