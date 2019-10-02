@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing Device Checks in your mobile app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/device-security.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Services</a></li>
+    <li class="crumb"><a href="device-security.html">Implementing Device Checks in your mobile app</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="device-security.html">Native</a>
+    <a class="version" href="../latest/device-security.html">latest</a>
+    <a class="version" href="../v2.0/device-security.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/device-security.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Implementing Device Checks in your mobile app</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Device Security service allows you to easily configure and manage device security, and trust checks for your mobile application.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Perform a range of device trust checks on the mobile device, such as checking if the device is rooted, and allows you take proactive action based on the results.</p>
+</li>
+<li>
+<p>Distribute SSL certificates with a Mobile App to create a direct chain of trust (certificate pinning).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Device Security is not currently associated with an OpenShift service, so there are no provisioning or binding tasks associated with using Device Security.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You understand Device Checks.</p>
+</li>
+<li>
+<p>You have logged into the OpenShift console and the Mobile Developer Console.</p>
+</li>
+<li>
+<p>You are developing an Ionic app, plain Cordova is not supported.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="security-terminology-security"><a class="anchor" href="#security-terminology-security"></a>Device Checks Terminology</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes terminology that is associated with Device Checks.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Root Access Detection (ROOT_ENABLED)</dt>
+<dd>
+<p>Use it to help prevent your app running in a device that has been rooted/jailbroken. A device is considered rooted if <strong>any</strong> of the following are true:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A custom key has been used to sign the kernel</p>
+</li>
+<li>
+<p>The <code>su</code> binaries are present</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset1_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset1_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset1_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_android">
+<div class="paragraph">
+<p><code>DeviceChecks.ROOT_ENABLED</code>.</p>
+</div>
+<div class="paragraph">
+<p>This function uses the <a href="https://github.com/scottyab/rootbeer" target="_blank" rel="noopener">Rootbeer</a> library to check if root access is present on the device.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_ios">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_cordova">
+<div class="paragraph">
+<p>This check is not available for Cordova.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_xamarin">
+<div class="paragraph">
+<p>This check is not available for Xamarin.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Developer Mode Detection (DEVELOPER_MODE_ENABLED)</dt>
+<dd>
+<p>To detect if Developer Mode has been enabled on the device the <code>DeviceCheckType#DEVELOPER_MODE_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/provider/Settings.html" target="_blank" rel="noopener">Settings</a> class.</p>
+</dd>
+<dt class="hdlist1">Debugger Detection (DEBUGGER_ENABLED)</dt>
+<dd>
+<p>To detect if an Android debugger is attached to the app the <code>DeviceCheckType#DEBUGGER_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Debug.html" target="_blank" rel="noopener">Debug</a> class.</p>
+</dd>
+<dt class="hdlist1">Emulator Detection (IS_EMULATOR)</dt>
+<dd>
+<p>To detect if the app is being run on an emulator the <code>DeviceCheckType#IS_EMULATOR</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/os/Build.html" target="_blank" rel="noopener">Build</a> class.</p>
+</dd>
+<dt class="hdlist1">Device Lock Detection (SCREEN_LOCK_ENABLED)</dt>
+<dd>
+<p>To detect if a device has a lock screen set (with pin, fingerprint, pattern) the <code>DeviceCheckType#SCREEN_LOCK_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/KeyguardManager.html" target="_blank" rel="noopener">KeyguardManager</a> class.</p>
+</dd>
+<dt class="hdlist1">App Data Backup Detection (BACKUP_ENABLED)</dt>
+<dd>
+<p>To detect whether the application’s data is configured to be synchronized across devices the <code>DeviceCheckType#BACKUP_ENABLED</code> function can be used. The <a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">allowBackup</a> flag determines whether to allow the application to participate in the backup and restore infrastructure, which might be interesting to avoid depending on your app’s needs.</p>
+</dd>
+<dt class="hdlist1">Device Encryption Detection (ENCRYPTION_ENABLED)</dt>
+<dd>
+<p>To detect whether the devices' filesystem is encrypted the <code>DeviceCheckType#ENCRYPTION_ENABLED</code> function can be used. This function uses Android’s <a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager.html" target="_blank" rel="noopener">DevicePolicyManager</a> class.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-device-security-service"><a class="anchor" href="#setting-up-the-device-security-service"></a>Configuring your Development Environment for the Device Checks Service</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="downloading-the-configuration-file-security"><a class="anchor" href="#downloading-the-configuration-file-security"></a>Downloading the Configuration File</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>mobile-services.json</code> file provides the information for your mobile app to communicate with services.
+After you change any configuration in the Mobile Developer Console, it is important to update that file in your IDE.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>The configuration of your Mobile App in Mobile Developer Console is up-to-date.</p>
+</li>
+<li>
+<p>You have set up your mobile app development environment.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Open your Mobile App in Mobile Developer Console.</p>
+</li>
+<li>
+<p>Copy the <code>mobile-services.json</code> configuration to your clipboard.</p>
+</li>
+<li>
+<p>Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>mobile-services.json</code> file is the link between your provisioned services on OpenShift and the mobile app you are developing. This file provides all required configuration to initialise the various SDKs and get them hooked up/connected to the back-end services.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Move <code>mobile-services.json</code> to the following location in your application project:</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset2_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset2_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset2_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_android">
+<div class="paragraph">
+<p><code>app/src/main/assets/mobile-services.json</code></p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_ios">
+<div class="paragraph">
+<p><code>&lt;app directory&gt;/mobile-services.json</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Ensure that <code>mobile-services.json</code> is a member of the project in the Xcode Project Navigator.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_cordova">
+<div class="paragraph">
+<p><code>src/mobile-services.json</code></p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_xamarin">
+<div class="paragraph">
+<p><code>Resources/mobile-services.json</code></p>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="setting-up-sdk-security"><a class="anchor" href="#setting-up-sdk-security"></a>Setting up Device Checks service SDK</h3>
+<div class="paragraph">
+<p>This guide will help you to set up the Device Checks service SDK in your App.</p>
+</div>
+<div class="sect3">
+<h4 id="importing-the-libraries"><a class="anchor" href="#importing-the-libraries"></a>Importing the libraries</h4>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset3_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset3_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset3_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_android">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the following dependency in your app&#8217;s <strong>build.gradle</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation 'org.aerogear:android-security:2.0.0'
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get an instance of <code>SecurityService</code> to start using the SDK.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is user responsibility to manage the <code>SecurityService</code> lifecycle.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_ios">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the dependency to your <strong>Podfile</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">target '[TARGET NAME]' do
+    pod 'AGSSecurity', '2.0.0'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the dependencies by running in your terminal</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ pod install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Import <code>AGSSecurity</code> and instantiate the <code>SecurityService</code> to start using the SDK</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">import AGSSecurity
+
+let security = AGSSecurity()</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any subsequent call to AGSSecurity returns the same instance of the <code>SecurityService</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_cordova">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the <a href="https://www.npmjs.com/package/@aerogear/security">AeroGear Security</a> package from <a href="https://www.npmjs.com/" target="_blank" rel="noopener">NPM</a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install @aerogear/security</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the <a href="https://www.npmjs.com/package/@aerogear/cordova-plugin-aerogear-security" target="_blank" rel="noopener">AeroGear Security plugin</a> for Cordova:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cordova plugin add @aerogear/cordova-plugin-aerogear-security</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Import and instantiate <code>SecurityService</code> to start using the SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const SecurityService = require("@aerogear/security");
+
+const securityService = new SecurityService(app.metrics);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any new instantiation of <code>SecurityService</code> returns the same instance.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_xamarin">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install <a href="https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools" target="_blank" rel="noopener">NuGet</a></p>
+</li>
+<li>
+<p>Install the <a href="https://www.nuget.org/packages/AeroGear.Mobile.Security" target="_blank" rel="noopener">AeroGear Security</a> package</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security --version 2.0.1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the specific packages for Android:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security.Platform.Android --version 2.0.1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ dotnet add package AeroGear.Mobile.Security.Platform.iOS --version 2.0.1</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialize the SDK by adding the following line to your Android application&#8217;s <strong>MainActivity.cs</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">protected override void OnCreate(Bundle savedInstanceState)
+{
+    base.OnCreate(savedInstanceState);
+
+    SecurityService.InitializeService();
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And to your iOS application&#8217;s <strong>AppDelegate.cs</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+{
+    SecurityService.InitializeService();
+    // ...
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Get an instance of <code>SecurityService</code> to start using the SDK:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any subsequent call to MobileCore#getInstance returns the same instance of <code>SecurityService</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="performing-device-trust-checks_security"><a class="anchor" href="#performing-device-trust-checks_security"></a>Performing Device Trust Checks in your Device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes what Device Trust Checks are available and how to execute them for the supported platforms.
+Also note that Device Checks can be performed either individually or together.</p>
+</div>
+<div class="sect2">
+<h3 id="root-access-detection"><a class="anchor" href="#root-access-detection"></a>Root Access Detection</h3>
+<div class="paragraph">
+<p>Use this to help prevent your app running in a device that has been rooted/jailbroken.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset4_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset4_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset4_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.ROOT_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_ios">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(JailbrokenDeviceCheck())</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_cordova">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
+    .check(DeviceCheckType.rootEnabled)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_xamarin">
+<div class="paragraph">
+<p>Use <code>ROOT_ENABLED</code> for Android:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.ROOT_ENABLED);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>JAILBREAK_ENABLED</code> for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.JAILBREAK_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="developer-mode-detection"><a class="anchor" href="#developer-mode-detection"></a>Developer Mode Detection</h3>
+<div class="paragraph">
+<p>Use this to detect if Developer Mode has been enabled on the device.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset5_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset5_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset5_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.DEVELOPER_MODE_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_ios">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_cordova">
+<div class="paragraph">
+<p>This check is not available for Cordova.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_xamarin">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This check is available for Android only.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.DEVELOPER_MODE_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="debugger-detection"><a class="anchor" href="#debugger-detection"></a>Debugger Detection</h3>
+<div class="paragraph">
+<p>Use this to detect if a debugger is attached to the app.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset6_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset6_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset6_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.DEBUGGER_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_ios">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(DebuggerAttachedCheck())</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_cordova">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
+    .check(DeviceCheckType.debugModeEnabled)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_xamarin">
+<div class="paragraph">
+<p>Use <code>DEBUGGER_ENABLED</code> for Android:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.DEBUGGER_ENABLED);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use <code>DEBUGGER_ATTACHED</code> for iOS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.DEBUGGER_ATTACHED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="emulator-detection"><a class="anchor" href="#emulator-detection"></a>Emulator Detection</h3>
+<div class="paragraph">
+<p>Use this to detect if the app is being run on an emulator.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset7_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset7_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset7_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.IS_EMULATOR);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_ios">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(IsEmulatorCheck())</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_cordova">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
+    .check(DeviceCheckType.isEmulator)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_xamarin">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.IS_EMULATOR);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="device-lock-detection"><a class="anchor" href="#device-lock-detection"></a>Device Lock Detection</h3>
+<div class="paragraph">
+<p>Use this to detect if a device has a lock screen set (with pin, fingerprint, pattern&#8230;&#8203;).</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset8_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset8_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset8_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset8_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.SCREEN_LOCK_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset8_ios">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(DeviceLockEnabledCheck())</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset8_cordova">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For iOS devices this check requires iOS 8 or above.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
+    .check(DeviceCheckType.screenLockEnabled)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset8_xamarin">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.SCREEN_LOCK_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="app-data-backup-detection"><a class="anchor" href="#app-data-backup-detection"></a>App Data Backup Detection</h3>
+<div class="paragraph">
+<p>Use this to detect whether the application’s data is configured to be synchronized across devices.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset9_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset9_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset9_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset9_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset9_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.BACKUP_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset9_ios">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset9_cordova">
+<div class="paragraph">
+<p>This is not available for Cordova.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset9_xamarin">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This check is available for Android only.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.BACKUP_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="device-encryption-detection"><a class="anchor" href="#device-encryption-detection"></a>Device Encryption Detection</h3>
+<div class="paragraph">
+<p>Use this to detect whether a devices filesystem is encrypted.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset10_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset10_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset10_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset10_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset10_android">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.check(DeviceCheckType.ENCRYPTION_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset10_ios">
+<div class="paragraph">
+<p>This check is not available for iOS.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset10_cordova">
+<div class="paragraph">
+<p>This is not available for Cordova.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset10_xamarin">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This check is available for Android only.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.ENCRYPTION_ENABLED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="invoking-multiple-device-checks"><a class="anchor" href="#invoking-multiple-device-checks"></a>Invoking Multiple Device Checks</h3>
+<div class="paragraph">
+<p>Device Checks can be run in group, both synchronously and asynchronously.</p>
+</div>
+<h4 id="synchronously" class="discrete">Synchronously</h4>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset11_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset11_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset11_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset11_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset11_android">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get a <code>SyncCheckExecutor</code> from <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+SyncDeviceCheckExecutor syncCheckExecutor = securityService.getCheckExecutor();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add your checks and execute synchronously:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, DeviceCheckResult&gt; results = syncCheckExecutor
+    .addCheck(DeviceCheckType.&lt;check_type&gt;)
+    // Add more checks here
+    .execute();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset11_ios">
+<div class="paragraph">
+<p>Invoke multiple checks using the <code>checkMany</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [DeviceLockEnabledCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
+let results = security.checkMany(checks)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>DeviceCheckResult</code> objects in the returning array stay in the same order they were provided.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset11_cordova">
+<div class="paragraph">
+<p>Executing multiple checks synchronously is not directly supported. Instead, it&#8217;s possible to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener">await</a> operator.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const results = await securityService.checkMany(
+    DeviceCheckType.rootEnabled,
+    DeviceCheckType.isEmulator,
+    // Add more checks here
+);</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>DeviceCheckResult</code> objects in the returning array stay in the same order they were provided.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset11_xamarin">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build a <code>SyncDeviceCheckExecutor</code> from <code>SecurityService</code> and execute:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+var checkExecutor = securityService.GetSyncExecutor()
+                        .WithDeviceCheck(DeviceChecks.ROOT_ENABLED)
+                        .WithDeviceCheck(DeviceChecks.DEVELOPER_MODE_ENABLED)
+                        // Add more checks here
+                        .Build()
+Dictionary&lt;string, DeviceCheckResult&gt; results = checkExecutor.Execute();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<h4 id="asynchronously" class="discrete">Asynchronously</h4>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset12_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset12_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset12_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset12_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset12_android">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Get an <code>AsyncCheckExecutor</code> from <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+AsyncDeviceCheckExecutor asyncCheckExecutor = securityService.getAsyncCheckExecutor();</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add your checks and execute synchronously:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Map&lt;String, Future&lt;DeviceCheckResult&gt;&gt; results = asyncCheckExecutor
+    .addCheck(DeviceCheckType.&lt;check_type&gt;)
+    // Add more checks here
+    .execute();</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset12_ios">
+<div class="paragraph">
+<p>Executing multiple checks asynchronously is not supported at the moment for this platform.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset12_cordova">
+<div class="paragraph">
+<p>Invoke multiple checks using the <code>checkMany</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const checkResults = securityService.checkMany(
+    DeviceCheckType.rootEnabled,
+    DevoceCheckType.isEmulator,
+    // Add more checks here
+)
+.then(results =&gt; {
+    // Handle results
+});</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This method returns a Promise with an array containing all <code>DeviceCheckResult</code> objects in the same order they were provided.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset12_xamarin">
+<div class="paragraph">
+<p>Executing multiple checks asynchronously is not supported at the moment for this platform.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional Resources</h3>
+<h4 id="adding-custom-device-checks" class="discrete">Adding Custom Device Checks</h4>
+<div class="paragraph">
+<p>It is possible to make use of your own custom checks. Follow the next steps depending on your platform to implement them:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset13_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset13_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset13_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset13_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset13_android">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Extend the <code>AbstractDeviceCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class CustomDeviceCheck extends AbstractDeviceCheck {
+
+    @Override
+    protected boolean execute(@NonNull final Context context) {
+        // Implement security check logic here
+        return false;
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">SecurityService securityService = new SecurityService();
+
+DeviceCheck customDeviceCheck = new CustomDeviceCheck();
+DeviceCheckResult result = securityService.check(customDeviceCheck);</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset13_ios">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>DeviceCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">public class MyCustomCheck: DeviceCheck {
+
+    public let name = "Custom Check"
+
+    public init() {}
+
+    public func check() -&gt; DeviceCheckResult {
+        // Implement security check logic here
+        return nil
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Use the <code>check</code> function as usual:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let security = AGSSecurity()
+let result = security.check(MyCustomCheck())</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset13_cordova">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>DeviceCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">class CustomDeviceCheck implements DeviceCheck {
+
+    get name(): string {
+        return "My Custom Check";
+    }
+
+    public check(): Promise&lt;DeviceCheckResult&gt; {
+        // Implement device check logic here
+        return null;
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const securityService = new SecurityService(app.metrics);
+
+securityService.check(new CustomDeviceCheck())
+    .then(result =&gt; {
+        // Handle result
+    });</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset13_xamarin">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>IDeviceCheck</code> interface:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">class CustomDeviceCheck : IDeviceCheck
+{
+    public string GetName()
+    {
+        return "Custom check";
+    }
+
+    public string GetId()
+    {
+        return typeof(CustomDeviceCheck).FullName;
+    }
+
+    public DeviceCheckResult Check()
+    {
+        // Implement security check logic here
+        return null;
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Instantiate it to execute it, using the instance of <code>SecurityService</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+
+DeviceCheckResult result = securityService.Check(new CustomDeviceCheck());</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<h4 id="reporting-device-checks-results-via-the-metrics-service" class="discrete">Reporting Device Checks Results Via the Metrics Service</h4>
+<div class="paragraph">
+<p>In order to report the results of Device Checks utilize this service in conjunction with the Mobile Metrics service.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset14_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset14_ios"></a>iOS</p>
+</li>
+<li>
+<p><a id="tabset14_cordova"></a>Cordova</p>
+</li>
+<li>
+<p><a id="tabset14_xamarin"></a>Xamarin</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset14_android">
+<div class="paragraph">
+<p>Report individual checks via the <code>checkAndSendMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = MobileCore.getInstance(MetricsService.class);
+SecurityService securityService = new SecurityService();
+
+DeviceCheckResult result = securityService.checkAndSendMetric(DeviceCheckType.&lt;check_type&gt;, metricsService);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using a <code>CheckExecutor</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">MetricsService metricsService = mobileCore.getInstance(MetricsService.class);
+Map&lt;String, DeviceCheckResult&gt; results = DeviceCheckExecutor.Builder.newSyncExecutor(this.getContext())
+    .withDeviceCheck(DeviceCheckType.&lt;check_type&gt;)
+    // Add other checks...
+    .withMetricsService(metricsService)
+    .build()
+    .execute();</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset14_ios">
+<div class="paragraph">
+<p>Report individual checks via the <code>checkAndPublishMetric</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let result = security.checkAndPublishMetric(DeviceLockEnabledCheck())</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using the <code>checkManyAndPublishMetric</code> function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-swift hljs" data-lang="swift">let checks = [DeviceLockEnabledCheck(), IsEmulatorCheck(), /** Add more checks here */ ]
+let results = security.checkManyAndPublishMetric(checks)</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset14_cordova">
+<div class="paragraph">
+<p>Report individual checks via the <code>checkAndPublishMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
+    .checkAndPublishMetric(DeviceCheckType.rootEnabled)
+    .then(result =&gt; {
+        // Handle the security result metric
+        // result: { id: string, name: string, passed: boolean }
+    });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using the <code>checkManyAndPublishMetric</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">new SecurityService(app.metrics)
+    .checkManyAndPublishMetric(
+        DeviceCheckType.rootEnabled,
+        DeviceCheckType.isEmulator,
+        // Add more checks here
+    )
+    .then(results =&gt; {
+        // Handle the security results array
+    });</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset14_xamarin">
+<div class="paragraph">
+<p>Report individual checks:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+var metricsService = MobileCore.GetService&lt;MetricsService&gt;();
+
+DeviceCheckResult result = securityService.Check(DeviceChecks.ROOT_ENABLED, metricsService);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or alternatively report multiple checks using a <code>CheckExecutor</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var securityService = MobileCore.GetService&lt;SecurityService&gt;();
+var metricsService = MobileCore.GetService&lt;MetricsService&gt;();
+
+var checkExecutor = securityService.GetSyncExecutor()
+                        .WithDeviceCheck(DeviceChecks.ROOT_ENABLED)
+                        .WithDeviceCheck(DeviceChecks.DEVELOPER_MODE_ENABLED)
+                        .WithMetricsService(metricsService)
+                        // Add more checks here
+                        .Build()
+Dictionary&lt;string, DeviceCheckResult&gt; results = checkExecutor.Execute();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="certificate-pinning_security"><a class="anchor" href="#certificate-pinning_security"></a>Certificate Pinning in Android Devices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning" target="_blank" rel="noopener">Certificate pinning</a> can be enabled in individual SDKs through the <code>mobile-services.json</code> file.
+Certificate pinning will only be enabled for services which are used directly by the SDKs. For
+other services <strong>SPKI</strong> pinning is used. Mobile services must have pinning configured
+separately. For more information on setting up certificate pinning for mobile services see the
+<a href="https://developer.android.com/training/articles/security-config.html#CertificatePinning" target="_blank" rel="noopener">Android network security guide</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="generating-pinning-configuration"><a class="anchor" href="#generating-pinning-configuration"></a>Generating Pinning Configuration</h3>
+<div class="paragraph">
+<p>The AeroGear SDK gets its configuration from the <code>https</code> section of the <code>mobile-services.json</code> file
+in a project.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "services":[],
+    "https": {
+        "certificatePins": [{
+            "host": "example.sync.service",
+            "certificateHash": "exampleHash"
+        }]
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To include the <code>https</code> section in configuration when generating it using the Mobile CLI use the
+<code>--include-cert-pins</code> flag when retrieving a client configuration. By default, self-signed or
+invalid certs will not be permitted to be included in the certificate pinning configuration. To
+allow these to be included use the <code>--insecure-skip-tls-verify</code> flag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./mobile get clientconfig &lt;client name&gt; --include-cert-pins --insecure-skip-tls-verify</code></pre>
+</div>
+</div>
+<h4 id="using-pinning-configuration" class="discrete">Using Pinning Configuration</h4>
+<div class="paragraph">
+<p>If the <code>https</code> section is included in the <code>mobile-services.json</code> file then certificate pinning will
+automatically be enabled for mobile services.</p>
+</div>
+<h4 id="considerations" class="discrete">Considerations</h4>
+<div class="paragraph">
+<p>If the certificate authority of a service changes then the <code>mobile-services.json</code> file will need to
+be regenerated in order to retrieve the correct <code>https</code> configuration. The app will then need to be
+rebuilt and republished for the end users to consume. If this is not done then an app may become
+incapable of making network requests to other services.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

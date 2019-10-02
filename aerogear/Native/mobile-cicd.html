@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile CI/CD :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/mobile-cicd.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="showcase-apps.html#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
+    <li class="crumb"><a href="mobile-cicd.html">Mobile CI/CD</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="mobile-cicd.html">Native</a>
+    <a class="version" href="../latest/mobile-cicd.html">latest</a>
+    <a class="version" href="../v2.0/mobile-cicd.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/mobile-cicd.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Mobile CI/CD</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">Introduction to the Mobile CI/CD Service</a></li>
+<li><a href="#ref_terminology_Mobile CI/CD_ref_terminology">Mobile CI/CD Terminology</a></li>
+<li><a href="#setup">Prerequisites</a></li>
+<li><a href="#provisioning-mobile-cicd-service">Provisioning Mobile CI/CD Service</a></li>
+<li><a href="#proc_creating-a-build-configuration_proc_creating-a-build-configuration">Creating a Build Configuration</a></li>
+<li><a href="#jenkins">Adding a Jenkinsfile</a>
+<ul class="sectlevel2">
+<li><a href="#sample-android-jenkinsfile-for-debug-build-type">Sample Android Jenkinsfile for Debug Build Type</a></li>
+<li><a href="#sample-android-jenkinsfile-for-release-build-type">Sample Android Jenkinsfile for Release Build Type</a></li>
+<li><a href="#sample-ios-jenkinsfile-for-release-build-type">Sample iOS Jenkinsfile for Release Build Type</a></li>
+</ul>
+</li>
+<li><a href="#proc_building-a-mobile-app_proc_building-a-mobile-app">Building a Mobile App</a></li>
+<li><a href="#access-mobile-client-build-logs">Viewing Build Logs</a>
+<ul class="sectlevel2">
+<li><a href="#viewing-build-history-in-the-openshift-console">Viewing Build History in the OpenShift Console</a></li>
+<li><a href="#viewing-build-logs-in-jenkins">Viewing Build Logs in Jenkins</a></li>
+</ul>
+</li>
+<li><a href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app">Deploying a Mobile App</a></li>
+<li><a href="#cleaning-up-mobile-client-builds">Cleaning up a Mobile Client Build</a>
+<ul class="sectlevel2">
+<li><a href="#deleting-a-build-instance">Deleting a Build Instance</a></li>
+<li><a href="#deleting-a-mobile-cicd-build-configuration">Deleting a Mobile CI/CD Build Configuration</a></li>
+</ul>
+</li>
+<li><a href="#ref_source-configuration_ref_source-configuration">Debug and Release Build Types</a>
+<ul class="sectlevel2">
+<li><a href="#android">Android</a></li>
+<li><a href="#ios">iOS</a></li>
+<li><a href="#cordova">Cordova</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction to the Mobile CI/CD Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Mobile CI/CD service allows you to automate the building of your native and hybrid mobile app for both Android and iOS.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Leverage your Jenkins expertise to manage and automate mobile builds.</p>
+</li>
+<li>
+<p>Containerised builds on OpenShift for Android</p>
+</li>
+<li>
+<p>Support for integrating macOS as build slaves for iOS builds</p>
+</li>
+<li>
+<p>Catch build errors early using automated builds</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_terminology_Mobile CI/CD_ref_terminology"><a class="anchor" href="#ref_terminology_Mobile CI/CD_ref_terminology"></a>Mobile CI/CD Terminology</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes terminology that is associated with Mobile CI/CD.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">CI/CD</dt>
+<dd>
+<p>Continuous Integration / Continuous Delivery</p>
+</dd>
+<dt class="hdlist1">Jenkins</dt>
+<dd>
+<p>A tool that helps to automate the software build process.</p>
+</dd>
+<dt class="hdlist1">Build</dt>
+<dd>
+<p>A single run of Jenkins against a source code repository.</p>
+</dd>
+<dt class="hdlist1">Artifact</dt>
+<dd>
+<p>The result of a succesful build in Jenkins, this is the binary that can be installed on to a mobile device.</p>
+</dd>
+<dt class="hdlist1">Jenkinsfile</dt>
+<dd>
+<p>This is a file contained in the source code repository which instructs Jenkins on how to build an artifact with this source code.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup"><a class="anchor" href="#setup"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> You have provisioned Mobile Developer Console as described in <a href="getting-started.html" class="page">Provisioning Mobile Developer Console</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="provisioning-mobile-cicd-service"><a class="anchor" href="#provisioning-mobile-cicd-service"></a>Provisioning Mobile CI/CD Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To provision the Mobile CI/CD mobile service:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into the OpenShift console.</p>
+</li>
+<li>
+<p>Choose a project where you have previously provisioned Mobile Developer Console.</p>
+</li>
+<li>
+<p>Select <strong>Catalog</strong> from the left hand menu.</p>
+<div class="paragraph">
+<p>You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.</p>
+</div>
+</li>
+<li>
+<p>Choose the Mobile CI/CD service.</p>
+</li>
+<li>
+<p>Follow the wizard for provisioning that service.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When provisioning a Mobile CI/CD service, you are prompted to set the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Android SDK License Agreement
+(required)</strong>: Enter <code>yes</code> to accept the <a href="https://developer.android.com/studio/terms.html" target="_blank" rel="noopener">Android SDK License Agreement</a>.</p>
+</li>
+<li>
+<p><strong>Android SDK package config</strong>: Add any configuration details you require for the SDK config file. Default values are provided but you should review and adapt them to your needs.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
+Provisioning a service may take some time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc_creating-a-build-configuration_proc_creating-a-build-configuration"><a class="anchor" href="#proc_creating-a-build-configuration_proc_creating-a-build-configuration"></a>Creating a Build Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the Mobile Developer Console to create a new client build for an existing Mobile App.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Mobile Developer Console and find the Mobile App you want to build.</p>
+</li>
+<li>
+<p>Click on the name of the Mobile App to open the details view.</p>
+</li>
+<li>
+<p>From the <strong>Builds</strong> tab, select <strong>Create Build</strong> in the <strong>Actions</strong> menu. If no build configuration  exists, a <strong>Start Build</strong> button is displayed which allows you create a build configuration.</p>
+<div class="paragraph">
+<p>The <strong>Client Build Form</strong> is displayed.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter a unique name for the build configuration in the <strong>Name</strong> field.</p>
+</li>
+<li>
+<p>Enter the <strong>Git Repository URL</strong> for the Mobile App you want to build.</p>
+</li>
+<li>
+<p>Select the <strong>Authentication Type</strong> for the Git repository. For example, the Mobile Services showcase apps are available to everyone, so you would choose <strong>Public</strong>. If your repo URL starts with <code>git@</code>, select <strong>SSH</strong>. If your repo URl starts with <code>http</code> and requires authentication, select <strong>Basic</strong>.</p>
+</li>
+<li>
+<p>If you select <strong>Advanced Options</strong> you can also specify:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Git Reference:: Optional branch, tag, or commit to checkout, default is master. This option can be used to select different branches of your application repo for different builds, for example, release vs develop.</p>
+</li>
+<li>
+<p>Jenkins file path:: Optional path to where the Jenkinsfile is located in your application repo. The default is the root of the repo.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Select the <strong>Build Type</strong> for the build configuration. Typically you create two build configurations, one for debugging and another for release.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Typically, for a <strong>Release</strong> build configuration, you need to add more information as described in <a href="#ref_source-configuration_ref_source-configuration">Debug and Release Build Types</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create any environment variables that you want to pass to the build process and set values in the <strong>Environment Variable</strong> section of the form.</p>
+</li>
+<li>
+<p>Click <strong>Create</strong></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jenkins"><a class="anchor" href="#jenkins"></a>Adding a Jenkinsfile</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To build a mobile app using the Mobile CI/CD service, you must add a <code>Jenkinsfile</code> to your git repository, typically in the root directory of that repository.</p>
+</div>
+<div class="paragraph">
+<p>The following sample files are suitable for the <a href="showcase-apps.html">Showcase Apps</a>. You may need a different configuration for your mobile app.</p>
+</div>
+<div class="sect2">
+<h3 id="sample-android-jenkinsfile-for-debug-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-debug-build-type"></a>Sample Android Jenkinsfile for Debug Build Type</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build") {
+    sh './gradlew clean assembleDebug' //comment for debug builds
+  }
+
+  uncomment the following stage if running a release build
+  stage("Sign") {
+
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-debug.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample-android-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-android-jenkinsfile-for-release-build-type"></a>Sample Android Jenkinsfile for Release Build Type</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">node("android") {
+  stage("Checkout") {
+    checkout scm
+  }
+
+  stage("Prepare") {
+    sh 'chmod +x ./gradlew'
+  }
+
+  stage("Build"){
+    sh './gradlew clean assembleRelease' // uncomment for release build
+  }
+
+  stage("Sign") {
+    signAndroidApks (
+      keyStoreId: "myproject-testandroidcert",
+      keyAlias: "aerogear",
+      apksToSign: "**/*-unsigned.apk",
+      // uncomment the following line to output the signed APK to a separate directory as described above
+      // signedApkMapping: [ $class: UnsignedApkBuilderDirMapping ],
+      // uncomment the following line to output the signed APK as a sibling of the unsigned APK, as described above, or just omit signedApkMapping
+      // you can override these within the script if necessary
+      // androidHome: '/usr/local/Cellar/android-sdk'
+    )
+  }
+
+ stage("Archive") {
+    archiveArtifacts artifacts: 'app/build/outputs/apk/**/app-release.apk', excludes: 'app/build/outputs/apk/*-unaligned.apk'
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sample-ios-jenkinsfile-for-release-build-type"><a class="anchor" href="#sample-ios-jenkinsfile-for-release-build-type"></a>Sample iOS Jenkinsfile for Release Build Type</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">CODE_SIGN_PROFILE_ID = "myproject-iostestcert"
+BUILD_CONFIG = "Debug" // Use either "Debug" or "Release"
+
+PROJECT_NAME = "helloworld-ios-app"
+INFO_PLIST = "helloworld-ios-app/helloworld-ios-app-Info.plist"
+VERSION = "1.0.0"
+SHORT_VERSION = "1.0"
+BUNDLE_ID = "org.aerogear.helloworld-ios-app"
+OUTPUT_FILE_NAME="${PROJECT_NAME}-${BUILD_CONFIG}.ipa"
+SDK = "iphoneos"
+
+// use something like 8.3 to use a specific XCode version, default version is used if not set
+XC_VERSION = ""
+
+// do a clean build and sign
+CLEAN = true
+
+node('ios') {
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Prepare') {
+      sh '/usr/local/bin/pod install'
+    }
+
+    stage('Build') {
+        withEnv(["XC_VERSION=${XC_VERSION}"]) {
+            xcodeBuild(
+                    cleanBeforeBuild: CLEAN,
+                    src: './',
+                    schema: "${PROJECT_NAME}",
+                    workspace: "${PROJECT_NAME}",
+                    buildDir: "build",
+                    sdk: "${SDK}",
+                    version: "${VERSION}",
+                    shortVersion: "${SHORT_VERSION}",
+                    bundleId: "${BUNDLE_ID}",
+                    infoPlistPath: "${INFO_PLIST}",
+                    xcodeBuildArgs: 'ENABLE_BITCODE=NO OTHER_CFLAGS="-fstack-protector -fstack-protector-all"',
+                    autoSign: false,
+                    config: "${BUILD_CONFIG}"
+            )
+        }
+    }
+
+    stage('CodeSign') {
+        codeSign(
+                profileId: "${CODE_SIGN_PROFILE_ID}",
+                clean: CLEAN,
+                verify: true,
+                ipaName: "${OUTPUT_FILE_NAME}",
+                appPath: "build/${BUILD_CONFIG}-${SDK}/${PROJECT_NAME}.app"
+        )
+    }
+
+    stage('Archive') {
+        archiveArtifacts "build/${BUILD_CONFIG}-${SDK}/${OUTPUT_FILE_NAME}"
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc_building-a-mobile-app_proc_building-a-mobile-app"><a class="anchor" href="#proc_building-a-mobile-app_proc_building-a-mobile-app"></a>Building a Mobile App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To build a mobile app.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Mobile Developer Console and find the Mobile App you want to build.</p>
+</li>
+<li>
+<p>Click on the name of the Mobile App to open the details view.</p>
+</li>
+<li>
+<p>From the <strong>Builds</strong> tab, select the build configuration you want to build and click <strong>Start Build</strong>.</p>
+</li>
+<li>
+<p>Check the mobile app build status by expanding the build configuration box.</p>
+<div class="paragraph">
+<p>Each build step is displayed (along with the current step status: completed, error or running) based on the stages in your Jenkinsfile code.</p>
+</div>
+</li>
+<li>
+<p>To view the full build log, click <strong>view log</strong> which redirects you to your Jenkins instance.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="access-mobile-client-build-logs"><a class="anchor" href="#access-mobile-client-build-logs"></a>Viewing Build Logs</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="viewing-build-history-in-the-openshift-console"><a class="anchor" href="#viewing-build-history-in-the-openshift-console"></a>Viewing Build History in the OpenShift Console</h3>
+<div class="paragraph">
+<p>All of the builds related to your Mobile App can be seen in the <strong>Builds</strong> tab of your Mobile App. Each build can be expanded to show further information about the build configuration, latest build and build history.</p>
+</div>
+<div class="paragraph">
+<p>All builds have a <strong>View Log</strong> link associated with them to access the detailed logs of that build.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-build-logs-in-jenkins"><a class="anchor" href="#viewing-build-logs-in-jenkins"></a>Viewing Build Logs in Jenkins</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the Mobile App and click the <strong>Builds</strong> tab.</p>
+</li>
+<li>
+<p>Click the <strong>View Log</strong> link for the build, you are redirected to the Jenkins instance that has been running your build.</p>
+</li>
+<li>
+<p>If prompted, log into OpenShift and accept the authorization request for:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>user:info permission</p>
+</li>
+<li>
+<p>user:check-access permission</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>View the log of the build. Based on your permissions to the OpenShift project, you might have access to other Jenkins capabilities, such as inspecting the build configuration or re-running the build with changes in the pipeline script.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="proc_deploying-a-mobile-app_proc_deploying-a-mobile-app"><a class="anchor" href="#proc_deploying-a-mobile-app_proc_deploying-a-mobile-app"></a>Deploying a Mobile App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use the OpenShift UI to deploy a mobile app by downloading the binary directly to the mobile device.
+This binary can be downloaded for any successful build in the build history.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the Mobile App in the Mobile Developer Console and click the <strong>Builds</strong> tab.</p>
+</li>
+<li>
+<p>Expand the <strong>build configuration</strong> that you want to deploy and click <strong>Generate Download Link</strong>.</p>
+</li>
+<li>
+<p>To download the binary to your mobile device, scan the QR code using your mobile device.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cleaning-up-mobile-client-builds"><a class="anchor" href="#cleaning-up-mobile-client-builds"></a>Cleaning up a Mobile Client Build</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="deleting-a-build-instance"><a class="anchor" href="#deleting-a-build-instance"></a>Deleting a Build Instance</h3>
+<div class="paragraph">
+<p>After creating and running a build, you can click through to your Mobile App screen in the Mobile Developer Console and into the <strong>Builds</strong> tab. In this tab you see the details of your various mobile client builds.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click the build number of the build you want to delete. The build details screen is displayed.</p>
+</li>
+<li>
+<p>Choose <strong>Delete</strong> from the <strong>Actions</strong> menu. The build resource is removed from OpenShift along with the corrosponding build in the CI/CD service and any artefacts.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-mobile-cicd-build-configuration"><a class="anchor" href="#deleting-a-mobile-cicd-build-configuration"></a>Deleting a Mobile CI/CD Build Configuration</h3>
+<div class="paragraph">
+<p>When you create a Mobile App build configuration, you create a <a href="https://docs.openshift.org/latest/dev_guide/builds/index.html#defining-a-buildconfig">BuildConfig</a> resource in OpenShift. This build config is then translated into a Jenkins Build for your mobile client in the CI/CD service. If you want to remove the entire Job from the CI/CD service and clean up everything in OpenShift, then deleting the build config  will achieve this. To delete the build config, click into your mobile client and open the builds tab. From here you can select the delete option from the more actions (the three dots) at the far right of the build row. Once deleted associated resources and builds with that Job will be removed as will the underlying Jenkins Job in the CI/CD service.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref_source-configuration_ref_source-configuration"><a class="anchor" href="#ref_source-configuration_ref_source-configuration"></a>Debug and Release Build Types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use the following information to configure debug and release type builds.</p>
+</div>
+<div class="sect2">
+<h3 id="android"><a class="anchor" href="#android"></a>Android</h3>
+<div class="paragraph">
+<p>Add Build Type:
+Debug:: An Android debug build, no additional information required
+Release:: An Android release build, requires an upload of a password protected PKCS12 file containing a key protected by the same password.</p>
+</div>
+<div class="sect3">
+<h4 id="release-build-type"><a class="anchor" href="#release-build-type"></a>Release Build Type</h4>
+<div class="paragraph">
+<p>As a release build will need to be signed, you need to specify the keystore and private key passwords.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="keystore-located-in-source-code"><a class="anchor" href="#keystore-located-in-source-code"></a>Keystore located in source code</h4>
+<div class="paragraph">
+<p>If your keystore is checked into your source code, you will need to take the password value in your build script as an environmental variable. This will allow you to set this environmental variable as part of your client build from within the OpenShift UI. This can be done directly when creating the mobile client build or afterwards by editing the build config.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="external-keystore"><a class="anchor" href="#external-keystore"></a>External keystore</h4>
+<div class="paragraph">
+<p>If you have an external keystore, you should ensure to select the checkbox to use an external keystore once this is done, you will be asked for the following additional information:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Name</dt>
+<dd>
+<p>A unique name for the android credentials you are adding e.g. my-android-release-cert</p>
+</dd>
+<dt class="hdlist1">KeyStore Password</dt>
+<dd>
+<p>The password for the android keystore and the PKCS12 archive (The password for the archive and the keystore must be the same)</p>
+</dd>
+<dt class="hdlist1">KeyStore Alias</dt>
+<dd>
+<p>The entry name of the private key/certificate chain you want to use to sign your APK(s). This entry must exist in the key store uploaded. If your key store contains only one key entry, which is the most common case, you can leave this field blank.</p>
+</dd>
+<dt class="hdlist1">Android KeyStore</dt>
+<dd>
+<p>Password protected PKCS12 file containing a key protected by the same password.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The PKSC12 archive of your android keystore certificate can be generated using the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ keytool -importkeystore -srckeystore &lt;your-android-cert.keystore&gt; -destkeystore &lt;your-android-cert&gt;.p12 -deststoretype PKCS12 -srcalias &lt;your-android-cert-alias&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ios"><a class="anchor" href="#ios"></a>iOS</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Build Type</dt>
+<dd>
+<p>Build type value to be used by xcodebuild</p>
+</dd>
+<dt class="hdlist1">Name</dt>
+<dd>
+<p>The unique credential name to be used in jenkins</p>
+</dd>
+<dt class="hdlist1">Apple Developer Profile</dt>
+<dd>
+<p>An xcode zip generated file that contains all required files (certificate, private key and provisioning profile) to sign an iOS app. For more information, see this documentation on exporting developer accounts in XCode.</p>
+</dd>
+<dt class="hdlist1">Apple Developer Profile Password</dt>
+<dd>
+<p>The developer profile password to be used by jenkins when importing the developer profiles private key.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cordova"><a class="anchor" href="#cordova"></a>Cordova</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Platform</dt>
+<dd>
+<p>The platform that the app will target.</p>
+</dd>
+<dt class="hdlist1">Build Type</dt>
+<dd>
+<p>The build type value (debug or release). Depending on the platform selected, this may result in additional parameters to be required.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

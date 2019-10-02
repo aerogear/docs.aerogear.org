@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/security.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <title>Securing your mobile app :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/security.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -505,6 +508,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/security.html">Native</a>
     <a class="version is-current" href="security.html">latest</a>
     <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
@@ -512,9 +516,9 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/security.adoc"></a></div>
 </div>
 <article class="doc">
-<div class="paragraph">
-<p>Securing your mobile app</p>
-</div>
+<h1>Securing your mobile app</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>This guide does not address all mobile security topics. See the <a href="https://www.owasp.org/index.php/OWASP_Mobile_Security_Project">OWASP Mobile Security Project</a> for an introduction to mobile security.
 AeroGear helps you achieve security:</p>
@@ -528,6 +532,8 @@ AeroGear helps you achieve security:</p>
 <p><a href="#device-checks">Adding Device Checks to your mobile app</a> - for example, disable app on rooted devices</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 <div class="sect1">
 <h2 id="app-security"><a class="anchor" href="#app-security"></a>Using the Mobile Security Service</h2>
@@ -665,34 +671,6 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 </div>
 </div>
 <div class="sect3">
-<h4 id="configuring-security-service"><a class="anchor" href="#configuring-security-service"></a>Configuring the Mobile Security Service</h4>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>An understanding of <a href="https://openid.net/" target="_blank" rel="noopener">OpenID</a></p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Log into the Mobile Developer Console and navigate to the Mobile App screen.</p>
-</li>
-<li>
-<p>Select the <strong>Mobile Services</strong> tab.</p>
-</li>
-<li>
-<p>If a binding to the Mobile Securityservice is in progress, a spinning icon is displayed to the right of the Mobile Securityentry. Wait for the binding process to complete.</p>
-</li>
-<li>
-<p>Save your changes.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
 <h4 id="configuring-your-development-environment-for-the-mobile-security-service"><a class="anchor" href="#configuring-your-development-environment-for-the-mobile-security-service"></a>Configuring your Development Environment for the Mobile Security Service</h4>
 <div class="sect4">
 <h5 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h5>
@@ -806,9 +784,8 @@ Any new instantiation of <code>SecurityService</code> returns the same instance.
 </div>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="app-coding"><a class="anchor" href="#app-coding"></a>Implementing the Mobile Security service in your mobile app</h3>
+<div class="sect3">
+<h4 id="app-coding"><a class="anchor" href="#app-coding"></a>Implementing the Mobile Security service in your mobile app</h4>
 <div class="paragraph">
 <p>Call the appSecurity clientInit function to implement the App Security Service.
 Call this service on application initialization, for example:</p>
@@ -838,8 +815,8 @@ Call this service on application initialization, for example:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="console"><a class="anchor" href="#console"></a>Managing mobile apps using the Mobile Security Console</h3>
+<div class="sect3">
+<h4 id="console"><a class="anchor" href="#console"></a>Managing mobile apps using the Mobile Security Console</h4>
 <div class="paragraph">
 <p>To access the Mobile Security Console:</p>
 </div>
@@ -858,10 +835,13 @@ Call this service on application initialization, for example:</p>
 </div>
 <div class="paragraph">
 <div class="title">Overview of the Mobile Security Console</div>
-<p>The Mobile Security Console allows you to monitor applications, their respective versions, and disable versions of those applications.</p>
+<p>The Mobile Security Console allows you to monitor mobile apps, deployed versions, and disable versions of those mobile apps.</p>
 </div>
 <div class="paragraph">
-<p>Opening the console lists all applications. Click on an application to view version details for that application.</p>
+<p>Opening the console lists all applications. Click on an application to view deployed versions of that mobile app.</p>
+</div>
+<div class="paragraph">
+<p>A deployed version is registered with the Mobile Security service when a version of the app is released, for example, 1.2.3, and that version of the app is run on a device at least once.</p>
 </div>
 <div class="paragraph">
 <p>Below is a detailed description of each of these views and the information you can expect each to contain.</p>
@@ -892,8 +872,8 @@ Call this service on application initialization, for example:</p>
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="enabling-and-disabling-mobile-app-versions"><a class="anchor" href="#enabling-and-disabling-mobile-app-versions"></a>Enabling and disabling mobile app versions</h4>
+<div class="sect4">
+<h5 id="enabling-and-disabling-mobile-app-versions"><a class="anchor" href="#enabling-and-disabling-mobile-app-versions"></a>Enabling and disabling mobile app versions</h5>
 <div class="paragraph">
 <p>To enable/disable one or more versions of the application:</p>
 </div>
@@ -921,8 +901,8 @@ Call this service on application initialization, for example:</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="adding-or-updating-a-custom-disabled-message"><a class="anchor" href="#adding-or-updating-a-custom-disabled-message"></a>Adding or updating a custom disabled message</h4>
+<div class="sect4">
+<h5 id="adding-or-updating-a-custom-disabled-message"><a class="anchor" href="#adding-or-updating-a-custom-disabled-message"></a>Adding or updating a custom disabled message</h5>
 <div class="paragraph">
 <p>To add or update a custom message for the version(s) of an application:</p>
 </div>
@@ -938,6 +918,7 @@ Call this service on application initialization, for example:</p>
 </div>
 <div class="paragraph">
 <p>Navigating away from this screen with unsaved changes prompts you to save or discard these changes.</p>
+</div>
 </div>
 </div>
 </div>
@@ -985,8 +966,8 @@ Device Security is not currently associated with an OpenShift service, so there 
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="security-terminology-security"><a class="anchor" href="#security-terminology-security"></a>Device Checks Terminology</h4>
+<div class="sect2">
+<h3 id="security-terminology-security"><a class="anchor" href="#security-terminology-security"></a>Device Checks Terminology</h3>
 <div class="paragraph">
 <p>This section describes terminology that is associated with Device Checks.</p>
 </div>

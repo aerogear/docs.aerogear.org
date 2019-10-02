@@ -66,9 +66,9 @@ Zepto(function($){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started with Hello World Data Sync :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-getting-started.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <title>Untitled :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-getting-started.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -506,6 +509,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/ds-getting-started.html">Native</a>
     <a class="version is-current" href="ds-getting-started.html">latest</a>
     <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
@@ -513,7 +517,9 @@ Zepto(function($){
   <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/master/modules/ROOT/pages/ds-getting-started.adoc"></a></div>
 </div>
 <article class="doc">
-<h1>Getting Started with Hello World Data Sync</h1>
+<div class="sect1">
+<h2 id="getting-started-with-hello-world-{context}"><a class="anchor" href="#getting-started-with-hello-world-{context}"></a>Getting Started with Hello World Data Sync</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>In this example, you add the Voyager Server library to your <a href="https://expressjs.com/">Express</a> node.js project, create an <code>index-1.js</code> file, run the server, and query GraphQL.</p>
 </div>
@@ -596,14 +602,14 @@ const resolvers = {
 }
 
 //Initialize the library with your Graphql information
-const apolloserver = VoyagerServer({
+const apolloServer = VoyagerServer({
   typeDefs,
   resolvers
 })
 
 //Connect the server to express
 const app = express()
-apolloserver.applyMiddleware({ app })
+apolloServer.applyMiddleware({ app })
 
 app.listen(4000, () =&gt;
   console.log(`🚀 Server ready at http://localhost:4000/graphql`)
@@ -664,6 +670,8 @@ In this app, you can explore a more complex schema.</p>
 <p>Subscriptions</p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 </article>
   </main>

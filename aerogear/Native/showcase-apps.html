@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-8+rznmq/k0KZkJlZhnuPEVkbRD7tA0wcFEjY48dajGWn3Xc1MasJwS8/tJ7OEsKW" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-1.9.1.min.js" integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" integrity="sha384-Nud2SriDt2fZ+u85IBC48Yn9p+l4AGlapnX1EGA2KrnZjYJx8sxKnw/CIxc1wU1B" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.3/url.js"></script>
+<script>
+function addBlockSwitches() {
+	$('.primary').each(function() {
+		primary = $(this);
+		createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+		primary.children('.title').remove();
+	});
+	$('.secondary').each(function(idx, node) {
+		secondary = $(node);
+		primary = findPrimary(secondary);
+		switchItem = createSwitchItem(secondary, primary.children('.switch'));
+		switchItem.content.addClass('hidden');
+		findPrimary(secondary).append(switchItem.content);
+		secondary.remove();
+	});
+}
+
+function createBlockSwitch(primary) {
+	blockSwitch = $('<div class="switch"></div>');
+	primary.prepend(blockSwitch);
+	return blockSwitch;
+}
+
+function findPrimary(secondary) {
+	candidate = secondary.prev();
+	while (!candidate.is('.primary')) {
+		candidate = candidate.prev();
+	}
+	return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+	blockName = block.children('.title').text();
+	content = block.children('.content').first().append(block.next('.colist'));
+	item = $('<div class="switch--item">' + blockName + '</div>');
+	item.on('click', '', content, function(e) {
+		$(this).addClass('selected');
+		$(this).siblings().removeClass('selected');
+		e.data.siblings('.content').addClass('hidden');
+		e.data.removeClass('hidden');
+	});
+	blockSwitch.append(item);
+	return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+Zepto(function($){
+	if (url('?header') === 'false') {
+		// Hide the navbar for showcase apps (#nochrome)
+		$('body').addClass('nochrome');
+	}
+})
+</script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the Showcase Mobile App :: AeroGear Mobile Services</title>
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/showcase-apps.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index.html">AeroGear</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li>
+          <a href="https://aerogear.org">Home</a>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/getting-started/">Getting Started</a>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile Services<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="https://aerogear.org/services/identity-management/">
+                  <i class="material-icons" aria-hidden="true">account_circle</i> Identity Management
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/push/">
+                  <i class="material-icons" aria-hidden="true">notifications_active</i> Push Notifications
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/metrics/">
+                  <i class="material-icons" aria-hidden="true">insert_chart</i> Mobile Metrics
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/mobile-ci-cd/">
+                  <i class="material-icons" aria-hidden="true">build</i> Mobile CI/CD
+                </a>
+              </li>
+              <li>
+                <a href="https://aerogear.org/services/device-security/">
+                  <i class="material-icons" aria-hidden="true">security</i> Device Security
+                </a>
+              </li>
+            </ul>
+        </li>
+
+        <li>
+          <a href="https://aerogear.org/sdks">Mobile SDKs</a>
+        </li>
+
+        <li>
+         <a href="https://docs.aerogear.org/">Docs</a>
+        </li>
+   
+        <li>
+          <a href="https://aerogear.org/community">Community</a>
+        </li>
+        
+
+        <li>
+          <a href="https://aerogear.org/news">News</a>
+        </li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><div class="main-wrapper">
+<div class="navigation-container" data-component="aerogear" data-version="Native">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mobile Services</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-installing.html">Installing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#setting-up-aerogear-mobile-services-on-openshift">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-installing.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-configuring.html">Configuring</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#registering">Registering a Mobile App</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#provisioning">Provisioning a Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#binding">Binding Services</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-configuring.html#configuring">Configuring Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="getting-started-running.html">Developing and Running</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#setting-up-your-local-development-environment">Setting Up Development Environment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="getting-started-running.html#running">Running a Mobile App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html">Mobile Developer Console</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#provision-mdc">Provisioning Mobile Developer Console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-developer-console.html#registering">Registering a Mobile App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-developer-console.html#sdk">Configure SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#services">Using mobile services</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="mobile-developer-console.html#building">Building Mobile Apps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="con_services.html">Mobile Services</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="identity-management.html">Identity Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#setting-up-the-idm-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-user-authentication-to-your-mobile-app">User Authentication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#access">Access Control</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#adding-sso-to-your-mobile-app">Single Sign On</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="identity-management.html#monitoring">Monitoring Identity Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="push-notifications.html">Push Notifications</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#setting-up-the-push-client-app">App configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#registering-device">Registering device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#sending-a-push-notification-push">Sending a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#handling-push-notifications-push">Handling a Notification</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="push-notifications.html#unregistering-device">Unregistering device</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-metrics.html">Mobile Metrics</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#setting-up-the-metrics-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#analysing-app-usage-metrics">App and Device</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-idm-with-metrics">Monitoring IDM Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#monitoring-sync-with-metrics">Monitoring Data Sync Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-metrics.html#viewing-dashboards-metrics">Using Dashboards</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="mobile-cicd.html">Mobile CI/CD</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#introduction">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#build-config">Creating a Build Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#jenkins">Adding a Jenkins file</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#building">Building Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#logs">Accessing Build Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#deploy">Deploying Apps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="mobile-cicd.html#clean">Cleaning up Builds</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="data-sync.html">Data Sync</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-getting-started.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-query.html">Queries</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-mutation.html">Mutations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-offline.html">Offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-realtime.html">Realtime Updates</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-auth.html">Authz</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-metrics.html">Metrics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-conflict.html">Conflict Resolution</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-files.html">File Upload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-audit.html">Audit Logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-advanced.html">Advanced Topics</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ds-openshift.html">Running on OpenShift</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="native/ds-android-intro.html">Native SDK</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Secure your app</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html#app-security">Mobile Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-setup">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#app-coding">Coding</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#console">Console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security.html">Device Checks</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#setting-up-the-device-security-service">Setting Up</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#performing-device-trust-checks_security">Performing Device Trust Checks</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security.html#certificate-pinning_security">Certificate Pinning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="security-api.html">Mobile Security Service API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_api">REST API</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="security-api.html#_schema">REST API Schema</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-toggle"></button>
+    <a class="nav-link" href="showcase-apps.html">Showcase Apps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#setup">Service Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#app">Showcase App Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#binding">Service Binding</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#build">Building and Running the Showcase Apps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#certs">Using Self Signed Certs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#features">Demonstrating the Showcase App Features</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="supported_versions.html">Supported Versions</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ref_api.html">API Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mobile-cli.html">Mobile CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="glossary.html">Glossary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mobile Services</span>
+    <span class="version">Native</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Mobile Services</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">Native</a>
+        </li>
+        <li class="version">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../v2.0/index.html">v2.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="getting-started.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">Mobile Services</a></li>
+    <li class="crumb"><a href="showcase-apps.html">Showcase Apps</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">Native</button>
+  <div class="versions-menu">
+    <a class="version is-current" href="showcase-apps.html">Native</a>
+    <a class="version" href="../latest/showcase-apps.html">latest</a>
+    <a class="version" href="../v2.0/showcase-apps.html">v2.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/aerogear/mobile-docs/edit/native/modules/ROOT/pages/showcase-apps.adoc"></a></div>
+</div>
+<article class="doc">
+<h1>Using the Showcase Mobile App</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introducing-the-showcase-app">Introducing the Showcase App</a>
+<ul class="sectlevel2">
+<li><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up mobile services to demonstrate Showcase App features</a></li>
+<li><a href="#demonstrating-data-sync">Demonstrating Data Sync</a></li>
+<li><a href="#app">Setting Up the Showcase App</a></li>
+<li><a href="#binding">Binding the Showcase Mobile App to Mobile Services</a></li>
+</ul>
+</li>
+<li><a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a>
+<ul class="sectlevel2">
+<li><a href="#build">Building and Running the Showcase App</a></li>
+</ul>
+</li>
+<li><a href="#certs">Using Self-Signed Certificates in Mobile Apps</a>
+<ul class="sectlevel2">
+<li><a href="#extracting-root-ca">1. Extracting the OpenShift Root Certificate Authority Cert</a></li>
+<li><a href="#installing-on-device">2. Installing the OpenShift Root Certificate Authority Cert on a Device</a></li>
+<li><a href="#trust-self-signed-cert">3. Trusting the Certificate In Your App.</a></li>
+</ul>
+</li>
+<li><a href="#features">Demonstrating the ShowCase App features</a>
+<ul class="sectlevel2">
+<li><a href="#identity-management">Identity Management</a></li>
+<li><a href="#data-sync">Data Sync</a></li>
+<li><a href="#security-services">Security Services</a></li>
+<li><a href="#push-notifications">Push Notifications</a></li>
+<li><a href="#mobile-metrics">Mobile Metrics</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="introducing-the-showcase-app"><a class="anchor" href="#introducing-the-showcase-app"></a>Introducing the Showcase App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Showcase apps demonstrate many features of Mobile Services. To see these features:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up the appropriate services as described in <a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up mobile services to demonstrate Showcase App features</a>.</p>
+</li>
+<li>
+<p>Set up the showcase app as described in <a href="#app">Setting Up the Showcase App</a>.</p>
+</li>
+<li>
+<p>Register your showcase app as described in <a href="/aerogear/latest/getting-started.html">Registering a Mobile App</a>.</p>
+</li>
+<li>
+<p>Bind your Mobile App to the appropriate services as described in <a href="#binding">Binding the Showcase Mobile App to Mobile Services</a></p>
+</li>
+<li>
+<p>Copy the <code>mobile-services.json</code> file to your IDE as described in <a href="#downloading-the-mobile-services-configuration-file">Downloading the Mobile Services Configuration File</a></p>
+</li>
+<li>
+<p>Build and run your showcase app  as described in <a href="#build">Building and Running the Showcase App</a>.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="setting-up-mobile-services-to-demonstrate-showcase-apps"><a class="anchor" href="#setting-up-mobile-services-to-demonstrate-showcase-apps"></a>Setting up mobile services to demonstrate Showcase App features</h3>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You are running OpenShift with Mobile Services as described in <a href="getting-started.html" class="page">Setting up AeroGear Mobile Services on OpenShift</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>To demonstrate Mobile Metrics, <a href="mobile-metrics.html#provisioning-metrics-service" class="page">Provision the Mobile Metrics service</a> For more information about features, see <a href="mobile-metrics.html" class="page">Mobile Metrics Service</a></p>
+</li>
+<li>
+<p>To demonstrate Identity Management:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="identity-management.html#provisioning-the-identity-management-service" class="page">Provision the Identity Management service</a>.</p>
+</li>
+<li>
+<p><a href="/aerogear/latest/identity-management.html#configuring-the-service">Set up the Identity Management service</a>.</p>
+</li>
+<li>
+<p>Create a new user to authenticate using the <a href="https://www.keycloak.org/documentation.html">Identity Management documentation</a>.</p>
+</li>
+<li>
+<p>Set credentials for the created user. Follow the steps <a href="https://www.keycloak.org/documentation.html">documentation</a>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more information about features, see <a href="/aerogear/latest/identity-management.html">Identity Management Service</a></p>
+</div>
+</li>
+<li>
+<p>To demonstrate Push Notifications <a href="push-notifications.html#provisioning-push-notifications-service" class="page">Provision the Push Notifications service</a>. For more information about features, see the <a href="push-notifications.html" class="page">Push Notifications Service</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="demonstrating-data-sync"><a class="anchor" href="#demonstrating-data-sync"></a>Demonstrating Data Sync</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Provision a PostgreSQL database.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log in to OpenShift and browse to an existing project, or create a new project.</p>
+</li>
+<li>
+<p>Click <code>Browse Catalog</code> and select <code>Databases</code> &#8594; <code>Postgres</code> &#8594; <code>PostgreSQL</code>, and complete the wizard to start the deployment of the database.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Record the value for <code>PostgreSQL Connection Username</code>, <code>PostgreSQL Connection Password</code>, and <code>PostgreSQL Database Name</code> as they are required when provisioning Data Sync.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <code>Browse Catalog</code> and select <code>Mobile</code> &#8594; <code>Data Sync</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Provision a new Data Sync app from the catalog as described in <a href="data-sync.html#sync-server-openshift" class="page">Running Data Sync in OpenShift</a> with the following parameters:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">syncshowcase</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">docker.io/aerogear/voyager-server-example-task</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">latest</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync App Port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application metrics endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/metrics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync App GraphQL Endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/graphql</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Hostname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hostname of the PostgreSQL server, usually <strong>postgresql</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port number of the PostgreSQL server, usually <strong>5432</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Username of the PostgreSQL database connection</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Password of the PostgreSQL database connection</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>PostgreSQL database name</strong></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Provision the Mobile Developer Console</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <code>Browse Catalog</code> and select <code>Mobile</code> &#8594; <code>Mobile Developer Console</code>.</p>
+</li>
+<li>
+<p>Complete the wizard to start the deployment of the <strong>Mobile Developer Console</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="creating-the-data-sync-mobile-app-binding"><a class="anchor" href="#creating-the-data-sync-mobile-app-binding"></a>Creating the Data Sync Mobile App binding</h4>
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up Mobile Services to Demonstrate Showcase Apps</a></p>
+</div>
+<div class="olist discrete">
+<div class="title">Procedure</div>
+<ol class="discrete">
+<li>
+<p>Log in to the Mobile Developer Console by clicking on the Mobile Developer Console link within Openshift.</p>
+</li>
+<li>
+<p>Click <strong>Create Mobile App</strong>, and complete the wizard to create a Mobile App.</p>
+</li>
+<li>
+<p>Click on the newly created <strong>Mobile App</strong> and click <strong>Mobile Services</strong>.</p>
+</li>
+<li>
+<p>The Data Sync provisioned service should be available under the <em>Unbound Services</em> heading. Click <strong>Bind to App</strong> and follow the wizard.</p>
+</li>
+<li>
+<p>When the binding completes, click on <strong>configuration</strong>. The configuration for the Data Sync Mobile App is displayed, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+	"version": 1,
+	"namespace": "voyager",
+	"clientId": "voyager-ionic-example",
+	"services": [{
+		"id": "8565c444-6bed-33e9-8616-0af08791569c",
+		"name": "sync-app-syncshowcase-test16",
+		"type": "sync-app",
+		"url": "https://sync-app-syncshowcase.testbed.com/graphql",
+		"config": {
+			"websocketUrl": "wss://sync-app-syncshowcasetestbed.com/graphql"
+		}
+	}]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the content to your clipboard.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service"><a class="anchor" href="#configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service"></a>Configuring the Showcase App to point at the provisioned Data Sync service</h4>
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p><a href="#creating-the-data-sync-mobile-app-binding">Creating the Data Sync Mobile App binding</a></p>
+</div>
+<div class="olist discrete">
+<div class="title">Procedure</div>
+<ol class="discrete">
+<li>
+<p>Clone the showcase app</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_ionic"></a>Ionic</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_ionic">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ionic-showcase.git
+$ cd ionic-showcase
+$ git checkout0.8.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Paste the Data Sync Mobile App configuration content into the <strong>mobile-services.json</strong> file located within <em>src</em>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="running-the-showcase-app-with-data-sync-configured"><a class="anchor" href="#running-the-showcase-app-with-data-sync-configured"></a>Running the showcase app with Data Sync configured</h4>
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p><a href="#configuring-the-showcase-app-to-point-at-the-provisioned-data-sync-service">Configuring the Showcase App to point at the provisioned Data Sync service</a></p>
+</div>
+<div class="olist discrete">
+<div class="title">Procedure</div>
+<ol class="discrete">
+<li>
+<p>Open a terminal and browse to the showcase app root folder.</p>
+</li>
+<li>
+<p>Install Ionic 4:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install -g ionic@4</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install dependencies:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the showcase app with Data Sync configured:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm run start</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once the process has finished, the showcase app is displayed in a browser at <em><a href="http://localhost:8100/" class="bare">http://localhost:8100/</a></em>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="app"><a class="anchor" href="#app"></a>Setting Up the Showcase App</h3>
+<div class="paragraph">
+<div class="title">Prerequisites</div>
+<p><a href="#setting-up-mobile-services-to-demonstrate-showcase-apps">Setting up mobile services to demonstrate Showcase App features</a></p>
+</div>
+<div class="olist discrete">
+<div class="title">Procedure</div>
+<ol class="discrete">
+<li>
+<p>Clone the showcase app and checkout the release tag 0.8.0</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_ionic"></a>Ionic</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_ionic">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone https://github.com/aerogear/ionic-showcase.git
+$ cd ionic-showcase
+$ git checkout0.8.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>The following steps will help you enable Push Notifications in a showcase application.</p>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_ionic"></a>Ionic</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_ionic">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You will need to create a project on <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a>.</p>
+</li>
+<li>
+<p>Follow steps outlined <a href="https://support.google.com/firebase/answer/7015592?hl=en" target="_blank" rel="noopener">here</a> to download <code>google-services.json</code> from your Firebase project.</p>
+</li>
+<li>
+<p>Overwrite the file <code>app/google-services.json</code> with the <code>google-services.json</code> file you downloaded from
+Firebase Cloud Messaging console.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="binding"><a class="anchor" href="#binding"></a>Binding the Showcase Mobile App to Mobile Services</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="mobile-metrics.html#binding-a-mobile-client-with-the-metrics-service" class="page">Bind the Mobile App to the Mobile Metrics service</a> if you want to demonstrate the Mobile Metrics service.</p>
+</li>
+<li>
+<p><a href="/aerogear/latest/identity-management.html#binding-a-mobile-client-with-the-identity-management-service">Bind the Mobile App to the Identity Management service</a> if you want to demonstrate authentication.</p>
+</li>
+<li>
+<p><a href="/aerogear/latest/push-notifications.html#binding-a-mobile-client-with-the-push-notifications-service">Bind the Mobile App to the Push Notifications service</a> if you want to demonstrate Push Notifications.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step also creates a variant as described in <a href="/aerogear/latest/push-notifications.html"> Push Notifications Service</a> terminology.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><a href="/aerogear/latest/data-sync.html#sync-server-binding">Bind the Mobile App to the Data Sync app</a> if you want to demonstrate Data Sync.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downloading-the-mobile-services-configuration-file"><a class="anchor" href="#downloading-the-mobile-services-configuration-file"></a>Downloading the Mobile Services Configuration File</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open your Mobile App in Mobile Developer Console.</p>
+</li>
+<li>
+<p>Copy the <code>mobile-services.json</code> configuration to your clipboard.
+Save the contents of the clipboard to a new file called <code>mobile-services.json</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The mobile-services.json file is the link between the mobile services running on OpenShift and the mobile app you are developing. The mobile-services.json file provides all required configuration to initialise the various SDKs and connect them to the back-end services.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Copy the contents of the <code>mobile-services.json</code> file into the <code>mobile-services.json</code> file located in <code>src</code>.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="build"><a class="anchor" href="#build"></a>Building and Running the Showcase App</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Build the Mobile App</p>
+</li>
+</ol>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_ionic"></a>Ionic</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_ionic">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm install
+$ npm run ionic:build</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Run the Mobile App</p>
+</li>
+</ol>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_ionic"></a>Ionic</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_ionic">
+<div class="paragraph">
+<p>To run the showcase app, use these commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ npm run ionic:android # to run on an Android device or emulator
+$ npm run ionic:ios # to run on an iOS device or emulator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These commands would run the app on a device if connected or on the emulator if no device is connected.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can use Cordova commands directly to specify the target:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ionic cordova run android --device      # run on a connected device
+$ ionic cordova run android --emulator    # run on the Android emulator</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="certs"><a class="anchor" href="#certs"></a>Using Self-Signed Certificates in Mobile Apps</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Before you can run a mobile app and connect to Mobile Services, you must configure self-signed certificates on the mobile device.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Throughout the development lifecycle of a mobile app, a common requirement is to integrate and connect with back-end services in a secure manner.
+This is achieved using SSL/TLS.</p>
+</div>
+<div class="paragraph">
+<p>However, in order for the client device to connect over SSL/TLS, it needs to trust the certificates used by the back-end services, which are signed by a certificate authority.
+Most client devices have a list of well-known and trusted certificate authorities pre-installed and this allows the client devices to verify the certificates used by the back-end services.</p>
+</div>
+<div class="paragraph">
+<p>A typical OpenShift development environment uses self-signed certificates that are not signed by any of the trusted certificate authorities.
+In such an environment, the client devices cannot establish secure connections with the back-end services that are running on a local OpenShift cluster.</p>
+</div>
+<div class="paragraph">
+<p>The suggested workaround is to manually extract the root certificate from the cluster, install it on the device, and make sure your application trusts the new certificate.</p>
+</div>
+<div class="sect2">
+<h3 id="extracting-root-ca"><a class="anchor" href="#extracting-root-ca"></a>1. Extracting the OpenShift Root Certificate Authority Cert</h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log into OpenShift as the admin user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc login -u system:admin</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the following command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc get secret router-certs --template='{{index .data "tls.crt"}}' -n default  |  \
+base64 --decode | sed -e '1,/^-----END RSA PRIVATE KEY-----$/ d'  &gt; /tmp/localcluster.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting file is located in the <code>/tmp</code> directory.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing-on-device"><a class="anchor" href="#installing-on-device"></a>2. Installing the OpenShift Root Certificate Authority Cert on a Device</h3>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset6_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_android">
+<div class="paragraph">
+<p>To install the cert on an Android emulator:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://support.google.com/android/answer/2819522?hl=en">Set screen lock</a> on the mobile device to allow for the installation of the certificate.</p>
+</li>
+<li>
+<p>Click on the <strong>certificate file</strong> and drag it onto the emulator. It should be copied to the <em>Downloads</em> folder on the device.</p>
+</li>
+<li>
+<p>Install the certificate on your device:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To choose a file, navigate to <em>Settings &gt; Security &amp; location &gt; Advanced &gt; Encryption &amp; credentials &gt; Install from SD card</em>. From here, navigate to the <em>Downloads</em> folder and you should see the certificate file.</p>
+</li>
+<li>
+<p>Navigate to the <code>Downloads</code> folder and choose the certificate file.
+The Android system detects the certificate and lets you install it. For more information, see the <a href="https://support.google.com/nexus/answer/2844832?hl=en">sample guide for Google Nexus devices</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To install the cert on a real Android device:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://support.google.com/android/answer/2819522?hl=en">Enable screen lock</a> on the mobile device to allow for the installation of the certificate.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Email attachment (Recommended) - Email the certificate to an address accessible from the device and download the attachment.</p>
+</li>
+<li>
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google Drive that is accessible from the device, and download from the device.</p>
+</li>
+<li>
+<p>USB - Attach the device to a computer and drag the certificate to a devices file system.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the <a href="https://support.google.com/nexus/answer/2840804?hl=en">example guide for Google Nexus devices</a>.
+The procedure might be different for other devices.</p>
+</li>
+<li>
+<p>Use the <a href="https://developer.android.com/studio/command-line/adb" target="_blank" rel="noopener">Android Debug Bridge (adb) documentation</a> for the push command to push the certificate to the connected device, for example:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ adb push /tmp/localcluster.crt /sdcard/Download/localcluster.crt</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Install the certificate on your device:</p>
+<div class="paragraph">
+<p>If you are use the email or cloud service method, you are prompted by the Android system automatically to install the file.
+Follow the instructions to complete the process.</p>
+</div>
+<div class="paragraph">
+<p>If you are using the USB approach, you must install the certificate manually:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Go to Settings &gt; Security &amp; location &gt; Advanced &gt; Encryption &amp; credentials &gt; Install from SD card.
+You are prompted to choose a file.</p>
+</li>
+<li>
+<p>Navigate to the <code>Downloads</code> folder and choose the certificate file.
+The Android system detects the certificate and lets you install it. For more information, see the <a href="https://support.google.com/nexus/answer/2844832?hl=en">sample guide for Google Nexus devices</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To verify the self-signed certificate is installed correctly, use a browser on the device to open the OpenShift web console. You should not see any warnings or errors relating to the certificate.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_ios">
+<div class="paragraph">
+<p>To install the cert on an iOS  simulator:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Drag and drop the certificate file to the simulator, and use Safari to download the certificate to the simulator.</p>
+</li>
+<li>
+<p>Install the downloaded certificate:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Go to Settings &gt; General &gt; Profile.
+You should see a profile with a name similar to <code>openshift-signer@xxxxxxx</code>.</p>
+</li>
+<li>
+<p>Tap on the profile.
+An <strong>Install</strong> button appears in the top right corner of the screen.</p>
+</li>
+<li>
+<p>Tap the <strong>Install</strong> button to install the cert.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Trust the installed certificate in iOS.
+Go to Settings &gt; General &gt; About &gt; Certificate Trust Settings, and enable the newly installed root certificate.
+See the <a href="https://support.apple.com/en-us/HT204477">Apple support site</a> for more instructions.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To install the cert on a real iOS device:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enable <a href="https://support.apple.com/en-us/ht204060">Passcode</a> or <a href="https://support.apple.com/en-us/ht201371">TouchID</a> protection on the mobile device to ensure the certificate can be installed.</p>
+</li>
+<li>
+<p>Copy the file to your device using one of the following methods:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Email attachment (Recommended) - Email the certificate to an address accessible from the device and download the attachment.</p>
+</li>
+<li>
+<p>Cloud service - Use a cloud storage service such as Dropbox or Google Drive that is accessible from the device, and download from the device.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add the certificate to your device:</p>
+<div class="paragraph">
+<p>When you download the certificate, the device should automatically detect a profile. Follow the on screen instructions to complete the process.</p>
+</div>
+</li>
+<li>
+<p>Trust the installed certificate in iOS.
+Go to Settings &gt; General &gt; About &gt; Certificate Trust Settings, and enable the newly installed root certificate.
+See the <a href="https://support.apple.com/en-us/HT204477">Apple support site</a> for more instructions.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To verify the self-signed certificate is installed correctly, use a browser on the deveice to open the OpenShift web console. You should not see any warnings or errors about the certificate.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="trust-self-signed-cert"><a class="anchor" href="#trust-self-signed-cert"></a>3. Trusting the Certificate In Your App.</h3>
+<div class="paragraph">
+<p>In the previous procedures, you ensured that the operating system trusts the cert.
+However, if you are using newer versions of the Android or iOS operating systems, you also need to update your mobile app to make sure it trusts the certificate.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_android"></a>Android</p>
+</li>
+<li>
+<p><a id="tabset7_ios"></a>iOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_android">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a <code>network_security_config.xml</code> file with the following code.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;network-security-config&gt;
+  &lt;base-config&gt;
+    &lt;trust-anchors&gt;
+      &lt;certificates src="user"/&gt;
+      &lt;certificates src="system"/&gt;
+    &lt;/trust-anchors&gt;
+  &lt;/base-config&gt;
+&lt;/network-security-config&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Save this file in the following location:
+* <code>res/xml</code> directory for native apps
+* the root directory of the project for JavaScript apps</p>
+</div>
+</li>
+<li>
+<p>Update the manifest file of your Android application to use this configuration.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If you are developing a native application, open the <code>AndroidManifest.xml</code> file and add the following code to the <code>application</code> tag:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;application android:networkSecurityConfig="@xml/network_security_config" ... /&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you are developing a Cordova application, add the following code the <code>config.xml</code> file in for the <code>android</code> platform:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;resource-file src="network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" /&gt;
+&lt;edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application"&gt;
+    &lt;application android:networkSecurityConfig="@xml/network_security_config" /&gt;
+&lt;/edit-config&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You also need to add <code>xmlns:android="http://schemas.android.com/apk/res/android"</code> to the <code>widget</code> tag in the same <code>config.xml</code> file.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more information, check the <a href="https://developer.android.com/training/articles/security-config">Android network security configuration guide</a>.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_ios">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the <code>NSAllowsArbitraryLoads</code> key to the <code>Info.plist</code> file of your iOS project.</p>
+</li>
+<li>
+<p>Set the <code>NSAllowsArbitraryLoads</code> key to <code>Yes</code> to disable the App Transport Security (ATS) feature for your application.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only perform these steps for development or debug purposes, the resulting app will not pass the App Store review process.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information, see the <a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW60">Apple developer docs</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="features"><a class="anchor" href="#features"></a>Demonstrating the ShowCase App features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="identity-management"><a class="anchor" href="#identity-management"></a>Identity Management</h3>
+<div class="paragraph">
+<div class="title">Prerequisite</div>
+<p>Make sure you have created a user and set up credentials for that user as describe in the <a href="https://www.keycloak.org/documentation.html">Keycloak Documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>From the showcase app:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset8_ionic"></a>Ionic</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset8_ionic">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To log in, click the <strong>Login</strong> button.</p>
+</li>
+<li>
+<p>A login page is displayed, enter your credentials.</p>
+</li>
+<li>
+<p>Once the login is successful, navigate to <strong>User Profile</strong> page and see the roles and basic information about the user.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-sync"><a class="anchor" href="#data-sync"></a>Data Sync</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Data Sync is only available in the Cordova showcase app.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To demonstrate all the features that Data Sync offers, use the same app from multiple devices at the same time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>From the showcase app:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select the <strong>Manage Tasks</strong> menu item.</p>
+</li>
+<li>
+<p>View tasks created from other devices and edit them. Check that the tasks have changed from other devices.</p>
+</li>
+<li>
+<p>Create new tasks and see those tasks displayed on other devices.</p>
+</li>
+<li>
+<p>Invoke <strong>Airplane Mode</strong> to bring your device offline.</p>
+</li>
+<li>
+<p>Create more tasks and edit some existing tasks.</p>
+</li>
+<li>
+<p>Switch the device back online and see the new and edited tasks synchronized to the other devices.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="security-services"><a class="anchor" href="#security-services"></a>Security Services</h3>
+<div class="sect3">
+<h4 id="device-checks"><a class="anchor" href="#device-checks"></a>Device Checks</h4>
+<div class="paragraph">
+<p>Device Trust page will check the mobile device for and give a security rating for the device based on the following checks</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Debugger Detected</p>
+</li>
+<li>
+<p>Root Access Detected</p>
+</li>
+<li>
+<p>Emulator Access Detected</p>
+</li>
+<li>
+<p>No Device Lock Enabled</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To use Device Trust in the showcase app:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press the <strong>Security</strong> menu item.</p>
+</li>
+<li>
+<p>From the drop down press <strong>Device Trust</strong>.</p>
+</li>
+<li>
+<p>View the results of the Device security checks.</p>
+</li>
+<li>
+<p>Navigate to the Grafana, and view the metrics as described in <a href="mobile-metrics.html" class="page">Analyzing App Usage</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mobile-security-service"><a class="anchor" href="#mobile-security-service"></a>Mobile Security Service</h4>
+<div class="paragraph">
+<p>Application Trust allows you to connect to the Mobile Security Service and that allows you to enable or disable a mobile app from the Mobile Security console.</p>
+</div>
+<div class="paragraph">
+<p>To use Application Trust in the showcase app:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Press the <strong>Security</strong> menu item.</p>
+</li>
+<li>
+<p>From the drop down press <strong>Application Trust</strong>.</p>
+</li>
+<li>
+<p>Navigate to the Mobile Security Service link to set the enable/disable message as described in link:Mobile Security#monitoring[Using the App Security Console].</p>
+</li>
+<li>
+<p>Press the <strong>CHECK THE SECURITY SERVICE</strong> button to check the message from the service.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="push-notifications"><a class="anchor" href="#push-notifications"></a>Push Notifications</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Send a push notification as described in
+<a href="/aerogear/latest/push-notifications.html#sending">Sending a Push Notification</a></p>
+</li>
+<li>
+<p>Launch the showcase app and view the notification.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mobile-metrics"><a class="anchor" href="#mobile-metrics"></a>Mobile Metrics</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Launch the showcase app. It automatically sends <a href="mobile-metrics.html#app" class="page">app and device metrics</a>.</p>
+</li>
+<li>
+<p>Navigate to the Grafana, and view the metrics.</p>
+<div class="paragraph">
+<p>If you perform <a href="device-security.html" class="page">device security</a> checks, related metrics are also displayed.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <h5>Mobile Services</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/services/identity-management/">Identity Management</a></li>
+         <li><a href="https://aerogear.org/services/push/">Push Notifications</a></li>
+         <li><a href="https://aerogear.org/services/metrics/">Mobile Metrics</a></li>
+         <li><a href="https://aerogear.org/services/mobile-ci-cd/">Mobile CI/CD</a></li>
+         <li><a href="https://aerogear.org/services/device-security/">Device Security</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-4">
+        <h5>Mobile SDKs</h5>
+        <ul class="list-unstyled">
+         <li><a href="https://aerogear.org/sdks/android/">Android</a></li>
+         <li><a href="https://aerogear.org/sdks/cordova/">Cordova</li>
+         <li><a href="https://aerogear.org/sdks/ios/">iOS</a></li>
+         <li><a href="https://aerogear.org/sdks/xamarin/">Xamarin</a></li>
+        </ul>
+      </div><!-- col -->
+      
+      <div class="col-sm-4">
+        <h5>COMMUNITY</h5>
+        <ul class="list-unstyled">
+          <li><a target="_blank" href="https://github.com/aerogear/">GitHub - Aerogear</a></li>
+          <li><a target="_blank" href="https://github.com/aerogearcatalog/">GitHub - Aerogear Catalog</a></li>
+          <li><a target="_blank" href="https://issues.jboss.org/browse/AEROGEAR">Jira Repo Issues</a></li>
+          <li><a  href="https://aerogear.org/community/contribution-guide/">Contribution Guide</a></li>
+          <li><a target="_blank" href="https://groups.google.com/forum/#!forum/aerogear">Google Group</a></li>
+          <li><a href="irc://irc.freenode.net/aerogear">IRC</a></li>
+        </ul>
+      </div><!-- col -->
+
+      <div class="col-sm-12 follow">
+        <h5>FOLLOW US</h5>
+        <ul class="list-inline">
+          <li><a target="_blank" href="https://www.twitter.com/aerogears"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+          <li><a target="_blank" href="https://www.youtube.com/channel/UCgDcDoN2b7cEI63fgpxACBA"><i class="fa fa-youtube"></i> YouTube</a></li>
+          <li><a target="_blank" href="https://aerogear.org/news"><i class="fa fa-rss-square"></i> Feed</a></li>
+        </ul>
+        
+        <p>The AeroGear project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>, and is subject to the <a href="https://aerogear.org/legal/export.html">Export Policy</a>.</p>
+      </div><!-- col -->
+    
+    </div><!-- row -->
+
+  </div><!-- container -->
+
+</footer><!-- footer -->
+
+<section class="redhat">
+  <div class="container">
+    <p class="text-center">
+      <a href="http://www.redhat.com/">
+        <img src="/_/img/redhatlogo-wite.png" alt="redhatlogo-wite" width="130">
+      </a>
+    </p>       
+  </div><!-- container -->
+</section>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

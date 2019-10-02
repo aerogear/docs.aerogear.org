@@ -67,8 +67,8 @@ Zepto(function($){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supporting authentication and authorization in your mobile app :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-auth.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-auth.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -506,6 +509,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/ds-auth.html">Native</a>
     <a class="version is-current" href="ds-auth.html">latest</a>
     <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
@@ -517,7 +521,7 @@ Zepto(function($){
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#authentication-and-authorization">Configuring your server for authentication and authorization using Keycloak</a>
+<li><a href="#sync-server-auth">Configuring your server for authentication and authorization using Keycloak</a>
 <ul class="sectlevel2">
 <li><a href="#protecting-voyager-server-using-keycloak">Protecting Voyager Server using Keycloak</a></li>
 <li><a href="#using-the-hasrole-directive-in-a-schema">Using the hasRole directive in a schema</a></li>
@@ -532,7 +536,7 @@ Zepto(function($){
 </ul>
 </div>
 <div class="sect1">
-<h2 id="authentication-and-authorization"><a class="anchor" href="#authentication-and-authorization"></a>Configuring your server for authentication and authorization using Keycloak</h2>
+<h2 id="sync-server-auth"><a class="anchor" href="#sync-server-auth"></a>Configuring your server for authentication and authorization using Keycloak</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Using the Identity Management service and the <a href="https://www.npmjs.com/package/@aerogear/voyager-keycloak">@aerogear/voyager-keycloak</a> module, it is possible to add security to a Voyager Server application.</p>
@@ -787,7 +791,7 @@ type Mutation {
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#authentication-and-authorization-{context}">Configure Data Sync Server for Authentication and Authorization</a></p>
+<p><a href="#sync-server-auth">Configure Data Sync Server for Authentication and Authorization</a></p>
 </li>
 <li>
 <p><a href="ds-realtime.html#realtime-updates-{context}" class="page">Configuring Your Server for real-time updates</a></p>

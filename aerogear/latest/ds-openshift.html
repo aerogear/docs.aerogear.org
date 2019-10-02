@@ -67,8 +67,8 @@ Zepto(function($){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Running a Data Sync app on OpenShift :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/ds-openshift.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/ds-openshift.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="con_services.html">Mobile Services</a></li>
@@ -506,6 +509,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/ds-openshift.html">Native</a>
     <a class="version is-current" href="ds-openshift.html">latest</a>
     <a class="version is-missing" href="../v2.0/index.html">v2.0</a>
   </div>
@@ -519,7 +523,6 @@ Zepto(function($){
 <ul class="sectlevel1">
 <li><a href="#overview">Overview</a></li>
 <li><a href="#building-and-publishing-the-container">Building and publishing the Data Sync server container</a></li>
-<li><a href="#sync-server-provisioning-data-sync">Provisioning the Data Sync server application as a service</a></li>
 <li><a href="#sync-server-provisioning-data-sync-templates">Provisioning the Data Sync server applications using templates</a></li>
 <li><a href="#sync-server-getting-started-mdc-client">Connecting a Client</a>
 <ul class="sectlevel2">
@@ -570,7 +573,7 @@ Zepto(function($){
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM node:8
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM node:10
 WORKDIR /usr/src/app
 # copy Node.js specific files
 COPY package*.json ./
@@ -597,140 +600,6 @@ CMD [ "node", "index.js" ]</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker push &lt;your-repo&gt;/&lt;container-name&gt;</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sync-server-provisioning-data-sync"><a class="anchor" href="#sync-server-provisioning-data-sync"></a>Provisioning the Data Sync server application as a service</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To provision the  mobile service:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Log into the OpenShift console.</p>
-</li>
-<li>
-<p>Choose a project where you have previously provisioned Mobile Developer Console.</p>
-</li>
-<li>
-<p>Select <strong>Catalog</strong> from the left hand menu.</p>
-<div class="paragraph">
-<p>You can filter the catalog items to only show mobile specific items by selecting the <strong>Mobile</strong> tab.</p>
-</div>
-</li>
-<li>
-<p>Choose the  service.</p>
-</li>
-<li>
-<p>Follow the wizard for provisioning that service.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at this time</strong>.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Fill in all of the required parameters for the service:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/sync-app-creation-dialog.png" alt="Sync Application Creation Dialog">
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Configuration</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Field</th>
-<th class="tableblock halign-left valign-top">Default</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Name</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fill in name of your Data Sync application</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fill in URL too your Data Sync application docker image</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Docker image version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">latest</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tag of your docker image</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application Port</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Port number that Data Sync application is listening on</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application metrics endpoint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/metrics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the metrics endpoint (default value is recommended)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sync Application GraphQL Endpoint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/graphql</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the GraphQL endpoint (default value is recommended)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Hostname</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database server hostname that is used to connect by the Data Sync</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Port</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database server port that is used to connect by the Data Sync</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Username</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database server username that is used to connect by the Data Sync</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database Server Password</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database server password that is used to connect by the Data Sync</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database name</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the database that is used to connect by the Data Sync</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use SSL?</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use SSL connection to the SQL server</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
-Provisioning a service may take some time.</p>
-</div>
-<div class="paragraph">
-<p>Once the provision is completed, you should be able to see it in the Mobile Developer Console: go to the Mobile Developer Console and click on any mobile client, and you should see the newly provisioned Data Sync server in the <code>Unbound Services</code> section. If you want your client app to use the Data Sync server, just click on <code>Bind To App</code> button and complete the wizard. Once it&#8217;s bound, copy the updated <code>mobile-services.json</code> file to your client app and you can then initialise the Data Sync client SDK.</p>
 </div>
 </div>
 </div>
@@ -770,12 +639,8 @@ NOTE: You must set the <code>NODE_ENV</code> environment variable to <code>devel
 <p>Showcase application will deploy fully functional server with example Task implementation.
 Server side requires client application available on github <a href="https://github.com/aerogear/ionic-showcase">aerogear/ionic-showcase</a></p>
 </div>
-<div class="quoteblock">
-<blockquote>
 <div class="paragraph">
-<p>Note: Showcase server template can be used only for demo purposes and it should not be used in production.</p>
-</div>
-</blockquote>
+<p>Note: Use the Showcase server template for demo purposes only. Do not use this template in a production environment.</p>
 </div>
 <div class="paragraph">
 <p>When running on Red Hat Managed Integration templates will be available in <strong>Mobile</strong> &gt; <strong>App</strong>  category in OpenShift catalog</p>

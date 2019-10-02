@@ -67,8 +67,8 @@ Zepto(function($){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuring your Mobile App and Mobile Service in OpenShift :: AeroGear Mobile Services</title>
-    <link rel="canonical" href="https://docs.aerogear.org/aerogear/latest/getting-started-configuring.html">
-    <meta name="generator" content="Antora 2.0.0">
+    <link rel="canonical" href="https://docs.aerogear.org/aerogear/Native/getting-started-configuring.html">
+    <meta name="generator" content="Antora 2.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
   </head>
@@ -479,7 +479,10 @@ Zepto(function($){
     <li class="component is-current">
       <span class="title">Mobile Services</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../Native/index.html">Native</a>
+        </li>
+        <li class="version is-current">
           <a href="index.html">latest</a>
         </li>
         <li class="version">
@@ -495,7 +498,7 @@ Zepto(function($){
   <main class="main" role="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="getting-started.html" class="home-link"></a>
+  <a href="../Native/getting-started.html" class="home-link"></a>
 <nav class="crumbs" role="navigation" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="index.html">Mobile Services</a></li>
@@ -506,6 +509,7 @@ Zepto(function($){
 <div class="page-versions">
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
+    <a class="version" href="../Native/getting-started-configuring.html">Native</a>
     <a class="version is-current" href="getting-started-configuring.html">latest</a>
     <a class="version" href="../v2.0/getting-started-configuring.html">v2.0</a>
   </div>
@@ -634,7 +638,7 @@ If prompted to <strong>Create a Binding</strong>, choose <strong>Do not bind at 
 </td>
 <td class="content">
 When completing the Identity Management provisioning wizard, you are prompted to enter configuration data. For the purposes of this guide, keep the default values.
-For more information about the Identity Management provisioning wizard fields, see <a href="#Identity Management-configuration-additional-resources">Identity Management Configuration</a>.
+For more information about the Identity Management provisioning wizard fields, see <a href="#configuration-additional-resources">Identity Management Configuration</a>.
 </td>
 </tr>
 </table>
@@ -643,7 +647,7 @@ For more information about the Identity Management provisioning wizard fields, s
 <p>Once the wizard steps are completed, navigate to the Project Overview in OpenShift to see the newly provisioned service.
 Provisioning a service may take some time.</p>
 </div>
-<h3 id="Identity Management-configuration-additional-resources" class="discrete">Additional resources</h3>
+<h3 id="configuration-additional-resources" class="discrete">Additional resources</h3>
 <div class="sect3">
 <h4 id="identity-management-configuration"><a class="anchor" href="#identity-management-configuration"></a>Identity Management Configuration</h4>
 <div class="ulist">
@@ -730,6 +734,14 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 <p>Fill out the binding parameters required by the Identity Management Service.</p>
 <div class="imageblock">
 <div class="content">
+<img src="_images/mobile-clients-services-idm-parameters-down.png" alt="mobile clients services idm parameters down">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
 <img src="_images/mobile-clients-services-idm-parameters.png" alt="mobile clients services idm parameters">
 </div>
 </div>
@@ -740,16 +752,18 @@ It is possible to bind a Mobile App with a mobile service in the OpenShift conso
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use <code>Public</code> when binding a Mobile App to a Identity Management. When binding mobile services to each other, use <code>Bearer</code>.
+Use <code>Public</code> when binding a Mobile App to Mobile Metrics. When binding mobile services to each other, use <code>Bearer</code>.
 </td>
 </tr>
 </table>
 </div>
-</li>
-</ol>
-</div>
 <div class="paragraph">
 <p>The Identity Management service will now be expandable, details about the service can be viewed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mobile-clients-services-all-idm-provisioned_down.png" alt="mobile clients services all idm provisioned down">
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -783,7 +797,10 @@ For an explanation of these terms, see <a href="https://www.keycloak.org/documen
 <p>Click on the <strong>Keycloak Realm URL</strong> link to open the Keycloak Administration Console.</p>
 </li>
 <li>
-<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning">Provisioning</a> the service (defaults to admin/admin).</p>
+<p>Log in to the Administration console using the credentials you specified when <a href="#provisioning-the-keycloak-service">Provisioning</a> the service (defaults to admin/admin).</p>
+</li>
+<li>
+<p>Log in to the Administration console (default admin/admin).</p>
 </li>
 <li>
 <p>Select <strong>Clients</strong> from the left navigation menu.</p>
